@@ -36,27 +36,36 @@
             <h1 class="titulo">Cadastrar-se</h1>
 
 
-            <form class="login">
-                <label class="coisa" for="email">Nome:</label>
-                <input type="text" placeholder="Seu nome" class="inserir" type="nome" id="nome" name="nome" required>
+            <form class="cadastro">
 
-                <label class="coisa" for="senha">Senha:</label>
-                <input type="text" placeholder="Sua senha" class="inserir" type="password" id="senha" name="senha" required>
+                <div>
+                    <label class="coisa" for="email">Nome:</label>
+                    <input type="text" placeholder="Seu nome" class="inserir" type="nome" id="nome" name="nome" required>
+    
+                    <label class="coisa" for="senha">Senha:</label>
+                    <input type="text" placeholder="Sua senha" class="inserir" type="password" id="senha" name="senha" required>
+    
+                    <label class="coisa" for="email">Email:</label>
+                    <input type="text" placeholder="email@email.com" class="inserir" type="email" id="email" name="email" required>
+                </div>
 
-                <label class="coisa" for="email">Email:</label>
-                <input type="text" placeholder="email@email.com" class="inserir" type="email" id="email" name="email" required>
 
-                <label class="coisa" for="email">Data de Nascimento:</label>
-                <input type="text" placeholder="DD/MM/AA" class="inserir" type="date" id="data" name="data-nascimento" required>
+                <div>
+                    <label class="coisa" for="email">Data de Nascimento:</label>
+                    <input type="text" placeholder="DD/MM/AA" class="inserir" type="date" id="data" name="data-nascimento" required>
+    
+                    <label class="coisa" for="email">Telefone:</label>
+                    <input type="text" placeholder="+55 () 99999-9999" class="inserir" type="tel" id="tel" name="telefone" required>
 
-                <label class="coisa" for="email">Telefone:</label>
-                <input type="text" placeholder="email@email.com" class="inserir" type="tel" id="tel" name="telefone" required>
-
-                <button class="botao-cadastro" type="submit">Cadastrar</button>
+                </div>
 
             </form>
 
-            <p class="texto">Não possui uma conta? <a class="link" href="#">Cadastre-se</a></p>
+            <div class="final">
+                <button class="botao-cadastro" type="submit">Cadastrar</button>
+
+                <p class="texto">Você tem uma conta? <a class="link" href="login.html">Login</a></p>
+            </div>
 
         </div>
 

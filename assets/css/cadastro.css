@@ -31,11 +31,11 @@ section {
     text-align: center;
     font-weight: bold;
     font-size: 45px;
+    display: block;
 }
 
 .formulario {
-    display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
     background-color: var(--branco);
     border: 4px solid var(--azul-claro);
     padding: 30px;
@@ -43,9 +43,8 @@ section {
     margin-top: -100px;
 }
 
-.login {
+.cadastro {
     display: flex;
-    flex-direction: column;
 }
 
 .coisa {
@@ -55,12 +54,13 @@ section {
     font-size: 22px;
     padding-top: 10px;
     padding-bottom: 3px;
+    display: block;
 }
 
 .inserir {  
     border-radius: 5px;
     padding: 7px; 
-    margin-bottom: 10px;
+    margin: 10px 10px 0px 0px;
     border: 3px solid var(--azul);
     background-color: var(--azul-claro);
     font-weight: bold;
@@ -74,6 +74,8 @@ input::placeholder {
 
 .botao-cadastro {
     padding: 7px;
+    padding-left: 60px;
+    padding-right: 60px;
     margin-top: 20px;
     color: var(--azul);
     background-color: var(--branco);
@@ -117,4 +119,8 @@ input::placeholder {
     height: 400px;
     width: auto;
     margin-top: 83px;
+}
+
+.final {
+    text-align: center;
 }
