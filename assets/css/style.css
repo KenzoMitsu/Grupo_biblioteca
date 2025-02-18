@@ -118,3 +118,24 @@ input::placeholder {
     width: auto;
     margin-top: 83px;
 }
+
+@media (max-width: 426px) {
+    .livro-1 {
+        display: none;
+    }
+
+    .formulario {
+        margin-top: -20px;
+    }
+
+    header {
+        display: flex;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 321px) {
+    .formulario {
+        margin: 5px;
+    }
+}
