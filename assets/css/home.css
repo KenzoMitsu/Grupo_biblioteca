@@ -29,6 +29,7 @@ header {
     align-items: center;
     width: 100%;
     box-sizing: border-box;
+    margin-bottom: 50px;
 }
 
 /* Logo */
