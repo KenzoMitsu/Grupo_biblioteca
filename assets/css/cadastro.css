@@ -31,11 +31,11 @@ section {
     text-align: center;
     font-weight: bold;
     font-size: 45px;
+    display: block;
 }
 
 .formulario {
-    display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
     background-color: var(--branco);
     border: 4px solid var(--azul-claro);
     padding: 30px;
@@ -43,9 +43,8 @@ section {
     margin-top: -100px;
 }
 
-.login {
+.cadastro {
     display: flex;
-    flex-direction: column;
 }
 
 .coisa {
@@ -55,12 +54,13 @@ section {
     font-size: 22px;
     padding-top: 10px;
     padding-bottom: 3px;
+    display: block;
 }
 
 .inserir {  
     border-radius: 5px;
     padding: 7px; 
-    margin-bottom: 10px;
+    margin: 10px 10px 0px 0px;
     border: 3px solid var(--azul);
     background-color: var(--azul-claro);
     font-weight: bold;
@@ -72,8 +72,10 @@ input::placeholder {
     opacity: 0.5;
 }
 
-.botao-login {
+.botao-cadastro {
     padding: 7px;
+    padding-left: 60px;
+    padding-right: 60px;
     margin-top: 20px;
     color: var(--azul);
     background-color: var(--branco);
@@ -84,7 +86,7 @@ input::placeholder {
     transition: 0.2s;
 }
 
-.botao-login:hover {
+.botao-cadastro:hover {
     background-color: var(--azul);
     color: var(--branco);
     transition: 0.2s;
@@ -119,28 +121,6 @@ input::placeholder {
     margin-top: 83px;
 }
 
-@media (max-width: 426px) {
-    .livro-1 {
-        display: none;
-    }
-
-    .formulario {
-        margin-top: -20px;
-    }
-
-    header {
-        display: flex;
-        justify-content: center;
-    }
-
-    .tudo {
-        display: flex;
-        justify-content: center;
-    }
-}
-
-@media (max-width: 321px) {
-    .formulario {
-        margin: 5px;
-    }
+.final {
+    text-align: center;
 }
