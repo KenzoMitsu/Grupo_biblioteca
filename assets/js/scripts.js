@@ -30,28 +30,3 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 });
-
-
-function modoEscuro() {
-
-    const cores = [
-        ['#FF5733', '#FFC300'], // Laranja vibrante e Amarelo claro
-        ['#33FF57', '#28B463'], // Verde claro e Verde escuro
-        ['#3357FF', '#1F618D'], // Azul intenso e Azul escuro
-        ['#F1C40F', '#D68910'], // Amarelo ouro e Laranja dourado
-        ['#8E44AD', '#5B2C6F'], // Roxo escuro e Roxo mais escuro
-        ['#FF1493', '#FF69B4'], // Rosa escuro e Rosa  
-        ['#B0E0E6', '#E0FFFF'], // PowderBlue e PaleTurquoise
-        ['#1abc9c', '#3498db']  // Cores originais
-    ];
-
-    const coresSelecionadas = cores[numeroAleatorio];
-
-    document.getElementById('fundo').style.background = `${coresSelecionadas[0]}`;
-    document.getElementById('mudecor').style.background = `${coresSelecionadas[0]}`;
-    document.getElementById('btn').style.background = `${coresSelecionadas[1]}`;
-
-    const botao = document.getElementById('botao');
-    botao.style.background = `${coresSelecionadas[0]}`;
-    botao.style.cursor = 'pointer';
-}
