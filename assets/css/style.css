@@ -28,34 +28,67 @@ section {
 .titulo {
     color: var(--azul);
     text-align: center;
+    font-weight: bold;
+}
+
+.formulario {
+    display: flex;
+    flex-direction: column;
 }
 
 .login {
-    padding-top: 30px;
-    padding-left: 100px;
+    display: flex;
+    flex-direction: column;
 }
 
-.email {
-    display: block;
+.coisa {
     text-align: left;
-    margin: 10px 0 5px;
+    color: var(--azul);
     font-weight: bold;
+    font-size: 22px;
+    padding-top: 10px;
+    padding-bottom: 3px;
 }
 
-.inserir {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #ccc;
+.inserir {  
     border-radius: 5px;
-    background-color: #e8f0fe;
+    padding: 7px; 
+    margin-bottom: 10px;
+    border: 2px solid var(--azul);
+    color: var(--azul);
+    background-color: var(--azul-claro);
+}
+
+input::placeholder {
+    font-weight: bold;
+    color: var(--preto);
+    opacity: 0.5;
 }
 
 .botao-login {
-    width: 100%;
-    padding: 10px;
-    margin-top: 10px;
+    padding: 7px;
+    margin-top: 20px;
+    color: var(--azul);
+    background-color: var(--branco);
+    border: 3px solid var(--azul);
     border-radius: 5px;
-    cursor: pointer;
     font-weight: bold;
-    border: none;
+    font-size: 18px;
+    transition: 0.2s;
+}
+
+.botao-login:hover {
+    background-color: var(--azul);
+    color: var(--branco);
+    transition: 0.2s;
+}
+
+.texto {
+    padding-top: 20px;
+    font-weight: bold;
+}
+
+.link {
+    text-decoration: none;
+    color: var(--azul);
 }
