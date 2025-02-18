@@ -5,10 +5,10 @@
 }
 
 :root {
-    --azul-claro: 7094EA;
-    --azul-escuro: 0060BB;
-    --preto: 000000;
-    --branco: FFFFFF;
+    --azul: rgba(51, 128, 202, 1);
+    --azul-claro: rgba(238, 243, 255, 1);
+    --preto: black;
+    --branco: white;
 }
 
 body {
@@ -16,6 +16,46 @@ body {
 }
 
 .logo-header {
-    width: 50px;
-    height: auto;
+    height: 100px;
+    width: auto;
+    padding: 20px;
+}
+
+section {
+    display: flex;
+}
+
+.titulo {
+    color: var(--azul);
+    text-align: center;
+}
+
+.login {
+    padding-top: 30px;
+    padding-left: 100px;
+}
+
+.email {
+    display: block;
+    text-align: left;
+    margin: 10px 0 5px;
+    font-weight: bold;
+}
+
+.inserir {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #e8f0fe;
+}
+
+.botao-login {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    border: none;
 }
