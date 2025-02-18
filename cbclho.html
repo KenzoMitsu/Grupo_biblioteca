@@ -1,13 +1,58 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Biblioteca</title>
+    <link rel="stylesheet" href="estilo-head.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
     <header>
-        
+        <!-- Logo -->
+        <div class="header-left">
+            <img src="assets/img/logo.png" alt="Logo">
+        </div>
+
+        <!-- Barra de Pesquisa -->
+        <div class="header-center">
+            <div class="search-container">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Pesquise Seu Livro" class="search-box">
+            </div>
+        </div>
+
+        <!-- Dark Mode -->
+        <div class="header-right">
+            <div class="switch-container">
+                Dark Mode
+                <label class="switch">
+                    <input type="checkbox">
+                    <span class="slider"></span>
+                </label>
+            </div>
+        </div>
+
+        <!-- Ícone de Menu com Dropdown -->
+        <div class="header-end">
+            <div class="menu-container">
+                <div class="menu-icon" id="menuButton">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <ul class="dropdown-menu" id="dropdownMenu">
+                    <li class="menu-item">
+                        <img src="assets/img/user.png" alt="Perfil" class="menu-icon-img"> Perfil
+                    </li>
+                    <li class="menu-item"><i class="fas fa-book"></i> Empréstimos</li>
+                    <li class="menu-item"><i class="fas fa-sync-alt"></i> Histórico</li>
+                    <li class="menu-item"><i class="fas fa-sign-out-alt"></i> Sair</li>
+                </ul>
+            </div>
+        </div>
     </header>
+
+    <script src="scripts.js"></script>
 </body>
 </html>
