@@ -12,6 +12,10 @@
     --cor-complementar: rgb(96, 209, 231);
 }
 
+.item img{
+    cursor: pointer;
+}
+
 img {
     height: 150px;
 }
