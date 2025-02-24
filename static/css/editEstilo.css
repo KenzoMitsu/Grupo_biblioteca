@@ -261,6 +261,11 @@ section {
     margin-top: 20px;
 }
 
+.img_perfil img{
+    height: 150px;
+    width: 150px;
+}
+
 .btn-change-img {
     background-color: #0060BB;
     color: white;
@@ -360,7 +365,7 @@ input {
     }
 }
 
-@media (max-width:340px){
+@media (max-width:376px){
     .img_perfil img{
         width: 100px;
         height: 100px;
