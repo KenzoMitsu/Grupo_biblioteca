@@ -13,7 +13,7 @@ try:
     con = fdb.connect(host=host, database=database, user=user, password=password)
     print('Conexão estabelecida com sucesso')
 except Exception as e:
-    print(f'Errooo {e}')
+    print(f'Erro {e}')
 
 from view import *
 
