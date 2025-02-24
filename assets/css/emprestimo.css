@@ -5,11 +5,12 @@
 }
 
 :root{
-    --azul-claro: #4292DC;
+    --azul-claro: #4292dc;
     --azul-escuro: #0060BB;
     --branco: rgb(248, 252, 255);
     --preto: rgb(0, 0, 0);
     --cor-complementar: rgb(96, 209, 231);
+    --brancoo: rgb(255, 255, 255);
 }
 
 .item img{
@@ -196,20 +197,68 @@ h1 {
     margin-bottom: 50px
 }
 
+.filho2 {
+    padding-right: 20px;
+}
+
 .foto-livro {
     width: 350px;
     height: 350px;
-    margin-right: 50px;
+    margin-right: 30px;
 }
 
 .quantidade {
+    display: flex;
+    justify-content: center;
     font-size: x-large;
     font-weight: bold;
 }
 
+.botao-reserva {
+    padding-top: 7.5px;
+    padding-bottom: 7.5px;
+    padding-left: 100px;
+    padding-right: 100px;
+    color: var(--azul-claro);
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background-color: var(--brancoo);
+    border: 5px solid var(--azul-claro);
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: x-large;
+    transition: 0.2s;
+}
 
+.botao-reserva:hover {
+    background-color: #4292dcad;
+    color: var(--brancoo);
+    transition: 0.2s;
+}
 
+.botao-emprestimo {
+    padding-top: 7.5px;
+    padding-bottom: 7.5px;
+    padding-left: 76px;
+    padding-right: 76px;
+    color: var(--brancoo);
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background-color: var(--azul-claro);
+    border: 5px solid var(--azul-claro);
 
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: x-large;
+    transition: 0.2s;
+}
+
+.botao-emprestimo:hover {
+    background-color: #4292dcad;
+    color: var(--brancoo);
+    border: 5px solid var(--azul-claro);
+    transition: 0.2s;
+}
 
 /* RODAPÉ */
 .rodape-img-container {
