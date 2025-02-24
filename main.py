@@ -6,10 +6,12 @@ def index():
     
 
 @app.route('/home')
-def
+def home():
+
 
 @app.route('/login')
-def
+def login():
+
 
 @app.route('/cadastro')
-def
+def cadastro():
