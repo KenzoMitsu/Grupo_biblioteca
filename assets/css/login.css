@@ -34,6 +34,7 @@ section {
 }
 
 .formulario {
+    justify-content: center;
     display: flex;
     flex-direction: column;
     background-color: var(--branco);
@@ -73,9 +74,12 @@ input::placeholder {
 }
 
 .botao-login {
-    padding: 7px;
-    margin-top: 20px;
+    padding-top: 7.5px;
+    padding-bottom: 7.5px;
+    padding-left: 100px;
+    padding-right: 100px;
     color: var(--azul);
+    margin-top: 20px;
     background-color: var(--branco);
     border: 3px solid var(--azul);
     border-radius: 5px;
@@ -117,6 +121,21 @@ input::placeholder {
     height: 400px;
     width: auto;
     margin-top: 83px;
+}
+
+.link {
+    text-decoration: none;
+    color: var(--azul);
+    transition: 0.2s;
+}
+
+.link:hover {
+    color: var(--azul-escuro);
+    transition: 0.2s;
+}
+
+.final {
+    text-align: center;
 }
 
 @media (max-width: 426px) {
