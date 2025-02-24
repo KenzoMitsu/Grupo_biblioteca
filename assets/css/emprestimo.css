@@ -176,10 +176,36 @@ input:checked + .slider:before {
     border-radius: 50%;
 }
 
+h1 {
+    font-size: x-large;
+    font-weight: bold;
+}
 
+.texto {
+    font-size: medium;
+}
 
+.container {
+    display: flex;
+}
 
+.pai1 {
+    display: flex;
+    border-right: 1px solid;
+    margin-right: 50px;
+    margin-bottom: 50px
+}
 
+.foto-livro {
+    width: 350px;
+    height: 350px;
+    margin-right: 50px;
+}
+
+.quantidade {
+    font-size: x-large;
+    font-weight: bold;
+}
 
 
 
