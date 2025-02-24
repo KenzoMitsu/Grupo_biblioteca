@@ -184,6 +184,7 @@ h1 {
 
 .texto {
     font-size: medium;
+
 }
 
 .container {
@@ -193,7 +194,7 @@ h1 {
 .pai1 {
     display: flex;
     border-right: 1px solid;
-    margin-right: 50px;
+    margin-right: px;
     margin-bottom: 50px
 }
 
@@ -202,9 +203,9 @@ h1 {
 }
 
 .foto-livro {
-    width: 350px;
-    height: 350px;
-    margin-right: 30px;
+    width: 237px;
+    height: auto;
+    margin-right: 0px;
 }
 
 .quantidade {
@@ -231,7 +232,7 @@ h1 {
 }
 
 .botao-reserva:hover {
-    background-color: #4292dcad;
+    background-color: var(--azul-claro);
     color: var(--brancoo);
     transition: 0.2s;
 }
@@ -254,8 +255,8 @@ h1 {
 }
 
 .botao-emprestimo:hover {
-    background-color: #4292dcad;
-    color: var(--brancoo);
+    background-color: var(--brancoo);
+    color: var(--azul-claro);
     border: 5px solid var(--azul-claro);
     transition: 0.2s;
 }
@@ -328,4 +329,173 @@ footer {
     justify-content: center;
     text-align: center;
   }
-  /* FIM DO RODAPÉ */
+
+@media (max-width: 769px) {
+
+    header {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 8px 15px;
+    }
+
+    .header-left img {
+        width: 40px; /* Ajuste no tamanho do logo */
+    }
+
+    .header-center {
+        flex-grow: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0 10px;
+    }
+
+    .search-container {
+        width: 150px; /* Reduzindo a largura da pesquisa */
+        padding: 5px 10px;
+        border-radius: 20px;
+    }
+
+    .search-box {
+        font-size: 14px;
+    }
+
+    .header-right {
+        display: flex;
+        align-items: center;
+    }
+
+    .switch-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-size: 12px;
+    }
+
+    .menu-container {
+        margin-left: 10px;
+    }
+
+    .menu-icon {
+        width: 30px;
+        height: 24px;
+    }
+
+    .menu-icon div {
+        height: 3px;
+        background-color: #fff;
+    }
+
+
+    .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .pai1{
+        border: none;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+    }
+}    
+
+@media (max-width: 480px) {
+    .search-container {
+        width: 120px; /* Ajuste fino para telas muito pequenas */
+        }
+    
+        .switch-container {
+            font-size: 10px;
+        }
+    
+        .menu-icon {
+            width: 25px;
+        }
+    }
+    
+    /* RODAPÉ */
+    .rodape-img-container {
+        margin-top: 100px;
+        display: flex;
+        justify-content: center;
+    }
+    
+    .rodape-img-container {
+        width: 100%;
+        height: auto;
+    }
+    
+    footer {
+        background-color: var(--azul-escuro);
+        padding: 50px;
+        padding-top: 60px;
+      }
+    
+      .footer-section {
+        max-width: 200px;
+      }
+      
+      .footer-section h3 {
+        color: var(--branco);
+        font-size: 20px;
+        margin-bottom: 15px;
+      }
+      
+      .footer-section ul {
+        list-style: none;
+        padding: 0;
+      }
+      
+      .footer-section ul li {
+        margin-bottom: 10px;
+      }
+      
+      .info1 {
+        color: #ffffff  ;
+        text-decoration: none;
+        font-size: 17px;
+        transition: background-color 0.3s ease;
+      }
+    
+      .info2 {
+        color: #ffffff  ;
+        text-decoration: none;
+        font-size: 17px;
+        transition: background-color 0.5s ease;
+      }
+      
+      .footer-section ul li a:hover {
+        color: #6bd0f1;
+        border-radius: 2px;
+      }
+    
+    
+      .model_info {
+        display: flex;
+        justify-content: space-evenly;
+        padding-bottom: 10px;
+      }
+    
+      .col-6 {
+        color: #c3f2ff;
+        justify-content: center;
+        text-align: center;
+      }
+
+      .pai2 {
+        text-align: center;
+      }
+
+      .filho2 {
+        margin-left: 25px;
+      }
+    
+@media (max-width: 321px) {
+    .model_info {
+        flex-direction: column;
+    }
+}
