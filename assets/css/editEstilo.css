@@ -253,7 +253,6 @@ section {
     display: flex;
     flex-direction: column;
     align-items: center;
-
 }
 
 
@@ -264,14 +263,20 @@ section {
 .btn-change-img {
     background-color: #0060BB;
     color: white;
-    padding: 10px;
+    padding: 10px; 
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    margin-left: 30px;
 }
 
 .btn-change-img:hover {
-    background-color: #004a8f;
+    color: #4292dc;
+    background-color: white;
+    border: 4px solid #4292dc;
+    transition: 0.2s;
+    cursor: pointer;
+    padding: 10px;
 }
 
 /* FORMULÁRIO */
@@ -283,6 +288,18 @@ section {
     width: 400px;
 }
 
+label{
+    color: #3380CA;
+}
+
+.inserir {  
+    border-radius: 5px;
+    padding: 7px; 
+    margin-bottom: 10px;
+    border: 3px solid #3380ca;
+    background-color:#eef3ff;
+    font-weight: bold;
+}
 
 .form-grid {
     display: grid;
@@ -314,17 +331,21 @@ input {
 }
 
 .btn-save {
-    background-color: #3380CA;
-    color: white;
-    padding: 10px 160px;
-    border: none;
-    border-radius: 5px;
+    padding: 5px 150px;
     cursor: pointer;
     margin-top: 15px;
+    color: #4292dc;
+    background-color: white;
+    border: 5px solid #4292dc;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: large;
+    transition: 0.2s;
 }
 
 .btn-save:hover {
-    background-color: #2a6da4;
+    background-color: #4292dc;
+    color:white;
 }
 
 @media (max-width: 480px) {
