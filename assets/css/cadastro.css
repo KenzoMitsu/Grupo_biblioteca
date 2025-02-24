@@ -108,13 +108,6 @@ input::placeholder {
     transition: 0.2s;
 }
 
-.tudo {
-    align-items: center;
-    justify-content: space-evenly;
-    margin-top: 10px;
-    display: flex;
-}
-
 .livro-1 {
     height: 400px;
     width: auto;
