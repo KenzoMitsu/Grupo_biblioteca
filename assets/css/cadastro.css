@@ -22,6 +22,10 @@ body {
     padding: 20px;
 }
 
+header {
+    width: 100%;
+}
+
 section {
     display: flex;
 }
@@ -76,8 +80,8 @@ input::placeholder {
     padding: 7px;
     padding-left: 60px;
     padding-right: 60px;
-    margin-top: 20px;
     color: var(--azul);
+    margin-top: 20px;
     background-color: var(--branco);
     border: 3px solid var(--azul);
     border-radius: 5px;
@@ -116,4 +120,102 @@ input::placeholder {
 
 .final {
     text-align: center;
+}
+
+.tudo {
+    align-items: center;
+    justify-content: space-evenly;
+    margin-top: 10px;
+    display: flex;
+    width: 100%;
+}
+
+@media (max-width: 800px) {
+    .livro-1 {
+        display: none;
+    }
+
+    .formulario {
+        margin-top: -20px;
+    }
+
+    header {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .tudo {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .formulario {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 500px) {
+
+    .titulo {
+        font-size: 40px;
+    }
+
+    .tudo {
+        width: 100%;
+    }
+
+    .formulario {
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+        
+    }
+
+    .inserir {
+        width: 160px;
+    }
+
+    .coisa {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 400px) {
+
+    .formulario {
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+        padding: 7px;
+    }
+
+}
+
+@media (max-width: 350px) {
+
+    .formulario {
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+        padding: 7px;
+    }
+
+    .inserir {
+        width: 140px;
+    }
+
+    input::placeholder {
+        font-weight: bold;
+        color: var(--preto);
+        opacity: 0.5;
+        font-size: 12px;
+    }
+
+    .coisa {
+        font-size: 14px;
+    }
+
 }
