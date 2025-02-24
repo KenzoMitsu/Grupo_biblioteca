@@ -119,6 +119,17 @@ input::placeholder {
     margin-top: 83px;
 }
 
+.link {
+    text-decoration: none;
+    color: var(--azul);
+    transition: 0.2s;
+}
+
+.link:hover {
+    color: var(--azul-escuro);
+    transition: 0.2s;
+}
+
 @media (max-width: 426px) {
     .livro-1 {
         display: none;
