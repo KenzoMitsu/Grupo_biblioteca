@@ -81,7 +81,7 @@ input::placeholder {
     padding-left: 60px;
     padding-right: 60px;
     color: var(--azul);
-    margin-top: 20px;
+    margin-top: 30px;
     background-color: var(--branco);
     border: 3px solid var(--azul);
     border-radius: 5px;
@@ -135,19 +135,30 @@ input::placeholder {
         display: none;
     }
 
+    .inserir {
+        width: 300px;
+    }
+
     .formulario {
         margin-top: -20px;
+        display: flex;
     }
 
     header {
+        align-items: center;
+        justify-content: center;
         width: 100%;
         display: flex;
-        justify-content: center;
+    }
+
+    .cadastro {
+        display: block;
     }
 
     .tudo {
         width: 100%;
         display: flex;
+        flex-direction: column;
         justify-content: center;
     }
 
@@ -158,6 +169,20 @@ input::placeholder {
 }
 
 @media (max-width: 500px) {
+
+    header {
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        display: flex;
+    }
+
+    .logo-header {
+        width: 100px;
+        height: auto;
+        text-align: center;
+        padding: 0;
+    }
 
     .titulo {
         font-size: 40px;
@@ -171,19 +196,33 @@ input::placeholder {
         width: 100%;
         justify-content: center;
         align-items: center;
-        
+        margin-top: 10px;
     }
 
     .inserir {
-        width: 160px;
+        width: 300px;
     }
 
     .coisa {
-        font-size: 16px;
+        font-size: 20px;
     }
 }
 
 @media (max-width: 400px) {
+
+    header {
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        display: flex;
+    }
+
+    .logo-header {
+        width: 100px;
+        height: auto;
+        text-align: center;
+        padding: 0;
+    }
 
     .formulario {
         width: 100%;
@@ -201,21 +240,36 @@ input::placeholder {
         justify-content: center;
         align-items: center;
         padding: 7px;
+        margin-top: 5px;
+    }
+
+    header {
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        display: flex;
+    }
+
+    .logo-header {
+        width: 100px;
+        height: auto;
+        text-align: center;
+        padding: 0;
     }
 
     .inserir {
-        width: 140px;
+        width: 250px;
     }
 
     input::placeholder {
         font-weight: bold;
         color: var(--preto);
         opacity: 0.5;
-        font-size: 12px;
+        font-size: 15px;
     }
 
     .coisa {
-        font-size: 14px;
+        font-size: 18px;
     }
 
 }
