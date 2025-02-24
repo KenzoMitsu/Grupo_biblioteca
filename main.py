@@ -1,17 +1,21 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask
+import fdb
+
 app = Flask(__name__)
+app.config.from_pyfile('config.py')
 
-@app.route('/')
-def index():
-    
+host = app.config['DB_HOST']
+database = app.config['DB_NAME']
+user = app.config['DB_USER']
+password = app.config['DB_PASSWORD']
 
-@app.route('/home')
-def home():
+try:
+    con = fdb.connect(host=host, database=database, user=user, password=password)
+    print('Conexão estabelecida com sucesso')
+except Exception as e:
+    print(f'Errooo {e}')
 
+from view import *
 
-@app.route('/login')
-def login():
-
-
-@app.route('/cadastro')
-def cadastro():
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5000)
