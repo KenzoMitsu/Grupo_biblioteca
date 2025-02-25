@@ -14,6 +14,11 @@
         crossorigin="anonymous"></script>
 
     <title>Cadastro</title>
+
+    <script src="https://cdn-script.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+       
+    <script src="../static/dist/owl.carousel.min.js"></script>
+    <script src="../static/js/scripts.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 </head>
 
@@ -54,7 +59,7 @@
 
                 <div>
                     <label class="coisa">Data de Nascimento:</label>
-                    <input type="date" placeholder="AA/MM/DD" class="inserir" type="date" id="data" name="data-nascimento" required>
+                    <input type="date" placeholder="AA/MM/DD" class="inserir" id="data" name="data_nascimento" required>
 
                     <label class="coisa">Telefone:</label>
                     <input type="tel" placeholder="+55 () 99999-9999" class="inserir" id="tel" name="telefone" required>
@@ -85,26 +90,25 @@
                 nome: dados.get("nome"),
                 email: dados.get("email"),
                 senha: dados.get("senha"),
-                data: dados.get("data"),
-                tel: dados.get("tel"),
+                data_nascimento: dados.get("data_nascimento"),
+                telefone: dados.get("telefone"),
             }
 
             envia = JSON.stringify(envia)
 
             $.ajax({
                 method: "POST",
-                url: "http://192.168.1.120:5000/user",
+                url: "http://10.92.3.211:5000/usuarios",
                 data: envia,
 
                 contentType: "application/json",
 
                 success: function (retorno) {
-                    alert("Deu certo")
-                    console.log(retorno)
+                    alert(retorno.message)
+                    window.location.href = "home.html";
                 },
                 error: function (retorno) {
-                    alert("Deu erro")
-                    console.log(retorno)
+                    alert(retorno.responseJSON.error)
                 },
             })
         })
