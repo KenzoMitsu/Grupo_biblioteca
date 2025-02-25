@@ -12,6 +12,8 @@
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
 
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>    
+
     <title>Login</title>
 </head>
 
@@ -36,23 +38,62 @@
             <h1 class="titulo">Login</h1>
 
 
-            <form class="login">
+            <form id="formLoginUsuario" class="login">
                 <label class="coisa" for="email">Email:</label>
-                <input type="text" placeholder="email@email.com" class="inserir" type="email" id="email" name="email"
+                <input placeholder="email@email.com" type="text" placeholder="email@email.com" class="inserir" type="email" id="email" name="email"
                     required>
 
                 <label class="coisa" for="senha">Senha:</label>
-                <input type="text" placeholder="Sua senha" class="inserir" type="password" id="senha" name="senha"
+                <input placeholder="Sua senha" type="password" placeholder="Sua senha" class="inserir" type="password" id="senha" name="senha"
                     required>
             </form>
 
             <div class="final">
-                <a target="_blank" class="botao-texto" type="submit" href="index.html"><button class="botao-login">Login</button></a>
+                <button onclick="$('#formLoginUsuario').submit()" class="botao-login">Login</button></a>
 
                 <p class="texto">Não possui uma conta? <a target="_blank" class="link" href="cadastro.html">Cadastre-se</a></p>
             </div>
 
         </div>
+
+        <script>
+
+            $("#formLoginUsuario").on("submit", function(e) {
+    
+                e.preventDefault();
+    
+                let dados = new FormData(this);
+    
+
+                let envia = {
+                    email: dados.get("email"),
+                    senha: dados.get("senha"),
+                }
+    
+                envia = JSON.stringify(envia)
+    
+                $.ajax({
+
+                    method: "post", 
+    
+                    url: "http://10.92.3.211:5000/login",
+
+                    contentType: "application/json",
+                    
+                    data: envia,
+
+                    success: function(retorno) {
+                        alert(retorno.message)
+                        window.location.href = "home.html";
+                    },
+    
+                    error: function(retorno) {
+                        alert(retorno.responseJSON.error)
+                    }
+                })
+            })
+
+        </script>
 
     </section>
 
