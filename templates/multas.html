@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciador de Multas</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../static/css/multas.css">
+    <script src="../static/js/scripts.js"></script>
+</head>
+<body>
+
+    <header>
+        <!-- Logo -->
+        <div class="header-left">
+            <img src="../static/img/logo.png" alt="Logo">
+        </div>
+
+        <!-- Barra de Pesquisa -->
+        <div class="header-center">
+            <div class="search-container">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Pesquise Seu Livro" class="search-box">
+            </div>
+        </div>
+
+        <!-- Dark Mode -->
+        <div class="header-right">
+            <div class="switch-container">
+                Dark Mode
+                <label class="switch">
+                    <input type="checkbox">
+                    <span class="slider"></span>
+                </label>
+            </div>
+        </div>
+
+        <!-- Ícone de Menu com Dropdown -->
+        <div class="header-end">
+            <div class="menu-container">
+                <div class="menu-icon" id="menuButton">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <ul class="dropdown-menu" id="dropdownMenu">
+                    <li class="menu-item">
+                        <img src="../static/img/user.png" alt="Perfil" class="menu-icon-img"> Voltar</li>
+                    <li class="menu-item"><i class="fas fa-book"></i> Empréstimos</li>
+                    <li class="menu-item"><i class="fas fa-sync-alt"></i> Histórico</li>
+                    <li class="menu-item"><i class="fas fa-sign-out-alt"></i> Sair</li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <h2>Adicionar Multa</h2>
+        <div class="input-group">
+            <input type="text" placeholder="Valor da multa">
+            <input type="text" placeholder="Juros por dia">
+            <input type="text" placeholder="Ano da multa">
+        </div>
+        <button>Confirmar</button>
+    </div>
+    <h2>Gerenciar Multas</h2>
+    <div class="container">
+        <div class="input-group">
+            <input type="text" value="R$25,00">
+            <input type="text" value="R$100,00">
+            <input type="text" value="2025">
+        </div>
+        <button class="ger_btn">Editar</button>
+    </div>
+    <div class="container">
+        <div class="input-group">
+            <input type="text" value="R$20,00">
+            <input type="text" value="R$110,00">
+            <input type="text" value="2024">
+        </div>
+        <button class="ger_btn">Editar</button>
+    </div>
+</body>
+</html>
