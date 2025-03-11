@@ -86,6 +86,7 @@
 
                     success: function(retorno) {
 
+                        localStorage.setItem("token", retorno.token)
                         localStorage.setItem("id_usuario", retorno.usuario.id_usuario)
                         localStorage.setItem("nome", retorno.usuario.nome)
                         localStorage.setItem("cargo", retorno.usuario.cargo)
