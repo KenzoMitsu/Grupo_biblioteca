@@ -180,6 +180,7 @@ input:checked + .slider:before {
 h1 {
     font-size: x-large;
     font-weight: bold;
+    text-align: center;
 }
 
 .texto {
@@ -271,6 +272,8 @@ h1 {
     width: 100%;
     height: auto;
 }
+
+
 
 footer {
     background-color: var(--azul-escuro);

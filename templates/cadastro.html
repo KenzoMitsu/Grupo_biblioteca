@@ -20,7 +20,12 @@
     <script src="../static/dist/owl.carousel.min.js"></script>
     <script src="../static/js/scripts.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<<<<<<< HEAD
     <link rel="icon" type="image/x-icon" href="../static/img/head.png">
+=======
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+>>>>>>> ec1c7c11ab42424d604a99a28716df5018784ca3
 </head>
 
 <body>
@@ -107,15 +112,16 @@
                 success: function (retorno) {
                     Swal.fire({
                             title: "Sucesso!",
-                            text: "Login realizado com sucesso",
+                            text: "Cadastro feito com sucesso",
                             icon: "success"
-                        }); 
-                    window.location.href = "home.html";
+                        }).then((result) => {
+                            window.location.href = "home.html";
+                        } )
                 },
                 error: function (retorno) {
                     Swal.fire({
                             title: "Inválido!",
-                            text: "Usuário ou senha inválidos",
+                            text: "Cadastro inválido",
                             icon: "error"
                         });
                 },
