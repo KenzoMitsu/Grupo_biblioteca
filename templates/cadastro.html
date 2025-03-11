@@ -98,17 +98,25 @@
 
             $.ajax({
                 method: "POST",
-                url: "http://10.92.3.211:5000/usuarios",
+                url: "http://10.92.3.106:5000/usuarios",
                 data: envia,
 
                 contentType: "application/json",
 
                 success: function (retorno) {
-                    alert(retorno.message)  
+                    Swal.fire({
+                            title: "Sucesso!",
+                            text: "Login realizado com sucesso",
+                            icon: "success"
+                        }); 
                     window.location.href = "home.html";
                 },
                 error: function (retorno) {
-                    alert(retorno.responseJSON.error)
+                    Swal.fire({
+                            title: "Inválido!",
+                            text: "Usuário ou senha inválidos",
+                            icon: "error"
+                        });
                 },
             })
         })

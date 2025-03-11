@@ -194,7 +194,7 @@ h1 {
 .pai1 {
     display: flex;
     border-right: 1px solid;
-    margin-right: px;
+    margin-right: 8px;
     margin-bottom: 50px
 }
 
@@ -204,7 +204,7 @@ h1 {
 
 .foto-livro {
     width: 237px;
-    height: auto;
+    height: 300px;
     margin-right: 0px;
 }
 
@@ -400,6 +400,10 @@ footer {
         display: flex;
         align-items: center;
         flex-direction: column;
+    }
+
+    .foto-livro {
+        margin-bottom: 50px;
     }
 }    
 
