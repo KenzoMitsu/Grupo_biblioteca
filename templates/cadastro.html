@@ -110,8 +110,9 @@
                             title: "Sucesso!",
                             text: "Cadastro feito com sucesso",
                             icon: "success"
-                        }); 
-                    window.location.href = "home.html";
+                        }).then((result) => {
+                            window.location.href = "home.html";
+                        } )
                 },
                 error: function (retorno) {
                     Swal.fire({
