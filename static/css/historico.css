@@ -180,7 +180,13 @@ input:checked + .slider:before {
 
 
 
-
+h1{
+  text-align: center;
+  background-color: #4292dc67;
+  padding: 10px;
+  border-radius: 3px;
+  font-weight: bold;
+}
 
 
 
