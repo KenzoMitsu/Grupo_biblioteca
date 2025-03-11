@@ -76,8 +76,8 @@ input::placeholder {
 .botao-login {
     padding-top: 7.5px;
     padding-bottom: 7.5px;
-    padding-left: 100px;
-    padding-right: 100px;
+    padding-left: 120px;
+    padding-right: 120px;
     color: var(--azul);
     margin-top: 20px;
     background-color: var(--branco);
@@ -137,6 +137,11 @@ input::placeholder {
 .final {
     text-align: center;
 }
+
+.swal2-confirm {
+    background-color: var(--azul) !important;
+}
+
 
 @media (max-width: 800px) {
     .livro-1 {
