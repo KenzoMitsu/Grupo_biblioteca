@@ -1,0 +1,157 @@
+* {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #ffffff;
+}
+
+.container {
+    max-width: 700px;
+    margin: auto;
+    padding: 20px;
+    position: relative;
+}
+
+.logo {
+    width: 60px;
+    position: absolute;
+    top: 10px;
+    left: -270px;
+}
+
+h1 {
+    color: #1E5DA9;
+    font-size: 30px;
+    margin-bottom: 20px;
+    font-weight: bolder;
+}
+
+form {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.left, .right {
+    display: flex;
+    flex-direction: column;
+    width: 48%;
+    text-align: left;
+}
+
+label {
+    font-size: 14px;
+    font-weight: bold;
+    color: #1E5DA9;
+    margin-top: 10px;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 8px;
+    border: 2px solid #1E5DA9;
+    border-radius: 5px;
+    font-size: 14px;
+    margin-top: 5px;
+    background-color: #EEF3FF;
+}
+
+textarea {
+    height: 80px;
+}
+
+button {
+    width: 200px;
+    padding: 10px;
+    border: 2px solid #1E5DA9;
+    background-color: white;
+    color: #1E5DA9;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+button:hover {
+    background-color: #1E5DA9;
+    color: white;
+}
+
+.book-image {
+    width: 300px;
+    margin-top: 20px;
+    margin-left: 80px;
+}
+
+.cadastro {
+    margin-left: 30px;
+    font-weight: bold;
+}
+
+/* responsivos */
+@media (max-width:1024px){
+    .logo {
+        width: 60px;
+        position: absolute;
+        top: 10px;
+        left: -160px;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        width: 90%;
+        padding: 10px;
+    }
+
+    .logo {
+        position: static;
+        margin-bottom: 10px;
+    }
+
+    form {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .left, .right {
+        width: 100%;
+    }
+
+    .book-image {
+        width: 250px;
+        margin-left: 0;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+
+    button {
+        width: 100%;
+    }
+    .cadastro {
+        margin-left: 0px;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 22px;
+    }
+
+    .book-image {
+        display: none;
+    }
+
+    button {
+        font-size: 14px;
+        padding: 8px;
+    }
+}
