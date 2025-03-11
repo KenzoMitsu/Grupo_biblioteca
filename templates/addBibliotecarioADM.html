@@ -9,11 +9,12 @@
         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-    <link rel="stylesheet" href="../static/css/addBibliotecario.css" />
+    <link rel="stylesheet" href="../static/css/editEstilo.css" />
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
     <script src="../static/js/scripts.js"></script>
+    <link rel="icon" type="image/x-icon" href="../static/img/head-removebg-preview.png">
 </head>
 
 <body>
@@ -51,44 +52,51 @@
                     <div></div>
                 </div>
                 <ul class="dropdown-menu" id="dropdownMenu">
-                    <li class="menu-item"><i class="fas fa-user"></i> Perfil</li>
-                    <li class="menu-item"><i class="fas fa-user"></i>Adicionar Bibliotecario</li>   
-                    <hr>
-                    <li class="menu-item"><i class="fa-solid fa-cash-register"></i>Gerenciar Multas</li>
-                    <li class="menu-item"><i class="fas fa-book"></i> Gerenciar Livros</li>
-                    <li class="menu-item"><i class="fas fa-sync-alt"></i>Empréstimos</li>
-                    <hr>
+                    <li class="menu-item">
+                        <img src="../static/img/user.png" alt="Perfil" class="menu-icon-img"> Voltar</li>
+                    <li class="menu-item"><i class="fas fa-book"></i> Empréstimos</li>
+                    <li class="menu-item"><i class="fas fa-sync-alt"></i> Histórico</li>
                     <li class="menu-item"><i class="fas fa-sign-out-alt"></i> Sair</li>
                 </ul>
             </div>
         </div>
     </header>
 
-    <h1 class="titulo">Selecionar Bibliotecario</h1>
+    <h1 class="titulo">Adicionar Bibliotecario</h1>
     <section>
-
         <div>
             <form id="formCadastroUsuario" class="formulario">
                 <div class="form-grid">
-                    <div class="form-full">
+                    <div class="form-group">
                         <label for="nome">Nome:</label>
                         <input class="inserir" type="text" id="nome" name="nome" placeholder="Nome" />
                     </div>
+
+                    <div class="form-group">
+                        <label for="telefone">Telefone:</label>
+                        <input class="inserir" type="tel" id="telefone" name="telefone" placeholder="99 9999-9999" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="senha">Senha:</label>
+                        <input class="inserir" type="password" id="senha" name="senha" placeholder="Sua Senha" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="data_nascimento">Data de nascimento:</label>
+                        <input class="inserir" type="date" id="data_nascimento" name="data_nascimento" />
+                    </div>
+                </div>
 
                 <div class="form-full">
                     <label for="email">Email:</label>
                     <input class="inserir" type="email" id="email" name="email" placeholder="seuemail@email.com" />
                 </div>
-                <div>
-                    <button type="submit" class="btn-save">Adicionar</button>
-                    <button type="submit" class="btn-rem">Remover</button>
-                </div>
-            
+
+                <button type="submit" class="btn-save">Salvar</button>
             </form>
         </div>
     </section>
-
-    
 
 </body>
 
