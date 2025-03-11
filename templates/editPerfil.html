@@ -84,11 +84,6 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="senha">Senha:</label>
-                        <input class="inserir" type="password" id="senha" name="senha" placeholder="Sua Senha" />
-                    </div>
-
-                    <div class="form-group">
                         <label for="data_nascimento">Data de nascimento:</label>
                         <input class="inserir" type="date" id="data_nascimento" name="data_nascimento" />
                     </div>
@@ -105,10 +100,24 @@
     </section>
 
     <script>
+        var nome = localStorage.getItem("nome")
+        document.getElementById("nome").value = nome
+
+        var email = localStorage.getItem("email")
+        document.getElementById("email").value = email
+
+        var data_nascimento = localStorage.getItem("data_nascimento")
+        document.getElementById("data_nascimento").value = data_nascimento
+
+        var telefone = localStorage.getItem("telefone")
+        document.getElementById("telefone").value = telefone
+
         $("#formCadastroUsuario").on("submit", function (e) {
 
             // Impede o recarregamento da página
             e.preventDefault()
+
+            var id = localStorage.getItem("id_usuario")
 
             // Captura os dados do formulário
             let dados = new FormData(this)
@@ -117,7 +126,6 @@
             let envia = {
                 nome: dados.get("nome"),
                 telefone: dados.get("telefone"),
-                senha: dados.get("senha"),
                 email: dados.get("email"),
                 data_nascimento: dados.get("data_nascimento")
             }
@@ -128,7 +136,7 @@
             // Envia os dados via AJAX
             $.ajax({
                 method: "PUT",
-                url: "http://192.168.1.116:5000/usuarios/2", // ALTERAR PARA O ID DO USUARIO
+                url: "http://192.168.1.116:5000/usuarios/" + id, // ALTERAR PARA O ID DO USUARIO
                 data: envia,
                 contentType: "application/json",
                 success: function (retorno) {
