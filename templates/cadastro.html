@@ -104,7 +104,7 @@
 
             $.ajax({
                 method: "POST",
-                url: "http://192.168.1.116:5000/usuarios",
+                url: "http://192.168.0.2:5000/usuarios",
                 data: envia,
 
                 contentType: "application/json",
@@ -115,7 +115,7 @@
                             text: "Cadastro feito com sucesso",
                             icon: "success"
                         }).then((result) => {
-                            window.location.href = "home.html";
+                            window.location.href = "login.html";
                         } )
                 },
                 error: function (retorno) {
