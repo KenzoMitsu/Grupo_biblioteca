@@ -59,9 +59,17 @@
                     <li class="menu-item">
                         <img src="../static/img/user.png" alt="Perfil" class="menu-icon-img"><a href="editPerfil.html"> Perfil</a>
                     </li>
+<<<<<<< HEAD
                     <li class="menu-item"><i class="fas fa-book"></i><a href="emprestimos.html">Empréstimos</a></li>
                     <li class="menu-item"><i class="fas fa-sync-alt"></i><a href="historico.html">Histórico</a></li>
                     <li class="menu-item"><i class="fas fa-sign-out-alt"></i><a>Sair</a></li>
+=======
+
+                    <li class="menu-item"><i class="fas fa-book"></i><a href="emprestimos.html">Empréstimos</a></li>
+                    <li class="menu-item"><i class="fas fa-sync-alt"></i><a href="historico.html">Histórico</a></li>
+                    <li class="menu-item"><i class="fas fa-sign-out-alt"></i><a>Sair</a></li>
+
+>>>>>>> 1202be9ec8ee842f3694ffc33782f29b6d73c81f
                 </ul>
             </div>
         </div>
@@ -146,17 +154,16 @@
 
     <script>
         // Verifica se o token está armazenado no Local Storage da própria web (SEGURANÇA DO SITE)
-        var token = localStorage.getItem("token");
-        if(token === undefined || token === null) {
-            Swal.fire({
-                title: "Erro",
-                text: "Essa página é restrita!",
-                icon: "error"
-            })
+        var token = localStorage.getItem("token")
+    // var cargo = localStorage.getItem("cargo")   
 
-            // Manda para a pagina de login caso o usuário não possua token, ou seja, caso o usuário não esteja logado
-            window.location.href = "login.html"
-        }
+        if(!token) { //OBSERVAÇÃO PESSOAL! > Também da para fazer de maneira mais manual usando "token === undefined || token === null"
+            alert("Essa Página é restrita");
+
+        // Manda para a pagina de login caso o usuário não possua token, ou seja, caso o usuário não esteja logado
+        window.location.href = "login.html"
+    }
+
     </script>
 </body>
 
