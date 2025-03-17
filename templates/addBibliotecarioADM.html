@@ -12,7 +12,7 @@
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
+    <link rel="stylesheet" href="../static/css/addBibliotecario.css" />
     <script src="../static/js/scripts.js"></script>
     <link rel="stylesheet" href="../static/css/editEstilo.css" />
 </head>
@@ -79,12 +79,22 @@
         </button>
     </div>
 
+    <section>
+        <div class="card" id="bibliotecarioCard">
+            <p><strong>Bibliotecário:</strong> Luis Inacio</p>
+            <p><strong>Email:</strong> luisinacioll@gmail.com</p>
+            <p><strong>Data de Nascimento:</strong> 13/13/1313</p>
+            <p><strong>Telefone:</strong> +13 13 1313131313</p>
+            <button class="remove-btn" onclick="removerCard()">Remover</button>
+        </div>
+    </section>
+
+
     <!-- Modal -->
     <div class="modal fade" id="modalBibliotecario" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="modalLabel">Novo Bibliotecário</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -118,12 +128,14 @@
                                 placeholder="seuemail@email.com" required>
                         </div>
 
-                        <button type="submit" class="btn btn-success w-100">Salvar</button>
+                        <button type="submit" class="btn w-100">Salvar</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
+
+
 
     <script>
         // Verifica se o token está armazenado no Local Storage da própria web (SEGURANÇA DO SITE)
