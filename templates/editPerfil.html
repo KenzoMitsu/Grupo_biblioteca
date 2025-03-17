@@ -105,6 +105,7 @@
 <script>
     // Verifica se o token está armazenado no Local Storage da própria web
     var token = localStorage.getItem("token")
+    // var cargo = localStorage.getItem("cargo")   
 
     alert("Você está logado, portanto pode acessar a página!")
 
@@ -114,6 +115,13 @@
         // Manda para a pagina de login caso o usuário não possua token, ou seja, caso o usuário não esteja logado
         window.location.href = "login.html"
     }
+
+    // if(cargo === "cliente") {
+    //     alert("Você não tem permissão para acessar essa página!")
+
+    //     // Manda para a pagina de login caso o usuário não possua token, ou seja, caso o usuário não esteja logado
+    //     window.location.href = "index.html"
+    // }
 
     // Carrega os dados do usuário do localStorage mostra Key e Values ok? :D
     var nome = localStorage.getItem("nome");
