@@ -57,7 +57,7 @@
                 </div>
                 <ul class="dropdown-menu" id="dropdownMenu">
                     <li class="menu-item">
-                        <img src="../static/img/user.png" alt="Perfil" class="menu-icon-img"> Perfil
+                        <img src="../static/img/user.png" alt="Perfil" class="menu-icon-img"><a href="editPerfil.html"> Perfil</a>
                     </li>
                     <li class="menu-item"><i class="fas fa-book"></i> Empréstimos</li>
                     <li class="menu-item"><i class="fas fa-sync-alt"></i> Histórico</li>
@@ -143,6 +143,17 @@
         </div>
 
     </footer>
+
+    <script>
+        // Verifica se o token está armazenado no Local Storage da própria web (SEGURANÇA DO SITE)
+        var token = localStorage.getItem("token");
+        if(token === undefined || token === null) {
+            alert("Essa Página é restrita");
+
+            // Manda para a pagina de login caso o usuário não possua token, ou seja, caso o usuário não esteja logado
+            window.location.href = "login.html"
+        }
+    </script>
 </body>
 
 </html>
