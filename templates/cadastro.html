@@ -54,17 +54,17 @@
                     <label class="coisa">Nome:</label>
                     <input type="text" placeholder="Nome Completo" class="inserir" id="nome" name="nome" required>
 
+                    <label class="coisa" for="email">Email:</label>
+                    <input type="email" placeholder="email@email.com" class="inserir email" id="email" name="email" required>
+                
                     <label class="coisa">Senha:</label>
                     <input type="password" placeholder="Sua senha" class="inserir" id="senha" name="senha" required>
-
-                    <label class="coisa" for="email">Email:</label>
-                    <input type="email" placeholder="email@email.com" class="inserir" id="email" name="email" required>
                 </div>
 
 
                 <div>
                     <label class="coisa">Data de Nascimento:</label>
-                    <input type="date" placeholder="AA/MM/DD" class="inserir" id="data" name="data_nascimento" required>
+                    <input type="date" placeholder="AA/MM/DD" class="data" id="data" name="data_nascimento" required>
 
                     <label class="coisa">Telefone:</label>
                     <input type="tel" placeholder="+55 () 99999-9999" class="inserir" id="tel" name="telefone" required>
@@ -103,7 +103,7 @@
 
             $.ajax({
                 method: "POST",
-                url: "http://192.168.0.2:5000/usuarios",
+                url: "http://192.168.1.116:5000/usuarios",
                 data: envia,
 
                 contentType: "application/json",

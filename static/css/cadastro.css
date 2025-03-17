@@ -49,6 +49,7 @@ section {
 
 .cadastro {
     display: flex;
+    /* flex-direction: column; */
 }
 
 .coisa {
@@ -61,6 +62,7 @@ section {
     display: block;
 }
 
+
 .inserir {  
     border-radius: 5px;
     padding: 7px; 
@@ -69,6 +71,18 @@ section {
     background-color: var(--azul-claro);
     font-weight: bold;
 }
+
+.data{
+    padding: 7px;
+    width: 228px;
+    margin: 10px 10px 0px 0px;
+    border: 3px solid var(--azul);
+    background-color: var(--azul-claro);
+    font-weight: bold;
+    border-radius: 5px;
+
+}
+
 
 input::placeholder {
     font-weight: bold;
@@ -165,6 +179,9 @@ input::placeholder {
     .formulario {
         display: flex;
         flex-direction: column;
+    }
+    .data{
+        width: 300px;
     }
 }
 
@@ -270,6 +287,10 @@ input::placeholder {
 
     .coisa {
         font-size: 18px;
+    }
+    .data{
+        width: 252px;
+
     }
 
 }
