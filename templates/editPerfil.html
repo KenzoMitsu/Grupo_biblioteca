@@ -184,7 +184,7 @@
             },
             error: function (retorno) {
                 // Verifique se a resposta contém uma mensagem de erro
-                var mensagemErro = retorno.responseJSON ? retorno.responseJSON.error : "Erro desconhecido";
+                var mensagemErro = retorno.responseJSON ? retorno.responseJSON.error : "Erro, verifique se todos os campos estão preenchidos!";
                 alert(mensagemErro);
             }
         });
