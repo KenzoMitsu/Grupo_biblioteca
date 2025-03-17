@@ -56,15 +56,19 @@
                 </div>
                 <ul class="dropdown-menu" id="dropdownMenu">
                     <li class="menu-item">
-                        <img src="../static/img/user.png" alt="Perfil" class="menu-icon-img"><a href="editPerfilADM.html"> Perfil</a>
+                        <img src="../static/img/user.png" alt="Perfil" class="menu-icon-img"><a
+                            href="editPerfilADM.html"> Perfil</a>
                     </li>
-                    <li class="menu-item"><i class="fas fa-user"></i><a href="addBibliotecarioADM.html">Adicionar Bibliotecario</a></li>   
+                    <li class="menu-item"><i class="fas fa-user"></i><a href="addBibliotecarioADM.html">Adicionar
+                            Bibliotecario</a></li>
                     <hr>
-                    <li class="menu-item"><a href="multasADM.html"><i class="fa-solid fa-cash-register"></i>Gerenciar Multas</li></a>
+                    <li class="menu-item"><a href="multasADM.html"><i class="fa-solid fa-cash-register"></i>Gerenciar
+                            Multas</li></a>
                     <li class="menu-item"><a href="livrosADM.html"><i class="fas fa-book"></i> Gerenciar Livros</li></a>
-                    <li class="menu-item"><a href="emprestimosADM.html" ><i class="fas fa-sync-alt"></i>Empréstimos</li></a>
+                    <li class="menu-item"><a href="emprestimosADM.html"><i class="fas fa-sync-alt"></i>Empréstimos</li>
+                    </a>
                     <hr>
-                    <li class="menu-item"><i class="fas fa-sign-out-alt"></i> Sair</li>
+                    <li class="menu-item"><i class="fas fa-sign-out-alt"></i><button class="sair ">Sair</button></li>
                 </ul>
             </div>
         </div>
@@ -73,13 +77,13 @@
     <section>
         <div>
             <div class="img_perfil">
-                <img src="../static/img/user.png" class="foto_usuario"/>
+                <img src="../static/img/user.png" class="foto_usuario" />
                 <button class="btn-change-img">Alterar Imagem</button>
             </div>
         </div>
         <div>
             <form id="formCadastroUsuario" class="formulario">
-                
+
                 <div class="form-grid">
 
                     <div class="form-group">
@@ -108,86 +112,91 @@
         </div>
     </section>
 
-<script>
-    // Verifica se o token está armazenado no Local Storage da própria web
-    var token = localStorage.getItem("token")
-    // var cargo = localStorage.getItem("cargo")   
+    <script>
+        // Verifica se o token está armazenado no Local Storage da própria web
+        var token = localStorage.getItem("token")
+        // var cargo = localStorage.getItem("cargo")   
 
-    console.log("Você está logado, portanto pode acessar a página!")
+        console.log("Você está logado, portanto pode acessar a página!")
 
-    if(!token) { //OBSERVAÇÃO PESSOAL! > Também da para fazer de maneira mais manual usando "token === undefined || token === null"
-        alert("Essa Página é restrita");
+        if (!token) { //OBSERVAÇÃO PESSOAL! > Também da para fazer de maneira mais manual usando "token === undefined || token === null"
+            alert("Essa Página é restrita");
 
-        // Manda para a pagina de login caso o usuário não possua token, ou seja, caso o usuário não esteja logado
-        window.location.href = "login.html"
-    }
-
-    // if(cargo === "cliente") {
-    //     alert("Você não tem permissão para acessar essa página!")
-
-    //     // Manda para a pagina de login caso o usuário não possua token, ou seja, caso o usuário não esteja logado
-    //     window.location.href = "index.html"
-    // }
-
-    // Carrega os dados do usuário do localStorage mostra Key e Values ok? :D
-    var nome = localStorage.getItem("nome");
-    document.getElementById("nome").value = nome;
-
-    var email = localStorage.getItem("email");
-    document.getElementById("email").value = email;
-
-    var data_nascimento = localStorage.getItem("data_nascimento");
-    document.getElementById("data_nascimento").value = data_nascimento;
-
-    var telefone = localStorage.getItem("telefone");
-    document.getElementById("telefone").value = telefone;
-
-    // Aqui é definido o que é feito quando o usuário aperta em "Salvar", não se esqueçam :)
-    $("#formCadastroUsuario").on("submit", function (e) {
-        // Impede o recarregamento da página!
-        e.preventDefault();
-
-        var id = localStorage.getItem("id_usuario");
-        if (!id) {
-            alert("ID do usuário não encontrado.");
-            return; // Impede a execução do restante do código
+            // Manda para a pagina de login caso o usuário não possua token, ou seja, caso o usuário não esteja logado
+            window.location.href = "login.html"
         }
 
-        // Captura os dados do formulário
-        let dados = new FormData(this);
+        // if(cargo === "cliente") {
+        //     alert("Você não tem permissão para acessar essa página!")
 
-        // Monta o objeto para envio
-        let envia = {
-            nome: dados.get("nome"),
-            telefone: dados.get("telefone"),
-            email: dados.get("email"),
-            data_nascimento: dados.get("data_nascimento")
-        };
+        //     // Manda para a pagina de login caso o usuário não possua token, ou seja, caso o usuário não esteja logado
+        //     window.location.href = "index.html"
+        // }
 
-        // Converte o objeto para JSON
-        envia = JSON.stringify(envia);
+        // Carrega os dados do usuário do localStorage mostra Key e Values ok? :D
+        var nome = localStorage.getItem("nome");
+        document.getElementById("nome").value = nome;
 
-        // Envia os dados via AJAX
-        $.ajax({
-            method: "PUT",
-            url: "http://192.168.1.116:5000/usuarios/" + id, // ID do usuário
-            data: envia,
-            contentType: "application/json",
-            headers: {
-                'Authorization': 'Bearer ' + token // Adiciona o token no cabeçalho
-            },
-            success: function (retorno) {
-                alert("Perfil atualizado com sucesso!");
-                console.log(retorno);
-            },
-            error: function (retorno) {
-                // Verifique se a resposta contém uma mensagem de erro
-                var mensagemErro = retorno.responseJSON ? retorno.responseJSON.error : "Erro desconhecido";
-                alert(mensagemErro);
+        var email = localStorage.getItem("email");
+        document.getElementById("email").value = email;
+
+        var data_nascimento = localStorage.getItem("data_nascimento");
+        document.getElementById("data_nascimento").value = data_nascimento;
+
+        var telefone = localStorage.getItem("telefone");
+        document.getElementById("telefone").value = telefone;
+
+        // Aqui é definido o que é feito quando o usuário aperta em "Salvar", não se esqueçam :)
+        $("#formCadastroUsuario").on("submit", function (e) {
+            // Impede o recarregamento da página!
+            e.preventDefault();
+
+            var id = localStorage.getItem("id_usuario");
+            if (!id) {
+                alert("ID do usuário não encontrado.");
+                return; // Impede a execução do restante do código
             }
+
+            // Captura os dados do formulário
+            let dados = new FormData(this);
+
+            // Monta o objeto para envio
+            let envia = {
+                nome: dados.get("nome"),
+                telefone: dados.get("telefone"),
+                email: dados.get("email"),
+                data_nascimento: dados.get("data_nascimento")
+            };
+
+            // Converte o objeto para JSON
+            envia = JSON.stringify(envia);
+
+            // Envia os dados via AJAX
+            $.ajax({
+                method: "PUT",
+                url: "http://192.168.1.116:5000/usuarios/" + id, // ID do usuário
+                data: envia,
+                contentType: "application/json",
+                headers: {
+                    'Authorization': 'Bearer ' + token // Adiciona o token no cabeçalho
+                },
+                success: function (retorno) {
+                    alert("Perfil atualizado com sucesso!");
+                    console.log(retorno);
+                },
+                error: function (retorno) {
+                    // Verifique se a resposta contém uma mensagem de erro
+                    var mensagemErro = retorno.responseJSON ? retorno.responseJSON.error : "Erro desconhecido";
+                    alert(mensagemErro);
+                }
+            });
         });
-    });
-</script>
+
+        document.querySelector(".menu-item button").addEventListener("click", function () {
+            localStorage.removeItem("token"); // Remove o token do localStorage
+            window.location.href = "login.html"; // Redireciona para a página de login
+        });
+    </script>
 
 </body>
 

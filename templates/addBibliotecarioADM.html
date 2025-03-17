@@ -11,7 +11,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
     <script src="../static/js/scripts.js"></script>
     <link rel="stylesheet" href="../static/css/editEstilo.css" />
@@ -54,25 +54,25 @@
                 </div>
                 <ul class="dropdown-menu" id="dropdownMenu">
                     <li class="menu-item"><i class="fas fa-user"></i> Perfil</li>
-                    <li class="menu-item"><i class="fas fa-user"></i>Adicionar Bibliotecario</li>   
+                    <li class="menu-item"><i class="fas fa-user"></i>Adicionar Bibliotecario</li>
                     <hr>
                     <li class="menu-item"><i class="fa-solid fa-cash-register"></i>Gerenciar Multas</li>
                     <li class="menu-item"><i class="fas fa-book"></i> Gerenciar Livros</li>
                     <li class="menu-item"><i class="fas fa-sync-alt"></i>Empréstimos</li>
                     <hr>
-                    <li class="menu-item"><i class="fas fa-sign-out-alt"></i> Sair</li>
+                    <li class="menu-item"><i class="fas fa-sign-out-alt"></i><button class="sair ">Sair</button></li>
                 </ul>
             </div>
         </div>
     </header>
 
 
-        <h1 class="titulo">Gerenciar Bibliotecarios</h1>
-        <section>
-            <div>
-                
-            </div>
-        </section>
+    <h1 class="titulo">Gerenciar Bibliotecarios</h1>
+    <section>
+        <div>
+
+        </div>
+    </section>
     <div class="container mt-5 text-center">
         <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalBibliotecario">
             Adicionar Bibliotecário
@@ -128,12 +128,17 @@
     <script>
         // Verifica se o token está armazenado no Local Storage da própria web (SEGURANÇA DO SITE)
         var token = localStorage.getItem("token");
-        if(token === undefined || token === null) {
+        if (token === undefined || token === null) {
             alert("Essa Página é restrita");
 
             // Manda para a pagina de login caso o usuário não possua token, ou seja, caso o usuário não esteja logado
             window.location.href = "login.html"
         }
+
+        document.querySelector(".menu-item button").addEventListener("click", function () {
+            localStorage.removeItem("token"); // Remove o token do localStorage
+            window.location.href = "login.html"; // Redireciona para a página de login
+        });
     </script>
 
 </body>

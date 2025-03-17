@@ -15,7 +15,15 @@ a{
     --preto: black;
     --branco: white;
 }
-
+.sair{
+    background-color: #00010000;
+    border: #00010000;
+}
+.sair:hover{
+    background-color: #00010000;
+    border: #00010000;
+    color: black;
+}
 body {
     background-color: var(--branco);
 }
