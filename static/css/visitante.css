@@ -3,6 +3,10 @@
     margin: 0;
     text-decoration: none;
 }
+a{
+    text-decoration: none;
+    color:black;
+}
 
 :root{
     --azul-claro: #4292DC;

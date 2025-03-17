@@ -4,6 +4,10 @@
     text-decoration: none;
     box-sizing: border-box;
 }
+a{
+    text-decoration: none;
+    color:black;
+}
 
 body {
     font-family: Arial, sans-serif;
@@ -11,6 +15,9 @@ body {
     background-color: #ffffff;
 }
 
+.container{
+    margin: 0px;
+}
 
 header {
     background-color: #0060BB;
@@ -22,6 +29,8 @@ header {
     box-sizing: border-box;
     margin-bottom: 50px;
 }
+
+
 
 /* Logo */
 .header-left img {
@@ -241,7 +250,6 @@ input:checked + .slider:before {
 }
 
 
-
 h1 {
     color: #1E5DA9;
     font-size: 30px;
@@ -269,7 +277,7 @@ label {
     margin-top: 10px;
 }
 
-input, textarea {
+.text, textarea, input {
     width: 100%;
     padding: 8px;
     border: 2px solid #1E5DA9;
