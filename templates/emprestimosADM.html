@@ -63,7 +63,7 @@
                     <li class="menu-item"><i class="fas fa-book"></i> Gerenciar Livros</li>
                     <li class="menu-item"><i class="fas fa-sync-alt"></i>Empréstimos</li>
                     <hr>
-                    <li class="menu-item"><i class="fas fa-sign-out-alt"></i> Sair</li>
+                    <li class="menu-item"><i class="fas fa-sign-out-alt"></i><button class="sair ">Sair</button></li>
                 </ul>
             </div>
         </div>
@@ -88,6 +88,10 @@
             // Manda para a pagina de login caso o usuário não possua token, ou seja, caso o usuário não esteja logado
             window.location.href = "login.html"
         }
+        document.querySelector(".menu-item button").addEventListener("click", function () {
+    localStorage.removeItem("token"); // Remove o token do localStorage
+    window.location.href = "login.html"; // Redireciona para a página de login
+});
     </script>
 
     </body>
