@@ -150,12 +150,14 @@
     </footer>
 
     <script>
-        // Verifica se o token está armazenado no Local Storage da própria web (SEGURANÇA DO SITE)
         var token = localStorage.getItem("token");
         if(token === undefined || token === null) {
-            alert("Essa Página é restrita");
+            Swal.fire({
+                title: "Erro!",
+                text: "Essa página é restrita!",
+                icon: "error"
+                });
 
-            // Manda para a pagina de login caso o usuário não possua token, ou seja, caso o usuário não esteja logado
             window.location.href = "login.html"
         }
     </script>
