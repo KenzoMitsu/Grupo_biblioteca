@@ -18,8 +18,50 @@
 <body>
     <div class="container">
         <header>
-            <img src="../static/img/logo.png" alt="Logo" class="logo">
-            <h1>Cadastrar livro</h1>
+            <!-- Logo -->
+            <div class="header-left">
+                <img src="../static/img/logo.png" alt="Logo">
+            </div>
+    
+            <!-- Barra de Pesquisa -->
+            <div class="header-center">
+                <div class="search-container">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Pesquise Seu Livro" class="search-box">
+                </div>
+            </div>
+    
+            <!-- Dark Mode -->
+            <div class="header-right">
+                <div class="switch-container">
+                    Dark Mode
+                    <label class="switch">
+                        <input type="checkbox">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+            </div>
+    
+            <!-- Ícone de Menu com Dropdown -->
+            <div class="header-end">
+                <div class="menu-container">
+                    <div class="menu-icon" id="menuButton">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                    <ul class="dropdown-menu" id="dropdownMenu">
+                        <li class="menu-item"><i class="fas fa-user"></i> Perfil</li>
+                        <li class="menu-item"><i class="fas fa-user"></i>Adicionar Bibliotecario</li>   
+                        <hr>
+                        <li class="menu-item"><i class="fa-solid fa-cash-register"></i>Gerenciar Multas</li>
+                        <li class="menu-item"><i class="fas fa-book"></i> Gerenciar Livros</li>
+                        <li class="menu-item"><i class="fas fa-sync-alt"></i>Empréstimos</li>
+                        <hr>
+                        <li class="menu-item"><i class="fas fa-sign-out-alt"></i> Sair</li>
+                    </ul>
+                </div>
+            </div>
         </header>
 
         <form>
@@ -35,17 +77,22 @@
             </div>
 
             <div class="right">
-                
+
                 <label for="categoria">Categoria:</label>
                 <input class="text" type="text" id="categoria" name="categoria">
 
                 <label for="descricao">Descrição:</label>
                 <textarea class="text" id="descricao" name="descricao"></textarea>
                 
-                <label for="imagem">Imagem do Livro:</label>
-                <input type="file" id="imagem" name="imagem" accept="image/*">
+
+                <label for="isbn">ISBN:</label>
+                <input class="text" type="text" id="isbn" name="autor">
 
             </div>
+
+            <label for="imagem">Imagem do Livro:</label>
+            <input type="file" id="imagem" name="imagem" accept="image/*">
+
         </form>
 
         <button class="cadastro" type="submit">Cadastrar</button>

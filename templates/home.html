@@ -57,9 +57,9 @@
                 </div>
                 <ul class="dropdown-menu" id="dropdownMenu">
                     <li class="menu-item"><i class="fa-solid fa-circle-user"></i><a href="editPerfil.html"> Perfil</a></li>
-                    <li class="menu-item"><i class="fas fa-book"></i> Empréstimos</li>
-                    <li class="menu-item"><i class="fas fa-sync-alt"></i> Histórico</li>
-                    <li class="menu-item"><i class="fas fa-sign-out-alt"></i> Sair</li>
+                    <li class="menu-item"><i class="fas fa-book"></i><a href="emprestimos.html">Empréstimos</a></li>
+                    <li class="menu-item"><i class="fas fa-sync-alt"></i><a href="historico.html">Histórico</a></li>
+                    <li class="menu-item"><i class="fas fa-sign-out-alt"></i><a>Sair</a></li>
                 </ul>
             </div>
         </div>
@@ -144,13 +144,16 @@
 
     <script>
         // Verifica se o token está armazenado no Local Storage da própria web (SEGURANÇA DO SITE)
-        var token = localStorage.getItem("token");
-        if(token === undefined || token === null) {
+        var token = localStorage.getItem("token")
+    // var cargo = localStorage.getItem("cargo")   
+
+        if(!token) { //OBSERVAÇÃO PESSOAL! > Também da para fazer de maneira mais manual usando "token === undefined || token === null"
             alert("Essa Página é restrita");
 
-            // Manda para a pagina de login caso o usuário não possua token, ou seja, caso o usuário não esteja logado
-            window.location.href = "login.html"
-        }
+        // Manda para a pagina de login caso o usuário não possua token, ou seja, caso o usuário não esteja logado
+        window.location.href = "login.html"
+    }
+
     </script>
     
 </body>
