@@ -35,16 +35,16 @@
             </div>
 
             <div class="right">
+                
                 <label for="categoria">Categoria:</label>
                 <input class="text" type="text" id="categoria" name="categoria">
 
                 <label for="descricao">Descrição:</label>
                 <textarea class="text" id="descricao" name="descricao"></textarea>
                 
-
                 <label for="imagem">Imagem do Livro:</label>
                 <input type="file" id="imagem" name="imagem" accept="image/*">
-                <img id="preview" style="max-width: 300px; display: none; margin-top: 10px;">
+
             </div>
         </form>
 
@@ -73,7 +73,7 @@
 
         $.ajax({
             method: "POST",
-            url: "http://192.168.1.119:5000/livros",
+            url: "http://192.168.1.116:5000/livros",
             data: envia,
 
             contentType: "application/json",
@@ -99,7 +99,6 @@
 
 </script>
 
-        <img src="../static/img/cadastro_book.png" alt="Livro Aberto" class="book-image">
     </div>
     </div>
 
