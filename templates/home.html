@@ -41,7 +41,7 @@
             <div class="switch-container">
                 Dark Mode
                 <label class="switch">
-                    <input type="checkbox">
+                    <input id="alternarTema" type="checkbox">
                     <span class="slider"></span>
                 </label>
             </div>
@@ -51,14 +51,12 @@
         <div class="header-end">
             <div class="menu-container">
                 <div class="menu-icon" id="menuButton">
-                    <div></div>
-                    <div></div>
-                    <div></div>
+                    <div class="menulinha"></div>
+                    <div class="menulinha" ></div>
+                    <div class="menulinha" ></div>
                 </div>
                 <ul class="dropdown-menu" id="dropdownMenu">
-                    <li class="menu-item">
-                        <img src="../static/img/user.png" alt="Perfil" class="menu-icon-img"><a href="editPerfil.html"> Perfil</a>
-                    </li>
+                    <li class="menu-item"><i class="fa-solid fa-circle-user"></i><a href="editPerfil.html"> Perfil</a></li>
                     <li class="menu-item"><i class="fas fa-book"></i> Empréstimos</li>
                     <li class="menu-item"><i class="fas fa-sync-alt"></i> Histórico</li>
                     <li class="menu-item"><i class="fas fa-sign-out-alt"></i> Sair</li>
@@ -107,7 +105,7 @@
             </div>
         </div>
     </main>
-    <div>
+    <div class="fundo-imagemrodape">
         <img class="rodape-img-container" src="../static/img/rodape_biblioteca.jpg" a,
         lt="rodape-img">
     </div>
@@ -154,6 +152,7 @@
             window.location.href = "login.html"
         }
     </script>
+    
 </body>
 
 </html>
