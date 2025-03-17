@@ -10,10 +10,74 @@
     --branco: rgb(248, 252, 255);
     --preto: rgb(0, 0, 0);
     --cor-complementar: rgb(96, 209, 231);
+    --escuro: rgb(36, 36, 36);
+    --azul-modoescuro: #73A8FE;
 }
 
 .item img{
     cursor: pointer;
+}
+
+body {
+    transition: 0.2s;
+}
+
+body.modo-escuro header {
+    background-color: var(--azul-modoescuro);
+    color: var(--preto);
+}
+
+body.modo-escuro header div {
+    color: var(--preto);
+}
+
+body.modo-escuro header .menulinha {
+    background-color: var(--escuro);
+}
+
+body.modo-escuro header .search-container {
+    background-color: var(--escuro);
+}
+
+body.modo-escuro header .search-box {
+    color: var(--branco);
+    background-color: var(--escuro);
+}
+
+body.modo-escuro header .search-container i {
+    color: var(--branco);
+}
+
+body.modo-escuro footer {
+    background-color: var(--azul-modoescuro);
+}
+
+body.modo-escuro footer a {
+    color: var(--escuro);
+}
+
+body.modo-escuro footer h3 {
+    color: var(--escuro);
+}
+
+body.modo-escuro footer p {
+    color: var(--escuro);
+}
+
+body.modo-escuro .dropdown-menu {
+    background-color: var(--escuro);
+}
+
+body.modo-escuro .dropdown-menu .menu-item {
+    color: var(--branco);
+}
+
+body.modo-escuro .dropdown-menu .menu-icon-img {
+    color: var(--branco);
+}
+
+body.modo-escuro .dropdown-menu .menu-item:hover {
+    background-color: var(--preto);
 }
 
 img {
@@ -30,6 +94,12 @@ header {
     width: 100%;
     box-sizing: border-box;
     margin-bottom: 50px;
+}
+
+body.modo-escuro {
+    background-color: var(--escuro);
+    color: var(--branco);
+    transition: 0.2s;
 }
 
 /* Logo */
