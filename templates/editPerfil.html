@@ -75,9 +75,8 @@
     <section>
         <div>
             <div class="img_perfil">
-                <img src="../static/img/user.png" class="foto_usuario" id="imgPreview"/>
-                <input type="file" id="inputImagem" style="display: none;" accept="image/*">
-                <button class="btn-change-img" id="btnAlterarImagem">Alterar Imagem</button>
+                <img src="../static/img/user.png" class="foto_usuario"/>
+                <button class="btn-change-img">Alterar Imagem</button>
             </div>
         </div>
         <div>
@@ -111,6 +110,7 @@
                 <button type="submit" class="btn-save">Salvar</button>
             </form>
         </div>
+
     </section>
 
 <script>
@@ -203,7 +203,11 @@ document.querySelector(".menu-item button").addEventListener("click", function (
             var file = this.files[0]; // Obtém o primeiro arquivo selecionado
 
             if (!file) {
-                alert("Nenhuma imagem selecionada.");
+                Swal.fire({
+                    title: "Inválido!",
+                    text: "Nenhuma imagem foi selecionada!",
+                    icon: "error"
+                });
                 return;
             }
 
@@ -228,7 +232,11 @@ document.querySelector(".menu-item button").addEventListener("click", function (
                     "Authorization": "Bearer " + token
                 },
                 success: function (response) {
-                    alert("Imagem atualizada com sucesso!");
+                    Swal.fire({
+                        title: "Sucesso!",
+                        text: "Imagem atualizada com sucesso!",
+                        icon: "success"
+                    });
 
                     // Converte a imagem para Base64 e armazena no localStorage
                     var reader = new FileReader();
@@ -238,7 +246,12 @@ document.querySelector(".menu-item button").addEventListener("click", function (
                     reader.readAsDataURL(file);
                 },
                 error: function (error) {
-                    alert("Erro ao atualizar a imagem.");
+                    Swal.fire({
+                        title: "Erro!",
+                        text: "Erro ao atualizar a imagem!",
+                        icon: "error"
+                    });
+
                     console.log(error);
                 }
             });
