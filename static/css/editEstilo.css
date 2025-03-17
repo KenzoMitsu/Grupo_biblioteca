@@ -166,6 +166,14 @@ input:checked + .slider:before {
     border-radius: 50%;
 }
 
+#imgPreview {
+    width: 150px; /* Ajuste o tamanho conforme necessário */
+    height: 150px;
+    border-radius: 50%; /* Torna a imagem circular */
+    border: 2px solid black; /* Adiciona a borda preta fina */
+    object-fit: cover; /* Garante que a imagem se ajuste corretamente ao círculo */
+}
+
 /* Responsividade para telas menores */
 @media (max-width: 768px) {
     header {
