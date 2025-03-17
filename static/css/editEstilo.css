@@ -6,6 +6,15 @@
     transition: all 0.3s;
 }
 
+:root {
+    --azul: rgba(51, 128, 202, 1);
+    --azul-claro: rgba(238, 243, 255, 1);
+    --azul-escuro: rgba(12, 140, 225, 0.724);
+    --preto: black;
+    --branco: white;
+}
+
+
 body {
     font-family: Arial, sans-serif;
     background-color: #f5f5f5;
@@ -299,7 +308,7 @@ label{
     border-radius: 5px;
     padding: 7px; 
     margin-bottom: 10px;
-    border: 3px solid #3380ca;
+    border: 3px solid var(--azul);
     background-color:#eef3ff;
     font-weight: bold;
 }
@@ -337,13 +346,32 @@ input {
     margin-top: 10px;
 }
 
-.btn-save {
-    padding: 5px 150px;
+.btn-senha-mudar {
+    padding: 5px 40px;
     cursor: pointer;
     margin-top: 15px;
     color: #4292dc;
     background-color: white;
-    border: 5px solid #4292dc;
+    border: 3px solid var(--azul);
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: large;
+    transition: 0.2s;
+}
+
+.btn-senha-mudar:hover {
+    background-color: var(--azul);
+    color: var(--branco);
+    transition: 0.2s;
+}
+
+.btn-save {
+    padding: 10px 150px;
+    cursor: pointer;
+    margin-top: 15px;
+    color: #4292dc;
+    background-color: white;
+    border: 3px solid var(--azul);
     border-radius: 5px;
     font-weight: bold;
     font-size: large;
@@ -351,8 +379,9 @@ input {
 }
 
 .btn-save:hover {
-    background-color: #4292dc;
-    color:white;
+    background-color: var(--azul);
+    color: var(--branco);
+    transition: 0.2s;
 }
 
 @media (max-width: 480px) {
