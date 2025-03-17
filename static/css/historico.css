@@ -2,8 +2,19 @@
     padding: 0;
     margin: 0;
     text-decoration: none;
+}a{
+  text-decoration: none;
+  color:black;
 }
-
+.sair{
+  background-color: #00010000;
+  border: #00010000;
+}
+.sair:hover{
+  background-color: #00010000;
+  border: #00010000;
+  color: black;
+}
 :root{
     --azul-claro: #4292dc;
     --azul-escuro: #0060BB;

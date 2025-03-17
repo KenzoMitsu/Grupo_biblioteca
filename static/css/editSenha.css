@@ -1,17 +1,32 @@
 * {
     margin: 0;
     padding: 0;
-    text-decoration: none;
     box-sizing: border-box;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+:root {
+    --azul: rgba(51, 128, 202, 1);
+    --azul-claro: rgba(238, 243, 255, 1);
+    --azul-escuro: rgba(12, 140, 225, 0.724);
+    --preto: black;
+    --branco: white;
 }
 
 body {
     font-family: Arial, sans-serif;
-    text-align: center;
-    background-color: #ffffff;
+    background-color: #f5f5f5;
 }
-
-
+.sair{
+    background-color: #00010000;
+    border: #00010000;
+}
+.sair:hover{
+    background-color: #00010000;
+    border: #00010000;
+    color: black;
+}
 header {
     background-color: #0060BB;
     padding: 10px 20px;
@@ -242,124 +257,146 @@ input:checked + .slider:before {
 
 
 
-h1 {
-    color: #1E5DA9;
-    font-size: 30px;
+
+.titulo {
+    text-align: center;
+    color: #3380CA;
     margin-bottom: 20px;
-    font-weight: bolder;
 }
 
-form {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-}
-
-.left, .right {
+section {
     display: flex;
     flex-direction: column;
-    width: 48%;
-    text-align: left;
+    align-items: center;
 }
 
-label {
-    font-size: 14px;
-    font-weight: bold;
-    color: #1E5DA9;
-    margin-top: 10px;
-}
 
-input, textarea {
-    width: 100%;
-    padding: 8px;
-    border: 2px solid #1E5DA9;
-    border-radius: 5px;
-    font-size: 14px;
-    margin-top: 5px;
-    background-color: #EEF3FF;
-}
-
-textarea {
-    height: 45px;
-}
-
-button {
-    width: 200px;
-    padding: 10px;
-    border: 2px solid #1E5DA9;
-    background-color: white;
-    color: #1E5DA9;
-    font-size: 16px;
-    cursor: pointer;
-    border-radius: 5px;
+.img_perfil{
     margin-top: 20px;
 }
 
-button:hover {
-    background-color: #1E5DA9;
+.img_perfil img{
+    height: 150px;
+    width: 150px;
+}
+
+.btn-change-img {
+    background-color: #0060BB;
     color: white;
+    border: 4px solid #0060BB;
+    padding: 10px; 
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 40px;
 }
 
-.text{
-    padding: 11px;
+.btn-change-img:hover {
+    color: #4292dc;
+    background-color: white;
+    border: 4px solid #4292dc;
+    cursor: pointer;
+    padding: 10px;
 }
 
-.cadastro {
-    margin-left: 30px;
+/* FORMULÁRIO */
+.formulario {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    width: 400px;
+}
+
+label{
+    color: #3380CA;
+}
+
+.inserir {  
+    border-radius: 5px;
+    padding: 7px; 
+    margin-bottom: 10px;
+    border: 3px solid #3380ca;
+    background-color:#eef3ff;
     font-weight: bold;
 }
 
-/* responsivos */
-@media (max-width:1024px){
-    .logo {
-        width: 60px;
-        position: absolute;
-        top: 10px;
-        left: -160px;
-    }
+#nome{
+    margin-bottom: 10px;
 }
 
-@media (max-width: 768px) {
-    .container {
-        width: 90%;
-        padding: 10px;
-    }
+.form-grid {
+    display: flex;
+    grid-template-columns: 1fr 1fr;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+}
 
-    .logo {
-        position: static;
-        margin-bottom: 10px;
-    }
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
 
-    form {
-        flex-direction: column;
-        align-items: center;
-    }
+label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
 
-    .left, .right {
-        width: 100%;
-    }
+input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
 
+.form-full {
+    width: 100%;
+    margin-top: 10px;
+}
 
-    h1 {
-        font-size: 24px;
-    }
+.btn-save {
+    padding: 5px 150px;
+    cursor: pointer;
+    margin-top: 15px;
+    color: #4292dc;
+    background-color: white;
+    border: 5px solid #4292dc;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: large;
+    transition: 0.2s;
+}
 
-    button {
-        width: 100%;
-    }
-    .cadastro {
-        margin-left: 0px;
-    }
+.btn-save:hover {
+    background-color: #4292dc;
+    color:white;
 }
 
 @media (max-width: 480px) {
-    h1 {
-        font-size: 22px;
+    .formulario {
+        width: 90%;
+        padding: 15px;
     }
 
+    /* Ajusta para uma única coluna no mobile */
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+}
 
-    button {
-        font-size: 14px;
-        padding: 8px;
+@media (max-width:376px){
+    .img_perfil img{
+        width: 100px;
+        height: 100px;
+    }
+    .img_perfil .btn-change-img{
+        margin-left: 10px;
+        padding: 7px;
+    }
+    .inserir{
+        padding: 5px;
+    }
+    .btn-save{
+        padding: 5px 100px;
     }
 }

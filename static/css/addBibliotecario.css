@@ -5,7 +5,20 @@
     text-decoration: none;
     transition: all 0.3s;
 }
+a{
+    text-decoration: none;
+    color:black;
+}
 
+.sair{
+    background-color: #00010000;
+    border: #00010000;
+}
+.sair:hover{
+    background-color: #00010000;
+    border: #00010000;
+    color: black;
+}
 :root {
     --azul: rgba(51, 128, 202, 1);
     --azul-claro: rgba(238, 243, 255, 1);
@@ -265,32 +278,6 @@ section {
 }
 
 
-.img_perfil{
-    margin-top: 20px;
-}
-
-.img_perfil img{
-    height: 150px;
-    width: 150px;
-}
-
-.btn-change-img {
-    background-color: #0060BB;
-    color: white;
-    border: 4px solid #0060BB;
-    padding: 10px; 
-    border-radius: 5px;
-    cursor: pointer;
-    margin-left: 40px;
-}
-
-.btn-change-img:hover {
-    color: #4292dc;
-    background-color: white;
-    border: 4px solid #4292dc;
-    cursor: pointer;
-    padding: 10px;
-}
 
 /* FORMULÁRIO */
 .formulario {
@@ -314,7 +301,26 @@ label{
     font-weight: bold;
 }
 
-.form-grid {
+.btn{
+    background-color: #4292dc;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 400px;
+    border: 4px solid #4292dc;
+    font-weight: bold;
+}
+.btn:hover  {
+    color: #4292dc;
+    background-color: white;
+    border: 4px solid #4292dc;
+    cursor: pointer;
+    padding: 10px;
+}
+
+.form-cor {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 15px;
@@ -323,6 +329,13 @@ label{
     flex-direction: column;
 }
 
+.form-control {  
+    border-radius: 5px;
+    margin-bottom: 10px;
+    border: 3px solid #3380ca;
+    background-color:#eef3ff;
+    font-weight: bold;
+}
 
 
 label {
@@ -354,6 +367,31 @@ label {
     align-items: center;    
 }
 
+.card {
+    border: 2px solid #007bff;
+    border-radius: 10px;
+    padding: 15px;
+    width: 250px;
+    font-family: Arial, sans-serif;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+}
+
+.remove-btn {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    width: 100%;
+}
+
+.remove-btn:hover {
+    background-color: darkred;
+}
+
 
 @media (max-width: 480px) {
     .formulario {
@@ -381,5 +419,8 @@ label {
     }
     .btn-save{
         padding: 5px 100px;
+    }
+    .btn{
+        width: 200px;
     }
 }
