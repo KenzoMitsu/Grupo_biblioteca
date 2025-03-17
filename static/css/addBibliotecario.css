@@ -350,6 +350,11 @@ label {
     transition: 0.2s;
 }
 
+.btn{
+    align-items: center;    
+}
+
+
 @media (max-width: 480px) {
     .formulario {
         width: 90%;
