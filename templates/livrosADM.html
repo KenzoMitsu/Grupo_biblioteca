@@ -50,14 +50,15 @@
                     <div></div>
                 </div>
                 <ul class="dropdown-menu" id="dropdownMenu">
-                    <li class="menu-item"><i class="fas fa-user"></i> Perfil</li>
-                    <li class="menu-item"><i class="fas fa-user"></i>Adicionar Bibliotecario</li>   
+                    <li class="menu-item">
+                        <img src="../static/img/user.png" alt="Perfil" class="menu-icon-img"><a href="editPerfilADM.html"> Perfil</a>                    </li>
+                    <li class="menu-item"><i class="fas fa-user"></i><a href="addBibliotecarioADM.html">Adicionar Bibliotecario</a></li>   
                     <hr>
-                    <li class="menu-item"><i class="fa-solid fa-cash-register"></i>Gerenciar Multas</li>
-                    <li class="menu-item"><i class="fas fa-book"></i> Gerenciar Livros</li>
-                    <li class="menu-item"><i class="fas fa-sync-alt"></i>Empréstimos</li>
+                    <li class="menu-item"><a href="multasADM.html"><i class="fa-solid fa-cash-register"></i>Gerenciar Multas</li></a>
+                    <li class="menu-item"><a href="livrosADM.html"><i class="fas fa-book"></i> Gerenciar Livros</li></a>
+                    <li class="menu-item"><a href="emprestimosADM.html" ><i class="fas fa-sync-alt"></i>Empréstimos</li></a>
                     <hr>
-                    <li class="menu-item"><i class="fas fa-sign-out-alt"></i> Sair</li>
+                    <li class="menu-item"><i class="fas fa-sign-out-alt"></i><button class="sair ">Sair</button></li>
                 </ul>
             </div>
         </div>
@@ -66,7 +67,9 @@
     <section>
 
         <div class="bot">
-            <button class="add-btn"><i class="fa-solid fa-plus"></i>Adicionar Livro</button>
+            <button type="button" class="add-btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalCadastroLivro">
+                <i class="fa-solid fa-plus"></i>Adicionar Livro
+            </button>
         </div>
 
         <div class="livro-hud">
@@ -79,7 +82,80 @@
 
     </section>
 
+    <div class="modal fade" id="modalCadastroLivro" tabindex="-1" aria-labelledby="modalCadastroLivroLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="formCadastroLivro">
+                    <div class="mb-3">
+                      <label for="titulo" class="form-label">Título</label>
+                      <input type="text" class="form-control" id="titulo" required>
+                    </div>
+                    <div class="mb-3">
+                      <label for="autor" class="form-label">Autor</label>
+                      <input type="text" class="form-control" id="autor" required>
+                    </div>
+                    <div class="mb-3">
+                      <label for="ano" class="form-label">Ano de Publicação</label>
+                      <input type="number" class="form-control" id="ano" required>
+                    </div>
+                    <div class="mb-3">
+                      <label for="genero" class="form-label">Gênero</label>
+                      <input type="text" class="form-control" id="genero">
+                    </div>
+                    <div class="mb-3">
+                      <label for="descricao" class="form-label">Descrição</label>
+                      <textarea class="form-control" id="descricao" rows="3"></textarea>
+                    </div>
+                    <div class="mb-3">
+                      <label for="imagem" class="form-label">Imagem do Livro</label>
+                      <input type="file" class="form-control" id="imagem" accept="image/*">
+                      <img id="previewImagem" src="#" alt="Prévia da Imagem" class="img-fluid mt-2 d-none">
+                    </div>
+                    <button type="submit" class="save-btn ">Salvar</button>
+                  </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <script>
+      </script>
+
     <script>
+
+        document.getElementById("formCadastroLivro").addEventListener("submit", function(event) {
+            event.preventDefault();
+            const titulo = document.getElementById("titulo").value;
+            const autor = document.getElementById("autor").value;
+            const ano = document.getElementById("ano").value;
+            const genero = document.getElementById("genero").value;
+        
+            console.log("Livro cadastrado:", { titulo, autor, ano, genero });
+        
+            // Aqui você pode adicionar a lógica para salvar os dados, como uma requisição AJAX para o backend
+        
+            // Fecha o modal após salvar
+            var modal = bootstrap.Modal.getInstance(document.getElementById("modalCadastroLivro"));
+            modal.hide();
+            document.getElementById("formCadastroLivro").reset();
+        });
+
+        // Verifica se o token está armazenado no Local Storage da própria web (SEGURANÇA DO SITE)
+        var token = localStorage.getItem("token");
+        if(token === undefined || token === null) {
+            alert("Essa Página é restrita");
+
+            // Manda para a pagina de login caso o usuário não possua token, ou seja, caso o usuário não esteja logado
+            window.location.href = "login.html"
+        }
+        document.querySelector(".menu-item button").addEventListener("click", function () {
+    localStorage.removeItem("token"); // Remove o token do localStorage
+    window.location.href = "login.html"; // Redireciona para a página de login
+});
 
     </script>
 </body>

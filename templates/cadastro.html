@@ -19,8 +19,13 @@
 
     <script src="../static/dist/owl.carousel.min.js"></script>
     <script src="../static/js/scripts.js"></script>
+
     <script src="../static/js/seguranca.js" defer></script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
 
     <link rel="icon" type="image/x-icon" href="../static/img/head-removebg-preview.png">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
@@ -56,8 +61,9 @@
                     <input type="text" placeholder="Nome Completo" class="inserir" id="nome" name="nome" required>
 
                     <label class="coisa" for="email">Email:</label>
-                    <input type="email" placeholder="email@email.com" class="inserir email" id="email" name="email" required>
-                
+                    <input type="email" placeholder="email@email.com" class="inserir email" id="email" name="email"
+                        required>
+
                     <label class="coisa">Senha:</label>
                     <input type="password" placeholder="Sua senha" class="inserir" id="senha" name="senha" required>
                 </div>
@@ -111,23 +117,26 @@
 
                 success: function (retorno) {
                     Swal.fire({
-                            title: "Sucesso!",
-                            text: "Cadastro feito com sucesso",
-                            icon: "success"
-                        }).then((result) => {
-                            window.location.href = "login.html";
-                        } )
+                        title: "Sucesso!",
+                        text: "Cadastro feito com sucesso",
+                        icon: "success"
+                    }).then((result) => {
+                        window.location.href = "login.html";
+                    })
                 },
                 error: function (retorno) {
                     Swal.fire({
-                            title: "Inválido!",
-                            text: "Cadastro inválido",
-                            icon: "error"
-                        });
+                        title: "Inválido!",
+                        text: "Cadastro inválido",
+                        icon: "error"
+                    });
                 },
             })
         })
-
+        document.querySelector(".menu-item button").addEventListener("click", function () {
+            localStorage.removeItem("token"); // Remove o token do localStorage
+            window.location.href = "login.html"; // Redireciona para a página de login
+        });
     </script>
 
 </body>

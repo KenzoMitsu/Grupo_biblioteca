@@ -5,7 +5,19 @@
     text-decoration: none;
     transition: all 0.3s;
 }
-
+a{
+    text-decoration: none;
+    color:black;
+}
+.sair{
+    background-color: #00010000;
+    border: #00010000;
+}
+.sair:hover{
+    background-color: #00010000;
+    border: #00010000;
+    color: black;
+}
 :root {
     --azul: rgba(51, 128, 202, 1);
     --azul-claro: rgba(238, 243, 255, 1);
