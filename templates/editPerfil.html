@@ -15,7 +15,14 @@
         crossorigin="anonymous"></script>
     <!-- SEGURANÇA DO SITE (IMPEDE A NAVEGAÇÃO P' OUTRAS PÁGINAS APENAS POR MEIO DO LINK) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <script src="../static/js/scripts.js"></script>
+    <script src="../static/js/seguranca.js" defer></script>
     <!-- FIM DO SCRIPT DA SEGURANÇA -->
     <link rel="icon" type="image/x-icon" href="../static/img/head-removebg-preview.png">
 </head>
@@ -24,7 +31,7 @@
     <header>
         <!-- Logo -->
         <div class="header-left">
-            <img src="../static/img/logo.png" alt="Logo">
+            <a href="home.html"><img src="../static/img/logo.png" alt="Logo"></a>
         </div>
 
         <!-- Barra de Pesquisa -->
@@ -68,8 +75,9 @@
     <section>
         <div>
             <div class="img_perfil">
-                <img src="../static/img/user.png" class="foto_usuario"/>
-                <button class="btn-change-img">Alterar Imagem</button>
+                <img src="../static/img/user.png" class="foto_usuario" id="imgPreview"/>
+                <input type="file" id="inputImagem" style="display: none;" accept="image/*">
+                <button class="btn-change-img" id="btnAlterarImagem">Alterar Imagem</button>
             </div>
         </div>
         <div>
@@ -98,23 +106,15 @@
                     </div>
                 </div>
 
+                <a href="editSenha.html"></a><button type="submit" class="btn-senha-mudar">Mudar Senha</button>
+
                 <button type="submit" class="btn-save">Salvar</button>
             </form>
         </div>
     </section>
 
 <script>
-    // Verifica se o token está armazenado no Local Storage da própria web
-    var token = localStorage.getItem("token")
-    // var cargo = localStorage.getItem("cargo")   
-
-    if(!token) { //OBSERVAÇÃO PESSOAL! > Também da para fazer de maneira mais manual usando "token === undefined || token === null"
-        alert("Essa Página é restrita");
-
-        // Manda para a pagina de login caso o usuário não possua token, ou seja, caso o usuário não esteja logado
-        window.location.href = "login.html"
-    }
-
+    
     // if(cargo === "cliente") {
     //     alert("Você não tem permissão para acessar essa página!")
 
@@ -142,7 +142,13 @@
 
         var id = localStorage.getItem("id_usuario");
         if (!id) {
-            alert("ID do usuário não encontrado.");
+
+            Swal.fire({
+                title: "Erro!",
+                text: "Usuário não encontrado!",
+                icon: "error"
+            })
+        
             return; // Impede a execução do restante do código
         }
 
