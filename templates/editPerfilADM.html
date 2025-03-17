@@ -172,8 +172,13 @@
                 'Authorization': 'Bearer ' + token // Adiciona o token no cabeçalho
             },
             success: function (retorno) {
-                alert("Perfil atualizado com sucesso!");
-                console.log(retorno);
+
+                Swal.fire({
+                        title: "Sucesso!",
+                        text: "Perfil atualizado com sucesso!",
+                        icon: "success"
+                    });
+
             },
             error: function (retorno) {
                 // Verifique se a resposta contém uma mensagem de erro
@@ -195,7 +200,13 @@
             var file = this.files[0]; // Obtém o primeiro arquivo selecionado
 
             if (!file) {
-                alert("Nenhuma imagem selecionada.");
+
+                Swal.fire({
+                        title: "Error!",
+                        text: "Nenhuma imagem selecionada!",
+                        icon: "error"
+                    });
+
                 return;
             }
 
@@ -222,6 +233,12 @@
                 success: function (response) {
                     alert("Imagem atualizada com sucesso!");
 
+                    Swal.fire({
+                        title: "Sucesso!",
+                        text: "Imagem atualizada com sucesso!",
+                        icon: "success"
+                    });
+
                     // Converte a imagem para Base64 e armazena no localStorage
                     var reader = new FileReader();
                     reader.onload = function (e) {
@@ -230,8 +247,11 @@
                     reader.readAsDataURL(file);
                 },
                 error: function (error) {
-                    alert("Erro ao atualizar a imagem.");
-                    console.log(error);
+                    Swal.fire({
+                        title: "Erro!",
+                        text: "Erro ao atualizar a imagem!",
+                        icon: "error"
+                    });
                 }
             });
         });
