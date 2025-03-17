@@ -5,6 +5,10 @@
     text-decoration: none;
     transition: all 0.3s;
 }
+a{
+    text-decoration: none;
+    color: black;
+}
 
 :root {
     --azul: rgba(51, 128, 202, 1);
