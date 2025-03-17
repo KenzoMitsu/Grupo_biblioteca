@@ -51,7 +51,7 @@
             </form>
 
             <div class="final">
-                <button onclick="$('#formLoginUsuario').submit()" class="botao-login">Login</button></a>
+                <button onclick="$('#formLoginUsuario').submit()" class="botao-login">Login</button>
 
                 <p class="texto">Não possui uma conta? <a target="_blank" class="link" href="cadastro.html">Cadastre-se</a></p>
             </div>
@@ -78,7 +78,7 @@
 
                     method: "post", 
     
-                    url: "http://192.168.1.119:5000/login",
+                    url: "http://192.168.1.116:5000/login",
 
                     contentType: "application/json",
                     
@@ -95,24 +95,47 @@
                         localStorage.setItem("data_nascimento", retorno.usuario.data_nascimento)
                         localStorage.setItem("telefone", retorno.usuario.telefone)
 
-                        Swal.fire({
-                            title: "Sucesso!",
-                            text: "Login realizado com sucesso",
-                            icon: "success"
-                        }).then((result) => {
-                            window.location.href = "home.html";
-                        });
-                        
+                        var cargo = localStorage.getItem("cargo")
+
+                        if (cargo === "ADM") { 
+                            Swal.fire({
+                                title: "Sucesso!",
+                                text: "Login de ADM realizado com sucesso",
+                                icon: "success"
+                            }).then((result) => {
+                            window.location.href = "homeADM.html";
+                            });
+                        } else if (cargo === "Biblitecario") {
+                            Swal.fire({
+                                title: "Sucesso!",
+                                text: "Login de Biblitecário realizado com sucesso",
+                                icon: "success"
+                            }).then((result) => {
+                                window.location.href = "homeBiblio.html"
+                            });
+                        } else {
+                            Swal.fire({
+                                title: "Sucesso!",
+                                text: "Login realizado com sucesso",
+                                icon: "sucess"
+                            }).then((result) => {
+                                window.location.href = "home.html"
+                            })
+                        };
+ 
                     },
-    
-                    error: function(retorno) {
-                        Swal.fire({
-                            title: "Inválido!",
-                            text: "Usuário ou senha inválidos",
-                            icon: "error"
-                        });
-                    }
+                        
+                    
+                    error: function (retorno) {
+                            Swal.fire({
+                                title: "Inválido!",
+                                text: "Usuário ou senha inválidos",
+                                icon: "error"
+                            });
+                        }
+
                 })
+
             })
 
         </script>
