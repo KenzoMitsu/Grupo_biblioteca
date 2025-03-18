@@ -155,37 +155,37 @@ input:checked + .slider:before {
 
 /* Dropdown Menu */
 .dropdown-menu {
-    position: absolute;
-    top: 45px;
-    right: 0;
-    background-color: white;
-    border-radius: 8px;
-    padding: 10px 0;
-    list-style: none;
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
-    display: none;
-    width: 180px;
+  position: absolute;
+  top: 45px;
+  right: 0;
+  background-color: white;
+  border-radius: 8px;
+  padding: 10px 0;
+  list-style: none;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+  display: none;
+  width: 180px; /* Corrigindo a largura */
 }
 
 .dropdown-menu .menu-item {
-    padding: 10px 15px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    color: #333;
-    cursor: pointer;
-    font-size: 14px;
+  padding: 10px 15px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #333;
+  cursor: pointer;
+  font-size: 14px;
 }
 
 .dropdown-menu .menu-item:hover {
-    background-color: #f0f0f0;
+  background-color: #f0f0f0;
 }
 
 /* Imagem do perfil no menu */
 .menu-icon-img {
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
 }
 
 

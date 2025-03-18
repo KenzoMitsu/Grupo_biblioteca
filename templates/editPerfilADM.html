@@ -65,6 +65,7 @@
                     </li>
                     <li class="menu-item"><i class="fas fa-user"></i><a href="addBibliotecarioADM.html">Adicionar Bibliotecario</a></li>   
                     <hr>
+                    <li class="menu-item"><a href="relatoriosADM.HTML"><i class="fa-solid fa-file-export"></i>Relatórios</li></a>
                     <li class="menu-item"><a href="multasADM.html"><i class="fa-solid fa-cash-register"></i>Gerenciar Multas</li></a>
                     <li class="menu-item"><a href="livrosADM.html"><i class="fas fa-book"></i> Gerenciar Livros</li></a>
                     <li class="menu-item"><a href="emprestimosADM.html" ><i class="fas fa-sync-alt"></i>Empréstimos</li></a>
@@ -263,6 +264,10 @@
                 $("#imgPreview").attr("src", imagemSalva);
             }
         });
+        document.querySelector(".menu-item button").addEventListener("click", function () {
+    localStorage.removeItem("token"); // Remove o token do localStorage
+    window.location.href = "login.html"; // Redireciona para a página de login
+});
 </script>
 
 </body>
