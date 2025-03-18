@@ -160,7 +160,7 @@
             // Envia os dados via AJAX
             $.ajax({
                 method: "PUT",
-                url: "http://192.168.1.120:5000/usuarios/" + id, // ID do usuário
+                url: ipPython + id, // ID do usuário
                 data: formData,
                 contentType: false,
                 processData: false,
@@ -212,6 +212,13 @@
         // Logout
         document.querySelector(".menu-item button").addEventListener("click", function () {
             localStorage.removeItem("token"); // Remove o token do localStorage
+            localStorage.removeItem("id_usuario");
+            localStorage.removeItem("nome");
+            localStorage.removeItem("cargo");
+            localStorage.removeItem("email");
+            localStorage.removeItem("multa");
+            localStorage.removeItem("data_nascimnto");
+            localStorage.removeItem("telefone");
             window.location.href = "login.html"; // Redireciona para a página de login
         });
     </script>
