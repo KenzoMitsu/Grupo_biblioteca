@@ -16,7 +16,7 @@
     <!-- SEGURANÇA DO SITE (IMPEDE A NAVEGAÇÃO P' OUTRAS PÁGINAS APENAS POR MEIO DO LINK) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
+    <script src="../static/js/paginaip.js"></script>
     <script src="../static/js/scripts.js"></script>
     <script src="../static/js/seguranca.js" defer></script>
     <!-- FIM DO SCRIPT DA SEGURANÇA -->
@@ -121,7 +121,7 @@
         // Envia os dados via AJAX
         $.ajax({
             method: "PUT",
-            url: ipPython + id, // ID do usuário
+            url: ipPython + "/eidtar_senha" + id, // ID do usuário
             data: envia,
             contentType: "application/json",
             headers: {
