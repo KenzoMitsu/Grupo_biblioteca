@@ -12,6 +12,7 @@
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
     <script src="../static/js/scripts.js"></script>
+    <script src="../static/js/seguranca.js"></script>
     <link rel="stylesheet" href="../static/css/relatorios.css" />
 </head>
 <body>
@@ -72,14 +73,6 @@
     </section>
 
     <script>
-        // Verifica se o token está armazenado no Local Storage da própria web (SEGURANÇA DO SITE)
-        var token = localStorage.getItem("token");
-        if(token === undefined || token === null) {
-            alert("Essa Página é restrita");
-
-            // Manda para a pagina de login caso o usuário não possua token, ou seja, caso o usuário não esteja logado
-            window.location.href = "login.html"
-        }
         document.querySelector(".menu-item button").addEventListener("click", function () {
     localStorage.removeItem("token"); // Remove o token do localStorage
     window.location.href = "login.html"; // Redireciona para a página de login
