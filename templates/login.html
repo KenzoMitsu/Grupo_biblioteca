@@ -75,17 +75,9 @@
                 envia = JSON.stringify(envia)
     
                 $.ajax({
-
-                    method: "post", 
-    
-<<<<<<< HEAD
+                    method: "post",     
                     url: ipPython,
-=======
-                    url: "http://192.168.1.146:5000/login",
->>>>>>> aeb515bbff5d98de59a9699e87bd5a6c22cb949c
-
                     contentType: "application/json",
-                    
                     data: envia,
 
                     success: function(retorno) {
