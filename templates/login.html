@@ -75,13 +75,9 @@
                 envia = JSON.stringify(envia)
     
                 $.ajax({
-
-                    method: "post", 
-    
-                    url: "http://192.168.1.146:5000/login",
-
+                    method: "post",     
+                    url: ipPython,
                     contentType: "application/json",
-                    
                     data: envia,
 
                     success: function(retorno) {
@@ -94,6 +90,7 @@
                         localStorage.setItem("multa", retorno.usuario.multa)
                         localStorage.setItem("data_nascimento", retorno.usuario.data_nascimento)
                         localStorage.setItem("telefone", retorno.usuario.telefone)
+                        localStorage.setItem("imagem_usuario", retorno.usuario.imagem)
 
                         var cargo = localStorage.getItem("cargo")
 

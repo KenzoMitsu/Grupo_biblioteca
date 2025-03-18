@@ -78,6 +78,7 @@
 
                     <label class="coisa">Foto de Perfil:</label>
                     <input type="file" id="img" class="data" name="foto" required>
+
                 </div>
 
             </form>
@@ -97,33 +98,37 @@
 $("#formCadastro").on("submit", function (e) {
     e.preventDefault(); // Impede o comportamento padrão do formulário
 
-    let dados = new FormData(this); // Usa FormData para suportar arquivos
 
-    $.ajax({
-        method: "POST",
-        url: "http://192.168.1.146:5000/usuarios",
-        data: dados,
-        contentType: false,  // Importante para envio de arquivos
-        processData: false,  // Evita que o jQuery tente converter para string
-        success: function (retorno) {
-            Swal.fire({
-                title: "Sucesso!",
-                text: "Cadastro feito com sucesso",
-                icon: "success"
-            }).then(() => {
-                window.location.href = "login.html";
-            });
-        },
-        error: function (retorno) {
-            Swal.fire({
-                title: "Erro!",
-                text: "Não foi possível realizar o cadastro.",
-                icon: "error"
-            });
-        }
-    });
-});
+            let envia = new FormData(this);
 
+            $.ajax({
+                method: "POST",
+                url: ipPython,
+                data: envia,
+                timeout: 0,
+                processData: false,
+                mimeType: "multipart/form-data",
+
+                contentType: false,
+
+                success: function (retorno) {
+                    Swal.fire({
+                        title: "Sucesso!",
+                        text: "Cadastro feito com sucesso",
+                        icon: "success"
+                    }).then((result) => {
+                        window.location.href = "login.html";
+                    })
+                },
+                error: function (retorno) {
+                    Swal.fire({
+                        title: "Inválido!",
+                        text: "Cadastro inválido",
+                        icon: "error"
+                    });
+                },
+            })
+        })
 
 
         

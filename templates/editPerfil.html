@@ -160,7 +160,7 @@
             // Envia os dados via AJAX
             $.ajax({
                 method: "PUT",
-                url: "http://192.168.1.146:5000/usuarios/" + id, // ID do usuário
+                url: ipPython + id, // ID do usuário>>>>>>> 92f813f56eef6b91a3be328ddc06081f6b0ca410
                 data: formData,
                 contentType: false,
                 processData: false,
@@ -168,6 +168,12 @@
                     'Authorization': 'Bearer ' + localStorage.getItem("token") // Adiciona o token no cabeçalho
                 },
                 success: function (retorno) {
+
+                    localStorage.setItem("nome", formData.get("nome"))
+                    localStorage.setItem("email", formData.get("email"))
+                    localStorage.setItem("telefone", formData.get("telefone"))
+                    localStorage.setItem("data_nascimento", formData.get("data_nascimento"))
+
                     alert("Perfil atualizado com sucesso!");
                     console.log(retorno);
                     // Atualiza a imagem no localStorage
@@ -212,6 +218,14 @@
         // Logout
         document.querySelector(".menu-item button").addEventListener("click", function () {
             localStorage.removeItem("token"); // Remove o token do localStorage
+            localStorage.removeItem("id_usuario");
+            localStorage.removeItem("nome");
+            localStorage.removeItem("cargo");
+            localStorage.removeItem("email");
+            localStorage.removeItem("multa");
+            localStorage.removeItem("data_nascimento");
+            localStorage.removeItem("telefone");
+            localStorage.removeItem("imagem_usuario");
             window.location.href = "login.html"; // Redireciona para a página de login
         });
     </script>
