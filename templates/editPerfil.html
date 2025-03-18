@@ -168,6 +168,12 @@
                     'Authorization': 'Bearer ' + localStorage.getItem("token") // Adiciona o token no cabeçalho
                 },
                 success: function (retorno) {
+
+                    localStorage.setItem("nome", formData.get("nome"))
+                    localStorage.setItem("email", formData.get("email"))
+                    localStorage.setItem("telefone", formData.get("telefone"))
+                    localStorage.setItem("data_nascimento", formData.get("data_nascimento"))
+
                     alert("Perfil atualizado com sucesso!");
                     console.log(retorno);
                     // Atualiza a imagem no localStorage
