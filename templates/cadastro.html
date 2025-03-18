@@ -19,7 +19,7 @@
 
     <script src="../static/dist/owl.carousel.min.js"></script>
     <script src="../static/js/scripts.js"></script>
-
+    <script src="../static/js/paginaip.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
@@ -103,7 +103,7 @@ $("#formCadastro").on("submit", function (e) {
 
             $.ajax({
                 method: "POST",
-                url: ipPython,
+                url: ipPython + "/usuarios",
                 data: envia,
                 timeout: 0,
                 processData: false,

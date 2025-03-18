@@ -61,5 +61,3 @@ document.querySelector(".menu-item button").addEventListener("click", function (
     localStorage.removeItem("token"); // Remove o token do localStorage
     window.location.href = "login.html"; // Redireciona para a página de login
 });
-
-const ipPython = "http://192.168.1.146:5000"
