@@ -407,6 +407,10 @@ input {
     transition: 0.2s;
 }
 
+.lavaloucasmp4{
+    text-align: center;
+}
+
 
 @media (max-width: 480px) {
     .formulario {
