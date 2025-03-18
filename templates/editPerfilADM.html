@@ -168,7 +168,6 @@
             // Converte o objeto para JSON
             envia = JSON.stringify(envia);
 
-<<<<<<< HEAD
         // Envia os dados via AJAX
         $.ajax({
             method: "PUT",
@@ -179,18 +178,7 @@
                 'Authorization': 'Bearer ' + token // Adiciona o token no cabeçalho
             },
             success: function (retorno) {
-=======
-            // Envia os dados via AJAX
-            $.ajax({
-                method: "PUT",
-                url: "http://192.168.1.120:5000/usuarios/" + id, // ID do usuário
-                data: envia,
-                contentType: "application/json",
-                headers: {
-                    'Authorization': 'Bearer ' + token // Adiciona o token no cabeçalho
-                },
-                success: function (retorno) {
->>>>>>> 52f307059cecd9fe2c93f45870b64be526716aab
+
 
                     Swal.fire({
                         title: "Sucesso!",
