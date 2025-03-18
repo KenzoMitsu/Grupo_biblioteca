@@ -61,14 +61,19 @@
                 </div>
                 <ul class="dropdown-menu" id="dropdownMenu">
                     <li class="menu-item">
-                        <img src="../static/img/user.png" alt="Perfil" class="menu-icon-img"><a href="editPerfilADM.html"> Perfil</a>
+                        <img src="../static/img/user.png" alt="Perfil" class="menu-icon-img"><a
+                            href="editPerfilADM.html"> Perfil</a>
                     </li>
-                    <li class="menu-item"><i class="fas fa-user"></i><a href="addBibliotecarioADM.html">Adicionar Bibliotecario</a></li>   
+                    <li class="menu-item"><i class="fas fa-user"></i><a href="addBibliotecarioADM.html">Adicionar
+                            Bibliotecario</a></li>
                     <hr>
-                    <li class="menu-item"><a href="relatoriosADM.HTML"><i class="fa-solid fa-file-export"></i>Relatórios</li></a>
-                    <li class="menu-item"><a href="multasADM.html"><i class="fa-solid fa-cash-register"></i>Gerenciar Multas</li></a>
+                    <li class="menu-item"><a href="relatoriosADM.HTML"><i class="fa-solid fa-file-export"></i>Relatórios
+                    </li></a>
+                    <li class="menu-item"><a href="multasADM.html"><i class="fa-solid fa-cash-register"></i>Gerenciar
+                            Multas</li></a>
                     <li class="menu-item"><a href="livrosADM.html"><i class="fas fa-book"></i> Gerenciar Livros</li></a>
-                    <li class="menu-item"><a href="emprestimosADM.html" ><i class="fas fa-sync-alt"></i>Empréstimos</li></a>
+                    <li class="menu-item"><a href="emprestimosADM.html"><i class="fas fa-sync-alt"></i>Empréstimos</li>
+                    </a>
                     <hr>
                     <li class="menu-item"><i class="fas fa-sign-out-alt"></i> Sair</li>
                 </ul>
@@ -79,14 +84,14 @@
     <section>
         <div>
             <div class="img_perfil">
-                <img src="../static/img/user.png" class="foto_usuario" id="imgPreview"/>
+                <img src="../static/img/user.png" class="foto_usuario" id="imgPreview" />
                 <input type="file" id="inputImagem" style="display: none;" accept="image/*">
                 <button class="btn-change-img" id="btnAlterarImagem">Alterar Imagem</button>
             </div>
         </div>
         <div>
             <form id="formCadastroUsuario" class="formulario">
-                
+
                 <div class="form-grid">
 
                     <div class="form-group">
@@ -115,54 +120,55 @@
         </div>
     </section>
 
-<script>
+    <script>
 
 
-    // if(cargo === "cliente") {
-    //     alert("Você não tem permissão para acessar essa página!")
+        // if(cargo === "cliente") {
+        //     alert("Você não tem permissão para acessar essa página!")
 
-    //     // Manda para a pagina de login caso o usuário não possua token, ou seja, caso o usuário não esteja logado
-    //     window.location.href = "index.html"
-    // }
+        //     // Manda para a pagina de login caso o usuário não possua token, ou seja, caso o usuário não esteja logado
+        //     window.location.href = "index.html"
+        // }
 
-    // Carrega os dados do usuário do localStorage mostra Key e Values ok? :D
-    var nome = localStorage.getItem("nome");
-    document.getElementById("nome").value = nome;
+        // Carrega os dados do usuário do localStorage mostra Key e Values ok? :D
+        var nome = localStorage.getItem("nome");
+        document.getElementById("nome").value = nome;
 
-    var email = localStorage.getItem("email");
-    document.getElementById("email").value = email;
+        var email = localStorage.getItem("email");
+        document.getElementById("email").value = email;
 
-    var data_nascimento = localStorage.getItem("data_nascimento");
-    document.getElementById("data_nascimento").value = data_nascimento;
+        var data_nascimento = localStorage.getItem("data_nascimento");
+        document.getElementById("data_nascimento").value = data_nascimento;
 
-    var telefone = localStorage.getItem("telefone");
-    document.getElementById("telefone").value = telefone;
+        var telefone = localStorage.getItem("telefone");
+        document.getElementById("telefone").value = telefone;
 
-    // Aqui é definido o que é feito quando o usuário aperta em "Salvar", não se esqueçam :)
-    $("#formCadastroUsuario").on("submit", function (e) {
-        // Impede o recarregamento da página!
-        e.preventDefault();
+        // Aqui é definido o que é feito quando o usuário aperta em "Salvar", não se esqueçam :)
+        $("#formCadastroUsuario").on("submit", function (e) {
+            // Impede o recarregamento da página!
+            e.preventDefault();
 
-        var id = localStorage.getItem("id_usuario");
-        if (!id) {
-            alert("ID do usuário não encontrado.");
-            return; // Impede a execução do restante do código
-        }
+            var id = localStorage.getItem("id_usuario");
+            if (!id) {
+                alert("ID do usuário não encontrado.");
+                return; // Impede a execução do restante do código
+            }
 
-        // Captura os dados do formulário
-        let dados = new FormData(this);
+            // Captura os dados do formulário
+            let dados = new FormData(this);
 
-        // Monta o objeto para envio
-        let envia = {
-            nome: dados.get("nome"),
-            telefone: dados.get("telefone"),
-            email: dados.get("email"),
-            data_nascimento: dados.get("data_nascimento")
-        };
+            // Monta o objeto para envio
+            let envia = {
+                nome: dados.get("nome"),
+                telefone: dados.get("telefone"),
+                email: dados.get("email"),
+                data_nascimento: dados.get("data_nascimento")
+            };
 
-        // Converte o objeto para JSON
-        envia = JSON.stringify(envia);
+            // Converte o objeto para JSON
+            envia = JSON.stringify(envia);
 
+<<<<<<< HEAD
         // Envia os dados via AJAX
         $.ajax({
             method: "PUT",
@@ -173,23 +179,40 @@
                 'Authorization': 'Bearer ' + token // Adiciona o token no cabeçalho
             },
             success: function (retorno) {
+=======
+            // Envia os dados via AJAX
+            $.ajax({
+                method: "PUT",
+                url: "http://192.168.1.120:5000/usuarios/" + id, // ID do usuário
+                data: envia,
+                contentType: "application/json",
+                headers: {
+                    'Authorization': 'Bearer ' + token // Adiciona o token no cabeçalho
+                },
+                success: function (retorno) {
+>>>>>>> 52f307059cecd9fe2c93f45870b64be526716aab
 
-                Swal.fire({
+                    Swal.fire({
                         title: "Sucesso!",
                         text: "Perfil atualizado com sucesso!",
                         icon: "success"
                     });
 
-            },
-            error: function (retorno) {
-                // Verifique se a resposta contém uma mensagem de erro
-                var mensagemErro = retorno.responseJSON ? retorno.responseJSON.error : "Erro desconhecido";
-                alert(mensagemErro);
-            }
-        });
-    });
+                },
+                error: function (retorno) {
 
-    // ==================== UPLOAD DE IMAGEM ====================
+                        Swal.fire({
+                            title: "Error!",
+                            text: "Erro Desconhecido!",
+                            icon: "error"
+                        });
+
+                
+                }
+            });
+        });
+
+        // ==================== UPLOAD DE IMAGEM ====================
 
         // Evento de clique para abrir o seletor de arquivo
         $("#btnAlterarImagem").click(function () {
@@ -203,10 +226,10 @@
             if (!file) {
 
                 Swal.fire({
-                        title: "Error!",
-                        text: "Nenhuma imagem selecionada!",
-                        icon: "error"
-                    });
+                    title: "Error!",
+                    text: "Nenhuma imagem selecionada!",
+                    icon: "error"
+                });
 
                 return;
             }
@@ -265,10 +288,10 @@
             }
         });
         document.querySelector(".menu-item button").addEventListener("click", function () {
-    localStorage.removeItem("token"); // Remove o token do localStorage
-    window.location.href = "login.html"; // Redireciona para a página de login
-});
-</script>
+            localStorage.removeItem("token"); // Remove o token do localStorage
+            window.location.href = "login.html"; // Redireciona para a página de login
+        });
+    </script>
 
 </body>
 

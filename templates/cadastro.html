@@ -77,7 +77,8 @@
                     <input type="tel" placeholder="+55 () 99999-9999" class="inserir" id="tel" name="telefone" required>
 
                     <label class="coisa">Foto de Perfil:</label>
-                    <input type="file" placeholder="Sua Melhor Foto" id="img" class="data" name="imagem" required>
+                    <input type="file" id="img" class="data" name="foto" required>
+
                 </div>
 
             </form>
@@ -94,9 +95,9 @@
 
     <script>
 
-        $("#formCadastro").on("submit", function (e) {
-            //Faz com que a pagine não atualize, previne ações basicas
-            e.preventDefault();
+$("#formCadastro").on("submit", function (e) {
+    e.preventDefault(); // Impede o comportamento padrão do formulário
+
 
             let envia = new FormData(this);
 
@@ -129,6 +130,8 @@
             })
         })
 
+
+        
     </script>
 
 </body>
