@@ -17,7 +17,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="../static/js/paginaip.js"></script>
     <script src="../static/js/scripts.js"></script>
     <script src="../static/js/seguranca.js" defer></script>
@@ -176,7 +175,12 @@
                     localStorage.setItem("telefone", formData.get("telefone"))
                     localStorage.setItem("data_nascimento", formData.get("data_nascimento"))
 
-                    alert("Perfil atualizado com sucesso!");
+                    Swal.fire({
+                        title: "Sucesso!",
+                        text: "Perfil atualizado com sucesso!",
+                        icon: "success"
+                    })
+
                     console.log(retorno);
                     // Atualiza a imagem no localStorage
                     if (fileInput.files.length > 0) {
@@ -188,9 +192,12 @@
                         reader.readAsDataURL(fileInput.files[0]);
                     }
                 },
-                error: function (retorno) {
-                    var mensagemErro = retorno.responseJSON ? retorno.responseJSON.error : "Erro, verifique se todos os campos estão preenchidos!";
-                    alert(mensagemErro);
+                error: function (retorno) {                    
+                    Swal.fire({
+                        title: "Erro",
+                        text: "Erro, verifique se todos os campos estão preenchidos!",
+                        icon: "error"
+                    })
                 }
             });
         });
@@ -205,7 +212,13 @@
             var file = this.files[0]; // Obtém o primeiro arquivo selecionado
     
             if (!file) {
-                alert("Nenhuma imagem selecionada.");
+
+                Swal.fire({
+                        title: "Erro!",
+                        text: "Nenhuma imagem selecionada!",
+                        icon: "error"
+                    })
+
                 return;
             }
     

@@ -150,7 +150,12 @@
 
             var id = localStorage.getItem("id_usuario");
             if (!id) {
-                alert("ID do usuário não encontrado.");
+
+                Swal.fire({
+                    title: "Erro!",
+                    text: "Usuário não encontrado!",
+                    icon: "error"
+                });
                 return; // Impede a execução do restante do código
             }
 
@@ -243,8 +248,6 @@
                     "Authorization": "Bearer " + token
                 },
                 success: function (response) {
-                    alert("Imagem atualizada com sucesso!");
-
                     Swal.fire({
                         title: "Sucesso!",
                         text: "Imagem atualizada com sucesso!",
