@@ -135,9 +135,6 @@
     var telefone = localStorage.getItem("telefone");
     document.getElementById("telefone").value = telefone;
 
-    var imagem = localStorage.getItem("imagem_usuario");
-    document.getElementById("imgPreview").src = imagem;
-
     // Aqui é definido o que é feito quando o usuário aperta em "Salvar", não se esqueçam :)
     $("#formCadastroUsuario").on("submit", function (e) {
         // Impede o recarregamento da página!
@@ -173,7 +170,7 @@
         // Envia os dados via AJAX
         $.ajax({
             method: "PUT",
-            url: "http://192.168.1.120:5000/usuarios/" + id, // ID do usuário
+            url: "http://192.168.1.120:5000:5000/usuarios/" + id, // ID do usuário
             data: envia,
             contentType: "application/json",
             headers: {
@@ -196,6 +193,9 @@ document.querySelector(".menu-item button").addEventListener("click", function (
 });
 
         // ==================== UPLOAD DE IMAGEM ====================
+
+    var imagem = localStorage.getItem("imagem_usuario");
+    document.getElementById("imgPreview").src = imagem;
 
         // Evento de clique para abrir o seletor de arquivo
         $("#btnAlterarImagem").click(function () {
@@ -221,10 +221,13 @@ document.querySelector(".menu-item button").addEventListener("click", function (
             var formData = new FormData();
             formData.append("imagem", file);
 
+            var id = localStorage.getItem("id_usuario");
+            var token = localStorage.getItem("token");
+
             // Envia a imagem para o servidor via AJAX
             $.ajax({
                 method: "POST",
-                url: "http://192.168.1.120:5000/usuarios/" + id + "/imagem",
+                url: "http://192.168.1.120:5000/usuario_imagem/" + id,
                 data: formData,
                 contentType: false,
                 processData: false,
