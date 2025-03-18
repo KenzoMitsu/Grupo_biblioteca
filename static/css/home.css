@@ -479,5 +479,35 @@ input:checked + .slider:before {
     .menu-icon {
         width: 25px;
     }
-}
+    .localizacao{
+        width: 1%;
+    }
 
+    .rodape-inter {
+        font-size: 14px;
+    }
+
+    .rodape2-inter {
+        align-items: center;
+    }
+
+    .localizacao {
+        font-size: 0px;
+        text-align: center;
+        flex-direction: column;
+    }
+    .separacao1 p{
+        margin-top: 10px;
+        font-size: 15px;
+    }
+
+    .redes i {
+        font-size: 24px;
+        margin: 5px;
+    }
+}
+@media (max-width: 380px){
+    .logo_rodape{
+        width: 80px;
+    }
+}
