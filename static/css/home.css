@@ -129,8 +129,12 @@ body.modo-escuro .linha {
     background-color: var(--azul-modoescuro);
 }
 
+body.modo-escuro .span {
+    color: var(--escuro);
+}
+
 img {
-    height: 75px;
+    height: 200px;
 }
 
 /* CABEÇALHO */
@@ -352,6 +356,7 @@ input:checked + .slider:before {
 .logo_rodape {
     display: flex;
     justify-content: center;
+    height: 100px;
 }
 
 .linha {
