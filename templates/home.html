@@ -70,6 +70,12 @@
         </div>
     </header>
     <main>
+        <div class="bemvindo">
+            <h3 class="span">Bem vindo<span id="nomeUsuario" class="nomeUsuario"></span></h3>
+        </div>
+        <script>
+            document.getElementById("nomeUsuario").textContent = nome;
+        </script>
         <div class="container">
             <h3>Mais Emprestados</h3>
             <div class="owl-carousel owl-theme">
@@ -163,15 +169,9 @@
 
     <script>
         // Verifica se o token está armazenado no Local Storage da própria web (SEGURANÇA DO SITE)
-        var token = localStorage.getItem("token")
-    // var cargo = localStorage.getItem("cargo")   
-
-        if(!token) { //OBSERVAÇÃO PESSOAL! > Também da para fazer de maneira mais manual usando "token === undefined || token === null"
-            alert("Essa Página é restrita");
-
-        // Manda para a pagina de login caso o usuário não possua token, ou seja, caso o usuário não esteja logado
-        window.location.href = "login.html"
-    }
+        var nome = localStorage.getItem("nome")
+        document.getElementById("nomeUsuario").innerHTML = nome
+        
     </script>
     
 </body>
