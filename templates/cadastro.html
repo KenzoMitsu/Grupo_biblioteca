@@ -77,8 +77,7 @@
                     <input type="tel" placeholder="+55 () 99999-9999" class="inserir" id="tel" name="telefone" required>
 
                     <label class="coisa">Foto de Perfil:</label>
-                    <input type="file" id="inputImagem" style="display: none;" accept="image/*">
-                    <button class="btn-change-img" id="btnAlterarImagem">Alterar Imagem</button>
+                    <input type="file" placeholder="Sua Melhor Foto" id="img" class="data" name="foto" required>
                 </div>
 
             </form>
@@ -113,7 +112,11 @@
 
             $.ajax({
                 method: "POST",
+<<<<<<< HEAD
                 url: ipPython,
+=======
+                url: "http://192.168.1.146:5000/usuarios",
+>>>>>>> aeb515bbff5d98de59a9699e87bd5a6c22cb949c
                 data: envia,
 
                 contentType: "application/json",

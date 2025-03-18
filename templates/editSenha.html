@@ -121,7 +121,11 @@
         // Envia os dados via AJAX
         $.ajax({
             method: "PUT",
+<<<<<<< HEAD
             url: ipPython + id, // ID do usuário
+=======
+            url: "http://192.168.1.146:5000/editar_senha/" + id, // ID do usuário
+>>>>>>> aeb515bbff5d98de59a9699e87bd5a6c22cb949c
             data: envia,
             contentType: "application/json",
             headers: {

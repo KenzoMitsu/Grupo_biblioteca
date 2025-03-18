@@ -160,7 +160,11 @@
             // Envia os dados via AJAX
             $.ajax({
                 method: "PUT",
+<<<<<<< HEAD
                 url: ipPython + id, // ID do usuário
+=======
+                url: "http://192.168.1.146:5000/usuarios/" + id, // ID do usuário
+>>>>>>> aeb515bbff5d98de59a9699e87bd5a6c22cb949c
                 data: formData,
                 contentType: false,
                 processData: false,
