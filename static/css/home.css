@@ -30,6 +30,18 @@ a{
     cursor: pointer;
 }
 
+body.modo-escuro .dropdown-menu a {
+    color: var(--branco);
+}
+
+body.modo-escuro .bemvindo {
+    background-color: var(--azul-modoescuro);
+}
+
+body.modo-escuro .nomeUsuario {
+    color: var(--azul-escuro);
+}
+
 body {
     transition: 0.2s;
 }
