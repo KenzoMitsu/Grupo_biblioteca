@@ -110,45 +110,68 @@
             </div>
         </div>
     </main>
-    <div class="fundo-imagemrodape">
-        <img class="rodape-img-container" src="../static/img/rodape_biblioteca.jpg" a,
-        lt="rodape-img">
+
+    <footer class="inter">
+        <div class="separacao1">
+                <p>Entre em contato conosco</p>
+                <div class="redes">
+                    <a href="https://www.whatsapp.com/?lang=pt_BR">
+                        <i class="fa-brands fa-whatsapp"></i>
+                    </a>
+                    <a href="https://www.instagram.com">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+                    <a href="https://br.linkedin.com">
+                        <i class="fa-brands fa-linkedin"></i>
+                    </a>
+                    <a href="https://x.com/?lang=pt">
+                        <i class="fa-brands fa-twitter"></i>
+                    </a>
+                    <a href="https://pt-br.facebook.com/login/device-based/regular/login/">
+                        <i class="fa-brands fa-facebook"></i>
+                    </a>
+                </div>
+        </div>
+    <div class="rodape-inter">
+        <div class="informacao">
+                <p class="informacoes">INFORMAÇÕES</p>
+                <div class="linha"></div>
+                <div class="display">
+                    <i class="fa-solid fa-envelope icons"></i>
+                    <p class="text">asa.literaria@email.com</p>
+                </div>
+                <div class="display">
+                    <i class="fa-solid fa-phone icons"></i>
+                    <p class="text">(18)99999-9999</p>
+            </div>
+        </div>
+        <div class="imagem">
+            <img class="logo_rodape" src="../static/img/logo.png" alt="logo">
+        </div>
+        <div class="localizacao">
+            <p class="local">LOCALIZAÇÃO
+                <br>
+                Birigui - SP
+            </p>
+        </div>
     </div>
-
-    <footer>
-        <div class="model_info">
-
-            <div class="footer-section">
-                <h3>Contato</h3>
-                <ul>
-                    <li><a class="info1" href="#">email: asa.literaria@hotmail.org.br</a></li>
-                    <li><a class="info1" href="#">telefone: (15) 2406-1281</a></li>
-                    <li><a class="info1" href="#">No Brasil</a></li>
-                </ul>
-            </div>
-
-            <div class="footer-section">
-                <h3>Localização</h3>
-                <ul>
-                    <li><a class="info2" href="#">Birigui - SP</a></li>
-                </ul>
-            </div>
-        </div>
-
-
-        <div class="row pt-5">
-            <div class="col-6">
-                <p>Termos de uso do site</p>
-            </div>
-            <div class="col-6">
-                <p>Política e privacidade</p>
-            </div>
-        </div>
-
+    <div class="as">
+        <a href="https://www.google.com.br/?hl=pt-BR" class="text2">Termos de Uso</a>
+        <a href="https://www.google.com.br/?hl=pt-BR" class="text2">Política de privacidade</a>
+    </div>
     </footer>
 
     <script>
-        
+        // Verifica se o token está armazenado no Local Storage da própria web (SEGURANÇA DO SITE)
+        var token = localStorage.getItem("token")
+    // var cargo = localStorage.getItem("cargo")   
+
+        if(!token) { //OBSERVAÇÃO PESSOAL! > Também da para fazer de maneira mais manual usando "token === undefined || token === null"
+            alert("Essa Página é restrita");
+
+        // Manda para a pagina de login caso o usuário não possua token, ou seja, caso o usuário não esteja logado
+        window.location.href = "login.html"
+    }
     </script>
     
 </body>
