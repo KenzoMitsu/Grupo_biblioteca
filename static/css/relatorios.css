@@ -198,6 +198,8 @@ input:checked + .slider:before {
     border: #00010000;
 }
 
+
+
 /* Responsividade para telas menores */
 @media (max-width: 768px) {
     header {
