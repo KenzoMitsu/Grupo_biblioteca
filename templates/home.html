@@ -171,7 +171,10 @@
         // Verifica se o token está armazenado no Local Storage da própria web (SEGURANÇA DO SITE)
         var nome = localStorage.getItem("nome")
         document.getElementById("nomeUsuario").innerHTML = nome
-        
+        document.querySelector(".menu-item button").addEventListener("click", function () {
+    localStorage.removeItem("token"); // Remove o token do localStorage
+    window.location.href = "login.html"; // Redireciona para a página de login
+});
     </script>
     
 </body>

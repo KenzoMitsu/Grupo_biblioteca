@@ -31,7 +31,7 @@
     <header>
         <!-- Logo -->
         <div class="header-left">
-            <img src="../static/img/logo.png" alt="Logo">
+            <a href="home.html"><img src="../static/img/logo.png" alt="Logo"></a>
         </div>
 
         <!-- Barra de Pesquisa -->
@@ -62,12 +62,15 @@
                     <div></div>
                 </div>
                 <ul class="dropdown-menu" id="dropdownMenu">
-                    <li class="menu-item"><i class="fas fa-user"></i> Perfil</li>
-                    <li class="menu-item"><i class="fas fa-user"></i>Adicionar Bibliotecario</li>   
+                    <li class="menu-item">
+                        <img src="../static/img/user.png" alt="Perfil" class="menu-icon-img"><a href="editPerfilADM.html"> Perfil</a>
+                    </li>
+                    <li class="menu-item"><i class="fas fa-user"></i><a href="addBibliotecarioADM.html">Adicionar Bibliotecario</a></li>   
                     <hr>
-                    <li class="menu-item"><i class="fa-solid fa-cash-register"></i>Gerenciar Multas</li>
-                    <li class="menu-item"><i class="fas fa-book"></i> Gerenciar Livros</li>
-                    <li class="menu-item"><i class="fas fa-sync-alt"></i>Empréstimos</li>
+                    <li class="menu-item"><a href="relatoriosADM.HTML"><i class="fa-solid fa-file-export"></i>Relatórios</li></a>
+                    <li class="menu-item"><a href="multasADM.html"><i class="fa-solid fa-cash-register"></i>Gerenciar Multas</li></a>
+                    <li class="menu-item"><a href="livrosADM.html"><i class="fas fa-book"></i> Gerenciar Livros</li></a>
+                    <li class="menu-item"><a href="emprestimosADM.html" ><i class="fas fa-sync-alt"></i>Empréstimos</li></a>
                     <hr>
                     <li class="menu-item"><i class="fas fa-sign-out-alt"></i> Sair</li>
                 </ul>
@@ -163,7 +166,10 @@
     </footer>
 
     <script>
-
+                document.querySelector(".menu-item button").addEventListener("click", function () {
+    localStorage.removeItem("token"); // Remove o token do localStorage
+    window.location.href = "login.html"; // Redireciona para a página de login
+});
     </script>
 </body>
 
