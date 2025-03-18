@@ -279,7 +279,7 @@ section{
     align-items: center;
 }
 
-button{
+.butt{
     margin: 20px;
     display: flex;
     background-color: #4292dc;
@@ -290,12 +290,10 @@ button{
     border: 4px solid #4292dc;
     font-weight: bold;
 }
-button:hover{
+.butt:hover{
     background-color: white;
     border: 4px solid #4292dc;
     cursor: pointer;
     scale: 1.01;
 }
-button p{
-    color: white;
-}
+
