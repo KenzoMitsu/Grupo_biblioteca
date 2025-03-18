@@ -184,6 +184,37 @@ input::placeholder {
     width: 100%;
 }
 
+.btn-change-img{
+    padding: 0px;
+    height: 43px;
+    width: 230px;
+    padding-left: 40px;
+    padding-right: 45px;
+    color: var(--azul);
+    margin-top: 10px;
+    background-color: var(--branco);
+    border: 3px solid var(--azul);
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 15px;
+    margin-left: -1px;
+}
+.btn-change-img:hover{
+    padding: 0px;
+    height: 43px;
+    width: 230px;
+    padding-left: 40px;
+    padding-right: 45px;
+    color: var(--branco);
+    margin-top: 10px;
+    background-color: var(--azul);
+    border: 3px solid var(--azul);
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 15px;
+    margin-left: -1px;
+}
+
 @media (max-width: 800px) {
     .livro-1 {
         display: none;
