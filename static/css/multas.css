@@ -4,6 +4,17 @@
     text-decoration: none;
     transition: all 0.3s;
 }
+
+:root{
+    --azul-claro: #4292DC;
+    --azul-escuro: #0060BB;
+    --branco: rgb(248, 252, 255);
+    --preto: rgb(0, 0, 0);
+    --cor-complementar: rgb(96, 209, 231);
+    --escuro: rgb(36, 36, 36);
+    --azul-modoescuro: #73A8FE;
+}
+
 a{
     text-decoration: none;
     color:black;
