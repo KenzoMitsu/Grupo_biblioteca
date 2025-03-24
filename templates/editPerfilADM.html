@@ -22,7 +22,7 @@
     <script src="../static/js/scripts.js"></script>
 
     <script src="../static/js/seguranca.js" defer></script>
-    
+
     <!-- FIM DO SCRIPT DA SEGURANÇA -->
     <link rel="icon" type="image/x-icon" href="../static/img/head-removebg-preview.png">
 </head>
@@ -178,7 +178,7 @@
         // Envia os dados via AJAX
         $.ajax({
             method: "PUT",
-            url: ipPython + "/usuarios/" + id, // ID do usuário
+            url:"http://10.92.3.208:5000/usuarios/" + id, // ID do usuário
             data: envia,
             contentType: "application/json",
             headers: {
@@ -242,13 +242,12 @@
             // Envia a imagem para o servidor via AJAX
             $.ajax({
                 method: "PUT",
-                url: 'http://10.92.3.208:5000' + "/imagem" + id,
-                data: formData,
-                contentType: false,
-                processData: false,
+                url: ipPython + "/usuarios/" + id, // ID do usuário
+                data: envia,
+                contentType: "application/json",
                 headers: {
-                    "Authorization": "Bearer " + token
-                },
+                'Authorization': 'Bearer ' + token // Adiciona o token no cabeçalho
+            },
                 success: function (response) {
                     Swal.fire({
                         title: "Sucesso!",
