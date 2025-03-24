@@ -14,9 +14,10 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    
 
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>    
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 
     <script src="../static/js/paginaip.js"></script>
 
@@ -47,45 +48,46 @@
 
             <form id="formLoginUsuario" class="login">
                 <label class="coisa" for="email">Email:</label>
-                <input placeholder="email@email.com" type="text" placeholder="email@email.com" class="inserir" type="email" id="email" name="email"
-                    required>
+                <input placeholder="email@email.com" type="text" placeholder="email@email.com" class="inserir"
+                    type="email" id="email" name="email" required>
 
                 <label class="coisa" for="senha">Senha:</label>
-                <input placeholder="Sua senha" type="password" placeholder="Sua senha" class="inserir" type="password" id="senha" name="senha"
-                    required>
+                <input placeholder="Sua senha" type="password" placeholder="Sua senha" class="inserir" type="password"
+                    id="senha" name="senha" required>
             </form>
 
             <div class="final">
                 <button onclick="$('#formLoginUsuario').submit()" class="botao-login">Login</button>
 
-                <p class="texto">Não possui uma conta? <a target="_blank" class="link" href="cadastro.html">Cadastre-se</a></p>
+                <p class="texto">Não possui uma conta? <a target="_blank" class="link"
+                        href="cadastro.html">Cadastre-se</a></p>
             </div>
 
         </div>
 
         <script>
 
-            $("#formLoginUsuario").on("submit", function(e) {
-    
+            $("#formLoginUsuario").on("submit", function (e) {
+
                 e.preventDefault();
-    
+
                 let dados = new FormData(this);
-    
+
 
                 let envia = {
                     email: dados.get("email"),
                     senha: dados.get("senha"),
                 }
-    
+
                 envia = JSON.stringify(envia)
-    
+
                 $.ajax({
-                    method: "post",     
+                    method: "post",
                     url: ipPython + "/login",
                     contentType: "application/json",
                     data: envia,
 
-                    success: function(retorno) {
+                    success: function (retorno) {
 
                         localStorage.setItem("token", retorno.token)
                         localStorage.setItem("id_usuario", retorno.usuario.id_usuario)
@@ -99,13 +101,13 @@
 
                         var cargo = localStorage.getItem("cargo")
 
-                        if (cargo === "ADM") { 
+                        if (cargo === "ADM") {
                             Swal.fire({
                                 title: "Sucesso!",
                                 text: "Login de ADM realizado com sucesso",
                                 icon: "success"
                             }).then((result) => {
-                            window.location.href = "homeADM.html";
+                                window.location.href = "homeADM.html";
                             });
                         } else if (cargo === "Biblitecario") {
                             Swal.fire({
@@ -124,17 +126,17 @@
                                 window.location.href = "home.html"
                             })
                         };
- 
+
                     },
-                        
-                    
+
+
                     error: function (retorno) {
-                            Swal.fire({
-                                title: "Inválido!",
-                                text: "Usuário ou senha inválidos",
-                                icon: "error"
-                            });
-                        }
+                        Swal.fire({
+                            title: "Inválido!",
+                            text: "Usuário ou senha inválidos",
+                            icon: "error"
+                        });
+                    }
 
                 })
 

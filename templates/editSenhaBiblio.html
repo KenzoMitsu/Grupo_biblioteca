@@ -16,7 +16,9 @@
     <!-- SEGURANÇA DO SITE (IMPEDE A NAVEGAÇÃO P' OUTRAS PÁGINAS APENAS POR MEIO DO LINK) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <script src="../static/js/paginaip.js"></script>
+
     <script src="../static/js/scripts.js"></script>
 
     <script src="../static/js/seguranca.js" defer></script>
@@ -29,7 +31,7 @@
     <header>
         <!-- Logo -->
         <div class="header-left">
-            <a href="home.html"><img src="../static/img/logo.png" alt="Logo"></a>
+            <a href="homeBiblio.html"><img src="../static/img/logo.png" alt="Logo"></a>
         </div>
 
         <!-- Barra de Pesquisa -->
@@ -45,7 +47,7 @@
             <div class="switch-container">
                 Dark Mode
                 <label class="switch">
-                    <input type="checkbox">
+                    <input id="alternarTema" type="checkbox">
                     <span class="slider"></span>
                 </label>
             </div>
@@ -55,15 +57,21 @@
         <div class="header-end">
             <div class="menu-container">
                 <div class="menu-icon" id="menuButton">
-                    <div></div>
-                    <div></div>
-                    <div></div>
+                    <div class="menulinha"></div>
+                    <div class="menulinha"></div>
+                    <div class="menulinha"></div>
                 </div>
                 <ul class="dropdown-menu" id="dropdownMenu">
-                    <li class="menu-item"><i class="fa-solid fa-circle-user"></i><a href="editPerfil.html"> Perfil</a>
+                    <li class="menu-item"><i class="fa-solid fa-circle-user"></i><a href="editPerfilBiblio.html">
+                            Perfil</a></li>
+                    <hr>
+                    <li class="menu-item"><i class="fas fa-book"></i><a href="emprestimosBiblio.html"> Empréstimos</a>
                     </li>
-                    <li class="menu-item"><i class="fas fa-book"></i><a href="emprestimos.html">Empréstimos</a></li>
-                    <li class="menu-item"><i class="fas fa-sync-alt"></i><a href="historico.html">Histórico</a></li>
+                    <li class="menu-item"><i class="fas fa-sync-alt"></i><a href="relatoriosBiblio.html"> Relatórios</a>
+                    </li>
+                    <li class="menu-item"><i class="fas fa-sync-alt"></i><a href="livrosBiblio.html"> Gerenciar
+                            Livros</a></li>
+                    <hr>
                     <li class="menu-item"><i class="fas fa-sign-out-alt"></i><button class="sair ">Sair</button></li>
                 </ul>
             </div>

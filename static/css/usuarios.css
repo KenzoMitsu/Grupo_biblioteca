@@ -9,6 +9,15 @@ a{
     text-decoration: none;
     color:black;
 }
+:root{
+    --azul-claro: #4292DC;
+    --azul-escuro: #0060BB;
+    --branco: rgb(248, 252, 255);
+    --preto: rgb(0, 0, 0);
+    --cor-complementar: rgb(96, 209, 231);
+    --escuro: rgb(36, 36, 36);
+    --azul-modoescuro: #73A8FE;
+}
 
 .sair{
     background-color: #00010000;
@@ -255,9 +264,39 @@ input:checked + .slider:before {
 
 
 
+.form-control{  
+    border-radius: 5px;
+    margin-bottom: 10px;
+    border: 3px solid #3380ca;
+    background-color:#eef3ff;
+    font-weight: bold;
+}
+.btn-save{
+    color: #4292dc;
+    background-color: white;
+    border: 4px solid #4292dc;
+    width: 100px;
+    border-radius: 5px;
+}
+.btn-save:hover{
+    background-color: #4292dc;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    border: 4px solid #4292dc;
+    font-weight: bold;
+    text-align: center;
+}
 
 
+table{
+    margin-top: 30px;
+}
 
+
+footer{
+    margin-top: 30px;
+}
 
 
 .separacao1 {
@@ -275,6 +314,7 @@ input:checked + .slider:before {
     align-items: center;
     margin-left: 30px;
 }
+
 
 .redes i{
     color: var(--branco);

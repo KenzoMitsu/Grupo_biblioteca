@@ -63,7 +63,6 @@
                     <li class="menu-item"><i class="fas fa-book"></i><a href="emprestimos.html">Empréstimos</a></li>
                     <li class="menu-item"><i class="fas fa-sync-alt"></i><a href="historico.html">Histórico</a></li>
                     <li class="menu-item"><i class="fas fa-sign-out-alt"></i><button class="sair ">Sair</button></li>
-                </ul>
             </div>
         </div>
     </header>
@@ -72,7 +71,7 @@
     <section>
         <div>
             <div class="img_perfil">
-                <img src="../static/img/user.png" class="foto_usuario" id="imgPreview"/>
+                <img src="../static/img/user.png" class="foto_usuario" id="imgPreview" />
                 <input type="file" id="inputImagem" style="display: none;" accept="image/*">
                 <button class="btn-change-img" id="btnAlterarImagem">Alterar Imagem</button>
             </div>
@@ -80,27 +79,29 @@
         <div class="lavaloucasmp4">
 
             <form id="formCadastroUsuario" class="formulario">
-                
+
                 <div class="form-grid">
 
                     <div class="form-group">
                         <label for="nome">Nome:</label>
-                        <input class="inserir" type="text" id="nome" name="nome" placeholder="Nome" required/>
+                        <input class="inserir" type="text" id="nome" name="nome" placeholder="Nome" required />
                     </div>
 
                     <div class="form-group">
                         <label for="email">Email:</label>
-                        <input class="inserir" type="email" id="email" name="email" placeholder="seuemail@email.com" required/>
+                        <input class="inserir" type="email" id="email" name="email" placeholder="seuemail@email.com"
+                            required />
                     </div>
 
                     <div class="form-group">
                         <label for="telefone">Telefone:</label>
-                        <input class="inserir" type="tel" id="telefone" name="telefone" placeholder="99 9999-9999" required/>
+                        <input class="inserir" type="tel" id="telefone" name="telefone" placeholder="99 9999-9999"
+                            required />
                     </div>
 
                     <div class="form-group">
                         <label for="data_nascimento">Data de nascimento:</label>
-                        <input class="inserir" type="date" id="data_nascimento" name="data_nascimento" required/>
+                        <input class="inserir" type="date" id="data_nascimento" name="data_nascimento" required />
                     </div>
                 </div>
 
@@ -114,27 +115,27 @@
 
     <footer class="inter">
         <div class="separacao1">
-                <p>Entre em contato conosco</p>
-                <div class="redes">
-                    <a href="https://www.whatsapp.com/?lang=pt_BR">
-                        <i class="fa-brands fa-whatsapp"></i>
-                    </a>
-                    <a href="https://www.instagram.com">
-                        <i class="fa-brands fa-instagram"></i>
-                    </a>
-                    <a href="https://br.linkedin.com">
-                        <i class="fa-brands fa-linkedin"></i>
-                    </a>
-                    <a href="https://x.com/?lang=pt">
-                        <i class="fa-brands fa-twitter"></i>
-                    </a>
-                    <a href="https://pt-br.facebook.com/login/device-based/regular/login/">
-                        <i class="fa-brands fa-facebook"></i>
-                    </a>
-                </div>
+            <p>Entre em contato conosco</p>
+            <div class="redes">
+                <a href="https://www.whatsapp.com/?lang=pt_BR">
+                    <i class="fa-brands fa-whatsapp"></i>
+                </a>
+                <a href="https://www.instagram.com">
+                    <i class="fa-brands fa-instagram"></i>
+                </a>
+                <a href="https://br.linkedin.com">
+                    <i class="fa-brands fa-linkedin"></i>
+                </a>
+                <a href="https://x.com/?lang=pt">
+                    <i class="fa-brands fa-twitter"></i>
+                </a>
+                <a href="https://pt-br.facebook.com/login/device-based/regular/login/">
+                    <i class="fa-brands fa-facebook"></i>
+                </a>
+            </div>
         </div>
-    <div class="rodape-inter">
-        <div class="informacao">
+        <div class="rodape-inter">
+            <div class="informacao">
                 <p class="informacoes">INFORMAÇÕES</p>
                 <div class="linha"></div>
                 <div class="display">
@@ -144,22 +145,22 @@
                 <div class="display">
                     <i class="fa-solid fa-phone icons"></i>
                     <p class="text">(18)99999-9999</p>
+                </div>
+            </div>
+            <div class="imagem">
+                <img class="logo_rodape" src="../static/img/logo.png" alt="logo">
+            </div>
+            <div class="localizacao">
+                <p class="local">LOCALIZAÇÃO
+                    <br>
+                    Birigui - SP
+                </p>
             </div>
         </div>
-        <div class="imagem">
-            <img class="logo_rodape" src="../static/img/logo.png" alt="logo">
+        <div class="as">
+            <a href="https://www.google.com.br/?hl=pt-BR" class="text2">Termos de Uso</a>
+            <a href="https://www.google.com.br/?hl=pt-BR" class="text2">Política de privacidade</a>
         </div>
-        <div class="localizacao">
-            <p class="local">LOCALIZAÇÃO
-                <br>
-                Birigui - SP
-            </p>
-        </div>
-    </div>
-    <div class="as">
-        <a href="https://www.google.com.br/?hl=pt-BR" class="text2">Termos de Uso</a>
-        <a href="https://www.google.com.br/?hl=pt-BR" class="text2">Política de privacidade</a>
-    </div>
     </footer>
 
     <script>
@@ -167,26 +168,26 @@
         $(document).ready(function () {
             var nome = localStorage.getItem("nome");
             document.getElementById("nome").value = nome;
-    
+
             var email = localStorage.getItem("email");
             document.getElementById("email").value = email;
-    
+
             var data_nascimento = localStorage.getItem("data_nascimento");
             document.getElementById("data_nascimento").value = data_nascimento;
-    
+
             var telefone = localStorage.getItem("telefone");
             document.getElementById("telefone").value = telefone;
-    
+
             var imagemSalva = localStorage.getItem("imagem_usuario");
             if (imagemSalva) {
                 $("#imgPreview").attr("src", imagemSalva);
             }
         });
-    
+
         // Aqui é definido o que é feito quando o usuário aperta em "Salvar"
         $("#formCadastroUsuario").on("submit", function (e) {
             e.preventDefault(); // Impede o recarregamento da página!
-    
+
             var id = localStorage.getItem("id_usuario");
             if (!id) {
                 Swal.fire({
@@ -196,16 +197,16 @@
                 });
                 return; // Impede a execução do restante do código
             }
-    
+
             // Captura os dados do formulário
             let formData = new FormData(this);
-    
+
             // Adiciona a imagem ao FormData, se houver
             var fileInput = document.getElementById("inputImagem");
             if (fileInput.files.length > 0) {
                 formData.append("imagem", fileInput.files[0]);
             }
-    
+
             // Envia os dados via AJAX
             $.ajax({
                 method: "PUT",
@@ -241,7 +242,7 @@
                         reader.readAsDataURL(fileInput.files[0]);
                     }
                 },
-                error: function (retorno) {                    
+                error: function (retorno) {
                     Swal.fire({
                         title: "Erro",
                         text: "Erro, verifique se todos os campos estão preenchidos!",
@@ -250,27 +251,27 @@
                 }
             });
         });
-    
+
         // Evento de clique para abrir o seletor de arquivo
         $("#btnAlterarImagem").click(function () {
             $("#inputImagem").click();
         });
-    
+
         // Evento de mudança no input de imagem
         $("#inputImagem").change(function () {
             var file = this.files[0]; // Obtém o primeiro arquivo selecionado
-    
+
             if (!file) {
 
                 Swal.fire({
-                        title: "Erro!",
-                        text: "Nenhuma imagem selecionada!",
-                        icon: "error"
-                    })
+                    title: "Erro!",
+                    text: "Nenhuma imagem selecionada!",
+                    icon: "error"
+                })
 
                 return;
             }
-    
+
             // Exibe a pré-visualização da imagem antes do upload
             var reader = new FileReader();
             reader.onload = function (e) {
@@ -278,7 +279,7 @@
             };
             reader.readAsDataURL(file); // Converte para Base64
         });
-    
+
         // Logout
         document.querySelector(".menu-item button").addEventListener("click", function () {
             localStorage.removeItem("token"); // Remove o token do localStorage
