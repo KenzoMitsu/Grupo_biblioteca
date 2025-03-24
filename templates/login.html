@@ -129,11 +129,10 @@
 
                     },
 
-
                     error: function (retorno) {
                         Swal.fire({
                             title: "Inválido!",
-                            text: "Usuário ou senha inválidos",
+                            text: JSON.parse(retorno.responseText).error,
                             icon: "error"
                         });
                     }
