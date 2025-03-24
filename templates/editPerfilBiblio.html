@@ -22,7 +22,7 @@
     <script src="../static/js/scripts.js"></script>
 
     <script src="../static/js/seguranca.js" defer></script>
-    
+
     <!-- FIM DO SCRIPT DA SEGURANÇA -->
     <link rel="icon" type="image/x-icon" href="../static/img/head-removebg-preview.png">
 </head>
@@ -58,15 +58,19 @@
             <div class="menu-container">
                 <div class="menu-icon" id="menuButton">
                     <div class="menulinha"></div>
-                    <div class="menulinha" ></div>
-                    <div class="menulinha" ></div>
+                    <div class="menulinha"></div>
+                    <div class="menulinha"></div>
                 </div>
                 <ul class="dropdown-menu" id="dropdownMenu">
-                    <li class="menu-item"><i class="fa-solid fa-circle-user"></i><a href="editPerfilBiblio.html"> Perfil</a></li>
+                    <li class="menu-item"><i class="fa-solid fa-circle-user"></i><a href="editPerfilBiblio.html">
+                            Perfil</a></li>
                     <hr>
-                    <li class="menu-item"><i class="fas fa-book"></i><a href="emprestimosBiblio.html"> Empréstimos</a></li>
-                    <li class="menu-item"><i class="fas fa-sync-alt"></i><a href="relatoriosBiblio.html"> Relatórios</a></li>
-                    <li class="menu-item"><i class="fas fa-sync-alt"></i><a href="livrosBiblio.html"> Gerenciar Livros</a></li>
+                    <li class="menu-item"><i class="fas fa-book"></i><a href="emprestimosBiblio.html"> Empréstimos</a>
+                    </li>
+                    <li class="menu-item"><i class="fas fa-sync-alt"></i><a href="relatoriosBiblio.html"> Relatórios</a>
+                    </li>
+                    <li class="menu-item"><i class="fas fa-sync-alt"></i><a href="livrosBiblio.html"> Gerenciar
+                            Livros</a></li>
                     <hr>
                     <li class="menu-item"><i class="fas fa-sign-out-alt"></i><button class="sair ">Sair</button></li>
                 </ul>
@@ -78,7 +82,7 @@
     <section>
         <div>
             <div class="img_perfil">
-                <img src="../static/img/user.png" class="foto_usuario" id="imgPreview"/>
+                <img src="../static/img/user.png" class="foto_usuario" id="imgPreview" />
                 <input type="file" id="inputImagem" style="display: none;" accept="image/*">
                 <button class="btn-change-img" id="btnAlterarImagem">Alterar Imagem</button>
             </div>
@@ -86,27 +90,29 @@
         <div class="lavaloucasmp4">
 
             <form id="formCadastroUsuario" class="formulario">
-                
+
                 <div class="form-grid">
 
                     <div class="form-group">
                         <label for="nome">Nome:</label>
-                        <input class="inserir" type="text" id="nome" name="nome" placeholder="Nome" required/>
+                        <input class="inserir" type="text" id="nome" name="nome" placeholder="Nome" required />
                     </div>
 
                     <div class="form-group">
                         <label for="email">Email:</label>
-                        <input class="inserir" type="email" id="email" name="email" placeholder="seuemail@email.com" required/>
+                        <input class="inserir" type="email" id="email" name="email" placeholder="seuemail@email.com"
+                            required />
                     </div>
 
                     <div class="form-group">
                         <label for="telefone">Telefone:</label>
-                        <input class="inserir" type="tel" id="telefone" name="telefone" placeholder="99 9999-9999" required/>
+                        <input class="inserir" type="tel" id="telefone" name="telefone" placeholder="99 9999-9999"
+                            required />
                     </div>
 
                     <div class="form-group">
                         <label for="data_nascimento">Data de nascimento:</label>
-                        <input class="inserir" type="date" id="data_nascimento" name="data_nascimento" required/>
+                        <input class="inserir" type="date" id="data_nascimento" name="data_nascimento" required />
                     </div>
                 </div>
 
@@ -171,16 +177,16 @@
             // Converte o objeto para JSON
             envia = JSON.stringify(envia);
 
-        // Envia os dados via AJAX
-        $.ajax({
-            method: "PUT",
-            url: ipPython + "/usuarios/" + id, // ID do usuário
-            data: envia,
-            contentType: "application/json",
-            headers: {
-                'Authorization': 'Bearer ' + token // Adiciona o token no cabeçalho
-            },
-            success: function (retorno) {
+            // Envia os dados via AJAX
+            $.ajax({
+                method: "PUT",
+                url: ipPython + "/usuarios/" + id, // ID do usuário
+                data: envia,
+                contentType: "application/json",
+                headers: {
+                    'Authorization': 'Bearer ' + token // Adiciona o token no cabeçalho
+                },
+                success: function (retorno) {
 
 
                     Swal.fire({
@@ -192,13 +198,13 @@
                 },
                 error: function (retorno) {
 
-                        Swal.fire({
-                            title: "Error!",
-                            text: "Erro Desconhecido!",
-                            icon: "error"
-                        });
+                    Swal.fire({
+                        title: "Error!",
+                        text: "Erro Desconhecido!",
+                        icon: "error"
+                    });
 
-                
+
                 }
             });
         });

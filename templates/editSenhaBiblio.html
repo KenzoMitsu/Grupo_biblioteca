@@ -16,7 +16,7 @@
     <!-- SEGURANÇA DO SITE (IMPEDE A NAVEGAÇÃO P' OUTRAS PÁGINAS APENAS POR MEIO DO LINK) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    
+
     <script src="../static/js/paginaip.js"></script>
 
     <script src="../static/js/scripts.js"></script>
@@ -58,15 +58,19 @@
             <div class="menu-container">
                 <div class="menu-icon" id="menuButton">
                     <div class="menulinha"></div>
-                    <div class="menulinha" ></div>
-                    <div class="menulinha" ></div>
+                    <div class="menulinha"></div>
+                    <div class="menulinha"></div>
                 </div>
                 <ul class="dropdown-menu" id="dropdownMenu">
-                    <li class="menu-item"><i class="fa-solid fa-circle-user"></i><a href="editPerfilBiblio.html"> Perfil</a></li>
+                    <li class="menu-item"><i class="fa-solid fa-circle-user"></i><a href="editPerfilBiblio.html">
+                            Perfil</a></li>
                     <hr>
-                    <li class="menu-item"><i class="fas fa-book"></i><a href="emprestimosBiblio.html"> Empréstimos</a></li>
-                    <li class="menu-item"><i class="fas fa-sync-alt"></i><a href="relatoriosBiblio.html"> Relatórios</a></li>
-                    <li class="menu-item"><i class="fas fa-sync-alt"></i><a href="livrosBiblio.html"> Gerenciar Livros</a></li>
+                    <li class="menu-item"><i class="fas fa-book"></i><a href="emprestimosBiblio.html"> Empréstimos</a>
+                    </li>
+                    <li class="menu-item"><i class="fas fa-sync-alt"></i><a href="relatoriosBiblio.html"> Relatórios</a>
+                    </li>
+                    <li class="menu-item"><i class="fas fa-sync-alt"></i><a href="livrosBiblio.html"> Gerenciar
+                            Livros</a></li>
                     <hr>
                     <li class="menu-item"><i class="fas fa-sign-out-alt"></i><button class="sair ">Sair</button></li>
                 </ul>
@@ -78,22 +82,25 @@
     <section>
         <div>
             <form id="formCadastroUsuario" class="formulario">
-                
+
                 <div class="form-grid">
 
                     <div class="form-group">
                         <label for="senha">Senha Atual:</label>
-                        <input class="inserir" type="password" id="senha_atual" name="senha_atual" placeholder="Sua Senha" />
+                        <input class="inserir" type="password" id="senha_atual" name="senha_atual"
+                            placeholder="Sua Senha" />
                     </div>
 
                     <div class="form-group">
                         <label for="senha">Nova Senha:</label>
-                        <input class="inserir" type="password" id="nova_senha" name="nova_senha" placeholder="Nova Senha" />
+                        <input class="inserir" type="password" id="nova_senha" name="nova_senha"
+                            placeholder="Nova Senha" />
                     </div>
 
                     <div class="form-group">
                         <label for="senha">Confirmar Nova Senha:</label>
-                        <input class="inserir" type="password" id="confirmar_senha" name="confirmar_senha" placeholder="Confirmar Senha" />
+                        <input class="inserir" type="password" id="confirmar_senha" name="confirmar_senha"
+                            placeholder="Confirmar Senha" />
                     </div>
 
                 </div>
@@ -103,57 +110,57 @@
         </div>
     </section>
 
-<script>
+    <script>
 
-    $("#formCadastroUsuario").on("submit", function (e) {
-        // Impede o recarregamento da página!
-        e.preventDefault();
+        $("#formCadastroUsuario").on("submit", function (e) {
+            // Impede o recarregamento da página!
+            e.preventDefault();
 
-        var token = localStorage.getItem("token")
-        var id = localStorage.getItem("id_usuario")
+            var token = localStorage.getItem("token")
+            var id = localStorage.getItem("id_usuario")
 
-        // Captura os dados do formulário
-        let dados = new FormData(this);
+            // Captura os dados do formulário
+            let dados = new FormData(this);
 
-        // Monta o objeto para envio
-        let envia = {
-            senha_atual: dados.get("senha_atual"),
-            nova_senha: dados.get("nova_senha"),
-            confirmar_senha: dados.get("confirmar_senha"),
-        };
+            // Monta o objeto para envio
+            let envia = {
+                senha_atual: dados.get("senha_atual"),
+                nova_senha: dados.get("nova_senha"),
+                confirmar_senha: dados.get("confirmar_senha"),
+            };
 
-        // Converte o objeto para JSON
-        envia = JSON.stringify(envia);
+            // Converte o objeto para JSON
+            envia = JSON.stringify(envia);
 
-        // Envia os dados via AJAX
-        $.ajax({
-            method: "PUT",
-            url: ipPython + "/editar_senha/" + id, // ID do usuário
-            data: envia,
-            contentType: "application/json",
-            headers: {
-                'Authorization': 'Bearer ' + token // Adiciona o token no cabeçalho
-            },
-            success: function (retorno) {
-                Swal.fire({
-                    title: "Sucesso!",
-                    text: "Senha atualizada com sucesso!",
-                    icon: "success"
-                })
-            },
-            error: function (retorno) {
-                // Verifique se a resposta contém uma mensagem de erro
-                var mensagemErro = retorno.responseJSON ? retorno.responseJSON.error : "Erro desconhecido";
-                
-                Swal.fire({
-                    title: "Erro!",
-                    text: "Algum erro ocorreu!",
-                    icon: "error"
-                });
-            }
+            // Envia os dados via AJAX
+            $.ajax({
+                method: "PUT",
+                url: ipPython + "/editar_senha/" + id, // ID do usuário
+                data: envia,
+                contentType: "application/json",
+                headers: {
+                    'Authorization': 'Bearer ' + token // Adiciona o token no cabeçalho
+                },
+                success: function (retorno) {
+                    Swal.fire({
+                        title: "Sucesso!",
+                        text: "Senha atualizada com sucesso!",
+                        icon: "success"
+                    })
+                },
+                error: function (retorno) {
+                    // Verifique se a resposta contém uma mensagem de erro
+                    var mensagemErro = retorno.responseJSON ? retorno.responseJSON.error : "Erro desconhecido";
+
+                    Swal.fire({
+                        title: "Erro!",
+                        text: "Algum erro ocorreu!",
+                        icon: "error"
+                    });
+                }
+            });
         });
-    });
-    document.querySelector(".menu-item button").addEventListener("click", function () {
+        document.querySelector(".menu-item button").addEventListener("click", function () {
             localStorage.removeItem("token"); // Remove o token do localStorage
             localStorage.removeItem("id_usuario");
             localStorage.removeItem("nome");
@@ -164,9 +171,9 @@
             localStorage.removeItem("telefone");
             localStorage.removeItem("imagem_usuario");
             window.location.href = "login.html"; // Redireciona para a página de login
-    });
-    
-</script>
+        });
+
+    </script>
 
 </body>
 

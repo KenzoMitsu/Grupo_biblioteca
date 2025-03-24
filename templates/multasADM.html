@@ -75,7 +75,8 @@
                     <li class="menu-item"><a href="emprestimosADM.html"><i class="fas fa-sync-alt"></i> Empréstimos</li>
                     </a>
                     <hr>
-                    <li class="menu-item"><i class="fas fa-sign-out-alt"></i><button class="sair ">Sair</button></li>                </ul>
+                    <li class="menu-item"><i class="fas fa-sign-out-alt"></i><button class="sair ">Sair</button></li>
+                </ul>
             </div>
         </div>
     </header>
@@ -111,6 +112,21 @@
 
         document.querySelector(".menu-item button").addEventListener("click", function () {
             localStorage.removeItem("token"); // Remove o token do localStorage
+            window.location.href = "login.html"; // Redireciona para a página de login
+        });
+
+        var nome = localStorage.getItem("nome")
+        document.getElementById("nomeUsuario").innerHTML = nome
+        document.querySelector(".menu-item button").addEventListener("click", function () {
+            localStorage.removeItem("token"); // Remove o token do localStorage
+            localStorage.removeItem("id_usuario");
+            localStorage.removeItem("nome");
+            localStorage.removeItem("cargo");
+            localStorage.removeItem("email");
+            localStorage.removeItem("multa");
+            localStorage.removeItem("data_nascimento");
+            localStorage.removeItem("telefone");
+            localStorage.removeItem("imagem_usuario");
             window.location.href = "login.html"; // Redireciona para a página de login
         });
     </script>
