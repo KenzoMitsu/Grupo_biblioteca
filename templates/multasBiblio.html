@@ -21,7 +21,7 @@
     <header>
         <!-- Logo -->
         <div class="header-left">
-            <a href="homeADM.html"><img src="../static/img/logo.png" alt="Logo"></a>
+            <img src="../static/img/logo.png" alt="Logo">
         </div>
 
         <!-- Barra de Pesquisa -->
@@ -37,7 +37,7 @@
             <div class="switch-container">
                 Dark Mode
                 <label class="switch">
-                    <input type="checkbox">
+                    <input id="alternarTema" type="checkbox">
                     <span class="slider"></span>
                 </label>
             </div>
@@ -47,23 +47,20 @@
         <div class="header-end">
             <div class="menu-container">
                 <div class="menu-icon" id="menuButton">
-                    <div></div>
-                    <div></div>
-                    <div></div>
+                    <div class="menulinha"></div>
+                    <div class="menulinha" ></div>
+                    <div class="menulinha" ></div>
                 </div>
                 <ul class="dropdown-menu" id="dropdownMenu">
                     <li class="menu-item"><i class="fa-solid fa-circle-user"></i><a href="editPerfil.html"> Perfil</a></li>
-                    <hr>
-                    <li class="menu-item"><i class="fa-solid fa-circle-user"></i><a href="multasADM.html"> Gerenciar Multas</a></li>
-                    <li class="menu-item"><i class="fa-solid fa-circle-user"></i><a href="livrosADM.html"> Gerenciar Livros</a></li>
-                    <li class="menu-item"><i class="fa-solid fa-circle-user"></i><a href="emprestimos.html"> Empréstimos</a></li>
-                    <hr>
-                    <li class="menu-item"><i class="fas fa-sign-out-alt"></i> Sair</li>
+                    <li class="menu-item"><i class="fas fa-book"></i><a href="emprestimos.html">Empréstimos</a></li>
+                    <li class="menu-item"><i class="fas fa-sync-alt"></i><a href="historico.html">Histórico</a></li>
+                    <li class="menu-item"><i class="fas fa-sign-out-alt"></i><button class="sair ">Sair</button></li>
                 </ul>
             </div>
         </div>
     </header>
-
+    
     <div class="container">
         <h2>Adicionar Multa</h2>
         <div class="input-group">
