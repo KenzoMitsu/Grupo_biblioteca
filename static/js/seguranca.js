@@ -11,6 +11,4 @@ if(!token) { //OBSERVAÇÃO PESSOAL! > Também da para fazer de maneira mais man
         // Manda para a pagina de login caso o usuário não possua token, ou seja, caso o usuário não esteja logado
         window.location.href = "login.html"
     })
-
-    
 }
