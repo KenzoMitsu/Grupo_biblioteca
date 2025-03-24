@@ -289,7 +289,12 @@ input:checked + .slider:before {
 }
 
 
-
+table{
+    margin-top: 30px;
+}
+footer{
+    margin-top: 30px;
+}
 
 
 .separacao1 {
