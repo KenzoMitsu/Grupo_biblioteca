@@ -121,7 +121,7 @@
         // Envia os dados via AJAX
         $.ajax({
             method: "PUT",
-            url: ipPython + "/eidtar_senha/" + id, // ID do usuário
+            url: 'http://10.92.3.208:5000' + "/eidtar_senha/" + id, // ID do usuário
             data: envia,
             contentType: "application/json",
             headers: {

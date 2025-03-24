@@ -103,7 +103,7 @@ $("#formCadastro").on("submit", function (e) {
 
             $.ajax({
                 method: "POST",
-                url: ipPython + "/usuarios",
+                url: 'http://10.92.3.208:5000' + "/usuarios",
                 data: envia,
                 timeout: 0,
                 processData: false,

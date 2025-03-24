@@ -240,7 +240,7 @@
             // Envia a imagem para o servidor via AJAX
             $.ajax({
                 method: "PUT",
-                url: ipPython + "/imagem" + id,
+                url: 'http://10.92.3.208:5000' + "/imagem" + id,
                 data: formData,
                 contentType: false,
                 processData: false,
