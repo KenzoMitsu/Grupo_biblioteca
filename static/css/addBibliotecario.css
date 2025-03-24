@@ -21,6 +21,7 @@ a{
 }
 
 :root{
+    --azul: #3380ca;
     --azul-claro: #4292DC;
     --azul-escuro: #0060BB;
     --branco: rgb(248, 252, 255);
@@ -270,8 +271,9 @@ input:checked + .slider:before {
 
 .titulo {
     text-align: center;
-    color: #3380CA;
+    color: var(--azul);
     margin-bottom: 20px;
+    font-weight: bold;
 }
 
 section {
@@ -299,26 +301,26 @@ label{
     border-radius: 5px;
     padding: 7px; 
     margin-bottom: 10px;
-    border: 3px solid #3380ca;
-    background-color:#eef3ff;
+    border: 3px solid var(--azul);
+    background-color: var(--branco);
     font-weight: bold;
 }
 
 .btn{
-    background-color: #4292dc;
-    color: white;
+    background-color: var(--azul);
+    color: var(--branco);
     border: none;
     padding: 10px;
     border-radius: 5px;
     cursor: pointer;
     width: 400px;
-    border: 4px solid #4292dc;
+    border: 4px solid var(--azul);
     font-weight: bold;
 }
 .btn:hover  {
-    color: #4292dc;
-    background-color: white;
-    border: 4px solid #4292dc;
+    color: var(--azul);
+    background-color: var(--branco);
+    border: 4px solid var(--azul);
     cursor: pointer;
     padding: 10px;
 }
@@ -335,8 +337,8 @@ label{
 .form-control {  
     border-radius: 5px;
     margin-bottom: 10px;
-    border: 3px solid #3380ca;
-    background-color:#eef3ff;
+    border: 3px solid var(--azul);
+    background-color: var(--branco);
     font-weight: bold;
 }
 
@@ -371,7 +373,7 @@ label {
 }
 
 .card {
-    border: 2px solid #007bff;
+    border: 2px solid var(--azul);
     border-radius: 10px;
     padding: 15px;
     width: 250px;
@@ -382,8 +384,9 @@ label {
 
 .remove-btn {
     background-color: red;
-    color: white;
-    border: none;
+    color: var(--branco);
+    border: 5px solid red;
+    font-weight: bold;
     padding: 8px 15px;
     border-radius: 5px;
     cursor: pointer;
@@ -392,7 +395,9 @@ label {
 }
 
 .remove-btn:hover {
-    background-color: darkred;
+    background-color: var(--branco);
+    color: red;
+    font-weight: bold;
 }
 
 
@@ -426,4 +431,163 @@ label {
     .btn{
         width: 200px;
     }
+}
+
+/* RODAPÉ */
+
+.separacao1 {
+    display: flex;
+    justify-content: space-between;
+    background-color: var(--azul-escuro);
+    padding: 5px;
+    color: var(--branco);
+    font-size: x-large;
+    font-weight: bold;
+}
+
+.separacao1 p {
+    display: flex;
+    align-items: center;
+    margin-left: 30px;
+    margin-bottom: 5px;
+}
+
+.redes i{
+    color: var(--branco);
+    font-size: 40px;
+    margin: 10px
+}
+
+.redes a {
+    text-decoration: none;
+}
+
+.inter {
+    background-color: var(--escuro);
+}
+
+.rodape-inter {
+    background-color: var(--escuro);
+    color: var(--branco);
+    padding: 20px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.rodape2-inter {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.logo_rodape {
+    display: flex;
+    justify-content: center;
+    height: 100px;
+}
+
+.linha {
+    background-color: var(--azul-escuro);
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.display {
+    display: flex;
+}
+
+.text {
+    font-size: large;
+    margin-top: 10px;
+}
+
+.icons {
+    margin-top: 17px;
+    margin-right: 5px;
+}
+
+.informacoes {
+    padding: 10px;
+    font-size: large;
+    font-weight: bold;
+    margin-bottom: -7px;
+}
+
+.localizacao {
+    font-size: large;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+}
+
+.as {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.as a {
+    color: rgb(194, 255, 235);
+    text-decoration: none;
+    padding-bottom: 30px;
+}
+
+.bemvindo {
+    background-color: var(--azul-escuro);
+    padding: 20px;
+    margin-top: -30px;
+    margin-bottom: 10px;
+    margin-left: 73px;
+    margin-right: 73px;
+    border-radius: 7px;
+}
+
+.nomeUsuario {
+    color: rgb(194, 255, 235);
+    margin-left: 5px;
+}
+
+.span {
+    color: var(--branco);
+}
+
+
+@media (max-width: 480px) {
+    
+    .localizacao{
+        width: 1%;
+    }
+
+    .rodape-inter {
+        font-size: 14px;
+    }
+
+    .rodape2-inter {
+        align-items: center;
+    }
+
+    .localizacao {
+        font-size: 0px;
+        text-align: center;
+        flex-direction: column;
+    }
+    .separacao1 p{
+        margin-top: 10px;
+        font-size: 15px;
+    }
+
+    .redes i {
+        font-size: 24px;
+        margin: 5px;
+    }
+}
+@media (max-width: 380px){
+    .logo_rodape{
+        width: 80px;
+    }
+}
+
+
+.nomeUsuario {
+    color: rgb(194, 255, 235);
+    margin-left: 5px;
 }

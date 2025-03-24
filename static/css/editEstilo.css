@@ -7,6 +7,7 @@
 }
 
 :root{
+    --azul: #3380ca;
     --azul-claro: #4292DC;
     --azul-escuro: #0060BB;
     --branco: rgb(248, 252, 255);
@@ -269,9 +270,6 @@ input:checked + .slider:before {
     }
 }
 
-
-
-
 .titulo {
     text-align: center;
     color: #3380CA;
@@ -296,19 +294,20 @@ section {
 }
 
 .btn-change-img {
-    background-color: var(--azul-claro);
-    color: white;
-    border: 4px solid var(--azul-claro);
+    background-color: var(--azul);
+    color: var(--branco);
+    border: 4px solid var(--azul);
     padding: 10px; 
+    font-weight: bold;
     border-radius: 5px;
     cursor: pointer;
     margin-left: 40px;
 }
 
 .btn-change-img:hover {
-    color: #4292dc;
-    background-color: white;
-    border: 4px solid #4292dc;
+    color: var(--azul);
+    background-color: var(--branco);
+    border: 4px solid var(--azul);
     cursor: pointer;
     padding: 10px;
 }
@@ -326,14 +325,14 @@ a{
     color:black;
 }
 label{
-    color: #3380CA;
+    color: var(--azul);
 }
 
 .inserir {  
     border-radius: 5px;
     padding: 7px; 
     margin-bottom: 10px;
-    border: 3px solid var(--azul-claro);
+    border: 4px solid var(--azul);
     background-color:#eef3ff;
     font-weight: bold;
 }
@@ -375,9 +374,9 @@ input {
     padding: 5px 40px;
     cursor: pointer;
     margin-top: 15px;
-    color: #4292dc;
-    background-color: white;
-    border: 3px solid var(--azul-claro);
+    color: var(--azul);
+    background-color: var(--branco);
+    border: 4px solid var(--azul);
     border-radius: 5px;
     font-weight: bold;
     font-size: large;
@@ -385,7 +384,7 @@ input {
 }
 
 .btn-senha-mudar:hover {
-    background-color: var(--azul-claro);
+    background-color: var(--azul);
     color: var(--branco);
     transition: 0.2s;
 }
@@ -396,7 +395,7 @@ input {
     margin-top: 15px;
     color: #4292dc;
     background-color: white;
-    border: 3px solid var(--azul-claro);
+    border: 4px solid var(--azul);
     border-radius: 5px;
     font-weight: bold;
     font-size: large;
@@ -404,7 +403,7 @@ input {
 }
 
 .btn-save:hover {
-    background-color: var(--azul-claro);
+    background-color: var(--azul);
     color: var(--branco);
     transition: 0.2s;
 }
@@ -457,6 +456,7 @@ input {
     display: flex;
     align-items: center;
     margin-left: 30px;
+    margin-bottom: 5px;
 }
 
 .redes i{
