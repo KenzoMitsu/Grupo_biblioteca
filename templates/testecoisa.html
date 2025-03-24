@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Usuários</title>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            carregarUsuarios();
+        });
+
+        async function carregarUsuarios() {
+            const response = await fetch("http://127.0.0.1:5000/usuario");  
+            const data = await response.json();
+           
+            const tabela = document.getElementById("tabela-usuarios");
+            tabela.innerHTML = "";
+
+            data.usuarios_cadastrados.forEach(usuario => {
+                const row = document.createElement("tr");
+                row.innerHTML = `
+                    <td>${usuario.id_usuario}</td>
+                    <td><input type="text" value="${usuario.nome}" id="nome-${usuario.id_usuario}"></td>
+                    <td><input type="email" value="${usuario.email}" id="email-${usuario.id_usuario}"></td>
+                    <td>
+                        <button onclick="editarUsuario(${usuario.id_usuario})">Salvar</button>
+                    </td>
+                `;
+                tabela.appendChild(row);
+            });
+        }
+
+        async function editarUsuario(id) {
+            const nome = document.getElementById(`nome-${id}`).value;
+            const email = document.getElementById(`email-${id}`).value;
+
+            const formData = new FormData();
+            formData.append("nome", nome);
+            formData.append("email", email);
+
+            const response = await fetch(`http://127.0.0.1:5000/usuarios/${id}`, {
+                method: "PUT",
+                body: formData
+            });
+
+            const result = await response.json();
+            alert(result.message);
+            carregarUsuarios();
+        }
+    </script>
+</head>
+<body>
+    <h2>Lista de Usuários</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Email</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody id="tabela-usuarios"></tbody>
+    </table>
+</body>
+</html>
