@@ -20,13 +20,14 @@ a {
   color: black;
 }
 
-:root {
-  --azul-claro: #4292dc;
+:root{
+  --azul-claro: #4292DC;
   --azul-escuro: #0060BB;
   --branco: rgb(248, 252, 255);
   --preto: rgb(0, 0, 0);
   --cor-complementar: rgb(96, 209, 231);
-  --brancoo: rgb(255, 255, 255);
+  --escuro: rgb(36, 36, 36);
+  --azul-modoescuro: #73A8FE;
 }
 
 
@@ -230,9 +231,6 @@ input:checked+.slider:before {
   border-radius: 50%;
 }
 
-
-
-
 h1 {
   text-align: center;
   background-color: #4292dc67;
@@ -241,8 +239,6 @@ h1 {
   font-weight: bold;
   width: 100%;
 }
-
-
 
 
 /* RODAPÉ */

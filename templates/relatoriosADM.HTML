@@ -73,5 +73,19 @@
         <a class="butt" href="http://192.168.1.146:5000/livros_relatorio"><i class="fa-solid fa-file-export"></i> Gerar Relatório</a>
 
     </section>
+    <script>
+                // Verifica se o token está armazenado no Local Storage da própria web (SEGURANÇA DO SITE)
+                var token = localStorage.getItem("token");
+        if(token === undefined || token === null) {
+            alert("Essa Página é restrita");
+
+            // Manda para a pagina de login caso o usuário não possua token, ou seja, caso o usuário não esteja logado
+            window.location.href = "login.html"
+        }
+        document.querySelector(".menu-item button").addEventListener("click", function () {
+            localStorage.removeItem("token"); // Remove o token do localStorage
+            window.location.href = "login.html"; // Redireciona para a página de login
+        });
+    </script>
 </body>
 </html>

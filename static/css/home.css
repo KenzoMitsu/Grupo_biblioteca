@@ -108,6 +108,10 @@ body.modo-escuro .dropdown-menu .menu-item:hover {
     background-color: var(--preto);
 }
 
+body.modo-escuro .dropdown-menu .sair {
+    color: var(--branco);
+}
+
 body.modo-escuro {
     background-color: var(--escuro);
     color: var(--branco);
@@ -424,7 +428,6 @@ input:checked + .slider:before {
     color: var(--branco);
 }
 
-/* FIM RODAPÉ */
 
 /* Responsividade para telas menores */
 @media (max-width: 768px) {
