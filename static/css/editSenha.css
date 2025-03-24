@@ -10,13 +10,52 @@ a{
     color:black;
 }   
 
-:root {
-    --azul: rgba(51, 128, 202, 1);
-    --azul-claro: rgba(238, 243, 255, 1);
-    --azul-escuro: rgba(12, 140, 225, 0.724);
-    --preto: black;
-    --branco: white;
+:root{
+    --azul-claro: #4292DC;
+    --azul-escuro: #0060BB;
+    --branco: rgb(248, 252, 255);
+    --preto: rgb(0, 0, 0);
+    --cor-complementar: rgb(96, 209, 231);
+    --escuro: rgb(36, 36, 36);
+    --azul-modoescuro: #73A8FE;
 }
+
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 40px;
+    right: 0;
+    background-color: var(--branco);
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    min-width: 200px;
+    padding: 10px 0;
+    z-index: 1000;
+    list-style: none;
+}
+
+.dropdown-menu.show {
+    display: block;
+}
+
+
+
+.menu-item {
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #333;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.menu-item:hover {
+    background-color: #f0f0f0;
+}
+
+
 
 body {
     font-family: Arial, sans-serif;

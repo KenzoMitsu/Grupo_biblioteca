@@ -19,12 +19,15 @@ a{
     border: #00010000;
     color: black;
 }
-:root {
-    --azul: rgba(51, 128, 202, 1);
-    --azul-claro: rgba(238, 243, 255, 1);
-    --azul-escuro: rgba(12, 140, 225, 0.724);
-    --preto: black;
-    --branco: white;
+
+:root{
+    --azul-claro: #4292DC;
+    --azul-escuro: #0060BB;
+    --branco: rgb(248, 252, 255);
+    --preto: rgb(0, 0, 0);
+    --cor-complementar: rgb(96, 209, 231);
+    --escuro: rgb(36, 36, 36);
+    --azul-modoescuro: #73A8FE;
 }
 
 body {

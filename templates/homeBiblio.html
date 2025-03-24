@@ -47,7 +47,7 @@
             <div class="switch-container">
                 Dark Mode
                 <label class="switch">
-                    <input type="checkbox">
+                    <input id="alternarTema" type="checkbox">
                     <span class="slider"></span>
                 </label>
             </div>
@@ -57,19 +57,15 @@
         <div class="header-end">
             <div class="menu-container">
                 <div class="menu-icon" id="menuButton">
-                    <div></div>
-                    <div></div>
-                    <div></div>
+                    <div class="menulinha"></div>
+                    <div class="menulinha" ></div>
+                    <div class="menulinha" ></div>
                 </div>
                 <ul class="dropdown-menu" id="dropdownMenu">
-                    <li class="menu-item"><i class="fas fa-user"></i> Perfil</li>
-                    <li class="menu-item"><i class="fa-solid fa-plus"></i></i>Adicionar Livro</li>
-                    <hr>
-                    <li class="menu-item"><i class="fa-solid fa-cash-register"></i>Gerenciar Multas</li>
-                    <li class="menu-item"><i class="fas fa-book"></i> Gerenciar Livros</li>
-                    <li class="menu-item"><i class="fas fa-sync-alt"></i>Empréstimos</li>
-                    <hr>
-                    <li class="menu-item"><i class="fas fa-sign-out-alt"></i> Sair</li>
+                    <li class="menu-item"><i class="fa-solid fa-circle-user"></i><a href="editPerfil.html"> Perfil</a></li>
+                    <li class="menu-item"><i class="fas fa-book"></i><a href="emprestimos.html">Empréstimos</a></li>
+                    <li class="menu-item"><i class="fas fa-sync-alt"></i><a href="historico.html">Histórico</a></li>
+                    <li class="menu-item"><i class="fas fa-sign-out-alt"></i><button class="sair ">Sair</button></li>
                 </ul>
             </div>
         </div>
