@@ -7,3 +7,7 @@ Data_nascimento:
 Nome: Bolsonaro
 Email: bolsomito@gmail.com
 Senha: Bolso123@
+
+Nome: ADM
+Email: adm@gmail.com
+Senha: Adm@12345
