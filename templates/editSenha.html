@@ -76,7 +76,7 @@
 
                     <div class="form-group">
                         <label for="senha">Senha Atual:</label>
-                        <input class="inserir" type="password" id="senha" name="senha_atual" placeholder="Sua Senha" />
+                        <input class="inserir" type="password" id="senha_atual" name="senha_atual" placeholder="Sua Senha" />
                     </div>
 
                     <div class="form-group">
@@ -121,7 +121,7 @@
         // Envia os dados via AJAX
         $.ajax({
             method: "PUT",
-            url: ipPython + "/eidtar_senha/" + id, // ID do usuário
+            url: ipPython + "/editar_senha/" + id, // ID do usuário
             data: envia,
             contentType: "application/json",
             headers: {
