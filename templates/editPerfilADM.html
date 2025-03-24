@@ -80,39 +80,43 @@
     <section>
         <div>
             <div class="img_perfil">
-                <img src="../static/img/user.png" class="foto_usuario" id="imgPreview" />
+                <img src="../static/img/user.png" class="foto_usuario" id="imgPreview"/>
                 <input type="file" id="inputImagem" style="display: none;" accept="image/*">
                 <button class="btn-change-img" id="btnAlterarImagem">Alterar Imagem</button>
             </div>
         </div>
-        <div>
-            <form id="formCadastroUsuario" class="formulario">
+        <div class="lavaloucasmp4">
 
+            <form id="formCadastroUsuario" class="formulario">
+                
                 <div class="form-grid">
 
                     <div class="form-group">
                         <label for="nome">Nome:</label>
-                        <input class="inserir" type="text" id="nome" name="nome" placeholder="Nome" />
+                        <input class="inserir" type="text" id="nome" name="nome" placeholder="Nome" required/>
                     </div>
 
                     <div class="form-group">
                         <label for="email">Email:</label>
-                        <input class="inserir" type="email" id="email" name="email" placeholder="seuemail@email.com" />
+                        <input class="inserir" type="email" id="email" name="email" placeholder="seuemail@email.com" required/>
                     </div>
 
                     <div class="form-group">
                         <label for="telefone">Telefone:</label>
-                        <input class="inserir" type="tel" id="telefone" name="telefone" placeholder="99 9999-9999" />
+                        <input class="inserir" type="tel" id="telefone" name="telefone" placeholder="99 9999-9999" required/>
                     </div>
 
                     <div class="form-group">
                         <label for="data_nascimento">Data de nascimento:</label>
-                        <input class="inserir" type="date" id="data_nascimento" name="data_nascimento" />
+                        <input class="inserir" type="date" id="data_nascimento" name="data_nascimento" required/>
                     </div>
                 </div>
 
+
                 <button type="submit" class="btn-save">Salvar</button>
             </form>
+            <a href="editSenhaADM.html"><button class="btn-senha-mudar">Mudar Senha</button></a>
+
         </div>
     </section>
 
