@@ -254,11 +254,7 @@ input:checked + .slider:before {
 
 
 
-
-
-
-
-
+/* RODAPÉ */
 
 .separacao1 {
     display: flex;
@@ -274,6 +270,7 @@ input:checked + .slider:before {
     display: flex;
     align-items: center;
     margin-left: 30px;
+    margin-bottom: 5px;
 }
 
 .redes i{
@@ -374,7 +371,9 @@ input:checked + .slider:before {
     color: var(--branco);
 }
 
+
 @media (max-width: 480px) {
+    
     .localizacao{
         width: 1%;
     }
@@ -402,9 +401,14 @@ input:checked + .slider:before {
         margin: 5px;
     }
 }
-
 @media (max-width: 380px){
     .logo_rodape{
         width: 80px;
     }
+}
+
+
+.nomeUsuario {
+    color: rgb(194, 255, 235);
+    margin-left: 5px;
 }
