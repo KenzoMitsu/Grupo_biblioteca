@@ -204,22 +204,15 @@
     <script>
 
         document.querySelector(".menu-item button").addEventListener("click", function () {
-            localStorage.removeItem("token"); // Remove o token do localStorage
+            localStorage.clear(); // Remove o token do localStorage
             window.location.href = "login.html"; // Redireciona para a página de login
         });
 
         var nome = localStorage.getItem("nome")
         document.getElementById("nomeUsuario").innerHTML = nome
+
         document.querySelector(".menu-item button").addEventListener("click", function () {
-            localStorage.removeItem("token"); // Remove o token do localStorage
-            localStorage.removeItem("id_usuario");
-            localStorage.removeItem("nome");
-            localStorage.removeItem("cargo");
-            localStorage.removeItem("email");
-            localStorage.removeItem("multa");
-            localStorage.removeItem("data_nascimento");
-            localStorage.removeItem("telefone");
-            localStorage.removeItem("imagem_usuario");
+            localStorage.clear();
             window.location.href = "login.html"; // Redireciona para a página de login
         });
     </script>
