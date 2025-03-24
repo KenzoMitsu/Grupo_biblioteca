@@ -21,6 +21,7 @@
     <script src="../static/js/paginaip.js"></script>
     <script src="../static/js/scripts.js"></script>
     <script src="../static/js/seguranca.js" defer></script>
+    <script src="../static/js/segurancaBiblio.js" defer></script>
     
     <!-- FIM DO SCRIPT DA SEGURANÇA -->
     <link rel="icon" type="image/x-icon" href="../static/img/head-removebg-preview.png">
@@ -172,36 +173,32 @@
     </footer>
 
     <script>
+        // Carrega os dados do usuário do localStorage
+        $(document).ready(function () {
+            var nome = localStorage.getItem("nome");
+            document.getElementById("nome").value = nome;
 
+            var email = localStorage.getItem("email");
+            document.getElementById("email").value = email;
 
-        // if(cargo === "cliente") {
-        //     alert("Você não tem permissão para acessar essa página!")
+            var data_nascimento = localStorage.getItem("data_nascimento");
+            document.getElementById("data_nascimento").value = data_nascimento;
 
-        //     // Manda para a pagina de login caso o usuário não possua token, ou seja, caso o usuário não esteja logado
-        //     window.location.href = "index.html"
-        // }
+            var telefone = localStorage.getItem("telefone");
+            document.getElementById("telefone").value = telefone;
 
-        // Carrega os dados do usuário do localStorage mostra Key e Values ok? :D
-        var nome = localStorage.getItem("nome");
-        document.getElementById("nome").value = nome;
+            var imagemSalva = localStorage.getItem("imagem_usuario");
+            if (imagemSalva) {
+                $("#imgPreview").attr("src", imagemSalva);
+            }
+        });
 
-        var email = localStorage.getItem("email");
-        document.getElementById("email").value = email;
-
-        var data_nascimento = localStorage.getItem("data_nascimento");
-        document.getElementById("data_nascimento").value = data_nascimento;
-
-        var telefone = localStorage.getItem("telefone");
-        document.getElementById("telefone").value = telefone;
-
-        // Aqui é definido o que é feito quando o usuário aperta em "Salvar", não se esqueçam :)
+        // Aqui é definido o que é feito quando o usuário aperta em "Salvar"
         $("#formCadastroUsuario").on("submit", function (e) {
-            // Impede o recarregamento da página!
-            e.preventDefault();
+            e.preventDefault(); // Impede o recarregamento da página!
 
             var id = localStorage.getItem("id_usuario");
             if (!id) {
-
                 Swal.fire({
                     title: "Erro!",
                     text: "Usuário não encontrado!",
@@ -211,52 +208,58 @@
             }
 
             // Captura os dados do formulário
-            let dados = new FormData(this);
+            let formData = new FormData(this);
 
-            // Monta o objeto para envio
-            let envia = {
-                nome: dados.get("nome"),
-                telefone: dados.get("telefone"),
-                email: dados.get("email"),
-                data_nascimento: dados.get("data_nascimento")
-            };
-
-            // Converte o objeto para JSON
-            envia = JSON.stringify(envia);
+            // Adiciona a imagem ao FormData, se houver
+            var fileInput = document.getElementById("inputImagem");
+            if (fileInput.files.length > 0) {
+                formData.append("imagem", fileInput.files[0]);
+            }
 
             // Envia os dados via AJAX
             $.ajax({
                 method: "PUT",
                 url: ipPython + "/usuarios/" + id, // ID do usuário
-                data: envia,
-                contentType: "application/json",
+
+                data: formData,
+                contentType: false,
+                processData: false,
                 headers: {
-                    'Authorization': 'Bearer ' + token // Adiciona o token no cabeçalho
+                    'Authorization': 'Bearer ' + localStorage.getItem("token") // Adiciona o token no cabeçalho
                 },
                 success: function (retorno) {
 
+                    localStorage.setItem("nome", formData.get("nome"))
+                    localStorage.setItem("email", formData.get("email"))
+                    localStorage.setItem("telefone", formData.get("telefone"))
+                    localStorage.setItem("data_nascimento", formData.get("data_nascimento"))
 
                     Swal.fire({
                         title: "Sucesso!",
                         text: "Perfil atualizado com sucesso!",
                         icon: "success"
-                    });
+                    })
 
+                    console.log(retorno);
+                    // Atualiza a imagem no localStorage
+                    if (fileInput.files.length > 0) {
+                        var reader = new FileReader();
+                        reader.onload = function (e) {
+                            localStorage.setItem("imagem_usuario", e.target.result);
+                            $("#imgPreview").attr("src", e.target.result); // Atualiza a imagem no preview
+                        };
+                        reader.readAsDataURL(fileInput.files[0]);
+                    }
                 },
                 error: function (retorno) {
-
                     Swal.fire({
-                        title: "Error!",
-                        text: "Erro Desconhecido!",
+                        title: "Erro",
+                        text: "Erro, verifique se todos os campos estão preenchidos!",
                         icon: "error"
-                    });
-
-
+                    })
                 }
             });
         });
-
-        // ==================== UPLOAD DE IMAGEM ====================
 
         // Evento de clique para abrir o seletor de arquivo
         $("#btnAlterarImagem").click(function () {
@@ -270,10 +273,10 @@
             if (!file) {
 
                 Swal.fire({
-                    title: "Error!",
+                    title: "Erro!",
                     text: "Nenhuma imagem selecionada!",
                     icon: "error"
-                });
+                })
 
                 return;
             }
@@ -284,51 +287,9 @@
                 $("#imgPreview").attr("src", e.target.result); // Exibe a imagem no preview
             };
             reader.readAsDataURL(file); // Converte para Base64
-
-            var formData = new FormData();
-            formData.append("imagem", file);
-
-            // Envia a imagem para o servidor via AJAX
-            $.ajax({
-                method: "PUT",
-                url: ipPython + "/imagem" + id,
-                data: formData,
-                contentType: false,
-                processData: false,
-                headers: {
-                    "Authorization": "Bearer " + token
-                },
-                success: function (response) {
-                    Swal.fire({
-                        title: "Sucesso!",
-                        text: "Imagem atualizada com sucesso!",
-                        icon: "success"
-                    });
-
-                    // Converte a imagem para Base64 e armazena no localStorage
-                    var reader = new FileReader();
-                    reader.onload = function (e) {
-                        localStorage.setItem("imagem_usuario", e.target.result);
-                    };
-                    reader.readAsDataURL(file);
-                },
-                error: function (error) {
-                    Swal.fire({
-                        title: "Erro!",
-                        text: "Erro ao atualizar a imagem!",
-                        icon: "error"
-                    });
-                }
-            });
         });
 
-        // Ao carregar a página, exibe a imagem salva no localStorage (se existir)
-        $(document).ready(function () {
-            var imagemSalva = localStorage.getItem("imagem_usuario");
-            if (imagemSalva) {
-                $("#imgPreview").attr("src", imagemSalva);
-            }
-        });
+        // Logout
         document.querySelector(".menu-item button").addEventListener("click", function () {
             localStorage.removeItem("token"); // Remove o token do localStorage
             localStorage.removeItem("id_usuario");
