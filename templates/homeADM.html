@@ -73,7 +73,7 @@
                     <li class="menu-item"><i class="fas fa-sync-alt"></i><a href="emprestimosADM.html">Empréstimos</li>
                     </a>
                     <hr>
-                    <li class="menu-item"><i class="fas fa-sign-out-alt"></i> Sair</li>
+                    <li class="menu-item"><i class="fas fa-sign-out-alt"></i><button class="sair ">Sair</button></li>
                 </ul>
             </div>
         </div>
@@ -192,17 +192,11 @@
     </footer>
 
     <script>
-
-        document.querySelector(".menu-item button").addEventListener("click", function () {
-            localStorage.clear(); // Remove o token do localStorage
-            window.location.href = "login.html"; // Redireciona para a página de login
-        });
-
         var nome = localStorage.getItem("nome")
         document.getElementById("nomeUsuario").innerHTML = nome
 
         document.querySelector(".menu-item button").addEventListener("click", function () {
-            localStorage.clear();
+            localStorage.clear(); // Limpa todos os dados presentes no local storage
             window.location.href = "login.html"; // Redireciona para a página de login
         });
     </script>
