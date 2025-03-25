@@ -109,11 +109,20 @@
       <label>Data de nascimento:</label>
       <input type="date" id="data_nascimento" required>
 
-      <label>Cargo:</label>
-      <input type="text" id="cargo" required>
 
-      <label>Status:</label>
-      <input type="text" id="status" required>
+      <label for="cargo" class="coisa">Cargo:</label>
+      <select class="inserir" name="cargo" id="cargo">
+          <option class="inserir" value="Cliente">Cliente</option>
+          <option class="inserir" value="Bibliotecário">Bibliotecário</option>
+          <option class="inserir" value="ADM">ADM</option>
+      </select>
+
+
+      <label for="status" class="coisa">Status:</label>
+      <select class="inserir" name="status" id="status">
+          <option class="inserir" value="Ativo">Ativo</option>
+          <option class="inserir" value="Inativo">Inativo</option>
+      </select>
 
       <button type="submit">Salvar</button>
       <button type="button" id="fechar-modal">Cancelar</button>
