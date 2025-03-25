@@ -3,13 +3,33 @@ var token = localStorage.getItem("token")
 var cargo = localStorage.getItem("cargo")
 // var cargo = localStorage.getItem("cargo")   
 
-if(!token || cargo === "Cliente" || cargo === "Bibliotecario") { //OBSERVAÇÃO PESSOAL! > Também da para fazer de maneira mais manual usando "token === undefined || token === null"
+if(!token) { //OBSERVAÇÃO PESSOAL! > Também da para fazer de maneira mais manual usando "token === undefined || token === null"
     Swal.fire({
         title: "Página restrita!",
-        text: "Somente administradores podem acessar essa página!",
+        text: "Nenhuma conta conectada",
         icon: "error"
     }).then(() => {
         // Manda para a pagina de login caso o usuário não possua token, ou seja, caso o usuário não esteja logado
         window.location.href = "login.html"
+    })
+}
+else if(cargo === "Cliente"){
+    Swal.fire({
+        title: "Página restrita!",
+        text: "Somente adiministradores podem acessar essa página",
+        icon: "error"
+    }).then(() => {
+        // Manda para a pagina de login caso o usuário não possua token, ou seja, caso o usuário não esteja logado
+        window.location.href = "home.html"
+    })
+}
+else if(cargo === "Bibliotecario"){
+    Swal.fire({
+        title: "Página restrita!",
+        text: "Somente adiministradores podem acessar essa página",
+        icon: "error"
+    }).then(() => {
+        // Manda para a pagina de login caso o usuário não possua token, ou seja, caso o usuário não esteja logado
+        window.location.href = "homeBiblio.html"
     })
 }
