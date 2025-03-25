@@ -5,8 +5,8 @@ var cargo = localStorage.getItem("cargo")
 
 if(!token || cargo === "Cliente") { //OBSERVAÇÃO PESSOAL! > Também da para fazer de maneira mais manual usando "token === undefined || token === null"
     Swal.fire({
-        title: "Erro!",
-        text: "Página Restrita Para Usuários Comuns",
+        title: "Página restrita!",
+        text: "Somente bibliotecários ou administradores podem acessar essa página",
         icon: "error"
     }).then(() => {
         // Manda para a pagina de login caso o usuário não possua token, ou seja, caso o usuário não esteja logado

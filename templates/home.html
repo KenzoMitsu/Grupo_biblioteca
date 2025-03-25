@@ -61,13 +61,14 @@
                     <div class="menulinha"></div>
                     <div class="menulinha"></div>
                 </div>
+
                 <ul class="dropdown-menu" id="dropdownMenu">
-                    <li class="menu-item"><i class="fa-solid fa-circle-user"></i><a href="editPerfil.html"> Perfil</a>
-                    </li>
+                    <li class="menu-item"><i class="fa-solid fa-circle-user"></i><a href="editPerfil.html"> Perfil</a></li>
                     <li class="menu-item"><i class="fas fa-book"></i><a href="emprestimos.html">Empréstimos</a></li>
                     <li class="menu-item"><i class="fas fa-sync-alt"></i><a href="historico.html">Histórico</a></li>
-                    <li class="menu-item"><i class="fas fa-sign-out-alt"></i><button class="sair ">Sair</button></li>
+                    <li class="menu-item"><i class="fas fa-sign-out-alt"></i><button class="sair">Sair</button></li>
                 </ul>
+
             </div>
         </div>
     </header>
@@ -184,16 +185,9 @@
         // Verifica se o token está armazenado no Local Storage da própria web (SEGURANÇA DO SITE)
         var nome = localStorage.getItem("nome")
         document.getElementById("nomeUsuario").innerHTML = nome
+        
         document.querySelector(".menu-item button").addEventListener("click", function () {
-            localStorage.removeItem("token"); // Remove o token do localStorage
-            localStorage.removeItem("id_usuario");
-            localStorage.removeItem("nome");
-            localStorage.removeItem("cargo");
-            localStorage.removeItem("email");
-            localStorage.removeItem("multa");
-            localStorage.removeItem("data_nascimento");
-            localStorage.removeItem("telefone");
-            localStorage.removeItem("imagem_usuario");
+            localStorage.clear(); // Remove todos os dados do localStorage
             window.location.href = "login.html"; // Redireciona para a página de login
         });
     </script>
