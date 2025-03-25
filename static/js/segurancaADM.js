@@ -3,7 +3,7 @@ var token = localStorage.getItem("token")
 var cargo = localStorage.getItem("cargo")
 // var cargo = localStorage.getItem("cargo")   
 
-if(!token || cargo === "Cliente" || cargo === "Bibliotecario" || !cargo) { //OBSERVAÇÃO PESSOAL! > Também da para fazer de maneira mais manual usando "token === undefined || token === null"
+if(!token || cargo === "Cliente" || cargo === "Bibliotecario") { //OBSERVAÇÃO PESSOAL! > Também da para fazer de maneira mais manual usando "token === undefined || token === null"
     Swal.fire({
         title: "Página restrita!",
         text: "Somente administradores podem acessar essa página!",
