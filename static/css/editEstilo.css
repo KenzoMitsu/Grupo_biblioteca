@@ -21,12 +21,12 @@ body.modo-escuro .dropdown-menu a {
     color: var(--branco);
 }
 
-body.modo-escuro header {
-    background-color: var(--azul-modoescuro);
+body.modo-escuro .switch-container {
     color: var(--preto);
 }
 
-body.modo-escuro header div {
+body.modo-escuro header {
+    background-color: var(--azul-modoescuro);
     color: var(--preto);
 }
 
@@ -45,6 +45,10 @@ body.modo-escuro header .search-box {
 
 body.modo-escuro header .search-container i {
     color: var(--branco);
+}
+
+body.modo-escuro header .menu-icon div {
+    background-color: var(--preto);
 }
 
 body.modo-escuro footer {
@@ -125,19 +129,19 @@ body.modo-escuro h1 {
 body.modo-escuro button {
     background-color: var(--branco);
     color: var(--escuro);
-    border: 4px solid var(--branco);
+    border: 3px solid var(--branco);
 }
 
 body.modo-escuro button:hover {
     background-color: var(--escuro);
     color: var(--branco);
-    border: 4px solid var(--branco);
+    border: 3px solid var(--branco);
 }
 
 body.modo-escuro .form-grid .form-group input {
     background-color:  var(--escuro);
     color: var(--branco);
-    border: 4px solid var(--branco);
+    border: 3px solid var(--branco);
 }
 
 body.modo-escuro .form-grid label {
@@ -419,7 +423,7 @@ section {
 .btn-change-img {
     background-color: var(--azul);
     color: var(--branco);
-    border: 4px solid var(--azul);
+    border: 3px solid var(--azul);
     padding: 10px; 
     font-weight: bold;
     border-radius: 5px;
@@ -430,7 +434,7 @@ section {
 .btn-change-img:hover {
     color: var(--azul);
     background-color: var(--branco);
-    border: 4px solid var(--azul);
+    border: 3px solid var(--azul);
     cursor: pointer;
     padding: 10px;
 }
@@ -455,7 +459,7 @@ label{
     border-radius: 5px;
     padding: 7px; 
     margin-bottom: 10px;
-    border: 4px solid var(--azul);
+    border: 3px solid var(--azul);
     background-color:#eef3ff;
     font-weight: bold;
 }
@@ -499,7 +503,7 @@ input {
     margin-top: 15px;
     color: var(--azul);
     background-color: var(--branco);
-    border: 4px solid var(--azul);
+    border: 3px solid var(--azul);
     border-radius: 5px;
     font-weight: bold;
     font-size: large;
@@ -518,7 +522,7 @@ input {
     margin-top: 15px;
     color: var(--azul);
     background-color: var(--branco);
-    border: 4px solid var(--azul);
+    border: 3px solid var(--azul);
     border-radius: 5px;
     font-weight: bold;
     font-size: large;

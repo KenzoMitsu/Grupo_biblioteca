@@ -4,6 +4,18 @@
     text-decoration: none;
 }
 
+body.modo-escuro .card-emprestimo {
+  border: 2px solid var(--branco) ;
+}
+
+body.modo-escuro .info span {
+  color: rgb(124, 255, 124);
+}
+
+body.modo-escuro .info .autor {
+  color: var(--branco);
+}
+
 a{
   text-decoration: none;
   color:black;
@@ -223,8 +235,7 @@ input:checked + .slider:before {
 
 h1{
   text-align: center;
-  background-color: var(--azul-escuro);
-  color: var(--branco);
+  color: var(--azul-escuro);
   padding: 10px;
   border-radius: 5px;
   font-weight: bold;
