@@ -241,7 +241,11 @@
             });
           },
           error: function () {
-            alert("Erro ao carregar usuários");
+            Swal.fire({
+                title: "Erro!",
+                text: JSON.parse(retorno.responseText).error,
+                icon: "error"
+            })
           }
         });
       }
@@ -275,12 +279,20 @@
           }),
           contentType: "application/json",
           success: function () {
-            alert("Usuário atualizado com sucesso!");
+            Swal.fire({
+                title: "Sucesso!",
+                text: "Usuário atualizado com sucesso!",
+                icon: "success"
+            })
             $("#modal-edicao").hide();
             carregarUsuarios(); // Atualiza a tabela após edição
           },
           error: function () {
-            alert("Erro ao editar usuário");
+            Swal.fire({
+                title: "Erro!",
+                text: "Usuário atualizado com sucesso!",
+                icon: "success"
+            })
           }
         });
       });
