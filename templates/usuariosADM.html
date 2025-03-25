@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR" dir="ltr">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,6 +16,7 @@
   <script src="../static/js/paginaip.js"></script>
   <link rel="stylesheet" href="../static/css/usuarios.css" />
 </head>
+
 <body>
   <header>
     <!-- Logo -->
@@ -50,7 +52,8 @@
           <li class="menu-item"><i class="fa-solid fa-circle-user"></i><a href="editPerfilADM.html">Perfil</a></li>
           <li class="menu-item"><i class="fas fa-user"></i><a href="usuariosADM.html"> Gerenciar Usuários</a></li>
           <li class="menu-item"><i class="fa-solid fa-file-export"></i><a href="relatoriosADM.html">Relatórios</li></a>
-          <li class="menu-item"><i class="fa-solid fa-cash-register"></i><a href="multasADM.html">GerenciarMultas</li></a>
+          <li class="menu-item"><i class="fa-solid fa-cash-register"></i><a href="multasADM.html">GerenciarMultas</li>
+          </a>
           <li class="menu-item"><i class="fas fa-book"></i><a href="livrosADM.html">Gerenciar Livros</li></a>
           <li class="menu-item"><i class="fas fa-sync-alt"></i><a href="emprestimosADM.html">Empréstimos</li></a>
           <li class="menu-item"><i class="fas fa-sign-out-alt"></i><button class="sair">Sair</button></li>
@@ -59,7 +62,7 @@
     </div>
   </header>
   <!-- FIM DO CABEÇALHO -->
-  
+
   <table id="tabela-usuarios" border="3">
     <thead>
       <tr>
@@ -67,7 +70,7 @@
         <th>Nome</th>
         <th>Email</th>
         <th>Telefone</th>
-        <th>Data de nascimento</th>
+        <th>Nascimento</th>
         <th>Cargo</th>
         <th>Status</th>
         <th>Ações</th>
@@ -75,21 +78,21 @@
     </thead>
     <tbody></tbody>
   </table>
-  
+
   <!-- Modal para Edição -->
   <div id="modal-edicao" style="display: none;">
     <form id="form-edicao">
       <input type="hidden" id="id_usuario">
-  
+
       <label>Nome:</label>
       <input type="text" id="nome" required>
-  
+
       <label>Email:</label>
       <input type="email" id="email" required>
-  
+
       <label>Telefone:</label>
       <input type="text" id="telefone" required>
-  
+
       <label>Data de nascimento:</label>
       <input type="date" id="data_nascimento" required>
 
@@ -98,15 +101,15 @@
 
       <label>Status:</label>
       <input type="text" id="status" required>
-  
+
       <button type="submit">Salvar</button>
       <button type="button" id="fechar-modal">Cancelar</button>
     </form>
   </div>
-  
+
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="usuarios.js"></script>
-  
+
   <footer class="inter">
     <div class="separacao1">
       <p>Entre em contato conosco</p>
@@ -156,13 +159,13 @@
       <a href="https://www.google.com.br/?hl=pt-BR" class="text2">Política de privacidade</a>
     </div>
   </footer>
-  
+
   <script>
     $(document).ready(function () {
       carregarUsuarios(); // Carrega os usuários ao iniciar a página
 
       var token = localStorage.getItem("token")
-  
+
       function carregarUsuarios() {
         $.ajax({
           method: "GET",
@@ -174,7 +177,7 @@
             let usuarios = data.usuarios_cadastrados;
             let tabela = $("#tabela-usuarios tbody");
             tabela.empty();
-  
+
             usuarios.forEach(usuario => {
               let linha = `
                 <tr>
@@ -182,7 +185,7 @@
                   <td>${usuario.nome}</td>
                   <td>${usuario.email}</td>
                   <td>${usuario.telefone}</td>
-                  <td>${usuario.data_nascimento}</td>
+                  <td>${formatarData(usuario.data_nascimento)}</td>
                   <td>${usuario.cargo}</td>
                   <td>${usuario.status}</td>
                   <td>
@@ -201,7 +204,7 @@
               `;
               tabela.append(linha);
             });
-  
+
             $(".editar-btn").click(function () {
               let id = $(this).data("id");
               let nome = $(this).data("nome");
@@ -210,7 +213,7 @@
               let data_nascimento = $(this).data("data_nascimento");
               let cargo = $(this).data("cargo");
               let status = $(this).data("status");
-  
+
               $("#id_usuario").val(id);
               $("#nome").val(nome);
               $("#email").val(email);
@@ -218,7 +221,7 @@
               $("#data_nascimento").val(data_nascimento); // Corrigido: adicionado "#" para selecionar o input
               $("#cargo").val(cargo);
               $("#status").val(status);
-  
+
               $("#modal-edicao").show();
             });
           },
@@ -227,7 +230,7 @@
           }
         });
       }
-  
+
       $("#form-edicao").submit(function (e) {
         e.preventDefault();
         let id = $("#id_usuario").val();
@@ -240,7 +243,7 @@
         let status = $("#status").val().trim();
 
 
-  
+
         $.ajax({
           method: "PUT",
           url: ipPython + "/usuariosadm/" + id,
@@ -266,17 +269,30 @@
           }
         });
       });
-  
+
       $("#fechar-modal").click(function () {
         $("#modal-edicao").hide();
       });
     });
-  
+
     // Logout do usuário:
     document.querySelector(".menu-item button").addEventListener("click", function () {
       localStorage.clear(); // Remove todos os dados do localStorage
       window.location.href = "login.html"; // Redireciona para a página de login
     });
+
+    function formatarData(dataISO) {
+      if (!dataISO) return ""; // Evita erro se a data estiver vazia
+
+      let data = new Date(dataISO);
+      let dia = data.getDate().toString().padStart(2, "0");
+      let mes = (data.getMonth() + 1).toString().padStart(2, "0");
+      let ano = data.getFullYear();
+
+      return `${dia}/${mes}/${ano}`;
+    }
+
   </script>
 </body>
+
 </html>
