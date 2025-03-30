@@ -1,1 +1,2 @@
-const ipPython = "http://192.168.1.117:5000"
+const ipPython = "http://192.168.0.2:5000"
+// DEPOIS VOU MUDAR, DEIXANDO O IP QUE ESTAVA ANTES
