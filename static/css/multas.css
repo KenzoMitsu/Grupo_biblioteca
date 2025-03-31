@@ -2,6 +2,7 @@
     padding: 0px;
     margin: 0px;
     text-decoration: none;
+    font-family: "Montserrat", sans-serif;
 }
 
 :root{
@@ -800,11 +801,16 @@ h2{
 .redes i{
     color: var(--branco);
     font-size: 40px;
-    margin: 10px
+    margin: 10px;
+    transition: 0.3s;
 }
 
 .redes a {
     text-decoration: none;
+}
+
+.redes i:hover {
+    color: #06005c;
 }
 
 .inter {
