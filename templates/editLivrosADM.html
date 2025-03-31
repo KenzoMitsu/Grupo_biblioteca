@@ -71,7 +71,7 @@
                     </li></a>
                     <li class="menu-item"><i class="fa-solid fa-cash-register"></i><a
                             href="multasADM.html">GerenciarMultas</li></a>
-                    <li class="menu-item"><i class="fas fa-book"></i><a href="livrosADM.html">Gerenciar Livros</li></a>
+                    <li class="menu-item"><i class="fas fa-book"></i><a href="editLivrosADM.html">Gerenciar Livros</li></a>
                     <li class="menu-item"><i class="fas fa-sync-alt"></i><a href="emprestimosADM.html">Empréstimos</li>
                     </a>
                     <li class="menu-item"><i class="fas fa-sign-out-alt"></i>Sair</li>
@@ -109,25 +109,42 @@
                 <div class="modal-body">
                     <form id="formCadastroLivro">
                         <div class="mb-3">
-                            <label for="titulo" class="form-label">Título</label>
-                            <input type="text" class="form-control" id="titulo" required>
+                            <label class="bloco">Titulo:</label>
+                            <input type="text" placeholder="Titulo do livro" class="inserir" id="titulo" name="titulo" required>
                         </div>
+
                         <div class="mb-3">
-                            <label for="autor" class="form-label">Autor</label>
-                            <input type="text" class="form-control" id="autor" required>
+                            <label class="bloco">Autor:</label>
+                            <input type="text" placeholder="Nome do autor" class="inserir" id="autor" name="autor" required>
                         </div>
+
                         <div class="mb-3">
-                            <label for="ano" class="form-label">Ano de Publicação</label>
-                            <input type="number" class="form-control" id="ano" required>
+                           <label class="bloco">Data de publicação:</label>
+                            <input type="date" class="inserir" id="data_publicacao" name="data_publicacao" required>
                         </div>
+
                         <div class="mb-3">
-                            <label for="genero" class="form-label">Gênero</label>
-                            <input type="text" class="form-control" id="genero">
+                            <label class="bloco">Descrição:</label>
+                            <input type="text" placeholder="Conte um pouco sobre o livro" class="inserir" id="descricao" name="descricao">
                         </div>
+
                         <div class="mb-3">
-                            <label for="descricao" class="form-label">Descrição</label>
-                            <textarea class="form-control" id="descricao" rows="3"></textarea>
+                            <label class="bloco">Quantidade:</label>
+                            <input type="number" placeholder="Ex.: 1, 2 ou 3" class="inserir" id="quantidade" name="quantidade" required>
                         </div>
+
+                        <div class="mb-3">
+                            <label for="categoria" class="coisa">Categoria:</label>
+                            <select class="inserir" name="categoria" id="categoria">
+                                <option class="inserir" value="Romance">Romance</option>
+                                <option class="inserir" value="Terror">Terror</option>
+                                <option class="inserir" value="Ficcao_cientifica">Ficção científica</option>
+                                <option class="inserir" value="Enciclopedia">Enciclopédia</option>
+                                <option class="inserir" value="Conto">Conto</option>
+                                <option class="inserir" value="Diario">Diário</option>
+                            </select>
+                        </div>
+
                         <div class="mb-3">
                             <label for="imagem" class="form-label">Imagem do Livro</label>
                             <input type="file" class="form-control" id="imagem" accept="image/*">
@@ -191,31 +208,52 @@
     </footer>
 
     <script>
+        // CADASTRO DO LIVRO:
+        $("#formCadastro").on("submit", function (e) {
+            e.preventDefault(); // Impede o comportamento padrão do formulário
 
-        document.getElementById("formCadastroLivro").addEventListener("submit", function (event) {
-            event.preventDefault();
-            const titulo = document.getElementById("titulo").value;
-            const autor = document.getElementById("autor").value;
-            const ano = document.getElementById("ano").value;
-            const genero = document.getElementById("genero").value;
+            var token = localStorage.getItem("token");
 
-            console.log("Livro cadastrado:", { titulo, autor, ano, genero });
+            // Criando objeto JSON manualmente com os valores do formulário
+            var dadosCadastro = {
+                titulo: $("#titulo").val(),
+                autor: $("#autor").val(),
+                data_publicacao: $("#data_publicacao").val(),
+                ISBN: $("#ISBN").val(),
+                descricao: $("#descricao").val(),
+                quantidade: $("#quantidade").val(),
+                categoria: $("#categoria").val()
+            };
 
-            // Aqui você pode adicionar a lógica para salvar os dados, como uma requisição AJAX para o backend
+            $.ajax({
+                method: "POST",
+                url: ipPython + "/livros",
+                headers: {
+                    'Authorization': 'Bearer ' + token,
+                    'Content-Type': 'application/json' // Definir cabeçalho correto
+                },
+                data: JSON.stringify(dadosCadastro), // Converter objeto para JSON
+                timeout: 0,
 
-            // Fecha o modal após salvar
-            var modal = bootstrap.Modal.getInstance(document.getElementById("modalCadastroLivro"));
-            modal.hide();
-            document.getElementById("formCadastroLivro").reset();
+                success: function (retorno) {
+                    Swal.fire({
+                        title: "Sucesso!",
+                        text: "Cadastro feito com sucesso",
+                        icon: "success"
+                    })
+                },
+
+                error: function (retorno) {
+                    Swal.fire({
+                        title: "Inválido!",
+                        text: JSON.parse(retorno.responseText).error,
+                        icon: "error"
+                    });
+                }
+            });
         });
 
-        // Verifica se o token está armazenado no Local Storage da própria web (SEGURANÇA DO SITE)
-
-        document.querySelector(".menu-item button").addEventListener("click", function () {
-            localStorage.removeItem("token"); // Remove o token do localStorage
-            window.location.href = "login.html"; // Redireciona para a página de login
-        });
-
+        // LOGOUT
         var nome = localStorage.getItem("nome")
         document.getElementById("nomeUsuario").innerHTML = nome
         document.querySelector(".menu-item button").addEventListener("click", function () {
