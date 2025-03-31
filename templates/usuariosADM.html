@@ -303,7 +303,7 @@
           error: function () {
             Swal.fire({
               title: "Erro!",
-              text: "Erro ao atualizar usuário!",
+              text: JSON.parse(retorno.responseText).error,
               icon: "error"
             })
           }
