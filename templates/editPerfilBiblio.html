@@ -270,7 +270,7 @@
 
                 Swal.fire({
                     title: "Erro!",
-                    text: "Nenhuma imagem selecionada!",
+                    text: JSON.parse(retorno.responseText).error,
                     icon: "error"
                 })
 

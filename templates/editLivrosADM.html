@@ -317,9 +317,14 @@
                     $("#formCadastroLivro").data("id", id); // Armazena o ID do livro no formulário
                     $("#modalCadastroLivro").modal("show"); // Abre o modal
                 },
-                error: function (error) {
-                    console.error("Erro ao carregar livro:", error);
+                error: function (retorno) {
+                    Swal.fire({
+                        title: "Inválido!",
+                        text: JSON.parse(retorno.responseText).error,
+                        icon: "error"
+                    });
                 }
+                
             });
         }
         // FIM DA FUNÇÃO (PUT)
