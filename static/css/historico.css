@@ -2,6 +2,7 @@
   padding: 0;
   margin: 0;
   text-decoration: none;
+  font-family: "Montserrat", sans-serif;
 }
 
 a {
@@ -21,6 +22,7 @@ a {
 }
 
 :root{
+  --azul: #3380ca;
   --azul-claro: #4292DC;
   --azul-escuro: #0060BB;
   --branco: rgb(248, 252, 255);
@@ -374,6 +376,19 @@ h1 {
   border-radius: 3px;
   font-weight: bold;
   width: 100%;
+}
+
+.card-emprestimo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--azul);
+  border-radius: 10px;
+  gap: 15px;
+  padding: 15px;
+  max-width: 500px;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+  margin: 20px auto;
 }
 
 

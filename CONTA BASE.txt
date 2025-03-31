@@ -11,3 +11,7 @@ Senha: Bolso123@
 Nome: ADM
 Email: adm@gmail.com
 Senha: Adm@12345
+
+Nome: Tralalero
+Email: tralalero@gmail.com
+Senha: Tralala@123

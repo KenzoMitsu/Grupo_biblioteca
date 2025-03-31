@@ -4,7 +4,9 @@
     box-sizing: border-box;
     text-decoration: none;
     transition: all 0.3s;
+    font-family: "Montserrat", sans-serif;
 }
+
 a{
     text-decoration: none;
     color:black;
