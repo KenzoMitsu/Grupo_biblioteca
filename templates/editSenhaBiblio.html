@@ -193,12 +193,9 @@
                     })
                 },
                 error: function (retorno) {
-                    // Verifique se a resposta contém uma mensagem de erro
-                    var mensagemErro = retorno.responseJSON ? retorno.responseJSON.error : "Erro desconhecido";
-
                     Swal.fire({
-                        title: "Erro!",
-                        text: "Algum erro ocorreu!",
+                        title: "Inválido!",
+                        text: JSON.parse(retorno.responseText).error,
                         icon: "error"
                     });
                 }

@@ -246,10 +246,10 @@
                 },
                 error: function (retorno) {
                     Swal.fire({
-                        title: "Erro",
-                        text: "Erro, verifique se todos os campos estão preenchidos!",
+                        title: "Inválido!",
+                        text: JSON.parse(retorno.responseText).error,
                         icon: "error"
-                    })
+                    });
                 }
             });
         });
