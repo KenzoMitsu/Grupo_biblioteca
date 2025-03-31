@@ -306,7 +306,7 @@
             // Fazer uma requisição para buscar os dados do livro
             $.ajax({
                 method: "GET", // Use GET para buscar os dados do livro
-                url: ipPython + "/livros/" + id,
+                url: ipPython + "/livro",
                 headers: {
                     'Authorization': 'Bearer ' + localStorage.getItem("token")
                 },
