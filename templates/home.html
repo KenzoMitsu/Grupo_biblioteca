@@ -84,18 +84,15 @@
         <div class="container">
 
             <h3>Mais Emprestados</h3>
-            <div class="owl-carousel owl-theme">
-                <div class="item"><a href="emprestimo.html"><img src="../static/img/images (1).jpg" alt="" ></a></div>
-                <div class="item"><a href="emprestimo.html"><img src="../static/img/images (2).jpg" alt=""></div></a>
-                <div class="item"><a href="emprestimo.html"><img src="../static/img/images.jpg" alt=""></div></a>
-                <div class="item"><a href="emprestimo.html"><img src="../static/img/livro2.jpg" alt=""></div></a>
-                <div class="item"><a href="emprestimo.html"><img src="../static/img/download.jpg" alt=""></div></a>
-                <div class="item"><a href="emprestimo.html"><img
-                        src="../static/img/o-menino-que-nao-sabia-ler_721-cd93d7bfeb34edf26916651663766400-640-0.jpg"
-                        alt=""></a></div>
-                <div class="item"><a href="emprestimo.html"><img src="../static/img/livro-aprendendo-a-ler-nivel-2-o-rei-leao-653ff675c0a00.jpg"
-                        alt=""></a></div>
-                <div class="item"><a href="emprestimo.html"><img src="../static/img/Dicas-de-Livros_Férias-1-203x300.jpg" alt=""></a></div>
+            <!-- <div class="owl-carousel owl-theme"> -->
+            <div id="listaLivros">
+                
+                <div class="item">
+                    <a href="emprestimo.html">
+                        <img src="../static/img/Dicas-de-Livros_Férias-1-203x300.jpg" alt="">
+                    </a>
+                </div>
+            
             </div>
             <div class="row">
                 <h3>Destaques</h3>
@@ -191,6 +188,39 @@
             localStorage.clear(); // Remove todos os dados do localStorage
             window.location.href = "login.html"; // Redireciona para a página de login
         });
+
+        
+        function carregaLivros() {
+            var settings = {
+                "url": "http://192.168.1.153:5000/livro",
+                "method": "GET",
+                "timeout": 0,
+                success: function(retorno) {
+                    var html = document.getElementById("listaLivros")
+                    html.innerHTML = " "
+
+                    retorno.livros.forEach((livro) => {
+
+                        html.innerHTML += `
+                            <div class="item">
+                                <a href="emprestimo.html?id=${livro.id_livro}&ISBN=${livro.ISBN}&autor=${livro.autor}
+                                &categoria=${livro.categoria}&data_publicacao=${livro.data_publicacao}&descricao=${livro.descricao}
+                                &quantidade=${livro.quantidade}&titulo=${livro.titulo}">
+                                    <p>${livro.titulo}</p>
+                                    <img src="../static/img/${livro.id_livro}.jpg" alt="">
+                                </a>
+                            </div>
+                        `
+                    })
+                }
+            };
+
+            $.ajax(settings).done(function (response) {
+                console.log(response);
+            });
+        }
+
+        carregaLivros()
     </script>
 
 </body>
