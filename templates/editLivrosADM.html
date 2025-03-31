@@ -80,23 +80,22 @@
         </div>
     </header>
 
-    <section>
-
+    <section id="livrosContainer">
         <div class="bot">
-            <button type="button" class="add-btn btn-primary" data-bs-toggle="modal"
-                data-bs-target="#modalCadastroLivro">
+            <button type="button" class="add-btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalCadastroLivro">
                 <i class="fa-solid fa-plus"></i>Adicionar Livro
             </button>
         </div>
-
-        <div class="livro-hud">
-            <a></a><img class="livro" src="../static/img/harry potter 1.jpg"></a>
+    
+        <div class="livro-hud" id="livroTemplate" style="display: none;">
+            <img class="livro" src="../static/img/placeholder.jpg" alt="Capa do Livro">
             <div class="actions">
-                <button class="edit">Editar</button>
-                <button class="delete">Deletar</button>
+                <button class="edit" onclick="editarLivro(this)">Editar</button>
+                <button class="delete" onclick="deletarLivro(this)">Deletar</button>
             </div>
         </div>
-
+    
+        <div id="livrosList"></div>
     </section>
 
     <div class="modal fade" id="modalCadastroLivro" tabindex="-1" aria-labelledby="modalCadastroLivroLabel"
@@ -121,6 +120,11 @@
                         <div class="mb-3">
                            <label class="bloco">Data de publicação:</label>
                             <input type="date" class="inserir" id="data_publicacao" name="data_publicacao" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="bloco">ISBN:</label>
+                            <input type="text" placeholder="ISBN do livro" class="inserir" id="ISBN" name="ISBN" required>
                         </div>
 
                         <div class="mb-3">
@@ -150,8 +154,10 @@
                             <input type="file" class="form-control" id="imagem" accept="image/*">
                             <img id="previewImagem" src="#" alt="Prévia da Imagem" class="img-fluid mt-2 d-none">
                         </div>
+
                         <button type="submit" class="save-btn ">Salvar</button>
                     </form>
+                    
                 </div>
             </div>
         </div>
@@ -208,13 +214,13 @@
     </footer>
 
     <script>
-        // CADASTRO DO LIVRO:
-        $("#formCadastro").on("submit", function (e) {
+        // FUNÇÃO PARA CADASTRAR LIVROS (POST):
+        $("#formCadastroLivro").on("submit", function (e) {
             e.preventDefault(); // Impede o comportamento padrão do formulário
 
             var token = localStorage.getItem("token");
+            var id = $(this).data("id"); // Obtém o ID do livro se estiver editando
 
-            // Criando objeto JSON manualmente com os valores do formulário
             var dadosCadastro = {
                 titulo: $("#titulo").val(),
                 autor: $("#autor").val(),
@@ -224,6 +230,8 @@
                 quantidade: $("#quantidade").val(),
                 categoria: $("#categoria").val()
             };
+
+            var method = id ? "PUT" :
 
             $.ajax({
                 method: "POST",
@@ -238,7 +246,7 @@
                 success: function (retorno) {
                     Swal.fire({
                         title: "Sucesso!",
-                        text: "Cadastro feito com sucesso",
+                        text: "Livro adicionado com sucesso",
                         icon: "success"
                     })
                 },
@@ -246,12 +254,82 @@
                 error: function (retorno) {
                     Swal.fire({
                         title: "Inválido!",
-                        text: JSON.parse(retorno.responseText).error,
+                        text: "Erro! Verifique se os dados já existem",
                         icon: "error"
                     });
                 }
             });
         });
+
+
+
+        // FUNÇÃO PARA EXIBIR OS LIVROS CADASTRADOS NO SITE (GET):
+        // FUNÇÃO PARA EXIBIR OS LIVROS CADASTRADOS NO SITE (GET):
+        function carregarLivros() {
+            var token = localStorage.getItem("token");
+
+            $.ajax({
+                method: "GET",
+                url: ipPython + "/livro", // Corrigir a rota para /livro
+                headers: {
+                    'Authorization': 'Bearer ' + token
+                },
+                success: function (livros) {
+                    $("#livrosList").empty(); // Limpa a lista antes de adicionar novos livros
+                    livros.forEach(function (livro) {
+                        var livroElement = $("#livroTemplate").clone();
+                        livroElement.attr("style", "display: block;"); // Exibe o template
+                        livroElement.find(".livro").attr("src", livro.imagem || "../static/img/placeholder.jpg"); // Adiciona a imagem
+                        livroElement.find(".livro").attr("alt", livro.titulo); // Adiciona o título como alt
+                        livroElement.data("id", livro.id); // Armazena o ID do livro
+                        $("#livrosList").append(livroElement);
+                    });
+                },
+                error: function (error) {
+                    console.error("Erro ao carregar livros:", error);
+                }
+            });
+        }
+
+        // Chama a função ao carregar a página
+        $(document).ready(function () {
+            carregarLivros();
+        });
+        // FIM DA FUNÇÃO (GET)
+
+
+
+        // FUNÇÃO PARA EDITAR LIVROS (PUT):
+        function editarLivro(button) {
+            var livroElement = $(button).closest('.livro-hud');
+            var id = livroElement.data("id");
+
+            // Fazer uma requisição para buscar os dados do livro
+            $.ajax({
+                method: "PUT",
+                url: ipPython + "/livros/" + id,
+                headers: {
+                    'Authorization': 'Bearer ' + localStorage.getItem("token")
+                },
+                success: function (livro) {
+                    $("#titulo").val(livro.titulo);
+                    $("#autor").val(livro.autor);
+                    $("#data_publicacao").val(livro.data_publicacao);
+                    $("#ISBN").val(livro.ISBN);
+                    $("#descricao").val(livro.descricao);
+                    $("#quantidade").val(livro.quantidade);
+                    $("#categoria").val(livro.categoria);
+                    $("#formCadastroLivro").data("id", id); // Armazena o ID do livro no formulário
+                    $("#modalCadastroLivro").modal("show"); // Abre o modal
+                },
+                error: function (error) {
+                    console.error("Erro ao carregar livro:", error);
+                }
+            });
+        }
+        // FIM DA FUNÇÃO (PUT)
+
+
 
         // LOGOUT
         var nome = localStorage.getItem("nome")
