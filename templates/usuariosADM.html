@@ -48,7 +48,7 @@
       <div class="switch-container">
         Dark Mode
         <label class="switch">
-          <input type="checkbox">
+          <input id="alternarTema" type="checkbox">
           <span class="slider"></span>
         </label>
       </div>
@@ -79,7 +79,7 @@
   <!-- FIM DO CABEÇALHO -->
 
   <div class="table-container">
-    <table id="tabela-usuarios" border="3">
+    <table class="tabela-container" id="tabela-usuarios" border="3">
       <thead>
         <tr>
           <th>ID</th>
@@ -303,7 +303,7 @@
           error: function () {
             Swal.fire({
               title: "Erro!",
-              text: "Erro ao atualizar usuário!",
+              text: JSON.parse(retorno.responseText).error,
               icon: "error"
             })
           }
