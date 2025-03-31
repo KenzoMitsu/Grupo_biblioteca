@@ -276,11 +276,16 @@ input:checked + .slider:before {
 .redes i{
     color: var(--branco);
     font-size: 40px;
-    margin: 10px
+    margin: 10px;
+    transition: 0.3s;
 }
 
 .redes a {
     text-decoration: none;
+}
+
+.redes i:hover {
+    color: #06005c;
 }
 
 .inter {
@@ -403,7 +408,28 @@ input:checked + .slider:before {
 }
 @media (max-width: 380px){
     .logo_rodape{
-        width: 80px;
+        display: none;
+    }
+
+    .rodape-inter {
+        justify-content: center;
+    }
+
+    .separacao1 {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .separacao1 p {
+        margin: 0px;
+    }
+
+    .informacoes {
+        text-align: center;
+    }
+
+    .display {
+        justify-content: center;
     }
 }
 

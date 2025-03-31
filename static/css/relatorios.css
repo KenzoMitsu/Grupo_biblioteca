@@ -338,21 +338,16 @@ section{
 .redes i{
     color: var(--branco);
     font-size: 40px;
-    margin: 10px;
-    transition: 0.3s;
+    margin: 10px
 }
 
 .redes a {
     text-decoration: none;
 }
 
-.redes i:hover {
-    color: #06005c;
-}
-
 .inter {
-    margin-top: 60px;
     background-color: var(--escuro);
+    margin-top: 60px;
 }
 
 .rodape-inter {
@@ -430,9 +425,15 @@ section{
     border-radius: 7px;
 }
 
+.nomeUsuario {
+    color: rgb(194, 255, 235);
+    margin-left: 5px;
+}
+
 .span {
     color: var(--branco);
 }
+
 
 @media (max-width: 480px) {
     
@@ -465,6 +466,27 @@ section{
 }
 @media (max-width: 380px){
     .logo_rodape{
-        width: 80px;
+        display: none;
+    }
+
+    .rodape-inter {
+        justify-content: center;
+    }
+
+    .separacao1 {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .separacao1 p {
+        margin: 0px;
+    }
+
+    .informacoes {
+        text-align: center;
+    }
+
+    .display {
+        justify-content: center;
     }
 }
