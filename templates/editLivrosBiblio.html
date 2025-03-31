@@ -240,17 +240,25 @@
                                             Swal.fire('Excluído!', 'O livro foi excluído.', 'success');
                                             carregarLivros(); // Atualiza a lista de livros
                                         },
-                                        error: function () {
-                                            Swal.fire('Erro!', 'Não foi possível excluir o livro.', 'error');
+                                        error: function (retorno) {
+                                            Swal.fire({
+                                                title: "Inválido!",
+                                                text: JSON.parse(retorno.responseText).error,
+                                                icon: "error"
+                                            });
                                         }
                                     });
                                 }
                             });
                         });
                     },
-                    error: function () {
-                        alert("Erro ao carregar livros");
-                    }
+                    error: function (retorno) {
+                    Swal.fire({
+                        title: "Inválido!",
+                        text: JSON.parse(retorno.responseText).error,
+                        icon: "error"
+                    });
+                }
                 });
             }
 
@@ -288,9 +296,13 @@
                         $("#modal-edicao").hide();
                         carregarLivros(); // Atualiza a lista de livros
                     },
-                    error: function () {
-                        Swal.fire('Erro!', 'Não foi possível editar o livro.', 'error');
-                    }
+                    error: function (retorno) {
+                    Swal.fire({
+                        title: "Inválido!",
+                        text: JSON.parse(retorno.responseText).error,
+                        icon: "error"
+                    });
+                }
                 });
             });
         });

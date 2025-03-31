@@ -69,7 +69,7 @@
                     <li class="menu-item"><i class="fa-solid fa-cash-register"></i><a href="multasADM.html">Gerenciar Multas</li></a>
                     <li class="menu-item"><i class="fas fa-book"></i><a href="editLivrosADM.html">Gerenciar Livros</li></a>
                     <li class="menu-item"><i class="fas fa-sync-alt"></i><a href="emprestimosADM.html">Empréstimos</li></a>
-                    <li class="menu-item"><i class="fas fa-sign-out-alt"></i>Sair</li>
+                    <li class="menu-item"><i class="fas fa-sign-out-alt"></i><button class="sair">Sair</button></li>
                 </ul>
             </div>
         </div>
@@ -317,9 +317,14 @@
                     $("#formCadastroLivro").data("id", id); // Armazena o ID do livro no formulário
                     $("#modalCadastroLivro").modal("show"); // Abre o modal
                 },
-                error: function (error) {
-                    console.error("Erro ao carregar livro:", error);
+                error: function (retorno) {
+                    Swal.fire({
+                        title: "Inválido!",
+                        text: JSON.parse(retorno.responseText).error,
+                        icon: "error"
+                    });
                 }
+                
             });
         }
         // FIM DA FUNÇÃO (PUT)

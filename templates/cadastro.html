@@ -75,7 +75,7 @@
                     <input type="date" placeholder="AA/MM/DD" class="data" id="data" name="data_nascimento" required>
 
                     <label class="coisa">Telefone:</label>
-                    <input type="tel" placeholder="+55 () 99999-9999" class="inserir" id="tel" name="telefone" required>
+                    <input type="tel" placeholder="+55 () 99999-9999" class="inserir" id="tel" name="telefone" onkeyup="handlePhone(event)" required>
 
                 </div>
 
@@ -118,14 +118,6 @@
                         window.location.href = "login.html";
                     })
                 },
-                
-                error: function (retorno) {
-                    Swal.fire({
-                        title: "Inválido!",
-                        text: JSON.parse(retorno.responseText).error,
-                        icon: "error"
-                    });
-                },
 
                 error: function (retorno) {
                     Swal.fire({
@@ -136,6 +128,21 @@
                 }
             })
         })
+
+        const tel = document.getElementById('tel') // Seletor do campo de telefone
+
+        const handlePhone = (event) => {
+            let input = event.target
+            input.value = phoneMask(input.value)
+        }
+
+        const phoneMask = (value) => {
+            if (!value) return ""
+            value = value.replace(/\D/g, '')
+            value = value.replace(/(\d{2})(\d)/, "($1) $2")
+            value = value.replace(/(\d)(\d{4})$/, "$1-$2")
+            return value
+        }
 
     </script>
 

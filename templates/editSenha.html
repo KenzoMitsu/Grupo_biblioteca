@@ -189,12 +189,9 @@
                     })
                 },
                 error: function (retorno) {
-                    // Verifique se a resposta contém uma mensagem de erro
-                    var mensagemErro = retorno.responseJSON ? retorno.responseJSON.error : "Erro desconhecido";
-
                     Swal.fire({
-                        title: "Senha atual incorreta!",
-                        text: "Por favor, verifique se a senha inserida está correta!",
+                        title: "Inválido!",
+                        text: JSON.parse(retorno.responseText).error,
                         icon: "error"
                     });
                 }
