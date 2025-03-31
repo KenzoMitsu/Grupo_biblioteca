@@ -285,6 +285,7 @@ input:checked + .slider:before {
     width: 200; 
     border: 4px solid #4292dc;
     font-weight: bold;
+    margin-bottom: 100px;
 }
 
 .add-btn:hover{
