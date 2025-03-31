@@ -193,6 +193,18 @@
             if (imagemSalva) {
                 $("#imgPreview").attr("src", imagemSalva);
             }
+
+            var imagemSalva = localStorage.getItem("imagem_usuario");
+
+            console.log(imagemSalva)
+
+            if (!imagemSalva || imagemSalva == "undefined") {
+                console.log("aaaa")
+                $("#imgPreview").attr("src", "../static/img/user.png");
+            } else {
+                console.log("vvvv")
+                $("#imgPreview").attr("src", imagemSalva);
+            }
         });
 
         // Aqui é definido o que é feito quando o usuário aperta em "Salvar"
