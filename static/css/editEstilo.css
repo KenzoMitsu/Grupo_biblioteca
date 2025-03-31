@@ -60,6 +60,10 @@ body.modo-escuro footer a {
     color: rgb(194, 255, 235);;
 }
 
+body.modo-escuro .img_perfil {
+    
+}
+
 body.modo-escuro footer h3 {
     color: var(--escuro);
 }
@@ -450,8 +454,9 @@ section {
     flex-direction: column;
     align-items: center;
     padding: 20px;
-    width: 400px;
+    width: 450px;
 }
+
 a{
     text-decoration: none;
     color:black;
@@ -529,8 +534,8 @@ input {
     padding: 10px 150px;
     cursor: pointer;
     margin-top: 15px;
-    color: var(--azul);
-    background-color: var(--branco);
+    color: var(--branco);
+    background-color: var(--azul);
     border: 3px solid var(--azul);
     border-radius: 5px;
     font-weight: bold;
@@ -539,8 +544,8 @@ input {
 }
 
 .btn-save:hover {
-    background-color: var(--azul);
-    color: var(--branco);
+    background-color: var(--branco);
+    color: var(--azul);
     transition: 0.2s;
 }
 
