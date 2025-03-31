@@ -18,7 +18,6 @@
     <script src="../static/js/paginaip.js"></script>
     <script src="../static/js/scripts.js"></script>
     <link rel="stylesheet" href="../static/css/livros.css">
-    <link rel="stylesheet" href="../static/css/editEstilo.css">
 
     <script src="../static/js/seguranca.js" defer></script>
     <script src="../static/js/segurancaADM.js" defer></script>
@@ -62,14 +61,20 @@
                     <div></div>
                 </div>
                 <ul class="dropdown-menu" id="dropdownMenu">
-                    <li class="menu-item"><i class="fa-solid fa-circle-user"></i><a href="editPerfilADM.html">Perfil</a></li>
-                    <li class="menu-item"><i class="fa-solid fa-circle-user"></i><a href="addUsuarioADM.html">Adicionar Usuário</a></li>
-                    <li class="menu-item"><i class="fas fa-user"></i><a href="usuariosADM.html"> Gerenciar Usuários</a></li>
-                    <li class="menu-item"><i class="fa-solid fa-file-export"></i><a href="relatoriosADM.html">Relatórios</li></a>
-                    <li class="menu-item"><i class="fa-solid fa-cash-register"></i><a href="multasADM.html">Gerenciar Multas</li></a>
+                    <li class="menu-item"><i class="fa-solid fa-circle-user"></i><a href="editPerfilADM.html">Perfil</a>
+                    </li>
+                    <li class="menu-item"><i class="fa-solid fa-circle-user"></i><a href="addUsuarioADM.html">Adicionar Usuário</a>
+                    </li>
+                    <li class="menu-item"><i class="fas fa-user"></i><a href="usuariosADM.html"> Gerenciar Usuários</a>
+                    </li>
+                    <li class="menu-item"><i class="fa-solid fa-file-export"></i><a href="relatoriosADM.html">Relatórios
+                    </li></a>
+                    <li class="menu-item"><i class="fa-solid fa-cash-register"></i><a
+                            href="multasADM.html">GerenciarMultas</li></a>
                     <li class="menu-item"><i class="fas fa-book"></i><a href="editLivrosADM.html">Gerenciar Livros</li></a>
-                    <li class="menu-item"><i class="fas fa-sync-alt"></i><a href="emprestimosADM.html">Empréstimos</li></a>
-                    <li class="menu-item"><i class="fas fa-sign-out-alt"></i><button class="sair">Sair</button></li>
+                    <li class="menu-item"><i class="fas fa-sync-alt"></i><a href="emprestimosADM.html">Empréstimos</li>
+                    </a>
+                    <li class="menu-item"><i class="fas fa-sign-out-alt"></i>Sair</li>
                 </ul>
             </div>
         </div>
@@ -259,7 +264,6 @@
 
 
         // FUNÇÃO PARA EXIBIR OS LIVROS CADASTRADOS NO SITE (GET):
-        // FUNÇÃO PARA EXIBIR OS LIVROS CADASTRADOS NO SITE (GET):
         function carregarLivros() {
             var token = localStorage.getItem("token");
 
@@ -271,15 +275,16 @@
                 },
                 success: function (livros) {
                     $("#livrosList").empty(); // Limpa a lista antes de adicionar novos livros
-                    livros.forEach(function (livro) {
+                    livros.livros.forEach(function (livro) { // Acesse a propriedade 'livros'
                         var livroElement = $("#livroTemplate").clone();
                         livroElement.attr("style", "display: block;"); // Exibe o template
-                        livroElement.find(".livro").attr("src", livro.imagem || "../static/img/placeholder.jpg"); // Adiciona a imagem
+                        livroElement.find(".livro").attr("src", "../static/img/placeholder.jpg"); // Adiciona a imagem
                         livroElement.find(".livro").attr("alt", livro.titulo); // Adiciona o título como alt
-                        livroElement.data("id", livro.id); // Armazena o ID do livro
+                        livroElement.data("id", livro.id_livro); // Armazena o ID do livro
                         $("#livrosList").append(livroElement);
                     });
                 },
+
                 error: function (error) {
                     console.error("Erro ao carregar livros:", error);
                 }
@@ -293,7 +298,6 @@
         // FIM DA FUNÇÃO (GET)
 
 
-
         // FUNÇÃO PARA EDITAR LIVROS (PUT):
         function editarLivro(button) {
             var livroElement = $(button).closest('.livro-hud');
@@ -301,12 +305,13 @@
 
             // Fazer uma requisição para buscar os dados do livro
             $.ajax({
-                method: "PUT",
+                method: "GET", // Use GET para buscar os dados do livro
                 url: ipPython + "/livros/" + id,
                 headers: {
                     'Authorization': 'Bearer ' + localStorage.getItem("token")
                 },
                 success: function (livro) {
+                    // Preenche o formulário com os dados do livro
                     $("#titulo").val(livro.titulo);
                     $("#autor").val(livro.autor);
                     $("#data_publicacao").val(livro.data_publicacao);
@@ -317,17 +322,93 @@
                     $("#formCadastroLivro").data("id", id); // Armazena o ID do livro no formulário
                     $("#modalCadastroLivro").modal("show"); // Abre o modal
                 },
+                error: function (error) {
+                    console.error("Erro ao carregar livro:", error);
+                }
+            });
+        }
+
+        // FUNÇÃO PARA SUBMETER O FORMULÁRIO DE EDIÇÃO
+        $("#formCadastroLivro").on("submit", function (e) {
+            e.preventDefault(); // Impede o comportamento padrão do formulário
+
+            var token = localStorage.getItem("token");
+            var id = $(this).data("id"); // Obtém o ID do livro se estiver editando
+
+            var formData = new FormData(this); // Cria um FormData a partir do formulário
+
+            $.ajax({
+                method: "PUT",
+                url: ipPython + "/livros/" + id,
+                headers: {
+                    'Authorization': 'Bearer ' + token
+                },
+                data: formData,
+                processData: false, // Impede o jQuery de processar os dados
+                contentType: false, // Impede o jQuery de definir o cabeçalho Content-Type
+                success: function (retorno) {
+                    Swal.fire({
+                        title: "Sucesso!",
+                        text: "Livro editado com sucesso",
+                        icon: "success"
+                    });
+                    carregarLivros(); // Atualiza a lista de livros
+                },
                 error: function (retorno) {
                     Swal.fire({
-                        title: "Inválido!",
-                        text: JSON.parse(retorno.responseText).error,
+                        title: "Erro!",
+                        text: "Não foi possível editar o livro.",
                         icon: "error"
                     });
                 }
-                
+            });
+        });
+        // FIM DA FUNÇÃO (PUT)
+
+        // FUNÇÃO PARA DELETAR LIVROS (DELETE):
+        function deletarLivro(button) {
+            var livroElement = $(button).closest('.livro-hud'); // Encontra o elemento do livro
+            var id = livroElement.data("id"); // Obtém o ID do livro
+
+            var token = localStorage.getItem("token"); // Obtém o token de autenticação
+
+            // Confirmação antes de excluir
+            Swal.fire({
+                title: 'Você tem certeza?',
+                text: "Você não poderá reverter isso!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Sim, excluir!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Faz a requisição DELETE
+                    $.ajax({
+                        method: "DELETE",
+                        url: ipPython + "/livros/" + id,
+                        headers: {
+                            'Authorization': 'Bearer ' + token
+                        },
+                        success: function (response) {
+                            Swal.fire(
+                                'Excluído!',
+                                'O livro foi excluído com sucesso.',
+                                'success'
+                            );
+                            carregarLivros(); // Atualiza a lista de livros
+                        },
+                        error: function (error) {
+                            Swal.fire(
+                                'Erro!',
+                                'Não foi possível excluir o livro.',
+                                'error'
+                            );
+                        }
+                    });
+                }
             });
         }
-        // FIM DA FUNÇÃO (PUT)
 
 
 
