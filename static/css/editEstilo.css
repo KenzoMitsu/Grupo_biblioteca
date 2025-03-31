@@ -60,6 +60,10 @@ body.modo-escuro footer a {
     color: rgb(194, 255, 235);;
 }
 
+body.modo-escuro .img_perfil {
+    
+}
+
 body.modo-escuro footer h3 {
     color: var(--escuro);
 }
