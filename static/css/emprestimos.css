@@ -720,6 +720,10 @@ h1{
   color: #06005c;
 }
 
+.redes i:hover {
+  color: #06005c;
+}
+
 .inter {
   background-color: var(--escuro);
 }

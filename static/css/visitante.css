@@ -414,11 +414,16 @@ input:checked + .slider:before {
 .redes i{
     color: var(--branco);
     font-size: 40px;
-    margin: 10px
+    margin: 10px;
+    transition: 0.3s;
 }
 
 .redes a {
     text-decoration: none;
+}
+
+.redes i:hover {
+    color: #06005c;
 }
 
 .inter {
