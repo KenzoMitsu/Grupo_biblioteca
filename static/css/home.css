@@ -516,6 +516,9 @@ input:checked + .slider:before {
     color: var(--branco);
 }
 
+footer{
+    margin-top: 50px;
+}
 
 @media (max-width: 480px) {
     
