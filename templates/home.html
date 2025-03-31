@@ -195,7 +195,7 @@
         
         function carregaLivros() {
             var settings = {
-                "url": "http://192.168.1.153:5000/livro",
+                "url":"http://192.168.1.153:5000/livro",
                 "method": "GET",
                 "timeout": 0,
                 success: function(retorno) {
@@ -210,7 +210,7 @@
                                 &categoria=${livro.categoria}&data_publicacao=${livro.data_publicacao}&descricao=${livro.descricao}
                                 &quantidade=${livro.quantidade}&titulo=${livro.titulo}">
                                     <p>${livro.titulo}</p>
-                                    <img src="../static/img/${livro.id_livro}.jpg" alt="">
+                                    <img src="http://192.168.1.153:5000/static/uploads/Livros/${livro.id_livro}.jpeg" alt="">
                                 </a>
                             </div>
                         `
