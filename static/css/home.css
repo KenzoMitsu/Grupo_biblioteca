@@ -111,8 +111,13 @@ body.modo-escuro .dropdown-menu .menu-item:hover {
 
 body.modo-escuro .dropdown-menu .sair {
     color: var(--branco);
+    background-color: var(--escuro);
+    border: none;
 }
 
+body.modo-escuro .dropdown-menu .sair:hover {
+    background-color: var(--preto);
+}
 body.modo-escuro {
     background-color: var(--escuro);
     color: var(--branco);
@@ -538,8 +543,30 @@ input:checked + .slider:before {
         margin: 5px;
     }
 }
+
 @media (max-width: 380px){
     .logo_rodape{
-        width: 80px;
+        display: none;
+    }
+
+    .rodape-inter {
+        justify-content: center;
+    }
+
+    .separacao1 {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .separacao1 p {
+        margin: 0px;
+    }
+
+    .informacoes {
+        text-align: center;
+    }
+
+    .display {
+        justify-content: center;
     }
 }
