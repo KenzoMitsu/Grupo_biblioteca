@@ -4,6 +4,7 @@
     box-sizing: border-box;
     text-decoration: none;
     transition: all 0.3s;
+    font-family: "Montserrat", sans-serif;
 }
 
 :root{
@@ -169,7 +170,7 @@ input:checked + .slider:before {
 }
 
 .dropdown-menu .menu-item {
-    padding: 10px 15px;
+    padding: 10px 13px;
     display: flex;
     align-items: center;
     gap: 8px;
@@ -362,4 +363,306 @@ label{
 
 .delete {
     color: red;
+}
+
+
+
+/* RODAPÉ */
+
+.separacao1 {
+    display: flex;
+    justify-content: space-between;
+    background-color: var(--azul-escuro);
+    padding: 5px;
+    color: var(--branco);
+    font-size: x-large;
+    font-weight: bold;
+}
+
+.separacao1 p {
+    display: flex;
+    align-items: center;
+    margin-left: 30px;
+    margin-bottom: 5px;
+}
+
+.redes i{
+    color: var(--branco);
+    font-size: 40px;
+    margin: 10px;
+    transition: 0.3s;
+}
+
+.redes a {
+    text-decoration: none;
+}
+
+.redes i:hover {
+    color: #06005c;
+}
+
+.inter {
+    background-color: var(--escuro);
+}
+
+.rodape-inter {
+    background-color: var(--escuro);
+    color: var(--branco);
+    padding: 20px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.rodape2-inter {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.logo_rodape {
+    display: flex;
+    justify-content: center;
+    height: 100px;
+}
+
+.linha {
+    background-color: var(--azul-escuro);
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.display {
+    display: flex;
+}
+
+.text {
+    font-size: large;
+    margin-top: 10px;
+}
+
+.icons {
+    margin-top: 17px;
+    margin-right: 5px;
+}
+
+.informacoes {
+    padding: 10px;
+    font-size: large;
+    font-weight: bold;
+    margin-bottom: -7px;
+}
+
+.localizacao {
+    font-size: large;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+}
+
+.as {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.as a {
+    color: rgb(194, 255, 235);
+    text-decoration: none;
+    padding-bottom: 30px;
+}
+
+.bemvindo {
+    background-color: var(--azul-escuro);
+    padding: 20px;
+    margin-top: -30px;
+    margin-bottom: 10px;
+    margin-left: 73px;
+    margin-right: 73px;
+    border-radius: 7px;
+}
+
+.nomeUsuario {
+    color: rgb(194, 255, 235);
+    margin-left: 5px;
+}
+
+.span {
+    color: var(--branco);
+}
+
+
+@media (max-width: 480px) {
+    
+    .localizacao{
+        width: 1%;
+    }
+
+    .rodape-inter {
+        font-size: 14px;
+    }
+
+    .rodape2-inter {
+        align-items: center;
+    }
+
+    .localizacao {
+        font-size: 0px;
+        text-align: center;
+        flex-direction: column;
+    }
+    .separacao1 p{
+        margin-top: 10px;
+        font-size: 15px;
+    }
+
+    .redes i {
+        font-size: 24px;
+        margin: 5px;
+    }
+}
+@media (max-width: 380px){
+    .logo_rodape{
+        width: 80px;
+    }
+}
+
+
+.nomeUsuario {
+    color: rgb(194, 255, 235);
+    margin-left: 5px;
+}
+footer{
+    margin-top: 50px;
+}
+
+body.modo-escuro .delete{
+    color: red;
+}
+
+body.modo-escuro .edit{
+    color: blue;
+}
+
+body.modo-escuro .dropdown-menu a {
+    color: var(--branco);
+}
+
+body.modo-escuro .switch-container {
+    color: var(--preto);
+}
+
+body.modo-escuro header {
+    background-color: var(--azul-modoescuro);
+    color: var(--preto);
+}
+
+body.modo-escuro header .menulinha {
+    background-color: var(--escuro);
+}
+
+body.modo-escuro header .search-container {
+    background-color: var(--escuro);
+}
+
+body.modo-escuro header .search-box {
+    color: var(--branco);
+    background-color: var(--escuro);
+}
+
+body.modo-escuro header .search-container i {
+    color: var(--branco);
+}
+
+body.modo-escuro header .menu-icon div {
+    background-color: var(--preto);
+}
+
+body.modo-escuro footer {
+    background-color: var(--escuro);
+}
+
+body.modo-escuro footer a {
+    color: rgb(194, 255, 235);;
+}
+
+body.modo-escuro footer h3 {
+    color: var(--escuro);
+}
+
+body.modo-escuro footer p {
+    color: var(--branco);
+}
+body.modo-escuro .separacao1 p {
+    color: var(--escuro);
+}
+
+body.modo-escuro .dropdown-menu {
+    background-color: var(--escuro);
+}
+
+body.modo-escuro .dropdown-menu .menu-item {
+    color: var(--branco);
+}
+
+body.modo-escuro .dropdown-menu .menu-icon-img {
+    color: var(--branco);
+}
+
+body.modo-escuro .dropdown-menu .menu-item:hover {
+    background-color: var(--preto);
+}
+
+body.modo-escuro .dropdown-menu .sair {
+    color: var(--branco);
+    background-color: var(--escuro);
+    border: none;
+}
+
+body.modo-escuro .dropdown-menu .sair:hover {
+    background-color: var(--preto);
+}
+
+body.modo-escuro {
+    background-color: var(--escuro);
+    color: var(--branco);
+}
+
+body.modo-escuro .separacao1 {
+    background-color: var(--azul-modoescuro);
+}
+
+body.modo-escuro .redes i{
+    color: var(--escuro);
+}
+
+body.modo-escuro .rodape-inter {
+    color: var(--branco);
+}
+
+body.modo-escuro .linha {
+    background-color: var(--azul-modoescuro);
+}
+
+body.modo-escuro .span {
+    color: var(--escuro);
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+}
+
+body.modo-escuro h1 {
+    color: var(--branco);
+}
+
+body.modo-escuro button {
+    background-color: var(--branco);
+    color: var(--escuro);
+    border: 3px solid var(--branco);
+}
+
+body.modo-escuro button:hover {
+    background-color: var(--escuro);
+    color: var(--branco);
+    border: 3px solid var(--branco);
 }

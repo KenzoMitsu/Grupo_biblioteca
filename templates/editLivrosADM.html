@@ -5,6 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Sans+JP:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
@@ -61,19 +64,13 @@
                     <div></div>
                 </div>
                 <ul class="dropdown-menu" id="dropdownMenu">
-                    <li class="menu-item"><i class="fa-solid fa-circle-user"></i><a href="editPerfilADM.html">Perfil</a>
-                    </li>
-                    <li class="menu-item"><i class="fa-solid fa-circle-user"></i><a href="addUsuarioADM.html">Adicionar Usuário</a>
-                    </li>
-                    <li class="menu-item"><i class="fas fa-user"></i><a href="usuariosADM.html"> Gerenciar Usuários</a>
-                    </li>
-                    <li class="menu-item"><i class="fa-solid fa-file-export"></i><a href="relatoriosADM.html">Relatórios
-                    </li></a>
-                    <li class="menu-item"><i class="fa-solid fa-cash-register"></i><a
-                            href="multasADM.html">GerenciarMultas</li></a>
+                    <li class="menu-item"><i class="fa-solid fa-circle-user"></i><a href="editPerfilADM.html">Perfil</a></li>
+                    <li class="menu-item"><i class="fa-solid fa-user-plus"></i><a href="addUsuarioADM.html">Adicionar Usuário</a></li>
+                    <li class="menu-item"><i class="fas fa-user"></i><a href="usuariosADM.html"> Gerenciar Usuários</a></li>
+                    <li class="menu-item"><i class="fa-solid fa-file-export"></i><a href="relatoriosADM.html">Relatórios</li></a>
+                    <li class="menu-item"><i class="fa-solid fa-cash-register"></i><a href="multasADM.html">GerenciarMultas</li></a>
                     <li class="menu-item"><i class="fas fa-book"></i><a href="editLivrosADM.html">Gerenciar Livros</li></a>
-                    <li class="menu-item"><i class="fas fa-sync-alt"></i><a href="emprestimosADM.html">Empréstimos</li>
-                    </a>
+                    <li class="menu-item"><i class="fas fa-sync-alt"></i><a href="emprestimosADM.html">Empréstimos</li></a>
                     <li class="menu-item"><i class="fas fa-sign-out-alt"></i>Sair</li>
                 </ul>
             </div>
@@ -111,32 +108,26 @@
                             <label class="bloco">Titulo:</label>
                             <input type="text" placeholder="Titulo do livro" class="inserir" id="titulo" name="titulo" required>
                         </div>
-
                         <div class="mb-3">
                             <label class="bloco">Autor:</label>
                             <input type="text" placeholder="Nome do autor" class="inserir" id="autor" name="autor" required>
                         </div>
-
                         <div class="mb-3">
-                           <label class="bloco">Data de publicação:</label>
+                            <label class="bloco">Data de publicação:</label>
                             <input type="date" class="inserir" id="data_publicacao" name="data_publicacao" required>
                         </div>
-
                         <div class="mb-3">
                             <label class="bloco">ISBN:</label>
                             <input type="text" placeholder="ISBN do livro" class="inserir" id="ISBN" name="ISBN" required>
                         </div>
-
                         <div class="mb-3">
                             <label class="bloco">Descrição:</label>
                             <input type="text" placeholder="Conte um pouco sobre o livro" class="inserir" id="descricao" name="descricao">
                         </div>
-
                         <div class="mb-3">
                             <label class="bloco">Quantidade:</label>
                             <input type="number" placeholder="Ex.: 1, 2 ou 3" class="inserir" id="quantidade" name="quantidade" required>
                         </div>
-
                         <div class="mb-3">
                             <label for="categoria" class="coisa">Categoria:</label>
                             <select class="inserir" name="categoria" id="categoria">
@@ -148,14 +139,11 @@
                                 <option class="inserir" value="Diario">Diário</option>
                             </select>
                         </div>
-
                         <div class="mb-3">
                             <label for="imagem" class="form-label">Imagem do Livro</label>
-                            <input type="file" class="form-control" id="imagem" accept="image/*">
-                            <img id="previewImagem" src="#" alt="Prévia da Imagem" class="img-fluid mt-2 d-none">
+                            <input type="file" class="form-control" id="imagem" name="imagem" accept="image/*">
                         </div>
-
-                        <button type="submit" class="save-btn ">Salvar</button>
+                        <button type="submit" class="save-btn">Salvar</button>
                     </form>
                     
                 </div>
@@ -219,48 +207,34 @@
             e.preventDefault(); // Impede o comportamento padrão do formulário
 
             var token = localStorage.getItem("token");
-            var id = $(this).data("id"); // Obtém o ID do livro se estiver editando
-
-            var dadosCadastro = {
-                titulo: $("#titulo").val(),
-                autor: $("#autor").val(),
-                data_publicacao: $("#data_publicacao").val(),
-                ISBN: $("#ISBN").val(),
-                descricao: $("#descricao").val(),
-                quantidade: $("#quantidade").val(),
-                categoria: $("#categoria").val()
-            };
-
-            var method = id ? "PUT" :
+            var formData = new FormData(this); // Cria um FormData a partir do formulário
 
             $.ajax({
                 method: "POST",
                 url: ipPython + "/livros",
                 headers: {
-                    'Authorization': 'Bearer ' + token,
-                    'Content-Type': 'application/json' // Definir cabeçalho correto
+                    'Authorization': 'Bearer ' + token
                 },
-                data: JSON.stringify(dadosCadastro), // Converter objeto para JSON
-                timeout: 0,
-
+                data: formData,
+                processData: false, // Impede o jQuery de processar os dados
+                contentType: false, // Impede o jQuery de definir o cabeçalho Content-Type
                 success: function (retorno) {
                     Swal.fire({
                         title: "Sucesso!",
                         text: "Livro adicionado com sucesso",
                         icon: "success"
-                    })
+                    });
+                    carregarLivros(); // Atualiza a lista de livros
                 },
-
                 error: function (retorno) {
                     Swal.fire({
-                        title: "Inválido!",
-                        text: "Erro! Verifique se os dados já existem",
+                        title: "Erro!",
+                        text: JSON.parse(retorno.responseText).error || "Erro ao adicionar livro.",
                         icon: "error"
                     });
                 }
             });
         });
-
 
 
         // FUNÇÃO PARA EXIBIR OS LIVROS CADASTRADOS NO SITE (GET):
