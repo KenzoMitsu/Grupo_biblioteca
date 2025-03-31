@@ -325,7 +325,7 @@
       if (!dataISO) return ""; // Evita erro se a data estiver vazia
 
       let data = new Date(dataISO);
-      let dia = data.getDate().toString().padStart(2, "0");
+      let dia = (data.getDate() + 1).toString().padStart(2, "0");
       let mes = (data.getMonth() + 1).toString().padStart(2, "0");
       let ano = data.getFullYear();
 

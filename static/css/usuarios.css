@@ -181,6 +181,11 @@ input:checked + .slider:before {
     background-color: #f0f0f0;
 }
 
+select {
+    border: 2px solid var(--azul-escuro);
+    border-radius: 3px;
+}
+
 /* Modal */
 #modal-edicao {
     display: flex; /* Usar flexbox para centralizar o conteúdo */
