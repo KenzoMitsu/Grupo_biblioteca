@@ -114,32 +114,26 @@
                             <label class="bloco">Titulo:</label>
                             <input type="text" placeholder="Titulo do livro" class="inserir" id="titulo" name="titulo" required>
                         </div>
-
                         <div class="mb-3">
                             <label class="bloco">Autor:</label>
                             <input type="text" placeholder="Nome do autor" class="inserir" id="autor" name="autor" required>
                         </div>
-
                         <div class="mb-3">
-                           <label class="bloco">Data de publicação:</label>
+                            <label class="bloco">Data de publicação:</label>
                             <input type="date" class="inserir" id="data_publicacao" name="data_publicacao" required>
                         </div>
-
                         <div class="mb-3">
                             <label class="bloco">ISBN:</label>
                             <input type="text" placeholder="ISBN do livro" class="inserir" id="ISBN" name="ISBN" required>
                         </div>
-
                         <div class="mb-3">
                             <label class="bloco">Descrição:</label>
                             <input type="text" placeholder="Conte um pouco sobre o livro" class="inserir" id="descricao" name="descricao">
                         </div>
-
                         <div class="mb-3">
                             <label class="bloco">Quantidade:</label>
                             <input type="number" placeholder="Ex.: 1, 2 ou 3" class="inserir" id="quantidade" name="quantidade" required>
                         </div>
-
                         <div class="mb-3">
                             <label for="categoria" class="coisa">Categoria:</label>
                             <select class="inserir" name="categoria" id="categoria">
@@ -151,14 +145,11 @@
                                 <option class="inserir" value="Diario">Diário</option>
                             </select>
                         </div>
-
                         <div class="mb-3">
                             <label for="imagem" class="form-label">Imagem do Livro</label>
-                            <input type="file" class="form-control" id="imagem" accept="image/*">
-                            <img id="previewImagem" src="#" alt="Prévia da Imagem" class="img-fluid mt-2 d-none">
+                            <input type="file" class="form-control" id="imagem" name="imagem" accept="image/*">
                         </div>
-
-                        <button type="submit" class="save-btn ">Salvar</button>
+                        <button type="submit" class="save-btn">Salvar</button>
                     </form>
                     
                 </div>
@@ -222,48 +213,34 @@
             e.preventDefault(); // Impede o comportamento padrão do formulário
 
             var token = localStorage.getItem("token");
-            var id = $(this).data("id"); // Obtém o ID do livro se estiver editando
-
-            var dadosCadastro = {
-                titulo: $("#titulo").val(),
-                autor: $("#autor").val(),
-                data_publicacao: $("#data_publicacao").val(),
-                ISBN: $("#ISBN").val(),
-                descricao: $("#descricao").val(),
-                quantidade: $("#quantidade").val(),
-                categoria: $("#categoria").val()
-            };
-
-            var method = id ? "PUT" :
+            var formData = new FormData(this); // Cria um FormData a partir do formulário
 
             $.ajax({
                 method: "POST",
                 url: ipPython + "/livros",
                 headers: {
-                    'Authorization': 'Bearer ' + token,
-                    'Content-Type': 'application/json' // Definir cabeçalho correto
+                    'Authorization': 'Bearer ' + token
                 },
-                data: JSON.stringify(dadosCadastro), // Converter objeto para JSON
-                timeout: 0,
-
+                data: formData,
+                processData: false, // Impede o jQuery de processar os dados
+                contentType: false, // Impede o jQuery de definir o cabeçalho Content-Type
                 success: function (retorno) {
                     Swal.fire({
                         title: "Sucesso!",
                         text: "Livro adicionado com sucesso",
                         icon: "success"
-                    })
+                    });
+                    carregarLivros(); // Atualiza a lista de livros
                 },
-
                 error: function (retorno) {
                     Swal.fire({
-                        title: "Inválido!",
-                        text: "Erro! Verifique se os dados já existem",
+                        title: "Erro!",
+                        text: JSON.parse(retorno.responseText).error || "Erro ao adicionar livro.",
                         icon: "error"
                     });
                 }
             });
         });
-
 
 
         // FUNÇÃO PARA EXIBIR OS LIVROS CADASTRADOS NO SITE (GET):
