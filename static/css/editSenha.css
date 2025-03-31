@@ -396,6 +396,33 @@ input {
     margin-top: 10px;
 }
 
+.btn-voltar {
+    padding: 10px 150px;
+    cursor: pointer;
+    color: var(--branco);
+    background-color: var(--azul);
+    border: 3px solid var(--branco);
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: large;
+    transition: 0.2s;
+}
+
+.btn-voltar:hover {
+    background-color: var(--branco);
+    color: var(--azul);
+    border: 3px solid var(--azul);
+
+}
+
+.div-botao-voltar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    width: 400px;
+}
+
 .btn-save {
     padding: 5px 150px;
     cursor: pointer;
