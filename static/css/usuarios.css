@@ -331,7 +331,7 @@ input:checked + .slider:before {
 }
 
 .dropdown-menu .menu-item {
-    padding: 10px 15px;
+    padding: 10px 13px;
     display: flex;
     align-items: center;
     gap: 8px;
