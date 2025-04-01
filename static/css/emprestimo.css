@@ -32,8 +32,25 @@ a{
     cursor: pointer;
 }
 
-img {
+.imagemLivro {
     height: 150px;
+    border: 5px solid var(--azul-claro);
+    border-radius: 10px;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+}
+
+.pai {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.quantidade {
+    gap: 10px;
 }
 
 /* Header */
@@ -343,8 +360,8 @@ h1 {
 }
 
 .pai1 {
+    justify-content: center;
     display: flex;
-    border-right: 1px solid;
     margin-right: 8px;
     margin-bottom: 50px
 }
