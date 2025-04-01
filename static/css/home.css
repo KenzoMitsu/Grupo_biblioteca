@@ -422,6 +422,11 @@ input:checked + .slider:before {
     padding: 10px;
     border: 3px solid #007bff;;
     border-radius: 7px;
+    text-align: center;
+}
+
+.item img {
+    max-width: 150px;
 }
 
 /* RODAPÉ */
