@@ -7,7 +7,9 @@
     <title>Document</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Sans+JP:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Sans+JP:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
@@ -33,7 +35,7 @@
     <header>
         <!-- Logo -->
         <div class="header-left">
-            <a id="logoHeader" href=""><img src="../static/img/logo.png" alt="Logo"></a>
+            <a href="homeADM.html"><img src="../static/img/logo.png" alt="Logo"></a>
         </div>
 
         <!-- Barra de Pesquisa -->
@@ -64,13 +66,19 @@
                     <div></div>
                 </div>
                 <ul class="dropdown-menu" id="dropdownMenu">
-                    <li class="menu-item"><i class="fa-solid fa-circle-user"></i><a href="editPerfilADM.html">Perfil</a></li>
-                    <li class="menu-item"><i class="fa-solid fa-user-plus"></i><a href="addUsuarioADM.html">Adicionar Usuário</a></li>
-                    <li class="menu-item"><i class="fas fa-user"></i><a href="usuariosADM.html"> Gerenciar Usuários</a></li>
-                    <li class="menu-item"><i class="fa-solid fa-file-export"></i><a href="relatoriosADM.html">Relatórios</li></a>
-                    <li class="menu-item"><i class="fa-solid fa-cash-register"></i><a href="multasADM.html">GerenciarMultas</li></a>
-                    <li class="menu-item"><i class="fas fa-book"></i><a href="editLivrosADM.html">Gerenciar Livros</li></a>
-                    <li class="menu-item"><i class="fas fa-sync-alt"></i><a href="emprestimosADM.html">Empréstimos</li></a>
+                    <li class="menu-item"><i class="fa-solid fa-circle-user"></i><a href="editPerfilADM.html">Perfil</a>
+                    </li>
+                    <li class="menu-item"><i class="fa-solid fa-circle-user"></i><a href="addUsuarioADM.html">Adicionar usuário</a>
+                    </li>
+                    <li class="menu-item"><i class="fas fa-user"></i><a href="usuariosADM.html"> Gerenciar Usuários</a>
+                    </li>
+                    <li class="menu-item"><i class="fa-solid fa-file-export"></i><a href="relatoriosADM.html">Relatórios
+                    </li></a>
+                    <li class="menu-item"><i class="fa-solid fa-cash-register"></i><a href="multasADM.html">Gerenciar multas</li></a>
+                    <li class="menu-item"><i class="fas fa-book"></i><a href="editLivrosADM.html">Gerenciar livros</li>
+                    </a>
+                    <li class="menu-item"><i class="fas fa-sync-alt"></i><a href="emprestimosADM.html">Empréstimos</li>
+                    </a>
                     <li class="menu-item"><i class="fas fa-sign-out-alt"></i>Sair</li>
                 </ul>
             </div>
@@ -88,7 +96,10 @@
         <div class="livro-hud" id="livroTemplate" style="display: none;">
             <img class="livro" src="../static/img/placeholder.jpg" alt="Capa do Livro">
             <div class="actions">
-                <button class="edit" onclick="editarLivro(this)">Editar</button>
+                <button class="edit" data-bs-toggle="modal" data-bs-target="#modalEditarLivro" onclick="editarLivro(this)">
+                    Editar
+                </button>
+
                 <button class="delete" onclick="deletarLivro(this)">Deletar</button>
             </div>
         </div>
@@ -96,13 +107,18 @@
         <div id="livrosList"></div>
     </section>
 
-    <div class="modal fade" id="modalCadastroLivro" tabindex="-1" aria-labelledby="modalCadastroLivroLabel"
+    <!-- MODAL PARA CADASTRO DE LIVRO -->
+    <div class="modal fade"
+        id="modalCadastroLivro"
+        tabindex="-1"
+        aria-labelledby="modalCadastroLivroLabel"
         aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
+
                 <div class="modal-body">
                     <form id="formCadastroLivro">
                         <div class="mb-3">
@@ -166,13 +182,94 @@
                                 style="display: none; margin-top: 10px; max-width: 100%; height: auto;">
                         </div>
 
-                        <button type="submit" class="save-btn">Salvar</button>
+                        <button type="submit" class="save-btn">Enviar</button>
                     </form>
 
                 </div>
             </div>
         </div>
     </div>
+    <!-- FIM DO MODAL DE CADASTRO -->
+
+
+    <!-- MODAL PARA EDIÇÃO DE LIVROS -->
+    <div class="modal fade"
+        id="modalEditarLivro" 
+        tabindex="-1" 
+        aria-labelledby="modalEditarLivroLabel" aria-hidden="true">
+
+        <div class="modal-dialog">
+
+            <div class="modal-content">
+                
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalEditarLivroLabel">Editar Livro</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body">
+                    <form id="formEditarLivro">
+
+                        <div class="mb-3">
+                            <input type="hidden" id="id_livro" name="id_livro">
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="bloco">Titulo:</label>
+                            <input type="text" placeholder="Titulo do livro" class="inserir" id="tituloEditar" name="titulo" required>
+                        </div>
+    
+                        <div class="mb-3">
+                            <label class="bloco">Autor:</label>
+                            <input type="text" placeholder="Nome do autor" class="inserir" id="autorEditar" name="autor" required>
+                        </div>
+    
+                        <div class="mb-3">
+                            <label class="bloco">Data de publicação:</label>
+                            <input type="date" class="inserir" id="data_publicacaoEditar" name="data_publicacao" required>
+                        </div>
+    
+                        <div class="mb-3">
+                            <label class="bloco">ISBN:</label>
+                            <input type="text" placeholder="ISBN do livro" class="inserir" id="ISBNEditar" name="ISBN" required>
+                        </div>
+    
+                        <div class="mb-3">
+                            <label class="bloco">Descrição:</label>
+                            <input type="text" placeholder="Conte um pouco sobre o livro" class="inserir" id="descricaoEditar" name="descricao">
+                        </div>
+    
+                        <div class="mb-3">
+                            <label class="bloco">Quantidade:</label>
+                            <input type="number" placeholder="Ex.: 1, 2 ou 3" class="inserir" id="quantidadeEditar" name="quantidade" required>
+                        </div>
+    
+                        <div class="mb-3">
+                            <label for="categoriaEditar" class="coisa">Categoria:</label>
+                            <select class="inserir" name="categoria" id="categoriaEditar">
+                                <option value="Romance">Romance</option>
+                                <option value="Terror">Terror</option>
+                                <option value="Ficcao_cientifica">Ficção científica</option>
+                                <option value="Enciclopedia">Enciclopédia</option>
+                                <option value="Conto">Conto</option>
+                                <option value="Diario">Diário</option>
+                            </select>
+                        </div>
+    
+                        <div class="mb-3">
+                            <label for="imagemEditar" class="form-label">Imagem do Livro</label>
+                            <input type="file" class="form-control" id="imagemEditar" name="imagem" accept="image/*">
+                            <img id="previewImagemEditar" src="" alt="Pré-visualização da Imagem" style="display: none; margin-top: 10px; max-width: 100%; height: auto;">
+                        </div>
+    
+                        <button type="submit" class="save-btn">Salvar Alterações</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- FIM DO MODAL DE EDIÇÃO -->
+
 
     <footer class="inter">
         <div class="separacao1">
@@ -225,7 +322,44 @@
     </footer>
 
     <script>
-        // Função para exibir a pré-visualização da imagem
+        // FUNÇÃO PARA EXIBIR OS LIVROS CADASTRADOS NO SITE (GET):
+        function carregarLivros() {
+            var token = localStorage.getItem("token");
+
+            $.ajax({
+                method: "GET",
+                url: ipPython + "/livro", // Corrigir a rota para /livro
+                headers: {
+                    'Authorization': 'Bearer ' + token
+                },
+                success: function (livros) {
+                    $("#livrosList").empty(); // Limpa a lista antes de adicionar novos livros
+                    livros.livros.forEach(function (livro) { // Acesse a propriedade 'livros'
+                        var livroElement = $("#livroTemplate").clone();
+                        livroElement.attr("style", "display: block;"); // Exibe o template
+                        livroElement.find(".livro").attr("src", ipPython + "/static/uploads/Livros/" + livro.id_livro + ".jpeg"); // Adiciona a imagem
+                        livroElement.find(".livro").attr("alt", livro.titulo); // Adiciona o título como alt
+                        livroElement.data("id", livro.id_livro); // Armazena o ID do livro
+                        $("#livrosList").append(livroElement);
+                    });
+                },
+
+                error: function (error) {
+                    console.error("Erro ao carregar livros:", error);
+                }
+            });
+        }
+
+        // Chama a função ao carregar a página
+        $(document).ready(function () {
+            carregarLivros();
+        });
+        // FIM DA FUNÇÃO (GET)
+
+
+
+
+        // FUNÇÃO PARA EXIBIR A PRÉ-VISUALIZAÇÃO DA IMAGEM DO LIVRO NO CADASTRO:
         $("#imagem").on("change", function (e) {
             var file = e.target.files[0]; // Obtém o arquivo selecionado
             var reader = new FileReader(); // Cria um novo FileReader
@@ -242,12 +376,36 @@
             }
         });
 
+    
+
+        // FUNÇÃO PARA EXIBIR A PRÉ-VISUALIZAÇÃO DA IMAGEM DO LIVRO NO EDITAR:
+        $("#imagemEditar").on("change", function (e) {
+            var file = e.target.files[0]; // Obtém o arquivo selecionado
+            var reader = new FileReader(); // Cria um novo FileReader
+
+            reader.onload = function (event) {
+                $("#previewImagemEditar").attr("src", event.target.result); // Define a fonte da imagem para a URL do arquivo
+                $("#previewImagemEditar").show(); // Exibe a imagem
+            };
+
+            if (file) {
+                reader.readAsDataURL(file); // Lê o arquivo como uma URL de dados
+            } else {
+                $("#previewImagemEditar").hide(); // Esconde a imagem se nenhum arquivo for selecionado
+            }
+        });
+
+
+
+
         // FUNÇÃO PARA CADASTRAR LIVROS (POST):
         $("#formCadastroLivro").on("submit", function (e) {
             e.preventDefault(); // Impede o comportamento padrão do formulário
 
             var token = localStorage.getItem("token");
             var formData = new FormData(this); // Cria um FormData a partir do formulário
+
+            formData.append("imagem", $("#imagem")[0].files[0]); // Adiciona a imagem ao FormData
 
             $.ajax({
                 method: "POST",
@@ -277,64 +435,32 @@
         });
 
 
-        // FUNÇÃO PARA EXIBIR OS LIVROS CADASTRADOS NO SITE (GET):
-        function carregarLivros() {
-            var token = localStorage.getItem("token");
-
-            $.ajax({
-                method: "GET",
-                url: ipPython + "/livro", // Corrigir a rota para /livro
-                headers: {
-                    'Authorization': 'Bearer ' + token
-                },
-                success: function (livros) {
-                    $("#livrosList").empty(); // Limpa a lista antes de adicionar novos livros
-                    livros.livros.forEach(function (livro) { // Acesse a propriedade 'livros'
-                        var livroElement = $("#livroTemplate").clone();
-                        livroElement.attr("style", "display: block;"); // Exibe o template
-                        livroElement.find(".livro").attr("src", "http://192.168.1.153:5000/static/uploads/Livros/" + livro.id_livro + ".jpeg"); // Adiciona a imagem
-                        livroElement.find(".livro").attr("alt", livro.titulo); // Adiciona o título como alt
-                        livroElement.data("id", livro.id_livro); // Armazena o ID do livro
-                        $("#livrosList").append(livroElement);
-                    });
-                },
-
-                error: function (error) {
-                    console.error("Erro ao carregar livros:", error);
-                }
-            });
-        }
-
-        // Chama a função ao carregar a página
-        $(document).ready(function () {
-            carregarLivros();
-        });
-        // FIM DA FUNÇÃO (GET)
 
 
         // FUNÇÃO PARA EDITAR LIVROS (PUT):
         function editarLivro(button) {
             var livroElement = $(button).closest('.livro-hud');
-            var id = livroElement.data("id");
+            var id = livroElement.data("id_livro"); // Obtém o ID do livro
 
             // Fazer uma requisição para buscar os dados do livro
             $.ajax({
-                method: "GET", // Use GET para buscar os dados do livro
-                url: ipPython + "/livro",
+                method: "GET",
+                url: ipPython + "/livro/" + id, // Corrigir a URL para buscar o livro específico
                 headers: {
                     'Authorization': 'Bearer ' + localStorage.getItem("token")
                 },
                 success: function (livro) {
                     // Preenche o formulário com os dados do livro
-                    $("#titulo").val(livro.titulo);
-                    $("#autor").val(livro.autor);
-                    $("#data_publicacao").val(livro.data_publicacao);
-                    $("#ISBN").val(livro.ISBN);
-                    $("#descricao").val(livro.descricao);
-                    $("#quantidade").val(livro.quantidade);
-                    $("#categoria").val(livro.categoria);
-                    $("#formCadastroLivro").data("id", id); // Armazena o ID do livro no formulário
-                    $("#modalCadastroLivro").modal("show"); // Abre o modal
+                    $("#id_livro").val(livro.id_livro); // Adiciona o ID do livro ao campo oculto
+                    $("#tituloEditar").val(livro.titulo);
+                    $("#autorEditar").val(livro.autor);
+                    $("#data_publicacaoEditar").val(livro.data_publicacao);
+                    $("#ISBNEditar").val(livro.ISBN);
+                    $("#descricaoEditar").val(livro.descricao);
+                    $("#quantidadeEditar").val(livro.quantidade);
+                    $("#categoriaEditar").val(livro.categoria);
+                    $("#formEditarLivro").data("id", id); // Armazena o ID do livro no formulário
+                    $("#modalEditarLivro").modal("show"); // Abre o modal de edição
                 },
                 error: function (error) {
                     console.error("Erro ao carregar livro:", error);
@@ -342,18 +468,18 @@
             });
         }
 
-        // FUNÇÃO PARA SUBMETER O FORMULÁRIO DE EDIÇÃO
-        $("#formCadastroLivro").on("submit", function (e) {
+        // AQUI ENVIA O FORMULÁRIO DE EDIÇÃO
+        $("#formEditarLivro").on("submit", function (e) {
             e.preventDefault(); // Impede o comportamento padrão do formulário
 
             var token = localStorage.getItem("token");
-            var id = $(this).data("id"); // Obtém o ID do livro se estiver editando
+            var id = $("#formEditarLivro").data("id"); // Obtém o ID do livro se estiver editando
 
             var formData = new FormData(this); // Cria um FormData a partir do formulário
 
             $.ajax({
                 method: "PUT",
-                url: ipPython + "/livros/" + id,
+                url: ipPython + "/livros/" + id, // Corrigir a URL para incluir o ID do livro
                 headers: {
                     'Authorization': 'Bearer ' + token
                 },
@@ -367,6 +493,7 @@
                         icon: "success"
                     });
                     carregarLivros(); // Atualiza a lista de livros
+                    $("#modalEditarLivro").modal("hide"); // Fecha o modal de edição
                 },
                 error: function (retorno) {
                     Swal.fire({
@@ -378,6 +505,9 @@
             });
         });
         // FIM DA FUNÇÃO (PUT)
+
+
+
 
         // FUNÇÃO PARA DELETAR LIVROS (DELETE):
         function deletarLivro(button) {
