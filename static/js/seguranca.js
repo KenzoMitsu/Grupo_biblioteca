@@ -2,7 +2,7 @@
 var token = localStorage.getItem("token")
 // var cargo = localStorage.getItem("cargo")   
 
-if(!token) { //OBSERVAÇÃO PESSOAL! > Também da para fazer de maneira mais manual usando "token === undefined || token === null"
+if (!token) { //OBSERVAÇÃO PESSOAL! > Também da para fazer de maneira mais manual usando "token === undefined || token === null"
     Swal.fire({
         title: "Página restrita!",
         text: "Entre em uma conta para acessar essa página",
@@ -26,17 +26,6 @@ function LivrosFuncao(valor) {
     }
 }
 LivrosFuncao()
-
-
-var cargo = localStorage.getItem("cargo")
-
-if (cargo === 'ADM') {
-    document.getElementById("logoHeader").href = "homeADM.html"
-} else if (cargo === 'Bibliotecario') {
-    document.getElementById("logoHeader").href = "homeBiblio.html"
-} else {
-    document.getElementById("logoHeader").href = "home.html"
-}
 
 var cargo = localStorage.getItem("cargo")
 
