@@ -156,7 +156,8 @@ body.modo-escuro .item p {
 }
 
 body.modo-escuro .item {
-    border: 3px solid var(--branco);
+    border: 4
+    px solid var(--branco);
 }
 
 /* CABEÇALHO */
