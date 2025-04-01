@@ -7,7 +7,9 @@
     <title>Página inicial</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Sans+JP:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Sans+JP:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="../static/dist/assets/owl.carousel.min.css">
@@ -66,7 +68,8 @@
                 </div>
 
                 <ul class="dropdown-menu" id="dropdownMenu">
-                    <li class="menu-item"><i class="fa-solid fa-circle-user"></i><a href="editPerfil.html"> Perfil</a></li>
+                    <li class="menu-item"><i class="fa-solid fa-circle-user"></i><a href="editPerfil.html"> Perfil</a>
+                    </li>
                     <li class="menu-item"><i class="fas fa-book"></i><a href="emprestimos.html">Empréstimos</a></li>
                     <li class="menu-item"><i class="fas fa-sync-alt"></i><a href="historico.html">Histórico</a></li>
                     <li class="menu-item"><i class="fas fa-sign-out-alt"></i><button class="sair">Sair</button></li>
@@ -86,47 +89,12 @@
 
         <div class="container">
 
-            <h3>Mais Emprestados</h3>
+            <h3>Nossos Livros</h3>
             <!-- <div class="owl-carousel owl-theme"> -->
-            <div id="listaLivros">
-                
+            <div class="listalivros" id="listaLivros">
+
                 <div class="item">
-                    <a href="emprestimo.html">
-                        <img src="../static/img/Dicas-de-Livros_Férias-1-203x300.jpg" alt="">
-                    </a>
-                </div>
-            
-            </div>
-            <div class="row">
-                <h3>Destaques</h3>
-                <div class="owl-carousel owl-theme">
-                    <div class="item"><a href="emprestimo.html"><img src="../static/img/images (1).jpg" alt="" ></a></div>
-                    <div class="item"><a href="emprestimo.html"><img src="../static/img/images (2).jpg" alt=""></div></a>
-                    <div class="item"><a href="emprestimo.html"><img src="../static/img/images.jpg" alt=""></div></a>
-                    <div class="item"><a href="emprestimo.html"><img src="../static/img/livro2.jpg" alt=""></div></a>
-                    <div class="item"><a href="emprestimo.html"><img src="../static/img/download.jpg" alt=""></div></a>
-                    <div class="item"><a href="emprestimo.html"><img
-                            src="../static/img/o-menino-que-nao-sabia-ler_721-cd93d7bfeb34edf26916651663766400-640-0.jpg"
-                            alt=""></a></div>
-                    <div class="item"><a href="emprestimo.html"><img src="../static/img/livro-aprendendo-a-ler-nivel-2-o-rei-leao-653ff675c0a00.jpg"
-                            alt=""></a></div>
-                    <div class="item"><a href="emprestimo.html"><img src="../static/img/Dicas-de-Livros_Férias-1-203x300.jpg" alt=""></a></div>
-                </div>
-            </div>
-            <div class="row">
-                <h3>Reservados</h3>
-                <div class="owl-carousel owl-theme">
-                    <div class="item"><a href="emprestimo.html"><img src="../static/img/images (1).jpg" alt="" ></a></div>
-                    <div class="item"><a href="emprestimo.html"><img src="../static/img/images (2).jpg" alt=""></div></a>
-                    <div class="item"><a href="emprestimo.html"><img src="../static/img/images.jpg" alt=""></div></a>
-                    <div class="item"><a href="emprestimo.html"><img src="../static/img/livro2.jpg" alt=""></div></a>
-                    <div class="item"><a href="emprestimo.html"><img src="../static/img/download.jpg" alt=""></div></a>
-                    <div class="item"><a href="emprestimo.html"><img
-                            src="../static/img/o-menino-que-nao-sabia-ler_721-cd93d7bfeb34edf26916651663766400-640-0.jpg"
-                            alt=""></a></div>
-                    <div class="item"><a href="emprestimo.html"><img src="../static/img/livro-aprendendo-a-ler-nivel-2-o-rei-leao-653ff675c0a00.jpg"
-                            alt=""></a></div>
-                    <div class="item"><a href="emprestimo.html"><img src="../static/img/Dicas-de-Livros_Férias-1-203x300.jpg" alt=""></a></div>
+                    <img src="" alt="">
                 </div>
             </div>
         </div>
@@ -186,19 +154,19 @@
         // Verifica se o token está armazenado no Local Storage da própria web (SEGURANÇA DO SITE)
         var nome = localStorage.getItem("nome")
         document.getElementById("nomeUsuario").innerHTML = nome
-        
+
         document.querySelector(".menu-item button").addEventListener("click", function () {
             localStorage.clear(); // Remove todos os dados do localStorage
             window.location.href = "login.html"; // Redireciona para a página de login
         });
 
-        
+
         function carregaLivros() {
             var settings = {
-                "url":"http://192.168.1.153:5000/livro",
+                "url":"http://192.168.1.127:5000/livro",
                 "method": "GET",
                 "timeout": 0,
-                success: function(retorno) {
+                success: function (retorno) {
                     var html = document.getElementById("listaLivros")
                     html.innerHTML = " "
 
@@ -209,8 +177,10 @@
                                 <a href="emprestimo.html?id=${livro.id_livro}&ISBN=${livro.ISBN}&autor=${livro.autor}
                                 &categoria=${livro.categoria}&data_publicacao=${livro.data_publicacao}&descricao=${livro.descricao}
                                 &quantidade=${livro.quantidade}&titulo=${livro.titulo}">
+                                
+                                    <img src="http://192.168.1.127:5000/static/uploads/Livros/${livro.id_livro}.jpeg" alt="">
                                     <p>${livro.titulo}</p>
-                                    <img src="http://192.168.1.153:5000/static/uploads/Livros/${livro.id_livro}.jpeg" alt="">
+                                    
                                 </a>
                             </div>
                         `
@@ -224,6 +194,7 @@
         }
 
         carregaLivros()
+
     </script>
 
 </body>

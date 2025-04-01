@@ -447,7 +447,7 @@ input:checked + .slider:before {
 .logo_rodape {
     display: flex;
     justify-content: center;
-    height: 100px;
+    height: 75px;
 }
 
 .linha {

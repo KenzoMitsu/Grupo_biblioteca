@@ -15,6 +15,7 @@ a{
     --azul-claro: #4292DC;
     --azul-escuro: #0060BB;
     --branco: rgb(248, 252, 255);
+    --cinza: rgb(196, 197, 198);
     --preto: rgb(0, 0, 0);
     --cor-complementar: rgb(96, 209, 231);
     --escuro: rgb(36, 36, 36);
@@ -137,13 +138,11 @@ body.modo-escuro h1 {
 body.modo-escuro button {
     background-color: var(--branco);
     color: var(--escuro);
-    border: 3px solid var(--branco);
 }
 
 body.modo-escuro button:hover {
-    background-color: var(--escuro);
-    color: var(--branco);
-    border: 3px solid var(--branco);
+    background-color: var(--cinza);
+    transform: scale(1.05);
 }
 
 body.modo-escuro tbody {
@@ -177,7 +176,7 @@ body.modo-escuro #form-edicao button {
 }
 
 body.modo-escuro #form-edicao button:hover {
-    background-color: var(--branco);
+    background-color: var(--cinza);
 }
 
 body.modo-escuro #form-edicao select {
@@ -654,7 +653,7 @@ footer{
 .logo_rodape {
     display: flex;
     justify-content: center;
-    height: 100px;
+    height: 75px;
 }
 
 .linha {

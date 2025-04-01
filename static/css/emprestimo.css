@@ -32,8 +32,25 @@ a{
     cursor: pointer;
 }
 
-img {
+.imagemLivro {
     height: 150px;
+    border: 5px solid var(--azul-claro);
+    border-radius: 10px;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+}
+
+.pai {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.quantidade {
+    gap: 10px;
 }
 
 /* Header */
@@ -170,6 +187,21 @@ body.modo-escuro button {
 body.modo-escuro button:hover {
     background-color: var(--escuro);
     color: var(--branco);
+    border: 3px solid var(--branco);
+}
+
+body.modo-escuro .botao-reserva {
+    background-color: var(--escuro);
+    color: var(--branco);
+    border: 3px solid var(--branco);
+}
+
+body.modo-escuro .botao-reserva:hover {
+    background-color: var(--branco);
+    color: var(--escuro);
+}
+
+body.modo-escuro .imagemLivro {
     border: 3px solid var(--branco);
 }
 
@@ -332,8 +364,8 @@ h1 {
 }
 
 .pai1 {
+    justify-content: center;
     display: flex;
-    border-right: 1px solid;
     margin-right: 8px;
     margin-bottom: 50px
 }
@@ -369,7 +401,7 @@ h1 {
     margin-top: 20px;
     margin-bottom: 20px;
     background-color: var(--branco);
-    border: 5px solid var(--azul-claro);
+    border: 3px solid var(--azul-claro);
     border-radius: 5px;
     font-weight: bold;
     font-size: x-large;
@@ -391,7 +423,7 @@ h1 {
     margin-top: 20px;
     margin-bottom: 20px;
     background-color: var(--azul-claro);
-    border: 5px solid var(--azul-claro);
+    border: 3px solid var(--azul-claro);
     border-radius: 5px;
     font-weight: bold;
     font-size: x-large;
@@ -401,7 +433,6 @@ h1 {
 .botao-emprestimo:hover {
     background-color: var(--brancoo);
     color: var(--azul-claro);
-    border: 5px solid var(--azul-claro);
     transition: 0.2s;
 }
 
@@ -575,7 +606,7 @@ h1 {
 .logo_rodape {
     display: flex;
     justify-content: center;
-    height: 100px;
+    height: 75px;
 }
 
 .linha {
