@@ -91,16 +91,12 @@
 
             <h3>Nossos Livros</h3>
             <!-- <div class="owl-carousel owl-theme"> -->
-            <div id="listaLivros">
+            <div class="listalivros" id="listaLivros">
 
                 <div class="item">
-                    <a href="emprestimo.html">
-                        <img src="" alt="">
-                    </a>
+                    <img src="" alt="">
                 </div>
-
             </div>
-
         </div>
     </main>
 
@@ -167,7 +163,7 @@
 
         function carregaLivros() {
             var settings = {
-                "url": ipPython + "/livro",
+                "url":"http://192.168.1.127:5000/livro",
                 "method": "GET",
                 "timeout": 0,
                 success: function (retorno) {
@@ -181,8 +177,10 @@
                                 <a href="emprestimo.html?id=${livro.id_livro}&ISBN=${livro.ISBN}&autor=${livro.autor}
                                 &categoria=${livro.categoria}&data_publicacao=${livro.data_publicacao}&descricao=${livro.descricao}
                                 &quantidade=${livro.quantidade}&titulo=${livro.titulo}">
-                                    <p>${livro.titulo}</p>
+                                
                                     <img src="http://192.168.1.127:5000/static/uploads/Livros/${livro.id_livro}.jpeg" alt="">
+                                    <p>${livro.titulo}</p>
+                                    
                                 </a>
                             </div>
                         `
