@@ -173,6 +173,17 @@ body.modo-escuro button:hover {
     border: 3px solid var(--branco);
 }
 
+body.modo-escuro .botao-reserva {
+    background-color: var(--escuro);
+    color: var(--branco);
+    border: 3px solid var(--branco);
+}
+
+body.modo-escuro .botao-reserva:hover {
+    background-color: var(--branco);
+    color: var(--escuro);
+}
+
 /* Logo */
 .header-left img {
     width: 50px;
@@ -369,7 +380,7 @@ h1 {
     margin-top: 20px;
     margin-bottom: 20px;
     background-color: var(--branco);
-    border: 5px solid var(--azul-claro);
+    border: 3px solid var(--azul-claro);
     border-radius: 5px;
     font-weight: bold;
     font-size: x-large;
@@ -391,7 +402,7 @@ h1 {
     margin-top: 20px;
     margin-bottom: 20px;
     background-color: var(--azul-claro);
-    border: 5px solid var(--azul-claro);
+    border: 3px solid var(--azul-claro);
     border-radius: 5px;
     font-weight: bold;
     font-size: x-large;
@@ -401,7 +412,6 @@ h1 {
 .botao-emprestimo:hover {
     background-color: var(--brancoo);
     color: var(--azul-claro);
-    border: 5px solid var(--azul-claro);
     transition: 0.2s;
 }
 
