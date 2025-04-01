@@ -362,6 +362,32 @@ label{
     padding: 8px;
 }
 
+.mb-3 {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.formEditarLivro .mb-3 input {
+    border-radius: 5px;
+    margin-bottom: 10px;
+    border: 3px solid #3380ca;
+    background-color:#eef3ff;
+    font-weight: bold;
+}
+
+.formEditarLivro .mb-3 label {
+    font-weight: bold
+}
+
+.formCadastroLivro .mb-3 input {
+    border-radius: 5px;
+    margin-bottom: 10px;
+    border: 3px solid #3380ca;
+    background-color:#eef3ff;
+    font-weight: bold;
+}
+
 .livro-hud button {
     border: none;
     background: none;
