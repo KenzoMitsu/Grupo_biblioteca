@@ -164,6 +164,11 @@ body.modo-escuro .btn-senha-mudar:hover{
     color: var(--escuro);
 }
 
+body.modo-escuro #imgPreview {
+    -webkit-filter: invert(100%); /* Safari/Chrome */
+    filter: invert(100%);
+}
+
 .sair{
     background-color: #00010000;
     border: #00010000;
