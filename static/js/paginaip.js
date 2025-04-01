@@ -12,3 +12,5 @@ function formatarData(dataISO) {
 
     return `${dia}/${mes}/${ano}`;
   }
+
+

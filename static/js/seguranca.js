@@ -23,3 +23,11 @@ if (cargo === 'ADM') {
 } else {
     document.getElementById("logoHeader").href = "home.html"
 }
+
+var cargo = localStorage.getItem("cargo")
+
+if (cargo === 'ADM') {
+    document.getElementById("btn_voltar").href = "homeADM.html"
+} else if (cargo === 'Bibliotecario') {
+    document.getElementById("btn_voltar").href = "homeBiblio.html"
+}
