@@ -34,7 +34,7 @@ a{
 
 .imagemLivro {
     height: 150px;
-    border: 5px solid var(--azul-claro);
+    border: 3px solid var(--escuro);
     border-radius: 10px;
 }
 
