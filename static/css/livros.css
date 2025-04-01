@@ -274,18 +274,21 @@ input:checked + .slider:before {
     }
 }
 
+.bot {
+    display: flex;
+    justify-content: center;
+}
 
 .add-btn{
     margin: 20px;
     background-color: #4292dc;
-    color: white;
+    color: var(--branco);
     display: flex;
-    align-items: center;
     gap: 10px;
+    align-items: center;
     padding: 10px;
     border-radius: 5px;
     cursor: pointer;
-    width: 200; 
     border: 3px solid #4292dc;
     font-weight: bold;
     margin-bottom: 100px;
