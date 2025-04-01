@@ -147,6 +147,18 @@ body.modo-escuro .span {
     color: var(--escuro);
 }
 
+body.modo-escuro .titulo {
+    color: var(--branco);
+}
+
+body.modo-escuro .item p {
+    color: var(--branco);
+}
+
+body.modo-escuro .item {
+    border: 3px solid var(--branco);
+}
+
 img {
     height: 200px;
 }

@@ -201,6 +201,10 @@ body.modo-escuro .botao-reserva:hover {
     color: var(--escuro);
 }
 
+body.modo-escuro .imagemLivro {
+    border: 3px solid var(--branco);
+}
+
 /* Logo */
 .header-left img {
     width: 50px;
