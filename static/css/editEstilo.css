@@ -153,6 +153,17 @@ body.modo-escuro .form-grid label {
     color: var(--branco);
 }
 
+body.modo-escuro .btn-senha-mudar {
+    background-color: var(--escuro);
+    color: var(--branco);
+    border: 3px solid var(--branco);
+}
+
+body.modo-escuro .btn-senha-mudar:hover{
+    background-color: var(--branco);
+    color: var(--escuro);
+}
+
 .sair{
     background-color: #00010000;
     border: #00010000;
@@ -527,7 +538,7 @@ input {
 }
 
 .btn-save {
-    padding: 10px 150px;
+    padding: 10px 175px;
     cursor: pointer;
     margin-top: 15px;
     color: var(--branco);
