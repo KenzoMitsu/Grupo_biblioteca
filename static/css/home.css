@@ -156,7 +156,8 @@ body.modo-escuro .item p {
 }
 
 body.modo-escuro .item {
-    border: 4px solid var(--branco);
+    border: 4
+    px solid var(--branco);
 }
 
 /* CABEÇALHO */
@@ -422,7 +423,7 @@ input:checked + .slider:before {
     justify-content: space-between;
     border: 4px solid #007bff;;
     border-radius: 10px;
-    text-align: center;2
+    text-align: center;
 }
 
 .item img {
