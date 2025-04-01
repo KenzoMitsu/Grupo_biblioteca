@@ -279,6 +279,15 @@ input:checked + .slider:before {
     justify-content: center;
 }
 
+.modal-header {
+    background-color: #0060BB;
+    color: var(--branco);
+}
+
+.modal-header .btn-close {
+    color: var(--branco);
+}
+
 .add-btn{
     margin: 20px;
     background-color: #4292dc;
@@ -364,16 +373,15 @@ label{
 
 .mb-3 {
     display: flex;
-    gap: 10px;
-    align-items: center;
+    gap: 15px;
 }
 
 .formEditarLivro .mb-3 input {
     border-radius: 5px;
     margin-bottom: 10px;
-    border: 3px solid #3380ca;
+    padding-left: 7px;
+    border: 1px solid #3380ca;
     background-color:#eef3ff;
-    font-weight: bold;
 }
 
 .formEditarLivro .mb-3 label {
@@ -383,8 +391,12 @@ label{
 .formCadastroLivro .mb-3 input {
     border-radius: 5px;
     margin-bottom: 10px;
-    border: 3px solid #3380ca;
+    padding-left: 7px;
+    border: 1px solid #3380ca;
     background-color:#eef3ff;
+}
+
+.formCadastroLivro .mb-3 label {
     font-weight: bold;
 }
 
