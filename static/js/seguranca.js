@@ -12,3 +12,14 @@ if(!token) { //OBSERVAÇÃO PESSOAL! > Também da para fazer de maneira mais man
         window.location.href = "login.html"
     })
 }
+
+
+var cargo = localStorage.getItem("cargo")
+
+if (cargo === 'ADM') {
+    document.getElementById("logoHeader").href = "homeADM.html"
+} else if (cargo === 'Bibliotecario') {
+    document.getElementById("logoHeader").href = "homeBiblio.html"
+} else {
+    document.getElementById("logoHeader").href = "home.html"
+}
