@@ -111,8 +111,7 @@
     <div class="modal fade"
         id="modalCadastroLivro"
         tabindex="-1"
-        aria-labelledby="modalCadastroLivroLabel"
-        aria-hidden="true">
+        aria-labelledby="modalCadastroLivroLabel">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -196,7 +195,7 @@
     <div class="modal fade"
         id="modalEditarLivro" 
         tabindex="-1" 
-        aria-labelledby="modalEditarLivroLabel" aria-hidden="true">
+        aria-labelledby="modalEditarLivroLabel">
 
         <div class="modal-dialog">
 
@@ -339,7 +338,7 @@
                         livroElement.attr("style", "display: block;"); // Exibe o template
                         livroElement.find(".livro").attr("src", ipPython + "/static/uploads/Livros/" + livro.id_livro + ".jpeg"); // Adiciona a imagem
                         livroElement.find(".livro").attr("alt", livro.titulo); // Adiciona o título como alt
-                        livroElement.data("id", livro.id_livro); // Armazena o ID do livro
+                        livroElement.data("id_livro", livro.id_livro); // Armazena o ID do livro
                         $("#livrosList").append(livroElement);
                     });
                 },
@@ -449,7 +448,8 @@
                 headers: {
                     'Authorization': 'Bearer ' + localStorage.getItem("token")
                 },
-                success: function (livro) {
+                success: function (response) {
+                    const livro = response.livros[0]
                     // Preenche o formulário com os dados do livro
                     $("#id_livro").val(livro.id_livro); // Adiciona o ID do livro ao campo oculto
                     $("#tituloEditar").val(livro.titulo);
