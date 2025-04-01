@@ -5,6 +5,18 @@
     font-family: "Montserrat", sans-serif; 
 }
 
+
+:root{
+    --azul: #3380ca;
+    --azul-claro: #4292DC;
+    --azul-escuro: #0060BB;
+    --branco: rgb(248, 252, 255);
+    --preto: rgb(0, 0, 0);
+    --cor-complementar: rgb(96, 209, 231);
+    --escuro: rgb(36, 36, 36);
+    --azul-modoescuro: #73A8FE;
+}
+
 a{
     text-decoration: none;
     color:black;
@@ -17,18 +29,6 @@ a{
     background-color: #00010000;
     border: #00010000;
     color: black;
-}
-
-
-:root{
-    --azul: #3380ca;
-    --azul-claro: #4292DC;
-    --azul-escuro: #0060BB;
-    --branco: rgb(248, 252, 255);
-    --preto: rgb(0, 0, 0);
-    --cor-complementar: rgb(96, 209, 231);
-    --escuro: rgb(36, 36, 36);
-    --azul-modoescuro: #73A8FE;
 }
 
 .item img{
@@ -157,10 +157,6 @@ body.modo-escuro .item p {
 
 body.modo-escuro .item {
     border: 3px solid var(--branco);
-}
-
-img {
-    height: 200px;
 }
 
 /* CABEÇALHO */
@@ -406,8 +402,11 @@ input:checked + .slider:before {
 }
 
 .titulo {
+    margin: 20px;
     color: var(--azul);
     text-align: center;
+    font-weight: bold;
+    font-size: xx-large;
 }
 
 .listalivros {
@@ -420,13 +419,26 @@ input:checked + .slider:before {
 
 .item {
     padding: 10px;
-    border: 3px solid #007bff;;
-    border-radius: 7px;
+    border: 4px solid #007bff;;
+    border-radius: 10px;
     text-align: center;
+    align-items: center;
 }
 
 .item img {
-    max-width: 150px;
+    width: 300px;
+    height: 250px;
+    max-width: 200px;
+    max-height: 300px;
+    border-radius: 10px;
+    border: 2px solid var(--escuro);
+}
+
+.item p {
+    font-weight: bold;
+    display: block;
+    margin-top: 20px;
+    font-size: larger;
 }
 
 /* RODAPÉ */
