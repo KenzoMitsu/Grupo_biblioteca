@@ -14,6 +14,20 @@ if(!token) { //OBSERVAÇÃO PESSOAL! > Também da para fazer de maneira mais man
 }
 
 
+function LivrosFuncao(valor) {
+    var quantidade = params.get('quantidade')
+
+    if (quantidade > 0) {
+        document.getElementById("btn_emprestimo").style.display = "inline-block";
+        document.getElementById("btn_reserva").style.display = "none";
+    } else {
+        document.getElementById("btn_emprestimo").style.display = "none";
+        document.getElementById("btn_reserva").style.display = "inline-block";
+    }
+}
+LivrosFuncao()
+
+
 var cargo = localStorage.getItem("cargo")
 
 if (cargo === 'ADM') {
@@ -30,4 +44,6 @@ if (cargo === 'ADM') {
     document.getElementById("btn_voltar").href = "homeADM.html"
 } else if (cargo === 'Bibliotecario') {
     document.getElementById("btn_voltar").href = "homeBiblio.html"
+} else {
+    document.getElementById("btn_voltar").href = "home.html"
 }

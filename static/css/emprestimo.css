@@ -373,6 +373,7 @@ h1 {
 .display-pai {
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
 
 .filho2 {
@@ -434,6 +435,41 @@ h1 {
     background-color: var(--brancoo);
     color: var(--azul-claro);
     transition: 0.2s;
+}
+
+
+.botao-voltar {
+    text-align: center;
+    padding-top: 7.5px;
+    padding-bottom: 7.5px;
+    padding-left: 76px;
+    padding-right: 76px;
+    color: var(--branco);
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background-color: var(--azul-claro);
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: larger; 
+    transition: 0.5s;
+}
+
+.botao-voltar:hover {
+    background-color: var(--azul-escuro);
+    color: var(--branco);
+    transition: 0.5s;
+    font-size: x-large;
+}
+
+.voltar {
+    align-items: center;
+}
+
+.pai2 {
+    display: flex;
+    justify-content: center;
+    text-align: center;
 }
 
 /* RODAPÉ */
