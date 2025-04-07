@@ -571,9 +571,13 @@ label{
 }
 @media (max-width: 380px){
     .logo_rodape{
-        width: 80px;
+        width: 60px;
+    }
+    .formCadastroLivro .mb-3 input{
+        width: 165px;
     }
 }
+
 
 
 .nomeUsuario {
