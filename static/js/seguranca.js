@@ -14,25 +14,28 @@ if (!token) { //OBSERVAÇÃO PESSOAL! > Também da para fazer de maneira mais ma
 }
 
 
-function LivrosFuncao(valor) {
-    var quantidade = params.get('quantidade')
-
-    if (quantidade > 0) {
-        document.getElementById("btn_emprestimo").style.display = "inline-block";
-        document.getElementById("btn_reserva").style.display = "none";
-    } else {
-        document.getElementById("btn_emprestimo").style.display = "none";
-        document.getElementById("btn_reserva").style.display = "inline-block";
-    }
-}
-LivrosFuncao()
-
 var cargo = localStorage.getItem("cargo")
 
+console.log(cargo)
+
 if (cargo === 'ADM') {
-    document.getElementById("btn_voltar").href = "homeADM.html"
+    document.getElementById("logoHeader").href = "homeADM.html"
+
+    console.log("HENRIQUE TANGAO")
+    document.getElementById("biblio").style.display = "none";
+    document.getElementById("cliente").style.display = "none";
+    document.getElementById("adm").style.display = "inline-block";
+
 } else if (cargo === 'Bibliotecario') {
-    document.getElementById("btn_voltar").href = "homeBiblio.html"
+    document.getElementById("logoHeader").href = "homeBiblio.html"
+
+    document.getElementById("adm").style.display = "none";
+    document.getElementById("cliente").style.display = "none";
+    document.getElementById("biblio").style.display = "inline-block";
 } else {
-    document.getElementById("btn_voltar").href = "home.html"
+    document.getElementById("logoHeader").href = "home.html"
+
+    document.getElementById("biblio").style.display = "none";
+    document.getElementById("adm").style.display = "none";
+    document.getElementById("cliente").style.display = "inline-block";
 }
