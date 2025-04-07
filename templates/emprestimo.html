@@ -211,10 +211,18 @@
                     "Authorization": token,
                 },
                 "success": function(retorno) {
-                    alert(retorno.message)
+                    Swal.fire({
+                        title: "Sucesso!",
+                        text: retorno.message,
+                        icon: "success"
+                    })
                 },
                 "error": function (retorno) {
-                    alert(retorno?.error || "Ocorreu um erro na API")
+                    Swal.fire({
+                        title: "Erro!",
+                        text: JSON.parse(retorno.responseText).erro,
+                        icon: "error"
+                    })
                 }
             };
 
