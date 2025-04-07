@@ -717,6 +717,9 @@ input {
     color: var(--branco);
 }
 
+footer{
+    margin-top: 50px;
+}
 
 @media (max-width: 480px) {
     
@@ -747,7 +750,13 @@ input {
         margin: 5px;
     }
 }
+
 @media (max-width: 380px){
+
+    h3 {
+        text-align: center;
+    }
+
     .logo_rodape{
         display: none;
     }
@@ -771,5 +780,11 @@ input {
 
     .display {
         justify-content: center;
+    }
+    .nomeUsuario{
+        font-size: 15px
+    }
+    .span{
+        font-size: 15px
     }
 }
