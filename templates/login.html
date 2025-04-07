@@ -94,38 +94,35 @@
 
                     success: function (retorno) {
 
-                        localStorage.setItem("token", retorno.token)
-                        localStorage.setItem("id_usuario", retorno.usuario.id_usuario)
-                        localStorage.setItem("nome", retorno.usuario.nome)
-                        localStorage.setItem("cargo", retorno.usuario.cargo)
-                        localStorage.setItem("email", retorno.usuario.email)
-                        localStorage.setItem("multa", retorno.usuario.multa)
-                        localStorage.setItem("data_nascimento", retorno.usuario.data_nascimento)
-                        localStorage.setItem("telefone", retorno.usuario.telefone)
-                        localStorage.setItem("imagem_usuario", retorno.usuario.imagem_usuario)
+localStorage.setItem("token", retorno.token)
+localStorage.setItem("id_usuario", retorno.usuario.id_usuario)
+localStorage.setItem("nome", retorno.usuario.nome)
+localStorage.setItem("cargo", retorno.usuario.cargo)
+localStorage.setItem("email", retorno.usuario.email)
+localStorage.setItem("multa", retorno.usuario.multa)
+localStorage.setItem("data_nascimento", retorno.usuario.data_nascimento)
+localStorage.setItem("telefone", retorno.usuario.telefone)
+localStorage.setItem("imagem_usuario", retorno.usuario.imagem_usuario)
 
-                        var cargo = localStorage.getItem("cargo")
+var cargo = localStorage.getItem("cargo")
 
-                        if (cargo === "ADM") {
-                            Swal.fire({
-                                title: "Sucesso!",
-                                text: "Login de ADM realizado com sucesso",
-                                icon: "success"
-                            })
-                        } else if (cargo === "Biblitecario") {
-                            Swal.fire({
-                                title: "Sucesso!",
-                                text: "Login de Biblitecário realizado com sucesso",
-                                icon: "success"
-                            })
-                        } else {
-                            Swal.fire({
-                                title: "Sucesso!",
-                                text: "Login realizado com sucesso",
-                                icon: "success"
-                            })
-                        };
-                    },
+let mensagem = "Login realizado com sucesso"
+
+if (cargo === "ADM") {
+    mensagem = "Login de ADM realizado com sucesso"
+} else if (cargo === "Biblitecario") {
+    mensagem = "Login de Biblitecário realizado com sucesso"
+}
+
+Swal.fire({
+    title: "Sucesso!",
+    text: mensagem,
+    icon: "success"
+}).then(() => {
+    // Redireciona após o alerta
+    window.location.href = "home.html";
+});
+},
 
                     error: function (retorno) {
                         Swal.fire({
