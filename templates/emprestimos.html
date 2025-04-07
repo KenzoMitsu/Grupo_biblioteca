@@ -7,7 +7,9 @@
     <title>Histórico</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Sans+JP:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Sans+JP:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="../static/dist/assets/owl.carousel.min.css">
@@ -36,7 +38,7 @@
     <header>
         <!-- Logo -->
         <div class="header-left">
-            <a id="logoHeader" href=""><img src="../static/img/logo.png" alt="Logo"></a>
+            <a id="logoHeader" href="home.html"><img src="../static/img/logo.png" alt="Logo"></a>
         </div>
 
         <!-- Barra de Pesquisa -->
@@ -62,16 +64,59 @@
         <div class="header-end">
             <div class="menu-container">
                 <div class="menu-icon" id="menuButton">
-                    <div></div>
-                    <div></div>
-                    <div></div>
+                    <div class="menulinha"></div>
+                    <div class="menulinha"></div>
+                    <div class="menulinha"></div>
                 </div>
+
                 <ul class="dropdown-menu" id="dropdownMenu">
-                    <li class="menu-item"><i class="fa-solid fa-circle-user"></i><a href="editPerfil.html"> Perfil</a></li>
-                    <li class="menu-item"><i class="fas fa-book"></i><a href="emprestimos.html">Empréstimos</a></li>
-                    <li class="menu-item"><i class="fas fa-sync-alt"></i><a href="historico.html">Histórico</a></li>
-                    <li class="menu-item"><i class="fas fa-sign-out-alt"></i><button class="sair ">Sair</button></li>
+
+                    <li class="menu-item"><i class="fa-solid fa-circle-user"></i><a id="editPerfil" href="editPerfil.html"> Perfil</a>
+                    </li>
+
+                    <div id="cliente">
+                        <li class="menu-item"><i class="fas fa-book"></i><a href="emprestimos.html">Empréstimos</a></li>
+                        <li class="menu-item"><i class="fas fa-sync-alt"></i><a href="historico.html">Histórico</a></li>
+                    </div>
+
+
+
+                    <div id="adm">
+                        <li class="menu-item"><i class="fa-solid fa-user-plus"></i><a
+                                href="addUsuarioADM.html">Adicionar Usuário</a></li>
+
+                        <li class="menu-item"><i class="fas fa-user"></i><a href="usuariosADM.html"> Gerenciar
+                                Usuários</a></li>
+
+                        <li class="menu-item"><i class="fa-solid fa-file-export"></i><a
+                                href="relatoriosADM.html">Relatórios</li></a>
+
+                        <li class="menu-item"><i class="fa-solid fa-cash-register"></i><a
+                                href="multasADM.html">Gerenciar Multas</li></a>
+
+                        <li class="menu-item"><i class="fas fa-book"></i><a href="editLivrosADM.html">Gerenciar Livros
+                        </li></a>
+
+                        <li class="menu-item"><i class="fas fa-sync-alt"></i><a href="emprestimosADM.html">Empréstimos
+                        </li></a>
+
+                    </div>
+
+                    <div id="biblio">
+                        <li class="menu-item"><i class="fas fa-book"></i><a href="emprestimosBiblio.html">
+                                Empréstimos</a></li>
+
+                        <li class="menu-item"><i class="fa-solid fa-file-export"></i><a
+                                href="relatoriosBiblio.html">Relatórios</a></li>
+
+                        <li class="menu-item"><i class="fas fa-sync-alt"></i><a href="livrosBiblio.html"> Gerenciar
+                                Livros</a></li>
+                    </div>
+
+                    <li class="menu-item"><i class="fas fa-sign-out-alt"></i><button class="sair ">Sair</button>
+                    </li>
                 </ul>
+
             </div>
         </div>
     </header>
@@ -123,15 +168,15 @@
 
         <div class="rodape-inter">
             <div class="informacao">
-                    <p class="informacoes">INFORMAÇÕES</p>
-                    <div class="linha"></div>
-                    <div class="display">
-                        <i class="fa-solid fa-envelope icons"></i>
-                        <p class="text">asa.literaria@email.com</p>
-                    </div>
-                    <div class="display">
-                        <i class="fa-solid fa-phone icons"></i>
-                        <p class="text">(18)99999-9999</p>
+                <p class="informacoes">INFORMAÇÕES</p>
+                <div class="linha"></div>
+                <div class="display">
+                    <i class="fa-solid fa-envelope icons"></i>
+                    <p class="text">asa.literaria@email.com</p>
+                </div>
+                <div class="display">
+                    <i class="fa-solid fa-phone icons"></i>
+                    <p class="text">(18)99999-9999</p>
                 </div>
             </div>
             <div class="imagem">

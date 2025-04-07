@@ -35,7 +35,7 @@
     <header>
         <!-- Logo -->
         <div class="header-left">
-            <a id="logoHeader" href="homeADM.html"><img src="../static/img/logo.png" alt="Logo"></a>
+            <a id="logoHeader" href="home.html"><img src="../static/img/logo.png" alt="Logo"></a>
         </div>
 
         <!-- Barra de Pesquisa -->
@@ -61,26 +61,59 @@
         <div class="header-end">
             <div class="menu-container">
                 <div class="menu-icon" id="menuButton">
-                    <div></div>
-                    <div></div>
-                    <div></div>
+                    <div class="menulinha"></div>
+                    <div class="menulinha"></div>
+                    <div class="menulinha"></div>
                 </div>
+
                 <ul class="dropdown-menu" id="dropdownMenu">
-                    <li class="menu-item"><i class="fa-solid fa-circle-user"></i><a href="editPerfilADM.html">Perfil</a>
+
+                    <li class="menu-item"><i class="fa-solid fa-circle-user"></i><a id="editPerfil" href="editPerfil.html"> Perfil</a>
                     </li>
-                    <li class="menu-item"><i class="fa-solid fa-circle-user"></i><a href="addUsuarioADM.html">Adicionar usuário</a>
+
+                    <div id="cliente">
+                        <li class="menu-item"><i class="fas fa-book"></i><a href="emprestimos.html">Empréstimos</a></li>
+                        <li class="menu-item"><i class="fas fa-sync-alt"></i><a href="historico.html">Histórico</a></li>
+                    </div>
+
+
+
+                    <div id="adm">
+                        <li class="menu-item"><i class="fa-solid fa-user-plus"></i><a
+                                href="addUsuarioADM.html">Adicionar Usuário</a></li>
+
+                        <li class="menu-item"><i class="fas fa-user"></i><a href="usuariosADM.html"> Gerenciar
+                                Usuários</a></li>
+
+                        <li class="menu-item"><i class="fa-solid fa-file-export"></i><a
+                                href="relatoriosADM.html">Relatórios</li></a>
+
+                        <li class="menu-item"><i class="fa-solid fa-cash-register"></i><a
+                                href="multasADM.html">Gerenciar Multas</li></a>
+
+                        <li class="menu-item"><i class="fas fa-book"></i><a href="editLivrosADM.html">Gerenciar Livros
+                        </li></a>
+
+                        <li class="menu-item"><i class="fas fa-sync-alt"></i><a href="emprestimosADM.html">Empréstimos
+                        </li></a>
+
+                    </div>
+
+                    <div id="biblio">
+                        <li class="menu-item"><i class="fas fa-book"></i><a href="emprestimosBiblio.html">
+                                Empréstimos</a></li>
+
+                        <li class="menu-item"><i class="fa-solid fa-file-export"></i><a
+                                href="relatoriosBiblio.html">Relatórios</a></li>
+
+                        <li class="menu-item"><i class="fas fa-sync-alt"></i><a href="livrosBiblio.html"> Gerenciar
+                                Livros</a></li>
+                    </div>
+
+                    <li class="menu-item"><i class="fas fa-sign-out-alt"></i><button class="sair ">Sair</button>
                     </li>
-                    <li class="menu-item"><i class="fas fa-user"></i><a href="usuariosADM.html"> Gerenciar Usuários</a>
-                    </li>
-                    <li class="menu-item"><i class="fa-solid fa-file-export"></i><a href="relatoriosADM.html">Relatórios
-                    </li></a>
-                    <li class="menu-item"><i class="fa-solid fa-cash-register"></i><a href="multasADM.html">Gerenciar multas</li></a>
-                    <li class="menu-item"><i class="fas fa-book"></i><a href="editLivrosADM.html">Gerenciar livros</li>
-                    </a>
-                    <li class="menu-item"><i class="fas fa-sync-alt"></i><a href="emprestimosADM.html">Empréstimos</li>
-                    </a>
-                    <li class="menu-item"><i class="fas fa-sign-out-alt"></i>Sair</li>
                 </ul>
+
             </div>
         </div>
     </header>
@@ -98,7 +131,8 @@
         <div class="livro-hud" id="livroTemplate" style="display: none;">
             <img class="livro" src="../static/img/placeholder.jpg" alt="Capa do Livro">
             <div class="actions">
-                <button class="edit" data-bs-toggle="modal" data-bs-target="#modalEditarLivro" onclick="editarLivro(this)">
+                <button class="edit" data-bs-toggle="modal" data-bs-target="#modalEditarLivro"
+                    onclick="editarLivro(this)">
                     Editar
                 </button>
 
@@ -110,10 +144,7 @@
     </section>
 
     <!-- MODAL PARA CADASTRO DE LIVRO -->
-    <div class="modal fade"
-        id="modalCadastroLivro"
-        tabindex="-1"
-        aria-labelledby="modalCadastroLivroLabel">
+    <div class="modal fade" id="modalCadastroLivro" tabindex="-1" aria-labelledby="modalCadastroLivroLabel">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -195,15 +226,12 @@
 
 
     <!-- MODAL PARA EDIÇÃO DE LIVROS -->
-    <div class="modal fade"
-        id="modalEditarLivro" 
-        tabindex="-1" 
-        aria-labelledby="modalEditarLivroLabel">
+    <div class="modal fade" id="modalEditarLivro" tabindex="-1" aria-labelledby="modalEditarLivroLabel">
 
         <div class="modal-dialog">
 
             <div class="modal-content">
-                
+
                 <div class="modal-header">
                     <h5 class="modal-title" id="modalEditarLivroLabel">Editar Livro</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -218,34 +246,40 @@
 
                         <div class="mb-3">
                             <label class="bloco">Titulo:</label>
-                            <input type="text" placeholder="Titulo do livro" class="inserir" id="tituloEditar" name="titulo" required>
+                            <input type="text" placeholder="Titulo do livro" class="inserir" id="tituloEditar"
+                                name="titulo" required>
                         </div>
-    
+
                         <div class="mb-3">
                             <label class="bloco">Autor:</label>
-                            <input type="text" placeholder="Nome do autor" class="inserir" id="autorEditar" name="autor" required>
+                            <input type="text" placeholder="Nome do autor" class="inserir" id="autorEditar" name="autor"
+                                required>
                         </div>
-    
+
                         <div class="mb-3">
                             <label class="bloco">Data de publicação:</label>
-                            <input type="date" class="inserir" id="data_publicacaoEditar" name="data_publicacao" required>
+                            <input type="date" class="inserir" id="data_publicacaoEditar" name="data_publicacao"
+                                required>
                         </div>
-    
+
                         <div class="mb-3">
                             <label class="bloco">ISBN:</label>
-                            <input type="text" placeholder="ISBN do livro" class="inserir" id="ISBNEditar" name="ISBN" required>
+                            <input type="text" placeholder="ISBN do livro" class="inserir" id="ISBNEditar" name="ISBN"
+                                required>
                         </div>
-    
+
                         <div class="mb-3">
                             <label class="bloco">Descrição:</label>
-                            <input type="text" placeholder="Conte um pouco sobre o livro" class="inserir" id="descricaoEditar" name="descricao">
+                            <input type="text" placeholder="Conte um pouco sobre o livro" class="inserir"
+                                id="descricaoEditar" name="descricao">
                         </div>
-    
+
                         <div class="mb-3">
                             <label class="bloco">Quantidade:</label>
-                            <input type="number" placeholder="Ex.: 1, 2 ou 3" class="inserir" id="quantidadeEditar" name="quantidade" required>
+                            <input type="number" placeholder="Ex.: 1, 2 ou 3" class="inserir" id="quantidadeEditar"
+                                name="quantidade" required>
                         </div>
-    
+
                         <div class="mb-3">
                             <label for="categoriaEditar" class="coisa">Categoria:</label>
                             <select class="inserir" name="categoria" id="categoriaEditar">
@@ -257,13 +291,14 @@
                                 <option value="Diario">Diário</option>
                             </select>
                         </div>
-    
+
                         <div class="mb-3">
                             <label for="imagemEditar" class="form-label">Imagem do Livro</label>
                             <input type="file" class="form-control" id="imagemEditar" name="imagem" accept="image/*">
-                            <img id="previewImagemEditar" src="" alt="Pré-visualização da Imagem" style="display: none; margin-top: 10px; max-width: 100%; height: auto;">
+                            <img id="previewImagemEditar" src="" alt="Pré-visualização da Imagem"
+                                style="display: none; margin-top: 10px; max-width: 100%; height: auto;">
                         </div>
-    
+
                         <button type="submit" class="save-btn">Salvar Alterações</button>
                     </form>
                 </div>
@@ -378,7 +413,7 @@
             }
         });
 
-    
+
 
         // FUNÇÃO PARA EXIBIR A PRÉ-VISUALIZAÇÃO DA IMAGEM DO LIVRO NO EDITAR:
         $("#imagemEditar").on("change", function (e) {
