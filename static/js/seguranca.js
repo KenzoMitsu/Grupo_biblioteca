@@ -19,15 +19,21 @@ var cargo = localStorage.getItem("cargo")
 console.log(cargo)
 
 if (cargo === 'ADM') {
+    document.getElementById("logoHeader").href = "home.html"
+
     document.getElementById("biblio").style.display = "none";
     document.getElementById("cliente").style.display = "none";
     document.getElementById("adm").style.display = "inline-block";
 
 } else if (cargo === 'Bibliotecario') {
+    document.getElementById("logoHeader").href = "home.html"
+    
     document.getElementById("adm").style.display = "none";
     document.getElementById("cliente").style.display = "none";
     document.getElementById("biblio").style.display = "inline-block";
 } else {
+    document.getElementById("logoHeader").href = "home.html"
+    
     document.getElementById("biblio").style.display = "none";
     document.getElementById("adm").style.display = "none";
     document.getElementById("cliente").style.display = "inline-block";
