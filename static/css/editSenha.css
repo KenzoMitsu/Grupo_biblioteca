@@ -276,7 +276,7 @@ input:checked + .slider:before {
     }
 
     .menu-icon div {
-        height: 3px;
+        height: 4px;
         background-color: #fff;
     }
 }
@@ -435,8 +435,11 @@ input {
 }
 
 .btn-save:hover {
-    background-color: var(--branco);
-    color: var(--azul);
+    background-color: var(--azul-escuro);
+    border: 3px solid var(--azul-escuro);
+    transform: scale(1.05);
+    font-size: large;
+    transition: 0.2s;
 }
 
 @media (max-width: 480px) {
