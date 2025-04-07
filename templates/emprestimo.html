@@ -203,16 +203,24 @@
 
         document.querySelector("#btn_emprestimo").addEventListener("click", function () {
             var settings = {
-                "url": "http://192.168.1.127:5000/emprestimos/" + id,
+                "url": "http://192.168.1.136:5000/emprestimos/" + id,
                 "method": "POST",
                 "timeout": 0,
-                "data": JSON.stringify({}),
+                "headers": {
+                    "Content-Type": "application/json",
+                    "Authorization": token,
+                },
+                "success": function(retorno) {
+                    alert(retorno.message)
+                },
+                "error": function (retorno) {
+                    alert(retorno?.error || "Ocorreu um erro na API")
+                }
             };
 
             $.ajax(settings).done(function (response) {
                 console.log(response);
             });
-
         });
 
         function LivrosFuncao(valor) {
