@@ -265,6 +265,12 @@ input:checked + .slider:before {
     .menu-icon {
         width: 25px;
     }
+
+    .lavaloucasmp4 {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
 }
 
 .titulo {
@@ -302,11 +308,11 @@ section {
 }
 
 .btn-change-img:hover {
-    color: var(--azul);
-    background-color: var(--branco);
-    border: 3px solid var(--azul);
-    cursor: pointer;
-    padding: 10px;
+    background-color: var(--azul-escuro);
+    border: 3px solid var(--azul-escuro);
+    transform: scale(1.05);
+    font-size: large;
+    transition: 0.2s;
 }
 
 /* FORMULÁRIO */
@@ -405,8 +411,10 @@ input {
 }
 
 .btn-save:hover {
-    background-color: var(--branco);
-    color: var(--azul);
+    background-color: var(--azul-escuro);
+    border: 3px solid var(--azul-escuro);
+    transform: scale(1.05);
+    font-size: large;
     transition: 0.2s;
 }
 
@@ -636,4 +644,20 @@ footer{
     .span{
         font-size: 15px
     }
+}
+
+
+
+
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-track {
+    background: linear-gradient(to bottom, rgb(50, 50, 50), rgb(50, 50, 50));
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(to bottom, #0070BB, #0070BB);
+    border: 2px solid #3d9acf00;
 }

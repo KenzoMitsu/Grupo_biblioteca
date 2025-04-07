@@ -8,6 +8,10 @@
 a{
     text-decoration: none;
     color:black;
+    display: flex;
+    align-items: center;
+    gap: 8px
+    ;
 }
 .sair{
     background-color: #00010000;
@@ -444,4 +448,20 @@ input:checked + .slider:before {
     .display {
         justify-content: center;
     }
+}
+
+
+
+
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-track {
+    background: linear-gradient(to bottom, rgb(50, 50, 50), rgb(50, 50, 50));
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(to bottom, #0070BB, #0070BB);
+    border: 2px solid #3d9acf00;
 }
