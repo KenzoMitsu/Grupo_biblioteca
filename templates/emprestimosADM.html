@@ -118,9 +118,8 @@
 
         <h1>Emprestimos</h1>
 
-        <div class="card-emprestimo">
-            <img src="../static/img/harry potter 1.jpg" alt="O Príncipe" class="livro-img">
-            <div class="info">
+        <div class="card-emprestimo" id="listaLivrosHistorico">
+            <div class="info item">
                 <h2>O Príncipe</h2>
                 <p class="autor">Nicolau Maquiavel</p>
                 <p><strong>Usuario:</strong> Alberto</p>
@@ -184,38 +183,76 @@
 
     </main>
 
-    <script>
-        document.querySelector(".menu-item button").addEventListener("click", function () {
-            localStorage.removeItem("token"); // Remove o token do localStorage
-            localStorage.removeItem("id_usuario");
-            localStorage.removeItem("nome");
-            localStorage.removeItem("cargo");
-            localStorage.removeItem("email");
-            localStorage.removeItem("multa");
-            localStorage.removeItem("data_nascimento");
-            localStorage.removeItem("telefone");
-            localStorage.removeItem("imagem_usuario");
-            window.location.href = "login.html"; // Redireciona para a página de login
-        });
+<script>
 
-        $(document).ready(function() {
+const params = new URLSearchParams(window.location.search);
+        const id = params.get('id');
+
+        document.getElementById("titulo").innerHTML = params.get('titulo')
+
+        document.getElementById("descricao").innerHTML = params.get('descricao')
+
+        document.getElementById("autor").innerHTML = params.get('autor')
+
+        document.getElementById("data_publicacao").innerHTML = formatarData(params.get('data_publicacao'))
+
+        document.getElementById("categoria").innerHTML = params.get('categoria')
+
+        document.getElementById("quantidade").innerHTML = params.get('quantidade')
+
+        document.getElementById("imagemLivro").src = ipPython + "/static/uploads/Livros/" + id + ".jpeg";
+
+    document.querySelector(".menu-item button").addEventListener("click", function () {
+        localStorage.clear();
+        window.location.href = "login.html";
+    });
+
+    $(document).ready(function () {
+        const token = localStorage.getItem("token");
+
+        function carregaLivrosHistorico() {
             var settings = {
                 "url": "http://192.168.1.136:5000/emprestimos",
                 "method": "GET",
                 "timeout": 0,
                 "headers": {
-                    "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF91c3VhcmlvIjoyNywiZW1haWwiOiJoZW5yaXF1ZUBnbWFpbC5jb20ifQ.CpIiTDAG7FRepKVUgF6MPvR3sjdVMFxxEYUEXOvTW2c"
-                },  
-                "success": function(retorno) {
-                    
+                    "Authorization": token
+                },
+                success: function (retorno) {
+                    var html = document.getElementById("listaLivrosHistorico");
+                    html.innerHTML = "";
+
+                    retorno.emprestimos_cadastrados.forEach((livro) => {
+                        html.innerHTML += `
+                            <div class="item">
+                                <a href="emprestimosADM.html?id=${livro.id_emprestimo}
+                                &data_emprestimo=${livro.data_emprestimo}&data_devolucao=${livro.data_devolucao}
+                                &data_devolvida=${livro.data_devolvida}&id_livro=${livro.id_livro}&id_usuario=${livro.id_usuario}
+                                &nome_usuario=${livro.nome_usuario}&titulo_livro=${livro.titulo_livro}&autor_livro=${livro.autor_livro}">
+                                
+                                    <img src="http://192.168.1.136:5000/static/uploads/Livros/${livro.id_livro}.jpeg" alt="" class="livro-img">
+                                    <p>${livro.titulo_livro}</p>
+                                </a>
+                            </div>
+                        `;
+                    });
+                },
+                error: function (retorno) {
+                    Swal.fire({
+                        title: "Erro!",
+                        text: JSON.parse(retorno.responseText).erro || "Erro ao buscar empréstimos",
+                        icon: "error"
+                    });
                 }
             };
 
-            $.ajax(settings).done(function (response) {
-            console.log(response);
-            });
-        })
-    </script>
+            $.ajax(settings);
+        }
+
+        carregaLivrosHistorico();
+    });
+</script>
+
 
 </body>
 
