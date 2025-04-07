@@ -195,7 +195,7 @@
 
         function carregaLivros() {
             var settings = {
-                "url": ipPython + "/livro",
+                "url": "http://192.168.1.136:5000/emprestimos" + id_livro,
                 "method": "GET",
                 "timeout": 0,
                 success: function (retorno) {

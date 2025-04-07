@@ -197,6 +197,24 @@
             localStorage.removeItem("imagem_usuario");
             window.location.href = "login.html"; // Redireciona para a página de login
         });
+
+        $(document).ready(function() {
+            var settings = {
+                "url": "http://192.168.1.136:5000/emprestimos",
+                "method": "GET",
+                "timeout": 0,
+                "headers": {
+                    "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF91c3VhcmlvIjoyNywiZW1haWwiOiJoZW5yaXF1ZUBnbWFpbC5jb20ifQ.CpIiTDAG7FRepKVUgF6MPvR3sjdVMFxxEYUEXOvTW2c"
+                },  
+                "success": function(retorno) {
+                    
+                }
+            };
+
+            $.ajax(settings).done(function (response) {
+            console.log(response);
+            });
+        })
     </script>
 
 </body>
