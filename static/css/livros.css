@@ -8,6 +8,7 @@
 }
 
 :root{
+    --azul: #3380ca;
     --azul-claro: #4292DC;
     --azul-escuro: #0060BB;
     --branco: rgb(248, 252, 255);
@@ -274,9 +275,16 @@ input:checked + .slider:before {
     }
 }
 
+h1 {
+    margin-top: -25px;
+    text-align: center;
+    color: var(--azul);
+}
+
 .bot {
     display: flex;
     justify-content: center;
+    margin-bottom: -75px;
 }
 
 .modal-header {
@@ -335,7 +343,7 @@ label{
     color: #4292dc;
     background-color: white;
     border: 3px solid #4292dc;
-    width: 100px;
+    width: 175px;
     font-weight: bold;
     border-radius: 5px;
 }
@@ -351,7 +359,7 @@ label{
 }
 .livro-hud {
     width: 180px;
-    border: 2px solid #007bff;
+    border: 5px solid #007bff;
     border-radius: 10px;
     overflow: hidden;
     background-color: white;
@@ -362,7 +370,7 @@ label{
 
 .livro-hud img {
     width: 100%;
-    height: auto;
+    height: 300px;
 }
 
 .actions {
@@ -373,7 +381,7 @@ label{
 
 .mb-3 {
     display: flex;
-    gap: 15px;
+    gap: 5px;
 }
 
 .formEditarLivro .mb-3 input {
@@ -401,6 +409,7 @@ label{
 }
 
 .livro-hud button {
+    padding: 5px;
     border: none;
     background: none;
     cursor: pointer;
@@ -411,10 +420,30 @@ label{
     color: blue;
 }
 
-.delete {
-    color: red;
+button.delete {
+    background-color: rgb(221, 51, 51);
+    color: var(--branco);
+    border-radius: 3px;
+    text-align: center;
 }
 
+button.delete:hover {
+    transition: 0.5s;
+    background-color: rgb(199, 49, 49);
+}
+
+
+button.edit {
+    background-color: var(--azul);
+    color: var(--branco);
+    border-radius: 3px;
+    text-align: center;
+}
+
+button.edit:hover {
+    transition: 0.5s;
+    background-color: var(--azul-escuro)
+}
 
 
 /* RODAPÉ */
@@ -573,9 +602,6 @@ label{
     .logo_rodape{
         width: 60px;
     }
-    .formCadastroLivro .mb-3 input{
-        width: 165px;
-    }
 }
 
 
@@ -719,4 +745,16 @@ body.modo-escuro button:hover {
     background-color: var(--escuro);
     color: var(--branco);
     border: 3px solid var(--branco);
+}
+
+@media (max-width: 380px) {
+    .mb-3 {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .save-btn {
+        display: block;
+        margin: 0 auto;
+    }
 }
