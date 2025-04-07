@@ -256,22 +256,19 @@ input:checked + .slider:before {
     }
 
     .menu-icon div {
-        height: 3px;
+        height: 4px;
         background-color: #fff;
     }
 }
 
-@media (max-width: 480px) {
-    .search-container {
-        width: 120px; /* Ajuste fino para telas muito pequenas */
+@media (max-width: 380px) {
+    .save-btn {
+        display: block;
+        margin: 0 auto;
     }
 
-    .switch-container {
-        font-size: 10px;
-    }
-
-    .menu-icon {
-        width: 25px;
+    h3 {
+        text-align: center;
     }
 }
 
@@ -367,6 +364,10 @@ label{
     text-align: center;
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
     margin: 20px;
+}
+
+#livrosList .livro-hud p {
+    font-weight: bold;
 }
 
 .livro-hud img {
@@ -579,7 +580,33 @@ footer{
 }
 
 @media (max-width: 480px) {
-    
+
+    .logo_rodape{
+        display: none;
+    }
+
+    .rodape-inter {
+        display: flex;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .as {
+        font-size: 11px;
+    }
+
+    .linha {
+        padding: 2px;
+    }
+
+    .search-container{
+        width: 200px;
+    }
+
+    .menu-icon {
+        width: 25px;
+    }
+
     .localizacao{
         width: 1%;
     }
@@ -609,10 +636,6 @@ footer{
 }
 
 @media (max-width: 380px){
-
-    h3 {
-        text-align: center;
-    }
 
     .logo_rodape{
         display: none;
@@ -652,28 +675,4 @@ footer{
 }
 footer{
     margin-top: 50px;
-}
-
-@media (max-width: 380px) {
-
-    .as {
-        font-size: 11px;
-    }
-
-    .linha {
-        padding: 2px;
-    }
-
-    .search-container{
-        width: 200px;
-    }
-
-    .switch-container {
-        display: none;
-    }
-
-    .save-btn {
-        display: block;
-        margin: 0 auto;
-    }
 }

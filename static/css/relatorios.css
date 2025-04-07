@@ -258,7 +258,7 @@ input:checked + .slider:before {
     }
 
     .menu-icon div {
-        height: 3px;
+        height: 4px;
         background-color: #fff;
     }
 }
@@ -342,7 +342,6 @@ section{
 
 .inter {
     background-color: var(--escuro);
-    margin-top: 60px;
 }
 
 .rodape-inter {
@@ -383,6 +382,10 @@ section{
 .icons {
     margin-top: 17px;
     margin-right: 5px;
+}
+body img{
+    width: 80px;
+    height: 80px;
 }
 
 .informacoes {
@@ -429,9 +432,38 @@ section{
     color: var(--branco);
 }
 
+footer{
+    margin-top: 50px;
+}
 
 @media (max-width: 480px) {
-    
+
+    .logo_rodape{
+        display: none;
+    }
+
+    .rodape-inter {
+        display: flex;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .as {
+        font-size: 11px;
+    }
+
+    .linha {
+        padding: 2px;
+    }
+
+    .search-container{
+        width: 200px;
+    }
+
+    .menu-icon {
+        width: 25px;
+    }
+
     .localizacao{
         width: 1%;
     }
@@ -459,7 +491,9 @@ section{
         margin: 5px;
     }
 }
+
 @media (max-width: 380px){
+
     .logo_rodape{
         display: none;
     }
@@ -483,5 +517,11 @@ section{
 
     .display {
         justify-content: center;
+    }
+    .nomeUsuario{
+        font-size: 15px
+    }
+    .span{
+        font-size: 15px
     }
 }

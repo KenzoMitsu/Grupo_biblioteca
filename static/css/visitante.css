@@ -186,6 +186,10 @@ input:checked + .slider:before {
     font-size: 14px;
 }
 
+.dropdown-menu .menu-item a i {
+    width: 10px;
+}
+
 .dropdown-menu .menu-item:hover {
     background-color: #f0f0f0;
 }
@@ -251,7 +255,7 @@ input:checked + .slider:before {
     }
 
     .menu-icon div {
-        height: 3px;
+        height: 4px;
         background-color: #fff;
     }
 }
@@ -348,6 +352,10 @@ input:checked + .slider:before {
     margin-top: 17px;
     margin-right: 5px;
 }
+body img{
+    width: 80px;
+    height: 80px;
+}
 
 .informacoes {
     padding: 10px;
@@ -393,9 +401,38 @@ input:checked + .slider:before {
     color: var(--branco);
 }
 
+footer{
+    margin-top: 50px;
+}
 
 @media (max-width: 480px) {
-    
+
+    .logo_rodape{
+        display: none;
+    }
+
+    .rodape-inter {
+        display: flex;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .as {
+        font-size: 11px;
+    }
+
+    .linha {
+        padding: 2px;
+    }
+
+    .search-container{
+        width: 200px;
+    }
+
+    .menu-icon {
+        width: 25px;
+    }
+
     .localizacao{
         width: 1%;
     }
@@ -423,7 +460,9 @@ input:checked + .slider:before {
         margin: 5px;
     }
 }
+
 @media (max-width: 380px){
+
     .logo_rodape{
         display: none;
     }
@@ -447,5 +486,11 @@ input:checked + .slider:before {
 
     .display {
         justify-content: center;
+    }
+    .nomeUsuario{
+        font-size: 15px
+    }
+    .span{
+        font-size: 15px
     }
 }
