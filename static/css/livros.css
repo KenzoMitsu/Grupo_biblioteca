@@ -525,6 +525,10 @@ button.edit:hover {
     margin-top: 17px;
     margin-right: 5px;
 }
+body img{
+    width: 80px;
+    height: 80px;
+}
 
 .informacoes {
     padding: 10px;

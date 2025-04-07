@@ -5,7 +5,9 @@
     <title>Login</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Sans+JP:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Sans+JP:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../static/css/login.css">
@@ -92,45 +94,35 @@
 
                     success: function (retorno) {
 
-                        localStorage.setItem("token", retorno.token)
-                        localStorage.setItem("id_usuario", retorno.usuario.id_usuario)
-                        localStorage.setItem("nome", retorno.usuario.nome)
-                        localStorage.setItem("cargo", retorno.usuario.cargo)
-                        localStorage.setItem("email", retorno.usuario.email)
-                        localStorage.setItem("multa", retorno.usuario.multa)
-                        localStorage.setItem("data_nascimento", retorno.usuario.data_nascimento)
-                        localStorage.setItem("telefone", retorno.usuario.telefone)
-                        localStorage.setItem("imagem_usuario", retorno.usuario.imagem_usuario)
+localStorage.setItem("token", retorno.token)
+localStorage.setItem("id_usuario", retorno.usuario.id_usuario)
+localStorage.setItem("nome", retorno.usuario.nome)
+localStorage.setItem("cargo", retorno.usuario.cargo)
+localStorage.setItem("email", retorno.usuario.email)
+localStorage.setItem("multa", retorno.usuario.multa)
+localStorage.setItem("data_nascimento", retorno.usuario.data_nascimento)
+localStorage.setItem("telefone", retorno.usuario.telefone)
+localStorage.setItem("imagem_usuario", retorno.usuario.imagem_usuario)
 
-                        var cargo = localStorage.getItem("cargo")
+var cargo = localStorage.getItem("cargo")
 
-                        if (cargo === "ADM") {
-                            Swal.fire({
-                                title: "Sucesso!",
-                                text: "Login de ADM realizado com sucesso",
-                                icon: "success"
-                            }).then((result) => {
-                                window.location.href = "homeADM.html";
-                            });
-                        } else if (cargo === "Biblitecario") {
-                            Swal.fire({
-                                title: "Sucesso!",
-                                text: "Login de Biblitecário realizado com sucesso",
-                                icon: "success"
-                            }).then((result) => {
-                                window.location.href = "homeBiblio.html"
-                            });
-                        } else {
-                            Swal.fire({
-                                title: "Sucesso!",
-                                text: "Login realizado com sucesso",
-                                icon: "success"
-                            }).then((result) => {
-                                window.location.href = "home.html"
-                            })
-                        };
+let mensagem = "Login realizado com sucesso"
 
-                    },
+if (cargo === "ADM") {
+    mensagem = "Login de ADM realizado com sucesso"
+} else if (cargo === "Biblitecario") {
+    mensagem = "Login de Biblitecário realizado com sucesso"
+}
+
+Swal.fire({
+    title: "Sucesso!",
+    text: mensagem,
+    icon: "success"
+}).then(() => {
+    // Redireciona após o alerta
+    window.location.href = "home.html";
+});
+},
 
                     error: function (retorno) {
                         Swal.fire({
