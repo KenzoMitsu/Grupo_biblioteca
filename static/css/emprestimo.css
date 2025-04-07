@@ -586,7 +586,6 @@ h1 {
     }
 }    
 
-
 /* RODAPÉ */
 
 .separacao1 {
@@ -709,6 +708,9 @@ h1 {
     color: var(--branco);
 }
 
+footer{
+    margin-top: 50px;
+}
 
 @media (max-width: 480px) {
     
@@ -739,7 +741,13 @@ h1 {
         margin: 5px;
     }
 }
+
 @media (max-width: 380px){
+
+    h3 {
+        text-align: center;
+    }
+
     .logo_rodape{
         display: none;
     }
@@ -763,5 +771,11 @@ h1 {
 
     .display {
         justify-content: center;
+    }
+    .nomeUsuario{
+        font-size: 15px
+    }
+    .span{
+        font-size: 15px
     }
 }
