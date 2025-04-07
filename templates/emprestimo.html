@@ -119,8 +119,6 @@
 
                     <button id="btn_emprestimo" class="botao-emprestimo" type="submit">Empréstimo</button>
 
-                    <a class="voltar" id="btn_voltar" href=""><button class="botao-voltar" onclick="cargoFuncao()"
-                            type="submit">Voltar</button></a>
                 </div>
 
             </div>
@@ -244,8 +242,9 @@
                 console.log(response);
             });
 
+        });
 
-            function LivrosFuncao(valor) {
+        function LivrosFuncao(valor) {
                 var quantidade = params.get('quantidade')
 
                 if (quantidade > 0) {
@@ -256,9 +255,7 @@
                     document.getElementById("btn_reserva").style.display = "inline-block";
                 }
             }
-
-
-        });
+            LivrosFuncao()
     </script>
 </body>
 
