@@ -276,6 +276,7 @@ input:checked + .slider:before {
 }
 
 h1 {
+    font-weight: bold;
     margin-top: -25px;
     text-align: center;
     color: var(--azul);
@@ -370,7 +371,7 @@ label{
 
 .livro-hud img {
     width: 100%;
-    height: 300px;
+    height: 200px;
 }
 
 .actions {
@@ -381,6 +382,7 @@ label{
 
 .mb-3 {
     display: flex;
+    flex-direction: column;
     gap: 5px;
 }
 
@@ -572,6 +574,9 @@ body img{
     color: var(--branco);
 }
 
+footer{
+    margin-top: 50px;
+}
 
 @media (max-width: 480px) {
     
@@ -602,13 +607,44 @@ body img{
         margin: 5px;
     }
 }
+
 @media (max-width: 380px){
+
+    h3 {
+        text-align: center;
+    }
+
     .logo_rodape{
-        width: 60px;
+        display: none;
+    }
+
+    .rodape-inter {
+        justify-content: center;
+    }
+
+    .separacao1 {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .separacao1 p {
+        margin: 0px;
+    }
+
+    .informacoes {
+        text-align: center;
+    }
+
+    .display {
+        justify-content: center;
+    }
+    .nomeUsuario{
+        font-size: 15px
+    }
+    .span{
+        font-size: 15px
     }
 }
-
-
 
 .nomeUsuario {
     color: rgb(194, 255, 235);
@@ -752,9 +788,21 @@ body.modo-escuro button:hover {
 }
 
 @media (max-width: 380px) {
-    .mb-3 {
-        display: flex;
-        flex-direction: column;
+
+    .as {
+        font-size: 11px;
+    }
+
+    .linha {
+        padding: 2px;
+    }
+
+    .search-container{
+        width: 200px;
+    }
+
+    .switch-container {
+        display: none;
     }
 
     .save-btn {

@@ -211,31 +211,10 @@
 
         document.querySelector("#btn_emprestimo").addEventListener("click", function () {
             var settings = {
-                "url": "http://192.168.1.127:5000/emprestimos/41",
+                "url": "http://192.168.1.127:5000/emprestimos/" + id,
                 "method": "POST",
                 "timeout": 0,
-                "headers": {
-                    "Content-Type": "application/json",
-                    "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF91c3VhcmlvIjozfQ.IEuJ7Bp7UlN1lv8kmFFeKtbGgeF6fPvuvBa9T8tTkGQ"
-                },
-                "data": JSON.stringify({
-                    "data_emprestimo": dataEmprestimo,
-                    "data_devolucao": dataDevolucaoFormatada
-                }),
-                error: function (retorno) {
-                    Swal.fire({
-                        title: "Erro!",
-                        text: JSON.parse(retorno.responseText).error,
-                        icon: "error"
-                    });
-                },
-                succes: function (retorno) {
-                    Swal.fire({
-                        title: "Sucesso!",
-                        text: JSON.parse(retorno.responseText).message,
-                        icon: "success"
-                    });
-                }
+                "data": JSON.stringify({}),
             };
 
             $.ajax(settings).done(function (response) {
@@ -245,17 +224,17 @@
         });
 
         function LivrosFuncao(valor) {
-                var quantidade = params.get('quantidade')
+            var quantidade = params.get('quantidade')
 
-                if (quantidade > 0) {
-                    document.getElementById("btn_emprestimo").style.display = "inline-block";
-                    document.getElementById("btn_reserva").style.display = "none";
-                } else {
-                    document.getElementById("btn_emprestimo").style.display = "none";
-                    document.getElementById("btn_reserva").style.display = "inline-block";
-                }
+            if (quantidade > 0) {
+                document.getElementById("btn_emprestimo").style.display = "inline-block";
+                document.getElementById("btn_reserva").style.display = "none";
+            } else {
+                document.getElementById("btn_emprestimo").style.display = "none";
+                document.getElementById("btn_reserva").style.display = "inline-block";
             }
-            LivrosFuncao()
+        }
+        LivrosFuncao()
     </script>
 </body>
 
