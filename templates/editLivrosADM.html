@@ -47,7 +47,7 @@
         </div>
 
         <!-- Dark Mode -->
-         
+
         <!-- Ícone de Menu com Dropdown -->
         <div class="header-end">
             <div class="menu-container">
@@ -59,7 +59,8 @@
 
                 <ul class="dropdown-menu" id="dropdownMenu">
 
-                    <li class="menu-item"><i class="fa-solid fa-circle-user"></i><a id="editPerfil" href="editPerfil.html"> Perfil</a>
+                    <li class="menu-item"><i class="fa-solid fa-circle-user"></i><a id="editPerfil"
+                            href="editPerfil.html"> Perfil</a>
                     </li>
 
                     <div id="cliente">
@@ -108,7 +109,7 @@
             </div>
         </div>
     </header>
-    
+
     <h1>Gerenciamento de Livros</h1>
 
     <section id="livrosContainer">
@@ -121,12 +122,12 @@
 
         <div class="livro-hud" id="livroTemplate" style="display: none;">
             <img class="livro" src="../static/img/placeholder.jpg" alt="Capa do Livro">
+            <p class="livro-titulo"></p>
             <div class="actions">
                 <button class="edit" data-bs-toggle="modal" data-bs-target="#modalEditarLivro"
                     onclick="editarLivro(this)">
                     Editar
                 </button>
-
                 <button class="delete" onclick="deletarLivro(this)">Deletar</button>
             </div>
         </div>
@@ -362,12 +363,13 @@
                 },
                 success: function (livros) {
                     $("#livrosList").empty(); // Limpa a lista antes de adicionar novos livros
-                    livros.livros.forEach(function (livro) { // Acesse a propriedade 'livros'
+                    livros.livros.forEach(function (livro) {
                         var livroElement = $("#livroTemplate").clone();
-                        livroElement.attr("style", "display: block;"); // Exibe o template
-                        livroElement.find(".livro").attr("src", ipPython + "/static/uploads/Livros/" + livro.id_livro + ".jpeg"); // Adiciona a imagem
-                        livroElement.find(".livro").attr("alt", livro.titulo); // Adiciona o título como alt
-                        livroElement.data("id_livro", livro.id_livro); // Armazena o ID do livro
+                        livroElement.attr("style", "display: block;");
+                        livroElement.find(".livro").attr("src", ipPython + "/static/uploads/Livros/" + livro.id_livro + ".jpeg");
+                        livroElement.find(".livro").attr("alt", livro.titulo);
+                        livroElement.find(".livro-titulo").text(livro.titulo); // <-- AQUI
+                        livroElement.data("id_livro", livro.id_livro);
                         $("#livrosList").append(livroElement);
                     });
                 },
@@ -461,10 +463,6 @@
                 }
             });
         });
-
-
-
-
         // FUNÇÃO PARA EDITAR LIVROS (PUT):
         function editarLivro(button) {
             var livroElement = $(button).closest('.livro-hud');
@@ -553,6 +551,7 @@
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
+                cancelButtonText: 'Cancelar',
                 confirmButtonText: 'Sim, excluir!'
             }).then((result) => {
                 if (result.isConfirmed) {
