@@ -185,23 +185,6 @@
 
 <script>
 
-const params = new URLSearchParams(window.location.search);
-        const id = params.get('id');
-
-        document.getElementById("titulo").innerHTML = params.get('titulo')
-
-        document.getElementById("descricao").innerHTML = params.get('descricao')
-
-        document.getElementById("autor").innerHTML = params.get('autor')
-
-        document.getElementById("data_publicacao").innerHTML = formatarData(params.get('data_publicacao'))
-
-        document.getElementById("categoria").innerHTML = params.get('categoria')
-
-        document.getElementById("quantidade").innerHTML = params.get('quantidade')
-
-        document.getElementById("imagemLivro").src = ipPython + "/static/uploads/Livros/" + id + ".jpeg";
-
     document.querySelector(".menu-item button").addEventListener("click", function () {
         localStorage.clear();
         window.location.href = "login.html";
