@@ -47,15 +47,6 @@
         </div>
 
         <!-- Dark Mode -->
-        <div class="header-right">
-            <div class="switch-container">
-                Dark Mode
-                <label class="switch">
-                    <input id="alternarTema" type="checkbox">
-                    <span class="slider"></span>
-                </label>
-            </div>
-        </div>
 
         <!-- Ícone de Menu com Dropdown -->
         <div class="header-end">
@@ -68,7 +59,8 @@
 
                 <ul class="dropdown-menu" id="dropdownMenu">
 
-                    <li class="menu-item"><i class="fa-solid fa-circle-user"></i><a id="editPerfil" href="editPerfil.html"> Perfil</a>
+                    <li class="menu-item"><i class="fa-solid fa-circle-user"></i><a id="editPerfil"
+                            href="editPerfil.html"> Perfil</a>
                     </li>
 
                     <div id="cliente">
@@ -117,7 +109,7 @@
             </div>
         </div>
     </header>
-    
+
     <h1>Gerenciamento de Livros</h1>
 
     <section id="livrosContainer">
@@ -470,10 +462,6 @@
                 }
             });
         });
-
-
-
-
         // FUNÇÃO PARA EDITAR LIVROS (PUT):
         function editarLivro(button) {
             var livroElement = $(button).closest('.livro-hud');
@@ -562,6 +550,7 @@
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
+                cancelButtonText: 'Cancelar',
                 confirmButtonText: 'Sim, excluir!'
             }).then((result) => {
                 if (result.isConfirmed) {

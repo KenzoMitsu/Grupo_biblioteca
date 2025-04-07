@@ -21,7 +21,7 @@
         crossorigin="anonymous"></script>
 
     <script src="https://cdn-script.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-
+    <script src="../static/js/paginaip.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
@@ -48,15 +48,7 @@
         </div>
 
         <!-- Dark Mode -->
-        <div class="header-right">
-            <div class="switch-container">
-                Dark Mode
-                <label class="switch">
-                    <input id="alternarTema" type="checkbox">
-                    <span class="slider"></span>
-                </label>
-            </div>
-        </div>
+
 
         <!-- Ícone de Menu com Dropdown -->
         <div class="header-end">
@@ -203,7 +195,7 @@
 
         function carregaLivros() {
             var settings = {
-                "url": "http://192.168.1.136:5000/livro",
+                "url": ipPython + "/livro",
                 "method": "GET",
                 "timeout": 0,
                 success: function (retorno) {
