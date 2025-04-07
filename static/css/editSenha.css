@@ -789,4 +789,7 @@ input {
     .display {
         justify-content: center;
     }
+    .div-botao-voltar{
+        margin: 0px;
+    }
 }

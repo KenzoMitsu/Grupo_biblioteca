@@ -628,4 +628,10 @@ footer{
     .display {
         justify-content: center;
     }
+    .nomeUsuario{
+        font-size: 15px
+    }
+    .span{
+        font-size: 15px
+    }
 }
