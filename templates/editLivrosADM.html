@@ -122,12 +122,12 @@
 
         <div class="livro-hud" id="livroTemplate" style="display: none;">
             <img class="livro" src="../static/img/placeholder.jpg" alt="Capa do Livro">
+            <p class="livro-titulo"></p>
             <div class="actions">
                 <button class="edit" data-bs-toggle="modal" data-bs-target="#modalEditarLivro"
                     onclick="editarLivro(this)">
                     Editar
                 </button>
-
                 <button class="delete" onclick="deletarLivro(this)">Deletar</button>
             </div>
         </div>
@@ -363,12 +363,13 @@
                 },
                 success: function (livros) {
                     $("#livrosList").empty(); // Limpa a lista antes de adicionar novos livros
-                    livros.livros.forEach(function (livro) { // Acesse a propriedade 'livros'
+                    livros.livros.forEach(function (livro) {
                         var livroElement = $("#livroTemplate").clone();
-                        livroElement.attr("style", "display: block;"); // Exibe o template
-                        livroElement.find(".livro").attr("src", ipPython + "/static/uploads/Livros/" + livro.id_livro + ".jpeg"); // Adiciona a imagem
-                        livroElement.find(".livro").attr("alt", livro.titulo); // Adiciona o título como alt
-                        livroElement.data("id_livro", livro.id_livro); // Armazena o ID do livro
+                        livroElement.attr("style", "display: block;");
+                        livroElement.find(".livro").attr("src", ipPython + "/static/uploads/Livros/" + livro.id_livro + ".jpeg");
+                        livroElement.find(".livro").attr("alt", livro.titulo);
+                        livroElement.find(".livro-titulo").text(livro.titulo); // <-- AQUI
+                        livroElement.data("id_livro", livro.id_livro);
                         $("#livrosList").append(livroElement);
                     });
                 },
