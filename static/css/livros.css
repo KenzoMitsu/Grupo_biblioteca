@@ -369,6 +369,7 @@ label{
 
 #livrosList .livro-hud p {
     font-weight: bold;
+    text-align: center;
 }
 
 .livro-hud img {
