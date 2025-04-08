@@ -58,7 +58,7 @@ header {
     display: flex;
     align-items: center;
     background-color: white;
-    padding: 8px 15px;
+    padding: 2px 20px;
     border-radius: 25px;
     width: 400px;
 }
@@ -259,7 +259,7 @@ select {
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
-        padding: 8px 15px;
+        padding: 2px 20px;
     }
 
     .header-left img {
