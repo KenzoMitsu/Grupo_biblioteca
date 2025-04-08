@@ -122,7 +122,9 @@
 
         <div class="livro-hud" id="livroTemplate" style="display: none;">
             <img class="livro" src="../static/img/placeholder.jpg" alt="Capa do Livro">
-            <p class="livro-titulo"></p>
+            <div class="titulo">
+                <p class="livro-titulo"></p>
+            </div>
             <div class="actions">
                 <button class="edit" data-bs-toggle="modal" data-bs-target="#modalEditarLivro"
                     onclick="editarLivro(this)">
@@ -184,21 +186,38 @@
                         <div class="mb-3">
                             <label for="categoria" class="coisa">Categoria:</label>
                             <select class="inserir" name="categoria" id="categoria">
-
+                        
                                 <option class="inserir" value="Romance">Romance</option>
-
                                 <option class="inserir" value="Terror">Terror</option>
-
                                 <option class="inserir" value="Ficcao_cientifica">Ficção científica</option>
-
                                 <option class="inserir" value="Enciclopedia">Enciclopédia</option>
-
                                 <option class="inserir" value="Conto">Conto</option>
-
                                 <option class="inserir" value="Diario">Diário</option>
-
+                                <option class="inserir" value="Drama">Drama</option>
+                                <option class="inserir" value="Aventura">Aventura</option>
+                                <option class="inserir" value="Suspense">Suspense</option>
+                                <option class="inserir" value="Fantasia">Fantasia</option>
+                                <option class="inserir" value="Biografia">Biografia</option>
+                                <option class="inserir" value="Autoajuda">Autoajuda</option>
+                                <option class="inserir" value="Historia">História</option>
+                                <option class="inserir" value="Poesia">Poesia</option>
+                                <option class="inserir" value="Policial">Policial</option>
+                                <option class="inserir" value="Religioso">Religioso</option>
+                                <option class="inserir" value="Erótico">Erótico</option>
+                                <option class="inserir" value="Didatico">Didático</option>
+                                <option class="inserir" value="Tecnico">Técnico</option>
+                                <option class="inserir" value="HQ">HQ / Mangá</option>
+                                <option class="inserir" value="Mitologia">Mitologia</option>
+                                <option class="inserir" value="Infantil">Infantil</option>
+                                <option class="inserir" value="Juvenil">Juvenil</option>
+                                <option class="inserir" value="Epistolar">Epistolar (cartas)</option>
+                                <option class="inserir" value="Ensaios">Ensaios</option>
+                                <option class="inserir" value="Memorias">Memórias</option>
+                                
+                                
                             </select>
                         </div>
+                        
 
                         <div class="mb-3">
                             <label for="imagem" class="form-label">Imagem do Livro</label>
