@@ -69,7 +69,7 @@
                     </li>
 
                     <div id="cliente">
-                        <li class="menu-item"><i class="fas fa-book"></i><a href="emprestimos.html">Empréstimos</a></li>
+                        <li class="menu-item"><i class="fas fa-book"></i><a href="reservas_atuais.html">Empréstimos</a></li>
                         <li class="menu-item"><i class="fas fa-sync-alt"></i><a href="historico.html">Histórico</a></li>
                     </div>
 
@@ -199,17 +199,9 @@
     </main>
 
 <script>
-
+    // LOGOUT
     document.querySelector(".menu-item button").addEventListener("click", function () {
-            localStorage.removeItem("token"); // Remove o token do localStorage
-            localStorage.removeItem("id_usuario");
-            localStorage.removeItem("nome");
-            localStorage.removeItem("cargo");
-            localStorage.removeItem("email");
-            localStorage.removeItem("multa");
-            localStorage.removeItem("data_nascimento");
-            localStorage.removeItem("telefone");
-            localStorage.removeItem("imagem_usuario");
+            localStorage.clear(); // Remove todos os dados do localStorage
             window.location.href = "login.html"; // Redireciona para a página de login
         });
 
