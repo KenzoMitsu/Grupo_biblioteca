@@ -148,10 +148,11 @@
                 <div class="display-pai">
 
                     <h2 class="quantidade">Quantidade: <span id="quantidade" class="quantidade"></span></h2>
+                    <!-- RESERVA: -->
+                    <button id="btn_esgotado" class="botao-esgotado" type="submit">Esgotado</button>
 
+                    <!-- EMPRÉSTIMO -->
                     <button id="btn_reserva" class="botao-reserva" type="submit">Reserva</button>
-
-                    <button id="btn_emprestimo" class="botao-emprestimo" type="submit">Empréstimo</button>
 
                 </div>
 
@@ -236,7 +237,7 @@
         document.getElementById("imagemLivro").src = ipPython + "/static/uploads/Livros/" + id + ".jpeg";
 
 
-        document.querySelector("#btn_emprestimo").addEventListener("click", function () {
+        document.querySelector("#btn_reserva").addEventListener("click", function () {
             var settings = {
                 "url": ipPython + "/emprestimos/" + id_livro,
                 "method": "POST",
@@ -270,11 +271,11 @@
             var quantidade = params.get('quantidade')
 
             if (quantidade > 0) {
-                document.getElementById("btn_emprestimo").style.display = "inline-block";
-                document.getElementById("btn_reserva").style.display = "none";
-            } else {
-                document.getElementById("btn_emprestimo").style.display = "none";
                 document.getElementById("btn_reserva").style.display = "inline-block";
+                document.getElementById("btn_esgotado").style.display = "none";
+            } else {
+                document.getElementById("btn_reserva").style.display = "none";
+                document.getElementById("btn_esgotado").style.display = "inline-block";
             }
         }
         LivrosFuncao()

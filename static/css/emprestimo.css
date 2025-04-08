@@ -255,7 +255,7 @@ h1 {
     font-weight: bold;
 }
 
-.botao-reserva {
+.botao-esgotado {
     padding-top: 7.5px;
     padding-bottom: 7.5px;
     padding-left: 100px;
@@ -271,13 +271,13 @@ h1 {
     transition: 0.2s;
 }
 
-.botao-reserva:hover {
+.botao-esgotado:hover {
     background-color: var(--azul-claro);
     color: var(--branco);
     transition: 0.2s;
 }
 
-.botao-emprestimo {
+.botao-reserva {
     padding-top: 7.5px;
     padding-bottom: 7.5px;
     padding-left: 76px;
@@ -293,7 +293,7 @@ h1 {
     transition: 0.2s;
 }
 
-.botao-emprestimo:hover {
+.botao-reserva:hover {
     background-color: var(--azul-escuro);
     border: 3px solid var(--azul-escuro);
     transform: scale(1.05);

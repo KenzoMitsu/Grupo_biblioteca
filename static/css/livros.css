@@ -364,7 +364,6 @@ label{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    
 }
 
 #livrosList .livro-hud p {
@@ -383,13 +382,14 @@ label{
     padding: 8px;
     margin-bottom: 0px;
     margin-top: auto;
-
 }
+
 .titulo{
     padding: 5px;
     margin: bottom 5px;
     min-height: 76px;
 }
+
 .mb-3 {
     display: flex;
     flex-direction: column;
@@ -443,7 +443,6 @@ button.delete:hover {
     transition: 0.5s;
     background-color: rgb(199, 49, 49);
 }
-
 
 button.edit {
     background-color: var(--azul);
