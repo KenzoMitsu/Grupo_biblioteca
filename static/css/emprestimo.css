@@ -76,10 +76,10 @@ header {
 .search-container {
     display: flex;
     align-items: center;
-    background-color: white;
+    background-color: var(--branco);
     padding: 2px 20px;
     border-radius: 25px;
-    width: 400px;
+    width: 600px;
 }
 
 .search-container i {
