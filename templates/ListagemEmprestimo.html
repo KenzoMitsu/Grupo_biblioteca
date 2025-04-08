@@ -117,7 +117,7 @@
 
     <section class="container">
 
-        <h1>Emprestimos</h1>
+        <h1>Listagem de Reservas</h1>
 
         <div class="card-emprestimo" id="listaLivrosHistorico">
             <div class="info item">
@@ -203,7 +203,7 @@
                     retorno.emprestimos_cadastrados.forEach((livro) => {
                         html.innerHTML += `
                             <div class="item">
-                                <a href="detalheEmpestimo.html?id=${livro.id_livro}
+                                <a href="detalheEmprestimo.html?id=${livro.id_livro}
                                 &data_emprestimo=${livro.data_emprestimo}&data_devolucao=${livro.data_devolucao}
                                 &data_devolvida=${livro.data_devolvida}&nome_usuario=${livro.nome_usuario}
                                 &titulo_livro=${livro.titulo_livro}&autor_livro=${livro.autor_livro}">
