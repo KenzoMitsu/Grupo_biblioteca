@@ -428,6 +428,10 @@ label{
     font-size: 14px;
 }
 
+.livro-titulo {
+    height: 75px;
+}
+
 .edit {
     color: blue;
 }
