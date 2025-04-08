@@ -203,7 +203,7 @@
 
         document.querySelector("#btn_emprestimo").addEventListener("click", function () {
             var settings = {
-                "url": "http://192.168.1.136:5000/emprestimos/" + id,
+                "url": ipPython + "/emprestimos/" + id,
                 "method": "POST",
                 "timeout": 0,
                 "headers": {

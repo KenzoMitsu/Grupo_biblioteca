@@ -30,6 +30,7 @@
 
     <script src="../static/js/seguranca.js" defer></script>
     <script src="../static/js/segurancaADM.js" defer></script>
+    <script src="../static/js/paginaip.js"></script>
 
     <link rel="stylesheet" href="../static/css/admin.css">
     <link rel="icon" type="image/x-icon" href="../static/img/head-removebg-preview.png">
@@ -195,7 +196,7 @@
 
         function carregaLivrosHistorico() {
             var settings = {
-                "url": "http://192.168.1.136:5000/emprestimos",
+                "url": ipPython + "/emprestimos",
                 "method": "GET",
                 "timeout": 0,
                 "headers": {
@@ -213,7 +214,7 @@
                                 &data_devolvida=${livro.data_devolvida}&id_livro=${livro.id_livro}&id_usuario=${livro.id_usuario}
                                 &nome_usuario=${livro.nome_usuario}&titulo_livro=${livro.titulo_livro}&autor_livro=${livro.autor_livro}">
                                 
-                                    <img src="http://192.168.1.136:5000/static/uploads/Livros/${livro.id_livro}.jpeg" alt="" class="livro-img">
+                                    <img src="${ipPython}/static/uploads/Livros/${livro.id_livro}.jpeg" alt="" class="livro-img">
                                     <p>${livro.titulo_livro}</p>
                                 </a>
                             </div>
