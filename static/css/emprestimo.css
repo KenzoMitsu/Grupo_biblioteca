@@ -217,6 +217,7 @@ h1 {
 
 .texto {
     font-size: medium;
+    max-width: 280px;
 
 }
 
