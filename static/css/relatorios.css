@@ -283,6 +283,10 @@ section{
     align-items: center;
 }
 
+.header-end {
+    margin-bottom: 15px;
+}
+
 .butt{
     transition: 0.2s;
     margin: 20px;

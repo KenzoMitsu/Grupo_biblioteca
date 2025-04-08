@@ -313,6 +313,10 @@ h1{
     margin-right: 15px;
 }
 
+.header-end {
+  margin-bottom: 15px;
+}
+
 .info {
     display: flex;
     flex-direction: column;
@@ -777,8 +781,6 @@ footer{
       font-size: 15px
   }
 }
-
-
 
 ::-webkit-scrollbar {
   width: 12px;
