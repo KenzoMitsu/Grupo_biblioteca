@@ -91,7 +91,7 @@
                         <li class="menu-item"><i class="fas fa-book"></i><a href="editLivrosADM.html">Gerenciar Livros
                         </li></a>
 
-                        <li class="menu-item"><i class="fas fa-sync-alt"></i><a href="emprestimosADM.html">Empréstimos
+                        <li class="menu-item"><i class="fas fa-sync-alt"></i><a href="ListagemEmprestimo.html">Empréstimos
                         </li></a>
 
                     </div>
@@ -179,11 +179,11 @@
     </main>
 
 <script>
-
+    // LOGOUT
     document.querySelector(".menu-item button").addEventListener("click", function () {
-        localStorage.clear();
-        window.location.href = "login.html";
-    });
+            localStorage.clear(); // Remove todos os dados do localStorage
+            window.location.href = "login.html"; // Redireciona para a página de login
+        });
 
     $(document).ready(function () {
         const token = localStorage.getItem("token");
