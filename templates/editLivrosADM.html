@@ -667,11 +667,10 @@
 
 
 
-
         // FUNÇÃO PARA DELETAR LIVROS (DELETE):
         function deletarLivro(button) {
             var livroElement = $(button).closest('.livro-hud'); // Encontra o elemento do livro
-            var id = livroElement.data("id"); // Obtém o ID do livro
+            var id = livroElement.data("id_livro"); // Corrigido para usar "id_livro"
 
             var token = localStorage.getItem("token"); // Obtém o token de autenticação
 
