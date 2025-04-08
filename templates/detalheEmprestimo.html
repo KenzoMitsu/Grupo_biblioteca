@@ -69,7 +69,7 @@
                     </li>
 
                     <div id="cliente">
-                        <li class="menu-item"><i class="fas fa-book"></i><a href="reservas_atuais.html">Empréstimos</a></li>
+                        <li class="menu-item"><i class="fas fa-book"></i><a href="reservas_atuais.html">Reservas em andamento</a></li>
                         <li class="menu-item"><i class="fas fa-sync-alt"></i><a href="historico.html">Histórico</a></li>
                     </div>
 
@@ -97,13 +97,13 @@
                     </div>
 
                     <div id="biblio">
-                        <li class="menu-item"><i class="fas fa-book"></i><a href="emprestimosBiblio.html">
-                                Empréstimos</a></li>
+                        <li class="menu-item"><i class="fas fa-book"></i><a href="ListagemReservas.html">
+                                Reservas</a></li>
 
                         <li class="menu-item"><i class="fa-solid fa-file-export"></i><a
-                                href="relatoriosBiblio.html">Relatórios</a></li>
+                                href="relatorios.html">Relatórios</a></li>
 
-                        <li class="menu-item"><i class="fas fa-sync-alt"></i><a href="livrosBiblio.html"> Gerenciar
+                        <li class="menu-item"><i class="fas fa-sync-alt"></i><a href="editLivros.html"> Gerenciar
                                 Livros</a></li>
                     </div>
 
@@ -218,8 +218,7 @@
 
         document.getElementById("data_devolucao").innerHTML = formatarData(params.get('data_devolucao'))
 
-        const id_livro = params.get('id_livro');
-        document.getElementById("imagemLivro").src = ipPython + "/static/uploads/Livros/" + id_livro + ".jpeg";
+        document.getElementById("imagemLivro").src = ipPython + "/static/uploads/Livros/" + id.trim() + ".jpeg";
 </script>
 
 
