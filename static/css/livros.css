@@ -369,6 +369,7 @@ label{
 
 #livrosList .livro-hud p {
     font-weight: bold;
+    text-align: center;
 }
 
 .livro-hud img {
@@ -387,6 +388,7 @@ label{
 .titulo{
     padding: 5px;
     margin: bottom 5px;
+    min-height: 76px;
 }
 .mb-3 {
     display: flex;
