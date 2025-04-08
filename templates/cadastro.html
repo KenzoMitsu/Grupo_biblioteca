@@ -96,41 +96,39 @@
 
     <script>
 
-        $("#formCadastro").on("submit", function (e) {
-            e.preventDefault(); // Impede o comportamento padrão do formulário
+$("#formCadastro").on("submit", function (e) {
+    e.preventDefault();
 
+    const data = {
+        nome: $("#nome").val(),
+        email: $("#email").val(),
+        senha: $("#senha").val(),
+        telefone: $("#tel").val(),
+        data_nascimento: $("#data").val().split("-").reverse().join("-")  // yyyy-mm-dd → dd-mm-yyyy
+    };
 
-            let envia = new FormData(this);
+    $.ajax({
+        method: "POST",
+        url: ipPython + "/usuarios",
+        data: JSON.stringify(data),
+        contentType: "application/json",
+        success: function (retorno) {
+            Swal.fire({
+                title: "Sucesso!",
+                text: "Cadastro feito com sucesso",
+                icon: "success"
+            }).then(() => window.location.href = "login.html");
+        },
+        error: function (retorno) {
+            Swal.fire({
+                title: "Inválido!",
+                text: JSON.parse(retorno.responseText).error,
+                icon: "error"
+            });
+        }
+    });
+});
 
-            $.ajax({
-                method: "POST",
-                url: ipPython + "/usuarios",
-                data: envia,
-                timeout: 0,
-                processData: false,
-                mimeType: "multipart/form-data",
-
-                contentType: false,
-
-                success: function (retorno) {
-                    Swal.fire({
-                        title: "Sucesso!",
-                        text: "Cadastro feito com sucesso",
-                        icon: "success"
-                    }).then((result) => {
-                        window.location.href = "login.html";
-                    })
-                },
-
-                error: function (retorno) {
-                    Swal.fire({
-                        title: "Inválido!",
-                        text: JSON.parse(retorno.responseText).error,
-                        icon: "error"
-                    })
-                }
-            })
-        })
 
         const tel = document.getElementById('tel') // Seletor do campo de telefone
 
