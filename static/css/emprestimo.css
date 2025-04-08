@@ -19,6 +19,7 @@ a{
     color: black;
 }
 :root{
+    --azul: #3380ca;
     --azul-claro: #4292DC;
     --azul-escuro: #0060BB;
     --branco: rgb(248, 252, 255);
@@ -283,8 +284,8 @@ h1 {
     color: var(--branco);
     margin-top: 20px;
     margin-bottom: 20px;
-    background-color: var(--azul-claro);
-    border: 3px solid var(--azul-claro);
+    background-color: var(--azul);
+    border: 3px solid var(--azul);
     border-radius: 5px;
     font-weight: bold;
     font-size: x-large;
@@ -292,8 +293,10 @@ h1 {
 }
 
 .botao-emprestimo:hover {
-    background-color: var(--brancoo);
-    color: var(--azul-claro);
+    background-color: var(--azul-escuro);
+    border: 3px solid var(--azul-escuro);
+    transform: scale(1.05);
+    font-size: 25px;
     transition: 0.2s;
 }
 
@@ -665,9 +668,6 @@ footer{
         font-size: 15px
     }
 }
-
-
-
 
 ::-webkit-scrollbar {
     width: 12px;
