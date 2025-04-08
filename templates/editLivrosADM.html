@@ -48,6 +48,7 @@
 
         <!-- Dark Mode -->
 
+
         <!-- Ícone de Menu com Dropdown -->
         <div class="header-end">
             <div class="menu-container">
@@ -59,8 +60,7 @@
 
                 <ul class="dropdown-menu" id="dropdownMenu">
 
-                    <li class="menu-item"><i class="fa-solid fa-circle-user"></i><a id="editPerfil"
-                            href="editPerfil.html"> Perfil</a>
+                    <li class="menu-item"><i class="fa-solid fa-circle-user"></i><a id="editPerfil" href="editPerfil.html"> Perfil</a>
                     </li>
 
                     <div id="cliente">
@@ -122,7 +122,9 @@
 
         <div class="livro-hud" id="livroTemplate" style="display: none;">
             <img class="livro" src="../static/img/placeholder.jpg" alt="Capa do Livro">
-            <p class="livro-titulo"></p>
+            <div class="titulo">
+                <p class="livro-titulo"></p>
+            </div>
             <div class="actions">
                 <button class="edit" data-bs-toggle="modal" data-bs-target="#modalEditarLivro"
                     onclick="editarLivro(this)">
@@ -184,21 +186,84 @@
                         <div class="mb-3">
                             <label for="categoria" class="coisa">Categoria:</label>
                             <select class="inserir" name="categoria" id="categoria">
-
-                                <option class="inserir" value="Romance">Romance</option>
-
-                                <option class="inserir" value="Terror">Terror</option>
-
-                                <option class="inserir" value="Ficcao_cientifica">Ficção científica</option>
-
-                                <option class="inserir" value="Enciclopedia">Enciclopédia</option>
-
-                                <option class="inserir" value="Conto">Conto</option>
-
-                                <option class="inserir" value="Diario">Diário</option>
-
+                        
+                                <!-- FICÇÃO -->
+                                <optgroup label="Ficção">
+                                    <option class="inserir" value="Romance">Romance</option>
+                                    <option class="inserir" value="Romance_historico">Romance histórico</option>
+                                    <option class="inserir" value="Romance_policial">Romance policial</option>
+                                    <option class="inserir" value="Romance_psicologico">Romance psicológico</option>
+                                    <option class="inserir" value="Terror">Terror</option>
+                                    <option class="inserir" value="Suspense">Suspense</option>
+                                    <option class="inserir" value="Thriller">Thriller</option>
+                                    <option class="inserir" value="Fantasia">Fantasia</option>
+                                    <option class="inserir" value="Ficcao_cientifica">Ficção científica</option>
+                                    <option class="inserir" value="Distopia">Distopia</option>
+                                    <option class="inserir" value="Utopia">Utopia</option>
+                                    <option class="inserir" value="Realismo_magico">Realismo mágico</option>
+                                    <option class="inserir" value="Cyberpunk">Cyberpunk</option>
+                                    <option class="inserir" value="Steampunk">Steampunk</option>
+                                    <option class="inserir" value="Drama">Drama</option>
+                                    <option class="inserir" value="Aventura">Aventura</option>
+                                    <option class="inserir" value="Conto">Conto</option>
+                                    <option class="inserir" value="Western">Faroeste / Western</option>
+                                </optgroup>
+                        
+                                <!-- NÃO FICÇÃO -->
+                                <optgroup label="Não Ficção">
+                                    <option class="inserir" value="Biografia">Biografia</option>
+                                    <option class="inserir" value="Autobiografia">Autobiografia</option>
+                                    <option class="inserir" value="Memorias">Memórias</option>
+                                    <option class="inserir" value="Diario">Diário</option>
+                                    <option class="inserir" value="Ensaios">Ensaios</option>
+                                    <option class="inserir" value="Epistolar">Epistolar (cartas)</option>
+                                    <option class="inserir" value="Crimes_reais">Crimes reais (True Crime)</option>
+                                    <option class="inserir" value="Viagem">Viagem</option>
+                                    <option class="inserir" value="Gastronomia">Gastronomia / Culinária</option>
+                                    <option class="inserir" value="Moda">Moda</option>
+                                    <option class="inserir" value="Arte">Arte</option>
+                                    <option class="inserir" value="Musica">Música</option>
+                                    <option class="inserir" value="Cinema">Cinema</option>
+                                    <option class="inserir" value="Historia">História</option>
+                                    <option class="inserir" value="Politica">Política</option>
+                                    <option class="inserir" value="Filosofia">Filosofia</option>
+                                    <option class="inserir" value="Tratado">Tratado</option>
+                                    <option class="inserir" value="Proposito">Propósito</option>
+                                    <option class="inserir" value="Sociologia">Sociologia</option>
+                                    <option class="inserir" value="Psicologia">Psicologia</option>
+                                    <option class="inserir" value="Antropologia">Antropologia</option>
+                                    <option class="inserir" value="Economia">Economia</option>
+                                    <option class="inserir" value="Ecologia">Ecologia</option>
+                                    <option class="inserir" value="Religioso">Religioso</option>
+                                    <option class="inserir" value="Saude">Saúde</option>
+                                    <option class="inserir" value="Autoajuda">Autoajuda</option>
+                                </optgroup>
+                        
+                                <!-- EDUCACIONAL / TÉCNICO -->
+                                <optgroup label="Educacional / Técnico">
+                                    <option class="inserir" value="Didatico">Didático</option>
+                                    <option class="inserir" value="Tecnico">Técnico</option>
+                                    <option class="inserir" value="Enciclopedia">Enciclopédia</option>
+                                    <option class="inserir" value="Apostila">Apostila</option>
+                                    <option class="inserir" value="Exercicios">Livros de exercícios</option>
+                                    <option class="inserir" value="Preparacao_enem">Preparação para ENEM / Vestibular</option>
+                                    <option class="inserir" value="Idiomas">Aprendizado de idiomas</option>
+                                </optgroup>
+                        
+                                <!-- HQs / INFANTIL / MITOLOGIA -->
+                                <optgroup label="Outros">
+                                    <option class="inserir" value="HQ">HQ / Mangá</option>
+                                    <option class="inserir" value="Infantil">Infantil</option>
+                                    <option class="inserir" value="Juvenil">Juvenil</option>
+                                    <option class="inserir" value="Erótico">Erótico</option>
+                                    <option class="inserir" value="Mitologia">Mitologia</option>
+                                    <option class="inserir" value="Poesia">Poesia</option>
+                                    <option class="inserir" value="Esporte">Esporte</option>
+                                </optgroup>
+                        
                             </select>
                         </div>
+                        
 
                         <div class="mb-3">
                             <label for="imagem" class="form-label">Imagem do Livro</label>
@@ -273,14 +338,81 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="categoriaEditar" class="coisa">Categoria:</label>
-                            <select class="inserir" name="categoria" id="categoriaEditar">
-                                <option value="Romance">Romance</option>
-                                <option value="Terror">Terror</option>
-                                <option value="Ficcao_cientifica">Ficção científica</option>
-                                <option value="Enciclopedia">Enciclopédia</option>
-                                <option value="Conto">Conto</option>
-                                <option value="Diario">Diário</option>
+                            <label for="categoria" class="coisa">Categoria:</label>
+                            <select class="inserir" name="categoria" id="categoria">
+                        
+                                <!-- FICÇÃO -->
+                                <optgroup label="Ficção">
+                                    <option class="inserir" value="Romance">Romance</option>
+                                    <option class="inserir" value="Romance_historico">Romance histórico</option>
+                                    <option class="inserir" value="Romance_policial">Romance policial</option>
+                                    <option class="inserir" value="Romance_psicologico">Romance psicológico</option>
+                                    <option class="inserir" value="Terror">Terror</option>
+                                    <option class="inserir" value="Suspense">Suspense</option>
+                                    <option class="inserir" value="Thriller">Thriller</option>
+                                    <option class="inserir" value="Fantasia">Fantasia</option>
+                                    <option class="inserir" value="Ficcao_cientifica">Ficção científica</option>
+                                    <option class="inserir" value="Distopia">Distopia</option>
+                                    <option class="inserir" value="Utopia">Utopia</option>
+                                    <option class="inserir" value="Realismo_magico">Realismo mágico</option>
+                                    <option class="inserir" value="Cyberpunk">Cyberpunk</option>
+                                    <option class="inserir" value="Steampunk">Steampunk</option>
+                                    <option class="inserir" value="Drama">Drama</option>
+                                    <option class="inserir" value="Aventura">Aventura</option>
+                                    <option class="inserir" value="Conto">Conto</option>
+                                    <option class="inserir" value="Western">Faroeste / Western</option>
+                                </optgroup>
+                        
+                                <!-- NÃO FICÇÃO -->
+                                <optgroup label="Não Ficção">
+                                    <option class="inserir" value="Biografia">Biografia</option>
+                                    <option class="inserir" value="Autobiografia">Autobiografia</option>
+                                    <option class="inserir" value="Memorias">Memórias</option>
+                                    <option class="inserir" value="Diario">Diário</option>
+                                    <option class="inserir" value="Ensaios">Ensaios</option>
+                                    <option class="inserir" value="Epistolar">Epistolar (cartas)</option>
+                                    <option class="inserir" value="Crimes_reais">Crimes reais (True Crime)</option>
+                                    <option class="inserir" value="Viagem">Viagem</option>
+                                    <option class="inserir" value="Gastronomia">Gastronomia / Culinária</option>
+                                    <option class="inserir" value="Moda">Moda</option>
+                                    <option class="inserir" value="Arte">Arte</option>
+                                    <option class="inserir" value="Musica">Música</option>
+                                    <option class="inserir" value="Cinema">Cinema</option>
+                                    <option class="inserir" value="Historia">História</option>
+                                    <option class="inserir" value="Politica">Política</option>
+                                    <option class="inserir" value="Filosofia">Filosofia</option>
+                                    <option class="inserir" value="Sociologia">Sociologia</option>
+                                    <option class="inserir" value="Psicologia">Psicologia</option>
+                                    <option class="inserir" value="Antropologia">Antropologia</option>
+                                    <option class="inserir" value="Economia">Economia</option>
+                                    <option class="inserir" value="Ecologia">Ecologia</option>
+                                    <option class="inserir" value="Religioso">Religioso</option>
+                                    <option class="inserir" value="Saude">Saúde</option>
+                                    <option class="inserir" value="Autoajuda">Autoajuda</option>
+                                </optgroup>
+                        
+                                <!-- EDUCACIONAL / TÉCNICO -->
+                                <optgroup label="Educacional / Técnico">
+                                    <option class="inserir" value="Didatico">Didático</option>
+                                    <option class="inserir" value="Tecnico">Técnico</option>
+                                    <option class="inserir" value="Enciclopedia">Enciclopédia</option>
+                                    <option class="inserir" value="Apostila">Apostila</option>
+                                    <option class="inserir" value="Exercicios">Livros de exercícios</option>
+                                    <option class="inserir" value="Preparacao_enem">Preparação para ENEM / Vestibular</option>
+                                    <option class="inserir" value="Idiomas">Aprendizado de idiomas</option>
+                                </optgroup>
+                        
+                                <!-- HQs / INFANTIL / MITOLOGIA -->
+                                <optgroup label="Outros">
+                                    <option class="inserir" value="HQ">HQ / Mangá</option>
+                                    <option class="inserir" value="Infantil">Infantil</option>
+                                    <option class="inserir" value="Juvenil">Juvenil</option>
+                                    <option class="inserir" value="Erótico">Erótico</option>
+                                    <option class="inserir" value="Mitologia">Mitologia</option>
+                                    <option class="inserir" value="Poesia">Poesia</option>
+                                    <option class="inserir" value="Esporte">Esporte</option>
+                                </optgroup>
+                        
                             </select>
                         </div>
 

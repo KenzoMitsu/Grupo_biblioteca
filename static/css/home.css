@@ -151,7 +151,7 @@ input:checked+.slider:before {
 
 .menu-icon {
     cursor: pointer;
-    width: 30px;
+    width: 32px;
     height: 25px;
     display: flex;
     flex-direction: column;
@@ -305,6 +305,10 @@ input:checked+.slider:before {
     ;
     border-radius: 10px;
     text-align: center;
+}
+
+.header-end {
+    margin-bottom: 15px;
 }
 
 .item img {
