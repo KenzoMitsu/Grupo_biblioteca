@@ -183,7 +183,6 @@ input:checked + .slider:before {
 }
 
 select {
-    border: 2px solid var(--azul-escuro);
     border-radius: 3px;
 }
 
@@ -218,9 +217,10 @@ select {
 #form-edicao input {
     width: 100%; /* Largura total dos inputs */
     padding: 10px; /* Espaçamento interno dos inputs */
-    margin-bottom: 15px; /* Espaçamento abaixo dos inputs */
-    border: 2px solid var(--azul-escuro); /* Borda azul */
+    margin-bottom: 15px; /* Espaçamento abaixo dos inputs */ /* Borda azul */
     border-radius: 5px; /* Bordas arredondadas */
+    border: 1px solid #3380ca;
+    background-color:#eef3ff;
 }
 
 #form-edicao button {
@@ -379,7 +379,7 @@ select {
 /* Botão de Editar na tabela */
 button.editar-btn {
     padding: 5px 10px;
-    background-color: var(--azul-escuro);
+    background-color: var(--azul);
     color: var(--branco);
     border: none;
     border-radius: 5px;
@@ -388,7 +388,7 @@ button.editar-btn {
 }
 
 button.editar-btn:hover {
-    background-color: var(--azul-claro);
+    background-color: var(--azul-escuro);
     transform: scale(1.05);
 }
 
@@ -405,13 +405,13 @@ button.editar-btn:hover {
 }
 
 #form-edicao button[type="submit"] {
-    background-color: var(--azul-escuro);
+    background-color: var(--azul);
     color: var(--branco);
     margin-top: 7px;
 }
 
 #form-edicao button[type="submit"]:hover {
-    background-color: var(--azul-claro);
+    background-color: var(--azul-escuro);
     transform: scale(1.05);
 }
 
@@ -454,6 +454,10 @@ button.editar-btn:hover {
 
 footer{
     margin-top: 30px;
+}
+
+label {
+    color: var(--azul);
 }
 
 /* RODAPÉ */

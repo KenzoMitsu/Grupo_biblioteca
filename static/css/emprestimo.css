@@ -271,12 +271,6 @@ h1 {
     transition: 0.2s;
 }
 
-.botao-esgotado:hover {
-    background-color: var(--azul-claro);
-    color: var(--branco);
-    transition: 0.2s;
-}
-
 .botao-reserva {
     padding-top: 7.5px;
     padding-bottom: 7.5px;
