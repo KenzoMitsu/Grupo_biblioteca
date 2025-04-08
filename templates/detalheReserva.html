@@ -135,6 +135,9 @@
                 <p><strong>Usuario:</strong></p>
                 <p id="usuario" ></p>
 
+                <p><strong>Data Reserva</strong></p>
+                <p id="data_reserva" ></p>
+
                 <p><strong>Data do Empréstimo:</strong></p>
                 <p id="data_emprestimo" ></p>
 
@@ -214,9 +217,11 @@
 
         document.getElementById("usuario").innerHTML = params.get('nome_usuario')
 
-        document.getElementById("data_emprestimo").innerHTML = formatarData(params.get('data_emprestimo'))
+        document.getElementById("data_reserva").innerHTML = (params.get('data_reserva'))
 
-        document.getElementById("data_devolucao").innerHTML = formatarData(params.get('data_devolucao'))
+        document.getElementById("data_emprestimo").innerHTML = (params.get('data_emprestimo'))
+
+        document.getElementById("data_devolucao").innerHTML = (params.get('data_devolucao'))
 
         document.getElementById("imagemLivro").src = ipPython + "/static/uploads/Livros/" + id.trim() + ".jpeg";
 </script>
