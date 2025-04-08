@@ -196,7 +196,7 @@
 
         function carregaLivros() {
             var settings = {
-                "url": "http://192.168.1.136:5000/livro",
+                "url": ipPython + "/livro",
                 "method": "GET",
                 "timeout": 0,
                 success: function (retorno) {
@@ -211,7 +211,7 @@
                                 &categoria=${livro.categoria}&data_publicacao=${livro.data_publicacao}&descricao=${livro.descricao}
                                 &quantidade=${livro.quantidade}&titulo=${livro.titulo}">
                                 
-                                    <img src="http://192.168.1.136:5000/static/uploads/Livros/${livro.id_livro}.jpeg" alt="">
+                                    <img src="${ipPython}/static/uploads/Livros/${livro.id_livro}.jpeg" alt="">
                                     <p>${livro.titulo}</p>
                                     
                                 </a>
