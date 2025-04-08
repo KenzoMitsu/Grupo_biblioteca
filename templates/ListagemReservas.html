@@ -190,7 +190,7 @@
 
         function carregaLivrosHistorico() {
             var settings = {
-                "url": ipPython + "/emprestimos",
+                "url": ipPython + "/reservas",
                 "method": "GET",
                 "timeout": 0,
                 "headers": {
@@ -203,7 +203,7 @@
                     retorno.emprestimos_cadastrados.forEach((livro) => {
                         html.innerHTML += `
                             <div class="item">
-                                <a href="detalheEmprestimo.html?id=${livro.id_livro}&data_emprestimo=${livro.data_emprestimo}&data_devolucao=${livro.data_devolucao}&data_devolvida=${livro.data_devolvida}&nome_usuario=${livro.nome_usuario}&titulo_livro=${livro.titulo_livro}&autor_livro=${livro.autor_livro}">
+                                <a href="detalheReserva.html?id=${livro.id_livro}&data_emprestimo=${livro.data_reserva}&nome_usuario=${livro.nome_usuario}&titulo=${livro.titulo_livro}&autor=${livro.autor_livro}&data_reserva=${livro.data_reserva}&data_emprestimo=${livro.data_emprestimo}&data_devolucao=${livro.data_devolucao}&data_devolvida=${livro.data_devolvida}&status=${livro.status}">
                                     <img src="${ipPython}/static/uploads/Livros/${livro.id_livro}.jpeg" alt="" class="livro-img">
                                     <p>${livro.titulo_livro}</p>
                                 </a>
