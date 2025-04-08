@@ -63,10 +63,10 @@ header {
 .search-container {
     display: flex;
     align-items: center;
-    background-color: white;
-    padding: 8px 15px;
+    background-color: var(--branco);
+    padding: 2px 20px;
     border-radius: 25px;
-    width: 400px;
+    width: 600px;
 }
 
 .search-container i {
@@ -208,7 +208,7 @@ input:checked + .slider:before {
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
-        padding: 8px 15px;
+        padding: 2px 20px;
     }
 
     .header-left img {
