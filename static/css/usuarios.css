@@ -12,10 +12,10 @@ a{
     color:black;
 }
 :root{
+    --azul: #3380ca;
     --azul-claro: #4292DC;
     --azul-escuro: #0060BB;
     --branco: rgb(248, 252, 255);
-    --cinza: rgb(196, 197, 198);
     --preto: rgb(0, 0, 0);
     --cor-complementar: rgb(96, 209, 231);
     --escuro: rgb(36, 36, 36);
@@ -429,6 +429,28 @@ button.editar-btn:hover {
     overflow: auto;
 }
 
+.titulo {
+    color: var(--azul-escuro);
+    text-align: center;
+    font-weight: bold;
+}
+
+.btn-primary {
+    padding: 7px;
+    padding-left: 60px;
+    padding-right: 60px;
+    margin-left: 425px;
+    margin-bottom: -50px;
+    background-color: var(--azul-claro);
+    font-weight: bold;
+}
+
+.btn-primary:hover {
+    background-color: var(--azul-escuro);
+    border: 3px solid var(--azul-escuro);
+    transform: scale(1.05);
+    transition: 0.2s;
+}
 
 footer{
     margin-top: 30px;

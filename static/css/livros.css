@@ -276,7 +276,7 @@ h1 {
     font-weight: bold;
     margin-top: -25px;
     text-align: center;
-    color: var(--azul);
+    color: var(--azul-escuro);
 }
 
 .bot {

@@ -275,7 +275,8 @@ input:checked + .slider:before {
 
 .titulo {
     text-align: center;
-    color: #3380CA;
+    font-weight: bold;
+    color: var(--azul-escuro);
     margin-bottom: 20px;
 }
 

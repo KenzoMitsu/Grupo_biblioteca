@@ -277,9 +277,16 @@ input:checked + .slider:before {
     }
 }
 
+.titulo {
+    font-size: xx-large;
+    font-weight: bold;
+    color: var(--azul-escuro);
+}
+
 section{
     justify-content: center;
     display: flex;
+    flex-direction: column;
     align-items: center;
 }
 
