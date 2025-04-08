@@ -61,7 +61,8 @@
 
                 <ul class="dropdown-menu" id="dropdownMenu">
 
-                    <li class="menu-item"><i class="fa-solid fa-circle-user"></i><a id="editPerfil" href="editPerfil.html"> Perfil</a>
+                    <li class="menu-item"><i class="fa-solid fa-circle-user"></i><a id="editPerfil"
+                            href="editPerfil.html"> Perfil</a>
                     </li>
 
                     <div id="cliente">
@@ -245,6 +246,30 @@
                 }
             });
         });
+
+        function formatarData(dataISO) {
+            if (!dataISO) return ""; // Evita erro se a data estiver vazia
+
+            let data = new Date(dataISO);
+            let dia = data.getDate().toString().padStart(2, "0");
+            let mes = (data.getMonth() + 1).toString().padStart(2, "0");
+            let ano = data.getFullYear();
+
+            return `${dia}/${mes}/${ano}`;
+        }
+
+        const handlePhone = (event) => {
+            let input = event.target
+            input.value = phoneMask(input.value)
+        }
+
+        const phoneMask = (value) => {
+            if (!value) return ""
+            value = value.replace(/\D/g, '')
+            value = value.replace(/(\d{2})(\d)/, "($1) $2")
+            value = value.replace(/(\d)(\d{4})$/, "$1-$2")
+            return value
+        }
     </script>
 
 </body>
