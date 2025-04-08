@@ -676,3 +676,40 @@ footer{
 footer{
     margin-top: 50px;
 }
+
+@media (max-width: 380px) {
+
+    .as {
+        font-size: 11px;
+    }
+
+    .linha {
+        padding: 2px;
+    }
+
+    .search-container{
+        width: 200px;
+    }
+
+    .switch-container {
+        display: none;
+    }
+
+    .save-btn {
+        display: block;
+        margin: 0 auto;
+    }
+}
+
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-track {
+    background: linear-gradient(to bottom, rgb(50, 50, 50), rgb(50, 50, 50));
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(to bottom, #0070BB, #0070BB);
+    border: 2px solid #3d9acf00;
+}
