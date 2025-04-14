@@ -245,6 +245,7 @@ select {
     transition: transform 0.3s; /* Transição suave para o efeito de aumento */
 }
 
+
 /* Imagem do perfil no menu */
 .menu-icon-img {
     width: 20px;
@@ -388,6 +389,22 @@ button.editar-btn {
 }
 
 button.editar-btn:hover {
+    background-color: var(--azul-escuro);
+    transform: scale(1.05);
+}
+
+.botao-historico {
+    padding: 5px 10px;
+    background-color: var(--azul);
+    color: var(--branco);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    margin-top: 4px;
+}
+
+.botao-historico:hover {
     background-color: var(--azul-escuro);
     transform: scale(1.05);
 }

@@ -163,7 +163,6 @@
           <option class="inserir" value="ADM">ADM</option>
         </select>
 
-
         <label for="status" class="coisa">Status:</label>
         <select class="inserir" name="status" id="status">
           <option class="inserir" value="Ativo">Ativo</option>
@@ -219,6 +218,7 @@
                       data-status="${usuario.status}">
                         Editar
                     </button>
+                    <a href="historicoUsuario.html?id=${usuario.id_usuario}"><button class='botao-historico'>Histórico</button></a>
                   </td>
                 </tr>
               `;
