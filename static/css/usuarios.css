@@ -415,17 +415,14 @@ button.editar-btn:hover {
     transform: scale(1.05);
 }
 
-.modal-header {
-    background-color: #0060BB;
-    color: var(--branco);
-    display: flex;
-    flex-shrink: 0;
-    align-items: center ;
-    padding: var(--bs-modal-header-padding);
+#form-edicao button[type="button"] {
+    background-color: #ccc;
+    color: #333;
 }
 
-.modal-header .btn-close {
-    color: var(--branco);
+#form-edicao button[type="button"]:hover {
+    background-color: #bbb;
+    transform: scale(1.05);
 }
 
 .table-container {
