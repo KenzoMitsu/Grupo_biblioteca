@@ -116,16 +116,14 @@
     <main>
 
         <section class="container">
-            <h1>Empréstimos</h1>
+            <h1>Minhas reservas</h1>
 
             <div class="card-emprestimo">
-                <img src="../static/img/harry potter 1.jpg" alt="O Príncipe" class="livro-img">
+                <img id="imagemLivro" class="foto-livro imagemLivro" src="" alt="">
                 <div class="info">
-                    <h2>O Príncipe</h2>
-                    <p class="autor">Nicolau Maquiavel</p>
-                    <p><strong>Data do Empréstimo:</strong> 31/31/31</p>
-                    <p><strong>Data de Devolução:</strong> 32/32/32</p>
-                    <p><strong>Estado:</strong> <span class="estado">Em Dia</span></p>
+                    <h2 id="titulo"></h2>
+                    <p id="autor" class="autor"></p>
+                    <p><strong>Reservado em:</strong> <span id="data_reserva"></span></p>
                 </div>
             </div>
         </section>
@@ -190,12 +188,57 @@
     <script>
         // LOGOUT
         document.querySelector(".menu-item button").addEventListener("click", function () {
-            localStorage.clear(); // Remove todos os dados do localStorage
-            window.location.href = "login.html"; // Redireciona para a página de login
+            localStorage.clear();
+            window.location.href = "login.html";
         });
 
+        const params = new URLSearchParams(window.location.search);
+        const id_livro = params.get('id'); // Obtenha o ID do livro da URL
+        const token = localStorage.getItem('token'); // Supondo que o token esteja armazenado no localStorage
 
-        
+        window.onload = function() {
+            var token = localStorage.getItem("token")
+            var id = localStorage.getItem("id_usuario")
+
+            if (!id_usuario || !token) {
+                console.log("Usuário não autenticado.");
+                return;
+            }
+
+            $.ajax({
+                url: ipPython + "/reservasusuario/" + id,
+                method: "GET",
+                headers: {
+                    "Authorization": token
+                },
+                success: function(response) {
+                    const reservas = response.emprestimos_cadastrados;
+                    if (!reservas || reservas.length === 0) {
+                        document.getElementById("titulo").innerText = "Nenhuma reserva encontrada";
+                        document.getElementById("autor").innerText = "";
+                        document.getElementById("data_reserva").innerText = "";
+                        document.getElementById("imagemLivro").style.display = "none";
+                        return;
+                    }
+
+                    const reserva = reservas[0]; // Pega a primeira reserva
+
+                    document.getElementById("titulo").innerText = reserva.titulo_livro;
+                    document.getElementById("autor").innerText = reserva.autor_livro;
+                    document.getElementById("data_reserva").innerText = reserva.data_reserva;
+                    document.getElementById("imagemLivro").src = "../static/uploads/Livros/" + reserva.id_livro + ".jpeg";
+                    document.getElementById("imagemLivro").alt = reserva.titulo_livro;
+                    document.getElementById("imagemLivro").style.display = "block";
+                },
+                error: function() {
+                    Swal.fire({
+                        title: "Erro!",
+                        text: "Não foi possível carregar suas reservas.",
+                        icon: "error"
+                    });
+                }
+            });
+        };
     </script>
 
 </body>
