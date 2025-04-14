@@ -225,8 +225,10 @@
 
         document.getElementById("usuario").innerHTML = params.get('nome_usuario')
 
-        document.getElementById("data_reserva").innerHTML = (params.get('data_reserva'))
-
+        let dataOriginal = params.get('data_reserva') || "";
+        let dataFormatada = dataOriginal.replace(/-/g, "/");
+        document.getElementById("data_reserva").innerHTML = dataFormatada;
+        
         document.getElementById("imagemLivro").src = ipPython + "/static/uploads/Livros/" + id.trim() + ".jpeg";
     </script>
 

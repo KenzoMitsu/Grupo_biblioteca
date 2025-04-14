@@ -306,12 +306,13 @@ input:checked+.slider:before {
     text-align: center;
     background-color: blanchedalmond;
     box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease; /* Adicionando a transição no estado normal */
 }
 
-.item:hover{
-    scale: 1.1;
-    transition: 0.3s;
+.item:hover {
+    transform: scale(1.1); /* Usando 'transform' para aplicar o efeito */
 }
+
 
 .header-end {
     margin-bottom: 15px;
