@@ -140,8 +140,15 @@
     </div>
 
     <!-- Modal para Edição -->
+
     <div id="modal-edicao" style="display: none;">
       <form id="form-edicao">
+
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalCadastrarLivroLabel">Cadastrar Livro</h5>
+          <button id="fechar-modal" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
         <input type="hidden" id="id_usuario">
 
         <label>Nome:</label>
@@ -172,7 +179,6 @@
         </select>
 
         <button type="submit">Salvar</button>
-        <button type="button" id="fechar-modal">Cancelar</button>
       </form>
     </div>
 
