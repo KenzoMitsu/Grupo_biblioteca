@@ -248,13 +248,8 @@
                     // Atualiza a quantidade de livros disponíveis
                     var novaQuantidade = parseInt(document.getElementById("quantidade").innerHTML) - 1;
                     document.getElementById("quantidade").innerHTML = novaQuantidade;
-
-                    // Se a quantidade chegar a 0, desabilita o botão de reserva
-                    if (novaQuantidade <= 0) {
-                        document.getElementById("btn_reserva").style.display = "none";
-                        document.getElementById("btn_esgotado").style.display = "inline-block";
-                    }
                 },
+
                 "error": function (retorno) {
                     Swal.fire({
                         title: "Erro!",
