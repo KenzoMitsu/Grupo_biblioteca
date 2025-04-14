@@ -23,9 +23,7 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="../static/js/paginaip.js"></script>
     <script src="../static/js/scripts.js"></script>
-    <script src="../static/js/seguranca.js" defer></script>
-    <script src="../static/js/segurancaADM.js" defer></script>
-    <script src="../static/js/segurancaBiblio.js" defer></script>
+
 
 
     <!-- FIM DO SCRIPT DA SEGURANÇA -->
@@ -296,6 +294,32 @@
 
         return `${dia}/${mes}/${ano}`;
       }
+
+
+      var cargo = localStorage.getItem("cargo")
+
+console.log(cargo)
+
+if (cargo === 'ADM') {
+    document.getElementById("logoHeader").href = "home.html"
+
+    document.getElementById("biblio").style.display = "none";
+    document.getElementById("cliente").style.display = "none";
+    document.getElementById("adm").style.display = "inline-block";
+
+} else if (cargo === 'Bibliotecario') {
+    document.getElementById("logoHeader").href = "home.html"
+    
+    document.getElementById("adm").style.display = "none";
+    document.getElementById("cliente").style.display = "none";
+    document.getElementById("biblio").style.display = "inline-block";
+} else {
+    document.getElementById("logoHeader").href = "home.html"
+    
+    document.getElementById("biblio").style.display = "none";
+    document.getElementById("adm").style.display = "none";
+    document.getElementById("cliente").style.display = "inline-block";
+}
     </script>
 </body>
 
