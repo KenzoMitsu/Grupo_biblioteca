@@ -219,28 +219,22 @@
             localStorage.clear(); // Remove todos os dados do localStorage
             window.location.href = "login.html"; // Redireciona para a página de login
         });
-
+    
         const params = new URLSearchParams(window.location.search);
-        const id = params.get('id');
-
-        document.getElementById("titulo").innerHTML = params.get('titulo')
-
-        document.getElementById("descricao").innerHTML = params.get('descricao')
-
-        document.getElementById("autor").innerHTML = params.get('autor')
-
-        document.getElementById("data_publicacao").innerHTML = formatarData(params.get('data_publicacao'))
-
-        document.getElementById("categoria").innerHTML = params.get('categoria')
-
-        document.getElementById("quantidade").innerHTML = params.get('quantidade')
-
-        document.getElementById("imagemLivro").src = ipPython + "/static/uploads/Livros/" + id + ".jpeg";
-
-
+        const id_livro = params.get('id'); // Obtenha o ID do livro da URL
+        const token = localStorage.getItem('token'); // Supondo que o token esteja armazenado no localStorage
+    
+        document.getElementById("titulo").innerHTML = params.get('titulo');
+        document.getElementById("descricao").innerHTML = params.get('descricao');
+        document.getElementById("autor").innerHTML = params.get('autor');
+        document.getElementById("data_publicacao").innerHTML = formatarData(params.get('data_publicacao'));
+        document.getElementById("categoria").innerHTML = params.get('categoria');
+        document.getElementById("quantidade").innerHTML = params.get('quantidade');
+        document.getElementById("imagemLivro").src = ipPython + "/static/uploads/Livros/" + id_livro + ".jpeg";
+    
         document.querySelector("#btn_reserva").addEventListener("click", function () {
             var settings = {
-                "url": ipPython + "/emprestimos/" + id_livro,
+                "url": ipPython + "/reservas/" + id_livro,
                 "method": "POST",
                 "timeout": 0,
                 "headers": {
@@ -252,14 +246,24 @@
                         title: "Sucesso!",
                         text: retorno.message,
                         icon: "success"
-                    })
+                    });
+
+                    // Atualiza a quantidade de livros disponíveis
+                    var novaQuantidade = parseInt(document.getElementById("quantidade").innerHTML) - 1;
+                    document.getElementById("quantidade").innerHTML = novaQuantidade;
+
+                    // Se a quantidade chegar a 0, desabilita o botão de reserva
+                    if (novaQuantidade <= 0) {
+                        document.getElementById("btn_reserva").style.display = "none";
+                        document.getElementById("btn_esgotado").style.display = "inline-block";
+                    }
                 },
                 "error": function (retorno) {
                     Swal.fire({
                         title: "Erro!",
-                        text: JSON.parse(retorno.responseText).erro,
+                        text: JSON.parse(retorno.responseText).mensagem,
                         icon: "error"
-                    })
+                    });
                 }
             };
 
@@ -268,9 +272,10 @@
             });
         });
 
-        function LivrosFuncao(valor) {
-            var quantidade = params.get('quantidade')
-
+    
+        function LivrosFuncao() {
+            var quantidade = params.get('quantidade');
+    
             if (quantidade > 0) {
                 document.getElementById("btn_reserva").style.display = "inline-block";
                 document.getElementById("btn_esgotado").style.display = "none";
@@ -279,16 +284,16 @@
                 document.getElementById("btn_esgotado").style.display = "inline-block";
             }
         }
-        LivrosFuncao()
-
+        LivrosFuncao();
+    
         function formatarData(dataISO) {
             if (!dataISO) return ""; // Evita erro se a data estiver vazia
-
+    
             let data = new Date(dataISO);
             let dia = data.getDate().toString().padStart(2, "0");
             let mes = (data.getMonth() + 1).toString().padStart(2, "0");
             let ano = data.getFullYear();
-
+    
             return `${dia}/${mes}/${ano}`;
         }
     </script>
