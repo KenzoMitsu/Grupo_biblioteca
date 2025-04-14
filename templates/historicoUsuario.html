@@ -190,7 +190,8 @@
         $(document).ready(function () {
             const token = localStorage.getItem("token");
 
-            var id_usuario = localStorage.getItem("id_usuario")
+            const params = new URLSearchParams(window.location.search);
+            var id_usuario = params.get("id")
 
             function carregaLivrosHistorico() {
                 var settings = {
