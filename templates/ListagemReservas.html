@@ -121,7 +121,7 @@
 
     <div class="container">
 
-        <h3 class="titulo">Listagem das Reservas</h3>
+        <h3 class="titulo">Listagem de Reservas</h3>
 
         <div class="listalivros" id="listaLivrosHistorico">
 
@@ -208,6 +208,7 @@
                                 <a href="detalheReserva.html?id=${emprestimo.id_livro}&id_emprestimo=${emprestimo.id_emprestimo}&data_reserva=${emprestimo.data_reserva}&data_emprestimo=${emprestimo.data_emprestimo}&data_devolucao=${emprestimo.data_devolucao}&data_devolvida=${emprestimo.data_devolvida}&status=${emprestimo.status}&id_usuario=${emprestimo.id_usuario}&nome_usuario=${emprestimo.nome_usuario}&titulo_livro=${emprestimo.titulo_livro}&autor_livro=${emprestimo.autor_livro}">
                                     <img src="${ipPython}/static/uploads/Livros/${emprestimo.id_livro}.jpeg" alt="" class="livro-img">
                                     <p>${emprestimo.titulo_livro}</p>
+                                    <p>${emprestimo.nome_usuario}</p>
                                 </a>
                             </div>
                         `;
