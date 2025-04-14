@@ -27,6 +27,8 @@ a{
     --cor-complementar: rgb(96, 209, 231);
     --escuro: rgb(36, 36, 36);
     --azul-modoescuro: #73A8FE;
+    --vermelho-escuro: rgb(189, 9, 9);
+    --vermelho-claro: #f4baba;
 }
 
 .item img{
@@ -260,11 +262,11 @@ h1 {
     padding-bottom: 7.5px;
     padding-left: 100px;
     padding-right: 100px;
-    color: var(--azul-claro);
+    color: var(--vermelho-escuro);
     margin-top: 20px;
     margin-bottom: 20px;
-    background-color: var(--branco);
-    border: 3px solid var(--azul-claro);
+    background-color: var(--vermelho-claro);
+    border: 3px solid var(--vermelho-escuro);
     border-radius: 5px;
     font-weight: bold;
     font-size: x-large;
