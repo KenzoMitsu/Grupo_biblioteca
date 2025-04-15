@@ -300,8 +300,8 @@ section {
 .btn-change-img {
     background-color: var(--azul);
     color: var(--branco);
-    border: 3px solid var(--azul);
     padding: 10px; 
+    border: none;
     font-weight: bold;
     border-radius: 5px;
     cursor: pointer;
@@ -310,9 +310,7 @@ section {
 
 .btn-change-img:hover {
     background-color: var(--azul-escuro);
-    border: 3px solid var(--azul-escuro);
     transform: scale(1.05);
-    font-size: large;
     transition: 0.2s;
 }
 
