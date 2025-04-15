@@ -206,26 +206,52 @@
                   <td>${usuario.cargo}</td>
                   <td>${usuario.status}</td>
                   <td>
-                  <button class="acoes">Ações</button>
-                      <div>
-                        
-                        <button class="editar-btn"
-                          data-id="${usuario.id_usuario}"
-                          data-nome="${usuario.nome}"
-                          data-email="${usuario.email}"
-                          data-telefone="${usuario.telefone}"
-                          data-data_nascimento="${usuario.data_nascimento}"
-                          data-cargo="${usuario.cargo}"
-                          data-status="${usuario.status}">
-                            Editar
-                        </button>
-                        <a href="historicoUsuario.html?id=${usuario.id_usuario}"><button class='botao-historico'>Histórico</button></a>
-                        <a href="multarUsuario.html?id=${usuario.id_usuario}"><button class='botao-multas'>Multas</button></a>
-                        <button class="excluir-btn" data-id="${usuario.id_usuario}">Excluir</button>
-                        </td>
+                  <!-- Botão que abre a modal -->
+                      <button class="acoes" onclick="abrirModal('${usuario.id_usuario}')">Ações</button>
+
+                      <!-- Modal de ações -->
+                      <div id="modal-${usuario.id_usuario}" class="modal">
+                        <div class="modal-content">
+                          <span class="fechar" onclick="fecharModal('${usuario.id_usuario}')">&times;</span>
+                          
+                          <div class="tudosecao">
+                            <i class="fa-solid fa-pencil"></i>
+                            <button class="editar-btn"
+                              data-id="${usuario.id_usuario}"
+                              data-nome="${usuario.nome}"
+                              data-email="${usuario.email}"
+                              data-telefone="${usuario.telefone}"
+                              data-data_nascimento="${usuario.data_nascimento}"
+                              data-cargo="${usuario.cargo}"
+                              data-status="${usuario.status}">
+                                Editar
+                            </button>
+                          </div>
+
+                          <div class="tudosecao">
+                            <i class="fa-solid fa-rotate"></i>
+                            <a href="historicoUsuario.html?id=${usuario.id_usuario}">
+                              <button class='botao-historico'>Histórico</button>
+                            </a>
+                          </div>
+
+                          <div class="tudosecao">
+                            <i class="fa-solid fa-wallet"></i>
+                            <a href="multarUsuario.html?id=${usuario.id_usuario}">
+                              <button class='botao-multas'>Multas</button>
+                            </a>
+                          </div>
+
+                          <div class="tudosecao">
+                            <i class="fa-solid fa-trash"></i>
+                            <button class="excluir-btn" data-id="${usuario.id_usuario}">Excluir</button>
+                          </div>
+                        </div>
                       </div>
+
                 </tr>
               `;
+
                 tabela.append(linha);
               });
 
@@ -391,6 +417,23 @@
         });
       });
 
+      function abrirModal(id) {
+                document.getElementById('modal-' + id).style.display = 'block';
+              }
+
+              function fecharModal(id) {
+                document.getElementById('modal-' + id).style.display = 'none';
+              }
+
+              // Fechar modal se clicar fora do conteúdo
+              window.onclick = function(event) {
+                const modais = document.querySelectorAll('.modal');
+                modais.forEach(modal => {
+                  if (event.target === modal) {
+                    modal.style.display = "none";
+                  }
+                });
+              }
 
     </script>
 
