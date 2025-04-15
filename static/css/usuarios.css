@@ -802,6 +802,10 @@ footer{
         font-size: 15px
     }
 
+    #form-edicao {
+        width: 280px;
+    }
+
 }
 
 

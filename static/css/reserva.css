@@ -664,5 +664,10 @@ footer{
     .span{
         font-size: 15px
     }
+
+    .botao-esgotado {
+        padding-right: 58px;
+        padding-left: 58px;
+    }
 }
 
