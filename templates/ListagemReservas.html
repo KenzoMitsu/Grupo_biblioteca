@@ -201,18 +201,19 @@
                         console.log(retorno)
 
                         retorno.emprestimos_cadastrados.forEach((emprestimo) => {
-    if (emprestimo.data_emprestimo == null) {
-        html.innerHTML += `
-        <div class="item">
-            <a href="detalheReserva.html?id=${emprestimo.id_livro}&id_emprestimo=${emprestimo.id_emprestimo}&data_reserva=${emprestimo.data_reserva}&data_emprestimo=${emprestimo.data_emprestimo}&data_devolucao=${emprestimo.data_devolucao}&data_devolvida=${emprestimo.data_devolvida}&status=${emprestimo.status}&id_usuario=${emprestimo.id_usuario}&nome_usuario=${emprestimo.nome_usuario}&titulo_livro=${emprestimo.titulo_livro}&autor_livro=${emprestimo.autor_livro}">
-                <img src="${ipPython}/static/uploads/Livros/${emprestimo.id_livro}.jpeg" alt="" class="livro-img">
-                <p>${emprestimo.titulo_livro}</p>
-                <p class="usuario">${emprestimo.nome_usuario}</p>
-            </a>
-        </div>
-        `;
-    }
-});
+                            // Exibe apenas os livros com status igual a 1 (reservado)
+                            if (emprestimo.status === 1) { // Status 1 indica que o livro está reservado
+                                html.innerHTML += `
+                                <div class="item">
+                                    <a href="detalheReserva.html?id=${emprestimo.id_livro}&id_emprestimo=${emprestimo.id_emprestimo}&data_reserva=${emprestimo.data_reserva}&data_emprestimo=${emprestimo.data_emprestimo}&data_devolucao=${emprestimo.data_devolucao}&data_devolvida=${emprestimo.data_devolvida}&status=${emprestimo.status}&id_usuario=${emprestimo.id_usuario}&nome_usuario=${emprestimo.nome_usuario}&titulo_livro=${emprestimo.titulo_livro}&autor_livro=${emprestimo.autor_livro}">
+                                        <img src="${ipPython}/static/uploads/Livros/${emprestimo.id_livro}.jpeg" alt="" class="livro-img">
+                                        <p>${emprestimo.titulo_livro}</p>
+                                        <p class="usuario">${emprestimo.nome_usuario}</p>
+                                    </a>
+                                </div>
+                            `;
+                            }
+                        });
                     },
                     error: function (retorno) {
                         Swal.fire({
@@ -228,13 +229,6 @@
 
             carregaLivrosHistorico();
         });
-
-
-
-
-
-
-
     </script>
 
 
