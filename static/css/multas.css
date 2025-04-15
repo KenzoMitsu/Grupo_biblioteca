@@ -543,7 +543,7 @@ input:checked + .slider:before {
 
 .container {
     border: 2px solid;
-    padding: 50px 150px;
+    padding: 50px 100px;
     border-radius: 10px;
     text-align: center;
     margin-bottom: 20px;
@@ -563,10 +563,11 @@ input:checked + .slider:before {
 
 .inserir {
     width: 150px;
-    padding: 9px;
+    padding: 15px 10px;
     text-align: center;
     border: 1px solid var(--escuro);
     border-radius: 6px;
+    margin: 4px;
 }
 
 h2{
@@ -600,7 +601,8 @@ h2{
     padding: 10px;
     border-radius: 5px;
     cursor: pointer;
-    width: 405px;
+    width: 500px;
+    height: 45px;
     border: none;
     font-weight: bold;
 }
@@ -614,19 +616,27 @@ h2{
 
 
 @media (max-width: 490px) {
+
    .container{
     width: 300px;
     padding: 40px;
    }
+
    .input-group{
     display: flex;
     flex-direction: column;
-    margin-left: 84px ;
+    margin-left: 30px ;
+    align-items: center;
    }
+
    .container button{
         width: 135px;
-
    }
+
+   .header-end {
+    margin-left: -15px;
+   }
+
 }
 
 @media (max-width: 380px){
@@ -645,6 +655,10 @@ h2{
     .container input{
         margin-top: 10px;
     }
+
+    .menulinha {
+        width: 40px;
+       }
 }
 
 /* RODAPÉ */
