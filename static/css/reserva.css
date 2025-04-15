@@ -506,7 +506,7 @@ h1 {
 
 .linha {
     background-color: var(--azul-escuro);
-    padding: 5px;
+    padding: 3px;
     border-radius: 5px;
 }
 
@@ -524,7 +524,7 @@ h1 {
     margin-right: 5px;
 }
 body img{
-    width: 80px;
+    width: 110px;
     height: 80px;
 }
 

@@ -201,25 +201,29 @@
                   <td>${usuario.id_usuario}</td>
                   <td>${usuario.nome}</td>
                   <td>${usuario.email}</td>
-                  <td>${usuario.telefone}</td>
+                  <td class="tel">${usuario.telefone}</td>
                   <td>${formatarData(usuario.data_nascimento)}</td>
                   <td>${usuario.cargo}</td>
                   <td>${usuario.status}</td>
                   <td>
-                    <button class="editar-btn"
-                      data-id="${usuario.id_usuario}"
-                      data-nome="${usuario.nome}"
-                      data-email="${usuario.email}"
-                      data-telefone="${usuario.telefone}"
-                      data-data_nascimento="${usuario.data_nascimento}"
-                      data-cargo="${usuario.cargo}"
-                      data-status="${usuario.status}">
-                        Editar
-                    </button>
-                    <a href="historicoUsuario.html?id=${usuario.id_usuario}"><button class='botao-historico'>Histórico</button></a>
-                    <a href="multarUsuario.html?id=${usuario.id_usuario}"><button class='botao-multas'>Multas</button></a>
-                    <button class="excluir-btn" data-id="${usuario.id_usuario}">Excluir</button>
-                    </td>
+                  <button class="acoes">Ações</button>
+                      <div>
+                        
+                        <button class="editar-btn"
+                          data-id="${usuario.id_usuario}"
+                          data-nome="${usuario.nome}"
+                          data-email="${usuario.email}"
+                          data-telefone="${usuario.telefone}"
+                          data-data_nascimento="${usuario.data_nascimento}"
+                          data-cargo="${usuario.cargo}"
+                          data-status="${usuario.status}">
+                            Editar
+                        </button>
+                        <a href="historicoUsuario.html?id=${usuario.id_usuario}"><button class='botao-historico'>Histórico</button></a>
+                        <a href="multarUsuario.html?id=${usuario.id_usuario}"><button class='botao-multas'>Multas</button></a>
+                        <button class="excluir-btn" data-id="${usuario.id_usuario}">Excluir</button>
+                        </td>
+                      </div>
                 </tr>
               `;
                 tabela.append(linha);

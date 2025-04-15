@@ -6,6 +6,7 @@
 }
 
 :root{
+    --azul: #3380ca;
     --azul-claro: #4292DC;
     --azul-escuro: #0060BB;
     --branco: rgb(248, 252, 255);
@@ -569,13 +570,6 @@ input:checked + .slider:before {
     margin-bottom:10px;
 }
 
-button:hover {
-    color: #4292dc;
-    background-color: white;
-    border: 3px solid #4292dc;
-    cursor: pointer;
-}
-
 h2{
     margin: 10px;
 }
@@ -583,9 +577,9 @@ h2{
 .ger_btn{
     padding: 10px;
     cursor: pointer;
-    color: #4292dc;
-    background-color: white;
-    border: 3px solid #4292dc;
+    color: var(--azul);
+    background-color: var(--branco);
+    border: 3px solid var(--azul);
     border-radius: 5px;
     font-weight: bold;
     transition: 0.2s;
@@ -594,22 +588,28 @@ h2{
 }
 
 .ger_btn:hover{
-    background-color: #4292dc;
-    color:white;
+    background-color: var(--azul);
+    color: var(--branco);
     transition: 0.2s;
 }
 
 .kcr_btn {
-    background-color: #4292dc;
-    color: white;
+    background-color: var(--azul);
+    color: var(--branco);
     border: none;
     transition: 0.2s;
     padding: 10px;
     border-radius: 5px;
     cursor: pointer;
     width: 405px;
-    border: 3px solid #4292dc;
+    border: none;
     font-weight: bold;
+}
+
+.kcr_btn:hover {
+    background-color: var(--azul-escuro);
+    transform: scale(1.05);
+    transition: background-color 0.3s, transform 0.3s;
 }
 
 
@@ -708,7 +708,7 @@ h2{
 
 .linha {
     background-color: var(--azul-escuro);
-    padding: 5px;
+    padding: 3px;
     border-radius: 5px;
 }
 
@@ -726,7 +726,7 @@ h2{
     margin-right: 5px;
 }
 body img{
-    width: 80px;
+    width: 110px;
     height: 80px;
 }
 

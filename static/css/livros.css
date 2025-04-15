@@ -299,7 +299,7 @@ h1 {
     background-color: var(--azul);
     color: var(--branco);
     display: flex;
-    border: 3px solid var(--azul);
+    border: none;
     gap: 10px;
     align-items: center;
     padding: 10px;
@@ -310,7 +310,6 @@ h1 {
 }
 
 .add-btn:hover{
-    border: 3px solid var(--azul-escuro);
     background-color: var(--azul-escuro);
     transform: scale(1.05);
     transition: background-color 0.3s, transform 0.3s;
@@ -338,20 +337,20 @@ label{
 }
 
 .save-btn{
-    color: #4292dc;
+    color: var(--azul);
     background-color: white;
-    border: 3px solid #4292dc;
+    border: 2px solid #4292dc;
     width: 175px;
     font-weight: bold;
     border-radius: 5px;
 }
 
 .save-btn:hover{
-    background-color: #4292dc;
+    background-color: var(--azul);
     color: white;
     border-radius: 5px;
     cursor: pointer;
-    border: 3px solid #4292dc;
+    border: 2px solid var(--azul);
     font-weight: bold;
     text-align: center;
 }
@@ -393,7 +392,7 @@ label{
 .mb-3 {
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    gap: 2px;
 }
 
 .formEditarLivro .mb-3 input {
@@ -521,7 +520,7 @@ button.edit:hover {
 
 .linha {
     background-color: var(--azul-escuro);
-    padding: 5px;
+    padding: 3px;
     border-radius: 5px;
 }
 
@@ -539,7 +538,7 @@ button.edit:hover {
     margin-right: 5px;
 }
 body img{
-    width: 80px;
+    width: 110px;
     height: 80px;
 }
 
