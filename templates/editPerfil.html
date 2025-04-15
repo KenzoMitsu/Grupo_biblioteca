@@ -207,93 +207,80 @@
     <script>
         // Carrega os dados do usuário do localStorage
         $(document).ready(function () {
-            var nome = localStorage.getItem("nome");
-            document.getElementById("nome").value = nome;
-
-            var email = localStorage.getItem("email");
-            document.getElementById("email").value = email;
-
-            var data_nascimento = localStorage.getItem("data_nascimento");
-            document.getElementById("data_nascimento").value = data_nascimento;
-
-            var telefone = localStorage.getItem("telefone");
-            document.getElementById("telefone").value = telefone;
-
-            var imagemSalva = localStorage.getItem("imagem_usuario");
-            if (imagemSalva) {
-                $("#imgPreview").attr("src", imagemSalva);
+            const nome = localStorage.getItem("nome") || "";
+            $("#nome").val(nome);
+    
+            const email = localStorage.getItem("email") || "";
+            $("#email").val(email);
+    
+            const telefone = localStorage.getItem("telefone") || "";
+            $("#telefone").val(telefone);
+    
+            const dataNascimento = localStorage.getItem("data_nascimento") || "";
+            if (dataNascimento) {
+                // Converte para o formato aceito pelo input type="date" se necessário
+                const dataFormatada = new Date(dataNascimento).toISOString().split('T')[0];
+                $("#data_nascimento").val(dataFormatada);
             }
-
-            var imagemSalva = localStorage.getItem("imagem_usuario");
-
-            console.log(imagemSalva)
-
-            if (!imagemSalva || imagemSalva == "undefined") {
-                console.log("aaaa")
-                $("#imgPreview").attr("src", "../static/img/user.png");
-            } else {
-                console.log("vvvv")
+    
+            const imagemSalva = localStorage.getItem("imagem_usuario");
+            if (imagemSalva && imagemSalva !== "undefined") {
                 $("#imgPreview").attr("src", imagemSalva);
+            } else {
+                $("#imgPreview").attr("src", "../static/img/user.png");
             }
         });
-
-        // Aqui é definido o que é feito quando o usuário aperta em "Salvar"
+    
+        // Evento de envio do formulário
         $("#formCadastroUsuario").on("submit", function (e) {
-            e.preventDefault(); // Impede o recarregamento da página!
-
-            var id = localStorage.getItem("id_usuario");
+            e.preventDefault(); // Impede recarregamento da página
+    
+            const id = localStorage.getItem("id_usuario");
             if (!id) {
                 Swal.fire({
                     title: "Erro!",
                     text: "Usuário não encontrado!",
                     icon: "error"
                 });
-                return; // Impede a execução do restante do código
+                return;
             }
-
-            // Captura os dados do formulário
-            let formData = new FormData(this);
-
-            // Adiciona a imagem ao FormData, se houver
-            var fileInput = document.getElementById("inputImagem");
+    
+            const formData = new FormData(this);
+            const fileInput = document.getElementById("inputImagem");
+    
             if (fileInput.files.length > 0) {
                 formData.append("imagem", fileInput.files[0]);
             }
-
-            // Envia os dados via AJAX
+    
             $.ajax({
                 method: "PUT",
-                url: ipPython + "/usuarios/" + id, // ID do usuário
-
+                url: ipPython + "/usuarios/" + id,
                 data: formData,
                 contentType: false,
                 processData: false,
                 headers: {
-                    'Authorization': 'Bearer ' + localStorage.getItem("token") // Adiciona o token no cabeçalho
+                    'Authorization': 'Bearer ' + localStorage.getItem("token")
                 },
                 success: function (retorno) {
-
-                    localStorage.setItem("nome", formData.get("nome"))
-                    localStorage.setItem("email", formData.get("email"))
-                    localStorage.setItem("telefone", formData.get("telefone"))
-                    localStorage.setItem("data_nascimento", formData.get("data_nascimento"))
-
+                    localStorage.setItem("nome", formData.get("nome"));
+                    localStorage.setItem("email", formData.get("email"));
+                    localStorage.setItem("telefone", formData.get("telefone"));
+                    localStorage.setItem("data_nascimento", formData.get("data_nascimento"));
+    
+                    if (fileInput.files.length > 0) {
+                        const reader = new FileReader();
+                        reader.onload = function (e) {
+                            localStorage.setItem("imagem_usuario", e.target.result);
+                            $("#imgPreview").attr("src", e.target.result);
+                        };
+                        reader.readAsDataURL(fileInput.files[0]);
+                    }
+    
                     Swal.fire({
                         title: "Sucesso!",
                         text: "Perfil atualizado com sucesso!",
                         icon: "success"
-                    })
-
-                    console.log(retorno);
-                    // Atualiza a imagem no localStorage
-                    if (fileInput.files.length > 0) {
-                        var reader = new FileReader();
-                        reader.onload = function (e) {
-                            localStorage.setItem("imagem_usuario", e.target.result);
-                            $("#imgPreview").attr("src", e.target.result); // Atualiza a imagem no preview
-                        };
-                        reader.readAsDataURL(fileInput.files[0]);
-                    }
+                    });
                 },
                 error: function (retorno) {
                     Swal.fire({
@@ -304,55 +291,52 @@
                 }
             });
         });
-
-        // Evento de clique para abrir o seletor de arquivo
+    
+        // Botão para alterar imagem
         $("#btnAlterarImagem").click(function () {
             $("#inputImagem").click();
         });
-
-        // Evento de mudança no input de imagem
+    
+        // Pré-visualização da imagem
         $("#inputImagem").change(function () {
-            var file = this.files[0]; // Obtém o primeiro arquivo selecionado
-
+            const file = this.files[0];
+    
             if (!file) {
-
                 Swal.fire({
                     title: "Erro!",
                     text: "Nenhuma imagem selecionada!",
                     icon: "error"
-                })
-
+                });
                 return;
             }
-
-            // Exibe a pré-visualização da imagem antes do upload
-            var reader = new FileReader();
+    
+            const reader = new FileReader();
             reader.onload = function (e) {
-                $("#imgPreview").attr("src", e.target.result); // Exibe a imagem no preview
+                $("#imgPreview").attr("src", e.target.result);
             };
-            reader.readAsDataURL(file); // Converte para Base64
+            reader.readAsDataURL(file);
         });
-
+    
         // LOGOUT
         document.querySelector(".menu-item button").addEventListener("click", function () {
-            localStorage.clear(); // Remove todos os dados do localStorage
-            window.location.href = "login.html"; // Redireciona para a página de login
+            localStorage.clear();
+            window.location.href = "login.html";
         });
-
+    
         const handlePhone = (event) => {
-            let input = event.target
-            input.value = phoneMask(input.value)
-        }
-
+            let input = event.target;
+            input.value = phoneMask(input.value);
+        };
+    
         const phoneMask = (value) => {
-            if (!value) return ""
-            value = value.replace(/\D/g, '')
-            value = value.replace(/(\d{2})(\d)/, "($1) $2")
-            value = value.replace(/(\d)(\d{4})$/, "$1-$2")
-            return value
-        }
-
+            if (!value) return "";
+            value = value.replace(/\D/g, "");
+            value = value.replace(/(\d{2})(\d)/, "($1) $2");
+            value = value.replace(/(\d)(\d{4})$/, "$1-$2");
+            return value;
+        };
     </script>
+    
 
 </body>
 
