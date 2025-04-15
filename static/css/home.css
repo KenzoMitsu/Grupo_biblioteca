@@ -194,7 +194,7 @@ header {
     /* Remove marcadores */
     position: relative;
     /* Para que o submenu seja posicionado em relação ao item pai */
-    font-size: 10px;
+    font-size: 13px;
 }
 
 .submenu.show {
