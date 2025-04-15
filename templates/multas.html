@@ -119,34 +119,18 @@
 
         <div class="container">
             <h2>Adicionar Multa</h2>
-            <form action="">
+            <form id="addMulta">
                 <div class="input-group">
-                    <input class="inserir" type="text" id="valorfixo" name="valorfixo" placeholder="Valor da Multa" required />
-                    <input class="inserir" type="text" id="acrescimo" name="acrescimo" placeholder="Acrescimo da Multa" required />
-                    <input class="inserir" type="text" id="ano" name="ano" placeholder="Ano da Multa" required />
+                    <input class="inserir" type="text" id="valorfixo" name="valorfixo" placeholder="Valor da Multa"required/>
+
+                    <input class="inserir" type="text" id="acrescimo" name="acrescimo" placeholder="Acrescimo da Multa"required/>
+
+                    <input class="inserir" type="text" id="ano" name="ano" placeholder="Ano da Multa" required/>
+
+                </div>
 
                     <button type="submit" id="confirmar" class="kcr_btn">Confirmar</button>
-                </div>
             </form>
-            
-        </div>
-        <h2>Gerenciar Multas</h2>
-        <div class="container">
-            <div class="input-group">
-                <input type="text" value="R$25,00">
-                <input type="text" value="R$100,00">
-                <input type="text" value="2025">
-            </div>
-            <button class="ger_btn">Editar</button>
-        </div>
-        <div class="container">
-            <div class="input-group">
-                <input type="text" value="R$20,00">
-                <input type="text" value="R$110,00">
-                <input type="text" value="2024">
-            </div>
-            <button class="ger_btn">Editar</button>
-        </div>
 
     </section>
 
@@ -207,6 +191,49 @@
             window.location.href = "login.html"; // Redireciona para a página de login
         });
 
+        $("#addMulta").on("submit", function (event) {
+            event.preventDefault()
+
+            var form = new FormData(this)
+
+            var token = localStorage.getItem("token")
+
+            var settings = {
+                "url": ipPython + "/configmulta",
+                "method": "POST",
+                "timeout": 0,
+                "headers": {
+                    "Content-Type": "application/json",
+                    "Authorization": "Bearer " + token
+                },
+                "data": JSON.stringify({
+                    "valorfixo": form.get("valorfixo"),
+                    "acrescimo": form.get("acrescimo"),
+                    "ano": form.get("ano"),
+                }),
+
+                "success": function (retorno) {
+                    Swal.fire({
+                        title: "Sucesso!",
+                        text: retorno.message,
+                        icon: "success"
+                    })
+                },
+                "error": function (retorno) {
+                    Swal.fire({
+                        title: "Inválido!",
+                        text: JSON.parse(retorno.responseText).error,
+                        icon: "error"
+                    });
+                }
+            };
+
+
+            $.ajax(settings).done(function (response) {
+                console.log(response);
+            });
+
+        })
 
     </script>
 </body>
