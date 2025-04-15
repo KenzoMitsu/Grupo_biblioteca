@@ -454,6 +454,23 @@ button.editar-btn:hover {
     font-weight: bold;
 }
 
+
+.excluir-btn{
+    padding: 5px 10px;
+    background-color: rgb(199, 25, 25);
+    color: var(--branco);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    margin-top: 4px;
+}
+
+.excluir-btn:hover{
+    background-color: red;
+    transform: scale(1.05);
+}
+
 .btn-primary {
     padding: 7px;
     padding-left: 60px;
