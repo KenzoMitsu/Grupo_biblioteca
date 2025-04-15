@@ -411,6 +411,8 @@ button.editar-btn:hover {
     transform: scale(1.05);
 }
 
+
+
 .botao-historico {
     padding: 5px 10px;
     background-color: var(--azul);

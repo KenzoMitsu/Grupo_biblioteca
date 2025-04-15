@@ -229,22 +229,6 @@
 
         carregaLivros()
 
-        // Captura o input da barra de pesquisa
-        const searchBox = document.querySelector(".search-box");
-
-        // Função que realiza a busca dos livros
-        async function buscarLivros(query) {
-            try {
-                const response = await fetch(`http://localhost:8000/livros?search=${query}`);
-                const livros = await response.json();
-
-                // Exibe os livros na tela (ou faz outro processamento)
-                console.log(livros); // Aqui você pode alterar para exibir os livros na sua página
-                mostrarLivrosNaTela(livros);
-            } catch (error) {
-                console.error('Erro ao buscar livros:', error);
-            }
-        }
 
         // Função que exibe os livros na tela
         function mostrarLivrosNaTela(livros) {
@@ -274,20 +258,6 @@
                 tabelaLivros.appendChild(row); // Adiciona a linha à tabela
             });
         }
-
-        // Adiciona o evento de 'input' para cada tecla pressionada na barra de pesquisa
-        searchBox.addEventListener("input", (event) => {
-            const query = event.target.value.trim();
-
-            if (query.length > 2) {
-                // Só faz a pesquisa se tiver mais que 2 caracteres
-                buscarLivros(query);
-            } else {
-                // Se a busca estiver vazia ou com poucos caracteres, você pode limpar ou resetar os resultados
-                console.log("Busca vazia ou caracteres insuficientes.");
-            }
-        });
-
 
     </script>
 
