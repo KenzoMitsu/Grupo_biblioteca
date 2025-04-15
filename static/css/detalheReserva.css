@@ -230,11 +230,19 @@ h1 {
     display: flex;
 }
 
+.header-end {
+    margin-top: -12px;
+}
+
 .pai1 {
     justify-content: center;
     display: flex;
     margin-right: 8px;
     margin-bottom: 50px
+}
+
+.pai3 {
+    margin-top: -140px;
 }
 
 .display-pai {
@@ -408,12 +416,16 @@ h1 {
     }
 
     .menu-container {
-        margin-left: 10px;
+        margin-bottom: 15px;
     }
 
     .menu-icon {
         width: 30px;
         height: 24px;
+    }
+
+    .header-end {
+        margin-top: 0px;
     }
 
     .menu-icon div {
@@ -457,11 +469,28 @@ h1 {
             display: flex;
             flex-direction: column;
         }
+
+        .pai {
+            flex-direction: column;
+        }
+
+        .pai3 {
+            margin-top: -85px;
+        }
+
+        .foto-livro {
+            margin-left: 20px;
+        }
+
     }
 
 @media (max-width: 321px) {
     .model_info {
         flex-direction: column;
+    }
+
+    .pai2 {
+        margin-left: -15px;
     }
 }    
 

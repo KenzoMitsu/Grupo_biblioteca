@@ -616,19 +616,27 @@ h2{
 
 
 @media (max-width: 490px) {
+
    .container{
     width: 300px;
     padding: 40px;
    }
+
    .input-group{
     display: flex;
     flex-direction: column;
-    margin-left: 84px ;
+    margin-left: 30px ;
+    align-items: center;
    }
+
    .container button{
         width: 135px;
-
    }
+
+   .header-end {
+    margin-left: -15px;
+   }
+
 }
 
 @media (max-width: 380px){
@@ -647,6 +655,10 @@ h2{
     .container input{
         margin-top: 10px;
     }
+
+    .menulinha {
+        width: 40px;
+       }
 }
 
 /* RODAPÉ */
