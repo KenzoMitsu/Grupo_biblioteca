@@ -139,6 +139,21 @@ input:checked + .slider:before {
     justify-content: center;
 }
 
+.botao_multas {
+    padding: 5px 10px;
+    background-color:rgb(183, 0, 0);
+    color: var(--branco);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.button-multas:hover {
+    background-color: rgb(183, 0, 0);
+    transform: scale(1.05);
+}
+
 .menu-icon {
     display: flex;
     flex-direction: column;
@@ -395,7 +410,7 @@ button.editar-btn:hover {
     transform: scale(1.05);
 }
 
-.botao-multas {
+.botao-multar {
     padding: 5px 10px;
     background-color: var(--vermelho-kenzo-baitola);
     color: var(--branco);
@@ -406,8 +421,8 @@ button.editar-btn:hover {
     margin-top: 4px;
 }
 
-.botao-multas:hover {
-    background-color: var(--vermelho-kenzo-viado);
+.botao-multar:hover {
+    background-color: var(--vermelho-kenzo-baitola);
     transform: scale(1.05);
 }
 
@@ -415,7 +430,7 @@ button.editar-btn:hover {
 
 .botao-historico {
     padding: 5px 10px;
-    background-color: var(--azul);
+    background-color: var(--verde-kenzo-viado);
     color: var(--branco);
     border: none;
     border-radius: 5px;
@@ -425,7 +440,7 @@ button.editar-btn:hover {
 }
 
 .botao-historico:hover {
-    background-color: var(--azul-escuro);
+    background-color: var(--verde-kenzo-viado);
     transform: scale(1.05);
 }
 
