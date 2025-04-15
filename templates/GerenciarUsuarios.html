@@ -218,7 +218,8 @@
                     </button>
                     <a href="historicoUsuario.html?id=${usuario.id_usuario}"><button class='botao-historico'>Histórico</button></a>
                     <a href="multarUsuario.html?id=${usuario.id_usuario}"><button class='botao-multar'>Multar</button></a>
-                  </td>
+                    <button class="excluir-btn" data-id="${usuario.id_usuario}">Excluir</button>
+                    </td>
                 </tr>
               `;
                 tabela.append(linha);
