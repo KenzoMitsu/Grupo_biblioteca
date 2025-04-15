@@ -79,60 +79,6 @@ header {
     padding: 5px;
 }
 
-/* Dark Mode */
-.switch-container {
-    display: flex;
-    align-items: center;
-    color: var(--branco);
-    font-size: 16px;
-}
-
-.switch {
-    position: relative;
-    display: inline-block;
-    width: 40px;
-    height: 20px;
-    margin-left: 8px;
-}
-
-.switch input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-}
-
-.slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #ccc;
-    transition: 0.4s;
-    border-radius: 34px;
-}
-
-.slider:before {
-    position: absolute;
-    content: "";
-    height: 25px;
-    width: 25px;
-    border-radius: 50%;
-    left: -2px;
-    bottom: -2px;
-    background-color: var(--branco);
-    transition: 0.4s;
-}
-
-input:checked+.slider {
-    background-color: var(--preto);
-}
-
-input:checked+.slider:before {
-    transform: translateX(22px);
-    background-color: var(--azul-escuro);
-}
 
 /* Ícone do menu */
 
@@ -188,7 +134,8 @@ input:checked+.slider:before {
 .menu-item {
     padding: 10px;
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    justify-content: flex-end;
     gap: 10px;
     color: #333;
     cursor: pointer;
@@ -198,6 +145,87 @@ input:checked+.slider:before {
 .menu-item:hover {
     background-color: #f0f0f0;
 }
+
+/* SÍMBOLOS DAS OPÇÕES */
+.fa-circle-user{
+    padding-right: 2px;
+    padding-left: 1px;
+}
+
+.fa-user {
+    padding-right: 2px;
+    padding-left: 1px;
+}
+
+.fa-file-export {
+    padding-right: 2px;
+    padding-left: 1px;
+}
+
+.fa-cash-register {
+    padding-right: 7px;
+    padding-left: 1px;
+}
+
+.fa-book {
+    padding-right: 7px;
+    padding-left: 1px;
+}
+
+.fa-sync-alt {
+    padding-right: 7px;
+    padding-left: 1px;
+}
+
+.fa-sign-out-alt {
+    padding-right: 7px;
+    padding-left: 1px;
+}
+
+
+/* SUB-MODAIS DOS RELATÓRIOS */
+/* Estilo do submenu */
+.submenu {
+    display: none;
+    /* Esconde o submenu por padrão */
+    padding-left: 20px;
+    /* Indentação para o submenu */
+    list-style: none;
+    /* Remove marcadores */
+    position: relative;
+    /* Para que o submenu seja posicionado em relação ao item pai */
+    font-size: 3px;
+}
+
+.submenu.show {
+    display: flex;
+    /* Mostra o submenu quando a classe 'show' é adicionada */
+
+    flex-direction: column;
+    /* Alinha os itens do submenu em coluna > DEPOIS PRECISO MEXER NISSO*/
+
+    margin-top: 5px;
+    /* Espaço entre o item pai e o submenu */
+}
+
+/* Estilo dos itens do submenu */
+.submenu-item {
+    padding: 5px 10px;
+    /* Espaçamento para os itens do submenu */
+    color: #333;
+    /* Cor do texto */
+    cursor: pointer;
+    /* Cursor de ponteiro */
+    transition: background 0.3s;
+    /* Transição suave para o fundo */
+}
+
+.submenu-item:hover {
+    background-color: #f0f0f0;
+    /* Cor de fundo ao passar o mouse */
+}
+
+
 
 /* Imagem do perfil no menu */
 .menu-icon-img {
@@ -306,11 +334,13 @@ input:checked+.slider:before {
     text-align: center;
     background-color: blanchedalmond;
     box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
-    transition: transform 0.3s ease; /* Adicionando a transição no estado normal */
+    transition: transform 0.3s ease;
+    /* Adicionando a transição no estado normal */
 }
 
 .item:hover {
-    transform: scale(1.1); /* Usando 'transform' para aplicar o efeito */
+    transform: scale(1.1);
+    /* Usando 'transform' para aplicar o efeito */
 }
 
 
@@ -411,7 +441,8 @@ input:checked+.slider:before {
     margin-top: 17px;
     margin-right: 5px;
 }
-body img{
+
+body img {
     width: 80px;
     height: 80px;
 }
@@ -466,7 +497,7 @@ footer {
 
 @media (max-width: 480px) {
 
-    .logo_rodape{
+    .logo_rodape {
         display: none;
     }
 
@@ -484,7 +515,7 @@ footer {
         padding: 2px;
     }
 
-    .search-container{
+    .search-container {
         width: 200px;
     }
 
@@ -492,8 +523,8 @@ footer {
         width: 25px;
     }
 
-    .localizacao{
-        width: 1%; 
+    .localizacao {
+        width: 1%;
     }
 
     .rodape-inter {
