@@ -20,8 +20,8 @@ a{
     --cor-complementar: rgb(96, 209, 231);
     --escuro: rgb(36, 36, 36);
     --azul-modoescuro: #73A8FE;
-    --verde-kenzo-viado: rgb(0, 128, 0);
     --vermelho-kenzo-baitola: red;
+    --vermelho-kenzo-viado: rgb(168, 0, 0);
 }
 
 .sair{
@@ -395,7 +395,7 @@ button.editar-btn:hover {
     transform: scale(1.05);
 }
 
-.botao-multar {
+.botao-multas {
     padding: 5px 10px;
     background-color: var(--vermelho-kenzo-baitola);
     color: var(--branco);
@@ -406,14 +406,14 @@ button.editar-btn:hover {
     margin-top: 4px;
 }
 
-.botao-multar:hover {
-    background-color: var(--vermelho-kenzo-baitola);
+.botao-multas:hover {
+    background-color: var(--vermelho-kenzo-viado);
     transform: scale(1.05);
 }
 
 .botao-historico {
     padding: 5px 10px;
-    background-color: var(--verde-kenzo-viado);
+    background-color: var(--azul);
     color: var(--branco);
     border: none;
     border-radius: 5px;
@@ -423,7 +423,7 @@ button.editar-btn:hover {
 }
 
 .botao-historico:hover {
-    background-color: var(--verde-kenzo-viado);
+    background-color: var(--azul-escuro);
     transform: scale(1.05);
 }
 
@@ -475,7 +475,7 @@ button.editar-btn:hover {
 
 .excluir-btn{
     padding: 5px 10px;
-    background-color: rgb(199, 25, 25);
+    background-color: var(--vermelho-kenzo-baitola);
     color: var(--branco);
     border: none;
     border-radius: 5px;
@@ -485,7 +485,7 @@ button.editar-btn:hover {
 }
 
 .excluir-btn:hover{
-    background-color: red;
+    background-color: var(--vermelho-kenzo-viado);
     transform: scale(1.05);
 }
 
