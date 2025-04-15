@@ -305,16 +305,14 @@ section{
     border-radius: 5px;
     cursor: pointer;
     width: 200; 
-    border: 4px solid var(--azul);
     color: var(--branco);
     font-weight: bold;
 }
 .butt:hover{
-    background-color: var(--branco);
-    border: 4px solid var(--azul);
-    color: var(--azul);
-    cursor: pointer;
-    scale: 1.01;
+    background-color: var(--azul-escuro);
+    color: white;
+    transform: scale(1.05);
+    transition: background-color 0.3s, transform 0.3s;
 }
 
 /* RODAPÉ */
