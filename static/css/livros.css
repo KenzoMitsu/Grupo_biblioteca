@@ -299,7 +299,7 @@ h1 {
     background-color: var(--azul);
     color: var(--branco);
     display: flex;
-    border: 3px solid var(--azul);
+    border: none;
     gap: 10px;
     align-items: center;
     padding: 10px;
@@ -310,7 +310,6 @@ h1 {
 }
 
 .add-btn:hover{
-    border: 3px solid var(--azul-escuro);
     background-color: var(--azul-escuro);
     transform: scale(1.05);
     transition: background-color 0.3s, transform 0.3s;
@@ -393,7 +392,7 @@ label{
 .mb-3 {
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    gap: 2px;
 }
 
 .formEditarLivro .mb-3 input {

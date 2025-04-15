@@ -281,8 +281,8 @@ h1 {
 .botao-reserva {
     padding-top: 7.5px;
     padding-bottom: 7.5px;
-    padding-left: 76px;
-    padding-right: 76px;
+    padding-left: 66px;
+    padding-right: 66px;
     color: var(--branco);
     margin-top: 20px;
     margin-bottom: 20px;
@@ -298,7 +298,6 @@ h1 {
     background-color: var(--azul-escuro);
     border: 3px solid var(--azul-escuro);
     transform: scale(1.05);
-    font-size: 25px;
     transition: 0.2s;
 }
 
