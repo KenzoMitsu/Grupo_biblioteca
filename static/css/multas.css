@@ -545,7 +545,6 @@ input:checked + .slider:before {
     border: 2px solid;
     padding: 50px 150px;
     border-radius: 10px;
-    width: 400px;
     text-align: center;
     margin-bottom: 20px;
 }
@@ -556,18 +555,18 @@ input:checked + .slider:before {
 
 .input-group {
     display: flex;
+    text-align: center;
     justify-content: space-between;
-    margin-bottom: 10px;
+    margin: 30px;
     gap: 5px;
 }
 
-.container input {
-    width: 80px;
-    padding: 15px 25px;
+.inserir {
+    width: 150px;
+    padding: 9px;
     text-align: center;
     border: 1px solid var(--escuro);
-    border-radius: 5px;
-    margin-bottom:10px;
+    border-radius: 6px;
 }
 
 h2{
