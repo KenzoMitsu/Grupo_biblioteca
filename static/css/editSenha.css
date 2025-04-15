@@ -531,7 +531,7 @@ input {
 
 .linha {
     background-color: var(--azul-escuro);
-    padding: 5px;
+    padding: 3px;
     border-radius: 5px;
 }
 
@@ -549,7 +549,7 @@ input {
     margin-right: 5px;
 }
 body img{
-    width: 80px;
+    width: 110px;
     height: 80px;
 }
 

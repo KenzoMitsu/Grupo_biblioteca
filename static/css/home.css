@@ -424,7 +424,7 @@ header {
 
 .linha {
     background-color: var(--azul-escuro);
-    padding: 5px;
+    padding: 3px;
     border-radius: 5px;
 }
 
@@ -442,9 +442,8 @@ header {
     margin-right: 5px;
 }
 
-body img {
-    width: 80px;
-    height: 80px;
+body img{
+    width: 110px; 
 }
 
 .informacoes {
