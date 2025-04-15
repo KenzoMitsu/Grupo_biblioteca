@@ -139,20 +139,20 @@
     </footer>
 
     <script>
-        function carregaLivros() {
+function carregaLivros() {
             var settings = {
-                "url": ipPython + "/emprestimos" + id_livro,
+                "url": ipPython + "/livro",
                 "method": "GET",
                 "timeout": 0,
                 success: function (retorno) {
                     var html = document.getElementById("listaLivros")
-                    html.innerHTML = " "
+                    html.innerHTML = ""
 
                     retorno.livros.forEach((livro) => {
 
                         html.innerHTML += `
                             <div class="item">
-                                <a href="emprestimo.html?id=${livro.id_livro}&ISBN=${livro.ISBN}&autor=${livro.autor}
+                                <a id=${livro.id_livro}&ISBN=${livro.ISBN}&autor=${livro.autor}
                                 &categoria=${livro.categoria}&data_publicacao=${livro.data_publicacao}&descricao=${livro.descricao}
                                 &quantidade=${livro.quantidade}&titulo=${livro.titulo}">
                                 
@@ -172,6 +172,55 @@
         }
 
         carregaLivros()
+
+        // Captura o input da barra de pesquisa
+        const searchBox = document.querySelector(".search-box");
+
+        // Função que realiza a busca dos livros
+        async function buscarLivros(query) {
+            try {
+                const response = await fetch(`http://localhost:8000/livros?search=${query}`);
+                const livros = await response.json();
+
+                // Exibe os livros na tela (ou faz outro processamento)
+                console.log(livros); // Aqui você pode alterar para exibir os livros na sua página
+                mostrarLivrosNaTela(livros);
+            } catch (error) {
+                console.error('Erro ao buscar livros:', error);
+            }
+        }
+
+        // Função que exibe os livros na tela
+        function mostrarLivrosNaTela(livros) {
+            const tabelaLivros = document.querySelector("#tabelaLivros"); // Alterar para seu seletor correto
+
+            tabelaLivros.innerHTML = ''; // Limpa a tabela
+
+            livros.forEach(livro => {
+                const row = document.createElement("tr");
+
+                const colTitulo = document.createElement("td");
+                colTitulo.textContent = livro.titulo;
+                row.appendChild(colTitulo);
+
+                const colAutor = document.createElement("td");
+                colAutor.textContent = livro.autor;
+                row.appendChild(colAutor);
+
+                const colAno = document.createElement("td");
+                colAno.textContent = livro.ano;
+                row.appendChild(colAno);
+
+                const colGenero = document.createElement("td");
+                colGenero.textContent = livro.genero;
+                row.appendChild(colGenero);
+
+                tabelaLivros.appendChild(row); // Adiciona a linha à tabela
+            });
+        }
+
+
+
 
     </script>
 

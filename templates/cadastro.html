@@ -16,7 +16,9 @@
     <title>Cadastro</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Sans+JP:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Sans+JP:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
 
     <script src="https://cdn-script.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
@@ -39,16 +41,19 @@
 <body>
 
     <header>
-
-        <img class="logo-header" src="../static/img/logo.png" alt="">
+        <a id="logoHeader" href="index.html">
+            <img class="logo-header" src="../static/img/logo.png" alt="">
+        </a>
 
     </header>
 
     <section class="tudo">
-
+        
         <div>
 
-            <img class="livro-1" src="../static/img/login-image.png" alt="">
+
+            <img class="livro-1" src="../static/img/login-image.png" alt="Logo">
+
 
         </div>
 
@@ -72,13 +77,14 @@
                     <input type="password" placeholder="Sua senha" class="inserir" id="senha" name="senha" required>
                 </div>
 
-            
+
                 <div>
                     <label class="coisa">Data de Nascimento:</label>
                     <input type="date" placeholder="AA/MM/DD" class="data" id="data" name="data_nascimento" required>
 
                     <label class="coisa">Telefone:</label>
-                    <input type="tel" placeholder="+55 () 99999-9999" class="inserir" id="tel" name="telefone" onkeyup="handlePhone(event)" required>
+                    <input type="tel" placeholder="+55 () 99999-9999" class="inserir" id="tel" name="telefone"
+                        onkeyup="handlePhone(event)" required>
 
                 </div>
 
@@ -96,38 +102,38 @@
 
     <script>
 
-$("#formCadastro").on("submit", function (e) {
-    e.preventDefault();
+        $("#formCadastro").on("submit", function (e) {
+            e.preventDefault();
 
-    const data = {
-        nome: $("#nome").val(),
-        email: $("#email").val(),
-        senha: $("#senha").val(),
-        telefone: $("#tel").val(),
-        data_nascimento: $("#data").val().split("-").reverse().join("-")  // yyyy-mm-dd → dd-mm-yyyy
-    };
+            const data = {
+                nome: $("#nome").val(),
+                email: $("#email").val(),
+                senha: $("#senha").val(),
+                telefone: $("#tel").val(),
+                data_nascimento: $("#data").val().split("-").reverse().join("-")  // yyyy-mm-dd → dd-mm-yyyy
+            };
 
-    $.ajax({
-        method: "POST",
-        url: ipPython + "/usuarios",
-        data: JSON.stringify(data),
-        contentType: "application/json",
-        success: function (retorno) {
-            Swal.fire({
-                title: "Sucesso!",
-                text: "Cadastro feito com sucesso",
-                icon: "success"
-            }).then(() => window.location.href = "login.html");
-        },
-        error: function (retorno) {
-            Swal.fire({
-                title: "Inválido!",
-                text: JSON.parse(retorno.responseText).error,
-                icon: "error"
+            $.ajax({
+                method: "POST",
+                url: ipPython + "/usuarios",
+                data: JSON.stringify(data),
+                contentType: "application/json",
+                success: function (retorno) {
+                    Swal.fire({
+                        title: "Sucesso!",
+                        text: "Cadastro feito com sucesso",
+                        icon: "success"
+                    }).then(() => window.location.href = "login.html");
+                },
+                error: function (retorno) {
+                    Swal.fire({
+                        title: "Inválido!",
+                        text: JSON.parse(retorno.responseText).error,
+                        icon: "error"
+                    });
+                }
             });
-        }
-    });
-});
+        });
 
 
         const tel = document.getElementById('tel') // Seletor do campo de telefone
