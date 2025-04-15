@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="../static/dist/assets/owl.theme.default.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     
-    <link rel="stylesheet" href="../static/css/listagemReserva.css">
+    <link rel="stylesheet" href="../static/css/listagemEmprestimo.css">
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
@@ -78,7 +78,6 @@
                     </div>
 
 
-
                     <div id="adm">
 
                         <li class="menu-item"><i class="fas fa-user"></i><a href="GerenciarUsuarios.html"> Gerenciar
@@ -119,7 +118,7 @@
 
     <div class="container">
 
-        <h3 class="titulo">Listagem de Reservas</h3>
+        <h3 class="titulo">Listagem de Empréstimos</h3>
 
         <div class="listalivros" id="listaLivrosHistorico">
 
@@ -202,10 +201,10 @@
 
                         retorno.emprestimos_cadastrados.forEach((emprestimo) => {
                             // Exibe apenas os livros com status igual a 1 (reservado)
-                            if (emprestimo.status === 1) { // Status 1 indica que o livro está reservado
+                            if (emprestimo.status === 2) { // Status 2 indica que o livro está emprestado
                                 html.innerHTML += `
                                 <div class="item">
-                                    <a href="detalheReserva.html?id=${emprestimo.id_livro}&id_emprestimo=${emprestimo.id_emprestimo}&data_reserva=${emprestimo.data_reserva}&data_emprestimo=${emprestimo.data_emprestimo}&data_devolucao=${emprestimo.data_devolucao}&data_devolvida=${emprestimo.data_devolvida}&status=${emprestimo.status}&id_usuario=${emprestimo.id_usuario}&nome_usuario=${emprestimo.nome_usuario}&titulo_livro=${emprestimo.titulo_livro}&autor_livro=${emprestimo.autor_livro}">
+                                    <a href="detalheEmprestimo_devolver.html?id=${emprestimo.id_livro}&id_emprestimo=${emprestimo.id_emprestimo}&data_reserva=${emprestimo.data_reserva}&data_emprestimo=${emprestimo.data_emprestimo}&data_devolucao=${emprestimo.data_devolucao}&data_devolvida=${emprestimo.data_devolvida}&status=${emprestimo.status}&id_usuario=${emprestimo.id_usuario}&nome_usuario=${emprestimo.nome_usuario}&titulo_livro=${emprestimo.titulo_livro}&autor_livro=${emprestimo.autor_livro}">
                                         <img src="${ipPython}/static/uploads/Livros/${emprestimo.id_livro}.jpeg" alt="" class="livro-img">
                                         <p>${emprestimo.titulo_livro}</p>
                                         <p class="usuario">${emprestimo.nome_usuario}</p>
@@ -218,7 +217,7 @@
                     error: function (retorno) {
                         Swal.fire({
                             title: "Erro!",
-                            text: JSON.parse(retorno.responseText).erro || "Erro ao buscar reservas",
+                            text: JSON.parse(retorno.responseText).erro || "Erro ao buscar empréstimos",
                             icon: "error"
                         });
                     }
