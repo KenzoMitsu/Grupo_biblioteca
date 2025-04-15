@@ -296,24 +296,24 @@ h1 {
 
 .add-btn{
     margin: 20px;
-    background-color: #4292dc;
+    background-color: var(--azul);
     color: var(--branco);
     display: flex;
+    border: 3px solid var(--azul);
     gap: 10px;
     align-items: center;
     padding: 10px;
     border-radius: 5px;
     cursor: pointer;
-    border: 3px solid #4292dc;
     font-weight: bold;
     margin-bottom: 100px;
 }
 
 .add-btn:hover{
-    color: #4292dc;
-    background-color: white;
-    border: 3px solid #4292dc;
-    cursor: pointer;
+    border: 3px solid var(--azul-escuro);
+    background-color: var(--azul-escuro);
+    transform: scale(1.05);
+    transition: background-color 0.3s, transform 0.3s;
 }
 
 label{
