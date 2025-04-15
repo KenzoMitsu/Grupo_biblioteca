@@ -262,6 +262,22 @@ h1 {
     font-weight: bold;
 }
 
+.emprestado{
+    padding-top: 7.5px;
+    padding-bottom: 7.5px;
+    padding-left: 100px;
+    padding-right: 100px;
+    color: var(--vermelho-escuro);
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background-color: var(--vermelho-claro);
+    border: 3px solid var(--vermelho-escuro);
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: x-large;
+    transition: 0.2s;
+}
+
 .botao-esgotado {
     padding-top: 7.5px;
     padding-bottom: 7.5px;

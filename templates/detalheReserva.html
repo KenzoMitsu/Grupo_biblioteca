@@ -153,8 +153,7 @@
 
             <div class="display-pai">
 
-                <button id="btn_reserva" class="botao-reserva" type="submit" onclick="emprestarLivro()">Emprestar</button>
-
+                <button id="btn_reserva" class="botao-reserva" type="button" onclick="emprestarLivro()">Emprestar</button>
             </div>
 
         </div>
@@ -250,9 +249,10 @@
 }
 
 
-        async function emprestarLivro() {
+async function emprestarLivro() {
   const id_emprestimo = obterParametroDaURL("id_emprestimo");
-  const token = localStorage.getItem("token"); // ou onde você estiver salvando o token
+  const token = localStorage.getItem("token");
+  const botao = document.getElementById("btn_reserva");
 
   try {
     const resposta = await fetch(`http://192.168.1.124:5000/emprestimos/${id_emprestimo}`, {
@@ -269,10 +269,31 @@
     }
 
     const dados = await resposta.json();
-    alert(dados.message);
+
+    // SweetAlert de sucesso
+    Swal.fire({
+      icon: "success",
+      title: "Sucesso",
+      text: dados.message,
+      confirmButtonText: "OK"
+    });
+
+    // Atualiza botão visualmente
+    botao.innerText = "Emprestado";
+    botao.disabled = true;
+    botao.classList.remove("botao-reserva"); // remove classe antiga
+    botao.classList.add("emprestado");       // adiciona classe estilizada
+
   } catch (erro) {
     console.error("Erro na requisição:", erro);
-    alert("Erro ao emprestar livro: " + erro.message);
+
+    // SweetAlert de erro
+    Swal.fire({
+      icon: "error",
+      title: "Erro",
+      text: "Erro ao emprestar livro: " + erro.message,
+      confirmButtonText: "Fechar"
+    });
   }
 }
 
