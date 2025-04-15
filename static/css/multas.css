@@ -543,7 +543,7 @@ input:checked + .slider:before {
 
 .container {
     border: 2px solid;
-    padding: 50px 150px;
+    padding: 50px 100px;
     border-radius: 10px;
     text-align: center;
     margin-bottom: 20px;
@@ -563,10 +563,11 @@ input:checked + .slider:before {
 
 .inserir {
     width: 150px;
-    padding: 9px;
+    padding: 15px 10px;
     text-align: center;
     border: 1px solid var(--escuro);
     border-radius: 6px;
+    margin: 4px;
 }
 
 h2{
@@ -600,7 +601,8 @@ h2{
     padding: 10px;
     border-radius: 5px;
     cursor: pointer;
-    width: 405px;
+    width: 500px;
+    height: 45px;
     border: none;
     font-weight: bold;
 }
