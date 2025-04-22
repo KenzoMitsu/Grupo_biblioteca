@@ -93,16 +93,16 @@
 
             <li class="menu-item" id="relatorios">
               <div>
-                <i class="fa-solid fa-file-export"></i>
-                <a href="javascript:void(0);" class="submenu-toggle">Relatórios</a>
+                  <i class="fa-solid fa-file-export"></i>
+                  <a href="javascript:void(0);" class="submenu-toggle">Relatórios</a>
               </div>
               <ul class="submenu">
-                <li class="submenu-item"><a href="relatorios.HTML">Relatório dos livros</a></li>
-                <li class="submenu-item"><a href="relatorio2.html">Relatório dos usuários</a></li>
-                <li class="submenu-item"><a href="relatorio3.html">Relatório dos empréstimos</a></li>
-                <li class="submenu-item"><a href="relatorio4.html">Relatório das multas</a></li>
+                  <li class="submenu-item"><a href="relatorios.HTML">Relatório dos livros</a></li>
+                  <li class="submenu-item"><a href="relatorio2.html">Relatório dos usuários</a></li>
+                  <li class="submenu-item"><a href="relatorio3.html">Relatório dos empréstimos</a></li>
+                  <li class="submenu-item"><a href="relatorio4.html">Relatório das multas</a></li>
               </ul>
-            </li>
+          </li>
 
             <li class="menu-item">
               <div>
@@ -141,16 +141,16 @@
 
             <li class="menu-item" id="relatorios">
               <div>
-                <i class="fa-solid fa-file-export"></i>
-                <a href="javascript:void(0);" class="submenu-toggle">Relatórios</a>
+                  <i class="fa-solid fa-file-export"></i>
+                  <a href="javascript:void(0);" class="submenu-toggle">Relatórios</a>
               </div>
               <ul class="submenu">
-                <li class="submenu-item"><a href="relatorios.HTML">Relatório dos livros</a></li>
-                <li class="submenu-item"><a href="relatorio2.html">Relatório dos usuários</a></li>
-                <li class="submenu-item"><a href="relatorio3.html">Relatório dos empréstimos</a></li>
-                <li class="submenu-item"><a href="relatorio4.html">Relatório das multas</a></li>
+                  <li class="submenu-item"><a href="relatorios.HTML">Relatório dos livros</a></li>
+                  <li class="submenu-item"><a href="relatorio2.html">Relatório dos usuários</a></li>
+                  <li class="submenu-item"><a href="relatorio3.html">Relatório dos empréstimos</a></li>
+                  <li class="submenu-item"><a href="relatorio4.html">Relatório das multas</a></li>
               </ul>
-            </li>
+          </li>
 
             <li class="menu-item">
               <div>
@@ -494,6 +494,16 @@
           }
         });
       }
+
+      // Adiciona o evento de clique no botão de relatórios
+      document.addEventListener('DOMContentLoaded', function () {
+            const relatoriosItem = document.getElementById('relatorios');
+            const submenu = relatoriosItem.querySelector('.submenu');
+
+            relatoriosItem.querySelector('.submenu-toggle').addEventListener('click', function () {
+                submenu.classList.toggle('show'); // Alterna a classe 'show' para mostrar ou esconder o submenu
+            });
+        });
 
     </script>
 
