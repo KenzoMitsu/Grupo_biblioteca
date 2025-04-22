@@ -174,27 +174,11 @@
 
   <div class="container">
 
-      <h3 class="titulo">Multas do Usuário</h3>
+    <h3 class="titulo">Listagem das Multas</h3>
 
-  </div>
+    <div class="listalivros" id="listaMultas">
 
-  <div class="table-container">
-    <table class="tabela-container" id="tabela-usuarios" border="3">
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Valor</th>
-          <th>Data Lançada</th>
-          <th>Nome</th>
-          <th>Email</th>
-          <th>Valor Fixo</th>
-          <th>Acrescimo</th>
-          <th>Ano</th>
-          <th>Ação</th>
-        </tr>
-      </thead>
-      <tbody></tbody>
-    </table>
+    </div>
   </div>
 
   <footer class="inter">
@@ -226,7 +210,7 @@
           <i class="fa-solid fa-envelope icons"></i>
           <p class="text">asa.literaria@email.com</p>
         </div>
-        
+
         <!-- Ícone de Menu com Dropdown -->
         <div class="header-end">
             <div class="menu-container">
@@ -396,7 +380,7 @@
                     error: function (retorno) {
                         Swal.fire({
                             title: "Erro!",
-                            text: JSON.parse(retorno.responseText).erro || "Erro ao buscar empréstimos",
+                            text: JSON.parse(retorno.responseText).erro,
                             icon: "error"
                         });
                     }
