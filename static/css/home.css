@@ -81,7 +81,6 @@ header {
 
 
 /* Ícone do menu */
-
 .header-container {
     display: flex;
     width: 100%;
@@ -168,6 +167,11 @@ header {
 }
 
 .fa-book {
+    padding-right: 7px;
+    padding-left: 1px;
+}
+
+.fa-bookmark {
     padding-right: 7px;
     padding-left: 1px;
 }
