@@ -251,6 +251,11 @@ input:checked + .slider:before {
     padding-left: 1px;
 }
 
+.fa-bookmark {
+    padding-right: 7px;
+    padding-left: 1px;
+}
+
 
 /* SUB-MODAIS DOS RELATÓRIOS */
 /* Estilo do submenu */
@@ -686,10 +691,11 @@ h2{
     padding: 10px;
     border-radius: 5px;
     cursor: pointer;
-    width: 500px;
+    width: 540px;
     height: 45px;
     border: none;
     font-weight: bold;
+    font-size: large;
 }
 
 .kcr_btn:hover {

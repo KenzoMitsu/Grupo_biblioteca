@@ -49,6 +49,14 @@ header {
     margin-bottom: 50px;
 }
 
+.livro-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 12px;
+    margin: 10px 0;
+    background-color: #f9f9f9;
+}
+
 /* Logo */
 .header-left img {
     width: 50px;
@@ -176,17 +184,17 @@ header {
     padding-left: 1px;
 }
 
-.fa-bookmark {
-    padding-right: 7px;
-    padding-left: 1px;
-}
-
 .fa-sync-alt {
     padding-right: 7px;
     padding-left: 1px;
 }
 
 .fa-sign-out-alt {
+    padding-right: 7px;
+    padding-left: 1px;
+}
+
+.fa-bookmark {
     padding-right: 7px;
     padding-left: 1px;
 }

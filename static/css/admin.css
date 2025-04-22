@@ -85,7 +85,6 @@ a{
 .menu-item {
     padding: 10px;
     display: flex;
-    align-items: center;
     gap: 10px;
     color: #333;
     cursor: pointer;
@@ -95,8 +94,6 @@ a{
 .menu-item:hover {
     background-color: #f0f0f0;
 }
-
-
 
 
 /* SUB-MODAIS DOS RELATÓRIOS */
