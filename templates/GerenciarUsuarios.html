@@ -381,7 +381,7 @@
             error: function (retorno) {
               Swal.fire({
                 title: "Erro!",
-                text: JSON.parse(retorno.responseText).error || "Falha ao carregar usuários.",
+                text: JSON.parse(retorno.responseText).error,
                 icon: "error"
               });
             }
