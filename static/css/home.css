@@ -176,17 +176,17 @@ header {
     padding-left: 1px;
 }
 
-.fa-bookmark {
-    padding-right: 7px;
-    padding-left: 1px;
-}
-
 .fa-sync-alt {
     padding-right: 7px;
     padding-left: 1px;
 }
 
 .fa-sign-out-alt {
+    padding-right: 7px;
+    padding-left: 1px;
+}
+
+.fa-bookmark {
     padding-right: 7px;
     padding-left: 1px;
 }
