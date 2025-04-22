@@ -253,23 +253,8 @@
 
         document.getElementById("valorfixo").value = params.get('valorfixo');
         document.getElementById("acrescimo").value = params.get('acrescimo');
-        document.getElementById("ano").value = formatarData(params.get('ano'));
+        document.getElementById("ano").value = params.get('ano');
 
-        function formatarData(dataISO) {
-            if (!dataISO) return ""; // Evita erro se a data estiver vazia
-
-            let data = new Date(dataISO);
-
-            // Adiciona 1 dia
-            data.setDate(data.getDate() + 1);  // Aumenta 1 dia
-
-            // Formata o dia, mês e ano
-            let dia = data.getDate().toString().padStart(2, "0");
-            let mes = (data.getMonth() + 1).toString().padStart(2, "0");
-            let ano = data.getFullYear();
-
-            return `${dia}/${mes}/${ano}`;
-        }
 
         $("#addMulta").on("submit", function (event) {
             event.preventDefault()
