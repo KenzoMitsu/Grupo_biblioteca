@@ -114,7 +114,7 @@
 
                         <li class="menu-item">
                             <div>
-                                <i class="fa-solid fa-wallet"></i><a href="gerenciarMultas.html">Gerenciar
+                                <i class="fa-solid fa-cash-register"></i><a href="gerenciarMultas.html">Gerenciar
                                 Multas</a>
                             </div>
                         </li>
@@ -131,13 +131,11 @@
                             </div>
                         </li>
 
-                        <!-- João copie daqui -->
                         <li class="menu-item">
                             <div>
                                 <i class="fa-solid fa-bookmark"></i><a href="ListagemEmprestimos.html">Empréstimos</a>
                             </div>
                         </li>
-                        <!-- Até aqui -->
                     </div>
 
                     <div id="biblio">
@@ -149,13 +147,11 @@
                             </div>
                         </li>
 
-                        <!-- João copie daqui -->
                         <li class="menu-item">
                             <div>
                                 <i class="fa-solid fa-bookmark"></i><a href="ListagemEmprestimos.html">Empréstimos</a>
                             </div>
                         </li>
-                        <!-- Até aqui -->
 
                         <li class="menu-item" id="relatorios">
                             <div>
@@ -212,8 +208,8 @@
                     <span style="font-weight: bold;">Usuário:</span>
                     <p id="usuario"></p>
 
-                    <span style="font-weight: bold;">Data devolvida:</span>
-                    <p id="data_devolvida"></p>
+                    <span style="font-weight: bold;">Data do empréstimo:</span>
+                    <p id="data_emprestimo"></p>
 
                 </div>
 
@@ -304,9 +300,9 @@
 
         document.getElementById("usuario").innerHTML = params.get('nome_usuario')
 
-        let dataOriginal = params.get('data_devolvida') || "";
+        let dataOriginal = params.get('data_emprestimo') || "";
         let dataFormatada = dataOriginal.replace(/-/g, "/");
-        document.getElementById("data_devolvida").innerHTML = dataFormatada;
+        document.getElementById("data_emprestimo").innerHTML = dataFormatada;
 
         document.getElementById("imagemLivro").src = ipPython + "/static/uploads/Livros/" + id.trim() + ".jpeg";
 
