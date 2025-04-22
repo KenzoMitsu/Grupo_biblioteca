@@ -199,6 +199,54 @@ input:checked+.slider:before {
     background-color: #f0f0f0;
 }
 
+
+
+
+/* SUB-MODAIS DOS RELATÓRIOS */
+/* Estilo do submenu */
+.submenu {
+    display: none;
+    /* Esconde o submenu por padrão */
+    padding-left: 20px;
+    /* Indentação para o submenu */
+    list-style: none;
+    /* Remove marcadores */
+    position: relative;
+    /* Para que o submenu seja posicionado em relação ao item pai */
+    font-size: 15px;
+}
+
+.submenu.show {
+    display: flex;
+    /* Mostra o submenu quando a classe 'show' é adicionada */
+
+    flex-direction: column;
+    /* Alinha os itens do submenu em coluna > DEPOIS PRECISO MEXER NISSO*/
+
+    margin-top: 5px;
+    /* Espaço entre o item pai e o submenu */
+}
+
+/* Estilo dos itens do submenu */
+.submenu-item {
+    padding: 5px 10px;
+    /* Espaçamento para os itens do submenu */
+    color: #333;
+    /* Cor do texto */
+    cursor: pointer;
+    /* Cursor de ponteiro */
+    transition: background 0.3s;
+    /* Transição suave para o fundo */
+}
+
+.submenu-item:hover {
+    background-color: #f0f0f0;
+    /* Cor de fundo ao passar o mouse */
+}
+
+
+
+
 /* Imagem do perfil no menu */
 .menu-icon-img {
     width: 20px;
