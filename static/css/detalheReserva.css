@@ -324,6 +324,7 @@ h1 {
 
 .container {
     display: flex;
+    flex-direction: column;
 }
 
 .header-end {
