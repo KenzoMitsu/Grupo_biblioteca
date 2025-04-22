@@ -81,7 +81,6 @@ header {
 
 
 /* Ícone do menu */
-
 .header-container {
     display: flex;
     width: 100%;
@@ -167,7 +166,17 @@ header {
     padding-left: 1px;
 }
 
+.fa-wallet {
+    padding-right: 7px;
+    padding-left: 1px;
+}
+
 .fa-book {
+    padding-right: 7px;
+    padding-left: 1px;
+}
+
+.fa-bookmark {
     padding-right: 7px;
     padding-left: 1px;
 }
@@ -224,8 +233,6 @@ header {
     background-color: #f0f0f0;
     /* Cor de fundo ao passar o mouse */
 }
-
-
 
 /* Imagem do perfil no menu */
 .menu-icon-img {

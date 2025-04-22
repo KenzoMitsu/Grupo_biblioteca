@@ -114,7 +114,7 @@
 
                         <li class="menu-item">
                             <div>
-                                <i class="fa-solid fa-cash-register"></i><a href="gerenciarMultas.html">Gerenciar
+                                <i class="fa-solid fa-wallet"></i><a href="gerenciarMultas.html">Gerenciar
                                 Multas</a>
                             </div>
                         </li>
@@ -299,13 +299,12 @@
             return urlParams.get(nome);
         }
 
-
         async function emprestarLivro() {
             const id_emprestimo = obterParametroDaURL("id_emprestimo");
             const token = localStorage.getItem("token"); // ou onde você estiver salvando o token
 
             try {
-                const resposta = await fetch(`http://192.168.1.124:5000/emprestimos/${id_emprestimo}`, {
+                const resposta = await fetch(ipPython + `/emprestimos/${id_emprestimo}`, {
                     method: "PUT",
                     headers: {
                         "Content-Type": "application/json",
@@ -313,17 +312,16 @@
                     }
                 });
 
+                const dados = await resposta.json(); // Captura a resposta JSON
+
                 if (!resposta.ok) {
-                    const erro = await resposta.json();
-                    throw new Error(erro.mensagem || "Erro ao realizar o empréstimo.");
+                    throw new Error(dados.mensagem || "Erro ao realizar o empréstimo.");
                 }
 
-                const dados = await resposta.json();
-                
-                // Exibir SweetAlert de sucesso
+                // Exibir SweetAlert de sucesso com a mensagem da API
                 Swal.fire({
                     title: 'Sucesso!',
-                    text: 'O empréstimo foi realizado com sucesso!',
+                    text: dados.message || 'O empréstimo foi realizado com sucesso!',
                     icon: 'success',
                     confirmButtonText: 'OK'
                 }).then(() => {
@@ -333,9 +331,16 @@
 
             } catch (erro) {
                 console.error("Erro na requisição:", erro);
-                alert("Erro ao emprestar livro: " + erro.message);
+                // Exibir SweetAlert de erro com a mensagem da API
+                Swal.fire({
+                    title: 'Erro!',
+                    text: dados.mensagem || erro.message || "Erro ao emprestar livro.",
+                    icon: 'error',
+                    confirmButtonText: 'OK'
+                });
             }
         }
+        
 
         // Adiciona o evento de clique no botão de relatórios
         document.addEventListener('DOMContentLoaded', function () {

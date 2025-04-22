@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tabela de Usuários</title>
+  <title>Listagem de Multas</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
@@ -15,7 +15,7 @@
   <link rel="stylesheet" href="../static/dist/assets/owl.carousel.min.css">
   <link rel="stylesheet" href="../static/dist/assets/owl.theme.default.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <link rel="stylesheet" href="../static/css/gerenciarMultas.css">
+  <link rel="stylesheet" href="../static/css/usuarios.css">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
     crossorigin="anonymous"></script>
@@ -172,25 +172,23 @@
   </header>
   <!-- FIM DO CABEÇALHO -->
 
-  <div class="container">
-    <h2 class="titulo">Gerenciar Multas</h2>
+  <main>
 
-    <div class="table-container">
-      <table class="tabela-container" id="tabela-usuarios" border="3">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Valor da Multa</th>
-            <th>Acrescimo da Multa</th>
-            <th>Ano</th>
-            <th>Ações</th>
-          </tr>
-        </thead>
-        <tbody></tbody>
-      </table>
+    <div class="container">
+
+        <h3 class="titulo">Lista de Multas</h3>
+        
+        <div class="listamultas" id="listaLivros">
+
+            <div class="item">
+                <img src="" alt="">
+            </div>
+
+        </div>
+
     </div>
 
-  </div>
+  </main>
 
   <footer class="inter">
     <div class="separacao1">
@@ -243,71 +241,5 @@
       <a href="https://www.google.com.br/?hl=pt-BR" class="text2">Política de privacidade</a>
     </div>
   </footer>
-
-  <script>
-    $(document).ready(function () {
-      const token = localStorage.getItem("token");
-
-      carregarMultas();
-
-      function carregarMultas() {
-        $.ajax({
-          method: "GET",
-          url: ipPython + "/configmulta",
-          headers: {
-            'Authorization': 'Bearer ' + token
-          },
-          success: function (data) {
-            let multas = data.configuracoes;
-            let tabela = $("#tabela-usuarios tbody");
-            let linha = ""
-
-            multas.forEach(multa => {
-              linha += `
-                    <tr>
-                        <td>${multa.id_config}</td>
-                        <td>${multa.valorfixo}</td>
-                        <td>${multa.acrescimo}</td>
-                        <td>${(multa.ano)}</td>
-                        <td>
-                            <a href="editMulta.html?id=${multa.id_config}&valorfixo=${multa.valorfixo}&acrescimo=${multa.acrescimo}&ano=${multa.ano}"><button class="acoes" >Editar</button></a>
-                        </td>
-                    </tr>
-                `;
-
-              tabela.html(linha)
-            });
-
-          },
-          error: function (retorno) {
-            Swal.fire({
-              title: "Erro!",
-              text: JSON.parse(retorno.responseText).error,
-              icon: "error"
-            });
-          }
-        });
-      }
-
-      // Logout
-      $(".sair").click(function () {
-        localStorage.clear();
-        window.location.href = "login.html";
-      });
-    });
-
-    // Adiciona o evento de clique no botão de relatórios
-    document.addEventListener('DOMContentLoaded', function () {
-            const relatoriosItem = document.getElementById('relatorios');
-            const submenu = relatoriosItem.querySelector('.submenu');
-
-            relatoriosItem.querySelector('.submenu-toggle').addEventListener('click', function () {
-                submenu.classList.toggle('show'); // Alterna a classe 'show' para mostrar ou esconder o submenu
-            });
-        });
-
-  </script>
-
-</body>
-
+   </body>
 </html>
