@@ -236,7 +236,7 @@
 
                         <div class="mb-3">
                             <label class="bloco">Data de publicação:</label>
-                            <input type="date" class="inserir" id="data_publicacao" name="data_publicacao" required>
+                            <input type="number" class="inserir" id="data_publicacao" name="data_publicacao" required>
                         </div>
 
                         <div class="mb-3">
@@ -390,7 +390,7 @@
 
                         <div class="mb-3">
                             <label class="bloco">Data de publicação:</label>
-                            <input type="date" class="inserir" id="data_publicacaoEditar" name="data_publicacao"
+                            <input type="number" class="inserir" id="data_publicacaoEditar" name="data_publicacao"
                                 required>
                         </div>
 
@@ -688,10 +688,7 @@
                     $("#id_livro").val(livro.id_livro); // Adiciona o ID do livro ao campo oculto
                     $("#tituloEditar").val(livro.titulo);
                     $("#autorEditar").val(livro.autor);
-                    // Ajusta a data para o formato YYYY-MM-DD
-                    const dataOriginal = livro.data_publicacao;
-                    const dataFormatada = new Date(dataOriginal).toISOString().split("T")[0];
-                    $("#data_publicacaoEditar").val(dataFormatada);
+                    $("#data_publicacaoEditar").val(livro.data_publicacao);
                     $("#ISBNEditar").val(livro.ISBN);
                     $("#descricaoEditar").val(livro.descricao);
                     $("#quantidadeEditar").val(livro.quantidade);
