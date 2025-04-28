@@ -96,7 +96,7 @@
                             <a href="javascript:void(0);" class="submenu-toggle">Relatórios</a>
                         </div>
                         <ul class="submenu">
-                          <li class="submenu-item"><a class="butt" href="http://192.168.1.133:5000/livros_relatorio"><i class="fa-solid fa-file-export"></i>Relatório de Livros</a></li>
+                          <li class="submenu-item"><a class="butt" href="http://192.168.1.122:5000/livros_relatorio"><i class="fa-solid fa-file-export"></i>Relatório de Livros</a></li>
                           <li class="submenu-item"><a class="butt" href="http://192.168.1.122:5000/usuarios_relatorio"><i class="fa-solid fa-file-export"></i>Relatório de Usuários</a></li>
                           <li class="submenu-item"><a class="butt" href="http://192.168.1.122:5000/emprestimos_relatorio"><i class="fa-solid fa-file-export"></i>Relatório de Emprestimos</a></li>
                           <li class="submenu-item"><a class="butt" href="http://192.168.1.122:5000/multas_relatorio"><i class="fa-solid fa-file-export"></i>Relatório de Multas</a></li>
@@ -272,22 +272,20 @@
               html.innerHTML += `
                             <div class="item">
 
-                              <div class="fiote1">
-                                <span class="negrito" >Valor a ser pago:</span><p>${multas.valor}</p>
-                                <span class="negrito" >Data da Multa:</span><p>${multas.data_lancamento}</p>
-                                <span class="negrito" >Email do Usuário:</span><p>${multas.usuario.email}</p>
-                              </div>
+                              <div class="dalai-lama">
 
-                              <div class="fiote2">
-                                <span class="negrito" >Nome do Usuário:</span><p>${multas.usuario.nome}</p>
-                                <span class="negrito" >Acrescimo:</span><p>${multas.configuracao.acrescimo}</p>
-                                <span class="negrito" >Ano da Multa:</span><p>${multas.configuracao.ano}</p>
-                                <span class="negrito" >Valor Fixo:</span><p>${multas.configuracao.valorfixo}</p>
-                              </div>
+                                <div class="fiote1">
+                                  <span class="negrito" >Nome do Usuário:</span><p>${multas.usuario.nome}</p>
+                                  <span class="negrito" >Email do Usuário:</span><p>${multas.usuario.email}</p>
+                                  <span class="negrito" >Data da Multa:</span><p>${multas.data_lancamento}</p>
+                                </div>
 
-                              <div class="macaco">
-
-                                <button class="btn btn-primary">Pagar Multa</button>
+                                <div class="fiote2">
+                                  <span class="negrito" >Valor Fixo:</span><p>${multas.configuracao.valorfixo}</p>
+                                  <span class="negrito" >Valor a ser pago:</span><p>${multas.valor}</p>
+                                  <span class="negrito" >Acrescimo:</span><p>${multas.configuracao.acrescimo}</p>
+                                  <span class="negrito" >Ano da Multa:</span><p>${multas.configuracao.ano}</p>
+                                </div>
 
                               </div>
 
