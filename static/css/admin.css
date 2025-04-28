@@ -89,6 +89,7 @@ a{
     color: #333;
     cursor: pointer;
     transition: background 0.3s;
+    align-items: flex-start;
 }
 
 .menu-item:hover {
