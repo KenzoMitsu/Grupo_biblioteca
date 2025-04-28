@@ -41,14 +41,15 @@
         </div>
 
         <!-- Barra de Pesquisa -->
-        <form id="formBuscaLivro">
+        <div class="header-center">
             <div class="search-container">
                 <i class="fas fa-search"></i>
-                <input type="text" id="campoBusca" placeholder="Pesquise Seu Livro" class="search-box">
+                <input type="text" placeholder="Pesquise Seu Livro" class="search-box">
             </div>
-        </form>
+        </div>
 
-        <div id="resultadoLivros"></div>
+        <!-- Dark Mode -->
+
 
         <!-- Ícone de Menu com Dropdown -->
         <div class="header-end">
@@ -70,19 +71,7 @@
                     <div id="cliente">
                         <li class="menu-item">
                             <div>
-                                <i class="fas fa-sync-alt"></i><a href="historicoReservas.html">Reservas</a>
-                            </div>
-                        </li>
-
-                        <li class="menu-item">
-                            <div>
-                                <i class="fas fa-sync-alt"></i><a href="historicoMultas.html">Multas</a>
-                            </div>
-                        </li>
-
-                        <li class="menu-item">
-                            <div>
-                                <i class="fas fa-sync-alt"></i><a href="historicoMultas.html">Multas</a>
+                                <i class="fas fa-sync-alt"></i><a href="historico.html">Histórico</a>
                             </div>
                         </li>
                     </div>
@@ -106,10 +95,10 @@
                                 <a href="javascript:void(0);" class="submenu-toggle">Relatórios</a>
                             </div>
                             <ul class="submenu">
-                                <li class="submenu-item"><a href="relatorios.HTML">Relatório dos livros</a></li>
-                                <li class="submenu-item"><a href="relatorio2.html">Relatório dos usuários</a></li>
-                                <li class="submenu-item"><a href="relatorio3.html">Relatório dos empréstimos</a></li>
-                                <li class="submenu-item"><a href="relatorio4.html">Relatório das multas</a></li>
+                                <li class="submenu-item"><a class="butt" href="http://192.168.1.133:5000/livros_relatorio"><i class="fa-solid fa-file-export"></i>Relatório de Livros</a></li>
+                                <li class="submenu-item"><a class="butt" href="http://192.168.1.122:5000/usuarios_relatorio"><i class="fa-solid fa-file-export"></i>Relatório de Usuários</a></li>
+                                <li class="submenu-item"><a class="butt" href="http://192.168.1.122:5000/emprestimos_relatorio"><i class="fa-solid fa-file-export"></i>Relatório de Emprestimos</a></li>
+                                <li class="submenu-item"><a class="butt" href="http://192.168.1.122:5000/multas_relatorio"><i class="fa-solid fa-file-export"></i>Relatório de Multas</a></li>
                             </ul>
                         </li>
 
@@ -121,7 +110,8 @@
 
                         <li class="menu-item">
                             <div>
-                                <i class="fa-solid fa-wallet"></i><a href="gerenciarMultas.html">Gerenciar Multas</a>
+                                <i class="fa-solid fa-wallet"></i><a href="gerenciarMultas.html">Gerenciar
+                                    Multas</a>
                             </div>
                         </li>
 
@@ -137,11 +127,13 @@
                             </div>
                         </li>
 
+                        <!-- João copie daqui -->
                         <li class="menu-item">
                             <div>
                                 <i class="fa-solid fa-bookmark"></i><a href="ListagemEmprestimos.html">Empréstimos</a>
                             </div>
                         </li>
+                        <!-- Até aqui -->
                     </div>
 
                     <div id="biblio">
@@ -153,16 +145,24 @@
                             </div>
                         </li>
 
+                        <!-- João copie daqui -->
+                        <li class="menu-item">
+                            <div>
+                                <i class="fa-solid fa-bookmark"></i><a href="ListagemEmprestimos.html">Empréstimos</a>
+                            </div>
+                        </li>
+                        <!-- Até aqui -->
+
                         <li class="menu-item" id="relatorios">
                             <div>
                                 <i class="fa-solid fa-file-export"></i>
                                 <a href="javascript:void(0);" class="submenu-toggle">Relatórios</a>
                             </div>
                             <ul class="submenu">
-                                <li class="submenu-item"><a href="relatorios.HTML">Relatório dos livros</a></li>
-                                <li class="submenu-item"><a href="relatorio2.html">Relatório dos usuários</a></li>
-                                <li class="submenu-item"><a href="relatorio3.html">Relatório dos empréstimos</a></li>
-                                <li class="submenu-item"><a href="relatorio4.html">Relatório das multas</a></li>
+                                <li class="submenu-item"><a class="butt" href="http://192.168.1.133:5000/livros_relatorio"><i class="fa-solid fa-file-export"></i>Relatório de Livros</a></li>
+                                <li class="submenu-item"><a class="butt" href="http://192.168.1.122:5000/usuarios_relatorio"><i class="fa-solid fa-file-export"></i>Relatório de Usuários</a></li>
+                                <li class="submenu-item"><a class="butt" href="http://192.168.1.122:5000/emprestimos_relatorio"><i class="fa-solid fa-file-export"></i>Relatório de Emprestimos</a></li>
+                                <li class="submenu-item"><a class="butt" href="http://192.168.1.122:5000/multas_relatorio"><i class="fa-solid fa-file-export"></i>Relatório de Multas</a></li>
                             </ul>
                         </li>
 
