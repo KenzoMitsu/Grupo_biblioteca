@@ -215,25 +215,23 @@ input:checked + .slider:before {
 /* Estilo do submenu */
 .submenu {
     display: none;
-    /* Esconde o submenu por padrão */
-    padding-left: 20px;
-    /* Indentação para o submenu */
+    flex-direction: column;
     list-style: none;
-    /* Remove marcadores */
-    position: relative;
-    /* Para que o submenu seja posicionado em relação ao item pai */
-    font-size: 15px;
+    padding: 0;
+    margin: 0;
+}
+
+
+
+
+.menu-item {
+    display: flex;
+    flex-direction: column; /* ← isso força tudo a ficar empilhado para baixo */
+    align-items: flex-start; /* opcional, para alinhar à esquerda */
 }
 
 .submenu.show {
-    display: flex;
-    /* Mostra o submenu quando a classe 'show' é adicionada */
-
-    flex-direction: column;
-    /* Alinha os itens do submenu em coluna > DEPOIS PRECISO MEXER NISSO*/
-
-    margin-top: 5px;
-    /* Espaço entre o item pai e o submenu */
+    display: flex; /* ou display: block */
 }
 
 /* Estilo dos itens do submenu */
@@ -252,6 +250,7 @@ input:checked + .slider:before {
     background-color: #f0f0f0;
     /* Cor de fundo ao passar o mouse */
 }
+
 
 /* Ícone do menu */
 .menu-container {

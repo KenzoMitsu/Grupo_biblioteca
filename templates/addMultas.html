@@ -43,14 +43,83 @@
         </div>
 
         <!-- Barra de Pesquisa -->
-        <div class="header-center">
+        <form id="formBuscaLivro">
             <div class="search-container">
                 <i class="fas fa-search"></i>
-                <input type="text" placeholder="Pesquise Seu Livro" class="search-box">
+                <input type="text" id="campoBusca" placeholder="Pesquise Seu Livro" class="search-box">
             </div>
-        </div>
-
-        <!-- Dark Mode -->
+        </form>
+        
+        <div id="resultadoLivros"></div>
+                
+        
+        <script>        
+            $(document).ready(function () {
+                // Função de busca
+                $("#formBuscaLivro").on("submit", function (e) {
+                    e.preventDefault();
+        
+                    let termo = $("#campoBusca").val().trim();
+        
+                    if (!termo) {
+                        Swal.fire({
+                            title: "Atenção!",
+                            text: "Digite algo para buscar.",
+                            icon: "warning"
+                        });
+                        return;
+                    }
+        
+                    $.ajax({
+                        method: "GET",
+                        url: ipPython + "/pesquisar?q=" + encodeURIComponent(termo),
+                        success: function (retorno) {
+                            $("#listaLivros").empty();
+        
+                            if (retorno.livros && retorno.livros.length > 0) {
+                                retorno.livros.forEach(livro => {
+                                    $("#listaLivros").append(`
+                                        <div class="item">
+                                            <a href="reserva.html?id=${livro.id_livro}&ISBN=${livro.ISBN}&autor=${livro.autor}
+                                            &categoria=${livro.categoria}&data_publicacao=${livro.data_publicacao}&descricao=${livro.descricao}
+                                            &quantidade=${livro.quantidade}&titulo=${livro.titulo}">
+        
+                                                <img src="${ipPython}/static/uploads/Livros/${livro.id_livro}.jpeg" alt="">
+                                                <p>${livro.titulo}</p>
+                                            </a>
+                                        </div>
+                                    `);
+                                });
+                            } else {
+                                $("#listaLivros").html("<p>Nenhum livro encontrado.</p>");
+                            }
+                        },
+                        error: function (xhr) {
+                            let erroMsg = "Erro ao buscar livros.";
+                            if (xhr.responseText) {
+                                try {
+                                    erroMsg = JSON.parse(xhr.responseText).mensagem || erroMsg;
+                                } catch (e) { }
+                            }
+        
+                            Swal.fire({
+                                title: "Erro!",
+                                text: erroMsg,
+                                icon: "error"
+                            });
+                        }
+                    });
+                });
+        
+                // Detecta se o usuário limpou o campo de busca
+                $("#campoBusca").on("input", function () {
+                    if ($(this).val().trim() === "") {
+                        carregaLivros(); // Recarrega todos os livros se o campo estiver vazio
+                    }
+                });
+            });
+        </script>
+        
 
 
         <!-- Ícone de Menu com Dropdown -->
@@ -113,7 +182,7 @@
 
                         <li class="menu-item">
                             <div>
-                                <i class="fa-solid fa-wallet"></i><a href="gerenciarMultas.html">Gerenciar
+                                <i class="fa-solid fa-cash-register"></i><a href="gerenciarMultas.html">Gerenciar
                                 Multas</a>
                             </div>
                         </li>
@@ -129,14 +198,6 @@
                                 <i class="fas fa-sync-alt"></i><a href="ListagemReservas.html">Reservas</a>
                             </div>
                         </li>
-
-                        <!-- João copie daqui -->
-                        <li class="menu-item">
-                            <div>
-                                <i class="fa-solid fa-bookmark"></i><a href="ListagemEmprestimos.html">Empréstimos</a>
-                            </div>
-                        </li>
-                        <!-- Até aqui -->
                     </div>
 
                     <div id="biblio">
@@ -147,14 +208,6 @@
                                 <i class="fas fa-sync-alt"></i><a href="historico.html">Histórico</a>
                             </div>
                         </li>
-
-                        <!-- João copie daqui -->
-                        <li class="menu-item">
-                            <div>
-                                <i class="fa-solid fa-bookmark"></i><a href="ListagemEmprestimos.html">Empréstimos</a>
-                            </div>
-                        </li>
-                        <!-- Até aqui -->
 
                         <li class="menu-item" id="relatorios">
                             <div>
