@@ -261,9 +261,6 @@ input:checked + .slider:before {
     margin: 0;
 }
 
-
-
-
 .menu-item {
     display: flex;
     flex-direction: column; /* ← isso força tudo a ficar empilhado para baixo */
