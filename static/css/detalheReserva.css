@@ -47,9 +47,14 @@ a{
 }
 
 .pai {
-    display: flex;
+    background-color: var(--branco);
+    border: 4px solid #007bff;
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
     justify-content: center;
-    align-items: center;
+    display: flex;
+    padding: 15px;
+    border-radius: 10px;
+    margin-right: 8px;
 }
 
 .quantidade {
@@ -318,7 +323,7 @@ input:checked + .slider:before {
 h1 {
     margin-top: -10px;
     margin-bottom: 30px;
-    font-size: x-large;
+    font-size: xx-large;
     font-weight: bold;
     color: var(--azul-escuro);
     text-align: center;
@@ -327,12 +332,6 @@ h1 {
 .texto {
     font-size: medium;
     max-width: 280px;
-
-}
-
-.container {
-    display: flex;
-    flex-direction: column;
 }
 
 .header-end {
@@ -344,10 +343,6 @@ h1 {
     display: flex;
     margin-right: 8px;
     margin-bottom: 50px
-}
-
-.pai3 {
-    margin-top: -140px;
 }
 
 .display-pai {
@@ -366,6 +361,7 @@ h1 {
     width: 237px;
     height: 300px;
     margin-right: 15px;
+    margin-bottom: -45px;
 }
 
 .quantidade {
