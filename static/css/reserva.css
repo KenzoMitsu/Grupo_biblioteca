@@ -250,6 +250,9 @@ input:checked + .slider:before {
     padding-left: 1px;
 }
 
+header li a{
+    font-size: medium;
+}
 
 /* SUB-MODAIS DOS RELATÓRIOS */
 /* Estilo do submenu */
