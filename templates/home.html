@@ -47,18 +47,18 @@
                 <input type="text" id="campoBusca" placeholder="Pesquise Seu Livro" class="search-box">
             </div>
         </form>
-        
+
         <div id="resultadoLivros"></div>
-                
-        
-        <script>        
+
+
+        <script>
             $(document).ready(function () {
                 // Função de busca
                 $("#formBuscaLivro").on("submit", function (e) {
                     e.preventDefault();
-        
+
                     let termo = $("#campoBusca").val().trim();
-        
+
                     if (!termo) {
                         Swal.fire({
                             title: "Atenção!",
@@ -67,13 +67,13 @@
                         });
                         return;
                     }
-        
+
                     $.ajax({
                         method: "GET",
                         url: ipPython + "/pesquisar?q=" + encodeURIComponent(termo),
                         success: function (retorno) {
                             $("#listaLivros").empty();
-        
+
                             if (retorno.livros && retorno.livros.length > 0) {
                                 retorno.livros.forEach(livro => {
                                     $("#listaLivros").append(`
@@ -99,7 +99,7 @@
                                     erroMsg = JSON.parse(xhr.responseText).mensagem || erroMsg;
                                 } catch (e) { }
                             }
-        
+
                             Swal.fire({
                                 title: "Erro!",
                                 text: erroMsg,
@@ -108,7 +108,7 @@
                         }
                     });
                 });
-        
+
                 // Detecta se o usuário limpou o campo de busca
                 $("#campoBusca").on("input", function () {
                     if ($(this).val().trim() === "") {
@@ -117,7 +117,7 @@
                 });
             });
         </script>
-        
+
 
 
         <!-- Ícone de Menu com Dropdown -->
@@ -133,8 +133,7 @@
 
                     <li class="menu-item">
                         <div>
-                            <i class="fa-solid fa-circle-user"></i><a id="editPerfil"
-                            href="editPerfil.html"> Perfil</a>
+                            <i class="fa-solid fa-circle-user"></i><a id="editPerfil" href="editPerfil.html"> Perfil</a>
                         </div>
                     </li>
 
@@ -150,10 +149,10 @@
                         <li class="menu-item">
                             <div>
                                 <i class="fas fa-user"></i><a href="GerenciarUsuarios.html"> Gerenciar
-                                Usuários</a>
+                                    Usuários</a>
                             </div>
                         </li>
-                        <li class="menu-item"> 
+                        <li class="menu-item">
                             <div>
                                 <i class="fas fa-sync-alt"></i><a href="historico.html">Histórico</a>
                             </div>
@@ -207,7 +206,7 @@
                         <li class="menu-item">
                             <div>
                                 <i class="fas fa-book"></i><a href="ListagemReservas.html">
-                                Reservas</a>
+                                    Reservas</a>
                                 <i class="fas fa-sync-alt"></i><a href="historico.html">Histórico</a>
                             </div>
                         </li>
@@ -228,7 +227,7 @@
                         <li class="menu-item">
                             <div>
                                 <i class="fas fa-sync-alt"></i><a href="editLivros.html"> Gerenciar
-                                Livros</a>
+                                    Livros</a>
                             </div>
                         </li>
                     </div>
