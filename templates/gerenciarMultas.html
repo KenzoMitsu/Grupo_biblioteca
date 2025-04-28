@@ -32,6 +32,8 @@
   <script src="../static/js/paginaip.js"></script>
 
   <link rel="stylesheet" href="../static/css/usuarios.css" />
+  <link rel="stylesheet" href="../static/css/multas.css" />
+
   <link rel="icon" type="image/x-icon" href="../static/img/head-removebg-preview.png">
 </head>
 
@@ -39,15 +41,15 @@
   <header>
     <!-- Logo -->
     <div class="header-left">
-        <a id="logoHeader" href="home.html"><img src="../static/img/logo.png" alt="Logo"></a>
+      <a id="logoHeader" href="home.html"><img src="../static/img/logo.png" alt="Logo"></a>
     </div>
 
     <!-- Barra de Pesquisa -->
     <div class="header-center">
-        <div class="search-container">
-            <i class="fas fa-search"></i>
-            <input type="text" placeholder="Pesquise Seu Livro" class="search-box">
-        </div>
+      <div class="search-container">
+        <i class="fas fa-search"></i>
+        <input type="text" placeholder="Pesquise Seu Livro" class="search-box">
+      </div>
     </div>
 
     <!-- Dark Mode -->
@@ -55,138 +57,137 @@
 
     <!-- Ícone de Menu com Dropdown -->
     <div class="header-end">
-        <div class="menu-container">
-            <div class="menu-icon" id="menuButton">
-                <div class="menulinha"></div>
-                <div class="menulinha"></div>
-                <div class="menulinha"></div>
-            </div>
-
-            <ul class="dropdown-menu" id="dropdownMenu">
-
-                <li class="menu-item">
-                    <div>
-                        <i class="fa-solid fa-circle-user"></i><a id="editPerfil"
-                        href="editPerfil.html"> Perfil</a>
-                    </div>
-                </li>
-
-                <div id="cliente">
-                    <li class="menu-item">
-                        <div>
-                            <i class="fas fa-sync-alt"></i><a href="historico.html">Histórico</a>
-                        </div>
-                    </li>
-                </div>
-
-                <div id="adm">
-                    <li class="menu-item">
-                        <div>
-                            <i class="fas fa-user"></i><a href="GerenciarUsuarios.html"> Gerenciar
-                            Usuários</a>
-                        </div>
-                    </li>
-                    <li class="menu-item"> 
-                        <div>
-                            <i class="fas fa-sync-alt"></i><a href="historico.html">Histórico</a>
-                        </div>
-                    </li>
-
-                    <li class="menu-item" id="relatorios">
-                        <div>
-                            <i class="fa-solid fa-file-export"></i>
-                            <a href="javascript:void(0);" class="submenu-toggle">Relatórios</a>
-                        </div>
-                        <ul class="submenu">
-                            <li class="submenu-item"><a href="relatorios.HTML">Relatório dos livros</a></li>
-                            <li class="submenu-item"><a href="relatorio2.html">Relatório dos usuários</a></li>
-                            <li class="submenu-item"><a href="relatorio3.html">Relatório dos empréstimos</a></li>
-                            <li class="submenu-item"><a href="relatorio4.html">Relatório das multas</a></li>
-                        </ul>
-                    </li>
-
-                    <li class="menu-item">
-                        <div>
-                            <i class="fa-solid fa-cash-register"></i><a href="addMultas.html">Adicionar multas</a>
-                        </div>
-                    </li>
-
-                    <li class="menu-item">
-                        <div>
-                            <i class="fa-solid fa-wallet"></i><a href="gerenciarMultas.html">Gerenciar
-                            Multas</a>
-                        </div>
-                    </li>
-
-                    <li class="menu-item">
-                        <div>
-                            <i class="fas fa-book"></i><a href="editLivros.html">Gerenciar Livros</a>
-                        </div>
-                    </li>
-
-                    <li class="menu-item">
-                        <div>
-                            <i class="fas fa-sync-alt"></i><a href="ListagemReservas.html">Reservas</a>
-                        </div>
-                    </li>
-
-                    <!-- João copie daqui -->
-                    <li class="menu-item">
-                        <div>
-                            <i class="fa-solid fa-bookmark"></i><a href="ListagemEmprestimos.html">Empréstimos</a>
-                        </div>
-                    </li>
-                    <!-- Até aqui -->
-                </div>
-
-                <div id="biblio">
-                    <li class="menu-item">
-                        <div>
-                            <i class="fas fa-book"></i><a href="ListagemReservas.html">
-                            Reservas</a>
-                            <i class="fas fa-sync-alt"></i><a href="historico.html">Histórico</a>
-                        </div>
-                    </li>
-
-                    <!-- João copie daqui -->
-                    <li class="menu-item">
-                        <div>
-                            <i class="fa-solid fa-bookmark"></i><a href="ListagemEmprestimos.html">Empréstimos</a>
-                        </div>
-                    </li>
-                    <!-- Até aqui -->
-
-                    <li class="menu-item" id="relatorios">
-                        <div>
-                            <i class="fa-solid fa-file-export"></i>
-                            <a href="javascript:void(0);" class="submenu-toggle">Relatórios</a>
-                        </div>
-                        <ul class="submenu">
-                            <li class="submenu-item"><a href="relatorios.HTML">Relatório dos livros</a></li>
-                            <li class="submenu-item"><a href="relatorio2.html">Relatório dos usuários</a></li>
-                            <li class="submenu-item"><a href="relatorio3.html">Relatório dos empréstimos</a></li>
-                            <li class="submenu-item"><a href="relatorio4.html">Relatório das multas</a></li>
-                        </ul>
-                    </li>
-
-                    <li class="menu-item">
-                        <div>
-                            <i class="fas fa-sync-alt"></i><a href="editLivros.html"> Gerenciar
-                            Livros</a>
-                        </div>
-                    </li>
-                </div>
-
-                <li class="menu-item">
-                    <div>
-                        <i class="fas fa-sign-out-alt"></i><button class="sair">Sair</button>
-                    </div>
-                </li>
-            </ul>
-
+      <div class="menu-container">
+        <div class="menu-icon" id="menuButton">
+          <div class="menulinha"></div>
+          <div class="menulinha"></div>
+          <div class="menulinha"></div>
         </div>
+
+        <ul class="dropdown-menu" id="dropdownMenu">
+
+          <li class="menu-item">
+            <div>
+              <i class="fa-solid fa-circle-user"></i><a id="editPerfil" href="editPerfil.html"> Perfil</a>
+            </div>
+          </li>
+
+          <div id="cliente">
+            <li class="menu-item">
+              <div>
+                <i class="fas fa-sync-alt"></i><a href="historico.html">Histórico</a>
+              </div>
+            </li>
+          </div>
+
+          <div id="adm">
+            <li class="menu-item">
+              <div>
+                <i class="fas fa-user"></i><a href="GerenciarUsuarios.html"> Gerenciar
+                  Usuários</a>
+              </div>
+            </li>
+            <li class="menu-item">
+              <div>
+                <i class="fas fa-sync-alt"></i><a href="historico.html">Histórico</a>
+              </div>
+            </li>
+
+            <li class="menu-item" id="relatorios">
+              <div>
+                <i class="fa-solid fa-file-export"></i>
+                <a href="javascript:void(0);" class="submenu-toggle">Relatórios</a>
+              </div>
+              <ul class="submenu">
+                <li class="submenu-item"><a href="relatorios.HTML">Relatório dos livros</a></li>
+                <li class="submenu-item"><a href="relatorio2.html">Relatório dos usuários</a></li>
+                <li class="submenu-item"><a href="relatorio3.html">Relatório dos empréstimos</a></li>
+                <li class="submenu-item"><a href="relatorio4.html">Relatório das multas</a></li>
+              </ul>
+            </li>
+
+            <li class="menu-item">
+              <div>
+                <i class="fa-solid fa-cash-register"></i><a href="addMultas.html">Adicionar multas</a>
+              </div>
+            </li>
+
+            <li class="menu-item">
+              <div>
+                <i class="fa-solid fa-wallet"></i><a href="gerenciarMultas.html">Gerenciar
+                  Multas</a>
+              </div>
+            </li>
+
+            <li class="menu-item">
+              <div>
+                <i class="fas fa-book"></i><a href="editLivros.html">Gerenciar Livros</a>
+              </div>
+            </li>
+
+            <li class="menu-item">
+              <div>
+                <i class="fas fa-sync-alt"></i><a href="ListagemReservas.html">Reservas</a>
+              </div>
+            </li>
+
+            <!-- João copie daqui -->
+            <li class="menu-item">
+              <div>
+                <i class="fa-solid fa-bookmark"></i><a href="ListagemEmprestimos.html">Empréstimos</a>
+              </div>
+            </li>
+            <!-- Até aqui -->
+          </div>
+
+          <div id="biblio">
+            <li class="menu-item">
+              <div>
+                <i class="fas fa-book"></i><a href="ListagemReservas.html">
+                  Reservas</a>
+                <i class="fas fa-sync-alt"></i><a href="historico.html">Histórico</a>
+              </div>
+            </li>
+
+            <!-- João copie daqui -->
+            <li class="menu-item">
+              <div>
+                <i class="fa-solid fa-bookmark"></i><a href="ListagemEmprestimos.html">Empréstimos</a>
+              </div>
+            </li>
+            <!-- Até aqui -->
+
+            <li class="menu-item" id="relatorios">
+              <div>
+                <i class="fa-solid fa-file-export"></i>
+                <a href="javascript:void(0);" class="submenu-toggle">Relatórios</a>
+              </div>
+              <ul class="submenu">
+                <li class="submenu-item"><a href="relatorios.HTML">Relatório dos livros</a></li>
+                <li class="submenu-item"><a href="relatorio2.html">Relatório dos usuários</a></li>
+                <li class="submenu-item"><a href="relatorio3.html">Relatório dos empréstimos</a></li>
+                <li class="submenu-item"><a href="relatorio4.html">Relatório das multas</a></li>
+              </ul>
+            </li>
+
+            <li class="menu-item">
+              <div>
+                <i class="fas fa-sync-alt"></i><a href="editLivros.html"> Gerenciar
+                  Livros</a>
+              </div>
+            </li>
+          </div>
+
+          <li class="menu-item">
+            <div>
+              <i class="fas fa-sign-out-alt"></i><button class="sair">Sair</button>
+            </div>
+          </li>
+        </ul>
+
+      </div>
     </div>
-</header>
+  </header>
   <!-- FIM DO CABEÇALHO -->
 
   <div class="container">
@@ -319,13 +320,13 @@
 
     // Adiciona o evento de clique no botão de relatórios
     document.addEventListener('DOMContentLoaded', function () {
-            const relatoriosItem = document.getElementById('relatorios');
-            const submenu = relatoriosItem.querySelector('.submenu');
+      const relatoriosItem = document.getElementById('relatorios');
+      const submenu = relatoriosItem.querySelector('.submenu');
 
-            relatoriosItem.querySelector('.submenu-toggle').addEventListener('click', function () {
-                submenu.classList.toggle('show'); // Alterna a classe 'show' para mostrar ou esconder o submenu
-            });
-        });
+      relatoriosItem.querySelector('.submenu-toggle').addEventListener('click', function () {
+        submenu.classList.toggle('show'); // Alterna a classe 'show' para mostrar ou esconder o submenu
+      });
+    });
 
   </script>
 
