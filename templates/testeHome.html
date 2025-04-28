@@ -41,15 +41,14 @@
         </div>
 
         <!-- Barra de Pesquisa -->
-        <div class="header-center">
+        <form id="formBuscaLivro">
             <div class="search-container">
                 <i class="fas fa-search"></i>
-                <input type="text" placeholder="Pesquise Seu Livro" class="search-box">
+                <input type="text" id="campoBusca" placeholder="Pesquise Seu Livro" class="search-box">
             </div>
-        </div>
+        </form>
 
-        <!-- Dark Mode -->
-
+        <div id="resultadoLivros"></div>
 
         <!-- Ícone de Menu com Dropdown -->
         <div class="header-end">
@@ -62,89 +61,121 @@
 
                 <ul class="dropdown-menu" id="dropdownMenu">
 
-                    <li class="menu-item"><i class="fa-solid fa-circle-user"></i><a id="editPerfil"
-                            href="editPerfil.html"> Perfil</a>
+                    <li class="menu-item">
+                        <div>
+                            <i class="fa-solid fa-circle-user"></i><a id="editPerfil" href="editPerfil.html"> Perfil</a>
+                        </div>
                     </li>
 
                     <div id="cliente">
-                        <li class="menu-item"><i class="fas fa-book"></i><a href="reservas_atuais.html">Reservas em
-                                andamento</a></li>
-                        <li class="menu-item"><i class="fas fa-sync-alt"></i><a href="historico.html">Histórico</a></li>
+                        <li class="menu-item">
+                            <div>
+                                <i class="fas fa-sync-alt"></i><a href="historicoReservas.html">Reservas</a>
+                            </div>
+                        </li>
+
+                        <li class="menu-item">
+                            <div>
+                                <i class="fas fa-sync-alt"></i><a href="historicoMultas.html">Multas</a>
+                            </div>
+                        </li>
+
                     </div>
 
-
-
                     <div id="adm">
+                        <li class="menu-item">
+                            <div>
+                                <i class="fas fa-user"></i><a href="GerenciarUsuarios.html"> Gerenciar
+                                    Usuários</a>
+                            </div>
+                        </li>
+                        <li class="menu-item">
+                            <div>
+                                <i class="fas fa-sync-alt"></i><a href="historico.html">Histórico</a>
+                            </div>
+                        </li>
 
-                        <li class="menu-item"><i class="fas fa-user"></i><a href="GerenciarUsuarios.html"> Gerenciar
-                                Usuários</a></li>
+                        <li class="menu-item" id="relatorios">
+                            <div>
+                                <i class="fa-solid fa-file-export"></i>
+                                <a href="javascript:void(0);" class="submenu-toggle">Relatórios</a>
+                            </div>
+                            <ul class="submenu">
+                                <li><a id="relatorioMultas" href="#">Relatório de Multas</a></li>
+                                <li><a id="relatorioLivros" href="#">Relatório de Livros</a></li>
+                                <li><a id="relatorioUsuarios" href="#">Relatório de Usuários</a></li>
+                            </ul>
+                        </li>
 
-                        <li class="menu-item"><i class="fa-solid fa-file-export"></i><a
-                                href="relatorios.html">Relatórios</li></a>
+                        <li class="menu-item">
+                            <div>
+                                <i class="fa-solid fa-cash-register"></i><a href="addMultas.html">Adicionar multas</a>
+                            </div>
+                        </li>
 
-                        
-                                <li class="menu-item" style="position: relative;">
-                                    <i class="fa-solid fa-file-export"></i>
-                                    <button id="btnRelatorios" class="btn btn-link p-0 m-0" style="text-decoration: none; color: inherit;">Relatórios</button>
-                                
-                                    <div id="submenuRelatorios" style="display: none; position: absolute; right: 100%; top: 0; background-color: white; border: 1px solid #ccc; padding: 10px; z-index: 999;">
-                                        <button class="btn btn-sm btn-outline-primary w-100 mb-1">Relatório de Multas</button>
-                                        <button class="btn btn-sm btn-outline-primary w-100 mb-1">Relatório de Livros Não Devolvidos</button>
-                                        <button class="btn btn-sm btn-outline-primary w-100">Relatório de Livros Catalogados</button>
-                                    </div>
-                                </li>                                
+                        <li class="menu-item">
+                            <div>
+                                <i class="fa-solid fa-wallet"></i><a href="gerenciarMultas.html">Gerenciar Multas</a>
+                            </div>
+                        </li>
 
+                        <li class="menu-item">
+                            <div>
+                                <i class="fas fa-book"></i><a href="editLivros.html">Gerenciar Livros</a>
+                            </div>
+                        </li>
 
+                        <li class="menu-item">
+                            <div>
+                                <i class="fas fa-sync-alt"></i><a href="ListagemReservas.html">Reservas</a>
+                            </div>
+                        </li>
 
-                        <li class="menu-item"><i class="fas fa-book"></i><a href="editLivros.html">Gerenciar Livros
-                        </li></a>
-
-                        <li class="menu-item"><i class="fas fa-sync-alt"></i><a href="ListagemReservas.html">Reservas
-                        </li></a>
-
+                        <li class="menu-item">
+                            <div>
+                                <i class="fa-solid fa-bookmark"></i><a href="ListagemEmprestimos.html">Empréstimos</a>
+                            </div>
+                        </li>
                     </div>
 
                     <div id="biblio">
-                        <li class="menu-item"><i class="fas fa-book"></i><a href="ListagemReservas.html">
-                                Reservas</a></li>
+                        <li class="menu-item">
+                            <div>
+                                <i class="fas fa-book"></i><a href="ListagemReservas.html">
+                                    Reservas</a>
+                                <i class="fas fa-sync-alt"></i><a href="historico.html">Histórico</a>
+                            </div>
+                        </li>
 
-                        <li class="menu-item"><i class="fa-solid fa-file-export"></i><a
-                                href="relatorios.html">Relatórios</a></li>
+                        <li class="menu-item" id="relatorios">
+                            <div>
+                                <i class="fa-solid fa-file-export"></i>
+                                <a href="javascript:void(0);" class="submenu-toggle">Relatórios</a>
+                            </div>
+                            <ul class="submenu">
+                                <li><a id="relatorioMultas" href="#">Relatório de Multas</a></li>
+                                <li><a id="relatorioLivros" href="#">Relatório de Livros</a></li>
+                                <li><a id="relatorioUsuarios" href="#">Relatório de Usuários</a></li>
+                            </ul>
+                        </li>
 
-                        <li class="menu-item"><i class="fas fa-sync-alt"></i><a href="editLivros.html"> Gerenciar
-                                Livros</a></li>
+                        <li class="menu-item">
+                            <div>
+                                <i class="fas fa-sync-alt"></i><a href="editLivros.html"> Gerenciar
+                                    Livros</a>
+                            </div>
+                        </li>
                     </div>
 
-                    <li class="menu-item"><i class="fas fa-sign-out-alt"></i><button class="sair ">Sair</button>
+                    <li class="menu-item">
+                        <div>
+                            <i class="fas fa-sign-out-alt"></i><button class="sair">Sair</button>
+                        </div>
                     </li>
                 </ul>
 
             </div>
         </div>
-
-
-        <script>
-            document.addEventListener('DOMContentLoaded', function () {
-                const btn = document.getElementById('btnRelatorios');
-                const submenu = document.getElementById('submenuRelatorios');
-        
-                btn.addEventListener('click', function (e) {
-                    e.stopPropagation(); // Evita que o clique feche o menu
-                    submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block';
-                });
-        
-                document.addEventListener('click', function () {
-                    submenu.style.display = 'none';
-                });
-        
-                submenu.addEventListener('click', function (e) {
-                    e.stopPropagation(); // Permite clicar nos botões sem fechar o submenu
-                });
-            });
-        </script>
-        
-
-
     </header>
 
     <main>
@@ -220,7 +251,14 @@
     </footer>
 
     <script>
-    
+        // Verifica se o token está armazenado no Local Storage da própria web (SEGURANÇA DO SITE)
+        var nome = localStorage.getItem("nome")
+        document.getElementById("nomeUsuario").innerHTML = nome
+
+        document.querySelector(".menu-item button").addEventListener("click", function () {
+            localStorage.clear(); // Remove todos os dados do localStorage
+            window.location.href = "login.html"; // Redireciona para a página de login
+        });
 
 
         function carregaLivros() {
@@ -257,22 +295,6 @@
 
         carregaLivros()
 
-        // Captura o input da barra de pesquisa
-        const searchBox = document.querySelector(".search-box");
-
-        // Função que realiza a busca dos livros
-        async function buscarLivros(query) {
-            try {
-                const response = await fetch(`http://localhost:8000/livros?search=${query}`);
-                const livros = await response.json();
-
-                // Exibe os livros na tela (ou faz outro processamento)
-                console.log(livros); // Aqui você pode alterar para exibir os livros na sua página
-                mostrarLivrosNaTela(livros);
-            } catch (error) {
-                console.error('Erro ao buscar livros:', error);
-            }
-        }
 
         // Função que exibe os livros na tela
         function mostrarLivrosNaTela(livros) {
@@ -303,7 +325,102 @@
             });
         }
 
+        // Adiciona o evento de clique no botão de relatórios
+        document.addEventListener('DOMContentLoaded', function () {
+            const relatoriosItem = document.getElementById('relatorios');
+            const submenu = relatoriosItem.querySelector('.submenu');
 
+            relatoriosItem.querySelector('.submenu-toggle').addEventListener('click', function () {
+                submenu.classList.toggle('show'); // Alterna a classe 'show' para mostrar ou esconder o submenu
+            });
+        });
+
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            // Função de busca
+            $("#formBuscaLivro").on("submit", function (e) {
+                e.preventDefault();
+
+                let termo = $("#campoBusca").val().trim();
+
+                if (!termo) {
+                    Swal.fire({
+                        title: "Atenção!",
+                        text: "Digite algo para buscar.",
+                        icon: "warning"
+                    });
+                    return;
+                }
+
+                $.ajax({
+                    method: "GET",
+                    url: ipPython + "/pesquisar?q=" + encodeURIComponent(termo),
+                    success: function (retorno) {
+                        $("#listaLivros").empty();
+
+                        if (retorno.livros && retorno.livros.length > 0) {
+                            retorno.livros.forEach(livro => {
+                                $("#listaLivros").append(`
+                                <div class="item">
+                                    <a href="reserva.html?id=${livro.id_livro}&ISBN=${livro.ISBN}&autor=${livro.autor}
+                                    &categoria=${livro.categoria}&data_publicacao=${livro.data_publicacao}&descricao=${livro.descricao}
+                                    &quantidade=${livro.quantidade}&titulo=${livro.titulo}">
+
+                                        <img src="${ipPython}/static/uploads/Livros/${livro.id_livro}.jpeg" alt="">
+                                        <p>${livro.titulo}</p>
+                                    </a>
+                                </div>
+                            `);
+                            });
+                        } else {
+                            $("#listaLivros").html("<p>Nenhum livro encontrado.</p>");
+                        }
+                    },
+                    error: function (xhr) {
+                        let erroMsg = "Erro ao buscar livros.";
+                        if (xhr.responseText) {
+                            try {
+                                erroMsg = JSON.parse(xhr.responseText).mensagem || erroMsg;
+                            } catch (e) { }
+                        }
+
+                        Swal.fire({
+                            title: "Erro!",
+                            text: erroMsg,
+                            icon: "error"
+                        });
+                    }
+                });
+            });
+
+            // Detecta se o usuário limpou o campo de busca
+            $("#campoBusca").on("input", function () {
+                if ($(this).val().trim() === "") {
+                    carregaLivros(); // Recarrega todos os livros se o campo estiver vazio
+                }
+            });
+        });
+
+         // Função para atualizar os hrefs dos relatórios
+         function atualizarLinksRelatorios() {
+            const linksRelatorios = {
+                relatorioMultas: "/multas_relatorio",
+                relatorioLivros: "/livros_relatorio",
+                relatorioUsuarios: "/usuarios_relatorio"
+            };
+
+            for (let id in linksRelatorios) {
+                const elemento = document.getElementById(id);
+                if (elemento) {
+                    elemento.href = `${ipPython2}${linksRelatorios[id]}`;
+                }
+            }
+        }
+
+        // Chama a função assim que o DOM carregar
+        document.addEventListener("DOMContentLoaded", atualizarLinksRelatorios);
 
     </script>
 
