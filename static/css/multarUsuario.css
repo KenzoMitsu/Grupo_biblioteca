@@ -15,6 +15,7 @@ a{
     --azul: #3380ca;
     --azul-claro: #4292DC;
     --azul-escuro: #0060BB;
+    --azul-da-borda: #007bff;
     --branco: rgb(248, 252, 255);
     --preto: rgb(0, 0, 0);
     --cor-complementar: rgb(96, 209, 231);
@@ -626,19 +627,31 @@ button.botao-multas {
 }
 
 .container {
+    display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
 }
 
 .maconha {
     justify-content: center;
 }
 
-.listalivros {
-    border: solid var(--azul-claro) 5px;
+.item {
     display: flex;
+    gap: 40px;
+    border: solid var(--azul-da-borda) 5px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+}
+
+.listalivros {
+    gap: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
     justify-content: center;
-    width: 400px;
+    width: auto;
     height: auto;
     padding-top: 20px;
 }
