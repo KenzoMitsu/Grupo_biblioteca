@@ -41,15 +41,14 @@
         </div>
 
         <!-- Barra de Pesquisa -->
-        <div class="header-center">
+        <form id="formBuscaLivro">
             <div class="search-container">
                 <i class="fas fa-search"></i>
-                <input type="text" placeholder="Pesquise Seu Livro" class="search-box">
+                <input type="text" id="campoBusca" placeholder="Pesquise Seu Livro" class="search-box">
             </div>
-        </div>
+        </form>
 
-        <!-- Dark Mode -->
-
+        <div id="resultadoLivros"></div>
 
         <!-- Ícone de Menu com Dropdown -->
         <div class="header-end">
@@ -64,27 +63,33 @@
 
                     <li class="menu-item">
                         <div>
-                            <i class="fa-solid fa-circle-user"></i><a id="editPerfil"
-                            href="editPerfil.html"> Perfil</a>
+                            <i class="fa-solid fa-circle-user"></i><a id="editPerfil" href="editPerfil.html"> Perfil</a>
                         </div>
                     </li>
 
                     <div id="cliente">
                         <li class="menu-item">
                             <div>
-                                <i class="fas fa-sync-alt"></i><a href="historico.html">Histórico</a>
+                                <i class="fas fa-sync-alt"></i><a href="historicoReservas.html">Reservas</a>
                             </div>
                         </li>
+
+                        <li class="menu-item">
+                            <div>
+                                <i class="fas fa-sync-alt"></i><a href="historicoMultas.html">Multas</a>
+                            </div>
+                        </li>
+
                     </div>
 
                     <div id="adm">
                         <li class="menu-item">
                             <div>
                                 <i class="fas fa-user"></i><a href="GerenciarUsuarios.html"> Gerenciar
-                                Usuários</a>
+                                    Usuários</a>
                             </div>
                         </li>
-                        <li class="menu-item"> 
+                        <li class="menu-item">
                             <div>
                                 <i class="fas fa-sync-alt"></i><a href="historico.html">Histórico</a>
                             </div>
@@ -111,8 +116,7 @@
 
                         <li class="menu-item">
                             <div>
-                                <i class="fa-solid fa-wallet"></i><a href="gerenciarMultas.html">Gerenciar
-                                Multas</a>
+                                <i class="fa-solid fa-wallet"></i><a href="gerenciarMultas.html">Gerenciar Multas</a>
                             </div>
                         </li>
 
@@ -128,31 +132,21 @@
                             </div>
                         </li>
 
-                        <!-- João copie daqui -->
                         <li class="menu-item">
                             <div>
                                 <i class="fa-solid fa-bookmark"></i><a href="ListagemEmprestimos.html">Empréstimos</a>
                             </div>
                         </li>
-                        <!-- Até aqui -->
                     </div>
 
                     <div id="biblio">
                         <li class="menu-item">
                             <div>
                                 <i class="fas fa-book"></i><a href="ListagemReservas.html">
-                                Reservas</a>
+                                    Reservas</a>
                                 <i class="fas fa-sync-alt"></i><a href="historico.html">Histórico</a>
                             </div>
                         </li>
-
-                        <!-- João copie daqui -->
-                        <li class="menu-item">
-                            <div>
-                                <i class="fa-solid fa-bookmark"></i><a href="ListagemEmprestimos.html">Empréstimos</a>
-                            </div>
-                        </li>
-                        <!-- Até aqui -->
 
                         <li class="menu-item" id="relatorios">
                             <div>
@@ -170,7 +164,7 @@
                         <li class="menu-item">
                             <div>
                                 <i class="fas fa-sync-alt"></i><a href="editLivros.html"> Gerenciar
-                                Livros</a>
+                                    Livros</a>
                             </div>
                         </li>
                     </div>
