@@ -50,76 +50,6 @@
 
         <div id="resultadoLivros"></div>
 
-
-        <script>
-            $(document).ready(function () {
-                // Função de busca
-                $("#formBuscaLivro").on("submit", function (e) {
-                    e.preventDefault();
-
-                    let termo = $("#campoBusca").val().trim();
-
-                    if (!termo) {
-                        Swal.fire({
-                            title: "Atenção!",
-                            text: "Digite algo para buscar.",
-                            icon: "warning"
-                        });
-                        return;
-                    }
-
-                    $.ajax({
-                        method: "GET",
-                        url: ipPython + "/pesquisar?q=" + encodeURIComponent(termo),
-                        success: function (retorno) {
-                            $("#listaLivros").empty();
-
-                            if (retorno.livros && retorno.livros.length > 0) {
-                                retorno.livros.forEach(livro => {
-                                    $("#listaLivros").append(`
-                                        <div class="item">
-                                            <a href="reserva.html?id=${livro.id_livro}&ISBN=${livro.ISBN}&autor=${livro.autor}
-                                            &categoria=${livro.categoria}&data_publicacao=${livro.data_publicacao}&descricao=${livro.descricao}
-                                            &quantidade=${livro.quantidade}&titulo=${livro.titulo}">
-        
-                                                <img src="${ipPython}/static/uploads/Livros/${livro.id_livro}.jpeg" alt="">
-                                                <p>${livro.titulo}</p>
-                                            </a>
-                                        </div>
-                                    `);
-                                });
-                            } else {
-                                $("#listaLivros").html("<p>Nenhum livro encontrado.</p>");
-                            }
-                        },
-                        error: function (xhr) {
-                            let erroMsg = "Erro ao buscar livros.";
-                            if (xhr.responseText) {
-                                try {
-                                    erroMsg = JSON.parse(xhr.responseText).mensagem || erroMsg;
-                                } catch (e) { }
-                            }
-
-                            Swal.fire({
-                                title: "Erro!",
-                                text: erroMsg,
-                                icon: "error"
-                            });
-                        }
-                    });
-                });
-
-                // Detecta se o usuário limpou o campo de busca
-                $("#campoBusca").on("input", function () {
-                    if ($(this).val().trim() === "") {
-                        carregaLivros(); // Recarrega todos os livros se o campo estiver vazio
-                    }
-                });
-            });
-        </script>
-
-
-
         <!-- Ícone de Menu com Dropdown -->
         <div class="header-end">
             <div class="menu-container">
@@ -140,9 +70,16 @@
                     <div id="cliente">
                         <li class="menu-item">
                             <div>
-                                <i class="fas fa-sync-alt"></i><a href="historico.html">Histórico</a>
+                                <i class="fas fa-sync-alt"></i><a href="historicoReservas.html">Reservas</a>
                             </div>
                         </li>
+
+                        <li class="menu-item">
+                            <div>
+                                <i class="fas fa-sync-alt"></i><a href="historicoMultas.html">Multas</a>
+                            </div>
+                        </li>
+
                     </div>
 
                     <div id="adm">
@@ -400,6 +337,73 @@
             });
         });
 
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            // Função de busca
+            $("#formBuscaLivro").on("submit", function (e) {
+                e.preventDefault();
+
+                let termo = $("#campoBusca").val().trim();
+
+                if (!termo) {
+                    Swal.fire({
+                        title: "Atenção!",
+                        text: "Digite algo para buscar.",
+                        icon: "warning"
+                    });
+                    return;
+                }
+
+                $.ajax({
+                    method: "GET",
+                    url: ipPython + "/pesquisar?q=" + encodeURIComponent(termo),
+                    success: function (retorno) {
+                        $("#listaLivros").empty();
+
+                        if (retorno.livros && retorno.livros.length > 0) {
+                            retorno.livros.forEach(livro => {
+                                $("#listaLivros").append(`
+                                <div class="item">
+                                    <a href="reserva.html?id=${livro.id_livro}&ISBN=${livro.ISBN}&autor=${livro.autor}
+                                    &categoria=${livro.categoria}&data_publicacao=${livro.data_publicacao}&descricao=${livro.descricao}
+                                    &quantidade=${livro.quantidade}&titulo=${livro.titulo}">
+
+                                        <img src="${ipPython}/static/uploads/Livros/${livro.id_livro}.jpeg" alt="">
+                                        <p>${livro.titulo}</p>
+                                    </a>
+                                </div>
+                            `);
+                            });
+                        } else {
+                            $("#listaLivros").html("<p>Nenhum livro encontrado.</p>");
+                        }
+                    },
+                    error: function (xhr) {
+                        let erroMsg = "Erro ao buscar livros.";
+                        if (xhr.responseText) {
+                            try {
+                                erroMsg = JSON.parse(xhr.responseText).mensagem || erroMsg;
+                            } catch (e) { }
+                        }
+
+                        Swal.fire({
+                            title: "Erro!",
+                            text: erroMsg,
+                            icon: "error"
+                        });
+                    }
+                });
+            });
+
+            // Detecta se o usuário limpou o campo de busca
+            $("#campoBusca").on("input", function () {
+                if ($(this).val().trim() === "") {
+                    carregaLivros(); // Recarrega todos os livros se o campo estiver vazio
+                }
+            });
+        });
     </script>
 
 </body>
