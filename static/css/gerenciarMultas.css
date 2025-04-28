@@ -751,6 +751,7 @@ label {
 }
 
 .inter {
+    margin-bottom: -165px;
     background-color: var(--escuro);
 }
 
