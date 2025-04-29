@@ -10,6 +10,6 @@ if(!token || cargo === "Cliente") { //OBSERVAÇÃO PESSOAL! > Também da para fa
         icon: "error"
     }).then(() => {
         // Manda para a pagina de login caso o usuário não possua token, ou seja, caso o usuário não esteja logado
-        window.location.href = "login.html"
+        window.location.href = "home.html"
     })
 }
