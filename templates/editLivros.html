@@ -438,58 +438,121 @@
     </footer>
 
     <script>
- // 1. Configurações iniciais
+    // DEBUG: Verifica se o jQuery está carregado
     console.log("jQuery version:", $.fn.jquery);
-    console.log("ipPython:", ipPython);
     
-    // 2. Verificação de elementos para evitar erros null
-    function safeElementQuery(selector) {
-        const el = document.querySelector(selector);
-        if (!el) console.warn(`Elemento não encontrado: ${selector}`);
-        return el;
-    }
+    // DEBUG: Verifica a variável ipPython
+    console.log("ipPython:", ipPython);
 
-    // 3. Função para carregar livros
+    // FUNÇÃO PARA EXIBIR OS LIVROS CADASTRADOS NO SITE (GET):
     function carregarLivros() {
-        const token = localStorage.getItem("token");
+        var token = localStorage.getItem("token");
+        console.log("Token:", token);
+
         $.ajax({
             method: "GET",
-            url: `${ipPython}/livro`,
-            headers: { 'Authorization': `Bearer ${token}` },
-            success: (response) => {
+            url: ipPython + "/livro",
+            headers: {
+                'Authorization': 'Bearer ' + token
+            },
+            success: function (response) {
+                console.log("Resposta da API:", response);
                 $("#livrosList").empty();
-                if (response.livros?.length) {
-                    response.livros.forEach(livro => {
-                        const livroElement = $("#livroTemplate").clone()
-                            .attr("style", "display: block;")
-                            .data("id_livro", livro.id_livro);
-                        livroElement.find(".livro")
-                            .attr("src", `${ipPython}/static/uploads/Livros/${livro.id_livro}.jpeg`)
-                            .attr("alt", livro.titulo);
+                
+                if (response.livros && response.livros.length > 0) {
+                    response.livros.forEach(function (livro) {
+                        var livroElement = $("#livroTemplate").clone();
+                        livroElement.attr("style", "display: block;");
+                        livroElement.find(".livro").attr("src", ipPython + "/static/uploads/Livros/" + livro.id_livro + ".jpeg");
+                        livroElement.find(".livro").attr("alt", livro.titulo);
                         livroElement.find(".livro-titulo").text(livro.titulo);
+                        livroElement.data("id_livro", livro.id_livro);
                         $("#livrosList").append(livroElement);
                     });
                 }
             },
-            error: (error) => {
+            error: function (error) {
                 console.error("Erro ao carregar livros:", error);
-                Swal.fire("Erro!", "Falha ao carregar lista de livros", "error");
+                Swal.fire({
+                    title: "Erro!",
+                    text: "Falha ao carregar lista de livros",
+                    icon: "error"
+                });
             }
         });
     }
 
-    // 4. Função para editar livros (Versão resiliente)
+    // Chama a função ao carregar a página
+    $(document).ready(function () {
+        carregarLivros();
+        
+        // Corrige o erro de null reference
+        if(document.getElementById('relatorios')) {
+            document.getElementById('relatorios').addEventListener('click', function() {
+                // Sua lógica aqui
+            });
+        }
+    });
+
+    // FUNÇÕES DE PRÉ-VISUALIZAÇÃO DE IMAGEM (mantidas iguais)
+    $("#imagem, #imagemEditar").on("change", function (e) {
+        var input = $(this);
+        var file = e.target.files[0];
+        var reader = new FileReader();
+
+        reader.onload = function (event) {
+            input.siblings('img').attr("src", event.target.result).show();
+        };
+
+        file ? reader.readAsDataURL(file) : input.siblings('img').hide();
+    });
+
+    // FUNÇÃO PARA CADASTRAR LIVROS (POST):
+    $("#formCadastroLivro").on("submit", function (e) {
+        e.preventDefault();
+        var token = localStorage.getItem("token");
+        var formData = new FormData(this);
+
+        $.ajax({
+            method: "POST",
+            url: ipPython + "/livros",
+            headers: {
+                'Authorization': 'Bearer ' + token
+            },
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function (retorno) {
+                Swal.fire("Sucesso!", "Livro adicionado com sucesso", "success");
+                carregarLivros();
+                $("#modalCadastroLivro").modal("hide")[0].reset();
+            },
+            error: function (retorno) {
+                Swal.fire("Erro!", retorno.responseJSON?.error || "Erro ao adicionar livro.", "error");
+            }
+        });
+    });
+
+    // FUNÇÃO PARA EDITAR LIVROS - VERSÃO CORRIGIDA:
     function editarLivro(button) {
-        const id = $(button).closest('.livro-hud').data("id_livro");
+        var livroElement = $(button).closest('.livro-hud');
+        var id = livroElement.data("id_livro");
+        
         if (!id) return Swal.fire("Erro!", "Livro não identificado", "error");
 
-        Swal.fire({ title: 'Carregando...', allowOutsideClick: false, didOpen: () => Swal.showLoading() });
+        Swal.fire({
+            title: 'Carregando...',
+            allowOutsideClick: false,
+            didOpen: () => Swal.showLoading()
+        });
 
         $.ajax({
             method: "GET",
-            url: `${ipPython}/livro/${id}`,
-            headers: { 'Authorization': `Bearer ${localStorage.getItem("token")}` },
-            success: (response) => {
+            url: ipPython + "/livro/" + id,
+            headers: {
+                'Authorization': 'Bearer ' + localStorage.getItem("token")
+            },
+            success: function(response) {
                 Swal.close();
                 if (!response?.livro) return Swal.fire("Erro!", "Livro não encontrado", "error");
 
@@ -503,107 +566,142 @@
                 $("#quantidadeEditar").val(livro.quantidade);
                 $("#categoriaEditar").val(livro.categoria || "Romance");
                 
-                const imgPreview = $("#previewImagemEditar");
                 if (livro.id_livro) {
-                    imgPreview.attr("src", `${ipPython}/static/uploads/Livros/${livro.id_livro}.jpeg`).show();
-                } else {
-                    imgPreview.hide();
+                    $("#previewImagemEditar").attr("src", ipPython + "/static/uploads/Livros/" + livro.id_livro + ".jpeg").show();
                 }
 
                 $("#modalEditarLivro").modal("show");
             },
-            error: (error) => {
+            error: function(error) {
                 Swal.fire("Erro!", error.responseJSON?.error || "Falha ao carregar livro", "error");
             }
         });
     }
 
-    // 5. Função para salvar edição (Versão com fallback)
-    $("#formEditarLivro").on("submit", function(e) {
+    // ENVIO DO FORMULÁRIO DE EDIÇÃO - VERSÃO CORRIGIDA:
+    $("#formEditarLivro").on("submit", function (e) {
         e.preventDefault();
-        const id = $("#id_livro").val();
-        const token = localStorage.getItem("token");
+        var id = $("#id_livro").val();
+        var token = localStorage.getItem("token");
         
-        // Preparar dados
-        const formData = new FormData(this);
-        const jsonData = {};
-        formData.forEach((value, key) => { jsonData[key] = value });
+        // Versão alternativa usando PATCH (caso PUT não funcione)
+        var dados = $(this).serializeArray().reduce(function(obj, item) {
+            obj[item.name] = item.value;
+            return obj;
+        }, {});
 
-        Swal.fire({ title: 'Salvando...', allowOutsideClick: false, didOpen: () => Swal.showLoading() });
+        Swal.fire({
+            title: 'Salvando...',
+            allowOutsideClick: false,
+            didOpen: () => Swal.showLoading()
+        });
 
-        // Tentativa com POST (mais compatível)
+        // Tenta primeiro com PUT, depois com POST se necessário
         $.ajax({
-            method: "POST",
-            url: `${ipPython}/livro/update/${id}`,
-            headers: { 
-                'Authorization': `Bearer ${token}`,
+            method: "PATCH", // Alterado para PATCH (mais comum para atualizações parciais)
+            url: ipPython + "/livro/" + id,
+            headers: {
+                'Authorization': 'Bearer ' + token,
                 'Content-Type': 'application/json'
             },
-            data: JSON.stringify(jsonData),
-            success: () => {
-                Swal.fire("Sucesso!", "Livro atualizado", "success")
-                    .then(() => {
-                        carregarLivros();
-                        $("#modalEditarLivro").modal("hide");
-                    });
+            data: JSON.stringify(dados),
+            success: function () {
+                Swal.fire("Sucesso!", "Livro atualizado", "success").then(() => {
+                    carregarLivros();
+                    $("#modalEditarLivro").modal("hide");
+                });
             },
-            error: (error) => {
-                console.error("Erro na atualização:", error);
-                Swal.fire("Erro!", error.responseJSON?.error || "Falha ao atualizar", "error");
+            error: function() {
+                // Fallback para POST caso PATCH falhe
+                $.ajax({
+                    method: "POST",
+                    url: ipPython + "/livro/" + id + "/update",
+                    headers: {
+                        'Authorization': 'Bearer ' + token,
+                        'Content-Type': 'application/json'
+                    },
+                    data: JSON.stringify(dados),
+                    success: function() {
+                        Swal.fire("Sucesso!", "Livro atualizado", "success").then(() => {
+                            carregarLivros();
+                            $("#modalEditarLivro").modal("hide");
+                        });
+                    },
+                    error: function(retorno) {
+                        Swal.fire("Erro!", retorno.responseJSON?.error || "Falha ao atualizar", "error");
+                    }
+                });
             }
         });
     });
 
-    // 6. Inicialização segura
-    $(document).ready(function() {
-        // Carrega livros
-        carregarLivros();
-
-        // Configura eventos de forma segura
-        const relatoriosBtn = safeElementQuery('#relatorios');
-        if (relatoriosBtn) {
-            relatoriosBtn.addEventListener('click', function() {
-                // Lógica do menu
-            });
-        }
-
-        // Pré-visualização de imagens
-        $("#imagem, #imagemEditar").on("change", function(e) {
-            const input = $(this);
-            const file = e.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = (event) => input.siblings('img').attr("src", event.target.result).show();
-                reader.readAsDataURL(file);
-            } else {
-                input.siblings('img').hide();
-            }
-        });
-    });
-
-    // 7. Função para deletar (mantida similar)
+    // FUNÇÃO PARA DELETAR LIVROS (mantida igual)
     function deletarLivro(button) {
-        const id = $(button).closest('.livro-hud').data("id_livro");
+        var id = $(button).closest('.livro-hud').data("id_livro");
+        
         Swal.fire({
             title: 'Confirmar exclusão?',
             text: "Esta ação não pode ser desfeita!",
             icon: 'warning',
-            showCancelButton: true
+            showCancelButton: true,
+            confirmButtonText: 'Sim, excluir!'
         }).then((result) => {
             if (result.isConfirmed) {
                 $.ajax({
                     method: "DELETE",
-                    url: `${ipPython}/livros/${id}`,
-                    headers: { 'Authorization': `Bearer ${localStorage.getItem("token")}` },
-                    success: () => {
+                    url: ipPython + "/livros/" + id,
+                    headers: {
+                        'Authorization': 'Bearer ' + localStorage.getItem("token")
+                    },
+                    success: function() {
                         Swal.fire("Excluído!", "Livro removido", "success");
                         carregarLivros();
                     },
-                    error: () => Swal.fire("Erro!", "Falha ao excluir", "error")
+                    error: function() {
+                        Swal.fire("Erro!", "Falha ao excluir", "error");
+                    }
                 });
             }
         });
-    }
+    }	
+
+
+
+
+
+
+
+        // Adiciona o evento de clique no botão de relatórios
+        document.addEventListener('DOMContentLoaded', function () {
+            const relatoriosItem = document.getElementById('relatorios');
+            const submenu = relatoriosItem.querySelector('.submenu');
+
+            relatoriosItem.querySelector('.submenu-toggle').addEventListener('click', function () {
+                submenu.classList.toggle('show'); // Alterna a classe 'show' para mostrar ou esconder o submenu
+            });
+        });
+
+
+
+        
+                 // Função para atualizar os hrefs dos relatórios
+                 function atualizarLinksRelatorios() {
+            const linksRelatorios = {
+                relatorioMultas: "/multas_relatorio",
+                relatorioLivros: "/livros_relatorio",
+                relatorioUsuarios: "/usuarios_relatorio",
+                relatorioEmprestimos: "/emprestimos_relatorio"
+            };
+            for (let id in linksRelatorios) {
+                const elemento = document.getElementById(id);
+                if (elemento) {
+                    elemento.href = `${ipPython2}${linksRelatorios[id]}`;
+                }
+            }
+        }
+
+        // Chama a função assim que o DOM carregar
+        document.addEventListener("DOMContentLoaded", atualizarLinksRelatorios);    
     </script>
 </body>
 
