@@ -38,3 +38,4 @@ if (cargo === 'ADM') {
     document.getElementById("adm").style.display = "none";
     document.getElementById("cliente").style.display = "inline-block";
 }
+
