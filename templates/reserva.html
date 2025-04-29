@@ -331,12 +331,14 @@
                         text: JSON.parse(retorno.responseText).mensagem,
                         icon: "error"
                     });
-                }
+                } 
             };
 
             $.ajax(settings).done(function (response) {
                 console.log(response);
-            });
+            }). then (() => {
+                window.location.href="home.html"
+            } )
         });
 
 
