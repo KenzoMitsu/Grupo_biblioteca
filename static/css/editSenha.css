@@ -254,7 +254,7 @@ input:checked + .slider:before {
 .dropdown-menu .menu-item {
     padding: 10px 15px;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     gap: 8px;
     color: #333;
     cursor: pointer;
