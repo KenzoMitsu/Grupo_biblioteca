@@ -96,10 +96,10 @@
                                 <a href="javascript:void(0);" class="submenu-toggle">Relatórios</a>
                             </div>
                             <ul class="submenu">
-                                <li class="submenu-item"><a href="relatorio_livros.html">Relatório dos livros</a></li>
-                                <li class="submenu-item"><a href="relatorio_usuarios.html">Relatório dos usuários</a></li>
-                                <li class="submenu-item"><a href="relatorio_emprestimos.html">Relatório dos empréstimos</a></li>
-                                <li class="submenu-item"><a href="relatorio_multas.html">Relatório das multas</a></li>
+                                <li><a id="relatorioMultas" href="#"><i class="fa-solid fa-file-export"></i>Relatório de <br>Multas</a></li>
+                                <li><a id="relatorioLivros" href="#"><i class="fa-solid fa-file-export"></i>Relatório de <br>Livros</a></li>
+                                <li><a id="relatorioUsuarios" href="#"><i class="fa-solid fa-file-export"></i>Relatório de <br>Usuários</a></li>
+                                <li><a id="relatorioEmprestimos" href="#"><i class="fa-solid fa-file-export"></i>Relatório de Emprestimos</a></li>
                             </ul>
                         </li>
 
@@ -160,10 +160,10 @@
                                 <a href="javascript:void(0);" class="submenu-toggle">Relatórios</a>
                             </div>
                             <ul class="submenu">
-                                <li class="submenu-item"><a href="relatorio_livros.html">Relatório dos livros</a></li>
-                                <li class="submenu-item"><a href="relatorio_usuarios.html">Relatório dos usuários</a></li>
-                                <li class="submenu-item"><a href="relatorio_emprestimos.html">Relatório dos empréstimos</a></li>
-                                <li class="submenu-item"><a href="relatorio_multas.html">Relatório das multas</a></li>
+                                <li><a id="relatorioMultas" href="#"><i class="fa-solid fa-file-export"></i>Relatório de <br>Multas</a></li>
+                                <li><a id="relatorioLivros" href="#"><i class="fa-solid fa-file-export"></i>Relatório de <br>Livros</a></li>
+                                <li><a id="relatorioUsuarios" href="#"><i class="fa-solid fa-file-export"></i>Relatório de <br>Usuários</a></li>
+                                <li><a id="relatorioEmprestimos" href="#"><i class="fa-solid fa-file-export"></i>Relatório de Emprestimos</a></li>
                             </ul>
                         </li>
 
@@ -260,6 +260,26 @@
             });
         });
 
+
+        
+                 // Função para atualizar os hrefs dos relatórios
+                 function atualizarLinksRelatorios() {
+            const linksRelatorios = {
+                relatorioMultas: "/multas_relatorio",
+                relatorioLivros: "/livros_relatorio",
+                relatorioUsuarios: "/usuarios_relatorio",
+                relatorioEmprestimos: "/emprestimos_relatorio"
+            };
+            for (let id in linksRelatorios) {
+                const elemento = document.getElementById(id);
+                if (elemento) {
+                    elemento.href = `${ipPython2}${linksRelatorios[id]}`;
+                }
+            }
+        }
+
+        // Chama a função assim que o DOM carregar
+        document.addEventListener("DOMContentLoaded", atualizarLinksRelatorios);   
     </script>
 </body>
 
