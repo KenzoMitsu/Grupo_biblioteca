@@ -251,7 +251,7 @@ input:checked + .slider:before {
 }
 
 header li a{
-    font-size: medium;
+    font-size: 14px;
 }
 
 /* SUB-MODAIS DOS RELATÓRIOS */
