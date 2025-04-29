@@ -245,15 +245,15 @@ input:checked+.slider:before {
     padding-left: 1px;
 }
 
-
-.submenu {
-    display: none;
-    flex-direction: column;
-    list-style: none;
-    padding: 0;
-    margin: 0;
+.fa-dollar-sign {
+    padding-right: 7px;
+    padding-left: 1px;
 }
 
+.fa-inbox {
+    padding-right: 7px;
+    padding-left: 1px;
+}
 
 
 
