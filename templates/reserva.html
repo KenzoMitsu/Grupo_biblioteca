@@ -286,66 +286,54 @@
     </footer>
 
     <script>
-
-        // LOGOUT
-        document.querySelector(".menu-item button").addEventListener("click", function () {
-            localStorage.clear(); // Remove todos os dados do localStorage
-            window.location.href = "login.html"; // Redireciona para a página de login
-        });
-
         const params = new URLSearchParams(window.location.search);
-        const id_livro = params.get('id'); // Obtenha o ID do livro da URL
-        const token = localStorage.getItem('token'); // Supondo que o token esteja armazenado no localStorage
-
-        document.getElementById("titulo").innerHTML = params.get('titulo');
-        document.getElementById("descricao").innerHTML = params.get('descricao');
-        document.getElementById("autor").innerHTML = params.get('autor');
-        document.getElementById("data_publicacao").innerHTML = params.get('data_publicacao');
-        document.getElementById("categoria").innerHTML = params.get('categoria');
-        document.getElementById("quantidade").innerHTML = params.get('quantidade');
-        document.getElementById("imagemLivro").src = ipPython + "/static/uploads/Livros/" + id_livro + ".jpeg";
-
-        document.querySelector("#btn_reserva").addEventListener("click", function () {
-            var settings = {
-                "url": ipPython + "/reservas/" + id_livro,
-                "method": "POST",
-                "timeout": 0,
-                "headers": {
-                    "Content-Type": "application/json",
-                    "Authorization": token,
+        const id_livro = params.get('id');
+        const token = localStorage.getItem('token');
+    
+        // Verifica se o usuário está autenticado
+        if (!token) {
+            Swal.fire({
+                title: "Página restrita!",
+                text: "Entre em uma conta para acessar essa página",
+                icon: "error"
+            }).then(() => {
+                window.location.href = "login.html";
+            });
+        }
+    
+        // Carrega os dados do livro usando o ID
+        function carregarDadosLivro() {
+            $.ajax({
+                url: `${ipPython}/livro/${id_livro}`,
+                method: "GET",
+                headers: {
+                    "Authorization": token
                 },
-                "success": function (retorno) {
-                    Swal.fire({
-                        title: "Sucesso!",
-                        text: retorno.message,
-                        icon: "success"
-                    });
-
-                    // Atualiza a quantidade de livros disponíveis
-                    var novaQuantidade = parseInt(document.getElementById("quantidade").innerHTML) - 1;
-                    document.getElementById("quantidade").innerHTML = novaQuantidade;
+                success: function (resposta) {
+                    const livro = resposta.livro;
+    
+                    document.getElementById("titulo").innerHTML = livro.titulo;
+                    document.getElementById("descricao").innerHTML = livro.descricao;
+                    document.getElementById("autor").innerHTML = livro.autor;
+                    document.getElementById("data_publicacao").innerHTML = formatarData(livro.data_publicacao);
+                    document.getElementById("categoria").innerHTML = livro.categoria;
+                    document.getElementById("quantidade").innerHTML = livro.quantidade;
+                    document.getElementById("imagemLivro").src = `${ipPython}/static/uploads/Livros/${livro.id_livro}.jpeg`;
+    
+                    atualizarVisibilidadeBotoes(livro.quantidade);
                 },
-
-                "error": function (retorno) {
+                error: function () {
                     Swal.fire({
                         title: "Erro!",
-                        text: JSON.parse(retorno.responseText).mensagem,
+                        text: "Não foi possível carregar os dados do livro.",
                         icon: "error"
                     });
-                } 
-            };
-
-            $.ajax(settings).done(function (response) {
-                console.log(response);
-            }). then (() => {
-                window.location.href="home.html"
-            } )
-        });
-
-
-        function LivrosFuncao() {
-            var quantidade = params.get('quantidade');
-
+                }
+            });
+        }
+    
+        // Atualiza os botões de reserva conforme a quantidade
+        function atualizarVisibilidadeBotoes(quantidade) {
             if (quantidade > 0) {
                 document.getElementById("btn_reserva").style.display = "inline-block";
                 document.getElementById("btn_esgotado").style.display = "none";
@@ -354,76 +342,73 @@
                 document.getElementById("btn_esgotado").style.display = "inline-block";
             }
         }
-        LivrosFuncao();
-
+    
+        // Função de reserva
+        document.querySelector("#btn_reserva").addEventListener("click", function () {
+            $.ajax({
+                url: `${ipPython}/reservas/${id_livro}`,
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": token
+                },
+                success: function (resposta) {
+                    Swal.fire({
+                        title: "Sucesso!",
+                        text: resposta.message,
+                        icon: "success"
+                    });
+    
+                    // Atualiza quantidade após reserva
+                    let novaQuantidade = parseInt(document.getElementById("quantidade").innerHTML) - 1;
+                    document.getElementById("quantidade").innerHTML = novaQuantidade;
+                    atualizarVisibilidadeBotoes(novaQuantidade);
+    
+                    window.location.href = "home.html";
+                },
+                error: function (retorno) {
+                    Swal.fire({
+                        title: "Erro!",
+                        text: JSON.parse(retorno.responseText).mensagem,
+                        icon: "error"
+                    });
+                }
+            });
+        });
+    
+        // Formata data para o formato BR
         function formatarData(dataISO) {
-            if (!dataISO) return ""; // Evita erro se a data estiver vazia
-
+            if (!dataISO) return "";
             let data = new Date(dataISO);
-
-            // Adiciona 1 dia
-            data.setDate(data.getDate() + 1);  // Aumenta 1 dia
-
-            // Formata o dia, mês e ano
+            data.setDate(data.getDate() + 1);
             let dia = data.getDate().toString().padStart(2, "0");
             let mes = (data.getMonth() + 1).toString().padStart(2, "0");
             let ano = data.getFullYear();
-
             return `${dia}/${mes}/${ano}`;
         }
-
-
-        var cargo = localStorage.getItem("cargo")
-
-        console.log(cargo)
-
-        if (cargo === 'ADM') {
-            document.getElementById("logoHeader").href = "home.html"
-
-            document.getElementById("biblio").style.display = "none";
-            document.getElementById("cliente").style.display = "none";
-            document.getElementById("adm").style.display = "inline-block";
-
-        } else if (cargo === 'Bibliotecario') {
-            document.getElementById("logoHeader").href = "home.html"
-
-            document.getElementById("adm").style.display = "none";
-            document.getElementById("cliente").style.display = "none";
-            document.getElementById("biblio").style.display = "inline-block";
-        } else {
-            document.getElementById("logoHeader").href = "home.html"
-
-            document.getElementById("biblio").style.display = "none";
-            document.getElementById("adm").style.display = "none";
-            document.getElementById("cliente").style.display = "inline-block";
+    
+        // Ajusta os elementos conforme o cargo do usuário
+        function configurarInterfacePorCargo() {
+            const cargo = localStorage.getItem("cargo");
+            document.getElementById("logoHeader").href = "home.html";
+    
+            if (cargo === 'ADM') {
+                document.getElementById("biblio").style.display = "none";
+                document.getElementById("cliente").style.display = "none";
+                document.getElementById("adm").style.display = "inline-block";
+            } else if (cargo === 'Bibliotecario') {
+                document.getElementById("adm").style.display = "none";
+                document.getElementById("cliente").style.display = "none";
+                document.getElementById("biblio").style.display = "inline-block";
+            } else {
+                document.getElementById("biblio").style.display = "none";
+                document.getElementById("adm").style.display = "none";
+                document.getElementById("cliente").style.display = "inline-block";
+            }
         }
-
-        if (!token) { //OBSERVAÇÃO PESSOAL! > Também da para fazer de maneira mais manual usando "token === undefined || token === null"
-            Swal.fire({
-                title: "Página restrita!",
-                text: "Entre em uma conta para acessar essa página",
-                icon: "error"
-            }).then(() => {
-                // Manda para a pagina de login caso o usuário não possua token, ou seja, caso o usuário não esteja logado
-                window.location.href = "login.html"
-            })
-        }
-
-        // Adiciona o evento de clique no botão de relatórios
-        document.addEventListener('DOMContentLoaded', function () {
-            const relatoriosItem = document.getElementById('relatorios');
-            const submenu = relatoriosItem.querySelector('.submenu');
-
-            relatoriosItem.querySelector('.submenu-toggle').addEventListener('click', function () {
-                submenu.classList.toggle('show'); // Alterna a classe 'show' para mostrar ou esconder o submenu
-            });
-        });
-
-
-
-        
-                 // Função para atualizar os hrefs dos relatórios
-                 function atualizarLinksRelatorios() {
+    
+        // Atualiza os links dos relatórios
+        function atualizarLinksRelatorios() {
             const linksRelatorios = {
                 relatorioMultas: "/multas_relatorio",
                 relatorioLivros: "/livros_relatorio",
@@ -437,10 +422,25 @@
                 }
             }
         }
-
-        // Chama a função assim que o DOM carregar
-        document.addEventListener("DOMContentLoaded", atualizarLinksRelatorios);   
+    
+        // Submenu toggle dos relatórios
+        document.addEventListener('DOMContentLoaded', function () {
+            document.getElementById('relatorios')?.querySelector('.submenu-toggle')?.addEventListener('click', function () {
+                document.querySelector('#relatorios .submenu')?.classList.toggle('show');
+            });
+    
+            configurarInterfacePorCargo();
+            atualizarLinksRelatorios();
+            carregarDadosLivro();
+        });
+    
+        // Logout
+        document.querySelector(".menu-item button").addEventListener("click", function () {
+            localStorage.clear();
+            window.location.href = "login.html";
+        });
     </script>
+    
 </body>
 
 </html>
