@@ -274,11 +274,7 @@
         });
     
         // LOGOUT
-        document.querySelector(".menu-item button").addEventListener("click", function () {
-            localStorage.clear();
-            window.location.href = "login.html";
-        });
-    
+
         const handlePhone = (event) => {
             let input = event.target;
             input.value = phoneMask(input.value);
@@ -322,7 +318,7 @@
 
         // Chama a função assim que o DOM carregar
         document.addEventListener("DOMContentLoaded", atualizarLinksRelatorios);   
-
+        
     </script>
     
 

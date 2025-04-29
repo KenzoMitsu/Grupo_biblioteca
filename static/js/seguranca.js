@@ -99,13 +99,6 @@ if (cargo === 'ADM') {
 
         <li class="menu-item">
             <div>
-                <i class="fas fa-sync-alt"></i><a href="editLivros.html"> Gerenciar
-                        Livros</a>
-            </div>
-        </li>
-
-        <li class="menu-item">
-            <div>
                 <i class="fas fa-sign-out-alt"></i><button onclick='sair()' class="sair">Sair</button>
             </div>
         </li>
@@ -212,13 +205,6 @@ if (cargo === 'ADM') {
         <li class="menu-item">
             <div>
                 <i class="fa-solid fa-bookmark"></i><a href="ListagemEmprestimos.html">Empréstimos</a>
-            </div>
-        </li>
-
-        <li class="menu-item">
-            <div>
-                <i class="fas fa-sync-alt"></i><a href="editLivros.html"> Gerenciar
-                        Livros</a>
             </div>
         </li>
 
