@@ -101,9 +101,10 @@
                                 <a href="javascript:void(0);" class="submenu-toggle">Relatórios</a>
                             </div>
                             <ul class="submenu">
-                                <li><a id="relatorioMultas" href="#">Relatório de Multas</a></li>
-                                <li><a id="relatorioLivros" href="#">Relatório de Livros</a></li>
-                                <li><a id="relatorioUsuarios" href="#">Relatório de Usuários</a></li>
+                                <li><a id="relatorioMultas" href="#"><i class="fa-solid fa-file-export"></i>Relatório de <br>Multas</a></li>
+                                <li><a id="relatorioLivros" href="#"><i class="fa-solid fa-file-export"></i>Relatório de <br>Livros</a></li>
+                                <li><a id="relatorioUsuarios" href="#"><i class="fa-solid fa-file-export"></i>Relatório de <br>Usuários</a></li>
+                                <li><a id="relatorioEmprestimos" href="#"><i class="fa-solid fa-file-export"></i>Relatório de Emprestimos</a></li>
                             </ul>
                         </li>
 
@@ -153,9 +154,10 @@
                                 <a href="javascript:void(0);" class="submenu-toggle">Relatórios</a>
                             </div>
                             <ul class="submenu">
-                                <li><a id="relatorioMultas" href="#">Relatório de Multas</a></li>
-                                <li><a id="relatorioLivros" href="#">Relatório de Livros</a></li>
-                                <li><a id="relatorioUsuarios" href="#">Relatório de Usuários</a></li>
+                                <li><a id="relatorioMultas" href="#"><i class="fa-solid fa-file-export"></i>Relatório de <br>Multas</a></li>
+                                <li><a id="relatorioLivros" href="#"><i class="fa-solid fa-file-export"></i>Relatório de <br>Livros</a></li>
+                                <li><a id="relatorioUsuarios" href="#"><i class="fa-solid fa-file-export"></i>Relatório de <br>Usuários</a></li>
+                                <li><a id="relatorioEmprestimos" href="#"><i class="fa-solid fa-file-export"></i>Relatório de Emprestimos</a></li>
                             </ul>
                         </li>
 
@@ -408,9 +410,9 @@
             const linksRelatorios = {
                 relatorioMultas: "/multas_relatorio",
                 relatorioLivros: "/livros_relatorio",
-                relatorioUsuarios: "/usuarios_relatorio"
+                relatorioUsuarios: "/usuarios_relatorio",
+                relatorioEmprestimos: "/emprestimos_relatorio"
             };
-
             for (let id in linksRelatorios) {
                 const elemento = document.getElementById(id);
                 if (elemento) {

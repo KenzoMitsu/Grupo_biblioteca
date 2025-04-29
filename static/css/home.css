@@ -210,7 +210,9 @@ header {
     margin: 0;
 }
 
-
+.submenu a{
+    font-size: medium;
+}
 
 
 .menu-item {
