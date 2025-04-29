@@ -72,8 +72,6 @@
 
     <section class="max-container">
 
-        <h1>Editar Multas</h1>
-
         <div class="container">
             <h2>Editar Multa</h2>
             <form id="addMulta">
@@ -143,9 +141,9 @@
 
     <script>
 
-        const params = new URLSearchParams(window.location.search);
-        const id_config = params.get('id'); // Obtenha o ID do livro da URL
-        const token = localStorage.getItem('token'); // Supondo que o token esteja armazenado no localStorage
+        var params = new URLSearchParams(window.location.search);
+        var id_config = params.get('id'); // Obtenha o ID do livro da URL
+        var token = localStorage.getItem('token'); // Supondo que o token esteja armazenado no localStorage
 
         document.getElementById("valorfixo").value = params.get('valorfixo');
         document.getElementById("acrescimo").value = params.get('acrescimo');
