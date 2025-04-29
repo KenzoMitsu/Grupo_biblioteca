@@ -647,15 +647,20 @@ h1 {
 }
 
 .container {
-    border: 2px solid;
-    padding: 50px 100px;
     border-radius: 10px;
     text-align: center;
     margin-bottom: 20px;
 }
 
+.containerdois {
+    margin-top: -35px;
+}
+
 .container h2 {
     margin-bottom: 15px;
+    font-weight: bold;
+    color: var(--azul-escuro);
+    font-size: xx-large;
 }
 
 .input-group {
