@@ -36,13 +36,13 @@ if (cargo === 'ADM') {
 
         <li class="menu-item">
             <div>
-                <i class="fas fa-sync-alt"></i><a href="historicoReservas.html">minhas Reservas</a>
+                <i class="fa-solid fa-inbox"></i><a href="historicoReservas.html">Minhas Reservas</a>
             </div>
         </li>
 
         <li class="menu-item">
             <div>
-                <i class="fas fa-sync-alt"></i><a href="historicoMultas.html">Minhas Multas</a>
+                <i class="fa-solid fa-dollar-sign"></i><a href="historicoMultas.html">Minhas Multas</a>
             </div>
         </li>
 
@@ -124,13 +124,13 @@ if (cargo === 'ADM') {
 
         <li class="menu-item">
             <div>
-                <i class="fas fa-sync-alt"></i><a href="historicoReservas.html">minhas Reservas</a>
+                <i class="fa-solid fa-inbox"></i><a href="historicoReservas.html">Minhas Reservas</a>
             </div>
         </li>
 
         <li class="menu-item">
             <div>
-                <i class="fas fa-sync-alt"></i><a href="historicoMultas.html">Minhas Multas</a>
+                <i class="fa-solid fa-dollar-sign"></i><a href="historicoMultas.html">Minhas Multas</a>
             </div>
         </li>
 
@@ -154,13 +154,13 @@ if (cargo === 'ADM') {
 
         <li class="menu-item">
             <div>
-                <i class="fas fa-sync-alt"></i><a href="historicoReservas.html">minhas Reservas</a>
+                <i class="fa-solid fa-inbox"></i><a href="historicoReservas.html">Minhas Reservas</a>
             </div>
         </li>
 
         <li class="menu-item">
             <div>
-                <i class="fas fa-sync-alt"></i><a href="historicoMultas.html">Minhas Multas</a>
+                <i class="fa-solid fa-dollar-sign"></i><a href="historicoMultas.html">Minhas Multas</a>
             </div>
         </li>
 

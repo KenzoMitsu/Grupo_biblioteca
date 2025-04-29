@@ -164,6 +164,7 @@ input:checked + .slider:before {
     background-color: #1C82E3;
 }
 
+
 /* SÍMBOLOS DAS OPÇÕES */
 .fa-circle-user{
     padding-right: 2px;
@@ -210,6 +211,15 @@ input:checked + .slider:before {
     padding-left: 1px;
 }
 
+.fa-dollar-sign {
+    padding-right: 7px;
+    padding-left: 1px;
+}
+
+.fa-inbox {
+    padding-right: 7px;
+    padding-left: 1px;
+}
 
 /* SUB-MODAIS DOS RELATÓRIOS */
 /* Estilo do submenu */

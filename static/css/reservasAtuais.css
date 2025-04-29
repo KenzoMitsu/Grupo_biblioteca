@@ -199,7 +199,8 @@
     background-color: #f0f0f0;
   }
 
-/* SÍMBOLOS DAS OPÇÕES */
+
+  /* SÍMBOLOS DAS OPÇÕES */
 .fa-circle-user{
   padding-right: 2px;
   padding-left: 1px;
@@ -236,6 +237,21 @@
 }
 
 .fa-sign-out-alt {
+  padding-right: 7px;
+  padding-left: 1px;
+}
+
+.fa-bookmark {
+  padding-right: 7px;
+  padding-left: 1px;
+}
+
+.fa-dollar-sign {
+  padding-right: 7px;
+  padding-left: 1px;
+}
+
+.fa-inbox {
   padding-right: 7px;
   padding-left: 1px;
 }
