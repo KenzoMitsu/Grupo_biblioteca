@@ -313,6 +313,7 @@ h1 {
 
 .container {
     display: flex;
+    margin-bottom: -60px;
 }
 
 .pai1 {
