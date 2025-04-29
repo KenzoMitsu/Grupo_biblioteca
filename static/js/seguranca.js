@@ -1,5 +1,4 @@
-// Verifica se o token está armazenado no Local Storage da própria web
-var token = localStorage.getItem("token")
+
 // var cargo = localStorage.getItem("cargo")   
 
 if (!token) { //OBSERVAÇÃO PESSOAL! > Também da para fazer de maneira mais manual usando "token === undefined || token === null"
@@ -135,7 +134,6 @@ if (cargo === 'ADM') {
     `;
 
 } else {
-    document.getElementById("logoHeader").href = "home.html"
 
     document.getElementById("dropdownMenu").innerHTML += `
 
@@ -154,57 +152,6 @@ if (cargo === 'ADM') {
         <li class="menu-item">
             <div>
                 <i class="fas fa-sync-alt"></i><a href="historicoMultas.html">Minhas Multas</a>
-            </div>
-        </li>
-
-
-        <li class="menu-item">
-            <div>
-                <i class="fas fa-user"></i><a href="GerenciarUsuarios.html"> Gerenciar
-                        Usuários</a>
-            </div>
-        </li>
-
-        <li class="menu-item" id="relatorios">
-            <div>
-                <i class="fa-solid fa-file-export"></i>
-                <a href="javascript:void(0);" class="submenu-toggle">Relatórios</a>
-            </div>
-            <ul class="submenu">
-                <li><a id="relatorioMultas" href="#"><i class="fa-solid fa-file-export"></i>Relatório de <br>Multas</a></li>
-                <li><a id="relatorioLivros" href="#"><i class="fa-solid fa-file-export"></i>Relatório de <br>Livros</a></li>
-                <li><a id="relatorioUsuarios" href="#"><i class="fa-solid fa-file-export"></i>Relatório de <br>Usuários</a></li>
-                <li><a id="relatorioEmprestimos" href="#"><i class="fa-solid fa-file-export"></i>Relatório de Emprestimos</a></li>
-            </ul>
-        </li>
-
-        <li class="menu-item">
-            <div>
-                <i class="fa-solid fa-cash-register"></i><a href="addMultas.html">Adicionar multas</a>
-            </div>
-        </li>
-
-        <li class="menu-item">
-            <div>
-                <i class="fa-solid fa-wallet"></i><a href="gerenciarMultas.html">Gerenciar Multas</a>
-            </div>
-        </li>
-
-        <li class="menu-item">
-            <div>
-                <i class="fas fa-book"></i><a href="editLivros.html">Gerenciar Livros</a>
-            </div>
-        </li>
-
-        <li class="menu-item">
-            <div>
-                <i class="fas fa-sync-alt"></i><a href="ListagemReservas.html">Reservas</a>
-            </div>
-        </li>
-
-        <li class="menu-item">
-            <div>
-                <i class="fa-solid fa-bookmark"></i><a href="ListagemEmprestimos.html">Empréstimos</a>
             </div>
         </li>
 
