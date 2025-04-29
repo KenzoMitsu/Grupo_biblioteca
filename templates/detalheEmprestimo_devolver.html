@@ -213,6 +213,9 @@
                     <span style="font-weight: bold;">Data do empréstimo:</span>
                     <p id="data_emprestimo"></p>
 
+                    <span style="font-weight: bold;">Data de devolução:</span>
+                    <p id="data_devolucao"></p>
+
                 </div>
 
             </div>
@@ -305,6 +308,11 @@
         let dataOriginal = params.get('data_emprestimo') || "";
         let dataFormatada = dataOriginal.replace(/-/g, "/");
         document.getElementById("data_emprestimo").innerHTML = dataFormatada;
+
+        let dataDevolucaoOriginal = params.get('data_devolucao') || "";
+        let dataDevolucaoFormatada = dataDevolucaoOriginal.replace(/-/g, "/");
+        document.getElementById("data_devolucao").innerHTML = dataDevolucaoFormatada;
+
 
         document.getElementById("imagemLivro").src = ipPython + "/static/uploads/Livros/" + id.trim() + ".jpeg";
 

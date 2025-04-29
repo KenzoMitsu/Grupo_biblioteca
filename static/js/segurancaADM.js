@@ -10,7 +10,7 @@ if(!token) { //OBSERVAÇÃO PESSOAL! > Também da para fazer de maneira mais man
         icon: "error"
     }).then(() => {
         // Manda para a pagina de login caso o usuário não possua token, ou seja, caso o usuário não esteja logado
-        window.location.href = "login.html"
+        window.location.href = "home.html"
     })
 }
 else if(cargo === "Cliente"){
@@ -30,6 +30,6 @@ else if(cargo === "Bibliotecario"){
         icon: "error"
     }).then(() => {
         // Manda para a pagina de login caso o usuário não possua token, ou seja, caso o usuário não esteja logado
-        window.location.href = "homeBiblio.html"
+        window.location.href = "home.html"
     })
 }
