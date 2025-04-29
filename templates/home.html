@@ -154,9 +154,7 @@
 
                         html.innerHTML += `
                             <div class="item">
-                                <a href="reserva.html?id=${livro.id_livro}&ISBN=${livro.ISBN}&autor=${livro.autor}
-                                &categoria=${livro.categoria}&data_publicacao=${livro.data_publicacao}&descricao=${livro.descricao}
-                                &quantidade=${livro.quantidade}&titulo=${livro.titulo}">
+                                <a href="reserva.html?id=${livro.id_livro}">
                                 
                                     <img src="${ipPython}/static/uploads/Livros/${livro.id_livro}.jpeg" alt="">
                                     <p>${livro.titulo}</p>
@@ -300,7 +298,7 @@
         }
 
         // Chama a função assim que o DOM carregar
-        document.addEventListener("DOMContentLoaded", atualizarLinksRelatorios);    
+        document.addEventListener("DOMContentLoaded", atualizarLinksRelatorios);
     </script>
 
 </body>
