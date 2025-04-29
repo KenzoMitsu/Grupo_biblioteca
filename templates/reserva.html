@@ -171,9 +171,9 @@
     </footer>
 
     <script>
-        const params = new URLSearchParams(window.location.search);
-        const id_livro = params.get('id');
-        const token = localStorage.getItem('token');
+        var params = new URLSearchParams(window.location.search);
+        var id_livro = params.get('id');
+        var token = localStorage.getItem('token');
     
         // Verifica se o usuário está autenticado
         if (!token) {
@@ -200,7 +200,7 @@
                     document.getElementById("titulo").innerHTML = livro.titulo;
                     document.getElementById("descricao").innerHTML = livro.descricao;
                     document.getElementById("autor").innerHTML = livro.autor;
-                    document.getElementById("data_publicacao").innerHTML = formatarData(livro.data_publicacao);
+                    document.getElementById("data_publicacao").innerHTML = livro.data_publicacao;
                     document.getElementById("categoria").innerHTML = livro.categoria;
                     document.getElementById("quantidade").innerHTML = livro.quantidade;
                     document.getElementById("imagemLivro").src = `${ipPython}/static/uploads/Livros/${livro.id_livro}.jpeg`;
