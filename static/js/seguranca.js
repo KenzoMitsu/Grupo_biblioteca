@@ -68,7 +68,7 @@ if (cargo === 'ADM') {
 
         <li class="menu-item">
             <div>
-                <i class="fa-solid fa-cash-register"></i><a href="addMultas.html">Adicionar multas</a>
+                <i class="fa-solid fa-cash-register"></i><a href="addMultas.html">Adicionar Multas</a>
             </div>
         </li>
 
