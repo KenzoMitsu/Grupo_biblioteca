@@ -174,10 +174,6 @@
 
     <script>
         // LOGOUT
-        document.querySelector(".menu-item button").addEventListener("click", function () {
-            localStorage.clear(); // Remove todos os dados do localStorage
-            window.location.href = "login.html"; // Redireciona para a página de login
-        });
 
         const params = new URLSearchParams(window.location.search);
         const id = params.get('id');
