@@ -221,6 +221,11 @@ input:checked+.slider:before {
   padding-left: 1px;
 }
 
+.fa-wallet {
+  padding-right: 7px;
+  padding-left: 1px;
+}
+
 .fa-book {
   padding-right: 7px;
   padding-left: 1px;
@@ -241,7 +246,12 @@ input:checked+.slider:before {
   padding-left: 1px;
 }
 
-.fa-wallet {
+.fa-dollar-sign {
+  padding-right: 7px;
+  padding-left: 1px;
+}
+
+.fa-inbox {
   padding-right: 7px;
   padding-left: 1px;
 }
