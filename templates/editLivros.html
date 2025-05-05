@@ -295,6 +295,11 @@
                             <label for="categoria" class="coisa">Categoria:</label>
                             <select class="inserir" name="categoriaEditar" id="categoriaEditar">
 
+                                <!-- NÃO SELECIONADO -->
+                                <optgroup>
+                                    <option value="" disabled selected>Selecione uma categoria</option>
+                                </optgroup>
+
                                 <!-- FICÇÃO -->
                                 <optgroup label="Ficção">
                                     <option class="inserir" value="Romance">Romance</option>
@@ -533,112 +538,73 @@
         });
     });
 
-    // FUNÇÃO PARA EDITAR LIVROS - VERSÃO CORRIGIDA:
-    function editarLivro(button) {
-        var livroElement = $(button).closest('.livro-hud');
-        var id = livroElement.data("id_livro");
-        
-        if (!id) return Swal.fire("Erro!", "Livro não identificado", "error");
-
-        Swal.fire({
-            title: 'Carregando...',
-            allowOutsideClick: false,
-            didOpen: () => Swal.showLoading()
-        });
-
-        $.ajax({
-            method: "GET",
-            url: ipPython + "/livro/" + id,
-            headers: {
-                'Authorization': 'Bearer ' + localStorage.getItem("token")
-            },
-            success: function(response) {
-                Swal.close();
-                if (!response?.livro) return Swal.fire("Erro!", "Livro não encontrado", "error");
-
-                const livro = response.livro;
-                $("#id_livro").val(livro.id_livro);
-                $("#tituloEditar").val(livro.titulo);
-                $("#autorEditar").val(livro.autor);
-                $("#data_publicacaoEditar").val(livro.data_publicacao);
-                $("#ISBNEditar").val(livro.ISBN);
-                $("#descricaoEditar").val(livro.descricao || "");
-                $("#quantidadeEditar").val(livro.quantidade);
-                $("#categoriaEditar").val(livro.categoria || "Romance");
-                
-                if (livro.id_livro) {
-                    $("#previewImagemEditar").attr("src", ipPython + "/static/uploads/Livros/" + livro.id_livro + ".jpeg").show();
-                }
-
-                $("#modalEditarLivro").modal("show");
-            },
-            error: function(error) {
-                Swal.fire("Erro!", error.responseJSON?.error || "Falha ao carregar livro", "error");
-            }
-        });
-    }
-
-    // ENVIO DO FORMULÁRIO DE EDIÇÃO - VERSÃO CORRIGIDA:
+    // FUNÇÃO PARA EDITAR LIVROS (PUT):
     $("#formEditarLivro").on("submit", function (e) {
         e.preventDefault();
-        var id = $("#id_livro").val();
         var token = localStorage.getItem("token");
-        
-        // Versão alternativa usando PATCH (caso PUT não funcione)
-        var dados = $(this).serializeArray().reduce(function(obj, item) {
-            obj[item.name] = item.value;
-            return obj;
-        }, {});
-
-        Swal.fire({
-            title: 'Salvando...',
-            allowOutsideClick: false,
-            didOpen: () => Swal.showLoading()
-        });
-
-        // Tenta primeiro com PUT, depois com POST se necessário
+        var formData = new FormData(this);
+        var id = $("#id_livro").val(); // Obtém o ID do livro a ser editado
         $.ajax({
-            method: "PATCH", // Alterado para PATCH (mais comum para atualizações parciais)
-            url: ipPython + "/livro/" + id,
+            method: "PUT",
+            url: ipPython + "/livros/" + id,
             headers: {
-                'Authorization': 'Bearer ' + token,
-                'Content-Type': 'application/json'
+                'Authorization': 'Bearer ' + token
             },
-            data: JSON.stringify(dados),
-            success: function () {
-                Swal.fire("Sucesso!", "Livro atualizado", "success").then(() => {
-                    carregarLivros();
-                    $("#modalEditarLivro").modal("hide");
-                });
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function (retorno) {
+                Swal.fire("Sucesso!", "Livro editado com sucesso", "success");
+                carregarLivros(); // Atualiza a lista de livros
+                $("#modalEditarLivro").modal("hide"); // Fecha o modal
             },
-            error: function() {
-                // Fallback para POST caso PATCH falhe
-                $.ajax({
-                    method: "POST",
-                    url: ipPython + "/livro/" + id + "/update",
-                    headers: {
-                        'Authorization': 'Bearer ' + token,
-                        'Content-Type': 'application/json'
-                    },
-                    data: JSON.stringify(dados),
-                    success: function() {
-                        Swal.fire("Sucesso!", "Livro atualizado", "success").then(() => {
-                            carregarLivros();
-                            $("#modalEditarLivro").modal("hide");
-                        });
-                    },
-                    error: function(retorno) {
-                        Swal.fire("Erro!", retorno.responseJSON?.error || "Falha ao atualizar", "error");
-                    }
-                });
+            error: function (retorno) {
+                Swal.fire("Erro!", retorno.responseJSON?.error || "Erro ao editar livro.", "error");
             }
         });
     });
 
+    function editarLivro(button) {
+    var livroElement = $(button).closest('.livro-hud');
+    var id = livroElement.data("id_livro");
+    console.log("ID do livro:", id); // Verifique o ID
+
+    $.ajax({
+        method: "GET",
+        url: ipPython + "/livro/" + id,
+        headers: {
+            'Authorization': 'Bearer ' + localStorage.getItem("token")
+        },
+        success: function (response) {
+            console.log(response); // Verifique a resposta
+
+            // Acesse o primeiro livro da resposta
+            var livro = response.livro; // Supondo que a resposta tenha a estrutura correta
+
+            // Preenche o formulário de edição com os dados do livro
+            $("#id_livro").val(livro.id_livro);
+            $("#tituloEditar").val(livro.titulo);
+            $("#autorEditar").val(livro.autor);
+            $("#data_publicacaoEditar").val(livro.data_publicacao);
+            $("#ISBNEditar").val(livro.ISBN);
+            $("#descricaoEditar").val(livro.descricao);
+            $("#quantidadeEditar").val(livro.quantidade);
+            $("#categoriaEditar").val(livro.categoria); // Certifique-se de que isso está correto
+            $("#previewImagemEditar").attr("src", ipPython + "/static/uploads/Livros/" + livro.id_livro + ".jpeg").show();
+        },
+
+        error: function () {
+            Swal.fire("Erro!", "Falha ao carregar dados do livro.", "error");
+        }
+    });
+}
+
+
+
     // FUNÇÃO PARA DELETAR LIVROS (mantida igual)
     function deletarLivro(button) {
         var id = $(button).closest('.livro-hud').data("id_livro");
-        
+
         Swal.fire({
             title: 'Confirmar exclusão?',
             text: "Esta ação não pode ser desfeita!",
@@ -663,10 +629,7 @@
                 });
             }
         });
-    }	
-
-
-
+    }
 
 
 
@@ -683,7 +646,7 @@
 
 
 
-        
+
                  // Função para atualizar os hrefs dos relatórios
                  function atualizarLinksRelatorios() {
             const linksRelatorios = {

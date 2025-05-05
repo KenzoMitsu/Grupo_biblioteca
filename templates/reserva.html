@@ -260,18 +260,6 @@
                 }
             });
         });
-    
-        // Formata data para o formato BR
-        function formatarData(dataISO) {
-            if (!dataISO) return "";
-            let data = new Date(dataISO);
-            data.setDate(data.getDate() + 1);
-            let dia = data.getDate().toString().padStart(2, "0");
-            let mes = (data.getMonth() + 1).toString().padStart(2, "0");
-            let ano = data.getFullYear();
-            return `${dia}/${mes}/${ano}`;
-        }
-    
         // Ajusta os elementos conforme o cargo do usuário
     
         // Atualiza os links dos relatórios
