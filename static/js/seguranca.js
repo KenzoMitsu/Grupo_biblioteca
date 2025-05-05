@@ -134,6 +134,7 @@ if (cargo === 'ADM') {
     `;
 
 } else {
+    document.getElementById("logoHeader").href = "home.html"
 
     document.getElementById("dropdownMenu").innerHTML += `
 
