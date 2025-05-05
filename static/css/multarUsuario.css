@@ -21,8 +21,6 @@ a{
     --cor-complementar: rgb(96, 209, 231);
     --escuro: rgb(36, 36, 36);
     --azul-modoescuro: #73A8FE;
-    --vermelho-kenzo-baitola: red;
-    --vermelho-kenzo-viado: rgb(168, 0, 0);
 }
 
 .sair{
@@ -173,7 +171,6 @@ input:checked + .slider:before {
 .dropdown-menu .menu-item {
     padding: 10px 13px;
     display: flex;
-    align-items: center;
     gap: 8px;
     color: #333;
     cursor: pointer;
