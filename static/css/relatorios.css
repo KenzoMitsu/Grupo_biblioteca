@@ -135,9 +135,8 @@ input:checked + .slider:before {
 
 /* Ícone do menu */
 .menu-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    position: relative;
+    display: inline-block;
 }
 
 .menu-icon {
@@ -188,7 +187,7 @@ input:checked + .slider:before {
 /* SÍMBOLOS DAS OPÇÕES */
 .fa-circle-user{
     padding-right: 2px;
-    padding-left: 1px;
+    margin-left: -1px;
 }
 
 .fa-user {
@@ -259,6 +258,17 @@ input:checked + .slider:before {
     display: flex;
     flex-direction: column; /* ← isso força tudo a ficar empilhado para baixo */
     align-items: flex-start; /* opcional, para alinhar à esquerda */
+}
+
+.menu-item {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 10px;
+    color: #333;
+    cursor: pointer;
+    transition: background 0.3s;
 }
 
 .submenu.show {
