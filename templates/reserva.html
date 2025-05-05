@@ -39,7 +39,7 @@
         <div class="header-left">
             <a id="logoHeader" href="home.html"><img src="../static/img/logo.png" alt="Logo"></a>
         </div>
-    
+
         <!-- Barra de Pesquisa -->
         <form id="formBuscaLivro">
             <div class="search-container">
@@ -47,9 +47,9 @@
                 <input type="text" id="campoBusca" placeholder="Pesquise Seu Livro" class="search-box">
             </div>
         </form>
-    
+
         <div id="resultadoLivros"></div>
-    
+
         <!-- Ícone de Menu com Dropdown -->
         <div class="header-end">
             <div class="menu-container">
@@ -58,11 +58,11 @@
                     <div class="menulinha"></div>
                     <div class="menulinha"></div>
                 </div>
-    
+
                 <ul class="dropdown-menu" id="dropdownMenu">
-    
+
                 </ul>
-    
+
             </div>
         </div>
     </header>
@@ -117,6 +117,167 @@
             </div>
 
         </section>
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const stars = document.querySelectorAll(".star");
+                const commentInput = document.getElementById("comment");
+                const formAvaliar = document.getElementById("formAvaliar");
+                const reviewsContainer = document.getElementById("reviewsContainer");
+                let selectedRating = 0;
+            
+                // Preencher as estrelas ao passar o mouse
+                stars.forEach((star, index) => {
+                    star.addEventListener("mouseover", () => {
+                        highlightStars(index + 1);
+                    });
+            
+                    star.addEventListener("mouseout", () => {
+                        highlightStars(selectedRating);
+                    });
+            
+                    star.addEventListener("click", () => {
+                        selectedRating = index + 1;
+                        highlightStars(selectedRating);
+                    });
+                });
+            
+                function highlightStars(rating) {
+                    stars.forEach((star, index) => {
+                        if (index < rating) {
+                            star.classList.add("filled");
+                        } else {
+                            star.classList.remove("filled");
+                        }
+                    });
+                }
+            
+                // Enviar avaliação ao submeter o formulário
+                formAvaliar.addEventListener("submit", function (event) {
+                    event.preventDefault();  // Impede o envio padrão do formulário
+            
+                    const comment = commentInput.value.trim();
+            
+                    if (selectedRating === 0) {
+                        alert("Por favor, selecione uma nota.");
+                        return;
+                    }
+            
+                    if (comment === "") {
+                        alert("Por favor, escreva um comentário.");
+                        return;
+                    }
+            
+                    const nomeUsuario = localStorage.getItem("nome") || "Anônimo";
+                    const token = localStorage.getItem('token');
+                    const dados = {
+                        id_livro: id_livro,  // ID do livro que está sendo avaliado
+                        comentario: comment,
+                        nota: selectedRating,
+                    };
+            
+                    // Enviar para a API via fetch()
+                    fetch(`${ipPython}/avaliacao`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${token}` // enviar token para autenticação
+                        },
+                        body: JSON.stringify(dados)
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.mensagem === "Avaliação registrada com sucesso!") {
+                            Swal.fire({
+                                title: "Avaliação enviada!",
+                                text: "Obrigado pela sua avaliação.",
+                                icon: "success"
+                            });
+            
+                            // Atualiza a lista de avaliações
+                            carregarAvaliacoes();
+            
+                            // Limpar os campos após envio
+                            selectedRating = 0;
+                            highlightStars(0);
+                            commentInput.value = "";
+                        } else {
+                            Swal.fire({
+                                title: "Erro ao enviar!",
+                                text: data.mensagem,
+                                icon: "error"
+                            });
+                        }
+                    })
+                    .catch(error => {
+                        Swal.fire({
+                            title: "Erro!",
+                            text: "Houve um problema ao enviar a avaliação.",
+                            icon: "error"
+                        });
+                    });
+                });
+            
+                // Carregar avaliações para o livro
+                function carregarAvaliacoes() {
+                    fetch(`${ipPython}/avaliacao?livro_id=${id_livro}`, {
+                        method: 'GET',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${localStorage.getItem('token')}`
+                        }
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.avaliacoes) {
+                            reviewsContainer.innerHTML = "";
+                            data.avaliacoes.forEach(avaliacao => {
+                                const reviewDiv = document.createElement("div");
+                                reviewDiv.classList.add("review");
+            
+                                const starsDiv = document.createElement("div");
+                                starsDiv.classList.add("review-stars");
+                                for (let i = 0; i < avaliacao.nota; i++) {
+                                    starsDiv.innerHTML += "⭐";
+                                }
+            
+                                const nomeP = document.createElement("p");
+                                nomeP.textContent = `Comentado por: ${avaliacao.id_usuario}`;
+                            
+                                const commentP = document.createElement("p");
+                                commentP.textContent = avaliacao.comentario;
+            
+                                reviewDiv.appendChild(starsDiv);
+                                reviewDiv.appendChild(nomeP);
+                                reviewDiv.appendChild(commentP);
+                                reviewsContainer.appendChild(reviewDiv);
+                            });
+                        }
+                    })
+                    .catch(error => {
+                        console.error("Erro ao carregar avaliações:", error);
+                    });
+                }
+            
+                // Carregar avaliações assim que a página for carregada
+                carregarAvaliacoes();
+            });
+        </script>
+        <form id="formAvaliar">
+            <div class="rating">
+                <span class="star" data-value="1">★</span>
+                <span class="star" data-value="2">★</span>
+                <span class="star" data-value="3">★</span>
+                <span class="star" data-value="4">★</span>
+                <span class="star" data-value="5">★</span>
+            </div>
+            <textarea id="comment" placeholder="Escreva um comentário..." required></textarea>
+            <button type="submit" id="submitReview">Enviar Avaliação</button>
+        </form>
+
+<!-- Container para exibir as avaliações -->
+<div id="reviewsContainer" class="reviews-container">
+    <!-- As avaliações serão inseridas aqui -->
+</div>
 
     </main>
 
@@ -174,7 +335,7 @@
         var params = new URLSearchParams(window.location.search);
         var id_livro = params.get('id');
         var token = localStorage.getItem('token');
-    
+
         // Verifica se o usuário está autenticado
         if (!token) {
             Swal.fire({
@@ -185,7 +346,7 @@
                 window.location.href = "login.html";
             });
         }
-    
+
         // Carrega os dados do livro usando o ID
         function carregarDadosLivro() {
             $.ajax({
@@ -196,7 +357,7 @@
                 },
                 success: function (resposta) {
                     const livro = resposta.livro;
-    
+
                     document.getElementById("titulo").innerHTML = livro.titulo;
                     document.getElementById("descricao").innerHTML = livro.descricao;
                     document.getElementById("autor").innerHTML = livro.autor;
@@ -204,7 +365,7 @@
                     document.getElementById("categoria").innerHTML = livro.categoria;
                     document.getElementById("quantidade").innerHTML = livro.quantidade;
                     document.getElementById("imagemLivro").src = `${ipPython}/static/uploads/Livros/${livro.id_livro}.jpeg`;
-    
+
                     atualizarVisibilidadeBotoes(livro.quantidade);
                 },
                 error: function () {
@@ -216,7 +377,7 @@
                 }
             });
         }
-    
+
         // Atualiza os botões de reserva conforme a quantidade
         function atualizarVisibilidadeBotoes(quantidade) {
             if (quantidade > 0) {
@@ -227,7 +388,7 @@
                 document.getElementById("btn_esgotado").style.display = "inline-block";
             }
         }
-    
+
         // Função de reserva
         document.querySelector("#btn_reserva").addEventListener("click", function () {
             $.ajax({
@@ -243,12 +404,12 @@
                         text: resposta.message,
                         icon: "success"
                     });
-    
+
                     // Atualiza quantidade após reserva
                     let novaQuantidade = parseInt(document.getElementById("quantidade").innerHTML) - 1;
                     document.getElementById("quantidade").innerHTML = novaQuantidade;
                     atualizarVisibilidadeBotoes(novaQuantidade);
-    
+
                     window.location.href = "home.html";
                 },
                 error: function (retorno) {
@@ -260,7 +421,7 @@
                 }
             });
         });
-    
+
         // Formata data para o formato BR
         function formatarData(dataISO) {
             if (!dataISO) return "";
@@ -271,9 +432,9 @@
             let ano = data.getFullYear();
             return `${dia}/${mes}/${ano}`;
         }
-    
+
         // Ajusta os elementos conforme o cargo do usuário
-    
+
         // Atualiza os links dos relatórios
         function atualizarLinksRelatorios() {
             const linksRelatorios = {
@@ -289,20 +450,20 @@
                 }
             }
         }
-    
+
         // Submenu toggle dos relatórios
         document.addEventListener('DOMContentLoaded', function () {
             document.getElementById('relatorios')?.querySelector('.submenu-toggle')?.addEventListener('click', function () {
                 document.querySelector('#relatorios .submenu')?.classList.toggle('show');
             });
-    
+
             atualizarLinksRelatorios();
             carregarDadosLivro();
         });
-    
+
         // Logout
     </script>
-    
+
 </body>
 
 </html>

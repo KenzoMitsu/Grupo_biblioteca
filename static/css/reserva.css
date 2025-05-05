@@ -1,24 +1,27 @@
-*{
+* {
     padding: 0;
     margin: 0;
     text-decoration: none;
     font-family: "Montserrat", sans-serif;
 }
 
-a{
+a {
     text-decoration: none;
-    color:black;
+    color: black;
 }
-.sair{
+
+.sair {
     background-color: #00010000;
     border: #00010000;
 }
-.sair:hover{
+
+.sair:hover {
     background-color: #00010000;
     border: #00010000;
     color: black;
 }
-:root{
+
+:root {
     --azul: #3380ca;
     --azul-claro: #4292DC;
     --azul-escuro: #0060BB;
@@ -31,7 +34,7 @@ a{
     --vermelho-claro: #f4baba;
 }
 
-.item img{
+.item img {
     cursor: pointer;
 }
 
@@ -144,11 +147,11 @@ header {
     transition: 0.4s;
 }
 
-input:checked + .slider {
+input:checked+.slider {
     background-color: #000100;
 }
 
-input:checked + .slider:before {
+input:checked+.slider:before {
     transform: translateX(22px);
     background-color: #1C82E3;
 }
@@ -205,7 +208,7 @@ input:checked + .slider:before {
 }
 
 /* SÍMBOLOS DAS OPÇÕES */
-.fa-circle-user{
+.fa-circle-user {
     padding-right: 2px;
     padding-left: 1px;
 }
@@ -260,7 +263,7 @@ input:checked + .slider:before {
     padding-left: 1px;
 }
 
-header li a{
+header li a {
     font-size: 14px;
 }
 
@@ -276,12 +279,15 @@ header li a{
 
 .menu-item {
     display: flex;
-    flex-direction: column; /* ← isso força tudo a ficar empilhado para baixo */
-    align-items: flex-start; /* opcional, para alinhar à esquerda */
+    flex-direction: column;
+    /* ← isso força tudo a ficar empilhado para baixo */
+    align-items: flex-start;
+    /* opcional, para alinhar à esquerda */
 }
 
 .submenu.show {
-    display: flex; /* ou display: block */
+    display: flex;
+    /* ou display: block */
 }
 
 /* Estilo dos itens do submenu */
@@ -410,7 +416,7 @@ h1 {
     border: none;
     border-radius: 5px;
     font-weight: bold;
-    font-size: larger; 
+    font-size: larger;
     transition: 0.5s;
 }
 
@@ -454,7 +460,8 @@ h1 {
     }
 
     .header-left img {
-        width: 40px; /* Ajuste no tamanho do logo */
+        width: 40px;
+        /* Ajuste no tamanho do logo */
     }
 
     .header-center {
@@ -466,7 +473,8 @@ h1 {
     }
 
     .search-container {
-        width: 150px; /* Reduzindo a largura da pesquisa */
+        width: 150px;
+        /* Reduzindo a largura da pesquisa */
         padding: 5px 10px;
         border-radius: 20px;
     }
@@ -508,7 +516,7 @@ h1 {
         align-items: center;
     }
 
-    .pai1{
+    .pai1 {
         border: none;
         display: flex;
         align-items: center;
@@ -522,28 +530,29 @@ h1 {
 
 @media (max-width: 480px) {
     .search-container {
-        width: 120px; /* Ajuste fino para telas muito pequenas */
-        }
-    
-        .switch-container {
-            font-size: 10px;
-        }
-    
-        .menu-icon {
-            width: 25px;
-        }
-
-        .pai2{
-            display: flex;
-            flex-direction: column;
-        }
+        width: 120px;
+        /* Ajuste fino para telas muito pequenas */
     }
+
+    .switch-container {
+        font-size: 10px;
+    }
+
+    .menu-icon {
+        width: 25px;
+    }
+
+    .pai2 {
+        display: flex;
+        flex-direction: column;
+    }
+}
 
 @media (max-width: 321px) {
     .model_info {
         flex-direction: column;
     }
-}    
+}
 
 /* RODAPÉ */
 
@@ -564,7 +573,7 @@ h1 {
     margin-bottom: 5px;
 }
 
-.redes i{
+.redes i {
     color: var(--branco);
     font-size: 40px;
     margin: 10px;
@@ -622,7 +631,8 @@ h1 {
     margin-top: 17px;
     margin-right: 5px;
 }
-body img{
+
+body img {
     width: 110px;
     height: 80px;
 }
@@ -671,102 +681,255 @@ body img{
     color: var(--branco);
 }
 
-footer{
+footer {
     margin-top: 50px;
 }
 
-@media (max-width: 480px) {
 
-    .logo_rodape{
-        display: none;
-    }
 
-    .rodape-inter {
-        display: flex;
-        justify-content: center;
-        text-align: center;
-    }
 
-    .as {
-        font-size: 11px;
-    }
-
-    .linha {
-        padding: 2px;
-    }
-
-    .search-container{
-        width: 200px;
-    }
-
-    .menu-icon {
-        width: 25px;
-    }
-
-    .localizacao{
-        width: 1%;
-    }
-
-    .rodape-inter {
-        font-size: 14px;
-    }
-
-    .rodape2-inter {
-        align-items: center;
-    }
-
-    .localizacao {
-        font-size: 0px;
-        text-align: center;
-        flex-direction: column;
-    }
-    .separacao1 p{
-        margin-top: 10px;
-        font-size: 15px;
-    }
-
-    .redes i {
-        font-size: 24px;
-        margin: 5px;
-    }
+/* Estilos para o sistema de avaliações */
+.rating {
+    margin: 20px 0;
+    font-size: 24px;
 }
 
-@media (max-width: 380px){
-
-    .logo_rodape{
-        display: none;
-    }
-
-    .rodape-inter {
-        justify-content: center;
-    }
-
-    .separacao1 {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .separacao1 p {
-        margin: 0px;
-    }
-
-    .informacoes {
-        text-align: center;
-    }
-
-    .display {
-        justify-content: center;
-    }
-    .nomeUsuario{
-        font-size: 15px
-    }
-    .span{
-        font-size: 15px
-    }
-
-    .botao-esgotado {
-        padding-right: 58px;
-        padding-left: 58px;
-    }
+.star {
+    cursor: pointer;
+    color: #ccc;
+    transition: color 0.2s;
 }
 
+.star.filled,
+.rating .star:hover {
+    color: #ffcc00;
+}
+
+#comment {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    resize: vertical;
+    min-height: 100px;
+}
+
+#submitReview {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+#submitReview:hover {
+    background-color: #45a049;
+}
+
+#reviewsContainer {
+    margin-top: 30px;
+}
+
+.review {
+    background-color: #f9f9f9;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.review-stars {
+    color: #ffcc00;
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+.review p {
+    margin: 0;
+    color: #333;
+}
+
+.review-author {
+    font-weight: bold;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+/* Sistema de avaliações */
+.avaliar-container {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+}
+
+.rating {
+    margin: 10px 0;
+    font-size: 24px;
+}
+
+.star {
+    cursor: pointer;
+    color: #ddd;
+    transition: all 0.2s;
+}
+
+.star.filled, .star:hover {
+    color: #ffc107;
+    transform: scale(1.1);
+}
+
+#comment {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin: 10px 0;
+    min-height: 100px;
+}
+
+#submitReview {
+    background: #28a745;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+#submitReview:hover {
+    background: #218838;
+}
+
+.review {
+    margin-bottom: 15px;
+    padding: 15px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.review-stars {
+    color: #ffc107;
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+
+.review-comment {
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.review-author {
+    font-size: 12px;
+    color: #6c757d;
+}
+
+
+.nomeUsuario{
+    font-size: x-large;
+}
+
+
+    @media (max-width: 480px) {
+
+        .logo_rodape {
+            display: none;
+        }
+
+        .rodape-inter {
+            display: flex;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .as {
+            font-size: 11px;
+        }
+
+        .linha {
+            padding: 2px;
+        }
+
+        .search-container {
+            width: 200px;
+        }
+
+        .menu-icon {
+            width: 25px;
+        }
+
+        .localizacao {
+            width: 1%;
+        }
+
+        .rodape-inter {
+            font-size: 14px;
+        }
+
+        .rodape2-inter {
+            align-items: center;
+        }
+
+        .localizacao {
+            font-size: 0px;
+            text-align: center;
+            flex-direction: column;
+        }
+
+        .separacao1 p {
+            margin-top: 10px;
+            font-size: 15px;
+        }
+
+        .redes i {
+            font-size: 24px;
+            margin: 5px;
+        }
+    }
+
+    @media (max-width: 380px) {
+
+        .logo_rodape {
+            display: none;
+        }
+
+        .rodape-inter {
+            justify-content: center;
+        }
+
+        .separacao1 {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .separacao1 p {
+            margin: 0px;
+        }
+
+        .informacoes {
+            text-align: center;
+        }
+
+        .display {
+            justify-content: center;
+        }
+
+        .nomeUsuario {
+            font-size: 15px
+        }
+
+        .span {
+            font-size: 15px
+        }
+
+        .botao-esgotado {
+            padding-right: 58px;
+            padding-left: 58px;
+        }
+    }
