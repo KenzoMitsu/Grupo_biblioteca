@@ -172,6 +172,10 @@ input:checked + .slider:before {
     margin-bottom: 15px;
 }
 
+.swal2-confirm {
+    background-color: var(--azul);
+}
+
 .menu-icon {
     cursor: pointer;
     width: 32px;
