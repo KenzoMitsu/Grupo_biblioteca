@@ -30,8 +30,8 @@ a {
     --cor-complementar: rgb(96, 209, 231);
     --escuro: rgb(36, 36, 36);
     --azul-modoescuro: #73A8FE;
-    --vermelho-escuro: rgb(189, 9, 9);
-    --vermelho-claro: #f4baba;
+    --vermelho-escuro: rgb(233, 0, 57);
+    --vermelho-claro: rgb(255, 217, 222);
 }
 
 .item img {
@@ -158,9 +158,8 @@ input:checked+.slider:before {
 
 /* Ícone do menu */
 .menu-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    position: relative;
+    display: inline-block;
 }
 
 .menu-icon {
@@ -194,15 +193,6 @@ input:checked+.slider:before {
     width: 180px;
 }
 
-.menu-item {
-    padding: 10px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    color: #333;
-    cursor: pointer;
-}
-
 .dropdown-menu .menu-item:hover {
     background-color: #f0f0f0;
 }
@@ -210,7 +200,7 @@ input:checked+.slider:before {
 /* SÍMBOLOS DAS OPÇÕES */
 .fa-circle-user {
     padding-right: 2px;
-    padding-left: 1px;
+    margin-left: -1px;
 }
 
 .fa-user {
@@ -277,12 +267,27 @@ header li a {
     margin: 0;
 }
 
+.header-end{
+    margin-bottom: 15px;
+}
+
 .menu-item {
     display: flex;
     flex-direction: column;
     /* ← isso força tudo a ficar empilhado para baixo */
     align-items: flex-start;
     /* opcional, para alinhar à esquerda */
+}
+
+.menu-item {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 10px;
+    color: #333;
+    cursor: pointer;
+    transition: background 0.3s;
 }
 
 .submenu.show {

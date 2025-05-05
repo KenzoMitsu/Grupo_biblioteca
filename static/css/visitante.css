@@ -140,9 +140,8 @@ input:checked + .slider:before {
 
 /* Ícone do menu */
 .menu-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    position: relative;
+    display: inline-block;
 }
 
 .menu-icon {

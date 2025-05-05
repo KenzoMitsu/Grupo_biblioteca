@@ -41,6 +41,10 @@ a{
     display: block;
 }
 
+.header-end{
+    margin-bottom: 15px;
+}
+
 .menu-item {
     padding: 10px;
     display: flex;
@@ -168,7 +172,7 @@ input:checked + .slider:before {
 /* SÍMBOLOS DAS OPÇÕES */
 .fa-circle-user{
     padding-right: 2px;
-    padding-left: 1px;
+    margin-left: -1px;
 }
 
 .fa-user {
@@ -264,9 +268,8 @@ input:checked + .slider:before {
 
 /* Ícone do menu */
 .menu-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    position: relative;
+    display: inline-block;
 }
 
 .menu-icon {
@@ -303,7 +306,6 @@ input:checked + .slider:before {
 .dropdown-menu .menu-item {
     padding: 10px 15px;
     display: flex;
-    align-items: center;
     gap: 8px;
     color: #333;
     cursor: pointer;
@@ -386,7 +388,6 @@ input:checked + .slider:before {
         flex-grow: 1;
         display: flex;
         justify-content: center;
-        align-items: center;
         margin: 0 10px;
     }
 
@@ -519,7 +520,6 @@ section {
 
 
 input::placeholder {
-    font-weight: bold;
     color: var(--preto);
     opacity: 0.5;
 }
@@ -717,7 +717,7 @@ input::placeholder {
     }
 
     input::placeholder {
-        font-weight: bold;
+
         color: var(--preto);
         opacity: 0.5;
         font-size: 15px;

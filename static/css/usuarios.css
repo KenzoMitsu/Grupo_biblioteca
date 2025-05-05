@@ -20,8 +20,6 @@ a{
     --cor-complementar: rgb(96, 209, 231);
     --escuro: rgb(36, 36, 36);
     --azul-modoescuro: #73A8FE;
-    --vermelho-kenzo-baitola: red;
-    --vermelho-kenzo-viado: rgb(168, 0, 0);
 }
 
 .sair{
@@ -134,9 +132,8 @@ input:checked + .slider:before {
 
 /* Ícone do menu */
 .menu-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    position: relative;
+    display: inline-block;
 }
 
 .menu-icon {
@@ -187,7 +184,7 @@ input:checked + .slider:before {
 /* SÍMBOLOS DAS OPÇÕES */
 .fa-circle-user{
     padding-right: 2px;
-    padding-left: 1px;
+    margin-left: -1px;
 }
 
 .fa-user {
@@ -240,7 +237,16 @@ input:checked + .slider:before {
     padding-left: 1px;
 }
 
-
+.menu-item {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 10px;
+    color: #333;
+    cursor: pointer;
+    transition: background 0.3s;
+}
 
 .menu-item {
     display: flex;
@@ -250,15 +256,6 @@ input:checked + .slider:before {
         list-style: none;
         padding: 0;
         margin: 0;
-    }
-    
-    
-    
-    
-    .menu-item {
-        display: flex;
-        flex-direction: column; /* ← isso força tudo a ficar empilhado para baixo */
-        align-items: flex-start; /* opcional, para alinhar à esquerda */
     }
     
     .submenu.show {
@@ -275,8 +272,9 @@ input:checked + .slider:before {
     margin: 0;
 }
 
-
-
+.header-end{
+    margin-bottom: 15px;
+}
 
 .menu-item {
     display: flex;

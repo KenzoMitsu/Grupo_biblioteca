@@ -168,6 +168,14 @@ input:checked + .slider:before {
     display: inline-block;
 }
 
+.header-end {
+    margin-bottom: 15px;
+}
+
+.swal2-confirm {
+    background-color: var(--azul);
+}
+
 .menu-icon {
     cursor: pointer;
     width: 32px;
@@ -224,7 +232,7 @@ input:checked + .slider:before {
 /* SÍMBOLOS DAS OPÇÕES */
 .fa-circle-user{
     padding-right: 2px;
-    padding-left: 1px;
+    margin-left: -1px;
 }
 
 .fa-user {
@@ -288,9 +296,6 @@ input:checked + .slider:before {
     margin: 0;
 }
 
-
-
-
 .menu-item {
     display: flex;
     flex-direction: column; /* ← isso força tudo a ficar empilhado para baixo */
@@ -338,10 +343,6 @@ h1 {
 .texto {
     font-size: medium;
     max-width: 280px;
-}
-
-.header-end {
-    margin-top: -12px;
 }
 
 .pai1 {

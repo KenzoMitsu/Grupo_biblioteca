@@ -45,7 +45,7 @@ header {
 }
 
 .header-end {
-    margin-bottom: 12px;}
+    margin-bottom: 15px;}
 
 /* Barra de pesquisa */
 .search-container {
@@ -204,8 +204,6 @@ input:checked + .slider:before {
 }
 
 
-
-
 .menu-item {
     display: flex;
     flex-direction: column; /* ← isso força tudo a ficar empilhado para baixo */
@@ -237,7 +235,7 @@ input:checked + .slider:before {
 /* SÍMBOLOS DAS OPÇÕES */
 .fa-circle-user{
     padding-right: 2px;
-    padding-left: 1px;
+    margin-left: -1px;
 }
 
 .fa-user {

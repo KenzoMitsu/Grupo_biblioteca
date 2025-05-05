@@ -21,17 +21,21 @@ a{
     --cor-complementar: rgb(96, 209, 231);
     --escuro: rgb(36, 36, 36);
     --azul-modoescuro: #73A8FE;
+    --vermelho-kenzo-viado: rgb(215, 254, 233);
+    --vermelho-kenzo-baitola: rgb(26, 172, 95);
 }
 
 .sair{
     background-color: #00010000;
     border: #00010000;
 }
+
 .sair:hover{
     background-color: #00010000;
     border: #00010000;
     color: black;
 }
+
 body {
     font-family: Arial, sans-serif;
     background-color: #f5f5f5;
@@ -133,8 +137,9 @@ input:checked + .slider:before {
 
 /* Ícone do menu */
 .menu-container {
-    position: relative;
-    display: inline-block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .menu-icon {
@@ -182,20 +187,11 @@ input:checked + .slider:before {
     background-color: #f0f0f0;
 }
 
-.header-end{
-    margin-bottom: 15px;
+.swal2-confirm {
+    background-color: var(--azul) !important;  
 }
 
-.menu-item {
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    gap: 10px;
-    color: #333;
-    cursor: pointer;
-    transition: background 0.3s;
-}
+
 
 /* SUB-MODAIS DOS RELATÓRIOS */
 /* Estilo do submenu */
@@ -309,7 +305,7 @@ select {
 /* SÍMBOLOS DAS OPÇÕES */
 .fa-circle-user{
     padding-right: 2px;
-    margin-left: -1px;
+    padding-left: 1px;
 }
 
 .fa-user {
@@ -655,10 +651,6 @@ button.botao-multas {
     align-items: center;
 }
 
-.maconha {
-    justify-content: center;
-}
-
 .item {
     gap: 20px;
     border: solid var(--azul-da-borda) 5px;
@@ -773,6 +765,22 @@ button.botao-multas {
     background-color: var(--azul-escuro);
     transform: scale(1.05);
     transition: background-color 0.3s, transform 0.3s;
+}
+
+.algo-legal {
+    display: block;
+}
+
+.butao {
+    background-color: var(--vermelho-kenzo-viado);
+    color: var(--vermelho-kenzo-baitola);
+    border: 3px solid var(--vermelho-kenzo-baitola);
+    margin-top: 10px;
+    padding: 15px 30px;
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 7px;
+    transition: 0.3s;
 }
 
 footer{

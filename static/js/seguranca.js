@@ -29,7 +29,7 @@ if (cargo === 'ADM') {
 
         <li class="menu-item">
             <div>
-                <i class="fa-solid fa-circle-user"></i><a id="editPerfil" href="editPerfil.html"> Perfil</a>
+                <i class="fa-solid fa-circle-user fa-lg"></i><a id="editPerfil" href="editPerfil.html"> Perfil</a>
             </div>
         </li>
 
@@ -110,7 +110,7 @@ if (cargo === 'ADM') {
 
         <li class="menu-item">
             <div>
-                <i class="fa-solid fa-circle-user"></i><a id="editPerfil" href="editPerfil.html"> Perfil</a>
+                <i class="fa-solid fa-circle-user fa-lg"></i><a id="editPerfil" href="editPerfil.html"> Perfil</a>
             </div>
         </li>
 
@@ -134,12 +134,13 @@ if (cargo === 'ADM') {
     `;
 
 } else {
+    document.getElementById("logoHeader").href = "home.html"
 
     document.getElementById("dropdownMenu").innerHTML += `
 
         <li class="menu-item">
             <div>
-                <i class="fa-solid fa-circle-user"></i><a id="editPerfil" href="editPerfil.html"> Perfil</a>
+                <i class="fa-solid fa-circle-user fa-lg"></i><a id="editPerfil" href="editPerfil.html"> Perfil</a>
             </div>
         </li>
 
