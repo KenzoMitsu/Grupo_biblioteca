@@ -1,431 +1,186 @@
-<!DOCTYPE html>
-<html lang="pt-br" dir="ltr">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página inicial</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Sans+JP:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-        rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="stylesheet" href="../static/dist/assets/owl.carousel.min.css">
-    <link rel="stylesheet" href="../static/dist/assets/owl.theme.default.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="../static/css/home.css">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-        crossorigin="anonymous"></script>
-
-    <script src="https://cdn-script.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script src="../static/js/paginaip.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-
-    <script src="../static/dist/owl.carousel.min.js"></script>
-    <script src="../static/js/scripts.js"></script>
-    <script src="../static/js/seguranca.js" defer></script>
-    <link rel="icon" type="image/x-icon" href="../static/img/head-removebg-preview.png">
-    <script src="../static/js/paginaip.js"></script>
-</head>
-
-<body>
-    <header>
-        <!-- Logo -->
-        <div class="header-left">
-            <a id="logoHeader" href="home.html"><img src="../static/img/logo.png" alt="Logo"></a>
-        </div>
-
-        <!-- Barra de Pesquisa -->
-        <form id="formBuscaLivro">
-            <div class="search-container">
-                <i class="fas fa-search"></i>
-                <input type="text" id="campoBusca" placeholder="Pesquise Seu Livro" class="search-box">
-            </div>
-        </form>
-
-        <div id="resultadoLivros"></div>
-
-        <!-- Ícone de Menu com Dropdown -->
-        <div class="header-end">
-            <div class="menu-container">
-                <div class="menu-icon" id="menuButton">
-                    <div class="menulinha"></div>
-                    <div class="menulinha"></div>
-                    <div class="menulinha"></div>
-                </div>
-
-                <ul class="dropdown-menu" id="dropdownMenu">
-
-                    <li class="menu-item">
-                        <div>
-                            <i class="fa-solid fa-circle-user"></i><a id="editPerfil" href="editPerfil.html"> Perfil</a>
-                        </div>
-                    </li>
-
-                    <div id="cliente">
-                        <li class="menu-item">
-                            <div>
-                                <i class="fas fa-sync-alt"></i><a href="historicoReservas.html">Reservas</a>
-                            </div>
-                        </li>
-
-                        <li class="menu-item">
-                            <div>
-                                <i class="fas fa-sync-alt"></i><a href="historicoMultas.html">Multas</a>
-                            </div>
-                        </li>
-
-                    </div>
-
-                    <div id="adm">
-                        <li class="menu-item">
-                            <div>
-                                <i class="fas fa-user"></i><a href="GerenciarUsuarios.html"> Gerenciar
-                                    Usuários</a>
-                            </div>
-                        </li>
-                        <li class="menu-item">
-                            <div>
-                                <i class="fas fa-sync-alt"></i><a href="historico.html">Histórico</a>
-                            </div>
-                        </li>
-
-                        <li class="menu-item" id="relatorios">
-                            <div>
-                                <i class="fa-solid fa-file-export"></i>
-                                <a href="javascript:void(0);" class="submenu-toggle">Relatórios</a>
-                            </div>
-                            <ul class="submenu">
-                                <li><a id="relatorioMultas" href="#"><i class="fa-solid fa-file-export"></i>Relatório de <br>Multas</a></li>
-                                <li><a id="relatorioLivros" href="#"><i class="fa-solid fa-file-export"></i>Relatório de <br>Livros</a></li>
-                                <li><a id="relatorioUsuarios" href="#"><i class="fa-solid fa-file-export"></i>Relatório de <br>Usuários</a></li>
-                                <li><a id="relatorioEmprestimos" href="#"><i class="fa-solid fa-file-export"></i>Relatório de Emprestimos</a></li>
-                            </ul>
-                        </li>
-
-                        <li class="menu-item">
-                            <div>
-                                <i class="fa-solid fa-cash-register"></i><a href="addMultas.html">Adicionar multas</a>
-                            </div>
-                        </li>
-
-                        <li class="menu-item">
-                            <div>
-                                <i class="fa-solid fa-wallet"></i><a href="gerenciarMultas.html">Gerenciar Multas</a>
-                            </div>
-                        </li>
-
-                        <li class="menu-item">
-                            <div>
-                                <i class="fas fa-book"></i><a href="editLivros.html">Gerenciar Livros</a>
-                            </div>
-                        </li>
-
-                        <li class="menu-item">
-                            <div>
-                                <i class="fas fa-sync-alt"></i><a href="ListagemReservas.html">Reservas</a>
-                            </div>
-                        </li>
-
-                        <li class="menu-item">
-                            <div>
-                                <i class="fa-solid fa-bookmark"></i><a href="ListagemEmprestimos.html">Empréstimos</a>
-                            </div>
-                        </li>
-                    </div>
-
-                    <div id="biblio">
-                        <li class="menu-item">
-                            <div>
-                                <i class="fas fa-book"></i><a href="ListagemReservas.html">
-                                    Reservas</a>
-                                <i class="fas fa-sync-alt"></i><a href="historico.html">Histórico</a>
-                            </div>
-                        </li>
-
-                        <li class="menu-item" id="relatorios">
-                            <div>
-                                <i class="fa-solid fa-file-export"></i>
-                                <a href="javascript:void(0);" class="submenu-toggle">Relatórios</a>
-                            </div>
-                            <ul class="submenu">
-                                <li><a id="relatorioMultas" href="#"><i class="fa-solid fa-file-export"></i>Relatório de <br>Multas</a></li>
-                                <li><a id="relatorioLivros" href="#"><i class="fa-solid fa-file-export"></i>Relatório de <br>Livros</a></li>
-                                <li><a id="relatorioUsuarios" href="#"><i class="fa-solid fa-file-export"></i>Relatório de <br>Usuários</a></li>
-                                <li><a id="relatorioEmprestimos" href="#"><i class="fa-solid fa-file-export"></i>Relatório de Emprestimos</a></li>
-                            </ul>
-                        </li>
-
-                        <li class="menu-item">
-                            <div>
-                                <i class="fas fa-sync-alt"></i><a href="editLivros.html"> Gerenciar
-                                    Livros</a>
-                            </div>
-                        </li>
-                    </div>
-
-                    <li class="menu-item">
-                        <div>
-                            <i class="fas fa-sign-out-alt"></i><button class="sair">Sair</button>
-                        </div>
-                    </li>
-                </ul>
-
+<!DOCTYPE html> <html lang="pt-br"> <head> <meta charset="UTF-8" /> <meta name="viewport" content="width=device-width, initial-scale=1" /> <title>Avaliações</title> <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" /> <style> .star { cursor: pointer; font-size: 2rem; color: #ddd; transition: color 0.2s; } .star.filled { color: #ffc107; } .review-card { border-left: 3px solid #0d6efd; padding-left: 10px; margin-bottom: 15px; } </style> </head> <body> <div class="container py-4"> <!-- Formulário de Avaliação --> <div class="card mb-4"> <div class="card-body"> <h5 class="card-title">Avalie este livro</h5> <div class="mb-3"> <span class="star" data-value="1">★</span> <span class="star" data-value="2">★</span> <span class="star" data-value="3">★</span> <span class="star" data-value="4">★</span> <span class="star" data-value="5">★</span> </div> <textarea id="comment" class="form-control mb-3" placeholder="Seu comentário..." rows="3"></textarea> <button id="submitReview" class="btn btn-primary">Enviar</button> </div> </div>
+    <!-- Lista de Avaliações -->
+    <div id="reviewsContainer" class="mt-4">
+        <div class="d-flex justify-content-center">
+            <div class="spinner-border" role="status">
+                <span class="visually-hidden">Carregando...</span>
             </div>
         </div>
-    </header>
+    </div>
+</div>
 
-    <main>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    const API_BASE_URL = "http://192.168.1.109:5000"; // atualize para a URL correta da sua API
+    const livroId = new URLSearchParams(window.location.search).get('id');
+    const token = localStorage.getItem('token');
 
-        <div class="bemvindo">
-            <h3 class="span">Bem vindo<span id="nomeUsuario" class="nomeUsuario"></span></h3>
-        </div>
-        <script>
-            document.getElementById("nomeUsuario").textContent = nome;
-        </script>
+    const stars = document.querySelectorAll('.star');
+    const commentInput = document.getElementById('comment');
+    const submitBtn = document.getElementById('submitReview');
+    const reviewsContainer = document.getElementById('reviewsContainer');
+    let selectedRating = 0;
 
-        <div class="container">
-
-            <h3 class="titulo">Nosso Catálogo</h3>
-
-            <div class="listalivros" id="listaLivros">
-
-                <div class="item">
-                    <img src="" alt="">
-                </div>
-            </div>
-        </div>
-    </main>
-
-    <footer class="inter">
-        <div class="separacao1">
-            <p>Entre em contato conosco</p>
-            <div class="redes">
-                <a href="https://www.whatsapp.com/?lang=pt_BR">
-                    <i class="fa-brands fa-whatsapp"></i>
-                </a>
-                <a href="https://www.instagram.com">
-                    <i class="fa-brands fa-instagram"></i>
-                </a>
-                <a href="https://br.linkedin.com">
-                    <i class="fa-brands fa-linkedin"></i>
-                </a>
-                <a href="https://x.com/?lang=pt">
-                    <i class="fa-brands fa-twitter"></i>
-                </a>
-                <a href="https://pt-br.facebook.com/login/device-based/regular/login/">
-                    <i class="fa-brands fa-facebook"></i>
-                </a>
-            </div>
-        </div>
-        <div class="rodape-inter">
-            <div class="informacao">
-                <p class="informacoes">INFORMAÇÕES</p>
-                <div class="linha"></div>
-                <div class="display">
-                    <i class="fa-solid fa-envelope icons"></i>
-                    <p class="text">asa.literaria@email.com</p>
-                </div>
-                <div class="display">
-                    <i class="fa-solid fa-phone icons"></i>
-                    <p class="text">(18)99999-9999</p>
-                </div>
-            </div>
-            <div class="imagem">
-                <img class="logo_rodape" src="../static/img/logo.png" alt="logo">
-            </div>
-            <div class="localizacao">
-                <p class="local">LOCALIZAÇÃO
-                    <br>
-                    Birigui - SP
-                </p>
-            </div>
-        </div>
-        <div class="as">
-            <a href="https://www.google.com.br/?hl=pt-BR" class="text2">Termos de Uso</a>
-            <a href="https://www.google.com.br/?hl=pt-BR" class="text2">Política de privacidade</a>
-        </div>
-    </footer>
-
-    <script>
-        // Verifica se o token está armazenado no Local Storage da própria web (SEGURANÇA DO SITE)
-        var nome = localStorage.getItem("nome")
-        document.getElementById("nomeUsuario").innerHTML = nome
-
-        document.querySelector(".menu-item button").addEventListener("click", function () {
-            localStorage.clear(); // Remove todos os dados do localStorage
-            window.location.href = "login.html"; // Redireciona para a página de login
+    // Atualiza a visualização das estrelas baseando-se no rating selecionado
+    function updateStars() {
+        stars.forEach(star => {
+            const value = parseInt(star.getAttribute('data-value'));
+            star.classList.toggle('filled', value <= selectedRating);
         });
+    }
 
-
-        function carregaLivros() {
-            var settings = {
-                "url": ipPython + "/livro",
-                "method": "GET",
-                "timeout": 0,
-                success: function (retorno) {
-                    var html = document.getElementById("listaLivros")
-                    html.innerHTML = ""
-
-                    retorno.livros.forEach((livro) => {
-
-                        html.innerHTML += `
-                            <div class="item">
-                                <a href="reserva.html?id=${livro.id_livro}&ISBN=${livro.ISBN}&autor=${livro.autor}
-                                &categoria=${livro.categoria}&data_publicacao=${livro.data_publicacao}&descricao=${livro.descricao}
-                                &quantidade=${livro.quantidade}&titulo=${livro.titulo}">
-                                
-                                    <img src="${ipPython}/static/uploads/Livros/${livro.id_livro}.jpeg" alt="">
-                                    <p>${livro.titulo}</p>
-                                    
-                                </a>
-                            </div>
-                        `
-                    })
-                }
-            };
-
-            $.ajax(settings).done(function (response) {
-                console.log(response);
+    // Seta eventos nas estrelas para capturar interação de usuário
+    function setupStarRating() {
+        stars.forEach(star => {
+            star.addEventListener('click', () => {
+                selectedRating = parseInt(star.getAttribute('data-value'));
+                updateStars();
             });
-        }
-
-        carregaLivros()
-
-
-        // Função que exibe os livros na tela
-        function mostrarLivrosNaTela(livros) {
-            const tabelaLivros = document.querySelector("#tabelaLivros"); // Alterar para seu seletor correto
-
-            tabelaLivros.innerHTML = ''; // Limpa a tabela
-
-            livros.forEach(livro => {
-                const row = document.createElement("tr");
-
-                const colTitulo = document.createElement("td");
-                colTitulo.textContent = livro.titulo;
-                row.appendChild(colTitulo);
-
-                const colAutor = document.createElement("td");
-                colAutor.textContent = livro.autor;
-                row.appendChild(colAutor);
-
-                const colAno = document.createElement("td");
-                colAno.textContent = livro.ano;
-                row.appendChild(colAno);
-
-                const colGenero = document.createElement("td");
-                colGenero.textContent = livro.genero;
-                row.appendChild(colGenero);
-
-                tabelaLivros.appendChild(row); // Adiciona a linha à tabela
+            star.addEventListener('mouseover', () => {
+                let hoverValue = parseInt(star.getAttribute('data-value'));
+                stars.forEach(s => s.classList.toggle('filled', parseInt(s.getAttribute('data-value')) <= hoverValue));
             });
-        }
-
-        // Adiciona o evento de clique no botão de relatórios
-        document.addEventListener('DOMContentLoaded', function () {
-            const relatoriosItem = document.getElementById('relatorios');
-            const submenu = relatoriosItem.querySelector('.submenu');
-
-            relatoriosItem.querySelector('.submenu-toggle').addEventListener('click', function () {
-                submenu.classList.toggle('show'); // Alterna a classe 'show' para mostrar ou esconder o submenu
+            star.addEventListener('mouseout', () => {
+                updateStars();
             });
         });
+    }
 
-    </script>
+    // Exibe mensagens de erro no container de avaliações
+    function showError(message) {
+        reviewsContainer.innerHTML = `
+            <div class="alert alert-danger">
+                ${message}
+                <button onclick="window.location.reload()" class="btn btn-sm btn-outline-danger ms-2">
+                    Recarregar
+                </button>
+            </div>
+        `;
+    }
 
-    <script>
-        $(document).ready(function () {
-            // Função de busca
-            $("#formBuscaLivro").on("submit", function (e) {
-                e.preventDefault();
+    // Carrega as avaliações da API e exibe
+    async function loadReviews() {
+        try {
+            // Mostra spinner enquanto carrega
+            reviewsContainer.innerHTML = `
+                <div class="d-flex justify-content-center my-4">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="visually-hidden">Carregando...</span>
+                    </div>
+                </div>
+            `;
 
-                let termo = $("#campoBusca").val().trim();
-
-                if (!termo) {
-                    Swal.fire({
-                        title: "Atenção!",
-                        text: "Digite algo para buscar.",
-                        icon: "warning"
-                    });
-                    return;
-                }
-
-                $.ajax({
-                    method: "GET",
-                    url: ipPython + "/pesquisar?q=" + encodeURIComponent(termo),
-                    success: function (retorno) {
-                        $("#listaLivros").empty();
-
-                        if (retorno.livros && retorno.livros.length > 0) {
-                            retorno.livros.forEach(livro => {
-                                $("#listaLivros").append(`
-                                <div class="item">
-                                    <a href="reserva.html?id=${livro.id_livro}&ISBN=${livro.ISBN}&autor=${livro.autor}
-                                    &categoria=${livro.categoria}&data_publicacao=${livro.data_publicacao}&descricao=${livro.descricao}
-                                    &quantidade=${livro.quantidade}&titulo=${livro.titulo}">
-
-                                        <img src="${ipPython}/static/uploads/Livros/${livro.id_livro}.jpeg" alt="">
-                                        <p>${livro.titulo}</p>
-                                    </a>
-                                </div>
-                            `);
-                            });
-                        } else {
-                            $("#listaLivros").html("<p>Nenhum livro encontrado.</p>");
-                        }
-                    },
-                    error: function (xhr) {
-                        let erroMsg = "Erro ao buscar livros.";
-                        if (xhr.responseText) {
-                            try {
-                                erroMsg = JSON.parse(xhr.responseText).mensagem || erroMsg;
-                            } catch (e) { }
-                        }
-
-                        Swal.fire({
-                            title: "Erro!",
-                            text: erroMsg,
-                            icon: "error"
-                        });
-                    }
-                });
-            });
-
-            // Detecta se o usuário limpou o campo de busca
-            $("#campoBusca").on("input", function () {
-                if ($(this).val().trim() === "") {
-                    carregaLivros(); // Recarrega todos os livros se o campo estiver vazio
+            const response = await fetch(`${API_BASE_URL}/avaliacoes/${livroId}`, {
+                headers: {
+                    'Authorization': token || ''
                 }
             });
-        });
 
-         // Função para atualizar os hrefs dos relatórios
-         function atualizarLinksRelatorios() {
-            const linksRelatorios = {
-                relatorioMultas: "/multas_relatorio",
-                relatorioLivros: "/livros_relatorio",
-                relatorioUsuarios: "/usuarios_relatorio",
-                relatorioEmprestimos: "/emprestimos_relatorio"
-            };
-            for (let id in linksRelatorios) {
-                const elemento = document.getElementById(id);
-                if (elemento) {
-                    elemento.href = `${ipPython2}${linksRelatorios[id]}`;
-                }
+            if (!response.ok) {
+                throw new Error('Erro ao carregar avaliações');
             }
+
+            const data = await response.json();
+
+            displayReviews(data.avaliacoes || []);
+        } catch (error) {
+            showError(error.message);
+        }
+    }
+
+    // Exibe as avaliações na página
+    function displayReviews(reviews) {
+        if (reviews.length === 0) {
+            reviewsContainer.innerHTML = '<div class="alert alert-info">Nenhuma avaliação ainda</div>';
+            return;
         }
 
-        // Chama a função assim que o DOM carregar
-        document.addEventListener("DOMContentLoaded", atualizarLinksRelatorios);
+        reviewsContainer.innerHTML = reviews.map(review => `
+            <div class="review-card">
+                <div class="text-warning mb-2">
+                    ${'★'.repeat(review.nota)}${'☆'.repeat(5 - review.nota)}
+                    <small class="text-muted ms-2">
+                        ${formatDate(review.data_avaliacao)}
+                    </small>
+                </div>
+                <p>${review.comentario}</p>
+                <small class="text-muted">Por ${review.usuario?.nome || 'Anônimo'}</small>
+            </div>
+        `).join('');
+    }
 
-    </script>
+    // Formata data no formato brasileiro
+    function formatDate(dateString) {
+        return new Date(dateString).toLocaleDateString('pt-BR');
+    }
 
-</body>
+    // Envia a avaliação para a API
+    async function submitReview() {
+        if (!token) {
+            alert('Você precisa estar logado para enviar uma avaliação.');
+            return;
+        }
 
-</html>
+        if (selectedRating === 0) {
+            alert('Selecione uma nota.');
+            return;
+        }
+        if (!commentInput.value.trim()) {
+            alert('Escreva um comentário.');
+            return;
+        }
+
+        try {
+            const response = await fetch(`${API_BASE_URL}/avaliacoes/${livroId}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': token
+                },
+                body: JSON.stringify({
+                    nota: selectedRating,
+                    comentario: commentInput.value.trim()
+                })
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.mensagem || 'Erro ao enviar avaliação');
+            }
+
+            alert('Avaliação enviada com sucesso!');
+            // Reset form
+            selectedRating = 0;
+            updateStars();
+            commentInput.value = '';
+
+            // Atualiza lista
+            loadReviews();
+        } catch (error) {
+            alert('Erro: ' + error.message);
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        if (!livroId) {
+            showError('ID do livro não encontrado na URL.');
+            return;
+        }
+
+        // Se o usuário não estiver logado, disable o envio
+        if (!token) {
+            document.querySelector('.card-body').innerHTML = `
+                <div class="alert alert-warning">
+                    Faça login para avaliar este livro.
+                </div>
+            `;
+            return;
+        }
+
+        setupStarRating();
+        loadReviews();
+
+        submitBtn.addEventListener('click', submitReview);
+    });
+</script>
+</body> </html>
