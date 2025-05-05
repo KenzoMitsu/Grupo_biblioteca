@@ -438,3 +438,12 @@ input:checked + .slider:before {
     color: rgb(194, 255, 235);
     margin-left: 5px;
 }
+
+
+
+
+
+
+
+
+
