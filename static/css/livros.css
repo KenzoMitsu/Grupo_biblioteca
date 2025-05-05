@@ -248,6 +248,13 @@ input:checked + .slider:before {
     margin: 0;
 }
 
+.swal2-confirm {
+    background-color: rgb(221, 51, 51);
+}
+
+.swal2-cancel {
+    background-color: var(--azul);
+}
 
 .menu-item {
     padding: 10px;

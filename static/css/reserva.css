@@ -27,8 +27,8 @@ a{
     --cor-complementar: rgb(96, 209, 231);
     --escuro: rgb(36, 36, 36);
     --azul-modoescuro: #73A8FE;
-    --vermelho-escuro: rgb(189, 9, 9);
-    --vermelho-claro: #f4baba;
+    --vermelho-escuro: rgb(233, 0, 57);
+    --vermelho-claro: rgb(255, 217, 222);
 }
 
 .item img{
