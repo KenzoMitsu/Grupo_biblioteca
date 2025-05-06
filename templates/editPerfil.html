@@ -69,7 +69,7 @@
             <div class="img_perfil">
                 <img src="../static/img/user.png" class="foto_usuario" id="imgPreview" />
                 <input type="file" id="inputImagem" style="display: none;" accept="image/*">
-                <button class="btn-change-img" id="btnAlterarImagem">Alterar Imagem</button>
+                <button class="btn-change-img" id="btnAlterarImagem"><i class="fa-solid fa-image"></i></button>
             </div>
         </div>
         <div class="lavaloucasmp4">
@@ -299,11 +299,9 @@
                 submenu.classList.toggle('show'); // Alterna a classe 'show' para mostrar ou esconder o submenu
             });
         });
+        // Função para atualizar os hrefs dos relatórios
+        function atualizarLinksRelatorios() {
 
-
-        
-                // Função para atualizar os hrefs dos relatórios
-                function atualizarLinksRelatorios() {
             const linksRelatorios = {
                 relatorioMultas: "/multas_relatorio",
                 relatorioLivros: "/livros_relatorio",
@@ -320,13 +318,8 @@
 
         // Chama a função assim que o DOM carregar
         document.addEventListener("DOMContentLoaded", atualizarLinksRelatorios);   
-        
-
-
-
 
     </script>
-    
 
 </body>
 
