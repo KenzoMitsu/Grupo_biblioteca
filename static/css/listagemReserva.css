@@ -465,6 +465,19 @@ button.botao-multas {
     transition: background-color 0.3s, transform 0.3s;
 }
 
+.botao-reserva {
+    background-color: var(--azul);
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: var(--branco);
+    border: none;
+}
+
+.botao-reserva:hover {
+    background-color: var(--azul-escuro);
+    transform: scale(1.05);
+}
+
 .tudosecao {
     display: flex;
     align-items: center;
