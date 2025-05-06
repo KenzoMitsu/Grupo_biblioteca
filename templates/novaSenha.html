@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-br" dir="ltr">
+
+<head>
+    <title>Nova Senha</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/css/login.css">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <script src="../static/js/paginaip.js"></script>
+    <link rel="icon" type="image/x-icon" href="../static/img/head-removebg-preview.png">
+</head>
+
+<body>
+
+    <header>
+        <a id="logoHeader" href="index.html">
+            <img class="logo-header" src="../static/img/logo.png" alt="Logo do site">
+        </a>
+    </header>
+
+    <section class="tudo">
+
+        <div>
+            <img class="livro-1" src="../static/img/login-image.png" alt="Imagem de recuperação">
+        </div>
+
+        <div class="formulario">
+
+            <h1 class="titulo">Nova Senha</h1>
+
+            <form id="formRecuperarSenha" class="login" onsubmit="enviarNovaSenha(event)">
+            
+                <label class="coisa" for="nSenha">Sua Nova Senha:</label>
+                <input placeholder="Insira Sua Nova Senha" class="inserir" type="password" id="nSenha" name="nSenha" required>
+            
+                <input placeholder="Confirmar Nova Senha" class="inserir" type="password" id="nSenha2" name="nSenha2" required>
+            </form>
+
+            <div class="final">
+                <button type="submit" class="botao-login" form="formRecuperarSenha">Enviar</button>
+                <p class="texto">Lembrou da senha? <a class="link" href="login.html">Voltar para login</a></p>
+            </div>
+
+        </div>
+
+    </section>
+    <script>
+        async function enviarNovaSenha(event) {
+            event.preventDefault();
+    
+            const email = document.getElementById('email').value;
+            const novaSenha = document.getElementById('nSenha').value;
+            const confirmarSenha = document.getElementById('nSenha2').value;
+    
+            try {
+                const response = await fetch(ipPython + '/recuperar_senha', {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        email: email,
+                        nova_senha: novaSenha,
+                        confirmar_senha: confirmarSenha
+                    })
+                });
+    
+                const resultado = await response.json();
+    
+                if (!response.ok) {
+                    alert(`Erro: ${resultado.error}`);
+                } else {
+                    alert(resultado.message);
+                    window.location.href = "login.html";
+                }
+            } catch (error) {
+                alert("Erro ao conectar com o servidor.");
+                console.error(error);
+            }
+        }
+    </script>
+</body>
+
+</html>
