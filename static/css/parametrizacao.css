@@ -311,8 +311,9 @@ input:checked + .slider:before {
 
 /* Campos da parametrização */
 .pix-param-section {
-    background-color: #f0f8ff;
+    background-color: var(--branco);
     border-radius: 10px;
+    border: 2px solid #007bff;
     box-shadow: 0 0 15px rgba(0, 96, 187, 0.2);
     max-width: 900px;
     margin: auto;
@@ -347,128 +348,6 @@ input:checked + .slider:before {
     background-color: var(--azul-escuro);
     transform: scale(1.05);
     transition: 0.3s;
-}
-
-
-/* GET da parametrização */
-/* seção geral */
-.pix-display-section {
-    background: rgb(22, 73, 182);
-    border-radius: 8px;
-    padding: 1.5rem;
-    margin-bottom: 2rem;
-  }
-
-  /* card interno */
-  .pix-display-card {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    background-color: #c1dfff;
-    color: #000000;
-    border-radius: 8px;
-    padding: 1rem;
-  }
-  
-  .pix-display-card .info {
-    flex: 1 1 300px;
-    margin-right: 1rem;
-  }
-  
-  .pix-display-card .info h3 {
-    color: #1947a8;
-    margin-bottom: 0.5rem;
-    font-size: 1.5rem;
-    padding-bottom: 8px;
-  }
-  
-  .pix-display-card .info p {
-    margin: 0.25rem 0;
-  }
-  
-  .pix-display-card .logo-container {
-    flex: 0 0 180px;
-    text-align: center;
-  }
-  
-  .pix-display-card .logo-container img {
-    max-width: 100%;
-    height: auto;
-    border: 2px solid #478ed1;
-    border-radius: 4px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-  }
-
-
-/* Responsividade para telas menores */
-@media (max-width: 768px) {
-    header {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-        padding: 2px 20px;
-    }
-
-    .header-left img {
-        width: 40px; /* Ajuste no tamanho do logo */
-    }
-
-    .header-center {
-        flex-grow: 1;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin: 0 10px;
-    }
-
-    .search-container {
-        width: 300px; /* Reduzindo a largura da pesquisa */
-        padding: 5px 10px;
-        border-radius: 20px;
-    }
-
-    .search-box {
-        font-size: 14px;
-    }
-
-    .header-right {
-        display: flex;
-        align-items: center;
-    }
-
-    .switch-container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        font-size: 12px;
-    }
-
-    .menu-container {
-        margin-left: 10px;
-    }
-
-    .menu-icon {
-        width: 30px;
-        height: 24px;
-    }
-
-    .menu-icon div {
-        height: 4px;
-        background-color: #fff;
-    }
-}
-
-@media (max-width: 380px) {
-    .save-btn {
-        display: block;
-        margin: 0 auto;
-    }
-
-    h3 {
-        text-align: center;
-    }
 }
 
 .header-end {
@@ -791,6 +670,77 @@ body img{
 footer{
     margin-top: 50px;
 }
+
+/* Responsividade para telas menores */
+@media (max-width: 768px) {
+    header {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 2px 20px;
+    }
+
+    .header-left img {
+        width: 40px; /* Ajuste no tamanho do logo */
+    }
+
+    .header-center {
+        flex-grow: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0 10px;
+    }
+
+    .search-container {
+        width: 300px; /* Reduzindo a largura da pesquisa */
+        padding: 5px 10px;
+        border-radius: 20px;
+    }
+
+    .search-box {
+        font-size: 14px;
+    }
+
+    .header-right {
+        display: flex;
+        align-items: center;
+    }
+
+    .switch-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-size: 12px;
+    }
+
+    .menu-container {
+        margin-left: 10px;
+    }
+
+    .menu-icon {
+        width: 30px;
+        height: 24px;
+    }
+
+    .menu-icon div {
+        height: 4px;
+        background-color: #fff;
+    }
+}
+
+@media (max-width: 380px) {
+    .save-btn {
+        display: block;
+        margin: 0 auto;
+    }
+
+    h3 {
+        text-align: center;
+    }
+}
+
 
 @media (max-width: 480px) {
 
