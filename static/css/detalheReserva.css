@@ -285,6 +285,9 @@ input:checked + .slider:before {
     padding-left: 1px;
 }
 
+.fa-pix {
+    padding-right: 7px;
+}
 
 /* SUB-MODAIS DOS RELATÓRIOS */
 /* Estilo do submenu */
@@ -537,7 +540,7 @@ h1 {
     }
 
     .header-end {
-        margin-top: 0px;
+        margin-bottom: -1px;
     }
 
     .menu-icon div {
@@ -592,6 +595,10 @@ h1 {
 
         .foto-livro {
             margin-left: 20px;
+        }
+
+        .pai1 {
+            gap: 50px;
         }
 
     }
