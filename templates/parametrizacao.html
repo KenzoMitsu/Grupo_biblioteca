@@ -69,26 +69,37 @@
         <section class="container mt-5 p-4 pix-param-section">
             <h2 class="text-center mb-4">Parametrização do Pix</h2>
             <form id="pixForm" class="row g-3">
+
                 <div class="col-md-6">
                     <label for="nome" class="form-label">Nome da Biblioteca</label>
                     <input type="text" class="form-control" id="nome" required>
                 </div>
+
                 <div class="col-md-6">
                     <label for="razao" class="form-label">Razão Social</label>
                     <input type="text" class="form-control" id="razao" required>
                 </div>
+
                 <div class="col-md-6">
                     <label for="chave_pix" class="form-label">Chave Pix</label>
                     <input type="text" class="form-control" id="chave_pix" required>
                 </div>
+
                 <div class="col-md-3">
                     <label for="cidade" class="form-label">Cidade</label>
                     <input type="text" class="form-control" id="cidade" required>
                 </div>
+
                 <div class="col-md-3">
                     <label for="cnpj" class="form-label">CNPJ</label>
                     <input type="text" class="form-control" id="cnpj" required>
                 </div>
+
+                <div class="col-md-6">
+                    <label for="logo" class="form-label">Logo da Biblioteca</label>
+                    <input type="file" class="form-control" id="logo" accept="image/*" required>
+                </div>
+
                 <div class="col-12 text-center mt-4">
                     <button type="submit" class="btn btn-primary px-5">Salvar Parametrização</button>
                 </div>
@@ -219,6 +230,51 @@
                 }
             });
         });
+
+        $('#pixForm').on('submit', function (e) {
+            e.preventDefault();
+
+            const formData = new FormData();
+            formData.append('nome', $('#nome').val());
+            formData.append('chave_pix', $('#chave_pix').val());
+            formData.append('cidade', $('#cidade').val());
+            formData.append('razao', $('#razao').val());
+            formData.append('cnpj', $('#cnpj').val());
+            formData.append('logo', $('#logo')[0].files[0]); // Adiciona o arquivo da logo
+
+            $.ajax({
+                url: `${ipPython2}/parametrizar_pix`,
+                method: 'POST',
+                processData: false,
+                contentType: false,
+                data: formData,
+                success: function (response) {
+                    // Armazena a logo no Local Storage
+                    const logoFile = $('#logo')[0].files[0];
+                    const reader = new FileReader();
+                    reader.onloadend = function () {
+                        localStorage.setItem('logo', reader.result); // Armazena a imagem em base64
+                    };
+                    reader.readAsDataURL(logoFile);
+
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Sucesso!',
+                        text: response.mensagem,
+                        confirmButtonColor: '#0060BB'
+                    });
+                },
+                error: function () {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Erro!',
+                        text: 'Não foi possível salvar a parametrização.',
+                        confirmButtonColor: '#0060BB'
+                    });
+                }
+            });
+        });
+
     </script>
         
     </body>
