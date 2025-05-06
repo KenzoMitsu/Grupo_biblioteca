@@ -40,10 +40,9 @@
 
             <form id="formRecuperarSenha" class="login" onsubmit="enviarNovaSenha(event)">
             
-                <label class="coisa" for="nSenha">Sua Nova Senha:</label>
-                <input placeholder="Insira Sua Nova Senha" class="inserir" type="password" id="nSenha" name="nSenha" required>
+                <label class="coisa" for="cod">Insira o Codigo de Verificação:</label>
+                <input placeholder="Codigo de Verificação" class="inserir" type="text" id="cod" name="cod" required>
             
-                <input placeholder="Confirmar Nova Senha" class="inserir" type="password" id="nSenha2" name="nSenha2" required>
             </form>
 
             <div class="final">
@@ -54,41 +53,7 @@
         </div>
 
     </section>
-    <script>
-        async function enviarNovaSenha(event) {
-            event.preventDefault();
-    
-            const email = document.getElementById('email').value;
-            const novaSenha = document.getElementById('nSenha').value;
-            const confirmarSenha = document.getElementById('nSenha2').value;
-    
-            try {
-                const response = await fetch(ipPython + '/recuperar_senha', {
-                    method: 'PUT',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        email: email,
-                        nova_senha: novaSenha,
-                        confirmar_senha: confirmarSenha
-                    })
-                });
-    
-                const resultado = await response.json();
-    
-                if (!response.ok) {
-                    alert(`Erro: ${resultado.error}`);
-                } else {
-                    alert(resultado.message);
-                    window.location.href = "login.html";
-                }
-            } catch (error) {
-                alert("Erro ao conectar com o servidor.");
-                console.error(error);
-            }
-        }
-    </script>
+
 </body>
 
 </html>
