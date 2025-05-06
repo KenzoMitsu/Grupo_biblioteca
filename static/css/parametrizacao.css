@@ -350,7 +350,6 @@ input:checked + .slider:before {
     transition: 0.3s;
 }
 
-
 .header-end {
     margin-bottom: 15px;
 }
