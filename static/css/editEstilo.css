@@ -288,6 +288,15 @@ input:checked + .slider:before {
     padding-left: 1px;
 }
 
+.fa-pix {
+    padding-right: 7px;
+}
+
+/* Ícone de editar imagem */
+
+.fa-image {
+    font-size: 50px;
+}
 
 /* SUB-MODAIS DOS RELATÓRIOS */
 /* Estilo do submenu */
@@ -383,10 +392,10 @@ section {
 .btn-change-img {
     background-color: var(--azul);
     color: var(--branco);
-    padding-top: 87px;
-    padding-bottom: 87px;
-    padding-left: 33px;
-    padding-right: 33px;
+    padding-top: 73px;
+    padding-bottom: 73px;
+    padding-left: 73px;
+    padding-right: 73px;
     position: absolute;
     opacity: 0;
     border: none;

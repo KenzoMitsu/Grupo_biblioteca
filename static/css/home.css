@@ -211,7 +211,6 @@ header {
 
 .fa-pix {
     padding-right: 7px;
-    padding-left: 1px;
 }
 
 
@@ -342,7 +341,7 @@ header {
 
 .titulo {
     margin: 20px;
-    color: var(--azul);
+    color: var(--azul-escuro);
     text-align: center;
     font-weight: bold;
     font-size: xx-large;
