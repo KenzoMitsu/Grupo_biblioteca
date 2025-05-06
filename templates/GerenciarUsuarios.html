@@ -93,6 +93,11 @@
         </thead>
         <tbody></tbody>
       </table>
+
+      <div>
+        <a href="" class="btn" id="pagina-anterior">Ant Pag</a>
+        <a href="" class="btn" id="pagina-proxima">Prox Pag</a>
+      </div>
     </div>
 
     <!-- Modal para Edição -->
@@ -134,8 +139,6 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="usuarios.js"></script>
 
-
-
     <script>
       $(document).ready(function () {
         const token = localStorage.getItem("token");
@@ -145,7 +148,7 @@
         function carregarUsuarios() {
           $.ajax({
             method: "GET",
-            url: ipPython + "/usuario",
+            url: ipPython + "/usuario?pagina=" + pagina,
             headers: {
               'Authorization': 'Bearer ' + token
             },
