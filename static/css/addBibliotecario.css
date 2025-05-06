@@ -352,78 +352,6 @@ input:checked + .slider:before {
     border-radius: 50%;
 }
 
-/* Responsividade para telas menores */
-@media (max-width: 768px) {
-    header {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-        padding: 2px 20px;
-    }
-
-    .header-left img {
-        width: 40px; /* Ajuste no tamanho do logo */
-    }
-
-    .header-center {
-        flex-grow: 1;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin: 0 10px;
-    }
-
-    .search-container {
-        width: 150px; /* Reduzindo a largura da pesquisa */
-        padding: 5px 10px;
-        border-radius: 20px;
-    }
-
-    .search-box {
-        font-size: 14px;
-    }
-
-    .header-right {
-        display: flex;
-        align-items: center;
-    }
-
-    .switch-container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        font-size: 12px;
-    }
-
-    .menu-container {
-        margin-left: 10px;
-    }
-
-    .menu-icon {
-        width: 30px;
-        height: 24px;
-    }
-
-    .menu-icon div {
-        height: 4px;
-        background-color: #fff;
-    }
-}
-
-@media (max-width: 480px) {
-    .search-container {
-        width: 120px; /* Ajuste fino para telas muito pequenas */
-    }
-
-    .switch-container {
-        font-size: 10px;
-    }
-
-    .menu-icon {
-        width: 25px;
-    }
-}
 
 
 
@@ -561,39 +489,6 @@ label {
     font-weight: bold;
 }
 
-
-@media (max-width: 480px) {
-    .formulario {
-        width: 90%;
-        padding: 15px;
-    }
-
-    /* Ajusta para uma única coluna no mobile */
-    .form-grid {
-        grid-template-columns: 1fr;
-    }
-}
-
-@media (max-width:376px){
-    .img_perfil img{
-        width: 100px;
-        height: 100px;
-    }
-    .img_perfil .btn-change-img{
-        margin-left: 10px;
-        padding: 7px;
-    }
-    .inserir{
-        padding: 5px;
-    }
-    .btn-save{
-        padding: 5px 100px;
-    }
-    .btn{
-        width: 200px;
-    }
-}
-
 /* RODAPÉ */
 
 .separacao1 {
@@ -724,6 +619,118 @@ footer{
     margin-top: 50px;
 }
 
+.nomeUsuario {
+    color: rgb(194, 255, 235);
+    margin-left: 5px;
+}
+
+
+
+/* Responsividade para telas menores */
+@media (max-width: 768px) {
+    header {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 2px 20px;
+    }
+
+    .header-left img {
+        width: 40px; /* Ajuste no tamanho do logo */
+    }
+
+    .header-center {
+        flex-grow: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0 10px;
+    }
+
+    .search-container {
+        width: 150px; /* Reduzindo a largura da pesquisa */
+        padding: 5px 10px;
+        border-radius: 20px;
+    }
+
+    .search-box {
+        font-size: 14px;
+    }
+
+    .header-right {
+        display: flex;
+        align-items: center;
+    }
+
+    .switch-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-size: 12px;
+    }
+
+    .menu-container {
+        margin-left: 10px;
+    }
+
+    .menu-icon {
+        width: 30px;
+        height: 24px;
+    }
+
+    .menu-icon div {
+        height: 4px;
+        background-color: #fff;
+    }
+}
+
+@media (max-width: 480px) {
+    .search-container {
+        width: 120px; /* Ajuste fino para telas muito pequenas */
+    }
+
+    .switch-container {
+        font-size: 10px;
+    }
+
+    .menu-icon {
+        width: 25px;
+    }
+}
+
+@media (max-width: 480px) {
+    .formulario {
+        width: 90%;
+        padding: 15px;
+    }
+
+    /* Ajusta para uma única coluna no mobile */
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width:376px){
+    .img_perfil img{
+        width: 100px;
+        height: 100px;
+    }
+    .img_perfil .btn-change-img{
+        margin-left: 10px;
+        padding: 7px;
+    }
+    .inserir{
+        padding: 5px;
+    }
+    .btn-save{
+        padding: 5px 100px;
+    }
+    .btn{
+        width: 200px;
+    }
+}
+
 @media (max-width: 480px) {
 
     .logo_rodape{
@@ -813,12 +820,4 @@ footer{
         font-size: 15px
     }
 }
-
-
-.nomeUsuario {
-    color: rgb(194, 255, 235);
-    margin-left: 5px;
-}
-
-
 
