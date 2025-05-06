@@ -289,6 +289,9 @@ input:checked + .slider:before {
     padding-left: 1px;
 }
 
+.fa-pix {
+    padding-right: 7px;
+}
 
 /* SUB-MODAIS DOS RELATÓRIOS */
 /* Estilo do submenu */
@@ -578,7 +581,7 @@ input:checked + .slider:before {
     }
 
     .menu-container {
-        margin-left: 10px;
+        margin-left: 20px;
     }
 
     .menu-icon {

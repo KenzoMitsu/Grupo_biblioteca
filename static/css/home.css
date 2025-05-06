@@ -209,6 +209,10 @@ header {
     padding-left: 1px;
 }
 
+.fa-pix {
+    padding-right: 7px;
+}
+
 
 /* SUB-MODAIS DOS RELATÓRIOS */
 /* Estilo do submenu */
@@ -337,7 +341,7 @@ header {
 
 .titulo {
     margin: 20px;
-    color: var(--azul);
+    color: var(--azul-escuro);
     text-align: center;
     font-weight: bold;
     font-size: xx-large;

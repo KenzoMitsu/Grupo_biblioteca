@@ -15,7 +15,7 @@
   <link rel="stylesheet" href="../static/dist/assets/owl.carousel.min.css">
   <link rel="stylesheet" href="../static/dist/assets/owl.theme.default.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <link rel="stylesheet" href="../static/css/usuarios.css">
+  <link rel="stylesheet" href="../static/css/listagemReserva.css">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
     crossorigin="anonymous"></script>
@@ -75,16 +75,14 @@
   </div>
 
     <div class="table-container">
-      <table class="tabela-container" id="tabela-usuarios" border="3">
+      <table class="table" id="tabela-reservas" border="3">
         <thead>
           <tr>
             <th>ID</th>
-            <th>Nome</th>
-            <th>Email</th>
-            <th>Telefone</th>
-            <th>Nascimento</th>
-            <th>Cargo</th>
-            <th>Status</th>
+            <th>Data Reserva</th>
+            <th>Usuário</th>
+            <th>Título do Livro</th>
+            <th>Autor</th>
             <th>Ações</th>
           </tr>
         </thead>
@@ -137,212 +135,89 @@
       $(document).ready(function () {
         const token = localStorage.getItem("token");
 
-        carregarUsuarios();
+        carregarReservas();
 
-        function carregarUsuarios() {
+        function carregarReservas() {
           $.ajax({
             method: "GET",
-            url: ipPython + "/usuario",
+            url: ipPython + "/reservas",
             headers: {
               'Authorization': 'Bearer ' + token
             },
             success: function (data) {
-              let usuarios = data.usuarios_cadastrados;
-              let tabela = $("#tabela-usuarios tbody");
+              let reservas = data.reservas;
+              let tabela = $("#tabela-reservas tbody");
               tabela.empty();
 
-              usuarios.forEach(usuario => {
+              reservas.forEach(reserva => {
                 let linha = `
-                <tr>
-                  <td>${usuario.id_usuario}</td>
-                  <td>${usuario.nome}</td>
-                  <td>${usuario.email}</td>
-                  <td>${usuario.telefone}</td>
-                  <td>${usuario.data_nascimento}</td>
-                  <td>${usuario.cargo}</td>
-                  <td>${usuario.status}</td>
-                </tr>
-              `;
+                  <tr>
+                    <td>${reserva.id_emprestimo}</td>
+                    <td>${formatarData(reserva.data_reserva)}</td>
+                    <td>${reserva.nome_usuario}</td>
+                    <td>${reserva.titulo_livro}</td>
+                    <td>${reserva.autor_livro}</td>
+                    <td>
+                      <div class="display-pai">
+                        <button id="btn_reserva" class="botao-reserva" type="submit" 
+                                onclick="emprestarLivro(this)" data-id="${reserva.id_emprestimo}">
+                          Emprestar
+                        </button>
+                      </div>
+                    </td>
 
+                  </tr>
+                `;
                 tabela.append(linha);
               });
-
-              // Evento de editar
-              $(".editar-btn").click(function () {
-                let id = $(this).data("id");
-                let nome = $(this).data("nome");
-                let email = $(this).data("email");
-                let telefone = $(this).data("telefone");
-                let data_nascimento_raw = $(this).data("data_nascimento");
-                let data_nascimento = new Date(data_nascimento_raw).toISOString().split("T")[0];
-                let cargo = $(this).data("cargo");
-                let status = $(this).data("status");
-
-                $("#id_usuario").val(id);
-                $("#nome").val(nome);
-                $("#email").val(email);
-                $("#telefone").val(telefone);
-                $("#data_nascimento").val(data_nascimento);
-                $("#cargo").val(cargo);
-                $("#status").val(status);
-
-                $("#modal-edicao").show();
-              });
-
-              // Evento de excluir (dentro do carregamento para capturar os novos elementos)
-              $(".excluir-btn").click(function () {
-                const id = $(this).data("id");
-
-                Swal.fire({
-                  title: 'Tem certeza?',
-                  text: "Essa ação não poderá ser desfeita!",
-                  icon: 'warning',
-                  showCancelButton: true,
-                  confirmButtonColor: '#d33',
-                  cancelButtonColor: '#3085d6',
-                  confirmButtonText: 'Sim, excluir!',
-                  cancelButtonText: 'Cancelar'
-                }).then((result) => {
-                  if (result.isConfirmed) {
-                    $.ajax({
-                      method: "DELETE",
-                      url: ipPython + "/usuariosadm/" + id,
-                      headers: {
-                        'Authorization': 'Bearer ' + token
-                      },
-                      success: function () {
-                        Swal.fire({
-                          title: "Excluído!",
-                          text: "O usuário foi excluído com sucesso.",
-                          icon: "success"
-                        });
-                        carregarUsuarios();
-                      },
-                      error: function (retorno) {
-                        Swal.fire({
-                          title: "Erro!",
-                          text: JSON.parse(retorno.responseText).error || "Não foi possível excluir o usuário.",
-                          icon: "error"
-                        });
-                      }
-                    });
-                  }
-                });
-              });
-            },
-            error: function (retorno) {
-              Swal.fire({
-                title: "Erro!",
-                text: JSON.parse(retorno.responseText).error,
-                icon: "error"
-              });
             }
           });
         }
-
-        // Envio do formulário de edição
-        $("#form-edicao").submit(function (e) {
-          e.preventDefault();
-
-          let id = $("#id_usuario").val();
-          let nome = $("#nome").val().trim();
-          let email = $("#email").val().trim();
-          let telefone = $("#telefone").val().trim();
-          let data_nascimento = $("#data_nascimento").val().trim();
-          let cargo = $("#cargo").val().trim();
-          let status = $("#status").val().trim();
-
-          $.ajax({
-            method: "PUT",
-            url: ipPython + "/usuariosadm/" + id,
-            headers: {
-              'Authorization': 'Bearer ' + token
-            },
-            data: JSON.stringify({
-              nome: nome,
-              email: email,
-              telefone: telefone,
-              data_nascimento: data_nascimento,
-              cargo: cargo,
-              status: status
-            }),
-            contentType: "application/json",
-            success: function () {
-              Swal.fire({
-                title: "Sucesso!",
-                text: "Usuário atualizado com sucesso!",
-                icon: "success"
-              });
-              $("#modal-edicao").hide();
-              carregarUsuarios();
-            },
-            error: function (retorno) {
-              Swal.fire({
-                title: "Erro!",
-                text: JSON.parse(retorno.responseText).error || "Falha ao editar usuário.",
-                icon: "error"
-              });
-            }
-          });
-        });
-
-        // Botão para fechar o modal
-        $("#fechar-modal").click(function () {
-          $("#modal-edicao").hide();
-        });
-
-        // Máscara de telefone
-        $("#telefone").on("keyup", function (event) {
-          handlePhone(event);
-        });
-
-        const handlePhone = (event) => {
-          let input = event.target;
-          input.value = phoneMask(input.value);
-        };
-
-        const phoneMask = (value) => {
-          if (!value) return "";
-          value = value.replace(/\D/g, '');
-          value = value.replace(/(\d{2})(\d)/, "($1) $2");
-          value = value.replace(/(\d)(\d{4})$/, "$1-$2");
-          return value;
-        };
-
-        function formatarData(dataISO) {
-          if (!dataISO) return "";
-
-          let data = new Date(dataISO);
-          data.setDate(data.getDate() + 1);
-
-          let dia = data.getDate().toString().padStart(2, "0");
-          let mes = (data.getMonth() + 1).toString().padStart(2, "0");
-          let ano = data.getFullYear();
-
-          return `${dia}/${mes}/${ano}`;
-        }
-
-        // Logout
-
       });
 
-      function abrirModal(id) {
-        document.getElementById('modal-' + id).style.display = 'block';
-      }
+      // Função do botão de empretar Livro
+      async function emprestarLivro(button) {
+        const id_emprestimo = button.getAttribute("data-id"); // Pega o ID do empréstimo do botão
+        const token = localStorage.getItem("token"); // Obtém o token de autenticação
 
-      function fecharModal(id) {
-        document.getElementById('modal-' + id).style.display = 'none';
-      }
+        try {
+          const resposta = await fetch(ipPython + `/emprestimos/${id_emprestimo}`, {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+              "Authorization": `Bearer ${token}`
+            }
+          });
 
-      // Fechar modal se clicar fora do conteúdo
-      window.onclick = function (event) {
-        const modais = document.querySelectorAll('.modal');
-        modais.forEach(modal => {
-          if (event.target === modal) {
-            modal.style.display = "none";
+          const dados = await resposta.json(); // Captura a resposta JSON
+
+          if (!resposta.ok) {
+            throw new Error(dados.mensagem || "Erro ao realizar o empréstimo.");
           }
-        });
+
+          // Exibir SweetAlert de sucesso com a mensagem da API
+          Swal.fire({
+            title: 'Sucesso!',
+            text: dados.message || 'O empréstimo foi realizado com sucesso!',
+            icon: 'success',
+            confirmButtonText: 'OK'
+          }).then(() => {
+            // Redirecionar para a página de listagem de reservas
+            window.location.href = "ListagemReservas.html";
+          });
+
+        } catch (erro) {
+          console.error("Erro na requisição:", erro);
+          // Exibir SweetAlert de erro com a mensagem da API
+          Swal.fire({
+            title: 'Erro!',
+            text: erro.message || "Erro ao emprestar livro.",
+            icon: 'error',
+            confirmButtonText: 'OK'
+          });
+        }
       }
+
       // Adiciona o evento de clique no botão de relatórios
       document.addEventListener('DOMContentLoaded', function () {
         const relatoriosItem = document.getElementById('relatorios');
@@ -366,6 +241,19 @@
                     elemento.href = `${ipPython2}${linksRelatorios[id]}`;
                 }
             }
+        }
+
+        function formatarData(dataISO) {
+          if (!dataISO) return "";
+
+          let data = new Date(dataISO);
+          data.setDate(data.getDate() + 1);
+
+          let dia = data.getDate().toString().padStart(2, "0");
+          let mes = (data.getMonth() + 1).toString().padStart(2, "0");
+          let ano = data.getFullYear();
+
+          return `${dia}/${mes}/${ano}`;
         }
         // Chama a função assim que o DOM carregar
         document.addEventListener("DOMContentLoaded", atualizarLinksRelatorios);   
