@@ -336,8 +336,6 @@ h1 {
 
 .texto {
     font-size: medium;
-    max-width: 280px;
-
 }
 
 .container {
@@ -359,13 +357,22 @@ h1 {
 }
 
 .filho2 {
-    padding-right: 20px;
+    margin-left: 50px;
+    padding: 15px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+    border-radius: 4px;
+}
+
+.filho1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
 }
 
 .foto-livro {
     width: 237px;
     height: 300px;
-    margin-right: 15px;
 }
 
 .quantidade {
@@ -411,8 +418,46 @@ h1 {
     background-color: var(--azul-escuro);
     border: 3px solid var(--azul-escuro);
     transform: scale(1.05);
-    font-size: 25px;
     transition: 0.2s;
+}
+
+.mb-3 {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 60px;
+}
+
+.nav-pills .nav-link.active {
+    color: var(--azul);
+    background-color: var(--branco);
+    border-bottom: 2px solid var(--azul);
+    border-radius: 0px;
+    font-weight: bold;
+}
+
+.nav-link {
+    border-radius: 0px;
+    color: var(--azul);
+    font-weight: bold;
+    display: inline-block;
+    position: relative;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--azul);
+    transition: transform 0.25s ease-out;
+}
+
+.nav-link:hover::after {
+    transform: scaleX(1);
 }
 
 
@@ -479,7 +524,10 @@ h1 {
 
 form{
     margin-left: 20px;
+    display: flex;
+    flex-direction: column;
 }
+
 
 #reviewsContainer {
     margin-top: 30px;
@@ -521,9 +569,9 @@ form{
 .rating {
     margin: 10px 0;
     font-size: 24px;
-    border: 2px solid black;
     display: flex;
     align-items: center;
+    gap: 65px;
     text-align: center;
     border-radius: 5px;
     
@@ -533,7 +581,6 @@ form{
     cursor: pointer;
     color: #ddd;
     transition: all 0.2s;
-    margin-left: 35px;
 }
 
 .star.filled, .star:hover {
@@ -548,6 +595,7 @@ form{
     border-radius: 4px;
     margin: 10px 0;
     min-height: 100px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 #submitReview {
@@ -556,13 +604,14 @@ form{
     border: none;
     padding: 8px 16px;
     border-radius: 4px;
+    font-weight: bold;
     cursor: pointer;
-    transition: background 0.3s;
+    transition: 0.3s;
 }
 
 #submitReview:hover {
     background: #0060BB;
-    transition: 0.1s;
+    transition: 0.3s;
     transform: scale(1.05);
 
 }
@@ -655,8 +704,9 @@ form{
 
 .avaliacoes{
     display: flex;
+    justify-content: center;
     align-items: center;
-    margin-top: 60px;
+    margin-top: 10px;
 }
 
 

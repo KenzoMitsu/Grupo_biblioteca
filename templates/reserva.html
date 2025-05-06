@@ -73,6 +73,13 @@
                 <div class="pai1">
                     <div id="listaLivros" class="filho1">
                         <img id="imagemLivro" class="foto-livro imagemLivro" src="" alt="">
+                        <div class="pai2">
+                            <div class="display-pai">
+                                <h2 class="quantidade">Quantidade: <span id="quantidade" class="quantidade"></span></h2>
+                                <button id="btn_esgotado" class="botao-esgotado" type="submit">Esgotado</button>
+                                <button id="btn_reserva" class="botao-reserva" type="submit">Reservar</button>
+                            </div>
+                        </div>
                     </div>
                     <div class="filho2">
                         <h1 id="titulo"></h1>
@@ -87,35 +94,43 @@
                     </div>
                 </div>
             </div>
-            <div class="pai2">
-                <div class="display-pai">
-                    <h2 class="quantidade">Quantidade: <span id="quantidade" class="quantidade"></span></h2>
-                    <button id="btn_esgotado" class="botao-esgotado" type="submit">Esgotado</button>
-                    <button id="btn_reserva" class="botao-reserva" type="submit">Reservar</button>
-                </div>
-            </div>
+            
         </section>
 
-
-        <div class="avaliacoes">
-            <form id="formAvaliar">
-                <div class="rating">
-             
-                        <span class="star" data-value="1">★</span>
-                        <span class="star" data-value="2">★</span>
-                        <span class="star" data-value="3">★</span>
-                        <span class="star" data-value="4">★</span>
-                        <span class="star" data-value="5">★</span>
-                    
+        <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Avaliações</button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Avalie</button>
+            </li>
+          </ul>
+          <div class="tab-content" id="pills-tabContent">
+            <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab" tabindex="0">
+                <div id="reviewsContainer" class="reviews-container">
+                    <!-- As avaliações serão inseridas aqui -->
                 </div>
-                <textarea id="comment" placeholder="Escreva um comentário..." required></textarea>
-                <button class="coment" type="submit" id="submitReview">Enviar Avaliação</button>
-            </form>
-
-            <div id="reviewsContainer" class="reviews-container">
-                <!-- As avaliações serão inseridas aqui -->
             </div>
         </div>
+            <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">><div class="avaliacoes">
+                <form id="formAvaliar">
+                    <div class="rating">
+                 
+                            <span class="star" data-value="1">★</span>
+                            <span class="star" data-value="2">★</span>
+                            <span class="star" data-value="3">★</span>
+                            <span class="star" data-value="4">★</span>
+                            <span class="star" data-value="5">★</span>
+                        
+                    </div>
+                    <textarea id="comment" placeholder="Escreva um comentário..." required></textarea>
+                        <button class="coment" type="submit" id="submitReview">Enviar Avaliação</button>
+                </form></div>
+            <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab" tabindex="0">...</div>
+            <div class="tab-pane fade" id="pills-disabled" role="tabpanel" aria-labelledby="pills-disabled-tab" tabindex="0">...</div>
+          </div>
+
+    
         <script>
 
             document.addEventListener("DOMContentLoaded", function () {
