@@ -237,7 +237,7 @@
 
                 $.ajax({
                     method: "GET",
-                    url: ipPython + "/pesquisar?q=" + encodeURIComponent(termo),
+                    url: ipPython + "/pesquisar_livro?q=" + encodeURIComponent(termo),
                     success: function (retorno) {
                         $("#listaLivros").empty();
 
