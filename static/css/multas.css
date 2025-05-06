@@ -655,7 +655,9 @@ h1 {
     width: 150px;
     padding: 15px 10px;
     text-align: center;
-    border: 1px solid var(--escuro);
+    color: var(--azul);
+    border: 1px solid var(--azul);
+    background-color: #eef3ff;;
     border-radius: 6px;
     margin: 4px;
 }

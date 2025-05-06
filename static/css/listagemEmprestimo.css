@@ -613,6 +613,18 @@ button.botao-multas {
     transform: scale(1.05);
 }
 
+.botao-devolucao {
+    background-color: var(--azul);
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: var(--branco);
+    border: none;
+}
+
+.botao-devolucao:hover {
+    background-color: var(--azul-escuro);
+    transform: scale(1.05);
+}
 
 
 .botao-historico {
