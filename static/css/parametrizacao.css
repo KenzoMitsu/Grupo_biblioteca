@@ -240,6 +240,56 @@ input:checked + .slider:before {
     padding-right: 7px;
 }
 
+/* GET da parametrização */
+/* seção geral */
+.pix-display-section {
+    background: rgb(22, 73, 182);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  /* card interno */
+  .pix-display-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    background-color: #c1dfff;
+    color: #000000;
+    border-radius: 8px;
+    padding: 1rem;
+  }
+  
+  .pix-display-card .info {
+    flex: 1 1 300px;
+    margin-right: 1rem;
+  }
+  
+  .pix-display-card .info h3 {
+    color: #1947a8;
+    margin-bottom: 0.5rem;
+    font-size: 1.5rem;
+    padding-bottom: 8px;
+  }
+  
+  .pix-display-card .info p {
+    margin: 0.25rem 0;
+  }
+  
+  .pix-display-card .logo-container {
+    flex: 0 0 180px;
+    text-align: center;
+  }
+  
+  .pix-display-card .logo-container img {
+    max-width: 100%;
+    height: auto;
+    border: 2px solid #478ed1;
+    border-radius: 4px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  }
+
 /* SUB-MODAIS DOS RELATÓRIOS */
 /* Estilo do submenu */
 .submenu {
@@ -349,7 +399,6 @@ input:checked + .slider:before {
     transform: scale(1.05);
     transition: 0.3s;
 }
-
 
 .header-end {
     margin-bottom: 15px;

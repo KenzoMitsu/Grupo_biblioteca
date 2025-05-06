@@ -105,8 +105,53 @@
                 </div>
             </form>
         </section>
+
+        <section id="pixDisplay" class="container mt-4 pix-display-section">
+            
+            <script>
+                $(function(){
+                    const apiBase = `${ipPython2}`; // já definido no seu código
+                    
+                    function exibirPix() {
+                        $.get(`${apiBase}/pix`)
+                        .done(function(data){
+                            // obtém a logo em base64 do localStorage
+                            const logoBase64 = localStorage.getItem('logo') || '';
+
+                            const card = `
+                            <div class="pix-display-card">
+                                <div class="info">
+                                <h3>${data.nome}</h3>
+                                <p><strong>Razão Social:</strong> ${data.razao}</p>
+                                <p><strong>CNPJ:</strong> ${data.cnpj}</p>
+                                <p><strong>Chave Pix:</strong> ${data.chave_pix}</p>
+                                <p><strong>Cidade:</strong> ${data.cidade}</p>
+                                </div>
+                                <div class="logo-container">
+                                ${ logoBase64
+                                    ? `<img src="${logoBase64}" alt="Logo da Biblioteca">`
+                                    : `<p>Logo não encontrada.</p>` }
+                                </div>
+                            </div>`;
+
+                            $('#pixDisplay').html(card);
+                        })
+                        .fail(function(xhr){
+                            const msg = xhr.status === 404
+                                        ? 'Nenhum Pix configurado.'
+                                        : 'Erro ao carregar dados do Pix.';
+                            $('#pixDisplay').html(`<p class="text-danger">${msg}</p>`);
+                        });
+                    }
+
+                    // dispara ao carregar a página
+                    $(document).ready(exibirPix);
+                });
+            </script>              
+        </section>
+
     </main>
-    
+
 
     <footer class="inter">
         <div class="separacao1">
@@ -196,40 +241,6 @@
 
     <script>
         // função para buscar os dados do formulário e enviar via AJAX
-        $('#pixForm').on('submit', function (e) {
-            e.preventDefault();
-
-            const payload = {
-                nome: $('#nome').val(),
-                chave_pix: $('#chave_pix').val(),
-                cidade: $('#cidade').val(),
-                razao: $('#razao').val(),
-                cnpj: $('#cnpj').val()
-            };
-
-            $.ajax({
-                url: `${ipPython2}/parametrizar_pix`,
-                method: 'POST',
-                contentType: 'application/json',
-                data: JSON.stringify(payload),
-                success: function (response) {
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Sucesso!',
-                        text: response.mensagem,
-                        confirmButtonColor: '#0060BB'
-                    });
-                },
-                error: function () {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Erro!',
-                        text: 'Não foi possível salvar a parametrização.',
-                        confirmButtonColor: '#0060BB'
-                    });
-                }
-            });
-        });
 
         $('#pixForm').on('submit', function (e) {
             e.preventDefault();
