@@ -289,6 +289,9 @@ input:checked + .slider:before {
     padding-left: 1px;
 }
 
+.fa-pix {
+    padding-right: 7px;
+}
 
 /* SUB-MODAIS DOS RELATÓRIOS */
 /* Estilo do submenu */
@@ -578,7 +581,7 @@ input:checked + .slider:before {
     }
 
     .menu-container {
-        margin-left: 10px;
+        margin-left: 20px;
     }
 
     .menu-icon {
@@ -652,7 +655,9 @@ h1 {
     width: 150px;
     padding: 15px 10px;
     text-align: center;
-    border: 1px solid var(--escuro);
+    color: var(--azul);
+    border: 1px solid var(--azul);
+    background-color: #eef3ff;;
     border-radius: 6px;
     margin: 4px;
 }

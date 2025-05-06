@@ -96,7 +96,7 @@ if (cargo === 'ADM') {
             </div>
         </li>
 
-        <li>
+        <li class="menu-item">
             <div>
                 <i class="fa-brands fa-pix"></i><a href="parametrizacao.html">Parametrizar pix</a>
             </div>
@@ -132,7 +132,7 @@ if (cargo === 'ADM') {
             </div>
         </li>
 
-        <li>
+        <li class="menu-item">
             <div>
                 <i class="fa-brands fa-pix"></i><a href="parametrizacao.html">Parametrizar pix</a>
             </div>

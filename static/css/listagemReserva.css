@@ -236,6 +236,10 @@ input:checked + .slider:before {
     padding-left: 1px;
 }
 
+.fa-pix {
+    padding-right: 7px;
+}
+
 .menu-item { 
     display: flex;
     flex-direction: column; /* ← isso força tudo a ficar empilhado para baixo */

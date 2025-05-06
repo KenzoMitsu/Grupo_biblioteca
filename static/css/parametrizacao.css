@@ -3,7 +3,6 @@
     padding: 0;
     box-sizing: border-box;
     text-decoration: none;
-    transition: all 0.3s;
     font-family: "Montserrat", sans-serif;
 }
 
@@ -33,7 +32,7 @@ a{
 }
 body {
     font-family: Arial, sans-serif;
-    background-color: #f5f5f5;
+    background-color: white;
 }
 
 header {
@@ -237,6 +236,9 @@ input:checked + .slider:before {
     padding-left: 1px;
 }
 
+.fa-pix {
+    padding-right: 7px;
+}
 
 /* SUB-MODAIS DOS RELATÓRIOS */
 /* Estilo do submenu */
@@ -318,32 +320,34 @@ input:checked + .slider:before {
 }
 
 .pix-param-section h2 {
-    color: #0060BB;
-    font-weight: 600;
+    color: var(--azul-escuro);
+    font-weight: bold;
 }
 
 .pix-param-section label {
-    color: #0060BB;
-    font-weight: 500;
+    color: var(--azul);
+    font-weight: bold;
 }
 
 .pix-param-section .form-control {
-    border: 1px solid #4292DC;
+    border: 1px solid var(--azul);
     border-radius: 6px;
 }
 
 .pix-param-section .btn-primary {
-    background-color: #0060BB;
+    background-color: var(--azul);
     border: none;
-    font-weight: 500;
+    padding: 10px;
+    transition: 0.3s;
+    font-weight: bold;
     font-size: 1.1rem;
 }
 
 .pix-param-section .btn-primary:hover {
-    background-color: #4292DC;
+    background-color: var(--azul-escuro);
+    transform: scale(1.05);
+    transition: 0.3s;
 }
-
-
 
 
 /* Responsividade para telas menores */
@@ -369,7 +373,7 @@ input:checked + .slider:before {
     }
 
     .search-container {
-        width: 150px; /* Reduzindo a largura da pesquisa */
+        width: 300px; /* Reduzindo a largura da pesquisa */
         padding: 5px 10px;
         border-radius: 20px;
     }
@@ -472,7 +476,6 @@ label{
     margin-bottom: 10px;
     border: 3px solid #3380ca;
     background-color:#eef3ff;
-    font-weight: bold;
 }
 
 .form-control input {

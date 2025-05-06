@@ -112,6 +112,10 @@ select {
     padding-left: 1px;
 }
 
+.fa-pix {
+    padding-right: 7px;
+}
+
 /* Modal */
 #modal-edicao {
     display: flex; /* Usar flexbox para centralizar o conteúdo */
