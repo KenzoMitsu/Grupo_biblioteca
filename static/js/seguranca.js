@@ -96,6 +96,12 @@ if (cargo === 'ADM') {
             </div>
         </li>
 
+        <li>
+            <div>
+                <i class="fa-brands fa-pix"></i><a href="parametrizacao.html">Parametrizar pix</a>
+            </div>
+        </li>
+
         <li class="menu-item">
             <div>
                 <i class="fas fa-sign-out-alt"></i><button onclick='sair()' class="sair">Sair</button>
@@ -123,6 +129,12 @@ if (cargo === 'ADM') {
         <li class="menu-item">
             <div>
                 <i class="fa-solid fa-dollar-sign"></i><a href="historicoMultas.html">Minhas Multas</a>
+            </div>
+        </li>
+
+        <li>
+            <div>
+                <i class="fa-brands fa-pix"></i><a href="parametrizacao.html">Parametrizar pix</a>
             </div>
         </li>
 
