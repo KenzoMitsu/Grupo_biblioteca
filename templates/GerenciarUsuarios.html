@@ -71,356 +71,62 @@
   <!-- FIM DO CABEÇALHO -->
 
   <div class="container">
-    <h2 class="titulo">Gerenciar Usuários</h2>
-    <div class="adicionar-usuario">
-      <a href="addUsuario.html" class="btn btn-primary">Adicionar Usuário</a>
-    </div>
+    <h2 class="titulo">Listagem de Empréstimos</h2>
   </div>
 
-    <div class="table-container">
-      <table class="tabela-container" id="tabela-usuarios" border="3">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Nome</th>
-            <th>Email</th>
-            <th>Telefone</th>
-            <th>Nascimento</th>
-            <th>Cargo</th>
-            <th>Status</th>
-            <th>Ações</th>
-          </tr>
-        </thead>
-        <tbody></tbody>
-      </table>
-
-      <div>
-        <a href="" class="btn" id="pagina-anterior">Ant Pag</a>
-        <a href="" class="btn" id="pagina-proxima">Prox Pag</a>
-      </div>
-    </div>
+  <div class="table-container">
+    <table class="tabela-container" id="tabela-usuarios" border="3">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nome</th>
+          <th>Email</th>
+          <th>Telefone</th>
+          <th>Nascimento</th>
+          <th>Cargo</th>
+          <th>Status</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
 
     <!-- Modal para Edição -->
-    <div id="modal-edicao" style="display: none;">
-      <form id="form-edicao">
-        <input type="hidden" id="id_usuario">
+  <div id="modal-edicao" style="display: none;">
+    <form id="form-edicao">
+      <input type="hidden" id="id_usuario">
 
-        <label>Nome:</label>
-        <input type="text" id="nome" required>
+      <label>Nome:</label>
+      <input type="text" id="nome" required>
 
-        <label>Email:</label>
-        <input type="email" id="email" required>
+      <label>Email:</label>
+      <input type="email" id="email" required>
 
-        <label>Telefone:</label>
-        <input type="text" id="telefone" onkeyup="handlePhone(event)" required>
+      <label>Telefone:</label>
+      <input type="text" id="telefone" onkeyup="handlePhone(event)" required>
 
-        <label>Data de nascimento:</label>
-        <input type="date" id="data_nascimento" required>
+      <label>Data de nascimento:</label>
+      <input type="date" id="data_nascimento" required>
 
 
-        <label for="cargo" class="coisa">Cargo:</label>
-        <select class="inserir" name="cargo" id="cargo">
-          <option class="inserir" value="Cliente">Cliente</option>
-          <option class="inserir" value="Bibliotecário">Bibliotecário</option>
-          <option class="inserir" value="ADM">ADM</option>
-        </select>
+      <label for="cargo" class="coisa">Cargo:</label>
+      <select class="inserir" name="cargo" id="cargo">
+        <option class="inserir" value="Cliente">Cliente</option>
+        <option class="inserir" value="Bibliotecário">Bibliotecário</option>
+        <option class="inserir" value="ADM">ADM</option>
+      </select>
 
-        <label for="status" class="coisa">Status:</label>
-        <select class="inserir" name="status" id="status">
-          <option class="inserir" value="Ativo">Ativo</option>
-          <option class="inserir" value="Inativo">Inativo</option>
-        </select>
+      <label for="status" class="coisa">Status:</label>
+      <select class="inserir" name="status" id="status">
+        <option class="inserir" value="Ativo">Ativo</option>
+        <option class="inserir" value="Inativo">Inativo</option>
+      </select>
 
-        <button type="submit">Salvar</button>
-        <button type="button" id="fechar-modal">Cancelar</button>
-      </form>
-    </div>
-
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="usuarios.js"></script>
-
-    <script>
-      $(document).ready(function () {
-        const token = localStorage.getItem("token");
-
-        carregarUsuarios();
-
-        function carregarUsuarios() {
-          $.ajax({
-            method: "GET",
-            url: ipPython + "/usuario?pagina=" + pagina,
-            headers: {
-              'Authorization': 'Bearer ' + token
-            },
-            success: function (data) {
-              let usuarios = data.usuarios_cadastrados;
-              let tabela = $("#tabela-usuarios tbody");
-              tabela.empty();
-
-              usuarios.forEach(usuario => {
-                let linha = `
-                <tr>
-                  <td>${usuario.id_usuario}</td>
-                  <td>${usuario.nome}</td>
-                  <td>${usuario.email}</td>
-                  <td class="tel">${usuario.telefone}</td>
-                  <td>${formatarData(usuario.data_nascimento)}</td>
-                  <td>${usuario.cargo}</td>
-                  <td>${usuario.status}</td>
-                  <td>
-                  <!-- Botão que abre a modal -->
-                      <button class="acoes" onclick="abrirModal('${usuario.id_usuario}')">Ações</button>
-
-                      <!-- Modal de ações -->
-                      <div id="modal-${usuario.id_usuario}" class="modal">
-                        <div class="modal-content">
-                          <span class="fechar" onclick="fecharModal('${usuario.id_usuario}')">&times;</span>
-                          
-                          <div class="tudosecao">
-                            <i class="fa-solid fa-pencil"></i>
-                            <button class="editar-btn"
-                              data-id="${usuario.id_usuario}"
-                              data-nome="${usuario.nome}"
-                              data-email="${usuario.email}"
-                              data-telefone="${usuario.telefone}"
-                              data-data_nascimento="${usuario.data_nascimento}"
-                              data-cargo="${usuario.cargo}"
-                              data-status="${usuario.status}">
-                                Editar
-                            </button>
-                          </div>
-
-                          <div class="tudosecao">
-                            <i class="fa-solid fa-rotate"></i>
-                            <a href="historicoUsuario.html?id=${usuario.id_usuario}">
-                              <button class='botao-historico'>Histórico</button>
-                            </a>
-                          </div>
-
-                          <div class="tudosecao">
-                            <i class="fa-solid fa-wallet"></i>
-                            <a href="multarUsuario.html?id=${usuario.id_usuario}">
-                              <button class='botao-multas'>Multas</button>
-                            </a>
-                          </div>
-
-                          <div class="tudosecao">
-                            <i class="fa-solid fa-trash"></i>
-                            <button class="excluir-btn" data-id="${usuario.id_usuario}">Excluir</button>
-                          </div>
-                        </div>
-                      </div>
-
-                </tr>
-              `;
-
-                tabela.append(linha);
-              });
-
-              // Evento de editar
-              $(".editar-btn").click(function () {
-                let id = $(this).data("id");
-                let nome = $(this).data("nome");
-                let email = $(this).data("email");
-                let telefone = $(this).data("telefone");
-                let data_nascimento_raw = $(this).data("data_nascimento");
-                let data_nascimento = new Date(data_nascimento_raw).toISOString().split("T")[0];
-                let cargo = $(this).data("cargo");
-                let status = $(this).data("status");
-
-                $("#id_usuario").val(id);
-                $("#nome").val(nome);
-                $("#email").val(email);
-                $("#telefone").val(telefone);
-                $("#data_nascimento").val(data_nascimento);
-                $("#cargo").val(cargo);
-                $("#status").val(status);
-
-                $("#modal-edicao").show();
-              });
-
-              // Evento de excluir (dentro do carregamento para capturar os novos elementos)
-              $(".excluir-btn").click(function () {
-                const id = $(this).data("id");
-
-                Swal.fire({
-                  title: 'Tem certeza?',
-                  text: "Essa ação não poderá ser desfeita!",
-                  icon: 'warning',
-                  showCancelButton: true,
-                  confirmButtonColor: '#d33',
-                  cancelButtonColor: '#3085d6',
-                  confirmButtonText: 'Sim, excluir!',
-                  cancelButtonText: 'Cancelar'
-                }).then((result) => {
-                  if (result.isConfirmed) {
-                    $.ajax({
-                      method: "DELETE",
-                      url: ipPython + "/usuariosadm/" + id,
-                      headers: {
-                        'Authorization': 'Bearer ' + token
-                      },
-                      success: function () {
-                        Swal.fire({
-                          title: "Excluído!",
-                          text: "O usuário foi excluído com sucesso.",
-                          icon: "success"
-                        });
-                        carregarUsuarios();
-                      },
-                      error: function (retorno) {
-                        Swal.fire({
-                          title: "Erro!",
-                          text: JSON.parse(retorno.responseText).error || "Não foi possível excluir o usuário.",
-                          icon: "error"
-                        });
-                      }
-                    });
-                  }
-                });
-              });
-            },
-            error: function (retorno) {
-              Swal.fire({
-                title: "Erro!",
-                text: JSON.parse(retorno.responseText).error,
-                icon: "error"
-              });
-            }
-          });
-        }
-
-        // Envio do formulário de edição
-        $("#form-edicao").submit(function (e) {
-          e.preventDefault();
-
-          let id = $("#id_usuario").val();
-          let nome = $("#nome").val().trim();
-          let email = $("#email").val().trim();
-          let telefone = $("#telefone").val().trim();
-          let data_nascimento = $("#data_nascimento").val().trim();
-          let cargo = $("#cargo").val().trim();
-          let status = $("#status").val().trim();
-
-          $.ajax({
-            method: "PUT",
-            url: ipPython + "/usuariosadm/" + id,
-            headers: {
-              'Authorization': 'Bearer ' + token
-            },
-            data: JSON.stringify({
-              nome: nome,
-              email: email,
-              telefone: telefone,
-              data_nascimento: data_nascimento,
-              cargo: cargo,
-              status: status
-            }),
-            contentType: "application/json",
-            success: function () {
-              Swal.fire({
-                title: "Sucesso!",
-                text: "Usuário atualizado com sucesso!",
-                icon: "success"
-              });
-              $("#modal-edicao").hide();
-              carregarUsuarios();
-            },
-            error: function (retorno) {
-              Swal.fire({
-                title: "Erro!",
-                text: JSON.parse(retorno.responseText).error || "Falha ao editar usuário.",
-                icon: "error"
-              });
-            }
-          });
-        });
-
-        // Botão para fechar o modal
-        $("#fechar-modal").click(function () {
-          $("#modal-edicao").hide();
-        });
-
-        // Máscara de telefone
-        $("#telefone").on("keyup", function (event) {
-          handlePhone(event);
-        });
-
-        const handlePhone = (event) => {
-          let input = event.target;
-          input.value = phoneMask(input.value);
-        };
-
-        const phoneMask = (value) => {
-          if (!value) return "";
-          value = value.replace(/\D/g, '');
-          value = value.replace(/(\d{2})(\d)/, "($1) $2");
-          value = value.replace(/(\d)(\d{4})$/, "$1-$2");
-          return value;
-        };
-
-        function formatarData(dataISO) {
-          if (!dataISO) return "";
-
-          let data = new Date(dataISO);
-          data.setDate(data.getDate() + 1);
-
-          let dia = data.getDate().toString().padStart(2, "0");
-          let mes = (data.getMonth() + 1).toString().padStart(2, "0");
-          let ano = data.getFullYear();
-
-          return `${dia}/${mes}/${ano}`;
-        }
-
-        // Logout
-
-      });
-
-      function abrirModal(id) {
-        document.getElementById('modal-' + id).style.display = 'block';
-      }
-
-      function fecharModal(id) {
-        document.getElementById('modal-' + id).style.display = 'none';
-      }
-
-      // Fechar modal se clicar fora do conteúdo
-      window.onclick = function (event) {
-        const modais = document.querySelectorAll('.modal');
-        modais.forEach(modal => {
-          if (event.target === modal) {
-            modal.style.display = "none";
-          }
-        });
-      }
-      // Adiciona o evento de clique no botão de relatórios
-      document.addEventListener('DOMContentLoaded', function () {
-        const relatoriosItem = document.getElementById('relatorios');
-        const submenu = relatoriosItem.querySelector('.submenu');
-
-        relatoriosItem.querySelector('.submenu-toggle').addEventListener('click', function () {
-          submenu.classList.toggle('show'); // Alterna a classe 'show' para mostrar ou esconder o submenu
-        });
-      });
-           // Função para atualizar os hrefs dos relatórios
-          function atualizarLinksRelatorios() {
-            const linksRelatorios = {
-                relatorioMultas: "/multas_relatorio",
-                relatorioLivros: "/livros_relatorio",
-                relatorioUsuarios: "/usuarios_relatorio",
-                relatorioEmprestimos: "/emprestimos_relatorio"
-            };
-            for (let id in linksRelatorios) {
-                const elemento = document.getElementById(id);
-                if (elemento) {
-                    elemento.href = `${ipPython2}${linksRelatorios[id]}`;
-                }
-            }
-        }
-        // Chama a função assim que o DOM carregar
-        document.addEventListener("DOMContentLoaded", atualizarLinksRelatorios);   
-
-    </script>
+      <button type="submit">Salvar</button>
+      <button type="button" id="fechar-modal">Cancelar</button>
+    </form>
+  </div>
 
   </div>
 
@@ -476,6 +182,287 @@
     </div>
   </footer>
 
-</body>
+  <script>
+    $(document).ready(function () {
+      const token = localStorage.getItem("token");
 
-</html>
+      carregarUsuarios();
+
+      function carregarUsuarios() {
+        $.ajax({
+          method: "GET",
+          url: ipPython + "/usuario",
+          headers: {
+            'Authorization': 'Bearer ' + token
+          },
+          success: function (data) {
+            let usuarios = data.usuarios;
+            let tabela = $("#tabela-usuarios tbody");
+            tabela.empty();
+
+            usuarios.forEach(usuario => {
+              let linha = `
+              <tr>
+                <td>${usuario.id_usuario}</td>
+                <td>${usuario.nome}</td>
+                <td>${usuario.email}</td>
+                <td class="tel">${usuario.telefone}</td>
+                <td>${formatarData(usuario.data_nascimento)}</td>
+                <td>${usuario.cargo}</td>
+                <td>${usuario.status}</td>
+                <td>
+                <!-- Botão que abre a modal -->
+                    <button class="acoes" onclick="abrirModal('${usuario.id_usuario}')">Ações</button>
+
+                    <!-- Modal de ações -->
+                    <div id="modal-${usuario.id_usuario}" class="modal">
+                      <div class="modal-content">
+                        <span class="fechar" onclick="fecharModal('${usuario.id_usuario}')">&times;</span>
+                        
+                        <div class="tudosecao">
+                          <i class="fa-solid fa-pencil"></i>
+                          <button class="editar-btn"
+                            data-id="${usuario.id_usuario}"
+                            data-nome="${usuario.nome}"
+                            data-email="${usuario.email}"
+                            data-telefone="${usuario.telefone}"
+                            data-data_nascimento="${usuario.data_nascimento}"
+                            data-cargo="${usuario.cargo}"
+                            data-status="${usuario.status}">
+                              Editar
+                          </button>
+                        </div>
+
+                        <div class="tudosecao">
+                          <i class="fa-solid fa-rotate"></i>
+                          <a href="historicoUsuario.html?id=${usuario.id_usuario}">
+                            <button class='botao-historico'>Histórico</button>
+                          </a>
+                        </div>
+
+                        <div class="tudosecao">
+                          <i class="fa-solid fa-wallet"></i>
+                          <a href="multarUsuario.html?id=${usuario.id_usuario}">
+                            <button class='botao-multas'>Multas</button>
+                          </a>
+                        </div>
+
+                        <div class="tudosecao">
+                          <i class="fa-solid fa-trash"></i>
+                          <button class="excluir-btn" data-id="${usuario.id_usuario}">Excluir</button>
+                        </div>
+                      </div>
+                    </div>
+
+              </tr>
+            `;
+
+              tabela.append(linha);
+            });
+
+            // Evento de editar
+            $(".editar-btn").click(function () {
+              let id = $(this).data("id");
+              let nome = $(this).data("nome");
+              let email = $(this).data("email");
+              let telefone = $(this).data("telefone");
+              let data_nascimento_raw = $(this).data("data_nascimento");
+              let data_nascimento = new Date(data_nascimento_raw).toISOString().split("T")[0];
+              let cargo = $(this).data("cargo");
+              let status = $(this).data("status");
+
+              $("#id_usuario").val(id);
+              $("#nome").val(nome);
+              $("#email").val(email);
+              $("#telefone").val(telefone);
+              $("#data_nascimento").val(data_nascimento);
+              $("#cargo").val(cargo);
+              $("#status").val(status);
+
+              $("#modal-edicao").show();
+            });
+
+            // Evento de excluir (dentro do carregamento para capturar os novos elementos)
+            $(".excluir-btn").click(function () {
+              const id = $(this).data("id");
+
+              Swal.fire({
+                title: 'Tem certeza?',
+                text: "Essa ação não poderá ser desfeita!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Sim, excluir!',
+                cancelButtonText: 'Cancelar'
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  $.ajax({
+                    method: "DELETE",
+                    url: ipPython + "/usuariosadm/" + id,
+                    headers: {
+                      'Authorization': 'Bearer ' + token
+                    },
+                    success: function () {
+                      Swal.fire({
+                        title: "Excluído!",
+                        text: "O usuário foi excluído com sucesso.",
+                        icon: "success"
+                      });
+                      carregarUsuarios();
+                    },
+                    error: function (retorno) {
+                      Swal.fire({
+                        title: "Erro!",
+                        text: JSON.parse(retorno.responseText).error || "Não foi possível excluir o usuário.",
+                        icon: "error"
+                      });
+                    }
+                  });
+                }
+              });
+            });
+          },
+          error: function (retorno) {
+            Swal.fire({
+              title: "Erro!",
+              text: JSON.parse(retorno.responseText).error,
+              icon: "error"
+            });
+          }
+        });
+      }
+
+      // Envio do formulário de edição
+      $("#form-edicao").submit(function (e) {
+        e.preventDefault();
+
+        let id = $("#id_usuario").val();
+        let nome = $("#nome").val().trim();
+        let email = $("#email").val().trim();
+        let telefone = $("#telefone").val().trim();
+        let data_nascimento = $("#data_nascimento").val().trim();
+        let cargo = $("#cargo").val().trim();
+        let status = $("#status").val().trim();
+
+        $.ajax({
+          method: "PUT",
+          url: ipPython + "/usuariosadm/" + id,
+          headers: {
+            'Authorization': 'Bearer ' + token
+          },
+          data: JSON.stringify({
+            nome: nome,
+            email: email,
+            telefone: telefone,
+            data_nascimento: data_nascimento,
+            cargo: cargo,
+            status: status
+          }),
+          contentType: "application/json",
+          success: function () {
+            Swal.fire({
+              title: "Sucesso!",
+              text: "Usuário atualizado com sucesso!",
+              icon: "success"
+            });
+            $("#modal-edicao").hide();
+            carregarUsuarios();
+          },
+          error: function (retorno) {
+            Swal.fire({
+              title: "Erro!",
+              text: JSON.parse(retorno.responseText).error || "Falha ao editar usuário.",
+              icon: "error"
+            });
+          }
+        });
+      });
+
+      // Botão para fechar o modal
+      $("#fechar-modal").click(function () {
+        $("#modal-edicao").hide();
+      });
+
+      // Máscara de telefone
+      $("#telefone").on("keyup", function (event) {
+        handlePhone(event);
+      });
+
+      const handlePhone = (event) => {
+        let input = event.target;
+        input.value = phoneMask(input.value);
+      };
+
+      const phoneMask = (value) => {
+        if (!value) return "";
+        value = value.replace(/\D/g, '');
+        value = value.replace(/(\d{2})(\d)/, "($1) $2");
+        value = value.replace(/(\d)(\d{4})$/, "$1-$2");
+        return value;
+      };
+
+      function formatarData(dataISO) {
+        if (!dataISO) return "";
+
+        let data = new Date(dataISO);
+        data.setDate(data.getDate() + 1);
+
+        let dia = data.getDate().toString().padStart(2, "0");
+        let mes = (data.getMonth() + 1).toString().padStart(2, "0");
+        let ano = data.getFullYear();
+
+        return `${dia}/${mes}/${ano}`;
+      }
+
+      // Logout
+
+    });
+
+    function abrirModal(id) {
+      document.getElementById('modal-' + id).style.display = 'block';
+    }
+
+    function fecharModal(id) {
+      document.getElementById('modal-' + id).style.display = 'none';
+    }
+
+    // Fechar modal se clicar fora do conteúdo
+    window.onclick = function (event) {
+      const modais = document.querySelectorAll('.modal');
+      modais.forEach(modal => {
+        if (event.target === modal) {
+          modal.style.display = "none";
+        }
+      });
+    }
+    // Adiciona o evento de clique no botão de relatórios
+    document.addEventListener('DOMContentLoaded', function () {
+      const relatoriosItem = document.getElementById('relatorios');
+      const submenu = relatoriosItem.querySelector('.submenu');
+
+      relatoriosItem.querySelector('.submenu-toggle').addEventListener('click', function () {
+        submenu.classList.toggle('show'); // Alterna a classe 'show' para mostrar ou esconder o submenu
+      });
+    });
+         // Função para atualizar os hrefs dos relatórios
+        function atualizarLinksRelatorios() {
+          const linksRelatorios = {
+              relatorioMultas: "/multas_relatorio",
+              relatorioLivros: "/livros_relatorio",
+              relatorioUsuarios: "/usuarios_relatorio",
+              relatorioEmprestimos: "/emprestimos_relatorio"
+          };
+          for (let id in linksRelatorios) {
+              const elemento = document.getElementById(id);
+              if (elemento) {
+                  elemento.href = `${ipPython2}${linksRelatorios[id]}`;
+              }
+          }
+      }
+      // Chama a função assim que o DOM carregar
+      document.addEventListener("DOMContentLoaded", atualizarLinksRelatorios);   
+
+  </script>
+
+</body>
