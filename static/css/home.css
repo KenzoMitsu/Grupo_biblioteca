@@ -405,6 +405,20 @@ header {
     white-space: none;
 }
 
+.paginacao {
+    display: flex;
+    justify-content: center;
+    margin-top: 35px;
+}
+
+.btn {
+    background-color: #ddd;
+}
+
+.btn:hover {
+    background-color: #c6c6c6;
+}
+
 /* RODAPÉ */
 
 .separacao1 {
