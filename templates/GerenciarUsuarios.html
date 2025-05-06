@@ -35,6 +35,7 @@
   <link rel="icon" type="image/x-icon" href="../static/img/head-removebg-preview.png">
 </head>
 
+
 <body>
   <header>
     <!-- Logo -->
@@ -71,7 +72,7 @@
   <!-- FIM DO CABEÇALHO -->
 
   <div class="container">
-    <h2 class="titulo">Listagem de Empréstimos</h2>
+    <h2 class="titulo">Gerenciar Usuário</h2>
   </div>
 
     <div class="table-container">
@@ -194,13 +195,43 @@
         carregarUsuarios();
 
         function carregarUsuarios() {
+          const params = new URLSearchParams(window.location.search);
+            var pagina = params.get('pagina');
+
+            if (pagina === null || pagina === undefined) {
+                pagina = 1
+            } 
+
+            if (pagina == 1) {
+                document.getElementById('pagina-anterior').style.display = "none"
+            }
+
           $.ajax({
             method: "GET",
-            url: ipPython + "/usuario",
+            url: ipPython + "/usuario?pagina=" + pagina,
             headers: {
               'Authorization': 'Bearer ' + token
             },
             success: function (data) {
+              var total = data.total_paginas
+              var paginaAtual = data.pagina_atual
+              var anterior = paginaAtual - 1
+              var proxima = paginaAtual + 1
+
+              document.getElementById("pagina-anterior").href = "/templates/GerenciarUsuarios.html?pagina=" + anterior
+
+              document.getElementById("pagina-proxima").href = "/templates/GerenciarUsuarios.html?pagina=" + proxima
+
+              if (paginaAtual >= total) {
+                  document.getElementById('pagina-proxima').style.display = "none"
+              } 
+
+              if (paginaAtual > total) {
+                  document.getElementById('listaLivros').innerHTML = `
+                      <p>Livros não encontrados!</p>
+                  `;
+              }
+
               let usuarios = data.usuarios;
               let tabela = $("#tabela-usuarios tbody");
               tabela.empty();
