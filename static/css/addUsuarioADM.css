@@ -367,77 +367,6 @@ input:checked + .slider:before {
     border-radius: 50%;
 }
 
-@media (max-width: 768px) {
-    header {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-        padding: 2px 20px;
-    }
-
-    .header-left img {
-        width: 40px; /* Ajuste no tamanho do logo */
-    }
-
-    .header-center {
-        flex-grow: 1;
-        display: flex;
-        justify-content: center;
-        margin: 0 10px;
-    }
-
-    .search-container {
-        width: 150px; /* Reduzindo a largura da pesquisa */
-        padding: 5px 10px;
-        border-radius: 20px;
-    }
-
-    .search-box {
-        font-size: 14px;
-    }
-
-    .header-right {
-        display: flex;
-        align-items: center;
-    }
-
-    .switch-container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        font-size: 12px;
-    }
-
-    .menu-container {
-        margin-left: 10px;
-    }
-
-    .menu-icon {
-        width: 30px;
-        height: 24px;
-    }
-
-    .menu-icon div {
-        height: 4px;
-        background-color: #fff;
-    }
-}
-
-@media (max-width: 480px) {
-    .search-container {
-        width: 120px; /* Ajuste fino para telas muito pequenas */
-    }
-
-    .switch-container {
-        font-size: 10px;
-    }
-
-    .menu-icon {
-        width: 25px;
-    }
-}
-
 
 .sair{
     background-color: #00010000;
@@ -575,158 +504,6 @@ input::placeholder {
     margin-bottom: 10px;
     display: flex;
     width: 100%;
-}
-
-
-@media (max-width: 800px) {
-    .livro-1 {
-        display: none;
-    }
-
-    .inserir {
-        width: 300px;
-    }
-
-    .formulario {
-        margin-top: -20px;
-        display: flex;
-    }
-
-    header {
-        align-items: center;
-        justify-content: center;
-        width: 100%;
-        display: flex;
-    }
-
-    .cadastro {
-        display: block;
-    }
-
-    .tudo {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-    }
-
-    .formulario {
-        display: flex;
-        flex-direction: column;
-    }
-    .data{
-        width: 300px;
-    }
-}
-
-@media (max-width: 500px) {
-
-    header {
-        align-items: center;
-        justify-content: center;
-        width: 100%;
-        display: flex;
-    }
-
-    .logo-header {
-        width: 100px;
-        height: auto;
-        text-align: center;
-        padding: 0;
-    }
-
-    .titulo {
-        font-size: 40px;
-    }
-
-    .tudo {
-        width: 100%;
-    }
-
-    .formulario {
-        width: 100%;
-        justify-content: center;
-        align-items: center;
-        margin-top: 10px;
-    }
-
-    .inserir {
-        width: 300px;
-    }
-
-    .coisa {
-        font-size: 20px;
-    }
-}
-
-@media (max-width: 400px) {
-
-    header {
-        align-items: center;
-        justify-content: center;
-        width: 100%;
-        display: flex;
-    }
-
-    .logo-header {
-        width: 100px;
-        height: auto;
-        text-align: center;
-        padding: 0;
-    }
-
-    .formulario {
-        width: 100%;
-        justify-content: center;
-        align-items: center;
-        padding: 7px;
-    }
-
-}
-
-@media (max-width: 350px) {
-
-    .formulario {
-        width: 100%;
-        justify-content: center;
-        align-items: center;
-        padding: 7px;
-        margin-top: 5px;
-    }
-
-    header {
-        align-items: center;
-        justify-content: center;
-        width: 100%;
-        display: flex;
-    }
-
-    .logo-header {
-        width: 100px;
-        height: auto;
-        text-align: center;
-        padding: 0;
-    }
-
-    .inserir {
-        width: 250px;
-    }
-
-    input::placeholder {
-
-        color: var(--preto);
-        opacity: 0.5;
-        font-size: 15px;
-    }
-
-    .coisa {
-        font-size: 18px;
-    }
-    .data{
-        width: 252px;
-
-    }
-
 }
 
 
@@ -951,4 +728,224 @@ footer{
 }
 
 
+@media (max-width: 768px) {
+    header {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 2px 20px;
+    }
 
+    .header-left img {
+        width: 40px; /* Ajuste no tamanho do logo */
+    }
+
+    .header-center {
+        flex-grow: 1;
+        display: flex;
+        justify-content: center;
+        margin: 0 10px;
+    }
+
+    .search-container {
+        width: 150px; /* Reduzindo a largura da pesquisa */
+        padding: 5px 10px;
+        border-radius: 20px;
+    }
+
+    .search-box {
+        font-size: 14px;
+    }
+
+    .header-right {
+        display: flex;
+        align-items: center;
+    }
+
+    .switch-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-size: 12px;
+    }
+
+    .menu-container {
+        margin-left: 10px;
+    }
+
+    .menu-icon {
+        width: 30px;
+        height: 24px;
+    }
+
+    .menu-icon div {
+        height: 4px;
+        background-color: #fff;
+    }
+}
+
+@media (max-width: 480px) {
+    .search-container {
+        width: 120px; /* Ajuste fino para telas muito pequenas */
+    }
+
+    .switch-container {
+        font-size: 10px;
+    }
+
+    .menu-icon {
+        width: 25px;
+    }
+}
+
+@media (max-width: 800px) {
+    .livro-1 {
+        display: none;
+    }
+
+    .inserir {
+        width: 300px;
+    }
+
+    .formulario {
+        margin-top: -20px;
+        display: flex;
+    }
+
+    header {
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        display: flex;
+    }
+
+    .cadastro {
+        display: block;
+    }
+
+    .tudo {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .formulario {
+        display: flex;
+        flex-direction: column;
+    }
+    .data{
+        width: 300px;
+    }
+}
+
+@media (max-width: 500px) {
+
+    header {
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        display: flex;
+    }
+
+    .logo-header {
+        width: 100px;
+        height: auto;
+        text-align: center;
+        padding: 0;
+    }
+
+    .titulo {
+        font-size: 40px;
+    }
+
+    .tudo {
+        width: 100%;
+    }
+
+    .formulario {
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+        margin-top: 10px;
+    }
+
+    .inserir {
+        width: 300px;
+    }
+
+    .coisa {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 400px) {
+
+    header {
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        display: flex;
+    }
+
+    .logo-header {
+        width: 100px;
+        height: auto;
+        text-align: center;
+        padding: 0;
+    }
+
+    .formulario {
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+        padding: 7px;
+    }
+
+}
+
+@media (max-width: 350px) {
+
+    .formulario {
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+        padding: 7px;
+        margin-top: 5px;
+    }
+
+    header {
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        display: flex;
+    }
+
+    .logo-header {
+        width: 100px;
+        height: auto;
+        text-align: center;
+        padding: 0;
+    }
+
+    .inserir {
+        width: 250px;
+    }
+
+    input::placeholder {
+
+        color: var(--preto);
+        opacity: 0.5;
+        font-size: 15px;
+    }
+
+    .coisa {
+        font-size: 18px;
+    }
+    .data{
+        width: 252px;
+
+    }
+
+}

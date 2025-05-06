@@ -81,8 +81,8 @@
                 <p class="livro-titulo"></p>
             </div>
             <div class="actions">
-                <button class="edit" data-bs-toggle="modal" data-bs-target="#modalEditarLivro" onclick="editarLivro(this)">Editar
-</button>
+                <button class="edit" data-bs-toggle="modal" data-bs-target="#modalEditarLivro" onclick="editarLivro(this)">Editar</button>
+                
                 <button class="delete" onclick="deletarLivro(this)">Deletar</button>
             </div>
         </div>
@@ -134,6 +134,20 @@
                             <label class="bloco">Quantidade:</label>
                             <input type="number" placeholder="Ex.: 1, 2 ou 3" class="inserir" id="quantidade"
                                 name="quantidade" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="bloco">Páginas:</label>
+                            <input type="number" placeholder="Número de páginas"
+                                class="inserir" id="paginasEditar"
+                                name="paginas" required>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label class="bloco">Idioma:</label>
+                            <input type="text" placeholder="Idioma do livro"
+                                class="inserir" id="idiomaEditar"
+                                name="idioma" required>
                         </div>
 
                         <div class="mb-3">
@@ -287,9 +301,31 @@
 
                         <div class="mb-3">
                             <label class="bloco">Quantidade:</label>
-                            <input type="number" placeholder="Ex.: 1, 2 ou 3" class="inserir" id="quantidadeEditar"
+                            <input type="number" placeholder="Ex.: 1, 2 ou 3" class="inserir"
+                                id="quantidadeEditar"
                                 name="quantidade" required>
                         </div>
+                          
+                        <div class="mb-3">
+                            <label class="bloco">Páginas:</label>
+                            <input type="number"
+                                    placeholder="Número de páginas"
+                                    class="inserir"
+                                    id="paginas"
+                                    name="paginas"
+                                    required>
+                        </div>
+                            
+                        <div class="mb-3">
+                            <label class="bloco">Idioma:</label>
+                            <input type="text"
+                                    placeholder="Idioma do livro"
+                                    class="inserir"
+                                    id="idioma"
+                                    name="idioma"
+                                    required>
+                        </div>
+                          
 
                         <div class="mb-3">
                             <label for="categoria" class="coisa">Categoria:</label>
@@ -589,6 +625,8 @@
             $("#ISBNEditar").val(livro.ISBN);
             $("#descricaoEditar").val(livro.descricao);
             $("#quantidadeEditar").val(livro.quantidade);
+            $("#paginasEditar").val(livro.paginas);
+            $("#idiomaEditar").val(livro.idioma);
             $("#categoriaEditar").val(livro.categoria); // Certifique-se de que isso está correto
             $("#previewImagemEditar").attr("src", ipPython + "/static/uploads/Livros/" + livro.id_livro + ".jpeg").show();
         },

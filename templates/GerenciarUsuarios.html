@@ -35,46 +35,44 @@
   <link rel="icon" type="image/x-icon" href="../static/img/head-removebg-preview.png">
 </head>
 
+
 <body>
   <header>
     <!-- Logo -->
     <div class="header-left">
-        <a id="logoHeader" href="home.html"><img src="../static/img/logo.png" alt="Logo"></a>
+      <a id="logoHeader" href="home.html"><img src="../static/img/logo.png" alt="Logo"></a>
     </div>
 
     <!-- Barra de Pesquisa -->
     <form id="formBuscaLivro">
-        <div class="search-container">
-            <i class="fas fa-search"></i>
-            <input type="text" id="campoBusca" placeholder="Pesquise Seu Livro" class="search-box">
-        </div>
+      <div class="search-container">
+        <i class="fas fa-search"></i>
+        <input type="text" id="campoBusca" placeholder="Pesquise Seu Livro" class="search-box">
+      </div>
     </form>
 
     <div id="resultadoLivros"></div>
 
     <!-- Ícone de Menu com Dropdown -->
     <div class="header-end">
-        <div class="menu-container">
-            <div class="menu-icon" id="menuButton">
-                <div class="menulinha"></div>
-                <div class="menulinha"></div>
-                <div class="menulinha"></div>
-            </div>
-
-            <ul class="dropdown-menu" id="dropdownMenu">
-
-            </ul>
-
+      <div class="menu-container">
+        <div class="menu-icon" id="menuButton">
+          <div class="menulinha"></div>
+          <div class="menulinha"></div>
+          <div class="menulinha"></div>
         </div>
+
+        <ul class="dropdown-menu" id="dropdownMenu">
+
+        </ul>
+
+      </div>
     </div>
   </header>
   <!-- FIM DO CABEÇALHO -->
 
   <div class="container">
-    <h2 class="titulo">Gerenciar Usuários</h2>
-    <div class="adicionar-usuario">
-      <a href="addUsuario.html" class="btn btn-primary">Adicionar Usuário</a>
-    </div>
+    <h2 class="titulo">Gerenciar Usuário</h2>
   </div>
 
     <div class="table-container">
@@ -93,6 +91,11 @@
         </thead>
         <tbody></tbody>
       </table>
+
+      <div class="paginacao">
+        <a href="" class="btn" id="pagina-anterior">Ant Pag</a>
+        <a href="" class="btn" id="pagina-proxima">Prox Pag</a>
+      </div>
     </div>
 
     <!-- Modal para Edição -->
@@ -131,10 +134,59 @@
       </form>
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="usuarios.js"></script>
+    </div>
 
+    <footer class="inter">
+      <div class="separacao1">
+        <p>Entre em contato conosco</p>
+        <div class="redes">
+          <a href="https://www.whatsapp.com/?lang=pt_BR">
+            <i class="fa-brands fa-whatsapp"></i>
+          </a>
+          <a href="https://www.instagram.com">
+            <i class="fa-brands fa-instagram"></i>
+          </a>
+          <a href="https://br.linkedin.com">
+            <i class="fa-brands fa-linkedin"></i>
+          </a>
+          <a href="https://x.com/?lang=pt">
+            <i class="fa-brands fa-twitter"></i>
+          </a>
+          <a href="https://pt-br.facebook.com/login/device-based/regular/login/">
+            <i class="fa-brands fa-facebook"></i>
+          </a>
+        </div>
+      </div>
+      <div class="rodape-inter">
+        <div class="informacao">
+          <p class="informacoes">INFORMAÇÕES</p>
+          <div class="linha"></div>
+          <div class="display">
+            <i class="fa-solid fa-envelope icons"></i>
+            <p class="text">asa.literaria@email.com</p>
+          </div>
+          <div class="display">
+            <i class="fa-solid fa-phone icons"></i>
+            <p class="text">(18)99999-9999</p>
+          </div>
+        </div>
+        <div class="imagem">
+          <img class="logo_rodape" src="../static/img/logo.png" alt="logo">
+        </div>
 
+        <div class="localizacao">
+          <p class="local">LOCALIZAÇÃO
+            <br>
+            Birigui - SP
+          </p>
+        </div>
+      </div>
+
+      <div class="as">
+        <a href="https://www.google.com.br/?hl=pt-BR" class="text2">Termos de Uso</a>
+        <a href="https://www.google.com.br/?hl=pt-BR" class="text2">Política de privacidade</a>
+      </div>
+    </footer>
 
     <script>
       $(document).ready(function () {
@@ -143,73 +195,103 @@
         carregarUsuarios();
 
         function carregarUsuarios() {
+          const params = new URLSearchParams(window.location.search);
+            var pagina = params.get('pagina');
+
+            if (pagina === null || pagina === undefined) {
+                pagina = 1
+            } 
+
+            if (pagina == 1) {
+                document.getElementById('pagina-anterior').style.display = "none"
+            }
+
           $.ajax({
             method: "GET",
-            url: ipPython + "/usuario",
+            url: ipPython + "/usuario?pagina=" + pagina,
             headers: {
               'Authorization': 'Bearer ' + token
             },
             success: function (data) {
-              let usuarios = data.usuarios_cadastrados;
+              var total = data.total_paginas
+              var paginaAtual = data.pagina_atual
+              var anterior = paginaAtual - 1
+              var proxima = paginaAtual + 1
+
+              document.getElementById("pagina-anterior").href = "/templates/GerenciarUsuarios.html?pagina=" + anterior
+
+              document.getElementById("pagina-proxima").href = "/templates/GerenciarUsuarios.html?pagina=" + proxima
+
+              if (paginaAtual >= total) {
+                  document.getElementById('pagina-proxima').style.display = "none"
+              } 
+
+              if (paginaAtual > total) {
+                  document.getElementById('listaLivros').innerHTML = `
+                      <p>Livros não encontrados!</p>
+                  `;
+              }
+
+              let usuarios = data.usuarios;
               let tabela = $("#tabela-usuarios tbody");
               tabela.empty();
 
               usuarios.forEach(usuario => {
                 let linha = `
-                <tr>
-                  <td>${usuario.id_usuario}</td>
-                  <td>${usuario.nome}</td>
-                  <td>${usuario.email}</td>
-                  <td class="tel">${usuario.telefone}</td>
-                  <td>${formatarData(usuario.data_nascimento)}</td>
-                  <td>${usuario.cargo}</td>
-                  <td>${usuario.status}</td>
-                  <td>
-                  <!-- Botão que abre a modal -->
-                      <button class="acoes" onclick="abrirModal('${usuario.id_usuario}')">Ações</button>
+              <tr>
+                <td>${usuario.id_usuario}</td>
+                <td>${usuario.nome}</td>
+                <td>${usuario.email}</td>
+                <td class="tel">${usuario.telefone}</td>
+                <td>${formatarData(usuario.data_nascimento)}</td>
+                <td>${usuario.cargo}</td>
+                <td>${usuario.status}</td>
+                <td>
+                <!-- Botão que abre a modal -->
+                    <button class="acoes" onclick="abrirModal('${usuario.id_usuario}')">Ações</button>
 
-                      <!-- Modal de ações -->
-                      <div id="modal-${usuario.id_usuario}" class="modal">
-                        <div class="modal-content">
-                          <span class="fechar" onclick="fecharModal('${usuario.id_usuario}')">&times;</span>
-                          
-                          <div class="tudosecao">
-                            <i class="fa-solid fa-pencil"></i>
-                            <button class="editar-btn"
-                              data-id="${usuario.id_usuario}"
-                              data-nome="${usuario.nome}"
-                              data-email="${usuario.email}"
-                              data-telefone="${usuario.telefone}"
-                              data-data_nascimento="${usuario.data_nascimento}"
-                              data-cargo="${usuario.cargo}"
-                              data-status="${usuario.status}">
-                                Editar
-                            </button>
-                          </div>
+                    <!-- Modal de ações -->
+                    <div id="modal-${usuario.id_usuario}" class="modal">
+                      <div class="modal-content">
+                        <span class="fechar" onclick="fecharModal('${usuario.id_usuario}')">&times;</span>
+                        
+                        <div class="tudosecao">
+                          <i class="fa-solid fa-pencil"></i>
+                          <button class="editar-btn"
+                            data-id="${usuario.id_usuario}"
+                            data-nome="${usuario.nome}"
+                            data-email="${usuario.email}"
+                            data-telefone="${usuario.telefone}"
+                            data-data_nascimento="${usuario.data_nascimento}"
+                            data-cargo="${usuario.cargo}"
+                            data-status="${usuario.status}">
+                              Editar
+                          </button>
+                        </div>
 
-                          <div class="tudosecao">
-                            <i class="fa-solid fa-rotate"></i>
-                            <a href="historicoUsuario.html?id=${usuario.id_usuario}">
-                              <button class='botao-historico'>Histórico</button>
-                            </a>
-                          </div>
+                        <div class="tudosecao">
+                          <i class="fa-solid fa-rotate"></i>
+                          <a href="historicoUsuario.html?id=${usuario.id_usuario}">
+                            <button class='botao-historico'>Histórico</button>
+                          </a>
+                        </div>
 
-                          <div class="tudosecao">
-                            <i class="fa-solid fa-wallet"></i>
-                            <a href="multarUsuario.html?id=${usuario.id_usuario}">
-                              <button class='botao-multas'>Multas</button>
-                            </a>
-                          </div>
+                        <div class="tudosecao">
+                          <i class="fa-solid fa-wallet"></i>
+                          <a href="multarUsuario.html?id=${usuario.id_usuario}">
+                            <button class='botao-multas'>Multas</button>
+                          </a>
+                        </div>
 
-                          <div class="tudosecao">
-                            <i class="fa-solid fa-trash"></i>
-                            <button class="excluir-btn" data-id="${usuario.id_usuario}">Excluir</button>
-                          </div>
+                        <div class="tudosecao">
+                          <i class="fa-solid fa-trash"></i>
+                          <button class="excluir-btn" data-id="${usuario.id_usuario}">Excluir</button>
                         </div>
                       </div>
+                    </div>
 
-                </tr>
-              `;
+              </tr>
+            `;
 
                 tabela.append(linha);
               });
@@ -399,80 +481,24 @@
           submenu.classList.toggle('show'); // Alterna a classe 'show' para mostrar ou esconder o submenu
         });
       });
-           // Função para atualizar os hrefs dos relatórios
-          function atualizarLinksRelatorios() {
-            const linksRelatorios = {
-                relatorioMultas: "/multas_relatorio",
-                relatorioLivros: "/livros_relatorio",
-                relatorioUsuarios: "/usuarios_relatorio",
-                relatorioEmprestimos: "/emprestimos_relatorio"
-            };
-            for (let id in linksRelatorios) {
-                const elemento = document.getElementById(id);
-                if (elemento) {
-                    elemento.href = `${ipPython2}${linksRelatorios[id]}`;
-                }
-            }
+      // Função para atualizar os hrefs dos relatórios
+      function atualizarLinksRelatorios() {
+        const linksRelatorios = {
+          relatorioMultas: "/multas_relatorio",
+          relatorioLivros: "/livros_relatorio",
+          relatorioUsuarios: "/usuarios_relatorio",
+          relatorioEmprestimos: "/emprestimos_relatorio"
+        };
+        for (let id in linksRelatorios) {
+          const elemento = document.getElementById(id);
+          if (elemento) {
+            elemento.href = `${ipPython2}${linksRelatorios[id]}`;
+          }
         }
-        // Chama a função assim que o DOM carregar
-        document.addEventListener("DOMContentLoaded", atualizarLinksRelatorios);   
+      }
+      // Chama a função assim que o DOM carregar
+      document.addEventListener("DOMContentLoaded", atualizarLinksRelatorios);
 
     </script>
 
-  </div>
-
-  <footer class="inter">
-    <div class="separacao1">
-      <p>Entre em contato conosco</p>
-      <div class="redes">
-        <a href="https://www.whatsapp.com/?lang=pt_BR">
-          <i class="fa-brands fa-whatsapp"></i>
-        </a>
-        <a href="https://www.instagram.com">
-          <i class="fa-brands fa-instagram"></i>
-        </a>
-        <a href="https://br.linkedin.com">
-          <i class="fa-brands fa-linkedin"></i>
-        </a>
-        <a href="https://x.com/?lang=pt">
-          <i class="fa-brands fa-twitter"></i>
-        </a>
-        <a href="https://pt-br.facebook.com/login/device-based/regular/login/">
-          <i class="fa-brands fa-facebook"></i>
-        </a>
-      </div>
-    </div>
-    <div class="rodape-inter">
-      <div class="informacao">
-        <p class="informacoes">INFORMAÇÕES</p>
-        <div class="linha"></div>
-        <div class="display">
-          <i class="fa-solid fa-envelope icons"></i>
-          <p class="text">asa.literaria@email.com</p>
-        </div>
-        <div class="display">
-          <i class="fa-solid fa-phone icons"></i>
-          <p class="text">(18)99999-9999</p>
-        </div>
-      </div>
-      <div class="imagem">
-        <img class="logo_rodape" src="../static/img/logo.png" alt="logo">
-      </div>
-
-      <div class="localizacao">
-        <p class="local">LOCALIZAÇÃO
-          <br>
-          Birigui - SP
-        </p>
-      </div>
-    </div>
-
-    <div class="as">
-      <a href="https://www.google.com.br/?hl=pt-BR" class="text2">Termos de Uso</a>
-      <a href="https://www.google.com.br/?hl=pt-BR" class="text2">Política de privacidade</a>
-    </div>
-  </footer>
-
 </body>
-
-</html>

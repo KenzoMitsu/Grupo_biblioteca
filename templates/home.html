@@ -86,6 +86,10 @@
                     <img src="" alt="">
                 </div>
             </div>
+            <div class="paginacao">
+                <a href="" class="btn" id="pagina-anterior">Ant. Pag</a>
+                <a href="" class="btn" id="pagina-proxima">Próx. Pag</a>
+            </div>
         </div>
     </main>
 
@@ -145,13 +149,44 @@
         document.getElementById("nomeUsuario").innerHTML = nome
 
         function carregaLivros() {
+            const params = new URLSearchParams(window.location.search);
+            var pagina = params.get('pagina');
+
+            if (pagina === null || pagina === undefined) {
+                pagina = 1
+            } 
+
+            if (pagina == 1) {
+                document.getElementById('pagina-anterior').style.display = "none"
+            }
+
             var settings = {
-                "url": ipPython + "/livro",
+                "url": ipPython + "/livro?pagina=" + pagina,
                 "method": "GET",
                 "timeout": 0,
                 success: function (retorno) {
+                    var total = retorno.total_paginas
+                    var paginaAtual = retorno.pagina_atual
+                    var anterior = paginaAtual - 1 
+
+                    document.getElementById("pagina-anterior").href = "/templates/home.html?pagina=" + anterior
+
+                    var proxima = paginaAtual + 1
+
+                    document.getElementById("pagina-proxima").href = "/templates/home.html?pagina=" + proxima
+
                     var html = document.getElementById("listaLivros")
                     html.innerHTML = ""
+
+                    if (paginaAtual >= total) {
+                        document.getElementById('pagina-proxima').style.display = "none"
+                    } 
+                    
+                    if (paginaAtual > total) {
+                        document.getElementById('listaLivros').innerHTML = `
+                            <p>Livros não encontrados!</p>
+                        `;
+                    }
 
                     retorno.livros.forEach((livro) => {
 
@@ -237,7 +272,7 @@
 
                 $.ajax({
                     method: "GET",
-                    url: ipPython + "/pesquisar_livro?q=" + encodeURIComponent(termo),
+                    url: ipPython + "/pesquisar?q=" + encodeURIComponent(termo),
                     success: function (retorno) {
                         $("#listaLivros").empty();
 
