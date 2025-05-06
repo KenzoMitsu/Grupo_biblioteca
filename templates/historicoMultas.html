@@ -182,9 +182,9 @@
           },
           error: function (retorno) {
             Swal.fire({
-              title: "Erro!",
+              title: "Tudo certo!",
               text: JSON.parse(retorno.responseText).mensagem,
-              icon: "error"
+              icon: "success"
             })
           }
         }
