@@ -249,11 +249,11 @@ input:checked + .slider:before {
 }
 
 .swal2-confirm {
-    background-color: rgb(221, 51, 51);
+    background-color: var(--azul);
 }
 
 .swal2-cancel {
-    background-color: var(--azul);
+    background-color: rgb(221, 51, 51);
 }
 
 .menu-item {

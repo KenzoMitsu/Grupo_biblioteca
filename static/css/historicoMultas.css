@@ -52,6 +52,125 @@ header {
     margin-bottom: 20px;
 }
 
+select {
+    border-radius: 3px;
+}
+
+/* SÍMBOLOS DAS OPÇÕES */
+.fa-circle-user{
+    padding-right: 2px;
+    padding-left: -1px;
+}
+
+.fa-user {
+    padding-right: 2px;
+    padding-left: 1px;
+}
+
+.fa-file-export {
+    padding-right: 2px;
+    padding-left: 1px;
+}
+
+.fa-cash-register {
+    padding-right: 7px;
+    padding-left: 1px;
+}
+
+.fa-wallet {
+    padding-right: 7px;
+    padding-left: 1px;
+}
+
+.fa-book {
+    padding-right: 7px;
+    padding-left: 1px;
+}
+
+.fa-sync-alt {
+    padding-right: 7px;
+    padding-left: 1px;
+}
+
+.fa-sign-out-alt {
+    padding-right: 7px;
+    padding-left: 1px;
+}
+
+.fa-bookmark {
+    padding-right: 7px;
+    padding-left: 1px;
+}
+
+.fa-dollar-sign {
+    padding-right: 7px;
+    padding-left: 1px;
+}
+
+.fa-inbox {
+    padding-right: 7px;
+    padding-left: 1px;
+}
+
+/* Modal */
+#modal-edicao {
+    display: flex; /* Usar flexbox para centralizar o conteúdo */
+    flex-direction: column; /* Organizar os elementos em coluna */
+    justify-content: center; /* Centralizar verticalmente */
+    align-items: center; /* Centralizar horizontalmente */
+    position: fixed; /* Fixa o modal na tela */
+    top: 0; /* Alinha ao topo da tela */
+    left: 0; /* Alinha à esquerda da tela */
+    width: 100%; /* Largura total da tela */
+    height: 100%; /* Altura total da tela */
+    background-color: rgba(0, 0, 0, 0.5); /* Fundo semi-transparente */
+    z-index: 1000; /* Coloca o modal acima de outros elementos */
+}
+
+#form-edicao {
+    background-color: white; /* Fundo branco para o formulário */
+    padding: 20px; /* Espaçamento interno */
+    border-radius: 10px; /* Bordas arredondadas */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Sombra para dar profundidade */
+    width: 400px; /* Largura do modal */
+}
+
+#form-edicao label {
+    font-weight: bold; /* Negrito para os rótulos */
+    margin-bottom: 5px; /* Espaçamento abaixo dos rótulos */
+}
+
+#form-edicao input {
+    width: 100%; /* Largura total dos inputs */
+    padding: 10px; /* Espaçamento interno dos inputs */
+    margin-bottom: 15px; /* Espaçamento abaixo dos inputs */ /* Borda azul */
+    border-radius: 5px; /* Bordas arredondadas */
+    border: 1px solid #3380ca;
+    background-color:#eef3ff;
+}
+
+#form-edicao button {
+    width: 100px; /* Largura dos botões */
+    padding: 10px; /* Espaçamento interno dos botões */
+    border-radius: 5px; /* Bordas arredondadas */
+    cursor: pointer; /* Cursor de ponteiro ao passar o mouse */
+}
+
+#form-edicao button[type="submit"] {
+    background-color: var(--azul-escuro); /* Cor de fundo do botão de salvar */
+    color: white; /* Cor do texto do botão de salvar */
+}
+
+#form-edicao button[type="button"] {
+    background-color: #ccc; /* Cor de fundo do botão de cancelar */
+    color: #333; /* Cor do texto do botão de cancelar */
+}
+
+#form-edicao button:hover {
+    transform: scale(1.05); /* Efeito de aumento ao passar o mouse */
+    transition: transform 0.3s; /* Transição suave para o efeito de aumento */
+}
+
 /* Logo */
 .header-left img {
     width: 50px;
@@ -137,17 +256,19 @@ input:checked + .slider:before {
 
 /* Ícone do menu */
 .menu-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    position: relative;
+    display: inline-block;
+}
+
+.header-end {
+    margin-bottom: 15px;
 }
 
 .menu-icon {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    align-items: center;
-    height: 24px;
+    height: 25px;
     width: 32px;
     cursor: pointer;
 }
@@ -161,26 +282,34 @@ input:checked + .slider:before {
 
 /* Dropdown Menu */
 .dropdown-menu {
-    position: absolute;
-    top: 45px;
-    right: 0;
-    background-color: white;
-    border-radius: 8px;
-    padding: 10px 0;
-    list-style: none;
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
     display: none;
-    width: 180px;
+    position: absolute;
+    top: 40px;
+    right: 0;
+    background-color: var(--branco);
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    min-width: 200px;
+    padding: 10px 0;
+    z-index: 1000;
+    list-style: none;
 }
 
 .dropdown-menu .menu-item {
-    padding: 10px 13px;
+    padding: 10px;
     display: flex;
-    align-items: center;
-    gap: 8px;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 10px;
     color: #333;
     cursor: pointer;
-    font-size: 14px;
+    transition: background 0.3s;
+}
+
+.menu-item {
+    display: flex;
+    flex-direction: column; /* ← isso força tudo a ficar empilhado para baixo */
+    align-items: flex-start; /* opcional, para alinhar à esquerda */
 }
 
 .dropdown-menu .menu-item:hover {
@@ -235,128 +364,6 @@ input:checked + .slider:before {
     /* Cor de fundo ao passar o mouse */
 }
 
-
-
-
-
-select {
-    border-radius: 3px;
-}
-
-/* Modal */
-#modal-edicao {
-    display: flex; /* Usar flexbox para centralizar o conteúdo */
-    flex-direction: column; /* Organizar os elementos em coluna */
-    justify-content: center; /* Centralizar verticalmente */
-    align-items: center; /* Centralizar horizontalmente */
-    position: fixed; /* Fixa o modal na tela */
-    top: 0; /* Alinha ao topo da tela */
-    left: 0; /* Alinha à esquerda da tela */
-    width: 100%; /* Largura total da tela */
-    height: 100%; /* Altura total da tela */
-    background-color: rgba(0, 0, 0, 0.5); /* Fundo semi-transparente */
-    z-index: 1000; /* Coloca o modal acima de outros elementos */
-}
-
-#form-edicao {
-    background-color: white; /* Fundo branco para o formulário */
-    padding: 20px; /* Espaçamento interno */
-    border-radius: 10px; /* Bordas arredondadas */
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Sombra para dar profundidade */
-    width: 400px; /* Largura do modal */
-}
-
-#form-edicao label {
-    font-weight: bold; /* Negrito para os rótulos */
-    margin-bottom: 5px; /* Espaçamento abaixo dos rótulos */
-}
-
-#form-edicao input {
-    width: 100%; /* Largura total dos inputs */
-    padding: 10px; /* Espaçamento interno dos inputs */
-    margin-bottom: 15px; /* Espaçamento abaixo dos inputs */ /* Borda azul */
-    border-radius: 5px; /* Bordas arredondadas */
-    border: 1px solid #3380ca;
-    background-color:#eef3ff;
-}
-
-#form-edicao button {
-    width: 100px; /* Largura dos botões */
-    padding: 10px; /* Espaçamento interno dos botões */
-    border-radius: 5px; /* Bordas arredondadas */
-    cursor: pointer; /* Cursor de ponteiro ao passar o mouse */
-}
-
-#form-edicao button[type="submit"] {
-    background-color: var(--azul-escuro); /* Cor de fundo do botão de salvar */
-    color: white; /* Cor do texto do botão de salvar */
-}
-
-#form-edicao button[type="button"] {
-    background-color: #ccc; /* Cor de fundo do botão de cancelar */
-    color: #333; /* Cor do texto do botão de cancelar */
-}
-
-#form-edicao button:hover {
-    transform: scale(1.05); /* Efeito de aumento ao passar o mouse */
-    transition: transform 0.3s; /* Transição suave para o efeito de aumento */
-}
-
-/* SÍMBOLOS DAS OPÇÕES */
-.fa-circle-user{
-    padding-right: 2px;
-    padding-left: 1px;
-}
-
-.fa-user {
-    padding-right: 2px;
-    padding-left: 1px;
-}
-
-.fa-file-export {
-    padding-right: 2px;
-    padding-left: 1px;
-}
-
-.fa-cash-register {
-    padding-right: 7px;
-    padding-left: 1px;
-}
-
-.fa-wallet {
-    padding-right: 7px;
-    padding-left: 1px;
-}
-
-.fa-book {
-    padding-right: 7px;
-    padding-left: 1px;
-}
-
-.fa-sync-alt {
-    padding-right: 7px;
-    padding-left: 1px;
-}
-
-.fa-sign-out-alt {
-    padding-right: 7px;
-    padding-left: 1px;
-}
-
-.fa-bookmark {
-    padding-right: 7px;
-    padding-left: 1px;
-}
-
-.fa-dollar-sign {
-    padding-right: 7px;
-    padding-left: 1px;
-}
-
-.fa-inbox {
-    padding-right: 7px;
-    padding-left: 1px;
-}
   
   
   /* SUB-MODAIS DOS RELATÓRIOS */

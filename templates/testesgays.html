@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Paginação</title>
+</head>
+<body>
+  <div id="itens"></div>
+  <button onclick="anterior()">Anterior</button>
+  <span id="paginaAtual">Página: 1</span>
+  <button onclick="proxima()">Próxima</button>
+
+  <script>
+    let pagina = 1;
+    const tamanho = 10;
+    let totalPaginas = 1;
+
+    function carregarItens() {
+      fetch(`/api/itens?pagina=${pagina}&tamanho=${tamanho}`)
+        .then(res => res.json())
+        .then(data => {
+          totalPaginas = data.total_paginas;
+          document.getElementById("itens").innerHTML = 
+            data.itens.map(item => `<p>${item.nome}</p>`).join('');
+          document.getElementById("paginaAtual").textContent = `Página: ${pagina}`;
+        });
+    }
+
+    function proxima() {
+      if (pagina < totalPaginas) {
+        pagina++;
+        carregarItens();
+      }
+    }
+
+    function anterior() {
+      if (pagina > 1) {
+        pagina--;
+        carregarItens();
+      }
+    }
+
+    // Carrega a primeira página ao iniciar
+    carregarItens();
+  </script>
+</body>
+</html>
