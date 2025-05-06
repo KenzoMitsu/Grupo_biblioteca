@@ -203,6 +203,9 @@ input:checked + .slider:before {
     margin: 0;
 }
 
+.swal2-confirm {
+    background-color: var(--azul);
+}
 
 .menu-item {
     display: flex;
