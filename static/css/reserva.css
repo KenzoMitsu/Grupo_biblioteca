@@ -430,9 +430,7 @@ h1 {
 
 .nav-pills .nav-link.active {
     color: var(--azul);
-    background-color: var(--branco);
-    border-bottom: 2px solid var(--azul);
-    border-radius: 0px;
+    background-color: #eef3ff;
     font-weight: bold;
 }
 
