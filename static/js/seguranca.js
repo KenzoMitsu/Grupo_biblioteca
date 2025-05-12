@@ -12,10 +12,49 @@ if (!token) { //OBSERVAÇÃO PESSOAL! > Também da para fazer de maneira mais ma
     })
 }
 
-
 var cargo = localStorage.getItem("cargo")
 
 console.log(cargo)
+
+$(document).ready(function () {
+    // Inicia o carrossel se presente
+    if ($('.owl-carousel').length > 0) {
+        $('.owl-carousel').owlCarousel({
+            loop: true,
+            margin: 10,
+            responsive: {
+                0: { items: 1 },
+                600: { items: 3 },
+                1000: { items: 4 }
+            }
+        });
+    }
+
+    // Função genérica para lidar com qualquer botão/menu
+    function configurarDropdown(buttonId, menuId) {
+        
+        var button = document.getElementById(buttonId);
+        var menu = document.getElementById(menuId);
+
+        if (button && menu) {
+            // Abrir/fechar o menu quando clicar no botão
+            button.addEventListener("click", function (event) {
+                event.stopPropagation(); // Evita o fechamento imediato
+                menu.classList.toggle("show");
+            });
+
+            // Fecha o menu quando clicar fora dele
+            document.addEventListener("click", function (event) {
+                if (!button.contains(event.target) && !menu.contains(event.target)) {
+                    menu.classList.remove("show");
+                }
+            });
+        }
+    }
+    // Aplica a função para os dois menus
+    configurarDropdown("menuButton", "dropdownMenu");
+    configurarDropdown("menuButton2", "dropdownMenu2");
+});
 
 function sair() {
     localStorage.clear(); // Remove todos os dados do localStorage
@@ -25,13 +64,21 @@ function sair() {
 if (cargo === 'ADM') {
     document.getElementById("logoHeader").href = "home.html"
 
-    document.getElementById("dropdownMenu").innerHTML += `
-
+    document.getElementById("dropdownMenu2").innerHTML += `
         <li class="menu-item">
             <div>
                 <i class="fa-solid fa-circle-user fa-lg"></i><a id="editPerfil" href="editPerfil.html"> Perfil</a>
             </div>
         </li>
+
+        <li class="menu-item">
+            <div>
+                <i class="fas fa-sign-out-alt"></i><button onclick='sair()' class="sair">Sair</button>
+            </div>
+        </li>
+    `;
+
+    document.getElementById("dropdownMenu").innerHTML += `
 
         <li class="menu-item">
             <div>
@@ -102,6 +149,18 @@ if (cargo === 'ADM') {
             </div>
         </li>
 
+    `;
+
+} else if (cargo === 'Bibliotecario') {
+    document.getElementById("logoHeader").href = "home.html"
+
+        document.getElementById("dropdownMenu2").innerHTML += `
+        <li class="menu-item">
+            <div>
+                <i class="fa-solid fa-circle-user fa-lg"></i><a id="editPerfil" href="editPerfil.html"> Perfil</a>
+            </div>
+        </li>
+
         <li class="menu-item">
             <div>
                 <i class="fas fa-sign-out-alt"></i><button onclick='sair()' class="sair">Sair</button>
@@ -109,16 +168,7 @@ if (cargo === 'ADM') {
         </li>
     `;
 
-} else if (cargo === 'Bibliotecario') {
-    document.getElementById("logoHeader").href = "home.html"
-
     document.getElementById("dropdownMenu").innerHTML += `
-
-        <li class="menu-item">
-            <div>
-                <i class="fa-solid fa-circle-user fa-lg"></i><a id="editPerfil" href="editPerfil.html"> Perfil</a>
-            </div>
-        </li>
 
         <li class="menu-item">
             <div>
@@ -137,6 +187,17 @@ if (cargo === 'ADM') {
                 <i class="fa-brands fa-pix"></i><a href="parametrizacao.html">Parametrizar pix</a>
             </div>
         </li>
+    `;
+
+} else {
+    document.getElementById("logoHeader").href = "home.html"
+
+        document.getElementById("dropdownMenu2").innerHTML += `
+        <li class="menu-item">
+            <div>
+                <i class="fa-solid fa-circle-user fa-lg"></i><a id="editPerfil" href="editPerfil.html"> Perfil</a>
+            </div>
+        </li>
 
         <li class="menu-item">
             <div>
@@ -145,16 +206,7 @@ if (cargo === 'ADM') {
         </li>
     `;
 
-} else {
-    document.getElementById("logoHeader").href = "home.html"
-
     document.getElementById("dropdownMenu").innerHTML += `
-
-        <li class="menu-item">
-            <div>
-                <i class="fa-solid fa-circle-user fa-lg"></i><a id="editPerfil" href="editPerfil.html"> Perfil</a>
-            </div>
-        </li>
 
         <li class="menu-item">
             <div>
@@ -165,12 +217,6 @@ if (cargo === 'ADM') {
         <li class="menu-item">
             <div>
                 <i class="fas fa-sync-alt"></i><a href="historicoMultas.html">Minhas Multas</a>
-            </div>
-        </li>
-
-        <li class="menu-item">
-            <div>
-                <i class="fas fa-sign-out-alt"></i><button onclick='sair()' class="sair">Sair</button>
             </div>
         </li>
     `;

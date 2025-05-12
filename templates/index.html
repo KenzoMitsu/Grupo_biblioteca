@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="../static/dist/assets/owl.carousel.min.css">
     <link rel="stylesheet" href="../static/dist/assets/owl.theme.default.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="../static/css/home.css">
+    <link rel="stylesheet" href="../static/css/index.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
@@ -75,15 +75,26 @@
     </header>
     <main>
 
+        <div class="bemvindo">
+            <h3 class="span">Bem vindo<span id="nomeUsuario" class="nomeUsuario"></span></h3>
+        </div>
+        <script>
+            document.getElementById("nomeUsuario").textContent = nome;
+        </script>
+
         <div class="container">
 
-            <h3 class="titulo">Nossos Livros</h3>
-            
+            <h3 class="titulo">Nosso Catálogo</h3>
+
             <div class="listalivros" id="listaLivros">
 
                 <div class="item">
                     <img src="" alt="">
                 </div>
+            </div>
+            <div class="paginacao">
+                <a href="" class="btn" id="pagina-anterior">Ant. Pag</a>
+                <a href="" class="btn" id="pagina-proxima">Próx. Pag</a>
             </div>
         </div>
     </main>
@@ -139,20 +150,55 @@
     </footer>
 
     <script>
-function carregaLivros() {
+        // Verifica se o token está armazenado no Local Storage da própria web (SEGURANÇA DO SITE)
+        var nome = localStorage.getItem("nome")
+        document.getElementById("nomeUsuario").innerHTML = nome
+
+        function carregaLivros() {
+            const params = new URLSearchParams(window.location.search);
+            var pagina = params.get('pagina');
+
+            if (pagina === null || pagina === undefined) {
+                pagina = 1
+            } 
+
+            if (pagina == 1) {
+                document.getElementById('pagina-anterior').style.display = "none"
+            }
+
             var settings = {
-                "url": ipPython + "/livro",
+                "url": ipPython + "/livro?pagina=" + pagina,
                 "method": "GET",
                 "timeout": 0,
                 success: function (retorno) {
+                    var total = retorno.total_paginas
+                    var paginaAtual = retorno.pagina_atual
+                    var anterior = paginaAtual - 1 
+
+                    document.getElementById("pagina-anterior").href = "/templates/index.html?pagina=" + anterior
+
+                    var proxima = paginaAtual + 1
+
+                    document.getElementById("pagina-proxima").href = "/templates/index.html?pagina=" + proxima
+
                     var html = document.getElementById("listaLivros")
                     html.innerHTML = ""
+
+                    if (paginaAtual >= total) {
+                        document.getElementById('pagina-proxima').style.display = "none"
+                    } 
+                    
+                    if (paginaAtual > total) {
+                        document.getElementById('listaLivros').innerHTML = `
+                            <p>Livros não encontrados!</p>
+                        `;
+                    }
 
                     retorno.livros.forEach((livro) => {
 
                         html.innerHTML += `
                             <div class="item">
-                                <a href="cadastro.html">
+                                <a title="${livro.titulo}" href="reserva.html?id=${livro.id_livro}">
                                 
                                     <img src="${ipPython}/static/uploads/Livros/${livro.id_livro}.jpeg" alt="">
                                     <p>${livro.titulo}</p>
@@ -171,22 +217,6 @@ function carregaLivros() {
 
         carregaLivros()
 
-        // Captura o input da barra de pesquisa
-        const searchBox = document.querySelector(".search-box");
-
-        // Função que realiza a busca dos livros
-        async function buscarLivros(query) {
-            try {
-                const response = await fetch(`http://localhost:8000/livros?search=${query}`);
-                const livros = await response.json();
-
-                // Exibe os livros na tela (ou faz outro processamento)
-                console.log(livros); // Aqui você pode alterar para exibir os livros na sua página
-                mostrarLivrosNaTela(livros);
-            } catch (error) {
-                console.error('Erro ao buscar livros:', error);
-            }
-        }
 
         // Função que exibe os livros na tela
         function mostrarLivrosNaTela(livros) {
@@ -227,6 +257,92 @@ function carregaLivros() {
             });
         });
 
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            // Função de busca
+            $("#formBuscaLivro").on("submit", function (e) {
+                e.preventDefault();
+
+                let termo = $("#campoBusca").val().trim();
+
+                if (!termo) {
+                    Swal.fire({
+                        title: "Atenção!",
+                        text: "Digite algo para buscar.",
+                        icon: "warning"
+                    });
+                    return;
+                }
+
+                $.ajax({
+                    method: "GET",
+                    url: ipPython + "/pesquisar?q=" + encodeURIComponent(termo),
+                    success: function (retorno) {
+                        $("#listaLivros").empty();
+
+                        if (retorno.livros && retorno.livros.length > 0) {
+                            retorno.livros.forEach(livro => {
+                                $("#listaLivros").append(`
+                                <div class="item">
+                                    <a href="reserva.html?id=${livro.id_livro}&ISBN=${livro.ISBN}&autor=${livro.autor}
+                                    &categoria=${livro.categoria}&data_publicacao=${livro.data_publicacao}&descricao=${livro.descricao}
+                                    &quantidade=${livro.quantidade}&titulo=${livro.titulo}">
+
+                                        <img src="${ipPython}/static/uploads/Livros/${livro.id_livro}.jpeg" alt="">
+                                        <p>${livro.titulo}</p>
+                                    </a>
+                                </div>
+                            `);
+                            });
+                        } else {
+                            $("#listaLivros").html("<p>Nenhum livro encontrado.</p>");
+                        }
+                    },
+                    error: function (xhr) {
+                        let erroMsg = "Erro ao buscar livros.";
+                        if (xhr.responseText) {
+                            try {
+                                erroMsg = JSON.parse(xhr.responseText).mensagem || erroMsg;
+                            } catch (e) { }
+                        }
+
+                        Swal.fire({
+                            title: "Erro!",
+                            text: erroMsg,
+                            icon: "error"
+                        });
+                    }
+                });
+            });
+
+            // Detecta se o usuário limpou o campo de busca
+            $("#campoBusca").on("input", function () {
+                if ($(this).val().trim() === "") {
+                    carregaLivros(); // Recarrega todos os livros se o campo estiver vazio
+                }
+            });
+        });
+
+                 // Função para atualizar os hrefs dos relatórios
+                 function atualizarLinksRelatorios() {
+            const linksRelatorios = {
+                relatorioMultas: "/multas_relatorio",
+                relatorioLivros: "/livros_relatorio",
+                relatorioUsuarios: "/usuarios_relatorio",
+                relatorioEmprestimos: "/emprestimos_relatorio"
+            };
+            for (let id in linksRelatorios) {
+                const elemento = document.getElementById(id);
+                if (elemento) {
+                    elemento.href = `${ipPython2}${linksRelatorios[id]}`;
+                }
+            }
+        }
+
+        // Chama a função assim que o DOM carregar
+        document.addEventListener("DOMContentLoaded", atualizarLinksRelatorios);
     </script>
 
 </body>
