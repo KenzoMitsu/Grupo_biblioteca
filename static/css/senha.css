@@ -4,10 +4,6 @@
     text-decoration: none;
     font-family: "Montserrat", sans-serif;
 }
-a{
-    text-decoration: none;
-    color:black;
-}
 
 :root {
     --azul: rgba(51, 128, 202, 1);
@@ -15,33 +11,6 @@ a{
     --azul-escuro: rgba(12, 140, 225, 0.724);
     --preto: black;
     --branco: white;
-}
-
-.img_perfil{
-    margin-top: 20px;
-}
-
-.img_perfil img{
-    height: 150px;
-    width: 150px;
-}
-
-.btn-change-img {
-    background-color: #0060BB;
-    color: white;
-    border: 4px solid #0060BB;
-    padding: 10px; 
-    border-radius: 5px;
-    cursor: pointer;
-    margin-left: 40px;
-}
-
-.btn-change-img:hover {
-    color: #4292dc;
-    background-color: white;
-    border: 4px solid #4292dc;
-    cursor: pointer;
-    padding: 10px;
 }
 
 .sair{
@@ -63,10 +32,6 @@ body {
     padding: 20px;
 }
 
-header {
-    width: 100%;
-}
-
 section {
     display: flex;
 }
@@ -76,21 +41,27 @@ section {
     text-align: center;
     font-weight: bold;
     font-size: 45px;
-    display: block;
 }
 
-.formulario {
-    flex-wrap: wrap;
+.formEnviarSenha {
+    display: flex;
+    flex-direction: column;
+}
+
+.formulario-senha {
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
     background-color: var(--branco);
     border: 4px solid var(--azul-claro);
     padding: 30px;
     border-radius: 10px;
-    margin-top: -100px;
+    margin-top: 30px;
 }
 
-.cadastro {
+.login {
     display: flex;
-    /* flex-direction: column; */
+    flex-direction: column;
 }
 
 .coisa {
@@ -100,30 +71,19 @@ section {
     font-size: 22px;
     padding-top: 10px;
     padding-bottom: 3px;
-    display: block;
 }
-
 
 .inserir {  
     border-radius: 5px;
-    padding: 7px; 
-    margin: 10px 10px 0px 0px;
-    border: 3px solid var(--azul);
+    padding-top: 7.5px;
+    padding-bottom: 7.5px;
+    padding-left: 15px;
+    padding-right: 60px; 
+    margin-bottom: 10px;
+    font-size: 18px;
+    border: 2px solid var(--azul);
     background-color: var(--azul-claro);
-    font-weight: bold;
 }
-
-.data{
-    padding: 7px;
-    width: 228px;
-    margin: 10px 10px 0px 0px;
-    border: 3px solid var(--azul);
-    background-color: var(--azul-claro);
-    font-weight: bold;
-    border-radius: 5px;
-
-}
-
 
 input::placeholder {
     font-weight: bold;
@@ -131,21 +91,22 @@ input::placeholder {
     opacity: 0.5;
 }
 
-.botao-cadastro {
-    padding: 7px;
-    padding-left: 200px;
-    padding-right: 200px;
+.botao-login {
+    padding-top: 7.5px;
+    padding-bottom: 7.5px;
+    padding-left: 120px;
+    padding-right: 120px;
     color: var(--azul);
-    margin-top: 30px;
+    margin-top: 20px;
     background-color: var(--branco);
-    border: 3px solid var(--azul);
+    border: 2px solid var(--azul);
     border-radius: 5px;
     font-weight: bold;
     font-size: 18px;
     transition: 0.2s;
 }
 
-.botao-cadastro:hover {
+.botao-login:hover {
     background-color: var(--azul);
     color: var(--branco);
     transition: 0.2s;
@@ -160,6 +121,7 @@ input::placeholder {
     text-decoration: none;
     color: var(--azul);
     transition: 0.2s;
+    font-weight: bold;
 }
 
 .link:hover {
@@ -167,54 +129,38 @@ input::placeholder {
     transition: 0.2s;
 }
 
+.tudo-senha {
+    align-items: center;
+    justify-content: space-evenly;
+    margin-top: 10px;
+    display: flex;
+}
+
 .livro-1 {
     height: 400px;
     width: auto;
-    margin-top: 240px;
+    margin-top: 83px;
+}
+
+.link {
+    text-decoration: none;
+    color: var(--azul);
+    transition: 0.2s;
+}
+
+.link:hover {
+    color: var(--azul-escuro);
+    transition: 0.2s;
 }
 
 .final {
     text-align: center;
 }
 
-.tudo {
-    align-items: center;
-    justify-content: space-evenly;
-    margin-top: 10px;
-    display: flex;
-    width: 100%;
+.swal2-confirm {
+    background-color: var(--azul) !important;
 }
 
-.btn-change-img{
-    padding: 0px;
-    height: 43px;
-    width: 230px;
-    padding-left: 40px;
-    padding-right: 45px;
-    color: var(--azul);
-    margin-top: 10px;
-    background-color: var(--branco);
-    border: 3px solid var(--azul);
-    border-radius: 5px;
-    font-weight: bold;
-    font-size: 15px;
-    margin-left: -1px;
-}
-.btn-change-img:hover{
-    padding: 0px;
-    height: 43px;
-    width: 230px;
-    padding-left: 40px;
-    padding-right: 45px;
-    color: var(--branco);
-    margin-top: 10px;
-    background-color: var(--azul);
-    border: 3px solid var(--azul);
-    border-radius: 5px;
-    font-weight: bold;
-    font-size: 15px;
-    margin-left: -1px;
-}
 
 @media (max-width: 800px) {
     .livro-1 {
@@ -251,9 +197,6 @@ input::placeholder {
     .formulario {
         display: flex;
         flex-direction: column;
-    }
-    .data{
-        width: 300px;
     }
 }
 
@@ -359,10 +302,6 @@ input::placeholder {
 
     .coisa {
         font-size: 18px;
-    }
-    .data{
-        width: 252px;
-
     }
 
 }

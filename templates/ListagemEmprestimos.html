@@ -34,7 +34,7 @@
 </head>
 
 <body>
-  <header>
+    <header>
         <!-- Logo -->
         <div class="header-left">
             <a id="logoHeader" href="home.html"><img src="../static/img/logo.png" alt="Logo"></a>
@@ -48,23 +48,7 @@
             </div>
         </form>
 
-        <div id="resultadoLivros"></div>
-
         <div class="kenso-viado">
-            <!-- Mais um dropdown -->
-            <div class="header-end">
-                <div class="menu-container">
-                    <div class="menu-icon" id="menuButton2">
-                        <i class="fa-solid fa-circle-user fa-lg"></i>
-                    </div>
-
-                    <ul class="dropdown-menu" id="dropdownMenu2">
-
-                    </ul>
-
-                </div>
-            </div>
-
             <!-- Ícone de Menu com Dropdown -->
             <div class="header-end">
                 <div class="menu-container">
@@ -81,7 +65,6 @@
                 </div>
             </div>
 
-        </div>
     </header>
   <!-- FIM DO CABEÇALHO -->
 
@@ -145,8 +128,8 @@
   </div>
 
   <div class="paginacao">
-    <a href="" class="btn" id="pagina-anterior">Ant. Pag</a>
-    <a href="" class="btn" id="pagina-proxima">Próx. Pag</a>
+      <a href="" class="btn" id="pagina-anterior">Ant. Pag</a>
+      <a href="" class="btn" id="pagina-proxima">Próx. Pag</a>
   </div>
 
   <footer class="inter">
@@ -268,6 +251,7 @@
           'Authorization': 'Bearer ' + token
         },
         success: function (data) {
+          console.log(data)
           let emprestimos = data.emprestimos;
           let tabela = $("#tabela-emprestimos tbody");
           tabela.empty();
@@ -284,19 +268,13 @@
           if (paginaAtual >= total) {
             document.getElementById('pagina-proxima').style.display = "none"
           } 
+          emprestimos.forEach(emprestimo => { 
 
-          if (paginaAtual > total) {
-              document.getElementById('listaLivros').innerHTML = `
-                  <p>Livros não encontrados!</p>
-              `;
-          }
-  
-          emprestimos.forEach(emprestimo => {
             let linha = `
               <tr data-id="${emprestimo.id_emprestimo}">
                   <td>${emprestimo.id_emprestimo}</td>
-                  <td>${formatarData(emprestimo.data_emprestimo)}</td>
-                  <td>${formatarData(emprestimo.data_devolucao)}</td>
+                  <td>${emprestimo.data_emprestimo.replaceAll("-","/")}</td>
+                  <td>${emprestimo.data_devolucao.replaceAll("-","/")}</td>
                   <td>${emprestimo.nome_usuario}</td>
                   <td>${emprestimo.titulo_livro}</td>
                   <td>${emprestimo.autor_livro}</td>
@@ -307,6 +285,9 @@
             `;
             tabela.append(linha);
           });
+        },
+        error: function name(params) {
+          console.error(params)
         }
       });
     }
