@@ -496,7 +496,7 @@
             success: function (response) {
                 console.log("Resposta da API:", response);
                 $("#livrosList").empty();
-                
+
                 if (response.livros && response.livros.length > 0) {
                     response.livros.forEach(function (livro) {
 
