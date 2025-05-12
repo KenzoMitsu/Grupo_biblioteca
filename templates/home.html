@@ -149,67 +149,76 @@
         document.getElementById("nomeUsuario").innerHTML = nome
 
         function carregaLivros() {
+            // Captura todos os parâmetros da URL, inclusive filtros
             const params = new URLSearchParams(window.location.search);
-            var pagina = params.get('pagina');
+            var pagina = parseInt(params.get('pagina')) || 1;
 
-            if (pagina === null || pagina === undefined) {
-                pagina = 1
-            } 
+            // Monta a string de parâmetros para AJAX (inclui todos, inclusive filtros)
+            var urlAjax = ipPython + "/livro?" + params.toString();
 
-            if (pagina == 1) {
-                document.getElementById('pagina-anterior').style.display = "none"
+            // Oculta ou mostra o botão de página anterior
+            if (pagina <= 1) {
+                document.getElementById('pagina-anterior').style.display = "none";
+            } else {
+                document.getElementById('pagina-anterior').style.display = "";
             }
 
-            var settings = {
-                "url": ipPython + "/livro?pagina=" + pagina,
-                "method": "GET",
-                "timeout": 0,
+            $.ajax({
+                url: urlAjax,
+                method: "GET",
+                timeout: 0,
                 success: function (retorno) {
-                    var total = retorno.total_paginas
-                    var paginaAtual = retorno.pagina_atual
-                    var anterior = paginaAtual - 1 
+                    var total = retorno.total_paginas;
+                    var paginaAtual = retorno.pagina_atual;
+                    var anterior = paginaAtual - 1;
+                    var proxima = paginaAtual + 1;
 
-                    document.getElementById("pagina-anterior").href = "/templates/home.html?pagina=" + anterior
+                    // Atualiza links de navegação mantendo TODOS os filtros
+                    params.set('pagina', anterior);
+                    document.getElementById("pagina-anterior").href = "/templates/home.html?" + params.toString();
 
-                    var proxima = paginaAtual + 1
+                    params.set('pagina', proxima);
+                    document.getElementById("pagina-proxima").href = "/templates/home.html?" + params.toString();
 
-                    document.getElementById("pagina-proxima").href = "/templates/home.html?pagina=" + proxima
+                    // Restaura página atual nos params para uso futuro
+                    params.set('pagina', paginaAtual);
 
-                    var html = document.getElementById("listaLivros")
-                    html.innerHTML = ""
-
+                    // Oculta ou mostra o botão de próxima página
                     if (paginaAtual >= total) {
-                        document.getElementById('pagina-proxima').style.display = "none"
-                    } 
-                    
-                    if (paginaAtual > total) {
-                        document.getElementById('listaLivros').innerHTML = `
-                            <p>Livros não encontrados!</p>
-                        `;
+                        document.getElementById('pagina-proxima').style.display = "none";
+                    } else {
+                        document.getElementById('pagina-proxima').style.display = "";
+                    }
+
+                    var html = document.getElementById("listaLivros");
+                    html.innerHTML = "";
+
+                    if (!retorno.livros || retorno.livros.length === 0) {
+                        html.innerHTML = `<p>Livros não encontrados!</p>`;
+                        return;
                     }
 
                     retorno.livros.forEach((livro) => {
-
                         html.innerHTML += `
-                            <div class="item">
-                                <a title="${livro.titulo}" href="reserva.html?id=${livro.id_livro}">
-                                
-                                    <img src="${ipPython}/static/uploads/Livros/${livro.id_livro}.jpeg" alt="">
-                                    <p>${livro.titulo}</p>
-                                    
-                                </a>
-                            </div>
-                        `
-                    })
+                    <div class="item">
+                        <a title="${livro.titulo}" href="reserva.html?id=${livro.id_livro}">
+                            <img src="${ipPython}/static/uploads/Livros/${livro.id_livro}.jpeg" alt="">
+                            <p>${livro.titulo}</p>
+                        </a>
+                    </div>
+                `;
+                    });
+                },
+                error: function (xhr) {
+                    document.getElementById("listaLivros").innerHTML = `<p>Erro ao carregar livros.</p>`;
                 }
-            };
-
-            $.ajax(settings).done(function (response) {
-                console.log(response);
             });
         }
 
-        carregaLivros()
+        carregaLivros();
+
+
+
 
 
         // Função que exibe os livros na tela
@@ -272,7 +281,7 @@
 
                 $.ajax({
                     method: "GET",
-                    url: ipPython + "/pesquisar?q=" + encodeURIComponent(termo),
+                    url: ipPython + "/pesquisar_livro?q=" + encodeURIComponent(termo),
                     success: function (retorno) {
                         $("#listaLivros").empty();
 
@@ -319,8 +328,8 @@
             });
         });
 
-                 // Função para atualizar os hrefs dos relatórios
-                 function atualizarLinksRelatorios() {
+        // Função para atualizar os hrefs dos relatórios
+        function atualizarLinksRelatorios() {
             const linksRelatorios = {
                 relatorioMultas: "/multas_relatorio",
                 relatorioLivros: "/livros_relatorio",
