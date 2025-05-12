@@ -570,8 +570,8 @@ form{
     margin: 10px 0;
     font-size: 24px;
     display: flex;
-    align-items: center;
     gap: 65px;
+    align-items: center;
     text-align: center;
     border-radius: 5px;
     
@@ -879,7 +879,7 @@ footer {
     }
 
     .search-container {
-        width: 150px;
+        width: 300px;
         /* Reduzindo a largura da pesquisa */
         padding: 5px 10px;
         border-radius: 20px;
@@ -958,10 +958,19 @@ footer {
     .model_info {
         flex-direction: column;
     }
+
+    .filho2 {
+        margin-left: 0px;
+    }
 }
 
 
 @media (max-width: 770px){
+
+    .rating {
+        gap: 0px;
+    }
+
     .avaliacoes{
         display: grid;
     }
@@ -1101,6 +1110,11 @@ footer {
         }
     }
     @media (max-width: 330px){
+
+        header {
+            justify-content: center;
+        }
+
         .star{
             margin-left: 23px;
         }

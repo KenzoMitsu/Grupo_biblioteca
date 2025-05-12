@@ -65,24 +65,38 @@
         </div>
     </header>
 
+    <div class="container">
     <h1>Gerenciamento de Livros</h1>
+    <div class="bot">
+        <button type="button" class="add-btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalCadastroLivro">
+            <i class="fa-solid fa-plus"></i>Adicionar Livro
+        </button>
+    </div>
 
-    <section id="livrosContainer">
-        <div class="bot">
-            <button type="button" class="add-btn btn-primary" data-bs-toggle="modal"
-                data-bs-target="#modalCadastroLivro">
-                <i class="fa-solid fa-plus"></i>Adicionar Livro
-            </button>
+        <div class="table-container">
+            <table class="table table-striped" id="tabela-livros">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Título</th>
+                        <th>Autor</th>
+                        <th>Ano de Publicação</th>
+                        <th>ISBN</th>
+                        <th>Descrição</th>
+                        <th>Quantidade</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody id="livrosList">
+                    <!-- As linhas dos livros serão inseridas aqui pelo JavaScript -->
+                </tbody>
+            </table>
         </div>
+    </div>
 
-        <div class="livro-hud" id="livroTemplate" style="display: none;">
-            <img class="livro" src="../static/img/placeholder.jpg" alt="Capa do Livro">
-            <div class="titulo">
-                <p class="livro-titulo"></p>
-            </div>
             <div class="actions">
                 <button class="edit" data-bs-toggle="modal" data-bs-target="#modalEditarLivro" onclick="editarLivro(this)">Editar</button>
-                
+
                 <button class="delete" onclick="deletarLivro(this)">Deletar</button>
             </div>
         </div>
@@ -492,7 +506,6 @@
     // FUNÇÃO PARA EXIBIR OS LIVROS CADASTRADOS NO SITE (GET):
     function carregarLivros() {
         var token = localStorage.getItem("token");
-        console.log("Token:", token);
 
         $.ajax({
             method: "GET",
@@ -501,19 +514,29 @@
                 'Authorization': 'Bearer ' + token
             },
             success: function (response) {
-                console.log("Resposta da API:", response);
-                $("#livrosList").empty();
+                $("#livrosList").empty(); // Limpa a tabela antes de adicionar novos livros
                 
                 if (response.livros && response.livros.length > 0) {
                     response.livros.forEach(function (livro) {
-                        var livroElement = $("#livroTemplate").clone();
-                        livroElement.attr("style", "display: block;");
-                        livroElement.find(".livro").attr("src", ipPython + "/static/uploads/Livros/" + livro.id_livro + ".jpeg");
-                        livroElement.find(".livro").attr("alt", livro.titulo);
-                        livroElement.find(".livro-titulo").text(livro.titulo);
-                        livroElement.data("id_livro", livro.id_livro);
-                        $("#livrosList").append(livroElement);
+                        var linha = `
+                        <tr>
+                            <td>${livro.id_livro}</td>
+                            <td>${livro.titulo}</td>
+                            <td>${livro.autor}</td>
+                            <td>${livro.data_publicacao}</td>
+                            <td>${livro.ISBN}</td>
+                            <td>${livro.descricao}</td>
+                            <td>${livro.quantidade}</td>
+                            <td>
+                                <button class="btn btn-warning" onclick="editarLivro(this)" data-id="${livro.id_livro}">Editar</button>
+                                <button class="btn btn-danger" onclick="deletarLivro(this)" data-id="${livro.id_livro}">Deletar</button>
+                            </td>
+                        </tr>
+                        `;
+                        $("#livrosList").append(linha); // Adiciona a linha à tabela
                     });
+                } else {
+                    $("#livrosList").append("<tr><td colspan='8'>Nenhum livro encontrado.</td></tr>");
                 }
             },
             error: function (error) {
@@ -605,6 +628,7 @@
     });
 
     function editarLivro(button) {
+    var id = $(button).data("id");
     var livroElement = $(button).closest('.livro-hud');
     var id = livroElement.data("id_livro");
     console.log("ID do livro:", id); // Verifique o ID
@@ -645,7 +669,7 @@
 
     // FUNÇÃO PARA DELETAR LIVROS (mantida igual)
     function deletarLivro(button) {
-        var id = $(button).closest('.livro-hud').data("id_livro");
+    var id = $(button).data("id");
 
         Swal.fire({
             title: 'Confirmar exclusão?',

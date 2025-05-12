@@ -37,6 +37,27 @@ a {
   cursor: pointer;
 }
 
+.item p {
+    padding: 10px;
+    flex-wrap: wrap;
+    font-weight: bold;
+    display: block;
+    margin-top: 20px;
+    font-size: medium;
+    width: 150px;
+    max-width: 18ch;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.item p:hover {
+    max-width: none;
+    overflow: none;
+    text-overflow: none;
+    white-space: none;
+}
+
 /* CABEÇALHO */
 header {
   background-color: var(--azul-escuro);
