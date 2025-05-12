@@ -562,6 +562,7 @@ button.botao-multas {
     display: flex;
     justify-content: center;
     margin-top: 35px;
+    gap: 10px;
 }
 
 .btn {
