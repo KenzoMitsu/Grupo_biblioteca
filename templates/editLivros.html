@@ -82,8 +82,8 @@
             </div>
             <div class="actions">
                 <button class="edit" data-bs-toggle="modal" data-bs-target="#modalEditarLivro" onclick="editarLivro(this)">Editar</button>
-                
-                <button class="delete" onclick="deletarLivro(this)">Deletar</button>
+
+                <!-- <button class="delete" onclick="deletarLivro(this)">Deletar</button> -->
             </div>
         </div>
 
@@ -315,7 +315,15 @@
                                     name="paginas"
                                     required>
                         </div>
-                            
+
+                        <div class="mb-3">
+                            <label for="statusEditar" class="coisa">Status:</label>
+                            <select class="inserir" name="status" id="statusEditar">
+                                <option class="inserir" value="1">Disponível</option>
+                                <option class="inserir" value="2">Indisponível</option>
+                            </select>
+                        </div>
+
                         <div class="mb-3">
                             <label class="bloco">Idioma:</label>
                             <input type="text"
@@ -329,7 +337,7 @@
 
                         <div class="mb-3">
                             <label for="categoriaEditar" class="coisa">Categoria:</label>
-                            <select class="inserir" name="categoriaEditar" id="categoriaEditar">
+                            <select class="inserir" name="categoria" id="categoriaEditar">
                                 <optgroup label="Ficção">
                                     <option class="inserir" value="Romance">Romance</option>
                                     <option class="inserir" value="Romance_historico">Romance histórico</option>
@@ -488,7 +496,7 @@
             success: function (response) {
                 console.log("Resposta da API:", response);
                 $("#livrosList").empty();
-                
+
                 if (response.livros && response.livros.length > 0) {
                     response.livros.forEach(function (livro) {
 
@@ -591,76 +599,72 @@
     });
 
     function editarLivro(button) {
-    var livroElement = $(button).closest('.livro-hud');
-    var id = livroElement.data("id_livro");
-    console.log("ID do livro:", id); // Verifique o ID
+        var livroElement = $(button).closest('.livro-hud');
+        var id = livroElement.data("id_livro");
+        console.log("ID do livro:", id); // Verifique o ID
 
-    $.ajax({
-        method: "GET",
-        url: ipPython + "/livro/" + id,
-        headers: {
-            'Authorization': 'Bearer ' + localStorage.getItem("token")
-        },
-        success: function (response) {
-            console.log(response); // Verifique a resposta
+        $.ajax({
+            method: "GET",
+            url: ipPython + "/livro/" + id,
+            headers: {
+                'Authorization': 'Bearer ' + localStorage.getItem("token")
+            },
+            success: function (response) {
+                console.log(response); // Verifique a resposta
 
-            // Acesse o primeiro livro da resposta
-            var livro = response.livro; // Supondo que a resposta tenha a estrutura correta
+                // Acesse o primeiro livro da resposta
+                var livro = response.livro; // Supondo que a resposta tenha a estrutura correta
 
-            // Preenche o formulário de edição com os dados do livro
-            $("#id_livro").val(livro.id_livro);
-            $("#tituloEditar").val(livro.titulo);
-            $("#autorEditar").val(livro.autor);
-            $("#data_publicacaoEditar").val(livro.data_publicacao);
-            $("#ISBNEditar").val(livro.ISBN);
-            $("#descricaoEditar").val(livro.descricao);
-            $("#quantidadeEditar").val(livro.quantidade);
-            $("#paginasEditar").val(livro.paginas);
-            $("#idiomaEditar").val(livro.idioma);
-            $("#categoriaEditar").val(livro.categoria); // Certifique-se de que isso está correto
-            $("#previewImagemEditar").attr("src", ipPython + "/static/uploads/Livros/" + livro.id_livro + ".jpeg").show();
-        },
+                // Preenche o formulário de edição com os dados do livro
+                $("#id_livro").val(livro.id_livro);
+                $("#tituloEditar").val(livro.titulo);
+                $("#autorEditar").val(livro.autor);
+                $("#data_publicacaoEditar").val(livro.data_publicacao);
+                $("#ISBNEditar").val(livro.ISBN);
+                $("#descricaoEditar").val(livro.descricao);
+                $("#quantidadeEditar").val(livro.quantidade);
+                $("#paginasEditar").val(livro.paginas);
+                $("#statusEditar").val(livro.status);
+                $("#idiomaEditar").val(livro.idioma);
+                $("#categoriaEditar").val(livro.categoria); // Certifique-se de que isso está correto
+                $("#previewImagemEditar").attr("src", ipPython + "/static/uploads/Livros/" + livro.id_livro + ".jpeg").show();
+            },
 
-        error: function () {
-            Swal.fire("Erro!", "Falha ao carregar dados do livro.", "error");
-        }
-    });
-}
-
-
-
-    // FUNÇÃO PARA DELETAR LIVROS (mantida igual)
-    function deletarLivro(button) {
-        var id = $(button).closest('.livro-hud').data("id_livro");
-
-        Swal.fire({
-            title: 'Confirmar exclusão?',
-            text: "Esta ação não pode ser desfeita!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonText: 'Sim, excluir!'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                $.ajax({
-                    method: "DELETE",
-                    url: ipPython + "/livros/" + id,
-                    headers: {
-                        'Authorization': 'Bearer ' + localStorage.getItem("token")
-                    },
-                    success: function() {
-                        Swal.fire("Excluído!", "Livro removido", "success");
-                        carregarLivros();
-                    },
-                    error: function() {
-                        Swal.fire("Erro!", "Falha ao excluir", "error");
-                    }
-                });
+            error: function () {
+                Swal.fire("Erro!", "Falha ao carregar dados do livro.", "error");
             }
         });
     }
 
+    // FUNÇÃO PARA DELETAR LIVROS (mantida igual)
+    // function deletarLivro(button) {
+    //     var id = $(button).closest('.livro-hud').data("id_livro");
 
-
+    //     Swal.fire({
+    //         title: 'Confirmar exclusão?',
+    //         text: "Esta ação não pode ser desfeita!",
+    //         icon: 'warning',
+    //         showCancelButton: true,
+    //         confirmButtonText: 'Sim, excluir!'
+    //     }).then((result) => {
+    //         if (result.isConfirmed) {
+    //             $.ajax({
+    //                 method: "DELETE",
+    //                 url: ipPython + "/livros/" + id,
+    //                 headers: {
+    //                     'Authorization': 'Bearer ' + localStorage.getItem("token")
+    //                 },
+    //                 success: function() {
+    //                     Swal.fire("Excluído!", "Livro removido", "success");
+    //                     carregarLivros();
+    //                 },
+    //                 error: function() {
+    //                     Swal.fire("Erro!", "Falha ao excluir", "error");
+    //                 }
+    //             });
+    //         }
+    //     });
+    // }
 
         // Adiciona o evento de clique no botão de relatórios
         document.addEventListener('DOMContentLoaded', function () {
