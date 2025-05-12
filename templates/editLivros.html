@@ -506,6 +506,7 @@
                 
                 if (response.livros && response.livros.length > 0) {
                     response.livros.forEach(function (livro) {
+
                         var livroElement = $("#livroTemplate").clone();
                         livroElement.attr("style", "display: block;");
                         livroElement.find(".livro").attr("src", ipPython + "/static/uploads/Livros/" + livro.id_livro + ".jpeg");
