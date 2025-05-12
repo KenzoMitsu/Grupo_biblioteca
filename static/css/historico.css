@@ -725,6 +725,13 @@ body img{
     height: 80px;
 }
 
+.nome-coisado {
+    max-width: 18ch;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
 .informacoes {
     padding: 10px;
     font-size: large;
