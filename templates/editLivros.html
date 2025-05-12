@@ -46,57 +46,43 @@
             </div>
         </form>
 
-        <div id="resultadoLivros"></div>
+        <div class="kenso-viado">
+            <!-- Ícone de Menu com Dropdown -->
+            <div class="header-end">
+                <div class="menu-container">
+                    <div class="menu-icon" id="menuButton">
+                        <div class="menulinha"></div>
+                        <div class="menulinha"></div>
+                        <div class="menulinha"></div>
+                    </div>
 
-        <!-- Ícone de Menu com Dropdown -->
-        <div class="header-end">
-            <div class="menu-container">
-                <div class="menu-icon" id="menuButton">
-                    <div class="menulinha"></div>
-                    <div class="menulinha"></div>
-                    <div class="menulinha"></div>
+                    <ul class="dropdown-menu" id="dropdownMenu">
+
+                    </ul>
+
                 </div>
-
-                <ul class="dropdown-menu" id="dropdownMenu">
-
-                </ul>
-
             </div>
-        </div>
+
     </header>
 
-    <div class="container">
     <h1>Gerenciamento de Livros</h1>
-    <div class="bot">
-        <button type="button" class="add-btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalCadastroLivro">
-            <i class="fa-solid fa-plus"></i>Adicionar Livro
-        </button>
-    </div>
 
-        <div class="table-container">
-            <table class="table table-striped" id="tabela-livros">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Título</th>
-                        <th>Autor</th>
-                        <th>Ano de Publicação</th>
-                        <th>ISBN</th>
-                        <th>Descrição</th>
-                        <th>Quantidade</th>
-                        <th>Ações</th>
-                    </tr>
-                </thead>
-                <tbody id="livrosList">
-                    <!-- As linhas dos livros serão inseridas aqui pelo JavaScript -->
-                </tbody>
-            </table>
+    <section id="livrosContainer">
+        <div class="bot">
+            <button type="button" class="add-btn btn-primary" data-bs-toggle="modal"
+                data-bs-target="#modalCadastroLivro">
+                <i class="fa-solid fa-plus"></i>Adicionar Livro
+            </button>
         </div>
-    </div>
 
+        <div class="livro-hud" id="livroTemplate" style="display: none;">
+            <img class="livro" src="../static/img/placeholder.jpg" alt="Capa do Livro">
+            <div class="titulo">
+                <p class="livro-titulo"></p>
+            </div>
             <div class="actions">
                 <button class="edit" data-bs-toggle="modal" data-bs-target="#modalEditarLivro" onclick="editarLivro(this)">Editar</button>
-
+                
                 <button class="delete" onclick="deletarLivro(this)">Deletar</button>
             </div>
         </div>
@@ -342,19 +328,8 @@
                           
 
                         <div class="mb-3">
-                            <label for="categoria" class="coisa">Categoria:</label>
-
+                            <label for="categoriaEditar" class="coisa">Categoria:</label>
                             <select class="inserir" name="categoriaEditar" id="categoriaEditar">
-
-                                <optgroup>
-                                    <option value="" disabled selected>Selecione uma categoria</option>
-                                </optgroup>
-                                <!-- Opções de categoria -->
-
-                            </select>
-                        </div>
-
-                                <!-- FICÇÃO -->
                                 <optgroup label="Ficção">
                                     <option class="inserir" value="Romance">Romance</option>
                                     <option class="inserir" value="Romance_historico">Romance histórico</option>
@@ -376,7 +351,6 @@
                                     <option class="inserir" value="Western">Faroeste / Western</option>
                                 </optgroup>
 
-                                <!-- NÃO FICÇÃO -->
                                 <optgroup label="Não Ficção">
                                     <option class="inserir" value="Biografia">Biografia</option>
                                     <option class="inserir" value="Autobiografia">Autobiografia</option>
@@ -404,19 +378,16 @@
                                     <option class="inserir" value="Autoajuda">Autoajuda</option>
                                 </optgroup>
 
-                                <!-- EDUCACIONAL / TÉCNICO -->
                                 <optgroup label="Educacional / Técnico">
                                     <option class="inserir" value="Didatico">Didático</option>
                                     <option class="inserir" value="Tecnico">Técnico</option>
                                     <option class="inserir" value="Enciclopedia">Enciclopédia</option>
                                     <option class="inserir" value="Apostila">Apostila</option>
                                     <option class="inserir" value="Exercicios">Livros de exercícios</option>
-                                    <option class="inserir" value="Preparacao_enem">Preparação para ENEM / Vestibular
-                                    </option>
+                                    <option class="inserir" value="Preparacao_enem">Preparação para ENEM / Vestibular</option>
                                     <option class="inserir" value="Idiomas">Aprendizado de idiomas</option>
                                 </optgroup>
 
-                                <!-- HQs / INFANTIL / MITOLOGIA -->
                                 <optgroup label="Outros">
                                     <option class="inserir" value="HQ">HQ / Mangá</option>
                                     <option class="inserir" value="Infantil">Infantil</option>
@@ -426,9 +397,9 @@
                                     <option class="inserir" value="Poesia">Poesia</option>
                                     <option class="inserir" value="Esporte">Esporte</option>
                                 </optgroup>
-
                             </select>
                         </div>
+
 
                         <div class="mb-3">
                             <label for="imagemEditar" class="form-label">Imagem do Livro</label>
@@ -506,6 +477,7 @@
     // FUNÇÃO PARA EXIBIR OS LIVROS CADASTRADOS NO SITE (GET):
     function carregarLivros() {
         var token = localStorage.getItem("token");
+        console.log("Token:", token);
 
         $.ajax({
             method: "GET",
@@ -514,47 +486,20 @@
                 'Authorization': 'Bearer ' + token
             },
             success: function (response) {
-                $("#livrosList").empty(); // Limpa a tabela antes de adicionar novos livros
+                console.log("Resposta da API:", response);
+                $("#livrosList").empty();
                 
                 if (response.livros && response.livros.length > 0) {
                     response.livros.forEach(function (livro) {
-                        var linha = `
-                        <tr>
-                            <td>${livro.id_livro}</td>
-                            <td>${livro.titulo}</td>
-                            <td>${livro.autor}</td>
-                            <td>${livro.data_publicacao}</td>
-                            <td>${livro.ISBN}</td>
-                            <td>${livro.descricao}</td>
-                            <td>${livro.quantidade}</td>
-                            <td> 
-                                <!-- Botão que abre a modal -->
-                                    <button class="acoes" onclick="abrirModal('${usuario.id_usuario}')">Ações</button>
 
-                                    <!-- Modal de ações -->
-                                    <div id="modal-${usuario.id_usuario}" class="modal">
-                                    <div class="modal-content">
-                                        <span class="fechar" onclick="fecharModal('${usuario.id_usuario}')">&times;</span>
-                                        
-                                        <div class="tudosecao">
-                                        <i class="fa-solid fa-pencil"></i>
-                                            <button class="btn btn-warning" onclick="editarLivro(this)" data-id="${livro.id_livro}">Editar</button>
-                                        </div>
-
-                                        <div class="tudosecao">
-                                        <i class="fa-solid fa-trash"></i>
-                                            <button class="btn btn-danger" onclick="deletarLivro(this)" data-id="${livro.id_livro}">Deletar</button>
-                                        </div>
-                                    </div>
-                                    </div>
-                                
-                            </td>
-                        </tr>
-                        `;
-                        $("#livrosList").append(linha); // Adiciona a linha à tabela
+                        var livroElement = $("#livroTemplate").clone();
+                        livroElement.attr("style", "display: block;");
+                        livroElement.find(".livro").attr("src", ipPython + "/static/uploads/Livros/" + livro.id_livro + ".jpeg");
+                        livroElement.find(".livro").attr("alt", livro.titulo);
+                        livroElement.find(".livro-titulo").text(livro.titulo);
+                        livroElement.data("id_livro", livro.id_livro);
+                        $("#livrosList").append(livroElement);
                     });
-                } else {
-                    $("#livrosList").append("<tr><td colspan='8'>Nenhum livro encontrado.</td></tr>");
                 }
             },
             error: function (error) {
@@ -646,7 +591,6 @@
     });
 
     function editarLivro(button) {
-    var id = $(button).data("id");
     var livroElement = $(button).closest('.livro-hud');
     var id = livroElement.data("id_livro");
     console.log("ID do livro:", id); // Verifique o ID
@@ -687,7 +631,7 @@
 
     // FUNÇÃO PARA DELETAR LIVROS (mantida igual)
     function deletarLivro(button) {
-    var id = $(button).data("id");
+        var id = $(button).closest('.livro-hud').data("id_livro");
 
         Swal.fire({
             title: 'Confirmar exclusão?',
