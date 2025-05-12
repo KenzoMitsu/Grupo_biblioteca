@@ -53,7 +53,6 @@ $(document).ready(function () {
     }
     // Aplica a função para os dois menus
     configurarDropdown("menuButton", "dropdownMenu");
-    configurarDropdown("menuButton2", "dropdownMenu2");
 });
 
 function sair() {
@@ -64,21 +63,13 @@ function sair() {
 if (cargo === 'ADM') {
     document.getElementById("logoHeader").href = "home.html"
 
-    document.getElementById("dropdownMenu2").innerHTML += `
+    document.getElementById("dropdownMenu").innerHTML += `
+
         <li class="menu-item">
             <div>
                 <i class="fa-solid fa-user-pen"></i><a id="editPerfil" href="editPerfil.html"> Perfil</a>
             </div>
         </li>
-
-        <li class="menu-item">
-            <div>
-                <i class="fas fa-sign-out-alt"></i><button onclick='sair()' class="sair">Sair</button>
-            </div>
-        </li>
-    `;
-
-    document.getElementById("dropdownMenu").innerHTML += `
 
         <li class="menu-item">
             <div>
@@ -149,18 +140,6 @@ if (cargo === 'ADM') {
             </div>
         </li>
 
-    `;
-
-} else if (cargo === 'Bibliotecario') {
-    document.getElementById("logoHeader").href = "home.html"
-
-        document.getElementById("dropdownMenu2").innerHTML += `
-        <li class="menu-item">
-            <div>
-                <i class="fa-solid fa-user-pen"></i><a id="editPerfil" href="editPerfil.html"> Perfil</a>
-            </div>
-        </li>
-
         <li class="menu-item">
             <div>
                 <i class="fas fa-sign-out-alt"></i><button onclick='sair()' class="sair">Sair</button>
@@ -168,7 +147,16 @@ if (cargo === 'ADM') {
         </li>
     `;
 
+} else if (cargo === 'Bibliotecario') {
+    document.getElementById("logoHeader").href = "home.html"
+
     document.getElementById("dropdownMenu").innerHTML += `
+
+        <li class="menu-item">
+            <div>
+                <i class="fa-solid fa-user-pen"></i><a id="editPerfil" href="editPerfil.html"> Perfil</a>
+            </div>
+        </li>
 
         <li class="menu-item">
             <div>
@@ -187,17 +175,6 @@ if (cargo === 'ADM') {
                 <i class="fa-brands fa-pix"></i><a href="parametrizacao.html">Parametrizar pix</a>
             </div>
         </li>
-    `;
-
-} else {
-    document.getElementById("logoHeader").href = "home.html"
-
-        document.getElementById("dropdownMenu2").innerHTML += `
-        <li class="menu-item">
-            <div>
-                <i class="fa-solid fa-user-pen"></i><a id="editPerfil" href="editPerfil.html"> Perfil</a>
-            </div>
-        </li>
 
         <li class="menu-item">
             <div>
@@ -206,7 +183,16 @@ if (cargo === 'ADM') {
         </li>
     `;
 
+} else {
+    document.getElementById("logoHeader").href = "home.html"
+
     document.getElementById("dropdownMenu").innerHTML += `
+
+        <li class="menu-item">
+            <div>
+                <i class="fa-solid fa-user-pen"></i><a id="editPerfil" href="editPerfil.html"> Perfil</a>
+            </div>
+        </li>
 
         <li class="menu-item">
             <div>
@@ -217,6 +203,12 @@ if (cargo === 'ADM') {
         <li class="menu-item">
             <div>
                 <i class="fas fa-sync-alt"></i><a href="historicoMultas.html">Minhas Multas</a>
+            </div>
+        </li>
+
+        <li class="menu-item">
+            <div>
+                <i class="fas fa-sign-out-alt"></i><button onclick='sair()' class="sair">Sair</button>
             </div>
         </li>
     `;
