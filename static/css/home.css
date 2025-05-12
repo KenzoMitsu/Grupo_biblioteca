@@ -63,6 +63,11 @@ header {
     height: auto;
 }
 
+.kenso-viado {
+    display: flex;
+    gap: 10px;
+}
+
 /* Barra de pesquisa */
 .search-container {
     display: flex;
