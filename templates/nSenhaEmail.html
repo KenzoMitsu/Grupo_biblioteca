@@ -5,7 +5,7 @@
     <title>Nova Senha</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <!-- Fontes e estilos -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,6 +19,11 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
+
+    <!-- SweetAlert2 -->
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.6.13/dist/sweetalert2.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.6.13/dist/sweetalert2.all.min.js"></script>
+
 </head>
 
 <body>
@@ -32,7 +37,8 @@
     <section class="tudo d-flex justify-content-center align-items-center flex-wrap p-4">
 
         <div>
-            <img class="livro-1" src="../static/img/login-image.png" alt="Imagem de recuperação" style="max-width: 300px;">
+            <img class="livro-1" src="../static/img/login-image.png" alt="Imagem de recuperação"
+                style="max-width: 300px;">
         </div>
 
         <div class="formulario" style="min-width: 300px; max-width: 400px;">
@@ -41,12 +47,15 @@
 
             <form id="formRecuperarSenha" class="login" onsubmit="enviarNovaSenha(event)">
                 <label class="coisa" for="email">Insira Seu Email Para Verificação:</label>
-                <input placeholder="email@gmail.com" class="inserir form-control mb-3" type="email" id="email" name="email" required>
+                <input placeholder="email@gmail.com" class="inserir form-control mb-3" type="email" id="email"
+                    name="email" required>
             </form>
 
             <div class="final mt-3">
-                <button type="submit" class="botao-login btn btn-primary w-100" form="formRecuperarSenha">Enviar</button>
-                <p class="texto mt-3 text-center">Lembrou da senha? <a class="link" href="login.html">Voltar para login</a></p>
+                <button type="submit" class="botao-login btn btn-primary w-100"
+                    form="formRecuperarSenha">Enviar</button>
+                <p class="texto mt-3 text-center">Lembrou da senha? <a class="link" href="login.html">Voltar para
+                        login</a></p>
             </div>
 
         </div>
@@ -55,18 +64,22 @@
 
     <!-- JavaScript incluído diretamente na página -->
     <script>
-        const ipPython = "http://192.168.1.109:5000"; // substitua pelo IP correto, se for em rede
-    
+        const ipPython = "http://192.168.1.121:5000"; // substitua pelo IP correto, se for em rede
+
         async function enviarNovaSenha(event) {
             event.preventDefault();
-    
+
             const email = document.getElementById('email').value;
-    
+
             if (!email) {
-                alert("Por favor, insira seu e-mail.");
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Erro!',
+                    text: 'Por favor, insira seu e-mail.'
+                });
                 return;
             }
-    
+
             try {
                 const response = await fetch(ipPython + '/validar_email', {
                     method: 'POST',
@@ -75,24 +88,36 @@
                     },
                     body: JSON.stringify({ email: email })
                 });
-    
+
                 const data = await response.json();
-    
+
                 if (response.ok) {
-                    alert(`Código enviado com sucesso: ${data.codigo}`);
-                    // Redirecionar se necessário
-                    // window.location.href = 'verificar_codigo.html';
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Código Enviado!',
+                        text: `Código enviado com sucesso: ${data.codigo}`
+                    });
+                    // Redirecionar para a página de verificação de código
+                    window.location.href = 'nSenhaCod.html'; // Redirecionamento após o código ser enviado
                 } else {
-                    alert(`Erro: ${data.error}`);
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Erro!',
+                        text: `Erro: ${data.error}`
+                    });
                 }
-    
+
             } catch (error) {
                 console.error('Erro ao enviar requisição:', error);
-                alert('Erro de conexão com o servidor.');
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Erro!',
+                    text: 'Erro de conexão com o servidor.'
+                });
             }
         }
     </script>
-    
+
 </body>
 
 </html>
