@@ -64,8 +64,19 @@ header {
 }
 
 .kenso-viado {
+    cursor: pointer;
     display: flex;
+    align-items: center;
     gap: 10px;
+}
+
+.perfil-icon {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 12px;
+    align-items: center;
 }
 
 /* Barra de pesquisa */
@@ -160,6 +171,8 @@ header {
 
 /* SÍMBOLOS DAS OPÇÕES */
 .fa-circle-user{
+    font-size: 2.0rem;
+    color: white;
     padding-right: 2px;
     margin-left: -1px;
 }
