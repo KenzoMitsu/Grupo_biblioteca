@@ -132,8 +132,21 @@
 
     
         <script>
-
+            
             document.addEventListener("DOMContentLoaded", function () {
+                const token = localStorage.getItem('token');
+                let payload = {};
+
+                if (token) {
+                    const base64Url = token.split('.')[1];
+                    const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+                    try {
+                        payload = JSON.parse(atob(base64));
+                    } catch (e) {
+                        console.error("Erro ao decodificar o token:", e);
+                    }
+                }
+
                 const stars = document.querySelectorAll(".star");
                 const commentInput = document.getElementById("comment");
                 const formAvaliar = document.getElementById("formAvaliar");
