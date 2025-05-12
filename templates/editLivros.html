@@ -527,9 +527,27 @@
                             <td>${livro.ISBN}</td>
                             <td>${livro.descricao}</td>
                             <td>${livro.quantidade}</td>
-                            <td>
-                                <button class="btn btn-warning" onclick="editarLivro(this)" data-id="${livro.id_livro}">Editar</button>
-                                <button class="btn btn-danger" onclick="deletarLivro(this)" data-id="${livro.id_livro}">Deletar</button>
+                            <td> 
+                                <!-- Botão que abre a modal -->
+                                    <button class="acoes" onclick="abrirModal('${usuario.id_usuario}')">Ações</button>
+
+                                    <!-- Modal de ações -->
+                                    <div id="modal-${usuario.id_usuario}" class="modal">
+                                    <div class="modal-content">
+                                        <span class="fechar" onclick="fecharModal('${usuario.id_usuario}')">&times;</span>
+                                        
+                                        <div class="tudosecao">
+                                        <i class="fa-solid fa-pencil"></i>
+                                            <button class="btn btn-warning" onclick="editarLivro(this)" data-id="${livro.id_livro}">Editar</button>
+                                        </div>
+
+                                        <div class="tudosecao">
+                                        <i class="fa-solid fa-trash"></i>
+                                            <button class="btn btn-danger" onclick="deletarLivro(this)" data-id="${livro.id_livro}">Deletar</button>
+                                        </div>
+                                    </div>
+                                    </div>
+                                
                             </td>
                         </tr>
                         `;
