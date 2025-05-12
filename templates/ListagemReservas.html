@@ -191,13 +191,13 @@
           const dados = await resposta.json(); // Captura a resposta JSON
 
           if (!resposta.ok) {
-            throw new Error(dados.mensagem || "Erro ao realizar o empréstimo.");
+            throw new Error(dados.mensagem);
           }
 
           // Exibir SweetAlert de sucesso com a mensagem da API
           Swal.fire({
             title: 'Sucesso!',
-            text: dados.message || 'O empréstimo foi realizado com sucesso!',
+            text: dados.message,
             icon: 'success',
             confirmButtonText: 'OK'
           }).then(() => {
@@ -259,6 +259,11 @@
 
     </script>
 
+  </div>
+
+  <div class="paginacao">
+      <a href="" class="btn" id="pagina-anterior">Ant. Pag</a>
+      <a href="" class="btn" id="pagina-proxima">Próx. Pag</a>
   </div>
 
   <footer class="inter">
