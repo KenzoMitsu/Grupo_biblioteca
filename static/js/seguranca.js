@@ -83,7 +83,6 @@ if (cargo === 'ADM') {
             </div>
         </li>
 
-
         <li class="menu-item">
             <div>
                 <i class="fas fa-user"></i><a href="GerenciarUsuarios.html"> Gerenciar
@@ -102,12 +101,6 @@ if (cargo === 'ADM') {
                 <li><a id="relatorioUsuarios" href="#"><i class="fa-solid fa-file-export"></i>Relatório de <br>Usuários</a></li>
                 <li><a id="relatorioEmprestimos" href="#"><i class="fa-solid fa-file-export"></i>Relatório de Emprestimos</a></li>
             </ul>
-        </li>
-
-        <li class="menu-item">
-            <div>
-                <i class="fa-solid fa-cash-register"></i><a href="addMultas.html">Adicionar Multas</a>
-            </div>
         </li>
 
         <li class="menu-item">
