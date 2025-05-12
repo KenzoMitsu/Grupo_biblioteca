@@ -311,6 +311,7 @@ input:checked + .slider:before {
 
 .livro-hud {
     margin: 20px;
+}
 
 .header-end {
     margin-bottom: 15px;
