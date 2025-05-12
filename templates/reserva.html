@@ -115,13 +115,13 @@
             <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">><div class="avaliacoes">
                 <form id="formAvaliar">
                     <div class="rating">
-                 
+
                             <span class="star" data-value="1">★</span>
                             <span class="star" data-value="2">★</span>
                             <span class="star" data-value="3">★</span>
                             <span class="star" data-value="4">★</span>
                             <span class="star" data-value="5">★</span>
-                        
+
                     </div>
                     <textarea id="comment" placeholder="Escreva um comentário..." required></textarea>
                         <button class="coment" type="submit" id="submitReview">Enviar Avaliação</button>
@@ -270,46 +270,53 @@
                             'Authorization': `Bearer ${token}`
                         }
                     })
-                        .then(response => {
-                            if (!response.ok) throw new Error('Erro ao carregar avaliações');
-                            return response.json();
-                        })
-                        .then(data => {
-                            reviewsContainer.innerHTML = "";
-                            const avaliacoes = data.configuracoes || [];
+                    .then(response => {
+                        if (!response.ok) throw new Error('Erro ao carregar avaliações');
+                        return response.json();
+                    })
+                    .then(data => {
+                        reviewsContainer.innerHTML = "";
+                        const avaliacoes = data.configuracoes || [];
 
-                            if (avaliacoes.length === 0) {
-                                reviewsContainer.innerHTML = "<p>Nenhuma avaliação encontrada para este livro.</p>";
-                                return;
+                        if (avaliacoes.length === 0) {
+                            reviewsContainer.innerHTML = "<p>Nenhuma avaliação encontrada para este livro.</p>";
+                            return;
+                        }
+
+                        // Supondo que você tenha uma variável cargo_usuario que contém o cargo do usuário
+                        const cargo_usuario = payload.get('cargo'); // Certifique-se de que você tenha essa informação disponível
+
+                        avaliacoes.forEach(avaliacao => {
+                            const usuario = avaliacao.nome_usuario || `Usuário ${avaliacao.id_usuario || ''}` || "Anônimo";
+                            const nota = avaliacao.nota || 0;
+                            const comentario = avaliacao.comentario || "";
+                            const dataAvaliacao = avaliacao.data_avaliacao || avaliacao.data || "";
+                            const dataFormatada = dataAvaliacao ? new Date(dataAvaliacao).toLocaleDateString('pt-BR') : "";
+
+                            let stars = "";
+                            for (let i = 1; i <= 5; i++) {
+                                stars += i <= nota ? "★" : "☆";
                             }
 
-                            avaliacoes.forEach(avaliacao => {
-                                const usuario = avaliacao.nome_usuario || `Usuário ${avaliacao.id_usuario || ''}` || "Anônimo";
-                                const nota = avaliacao.nota || 0;
-                                const comentario = avaliacao.comentario || "";
-                                const dataAvaliacao = avaliacao.data_avaliacao || avaliacao.data || "";
-                                const dataFormatada = dataAvaliacao ? new Date(dataAvaliacao).toLocaleDateString('pt-BR') : "";
+                            // Adiciona o botão de exclusão apenas se o usuário for administrador
+                            const botaoExcluir = (cargo_usuario === 'ADM') ? `<button class="btn btn-danger btn-excluir" data-id="${avaliacao.id_avaliacao}">Excluir</button>` : '';
 
-                                let stars = "";
-                                for (let i = 1; i <= 5; i++) {
-                                    stars += i <= nota ? "★" : "☆";
-                                }
-
-                                reviewsContainer.innerHTML += `
-                                <div class="review">
-                                    <div class="review-header">
-                                        <span class="review-user">${usuario}</span>
-                                        <span class="review-rating" aria-label="Avaliação: ${nota} de 5">${stars}</span>
-                                    </div>
-                                    <div class="review-comment">${comentario}</div>
-                                    <div class="review-date">${dataFormatada}</div>
+                            reviewsContainer.innerHTML += `
+                            <div class="review">
+                                <div class="review-header">
+                                    <span class="review-user">${usuario}</span>
+                                    <span class="review-rating" aria-label="Avaliação: ${nota} de 5">${stars}</span>
                                 </div>
+                                <div class="review-comment">${comentario}</div>
+                                <div class="review-date">${dataFormatada}</div>
+                                ${botaoExcluir}
+                            </div>
                             `;
-                            });
-                        })
-                        .catch(() => {
-                            reviewsContainer.innerHTML = "<p>Erro ao carregar avaliações. Por favor, tente novamente mais tarde.</p>";
                         });
+                    })
+                    .catch(() => {
+                        reviewsContainer.innerHTML = "<p>Erro ao carregar avaliações. Por favor, tente novamente mais tarde.</p>";
+                    });
                 }
 
                 // Carrega avaliações quando a página termina de carregar
