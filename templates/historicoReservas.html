@@ -91,9 +91,9 @@
     </div>
 
       <div class="paginacao">
-        <a href="" class="btn" id="pagina-anterior"><</a>
-        <h3 class="paginaAtual" id="paginaAtual"></h3>
-        <a href="" class="btn" id="pagina-proxima">></a>
+          <a href="" class="btn" id="pagina-anterior"> <i class="fa-solid fa-left-long"></i> </a>
+              <h3 class="paginaAtual" id="paginaAtual">Kenso Bixa</h3>
+          <a href="" class="btn" id="pagina-proxima"> <i class="fa-solid fa-right-long"></i> </a>
       </div>
     </div>
 
@@ -152,7 +152,7 @@
         </div>
     </footer>
 
-  <script>  
+  <script>
     // Função para carregar os empréstimos
     function carregarReservasId() {
       const token = localStorage.getItem("token");
@@ -194,7 +194,7 @@
           }
 
           document.getElementById("paginaAtual").innerHTML = paginaAtual
-          
+
           reservas.forEach(reserva => { 
 
             let linha = `
