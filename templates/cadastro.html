@@ -63,9 +63,10 @@
             <h3 class="titulo">Cadastrar-se</h3>
 
 
-            <form class="cadastro" id="formCadastro">
+            <form  id="formCadastro">
 
-                <div>
+                <div class="cadastro">
+                    <div>
                     <label class="coisa">Nome:</label>
                     <input type="text" placeholder="Nome Completo" class="inserir" id="nome" name="nome" required>
 
@@ -74,10 +75,13 @@
                         required>
 
                     <label class="coisa">Senha:</label>
-                    <div style="position:relative;">
-                        <input type="password" placeholder="Sua senha" class="inserir" id="senha" name="senha" required>
-                        <button type="button" id="toggleSenha"
-                            style="position:absolute; right:5px; top:5px;">Mostrar</button>
+                        <div style="position:relative;">
+                        <input placeholder="Sua senha" class="inserir" type="password" id="senha" name="senha" required>
+
+                        <i id="visivelBtn">
+                            <img id="icon" src="../static/img/visibility_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg" alt="">
+                        </i>
+
                     </div>
                 </div>
 
@@ -88,9 +92,12 @@
                     <label class="coisa">Telefone:</label>
                     <input type="tel" placeholder="+55 () 99999-9999" class="inserir" id="tel" name="telefone"
                         onkeyup="handlePhone(event)" required>
-
-                    <button type="submit" class="botao-cadastro">Cadastrar</button>
                 </div>
+                </div>
+
+
+
+                <button type="submit" class="botao-cadastro">Cadastrar</button>
 
             </form>
 
@@ -105,18 +112,22 @@
 
 
     <script>
-        // Botão de mostrar/ocultar senha
-        $("#toggleSenha").on("click", function () {
-            var senhaInput = $("#senha");
-            var tipo = senhaInput.attr("type");
-            if (tipo === "password") {
-                senhaInput.attr("type", "text");
-                $(this).text("Ocultar");
-            } else {
-                senhaInput.attr("type", "password");
-                $(this).text("Mostrar");
+        
+        const visivelBtn = document.getElementById("visivelBtn");
+                visivelBtn.addEventListener("click", toggleSenha);
+
+                function toggleSenha() {
+                const passwordInput = document.getElementById("senha");
+                const icon = document.getElementById("visivelBtn");
+                
+                if (passwordInput.type === "password") {
+                    passwordInput.type = "text";
+                    icon.innerHTML = `<img id="icon" src="../static/img/visibility_off_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg" alt="">`
+                } else {
+                    passwordInput.type = "password";
+                    icon.innerHTML = `<img id="icon" src="../static/img/visibility_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg" alt="">`;
+                }
             }
-        });
 
 
         $("#formCadastro").on("submit", function (e) {
