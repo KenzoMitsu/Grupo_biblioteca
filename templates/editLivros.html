@@ -132,7 +132,7 @@
                                 <td>${livro.ISBN}</td>
                                 <td>
                                     <button class="btn btn-info" onclick="verDetalhes(${livro.id_livro})">Ver detalhes</button>
-                                    <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modalEditarLivro" onclick="editarLivro(this)">Editar</button>
+                                    <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modalEditarLivro" onclick="editarLivro(this)"><i class="fa-solid fa-pencil"></i>Editar</button>
                                 </td>
                             </tr>`;
                             $("#livrosList").append(row);
