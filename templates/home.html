@@ -71,9 +71,6 @@
         <div class="bemvindo">
             <h3 class="span">Bem vindo<span id="nomeUsuario" class="nomeUsuario"></span></h3>
         </div>
-        <script>
-            document.getElementById("nomeUsuario").textContent = nome;
-        </script>
 
         <div class="container">
 
@@ -86,8 +83,9 @@
                 </div>
             </div>
             <div class="paginacao">
-                <a href="" class="btn" id="pagina-anterior">Ant. Pag</a>
-                <a href="" class="btn" id="pagina-proxima">Próx. Pag</a>
+                <a href="" class="btn" id="pagina-anterior"> <i class="fa-solid fa-left-long"></i> </a>
+                    <h3 class="paginaAtual" id="paginaAtual">Kenso Bixa</h3>
+                <a href="" class="btn" id="pagina-proxima"> <i class="fa-solid fa-right-long"></i> </a>
             </div>
         </div>
     </main>
@@ -196,6 +194,8 @@
                         html.innerHTML = `<p>Livros não encontrados!</p>`;
                         return;
                     }
+
+                    document.getElementById("paginaAtual").innerHTML = paginaAtual
 
                     retorno.livros.forEach((livro) => {
                         html.innerHTML += `

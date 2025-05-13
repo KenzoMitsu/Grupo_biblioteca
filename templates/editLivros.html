@@ -81,7 +81,8 @@
                 <p class="livro-titulo"></p>
             </div>
             <div class="actions">
-                <button class="edit" data-bs-toggle="modal" data-bs-target="#modalEditarLivro" onclick="editarLivro(this)">Editar</button>
+                <button class="edit" data-bs-toggle="modal" data-bs-target="#modalEditarLivro"
+                    onclick="editarLivro(this)">Editar</button>
 
                 <!-- <button class="delete" onclick="deletarLivro(this)">Deletar</button> -->
             </div>
@@ -138,97 +139,111 @@
 
                         <div class="mb-3">
                             <label class="bloco">Páginas:</label>
-                            <input type="number" placeholder="Número de páginas"
-                                class="inserir" id="paginasEditar"
+                            <input type="number" placeholder="Número de páginas" class="inserir" id="paginasEditar"
                                 name="paginas" required>
                         </div>
-                        
+
                         <div class="mb-3">
                             <label class="bloco">Idioma:</label>
-                            <input type="text" placeholder="Idioma do livro"
-                                class="inserir" id="idiomaEditar"
-                                name="idioma" required>
+                            <select class="inserir" name="idioma" id="idioma" required>
+                                <option value="">Selecione um idioma</option>
+                                <option value="Alemão">Alemão</option>
+                                <option value="Árabe">Árabe</option>
+                                <option value="Chinês">Chinês</option>
+                                <option value="Coreano">Coreano</option>
+                                <option value="Espanhol">Espanhol</option>
+                                <option value="Francês">Francês</option>
+                                <option value="Hebraico">Hebraico</option>
+                                <option value="Hindi">Hindi</option>
+                                <option value="Inglês">Inglês</option>
+                                <option value="Italiano">Italiano</option>
+                                <option value="Japonês">Japonês</option>
+                                <option value="Latim">Latim</option>
+                                <option value="Mandarim">Mandarim</option>
+                                <option value="Português">Português</option>
+                                <option value="Russo">Russo</option>
+                                <option value="Sueco">Sueco</option>
+                                <option value="Tupi">Tupi</option>
+                            </select>
                         </div>
 
                         <div class="mb-3">
                             <label for="categoria" class="coisa">Categoria:</label>
                             <select class="inserir" name="categoria" id="categoria">
-
                                 <!-- FICÇÃO -->
                                 <optgroup label="Ficção">
+                                    <option class="inserir" value="Aventura">Aventura</option>
+                                    <option class="inserir" value="Conto">Conto</option>
+                                    <option class="inserir" value="Cyberpunk">Cyberpunk</option>
+                                    <option class="inserir" value="Distopia">Distopia</option>
+                                    <option class="inserir" value="Drama">Drama</option>
+                                    <option class="inserir" value="Fantasia">Fantasia</option>
+                                    <option class="inserir" value="Ficcao_cientifica">Ficção científica</option>
+                                    <option class="inserir" value="Realismo_magico">Realismo mágico</option>
                                     <option class="inserir" value="Romance">Romance</option>
                                     <option class="inserir" value="Romance_historico">Romance histórico</option>
                                     <option class="inserir" value="Romance_policial">Romance policial</option>
                                     <option class="inserir" value="Romance_psicologico">Romance psicológico</option>
-                                    <option class="inserir" value="Terror">Terror</option>
-                                    <option class="inserir" value="Suspense">Suspense</option>
-                                    <option class="inserir" value="Thriller">Thriller</option>
-                                    <option class="inserir" value="Fantasia">Fantasia</option>
-                                    <option class="inserir" value="Ficcao_cientifica">Ficção científica</option>
-                                    <option class="inserir" value="Distopia">Distopia</option>
-                                    <option class="inserir" value="Utopia">Utopia</option>
-                                    <option class="inserir" value="Realismo_magico">Realismo mágico</option>
-                                    <option class="inserir" value="Cyberpunk">Cyberpunk</option>
                                     <option class="inserir" value="Steampunk">Steampunk</option>
-                                    <option class="inserir" value="Drama">Drama</option>
-                                    <option class="inserir" value="Aventura">Aventura</option>
-                                    <option class="inserir" value="Conto">Conto</option>
+                                    <option class="inserir" value="Suspense">Suspense</option>
+                                    <option class="inserir" value="Terror">Terror</option>
+                                    <option class="inserir" value="Thriller">Thriller</option>
+                                    <option class="inserir" value="Utopia">Utopia</option>
                                     <option class="inserir" value="Western">Faroeste / Western</option>
                                 </optgroup>
 
                                 <!-- NÃO FICÇÃO -->
                                 <optgroup label="Não Ficção">
-                                    <option class="inserir" value="Biografia">Biografia</option>
+                                    <option class="inserir" value="Antropologia">Antropologia</option>
+                                    <option class="inserir" value="Arte">Arte</option>
+                                    <option class="inserir" value="Autoajuda">Autoajuda</option>
                                     <option class="inserir" value="Autobiografia">Autobiografia</option>
-                                    <option class="inserir" value="Memorias">Memórias</option>
+                                    <option class="inserir" value="Biografia">Biografia</option>
+                                    <option class="inserir" value="Cinema">Cinema</option>
+                                    <option class="inserir" value="Crimes_reais">Crimes reais (True Crime)</option>
                                     <option class="inserir" value="Diario">Diário</option>
+                                    <option class="inserir" value="Ecologia">Ecologia</option>
+                                    <option class="inserir" value="Economia">Economia</option>
                                     <option class="inserir" value="Ensaios">Ensaios</option>
                                     <option class="inserir" value="Epistolar">Epistolar (cartas)</option>
-                                    <option class="inserir" value="Crimes_reais">Crimes reais (True Crime)</option>
-                                    <option class="inserir" value="Viagem">Viagem</option>
-                                    <option class="inserir" value="Gastronomia">Gastronomia / Culinária</option>
-                                    <option class="inserir" value="Moda">Moda</option>
-                                    <option class="inserir" value="Arte">Arte</option>
-                                    <option class="inserir" value="Musica">Música</option>
-                                    <option class="inserir" value="Cinema">Cinema</option>
-                                    <option class="inserir" value="Historia">História</option>
-                                    <option class="inserir" value="Politica">Política</option>
                                     <option class="inserir" value="Filosofia">Filosofia</option>
-                                    <option class="inserir" value="Tratado">Tratado</option>
+                                    <option class="inserir" value="Gastronomia">Gastronomia / Culinária</option>
+                                    <option class="inserir" value="Historia">História</option>
+                                    <option class="inserir" value="Moda">Moda</option>
+                                    <option class="inserir" value="Memorias">Memórias</option>
+                                    <option class="inserir" value="Musica">Música</option>
+                                    <option class="inserir" value="Politica">Política</option>
                                     <option class="inserir" value="Proposito">Propósito</option>
-                                    <option class="inserir" value="Sociologia">Sociologia</option>
                                     <option class="inserir" value="Psicologia">Psicologia</option>
-                                    <option class="inserir" value="Antropologia">Antropologia</option>
-                                    <option class="inserir" value="Economia">Economia</option>
-                                    <option class="inserir" value="Ecologia">Ecologia</option>
                                     <option class="inserir" value="Religioso">Religioso</option>
                                     <option class="inserir" value="Saude">Saúde</option>
-                                    <option class="inserir" value="Autoajuda">Autoajuda</option>
+                                    <option class="inserir" value="Sociologia">Sociologia</option>
+                                    <option class="inserir" value="Tratado">Tratado</option>
+                                    <option class="inserir" value="Viagem">Viagem</option>
                                 </optgroup>
 
                                 <!-- EDUCACIONAL / TÉCNICO -->
                                 <optgroup label="Educacional / Técnico">
-                                    <option class="inserir" value="Didatico">Didático</option>
-                                    <option class="inserir" value="Tecnico">Técnico</option>
-                                    <option class="inserir" value="Enciclopedia">Enciclopédia</option>
                                     <option class="inserir" value="Apostila">Apostila</option>
+                                    <option class="inserir" value="Didatico">Didático</option>
+                                    <option class="inserir" value="Enciclopedia">Enciclopédia</option>
                                     <option class="inserir" value="Exercicios">Livros de exercícios</option>
+                                    <option class="inserir" value="Idiomas">Aprendizado de idiomas</option>
                                     <option class="inserir" value="Preparacao_enem">Preparação para ENEM / Vestibular
                                     </option>
-                                    <option class="inserir" value="Idiomas">Aprendizado de idiomas</option>
+                                    <option class="inserir" value="Tecnico">Técnico</option>
                                 </optgroup>
 
                                 <!-- HQs / INFANTIL / MITOLOGIA -->
                                 <optgroup label="Outros">
+                                    <option class="inserir" value="Erótico">Erótico</option>
+                                    <option class="inserir" value="Esporte">Esporte</option>
                                     <option class="inserir" value="HQ">HQ / Mangá</option>
                                     <option class="inserir" value="Infantil">Infantil</option>
                                     <option class="inserir" value="Juvenil">Juvenil</option>
-                                    <option class="inserir" value="Erótico">Erótico</option>
                                     <option class="inserir" value="Mitologia">Mitologia</option>
                                     <option class="inserir" value="Poesia">Poesia</option>
-                                    <option class="inserir" value="Esporte">Esporte</option>
                                 </optgroup>
-
                             </select>
                         </div>
 
@@ -301,19 +316,14 @@
 
                         <div class="mb-3">
                             <label class="bloco">Quantidade:</label>
-                            <input type="number" placeholder="Ex.: 1, 2 ou 3" class="inserir"
-                                id="quantidadeEditar"
+                            <input type="number" placeholder="Ex.: 1, 2 ou 3" class="inserir" id="quantidadeEditar"
                                 name="quantidade" required>
                         </div>
-                          
+
                         <div class="mb-3">
                             <label class="bloco">Páginas:</label>
-                            <input type="number"
-                                    placeholder="Número de páginas"
-                                    class="inserir"
-                                    id="paginas"
-                                    name="paginas"
-                                    required>
+                            <input type="number" placeholder="Número de páginas" class="inserir" id="paginas"
+                                name="paginas" required>
                         </div>
 
                         <div class="mb-3">
@@ -326,87 +336,103 @@
 
                         <div class="mb-3">
                             <label class="bloco">Idioma:</label>
-                            <input type="text"
-                                    placeholder="Idioma do livro"
-                                    class="inserir"
-                                    id="idioma"
-                                    name="idioma"
-                                    required>
+                            <select class="inserir" name="idioma" id="idiomaEditar">
+                                <option value="">Selecione um idioma</option>
+                                <option value="Alemão">Alemão</option>
+                                <option value="Árabe">Árabe</option>
+                                <option value="Chinês">Chinês</option>
+                                <option value="Coreano">Coreano</option>
+                                <option value="Espanhol">Espanhol</option>
+                                <option value="Francês">Francês</option>
+                                <option value="Hebraico">Hebraico</option>
+                                <option value="Hindi">Hindi</option>
+                                <option value="Inglês">Inglês</option>
+                                <option value="Italiano">Italiano</option>
+                                <option value="Japonês">Japonês</option>
+                                <option value="Latim">Latim</option>
+                                <option value="Mandarim">Mandarim</option>
+                                <option value="Português">Português</option>
+                                <option value="Russo">Russo</option>
+                                <option value="Sueco">Sueco</option>
+                                <option value="Tupi">Tupi</option>
+                            </select>
                         </div>
-                          
+
 
                         <div class="mb-3">
                             <label for="categoriaEditar" class="coisa">Categoria:</label>
                             <select class="inserir" name="categoria" id="categoriaEditar">
                                 <optgroup label="Ficção">
+                                    <option class="inserir" value="Aventura">Aventura</option>
+                                    <option class="inserir" value="Conto">Conto</option>
+                                    <option class="inserir" value="Cyberpunk">Cyberpunk</option>
+                                    <option class="inserir" value="Distopia">Distopia</option>
+                                    <option class="inserir" value="Drama">Drama</option>
+                                    <option class="inserir" value="Fantasia">Fantasia</option>
+                                    <option class="inserir" value="Ficcao_cientifica">Ficção científica</option>
+                                    <option class="inserir" value="Realismo_magico">Realismo mágico</option>
                                     <option class="inserir" value="Romance">Romance</option>
                                     <option class="inserir" value="Romance_historico">Romance histórico</option>
                                     <option class="inserir" value="Romance_policial">Romance policial</option>
                                     <option class="inserir" value="Romance_psicologico">Romance psicológico</option>
-                                    <option class="inserir" value="Terror">Terror</option>
-                                    <option class="inserir" value="Suspense">Suspense</option>
-                                    <option class="inserir" value="Thriller">Thriller</option>
-                                    <option class="inserir" value="Fantasia">Fantasia</option>
-                                    <option class="inserir" value="Ficcao_cientifica">Ficção científica</option>
-                                    <option class="inserir" value="Distopia">Distopia</option>
-                                    <option class="inserir" value="Utopia">Utopia</option>
-                                    <option class="inserir" value="Realismo_magico">Realismo mágico</option>
-                                    <option class="inserir" value="Cyberpunk">Cyberpunk</option>
                                     <option class="inserir" value="Steampunk">Steampunk</option>
-                                    <option class="inserir" value="Drama">Drama</option>
-                                    <option class="inserir" value="Aventura">Aventura</option>
-                                    <option class="inserir" value="Conto">Conto</option>
+                                    <option class="inserir" value="Suspense">Suspense</option>
+                                    <option class="inserir" value="Terror">Terror</option>
+                                    <option class="inserir" value="Thriller">Thriller</option>
+                                    <option class="inserir" value="Utopia">Utopia</option>
                                     <option class="inserir" value="Western">Faroeste / Western</option>
                                 </optgroup>
 
                                 <optgroup label="Não Ficção">
-                                    <option class="inserir" value="Biografia">Biografia</option>
+                                    <option class="inserir" value="Antropologia">Antropologia</option>
+                                    <option class="inserir" value="Arte">Arte</option>
+                                    <option class="inserir" value="Autoajuda">Autoajuda</option>
                                     <option class="inserir" value="Autobiografia">Autobiografia</option>
-                                    <option class="inserir" value="Memorias">Memórias</option>
+                                    <option class="inserir" value="Biografia">Biografia</option>
+                                    <option class="inserir" value="Cinema">Cinema</option>
+                                    <option class="inserir" value="Crimes_reais">Crimes reais (True Crime)</option>
                                     <option class="inserir" value="Diario">Diário</option>
+                                    <option class="inserir" value="Ecologia">Ecologia</option>
+                                    <option class="inserir" value="Economia">Economia</option>
                                     <option class="inserir" value="Ensaios">Ensaios</option>
                                     <option class="inserir" value="Epistolar">Epistolar (cartas)</option>
-                                    <option class="inserir" value="Crimes_reais">Crimes reais (True Crime)</option>
-                                    <option class="inserir" value="Viagem">Viagem</option>
-                                    <option class="inserir" value="Gastronomia">Gastronomia / Culinária</option>
-                                    <option class="inserir" value="Moda">Moda</option>
-                                    <option class="inserir" value="Arte">Arte</option>
-                                    <option class="inserir" value="Musica">Música</option>
-                                    <option class="inserir" value="Cinema">Cinema</option>
-                                    <option class="inserir" value="Historia">História</option>
-                                    <option class="inserir" value="Politica">Política</option>
                                     <option class="inserir" value="Filosofia">Filosofia</option>
-                                    <option class="inserir" value="Sociologia">Sociologia</option>
+                                    <option class="inserir" value="Gastronomia">Gastronomia / Culinária</option>
+                                    <option class="inserir" value="Historia">História</option>
+                                    <option class="inserir" value="Memorias">Memórias</option>
+                                    <option class="inserir" value="Moda">Moda</option>
+                                    <option class="inserir" value="Musica">Música</option>
+                                    <option class="inserir" value="Politica">Política</option>
                                     <option class="inserir" value="Psicologia">Psicologia</option>
-                                    <option class="inserir" value="Antropologia">Antropologia</option>
-                                    <option class="inserir" value="Economia">Economia</option>
-                                    <option class="inserir" value="Ecologia">Ecologia</option>
                                     <option class="inserir" value="Religioso">Religioso</option>
                                     <option class="inserir" value="Saude">Saúde</option>
-                                    <option class="inserir" value="Autoajuda">Autoajuda</option>
+                                    <option class="inserir" value="Sociologia">Sociologia</option>
+                                    <option class="inserir" value="Viagem">Viagem</option>
                                 </optgroup>
 
                                 <optgroup label="Educacional / Técnico">
-                                    <option class="inserir" value="Didatico">Didático</option>
-                                    <option class="inserir" value="Tecnico">Técnico</option>
-                                    <option class="inserir" value="Enciclopedia">Enciclopédia</option>
                                     <option class="inserir" value="Apostila">Apostila</option>
+                                    <option class="inserir" value="Didatico">Didático</option>
+                                    <option class="inserir" value="Enciclopedia">Enciclopédia</option>
                                     <option class="inserir" value="Exercicios">Livros de exercícios</option>
-                                    <option class="inserir" value="Preparacao_enem">Preparação para ENEM / Vestibular</option>
                                     <option class="inserir" value="Idiomas">Aprendizado de idiomas</option>
+                                    <option class="inserir" value="Preparacao_enem">Preparação para ENEM / Vestibular
+                                    </option>
+                                    <option class="inserir" value="Tecnico">Técnico</option>
                                 </optgroup>
 
                                 <optgroup label="Outros">
+                                    <option class="inserir" value="Erótico">Erótico</option>
+                                    <option class="inserir" value="Esporte">Esporte</option>
                                     <option class="inserir" value="HQ">HQ / Mangá</option>
                                     <option class="inserir" value="Infantil">Infantil</option>
                                     <option class="inserir" value="Juvenil">Juvenil</option>
-                                    <option class="inserir" value="Erótico">Erótico</option>
                                     <option class="inserir" value="Mitologia">Mitologia</option>
                                     <option class="inserir" value="Poesia">Poesia</option>
-                                    <option class="inserir" value="Esporte">Esporte</option>
                                 </optgroup>
                             </select>
                         </div>
+
 
 
                         <div class="mb-3">
@@ -476,195 +502,195 @@
     </footer>
 
     <script>
-    // DEBUG: Verifica se o jQuery está carregado
-    console.log("jQuery version:", $.fn.jquery);
-    
-    // DEBUG: Verifica a variável ipPython
-    console.log("ipPython:", ipPython);
+        // DEBUG: Verifica se o jQuery está carregado
+        console.log("jQuery version:", $.fn.jquery);
 
-    // FUNÇÃO PARA EXIBIR OS LIVROS CADASTRADOS NO SITE (GET):
-    function carregarLivros() {
-        var token = localStorage.getItem("token");
-        console.log("Token:", token);
+        // DEBUG: Verifica a variável ipPython
+        console.log("ipPython:", ipPython);
 
-        $.ajax({
-            method: "GET",
-            url: ipPython + "/livro",
-            headers: {
-                'Authorization': 'Bearer ' + token
-            },
-            success: function (response) {
-                console.log("Resposta da API:", response);
-                $("#livrosList").empty();
+        // FUNÇÃO PARA EXIBIR OS LIVROS CADASTRADOS NO SITE (GET):
+        function carregarLivros() {
+            var token = localStorage.getItem("token");
+            console.log("Token:", token);
 
-                if (response.livros && response.livros.length > 0) {
-                    response.livros.forEach(function (livro) {
+            $.ajax({
+                method: "GET",
+                url: ipPython + "/livro",
+                headers: {
+                    'Authorization': 'Bearer ' + token
+                },
+                success: function (response) {
+                    console.log("Resposta da API:", response);
+                    $("#livrosList").empty();
 
-                        var livroElement = $("#livroTemplate").clone();
-                        livroElement.attr("style", "display: block;");
-                        livroElement.find(".livro").attr("src", ipPython + "/static/uploads/Livros/" + livro.id_livro + ".jpeg");
-                        livroElement.find(".livro").attr("alt", livro.titulo);
-                        livroElement.find(".livro-titulo").text(livro.titulo);
-                        livroElement.data("id_livro", livro.id_livro);
-                        $("#livrosList").append(livroElement);
+                    if (response.livros && response.livros.length > 0) {
+                        response.livros.forEach(function (livro) {
+
+                            var livroElement = $("#livroTemplate").clone();
+                            livroElement.attr("style", "display: block;");
+                            livroElement.find(".livro").attr("src", ipPython + "/static/uploads/Livros/" + livro.id_livro + ".jpeg");
+                            livroElement.find(".livro").attr("alt", livro.titulo);
+                            livroElement.find(".livro-titulo").text(livro.titulo);
+                            livroElement.data("id_livro", livro.id_livro);
+                            $("#livrosList").append(livroElement);
+                        });
+                    }
+                },
+                error: function (error) {
+                    console.error("Erro ao carregar livros:", error);
+                    Swal.fire({
+                        title: "Erro!",
+                        text: "Falha ao carregar lista de livros",
+                        icon: "error"
                     });
                 }
-            },
-            error: function (error) {
-                console.error("Erro ao carregar livros:", error);
-                Swal.fire({
-                    title: "Erro!",
-                    text: "Falha ao carregar lista de livros",
-                    icon: "error"
+            });
+        }
+
+        // Chama a função ao carregar a página
+        $(document).ready(function () {
+            carregarLivros();
+
+            // Corrige o erro de null reference
+            if (document.getElementById('relatorios')) {
+                document.getElementById('relatorios').addEventListener('click', function () {
+                    // Sua lógica aqui
                 });
             }
         });
-    }
 
-    // Chama a função ao carregar a página
-    $(document).ready(function () {
-        carregarLivros();
-        
-        // Corrige o erro de null reference
-        if(document.getElementById('relatorios')) {
-            document.getElementById('relatorios').addEventListener('click', function() {
-                // Sua lógica aqui
+        // FUNÇÕES DE PRÉ-VISUALIZAÇÃO DE IMAGEM (mantidas iguais)
+        $("#imagem, #imagemEditar").on("change", function (e) {
+            var input = $(this);
+            var file = e.target.files[0];
+            var reader = new FileReader();
+
+            reader.onload = function (event) {
+                input.siblings('img').attr("src", event.target.result).show();
+            };
+
+            file ? reader.readAsDataURL(file) : input.siblings('img').hide();
+        });
+
+        // FUNÇÃO PARA CADASTRAR LIVROS (POST):
+        $("#formCadastroLivro").on("submit", function (e) {
+            e.preventDefault();
+            var token = localStorage.getItem("token");
+            var formData = new FormData(this);
+
+            $.ajax({
+                method: "POST",
+                url: ipPython + "/livros",
+                headers: {
+                    'Authorization': 'Bearer ' + token
+                },
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function (retorno) {
+                    Swal.fire("Sucesso!", "Livro adicionado com sucesso", "success");
+                    carregarLivros();
+                    $("#modalCadastroLivro").modal("hide")[0].reset();
+                },
+                error: function (retorno) {
+                    Swal.fire("Erro!", retorno.responseJSON?.error || "Erro ao adicionar livro.", "error");
+                }
+            });
+        });
+
+        // FUNÇÃO PARA EDITAR LIVROS (PUT):
+        $("#formEditarLivro").on("submit", function (e) {
+            e.preventDefault();
+            var token = localStorage.getItem("token");
+            var formData = new FormData(this);
+            var id = $("#id_livro").val(); // Obtém o ID do livro a ser editado
+            $.ajax({
+                method: "PUT",
+                url: ipPython + "/livros/" + id,
+                headers: {
+                    'Authorization': 'Bearer ' + token
+                },
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function (retorno) {
+                    Swal.fire("Sucesso!", "Livro editado com sucesso", "success");
+                    carregarLivros(); // Atualiza a lista de livros
+                    $("#modalEditarLivro").modal("hide"); // Fecha o modal
+                },
+                error: function (retorno) {
+                    Swal.fire("Erro!", retorno.responseJSON?.error || "Erro ao editar livro.", "error");
+                }
+            });
+        });
+
+        function editarLivro(button) {
+            var livroElement = $(button).closest('.livro-hud');
+            var id = livroElement.data("id_livro");
+            console.log("ID do livro:", id); // Verifique o ID
+
+            $.ajax({
+                method: "GET",
+                url: ipPython + "/livro/" + id,
+                headers: {
+                    'Authorization': 'Bearer ' + localStorage.getItem("token")
+                },
+                success: function (response) {
+                    console.log(response); // Verifique a resposta
+
+                    // Acesse o primeiro livro da resposta
+                    var livro = response.livro; // Supondo que a resposta tenha a estrutura correta
+
+                    // Preenche o formulário de edição com os dados do livro
+                    $("#id_livro").val(livro.id_livro);
+                    $("#tituloEditar").val(livro.titulo);
+                    $("#autorEditar").val(livro.autor);
+                    $("#data_publicacaoEditar").val(livro.data_publicacao);
+                    $("#ISBNEditar").val(livro.ISBN);
+                    $("#descricaoEditar").val(livro.descricao);
+                    $("#quantidadeEditar").val(livro.quantidade);
+                    $("#paginasEditar").val(livro.paginas);
+                    $("#statusEditar").val(livro.status);
+                    $("#idiomaEditar").val(livro.idioma);
+                    $("#categoriaEditar").val(livro.categoria); // Certifique-se de que isso está correto
+                    $("#previewImagemEditar").attr("src", ipPython + "/static/uploads/Livros/" + livro.id_livro + ".jpeg").show();
+                },
+
+                error: function () {
+                    Swal.fire("Erro!", "Falha ao carregar dados do livro.", "error");
+                }
             });
         }
-    });
 
-    // FUNÇÕES DE PRÉ-VISUALIZAÇÃO DE IMAGEM (mantidas iguais)
-    $("#imagem, #imagemEditar").on("change", function (e) {
-        var input = $(this);
-        var file = e.target.files[0];
-        var reader = new FileReader();
+        // FUNÇÃO PARA DELETAR LIVROS (mantida igual)
+        // function deletarLivro(button) {
+        //     var id = $(button).closest('.livro-hud').data("id_livro");
 
-        reader.onload = function (event) {
-            input.siblings('img').attr("src", event.target.result).show();
-        };
-
-        file ? reader.readAsDataURL(file) : input.siblings('img').hide();
-    });
-
-    // FUNÇÃO PARA CADASTRAR LIVROS (POST):
-    $("#formCadastroLivro").on("submit", function (e) {
-        e.preventDefault();
-        var token = localStorage.getItem("token");
-        var formData = new FormData(this);
-
-        $.ajax({
-            method: "POST",
-            url: ipPython + "/livros",
-            headers: {
-                'Authorization': 'Bearer ' + token
-            },
-            data: formData,
-            processData: false,
-            contentType: false,
-            success: function (retorno) {
-                Swal.fire("Sucesso!", "Livro adicionado com sucesso", "success");
-                carregarLivros();
-                $("#modalCadastroLivro").modal("hide")[0].reset();
-            },
-            error: function (retorno) {
-                Swal.fire("Erro!", retorno.responseJSON?.error || "Erro ao adicionar livro.", "error");
-            }
-        });
-    });
-
-    // FUNÇÃO PARA EDITAR LIVROS (PUT):
-    $("#formEditarLivro").on("submit", function (e) {
-        e.preventDefault();
-        var token = localStorage.getItem("token");
-        var formData = new FormData(this);
-        var id = $("#id_livro").val(); // Obtém o ID do livro a ser editado
-        $.ajax({
-            method: "PUT",
-            url: ipPython + "/livros/" + id,
-            headers: {
-                'Authorization': 'Bearer ' + token
-            },
-            data: formData,
-            processData: false,
-            contentType: false,
-            success: function (retorno) {
-                Swal.fire("Sucesso!", "Livro editado com sucesso", "success");
-                carregarLivros(); // Atualiza a lista de livros
-                $("#modalEditarLivro").modal("hide"); // Fecha o modal
-            },
-            error: function (retorno) {
-                Swal.fire("Erro!", retorno.responseJSON?.error || "Erro ao editar livro.", "error");
-            }
-        });
-    });
-
-    function editarLivro(button) {
-        var livroElement = $(button).closest('.livro-hud');
-        var id = livroElement.data("id_livro");
-        console.log("ID do livro:", id); // Verifique o ID
-
-        $.ajax({
-            method: "GET",
-            url: ipPython + "/livro/" + id,
-            headers: {
-                'Authorization': 'Bearer ' + localStorage.getItem("token")
-            },
-            success: function (response) {
-                console.log(response); // Verifique a resposta
-
-                // Acesse o primeiro livro da resposta
-                var livro = response.livro; // Supondo que a resposta tenha a estrutura correta
-
-                // Preenche o formulário de edição com os dados do livro
-                $("#id_livro").val(livro.id_livro);
-                $("#tituloEditar").val(livro.titulo);
-                $("#autorEditar").val(livro.autor);
-                $("#data_publicacaoEditar").val(livro.data_publicacao);
-                $("#ISBNEditar").val(livro.ISBN);
-                $("#descricaoEditar").val(livro.descricao);
-                $("#quantidadeEditar").val(livro.quantidade);
-                $("#paginasEditar").val(livro.paginas);
-                $("#statusEditar").val(livro.status);
-                $("#idiomaEditar").val(livro.idioma);
-                $("#categoriaEditar").val(livro.categoria); // Certifique-se de que isso está correto
-                $("#previewImagemEditar").attr("src", ipPython + "/static/uploads/Livros/" + livro.id_livro + ".jpeg").show();
-            },
-
-            error: function () {
-                Swal.fire("Erro!", "Falha ao carregar dados do livro.", "error");
-            }
-        });
-    }
-
-    // FUNÇÃO PARA DELETAR LIVROS (mantida igual)
-    // function deletarLivro(button) {
-    //     var id = $(button).closest('.livro-hud').data("id_livro");
-
-    //     Swal.fire({
-    //         title: 'Confirmar exclusão?',
-    //         text: "Esta ação não pode ser desfeita!",
-    //         icon: 'warning',
-    //         showCancelButton: true,
-    //         confirmButtonText: 'Sim, excluir!'
-    //     }).then((result) => {
-    //         if (result.isConfirmed) {
-    //             $.ajax({
-    //                 method: "DELETE",
-    //                 url: ipPython + "/livros/" + id,
-    //                 headers: {
-    //                     'Authorization': 'Bearer ' + localStorage.getItem("token")
-    //                 },
-    //                 success: function() {
-    //                     Swal.fire("Excluído!", "Livro removido", "success");
-    //                     carregarLivros();
-    //                 },
-    //                 error: function() {
-    //                     Swal.fire("Erro!", "Falha ao excluir", "error");
-    //                 }
-    //             });
-    //         }
-    //     });
-    // }
+        //     Swal.fire({
+        //         title: 'Confirmar exclusão?',
+        //         text: "Esta ação não pode ser desfeita!",
+        //         icon: 'warning',
+        //         showCancelButton: true,
+        //         confirmButtonText: 'Sim, excluir!'
+        //     }).then((result) => {
+        //         if (result.isConfirmed) {
+        //             $.ajax({
+        //                 method: "DELETE",
+        //                 url: ipPython + "/livros/" + id,
+        //                 headers: {
+        //                     'Authorization': 'Bearer ' + localStorage.getItem("token")
+        //                 },
+        //                 success: function() {
+        //                     Swal.fire("Excluído!", "Livro removido", "success");
+        //                     carregarLivros();
+        //                 },
+        //                 error: function() {
+        //                     Swal.fire("Erro!", "Falha ao excluir", "error");
+        //                 }
+        //             });
+        //         }
+        //     });
+        // }
 
         // Adiciona o evento de clique no botão de relatórios
         document.addEventListener('DOMContentLoaded', function () {
@@ -679,8 +705,8 @@
 
 
 
-                 // Função para atualizar os hrefs dos relatórios
-                 function atualizarLinksRelatorios() {
+        // Função para atualizar os hrefs dos relatórios
+        function atualizarLinksRelatorios() {
             const linksRelatorios = {
                 relatorioMultas: "/multas_relatorio",
                 relatorioLivros: "/livros_relatorio",

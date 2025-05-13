@@ -68,7 +68,7 @@
     </header>
 
     <main>
-        
+
         <section class="container">
             <div class="pai">
                 <div class="pai1">
@@ -95,45 +95,52 @@
                     </div>
                 </div>
             </div>
-            
+
         </section>
 
         <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
             <li class="nav-item" role="presentation">
-              <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Avaliações</button>
+                <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home"
+                    type="button" role="tab" aria-controls="pills-home" aria-selected="true">Avaliações</button>
             </li>
             <li class="nav-item" role="presentation">
-              <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Avalie</button>
+                <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile"
+                    type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Avalie</button>
             </li>
-          </ul>
-          <div class="tab-content" id="pills-tabContent">
-            <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab" tabindex="0">
+        </ul>
+        <div class="tab-content" id="pills-tabContent">
+            <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab"
+                tabindex="0">
                 <div id="reviewsContainer" class="reviews-container">
                     <!-- As avaliações serão inseridas aqui -->
                 </div>
             </div>
         </div>
-            <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">><div class="avaliacoes">
+        <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">>
+            <div class="avaliacoes">
                 <form id="formAvaliar">
                     <div class="rating">
 
-                            <span class="star" data-value="1">★</span>
-                            <span class="star" data-value="2">★</span>
-                            <span class="star" data-value="3">★</span>
-                            <span class="star" data-value="4">★</span>
-                            <span class="star" data-value="5">★</span>
+                        <span class="star" data-value="1">★</span>
+                        <span class="star" data-value="2">★</span>
+                        <span class="star" data-value="3">★</span>
+                        <span class="star" data-value="4">★</span>
+                        <span class="star" data-value="5">★</span>
 
                     </div>
                     <textarea id="comment" placeholder="Escreva um comentário..." required></textarea>
-                        <button class="coment" type="submit" id="submitReview">Enviar Avaliação</button>
-                </form></div>
-            <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab" tabindex="0">...</div>
-            <div class="tab-pane fade" id="pills-disabled" role="tabpanel" aria-labelledby="pills-disabled-tab" tabindex="0">...</div>
-          </div>
+                    <button class="coment" type="submit" id="submitReview">Enviar Avaliação</button>
+                </form>
+            </div>
+            <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab"
+                tabindex="0">...</div>
+            <div class="tab-pane fade" id="pills-disabled" role="tabpanel" aria-labelledby="pills-disabled-tab"
+                tabindex="0">...</div>
+        </div>
 
-    
+
         <script>
-            
+
             document.addEventListener("DOMContentLoaded", function () {
                 const token = localStorage.getItem('token');
                 let payload = {};
@@ -284,39 +291,39 @@
                             'Authorization': `Bearer ${token}`
                         }
                     })
-                    .then(response => {
-                        if (!response.ok) throw new Error('Erro ao carregar avaliações');
-                        return response.json();
-                    })
-                    .then(data => {
-                        reviewsContainer.innerHTML = "";
-                        const avaliacoes = data.configuracoes || [];
+                        .then(response => {
+                            if (!response.ok) throw new Error('Erro ao carregar avaliações');
+                            return response.json();
+                        })
+                        .then(data => {
+                            reviewsContainer.innerHTML = "";
+                            const avaliacoes = data.configuracoes || [];
 
-                        if (avaliacoes.length === 0) {
-                            reviewsContainer.innerHTML = "<p>Nenhuma avaliação encontrada para este livro.</p>";
-                            return;
-                        }
-
-                        // Supondo que você tenha uma variável cargo_usuario que contém o cargo do usuário
-                        const cargo_usuario = payload.cargo;
- // Certifique-se de que você tenha essa informação disponível
-
-                        avaliacoes.forEach(avaliacao => {
-                            const usuario = avaliacao.nome_usuario || `Usuário ${avaliacao.id_usuario || ''}` || "Anônimo";
-                            const nota = avaliacao.nota || 0;
-                            const comentario = avaliacao.comentario || "";
-                            const dataAvaliacao = avaliacao.data_avaliacao || avaliacao.data || "";
-                            const dataFormatada = dataAvaliacao ? new Date(dataAvaliacao).toLocaleDateString('pt-BR') : "";
-
-                            let stars = "";
-                            for (let i = 1; i <= 5; i++) {
-                                stars += i <= nota ? "★" : "☆";
+                            if (avaliacoes.length === 0) {
+                                reviewsContainer.innerHTML = "<p>Nenhuma avaliação encontrada para este livro.</p>";
+                                return;
                             }
 
-                            // Adiciona o botão de exclusão apenas se o usuário for administrador
-                            const botaoExcluir = (cargo_usuario === 'ADM') ? `<button class="btn btn-danger btn-excluir" data-id="${avaliacao.id_avaliacao}">Excluir</button>` : '';
+                            // Supondo que você tenha uma variável cargo_usuario que contém o cargo do usuário
+                            const cargo_usuario = payload.cargo;
+                            // Certifique-se de que você tenha essa informação disponível
 
-                            reviewsContainer.innerHTML += `
+                            avaliacoes.forEach(avaliacao => {
+                                const usuario = avaliacao.nome_usuario || `Usuário ${avaliacao.id_usuario || ''}` || "Anônimo";
+                                const nota = avaliacao.nota || 0;
+                                const comentario = avaliacao.comentario || "";
+                                const dataAvaliacao = avaliacao.data_avaliacao || avaliacao.data || "";
+                                const dataFormatada = dataAvaliacao ? new Date(dataAvaliacao).toLocaleDateString('pt-BR') : "";
+
+                                let stars = "";
+                                for (let i = 1; i <= 5; i++) {
+                                    stars += i <= nota ? "★" : "☆";
+                                }
+
+                                // Adiciona o botão de exclusão apenas se o usuário for administrador
+                                const botaoExcluir = (cargo_usuario === 'ADM') ? `<button class="btn btn-danger btn-excluir" data-id="${avaliacao.id_avaliacao}">Excluir</button>` : '';
+
+                                reviewsContainer.innerHTML += `
                             <div class="review">
                                 <div class="review-header">
                                     <span class="review-user">${usuario}</span>
@@ -327,11 +334,11 @@
                                 ${botaoExcluir}
                             </div>
                             `;
+                            });
+                        })
+                        .catch(() => {
+                            reviewsContainer.innerHTML = "<p>Erro ao carregar avaliações. Por favor, tente novamente mais tarde.</p>";
                         });
-                    })
-                    .catch(() => {
-                        reviewsContainer.innerHTML = "<p>Erro ao carregar avaliações. Por favor, tente novamente mais tarde.</p>";
-                    });
                 }
 
                 // Carrega avaliações quando a página termina de carregar

@@ -76,7 +76,6 @@
       <table class="table" id="tabela-emprestimos" border="3">
         <thead>
           <tr>
-            <th>ID</th>
             <th>Data Emprestimo</th>
             <th>Data Devolução</th>
             <th>Usuário</th>
@@ -272,7 +271,6 @@
 
             let linha = `
               <tr data-id="${emprestimo.id_emprestimo}">
-                  <td>${emprestimo.id_emprestimo}</td>
                   <td>${emprestimo.data_emprestimo.replaceAll("-","/")}</td>
                   <td>${emprestimo.data_devolucao.replaceAll("-","/")}</td>
                   <td>${emprestimo.nome_usuario}</td>

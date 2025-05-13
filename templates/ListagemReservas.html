@@ -75,7 +75,6 @@
       <table class="table" id="tabela-reservas" border="3">
         <thead>
           <tr>
-            <th>ID</th>
             <th>Data Reserva</th>
             <th>Usuário</th>
             <th>Título do Livro</th>
@@ -176,8 +175,7 @@
               reservas.forEach(reserva => {
                 let linha = `
                   <tr>
-                    <td>${reserva.id_emprestimo}</td>
-                    <td>${formatarData(reserva.data_reserva)}</td>
+                    <td>${reserva.data_reserva.replaceAll("-","/")}</td>
                     <td>${reserva.nome_usuario}</td>
                     <td>${reserva.titulo_livro}</td>
                     <td>${reserva.autor_livro}</td>
@@ -267,18 +265,10 @@
             }
         }
 
-        function formatarData(dataISO) {
-          if (!dataISO) return "";
-
-          let data = new Date(dataISO);
-          data.setDate(data.getDate() + 1);
-
-          let dia = data.getDate().toString().padStart(2, "0");
-          let mes = (data.getMonth() + 1).toString().padStart(2, "0");
-          let ano = data.getFullYear();
-
-          return `${dia}/${mes}/${ano}`;
+        function formatarData(data) {
+          return data; // A data já está no formato correto, então apenas a retorna
         }
+
         // Chama a função assim que o DOM carregar
         document.addEventListener("DOMContentLoaded", atualizarLinksRelatorios);   
 
