@@ -132,23 +132,58 @@ input::placeholder {
 }
 
 .botao-cadastro {
-    padding: 7px;
-    padding-left: 200px;
-    padding-right: 200px;
-    color: var(--azul);
-    margin-top: 30px;
-    background-color: var(--branco);
-    border: 3px solid var(--azul);
-    border-radius: 5px;
-    font-weight: bold;
-    font-size: 18px;
-    transition: 0.2s;
+  --color: #3380ca;
+  background-color: white;
+  font-family: inherit;
+  display: inline-block;
+  line-height: 2.5em;
+  margin-top: 20px;
+  width: 31.5rem;
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+  border: 3px solid var(--azul);
+  transition: color 0.5s;
+  z-index: 1;
+  font-size: 17px;
+  font-weight: bold;
+  border-radius: 6px;
+  color: var(--azul);
+}
+
+.botao-cadastro:before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  background: var(--color);
+  height: 110px;
+  width: 600px;
+  border-radius: 50%;
 }
 
 .botao-cadastro:hover {
-    background-color: var(--azul);
-    color: var(--branco);
-    transition: 0.2s;
+  color: white;
+}
+
+.botao-cadastro:before {
+  top: 100%;
+  left: 100%;
+  transition: all 0.7s;
+}
+
+.botao-cadastro:hover:before {
+  top: -30px;
+  left: -30px;
+}
+
+.botao-cadastro:active:before {
+  background: #0060BB;
+  transition: background 0s;
+}
+
+.texto {
+    padding-top: 20px;
+    font-weight: bold;
 }
 
 .texto {
