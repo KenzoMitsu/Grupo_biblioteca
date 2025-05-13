@@ -85,6 +85,7 @@
     <table class="tabela-container" id="tabela-usuarios" border="3">
       <thead>
         <tr>
+          <th>ID</th>
           <th>Nome</th>
           <th>Email</th>
           <th>Telefone</th>
@@ -98,11 +99,15 @@
     </table>
 
     <div class="paginacao">
+
         <a href="" class="btn" id="pagina-anterior"> <i class="fa-solid fa-left-long"></i> </a>
-            <h3 class="paginaAtual" id="paginaAtual">Kenso Bixa</h3>
+            <h3 class="paginaAtual" id="paginaAtual">Página Atual</h3>
         <a href="" class="btn" id="pagina-proxima"> <i class="fa-solid fa-right-long"></i> </a>
     </div>
   </div>
+
+
+
 
   <!-- Modal para Adição de Usuário -->
   <div id="modal-adicao">
@@ -114,6 +119,10 @@
 
       <label for="email_adicao">Email:</label>
       <input type="email" id="email_adicao" required>
+
+      <label for="senha_adicao">Senha:</label>
+      <input type="password" id="senha_adicao" required>
+
 
       <label for="telefone_adicao">Telefone:</label>
       <input type="text" id="telefone_adicao" onkeyup="handlePhone(event)" required>
@@ -140,6 +149,11 @@
       </div>
     </form>
   </div>
+
+
+
+
+
   <footer class="inter">
     <div class="separacao1">
       <p>Entre em contato conosco</p>
@@ -204,14 +218,12 @@
 
       carregarUsuarios();
 
-      // Exibir modal de adição ao clicar no botão
       $("#btn-adicionar-usuario").click(function () {
-        $("#modal-adicao").show();
+        $("#modal-adicao").addClass("ativo");
       });
 
-      // Fechar o modal de adição
       $("#fechar-modal-adicao").click(function () {
-        $("#modal-adicao").hide();
+        $("#modal-adicao").removeClass("ativo");
       });
 
       // Submissão do formulário de adição
@@ -221,11 +233,13 @@
         const novoUsuario = {
           nome: $("#nome_adicao").val().trim(),
           email: $("#email_adicao").val().trim(),
+          senha: $("#senha_adicao").val().trim(), // <- ESSENCIAL
           telefone: $("#telefone_adicao").val().trim(),
           data_nascimento: $("#data_nascimento_adicao").val(),
           cargo: $("#cargo_adicao").val(),
           status: $("#status_adicao").val()
         };
+
 
         $.ajax({
           method: "POST",
@@ -296,6 +310,7 @@
             usuarios.forEach(usuario => {
               let linha = `
                           <tr>
+                            <td>${usuario.id_usuario}</td>
                             <td>${usuario.nome}</td>
                             <td>${usuario.email}</td>
                             <td class="tel">${usuario.telefone}</td>
@@ -535,5 +550,7 @@
 
     document.addEventListener("DOMContentLoaded", atualizarLinksRelatorios);
   </script>
+
+
 
 </body>
