@@ -178,15 +178,7 @@
                             </div>
                         `;
             });
-
           },
-          error: function (retorno) {
-            Swal.fire({
-              title: "Tudo certo!",
-              text: JSON.parse(retorno.responseText).mensagem,
-              icon: "success"
-            })
-          }
         }
 
         $.ajax(settings);
