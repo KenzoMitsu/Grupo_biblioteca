@@ -48,7 +48,7 @@
     </header>
 
     <section class="tudo">
-        
+
         <div>
 
 
@@ -74,9 +74,12 @@
                         required>
 
                     <label class="coisa">Senha:</label>
-                    <input type="password" placeholder="Sua senha" class="inserir" id="senha" name="senha" required>
+                    <div style="position:relative;">
+                        <input type="password" placeholder="Sua senha" class="inserir" id="senha" name="senha" required>
+                        <button type="button" id="toggleSenha"
+                            style="position:absolute; right:5px; top:5px;">Mostrar</button>
+                    </div>
                 </div>
-
 
                 <div>
                     <label class="coisa">Data de Nascimento:</label>
@@ -86,12 +89,13 @@
                     <input type="tel" placeholder="+55 () 99999-9999" class="inserir" id="tel" name="telefone"
                         onkeyup="handlePhone(event)" required>
 
+                    <button type="submit" class="botao-cadastro">Cadastrar</button>
                 </div>
 
             </form>
 
+
             <div class="final">
-                <button type="submit" class="botao-cadastro" onclick="$('#formCadastro').submit()">Cadastrar</button>
                 <p class="texto">Você tem uma conta? <a target="_blank" class="link" href="login.html">Login</a></p>
             </div>
 
@@ -101,6 +105,19 @@
 
 
     <script>
+        // Botão de mostrar/ocultar senha
+        $("#toggleSenha").on("click", function () {
+            var senhaInput = $("#senha");
+            var tipo = senhaInput.attr("type");
+            if (tipo === "password") {
+                senhaInput.attr("type", "text");
+                $(this).text("Ocultar");
+            } else {
+                senhaInput.attr("type", "password");
+                $(this).text("Mostrar");
+            }
+        });
+
 
         $("#formCadastro").on("submit", function (e) {
             e.preventDefault();
