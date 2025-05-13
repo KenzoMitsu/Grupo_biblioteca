@@ -91,15 +91,15 @@ if (cargo === 'ADM') {
         </li>
 
         <li class="menu-item" id="relatorios">
-            <div>
+            <div class="item-relatorios">
                 <i class="fa-solid fa-file-export"></i>
                 <a href="javascript:void(0);" class="submenu-toggle">Relatórios</a>
             </div>
             <ul class="submenu">
-                <li><a id="relatorioMultas" href="#"><i class="fa-solid fa-file-export"></i>Relatório de <br>Multas</a></li>
-                <li><a id="relatorioLivros" href="#"><i class="fa-solid fa-file-export"></i>Relatório de <br>Livros</a></li>
-                <li><a id="relatorioUsuarios" href="#"><i class="fa-solid fa-file-export"></i>Relatório de <br>Usuários</a></li>
-                <li><a id="relatorioEmprestimos" href="#"><i class="fa-solid fa-file-export"></i>Relatório de Emprestimos</a></li>
+                <li class="submenu-item" ><a id="relatorioMultas" href="#"><i class="fa-solid fa-file-export"></i>Relatório de <br>Multas</a></li>
+                <li class="submenu-item"><a id="relatorioLivros" href="#"><i class="fa-solid fa-file-export"></i>Relatório de <br>Livros</a></li>
+                <li class="submenu-item"><a id="relatorioUsuarios" href="#"><i class="fa-solid fa-file-export"></i>Relatório de <br>Usuários</a></li>
+                <li class="submenu-item"><a id="relatorioEmprestimos" href="#"><i class="fa-solid fa-file-export"></i>Relatório de Emprestimos</a></li>
             </ul>
         </li>
 

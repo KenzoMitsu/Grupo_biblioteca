@@ -267,18 +267,10 @@
             }
         }
 
-        function formatarData(dataISO) {
-          if (!dataISO) return "";
-
-          let data = new Date(dataISO);
-          data.setDate(data.getDate() + 1);
-
-          let dia = data.getDate().toString().padStart(2, "0");
-          let mes = (data.getMonth() + 1).toString().padStart(2, "0");
-          let ano = data.getFullYear();
-
-          return `${dia}/${mes}/${ano}`;
+        function formatarData(data) {
+          return data; // A data já está no formato correto, então apenas a retorna
         }
+
         // Chama a função assim que o DOM carregar
         document.addEventListener("DOMContentLoaded", atualizarLinksRelatorios);   
 
