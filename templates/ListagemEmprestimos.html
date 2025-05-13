@@ -76,9 +76,9 @@
       <table class="table" id="tabela-emprestimos" border="3">
         <thead>
           <tr>
+            <th>Usuário</th>
             <th>Data Emprestimo</th>
             <th>Data Devolução</th>
-            <th>Usuário</th>
             <th>Título do Livro</th>
             <th>Autor</th>
             <th>Ações</th>
@@ -127,8 +127,9 @@
   </div>
 
   <div class="paginacao">
-      <a href="" class="btn" id="pagina-anterior">Ant. Pag</a>
-      <a href="" class="btn" id="pagina-proxima">Próx. Pag</a>
+      <a href="" class="btn" id="pagina-anterior"> <i class="fa-solid fa-left-long"></i> </a>
+      <h3 class="paginaAtual" id="paginaAtual">Página Atual</h3>
+      <a href="" class="btn" id="pagina-proxima"> <i class="fa-solid fa-right-long"></i> </a>
   </div>
 
   <footer class="inter">
@@ -260,22 +261,29 @@
           var anterior = paginaAtual - 1
           var proxima = paginaAtual + 1
 
-          document.getElementById("pagina-anterior").href = "/templates/ListagemReservas.html?pagina=" + anterior
+          document.getElementById("pagina-anterior").href = "/templates/EmprestimosReservas.html?pagina=" + anterior
 
-          document.getElementById("pagina-proxima").href = "/templates/ListagemReservas.html?pagina=" + proxima
+          document.getElementById("pagina-proxima").href = "/templates/EmprestimosReservas.html?pagina=" + proxima
 
           if (paginaAtual >= total) {
-            document.getElementById('pagina-proxima').style.display = "none"
+              document.getElementById('pagina-proxima').style.display = "none"
           } 
 
-          
+          if (paginaAtual > total) {
+              document.getElementById('listaLivros').innerHTML = `
+                  <p>Empréstimos não encontrados!</p>
+              `;
+          }
+
+          document.getElementById("paginaAtual").innerHTML = paginaAtual 
+
           emprestimos.forEach(emprestimo => { 
 
             let linha = `
               <tr data-id="${emprestimo.id_emprestimo}">
+                  <td>${emprestimo.nome_usuario}</td>
                   <td>${emprestimo.data_emprestimo.replaceAll("-","/")}</td>
                   <td>${emprestimo.data_devolucao.replaceAll("-","/")}</td>
-                  <td>${emprestimo.nome_usuario}</td>
                   <td>${emprestimo.titulo_livro}</td>
                   <td>${emprestimo.autor_livro}</td>
                   <td>
