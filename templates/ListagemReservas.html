@@ -75,7 +75,6 @@
       <table class="table" id="tabela-reservas" border="3">
         <thead>
           <tr>
-            <th>ID</th>
             <th>Data Reserva</th>
             <th>Usuário</th>
             <th>Título do Livro</th>
@@ -176,7 +175,6 @@
               reservas.forEach(reserva => {
                 let linha = `
                   <tr>
-                    <td>${reserva.id_emprestimo}</td>
                     <td>${reserva.data_reserva.replaceAll("-","/")}</td>
                     <td>${reserva.nome_usuario}</td>
                     <td>${reserva.titulo_livro}</td>
