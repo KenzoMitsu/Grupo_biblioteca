@@ -91,8 +91,9 @@
     </div>
 
       <div class="paginacao">
-        <a href="" class="btn" id="pagina-anterior">Ant Pag</a>
-        <a href="" class="btn" id="pagina-proxima">Prox Pag</a>
+        <a href="" class="btn" id="pagina-anterior"><</a>
+        <h3 class="paginaAtual" id="paginaAtual"></h3>
+        <a href="" class="btn" id="pagina-proxima">></a>
       </div>
     </div>
 
@@ -159,15 +160,14 @@
       var id_usuario = localStorage.getItem("id_usuario")
 
       const params = new URLSearchParams(window.location.search);
-        var pagina = params.get('pagina');
 
-        if (pagina === null || pagina === undefined) {
-          pagina = 1
-        } 
+      var pagina = params.get('pagina');
 
-        if (pagina == 1) {
-          document.getElementById('pagina-anterior').style.display = "none"
-        }
+      if (!pagina) pagina = 1;
+
+      if (pagina == 1) {
+        document.getElementById('pagina-anterior').style.display = "none";
+      }
 
       $.ajax({
         method: "GET",
@@ -181,18 +181,20 @@
           let tabela = $("#tabela-emprestimos tbody");
           tabela.empty();
 
-          var total = data.total_paginas
-          var paginaAtual = data.pagina_atual
-          var anterior = paginaAtual - 1
-          var proxima = paginaAtual + 1
+          var total = data.total_paginas;
+          var paginaAtual = data.pagina_atual;
+          var anterior = paginaAtual - 1;
+          var proxima = paginaAtual + 1;
 
-          document.getElementById("pagina-anterior").href = "/templates/ListagemReservas.html?pagina=" + anterior
-
-          document.getElementById("pagina-proxima").href = "/templates/ListagemReservas.html?pagina=" + proxima
+          document.getElementById("pagina-anterior").href = "/templates/historicoReservas.html?pagina=" + anterior;
+          document.getElementById("pagina-proxima").href = "/templates/historicoReservas.html?pagina=" + proxima;
 
           if (paginaAtual >= total) {
-            document.getElementById('pagina-proxima').style.display = "none"
-          } 
+            document.getElementById('pagina-proxima').style.display = "none";
+          }
+
+          document.getElementById("paginaAtual").innerHTML = paginaAtual
+          
           reservas.forEach(reserva => { 
 
             let linha = `
