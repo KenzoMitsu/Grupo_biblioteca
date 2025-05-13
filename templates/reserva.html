@@ -68,6 +68,7 @@
     </header>
 
     <main>
+        
         <section class="container">
             <div class="pai">
                 <div class="pai1">
@@ -297,7 +298,8 @@
                         }
 
                         // Supondo que você tenha uma variável cargo_usuario que contém o cargo do usuário
-                        const cargo_usuario = payload.get('cargo'); // Certifique-se de que você tenha essa informação disponível
+                        const cargo_usuario = payload.cargo;
+ // Certifique-se de que você tenha essa informação disponível
 
                         avaliacoes.forEach(avaliacao => {
                             const usuario = avaliacao.nome_usuario || `Usuário ${avaliacao.id_usuario || ''}` || "Anônimo";
@@ -335,6 +337,7 @@
                 // Carrega avaliações quando a página termina de carregar
                 carregarAvaliacoes();
             });
+
         </script>
     </main>
 
