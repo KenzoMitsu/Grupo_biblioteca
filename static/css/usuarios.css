@@ -7,11 +7,12 @@
     font-family: "Montserrat", sans-serif;
 }
 
-a{
+a {
     text-decoration: none;
-    color:black;
+    color: black;
 }
-:root{
+
+:root {
     --azul: #3380ca;
     --azul-claro: #4292DC;
     --azul-escuro: #0060BB;
@@ -22,15 +23,17 @@ a{
     --azul-modoescuro: #73A8FE;
 }
 
-.sair{
+.sair {
     background-color: #00010000;
     border: #00010000;
 }
-.sair:hover{
+
+.sair:hover {
     background-color: #00010000;
     border: #00010000;
     color: black;
 }
+
 body {
     font-family: Arial, sans-serif;
     background-color: #f5f5f5;
@@ -129,11 +132,11 @@ header {
     background-color: white;
 }
 
-input:checked + .slider {
+input:checked+.slider {
     background-color: #000100;
 }
 
-input:checked + .slider:before {
+input:checked+.slider:before {
     transform: translateX(22px);
     background-color: #1C82E3;
 }
@@ -181,7 +184,7 @@ input:checked + .slider:before {
 }
 
 /* SÍMBOLOS DAS OPÇÕES */
-.fa-circle-user{
+.fa-circle-user {
     padding-right: 2px;
     margin-left: -1px;
 }
@@ -240,10 +243,12 @@ input:checked + .slider:before {
     padding-right: 7px;
 }
 
-.menu-item { 
+.menu-item {
     display: flex;
-    flex-direction: column; /* ← isso força tudo a ficar empilhado para baixo */
-    align-items: flex-start; /* opcional, para alinhar à esquerda */
+    flex-direction: column;
+    /* ← isso força tudo a ficar empilhado para baixo */
+    align-items: flex-start;
+    /* opcional, para alinhar à esquerda */
 }
 
 .menu-item {
@@ -264,9 +269,10 @@ input:checked + .slider:before {
     padding: 0;
     margin: 0;
 }
-    
+
 .submenu.show {
-    display: flex; /* ou display: block */
+    display: flex;
+    /* ou display: block */
 }
 
 /* SUB-MODAIS DOS RELATÓRIOS */
@@ -279,12 +285,13 @@ input:checked + .slider:before {
     margin: 0;
 }
 
-.header-end{
+.header-end {
     margin-bottom: 15px;
 }
 
 .submenu.show {
-    display: flex; /* ou display: block */
+    display: flex;
+    /* ou display: block */
 }
 
 /* Estilo dos itens do submenu */
@@ -311,61 +318,94 @@ select {
 
 /* Modal */
 #modal-edicao {
-    display: flex; /* Usar flexbox para centralizar o conteúdo */
-    flex-direction: column; /* Organizar os elementos em coluna */
-    justify-content: center; /* Centralizar verticalmente */
-    align-items: center; /* Centralizar horizontalmente */
-    position: fixed; /* Fixa o modal na tela */
-    top: 0; /* Alinha ao topo da tela */
-    left: 0; /* Alinha à esquerda da tela */
-    width: 100%; /* Largura total da tela */
-    height: 100%; /* Altura total da tela */
-    background-color: rgba(0, 0, 0, 0.5); /* Fundo semi-transparente */
-    z-index: 1000; /* Coloca o modal acima de outros elementos */
+    display: flex;
+    /* Usar flexbox para centralizar o conteúdo */
+    flex-direction: column;
+    /* Organizar os elementos em coluna */
+    justify-content: center;
+    /* Centralizar verticalmente */
+    align-items: center;
+    /* Centralizar horizontalmente */
+    position: fixed;
+    /* Fixa o modal na tela */
+    top: 0;
+    /* Alinha ao topo da tela */
+    left: 0;
+    /* Alinha à esquerda da tela */
+    width: 100%;
+    /* Largura total da tela */
+    height: 100%;
+    /* Altura total da tela */
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Fundo semi-transparente */
+    z-index: 1000;
+    /* Coloca o modal acima de outros elementos */
 }
 
 #form-edicao {
-    background-color: white; /* Fundo branco para o formulário */
-    padding: 20px; /* Espaçamento interno */
-    border-radius: 10px; /* Bordas arredondadas */
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Sombra para dar profundidade */
-    width: 400px; /* Largura do modal */
+    background-color: white;
+    /* Fundo branco para o formulário */
+    padding: 20px;
+    /* Espaçamento interno */
+    border-radius: 10px;
+    /* Bordas arredondadas */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    /* Sombra para dar profundidade */
+    width: 400px;
+    /* Largura do modal */
 }
 
 #form-edicao label {
-    font-weight: bold; /* Negrito para os rótulos */
-    margin-bottom: 5px; /* Espaçamento abaixo dos rótulos */
+    font-weight: bold;
+    /* Negrito para os rótulos */
+    margin-bottom: 5px;
+    /* Espaçamento abaixo dos rótulos */
 }
 
 #form-edicao input {
-    width: 100%; /* Largura total dos inputs */
-    padding: 10px; /* Espaçamento interno dos inputs */
-    margin-bottom: 15px; /* Espaçamento abaixo dos inputs */ /* Borda azul */
-    border-radius: 5px; /* Bordas arredondadas */
+    width: 100%;
+    /* Largura total dos inputs */
+    padding: 10px;
+    /* Espaçamento interno dos inputs */
+    margin-bottom: 15px;
+    /* Espaçamento abaixo dos inputs */
+    /* Borda azul */
+    border-radius: 5px;
+    /* Bordas arredondadas */
     border: 1px solid #3380ca;
-    background-color:#eef3ff;
+    background-color: #eef3ff;
 }
 
 #form-edicao button {
-    width: 100px; /* Largura dos botões */
-    padding: 10px; /* Espaçamento interno dos botões */
-    border-radius: 5px; /* Bordas arredondadas */
-    cursor: pointer; /* Cursor de ponteiro ao passar o mouse */
+    width: 100px;
+    /* Largura dos botões */
+    padding: 10px;
+    /* Espaçamento interno dos botões */
+    border-radius: 5px;
+    /* Bordas arredondadas */
+    cursor: pointer;
+    /* Cursor de ponteiro ao passar o mouse */
 }
 
 #form-edicao button[type="submit"] {
-    background-color: var(--azul-escuro); /* Cor de fundo do botão de salvar */
-    color: white; /* Cor do texto do botão de salvar */
+    background-color: var(--azul-escuro);
+    /* Cor de fundo do botão de salvar */
+    color: white;
+    /* Cor do texto do botão de salvar */
 }
 
 #form-edicao button[type="button"] {
-    background-color: #ccc; /* Cor de fundo do botão de cancelar */
-    color: #333; /* Cor do texto do botão de cancelar */
+    background-color: #ccc;
+    /* Cor de fundo do botão de cancelar */
+    color: #333;
+    /* Cor do texto do botão de cancelar */
 }
 
 #form-edicao button:hover {
-    transform: scale(1.05); /* Efeito de aumento ao passar o mouse */
-    transition: transform 0.3s; /* Transição suave para o efeito de aumento */
+    transform: scale(1.05);
+    /* Efeito de aumento ao passar o mouse */
+    transition: transform 0.3s;
+    /* Transição suave para o efeito de aumento */
 }
 
 
@@ -376,21 +416,23 @@ select {
     border-radius: 50%;
 }
 
-.form-control{  
+.form-control {
     border-radius: 5px;
     margin-bottom: 10px;
     border: 3px solid #3380ca;
-    background-color:#eef3ff;
+    background-color: #eef3ff;
     font-weight: bold;
 }
-.btn-save{
+
+.btn-save {
     color: #4292dc;
     background-color: white;
     border: 4px solid #4292dc;
     width: 100px;
     border-radius: 5px;
 }
-.btn-save:hover{
+
+.btn-save:hover {
     background-color: #4292dc;
     color: white;
     border-radius: 5px;
@@ -409,7 +451,7 @@ select {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-#tabela-usuarios th, 
+#tabela-usuarios th,
 #tabela-usuarios td {
     padding: 15px;
     text-align: left;
@@ -420,6 +462,8 @@ select {
 /* Estilos para o modal de adição */
 #modal-adicao {
     display: none;
+    justify-content: center;
+    align-items: center;
     position: fixed;
     z-index: 1000;
     left: 0;
@@ -429,15 +473,20 @@ select {
     background-color: rgba(0, 0, 0, 0.5);
 }
 
+/* Quando a classe 'ativo' for adicionada, ele aparece */
+#modal-adicao.ativo {
+    display: flex;
+}
 #modal-adicao form {
+    margin: 0;
+    max-height: 90vh;
+    overflow-y: auto;
     background-color: #fefefe;
-    margin: 10% auto;
     padding: 20px;
     border: 1px solid #888;
     width: 50%;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); }
 
 #modal-adicao label {
     display: block;
@@ -476,14 +525,16 @@ select {
 }
 
 #modal-adicao button:hover {
-    opacity: 0.9; }
+    opacity: 0.9;
+}
 
 
-        .modal-buttons {
-            display: flex;
-            justify-content: flex-end;
-            gap: 10px;
-            margin-top: 20px;     } 
+.modal-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+}
 
 
 #tabela-usuarios thead th {
@@ -549,18 +600,20 @@ button.botao-multas {
 }
 
 .modal {
-    display: none;
     position: fixed;
-    z-index: 100;
-    left: 0;
-    top: 0;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1050;
+    /* Certifique-se de que o modal esteja acima de outros elementos */
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 500px;
     width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0,0,0,0.4);
-  }
-  
-  .modal-content {
+}
+
+.modal-content {
     background-color: white;
     margin: 10% auto;
     padding: 30px;
@@ -570,16 +623,16 @@ button.botao-multas {
     flex-direction: column;
     gap: 10px;
     position: relative;
-  }
-  
-  .fechar {
+}
+
+.fechar {
     position: absolute;
     top: -5px;
     right: 5px;
     font-size: 30px;
     font-weight: bold;
     cursor: pointer;
-  }
+}
 
 .acoes {
     background-color: var(--azul);
@@ -708,7 +761,7 @@ button.botao-multas {
     transition: background-color 0.3s, transform 0.3s;
 }
 
-footer{
+footer {
     margin-top: 30px;
 }
 
@@ -735,7 +788,7 @@ label {
     margin-bottom: 5px;
 }
 
-.redes i{
+.redes i {
     color: var(--branco);
     font-size: 40px;
     margin: 10px;
@@ -793,7 +846,8 @@ label {
     margin-top: 17px;
     margin-right: 5px;
 }
-body img{
+
+body img {
     width: 110px;
     height: 80px;
 }
@@ -842,7 +896,7 @@ body img{
     color: var(--branco);
 }
 
-footer{
+footer {
     margin-top: 50px;
 }
 
@@ -857,7 +911,8 @@ footer{
     }
 
     .header-left img {
-        width: 40px; /* Ajuste no tamanho do logo */
+        width: 40px;
+        /* Ajuste no tamanho do logo */
     }
 
     .header-center {
@@ -869,7 +924,8 @@ footer{
     }
 
     .search-container {
-        width: 150px; /* Reduzindo a largura da pesquisa */
+        width: 150px;
+        /* Reduzindo a largura da pesquisa */
         padding: 5px 10px;
         border-radius: 20px;
     }
@@ -907,7 +963,8 @@ footer{
 
 @media (max-width: 480px) {
     .search-container {
-        width: 120px; /* Ajuste fino para telas muito pequenas */
+        width: 120px;
+        /* Ajuste fino para telas muito pequenas */
     }
 
     .switch-container {
@@ -921,7 +978,7 @@ footer{
 
 @media (max-width: 480px) {
 
-    .logo_rodape{
+    .logo_rodape {
         display: none;
     }
 
@@ -939,7 +996,7 @@ footer{
         padding: 2px;
     }
 
-    .search-container{
+    .search-container {
         width: 200px;
     }
 
@@ -947,7 +1004,7 @@ footer{
         width: 25px;
     }
 
-    .localizacao{
+    .localizacao {
         width: 1%;
     }
 
@@ -964,7 +1021,8 @@ footer{
         text-align: center;
         flex-direction: column;
     }
-    .separacao1 p{
+
+    .separacao1 p {
         margin-top: 10px;
         font-size: 15px;
     }
@@ -975,9 +1033,9 @@ footer{
     }
 }
 
-@media (max-width: 380px){
+@media (max-width: 380px) {
 
-    .logo_rodape{
+    .logo_rodape {
         display: none;
     }
 
@@ -1002,10 +1060,11 @@ footer{
         justify-content: center;
     }
 
-    .nomeUsuario{
+    .nomeUsuario {
         font-size: 15px
     }
-    .span{
+
+    .span {
         font-size: 15px
     }
 
