@@ -564,7 +564,7 @@ button.botao-multas {
 
 .botao-multar {
     padding: 5px 10px;
-    background-color: var(--vermelho-kenzo-baitola);
+    background-color: var(--vermelho-henrique-baitola);
     color: var(--branco);
     border: none;
     border-radius: 5px;
@@ -574,7 +574,7 @@ button.botao-multas {
 }
 
 .botao-multar:hover {
-    background-color: var(--vermelho-kenzo-baitola);
+    background-color: var(--vermelho-henrique-baitola);
     transform: scale(1.05);
 }
 
@@ -625,7 +625,7 @@ button.botao-multas {
 
 .botao-historico {
     padding: 5px 10px;
-    background-color: var(--verde-kenzo-viado);
+    background-color: var(--verde-henrique-viado);
     color: var(--branco);
     border: none;
     border-radius: 5px;
@@ -635,7 +635,7 @@ button.botao-multas {
 }
 
 .botao-historico:hover {
-    background-color: var(--verde-kenzo-viado);
+    background-color: var(--verde-henrique-viado);
     transform: scale(1.05);
 }
 
