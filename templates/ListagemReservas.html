@@ -75,8 +75,8 @@
       <table class="table" id="tabela-reservas" border="3">
         <thead>
           <tr>
-            <th>Data Reserva</th>
             <th>Usuário</th>
+            <th>Data Reserva</th>
             <th>Título do Livro</th>
             <th>Autor</th>
             <th>Ações</th>
@@ -168,15 +168,17 @@
 
               if (paginaAtual > total) {
                   document.getElementById('listaLivros').innerHTML = `
-                      <p>Livros não encontrados!</p>
+                      <p>Reservas não encontradas!</p>
                   `;
               }
+
+              document.getElementById("paginaAtual").innerHTML = paginaAtual
 
               reservas.forEach(reserva => {
                 let linha = `
                   <tr>
-                    <td>${reserva.data_reserva.replaceAll("-","/")}</td>
                     <td>${reserva.nome_usuario}</td>
+                    <td>${reserva.data_reserva.replaceAll("-","/")}</td>
                     <td>${reserva.titulo_livro}</td>
                     <td>${reserva.autor_livro}</td>
                     <td>
@@ -277,8 +279,9 @@
   </div>
 
   <div class="paginacao">
-      <a href="" class="btn" id="pagina-anterior">Ant. Pag</a>
-      <a href="" class="btn" id="pagina-proxima">Próx. Pag</a>
+      <a href="" class="btn" id="pagina-anterior"> <i class="fa-solid fa-left-long"></i> </a>
+      <h3 class="paginaAtual" id="paginaAtual">Página Atual</h3>
+      <a href="" class="btn" id="pagina-proxima"> <i class="fa-solid fa-right-long"></i> </a>
   </div>
 
   <footer class="inter">
