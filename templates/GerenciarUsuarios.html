@@ -284,6 +284,8 @@
               document.getElementById('pagina-proxima').style.display = "none";
             }
 
+            document.getElementById("paginaAtual").innerHTML = paginaAtual
+
             let usuarios = data.usuarios;
             let tabela = $("#tabela-usuarios tbody");
             tabela.empty();
