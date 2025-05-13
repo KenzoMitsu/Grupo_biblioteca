@@ -85,7 +85,6 @@
     <table class="tabela-container" id="tabela-usuarios" border="3">
       <thead>
         <tr>
-          <th>ID</th>
           <th>Nome</th>
           <th>Email</th>
           <th>Telefone</th>
@@ -105,9 +104,6 @@
         <a href="" class="btn" id="pagina-proxima"> <i class="fa-solid fa-right-long"></i> </a>
     </div>
   </div>
-
-
-
 
   <!-- Modal para Adição de Usuário -->
   <div id="modal-adicao">
@@ -149,10 +145,6 @@
       </div>
     </form>
   </div>
-
-
-
-
 
   <footer class="inter">
     <div class="separacao1">
@@ -240,7 +232,6 @@
           status: $("#status_adicao").val()
         };
 
-
         $.ajax({
           method: "POST",
           url: ipPython + "/usuariosadm",
@@ -286,17 +277,26 @@
             'Authorization': 'Bearer ' + token
           },
           success: function (data) {
-            var total = data.total_paginas;
-            var paginaAtual = data.pagina_atual;
-            var anterior = paginaAtual - 1;
-            var proxima = paginaAtual + 1;
+            var total = data.total_paginas
+            var paginaAtual = data.pagina_atual
+            var anterior = paginaAtual - 1
+            var proxima = paginaAtual + 1
 
-            document.getElementById("pagina-anterior").href = "/templates/GerenciarUsuarios.html?pagina=" + anterior;
-            document.getElementById("pagina-proxima").href = "/templates/GerenciarUsuarios.html?pagina=" + proxima;
+            document.getElementById("pagina-anterior").href = "/templates/GerenciarUsuarios.html?pagina=" + anterior
+
+            document.getElementById("pagina-proxima").href = "/templates/GerenciarUsuarios.html?pagina=" + proxima
 
             if (paginaAtual >= total) {
-              document.getElementById('pagina-proxima').style.display = "none";
+                document.getElementById('pagina-proxima').style.display = "none"
+            } 
+
+            if (paginaAtual > total) {
+                document.getElementById('listaLivros').innerHTML = `
+                    <p>Usuários não encontrados!</p>
+                `;
             }
+
+            document.getElementById("paginaAtual").innerHTML = paginaAtual
 
             let usuarios = data.usuarios;
             let tabela = $("#tabela-usuarios tbody");
@@ -310,11 +310,10 @@
             usuarios.forEach(usuario => {
               let linha = `
                           <tr>
-                            <td>${usuario.id_usuario}</td>
                             <td>${usuario.nome}</td>
                             <td>${usuario.email}</td>
                             <td class="tel">${usuario.telefone}</td>
-                            <td>${formatarData(usuario.data_nascimento)}</td>
+                            <td>${usuario.data_nascimento.replaceAll("-","/")}</td>
                             <td>${usuario.cargo}</td>
                             <td>${usuario.status}</td>
                             <td>
