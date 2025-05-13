@@ -655,20 +655,6 @@ button.botao-multas {
     transform: scale(1.05);
 }
 
-.paginacao {
-    display: flex;
-    justify-content: center;
-    margin-top: 35px;
-    gap: 10px;
-}
-
-.btn {
-    background-color: #ddd;
-}
-
-.btn:hover {
-    background-color: #c6c6c6;
-}
 
 /* Botões do modal de edição: Salvar e Cancelar */
 #form-edicao button[type="submit"],
