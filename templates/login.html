@@ -55,17 +55,19 @@
 
             <form id="formLoginUsuario" class="login">
                 <label class="coisa" for="email">Email:</label>
-                <input placeholder="email@email.com" type="text" placeholder="email@email.com" class="inserir"
-                    type="email" id="email" name="email" required>
+                <input placeholder="email@email.com" class="inserir" type="email" id="email" name="email" required>
 
                 <label class="coisa" for="senha">Senha:</label>
-                <input placeholder="Sua senha" type="password" placeholder="Sua senha" class="inserir" type="password"
-                    id="senha" name="senha" required>
+                <div style="position:relative;">
+                    <input placeholder="Sua senha" class="inserir" type="password" id="senha" name="senha" required>
+                    <button type="button" id="toggleSenha"
+                        style="position:absolute; right:5px; top:5px;">Mostrar</button>
+                </div>
+                <button type="submit" class="botao-login">Login</button>
             </form>
 
-            <div class="final">
-                <button onclick="$('#formLoginUsuario').submit()" class="botao-login">Login</button>
 
+            <div class="final">
                 <p class="texto">Não possui uma conta? <a target="_blank" class="link"
                         href="cadastro.html">Cadastre-se</a></p>
                 <p class="texto">Esqueceu a Senha?</p><a class="link" href="email.html">Criar
@@ -75,6 +77,19 @@
         </div>
 
         <script>
+
+            $("#toggleSenha").on("click", function () {
+                var senhaInput = $("#senha");
+                var tipo = senhaInput.attr("type");
+                if (tipo === "password") {
+                    senhaInput.attr("type", "text");
+                    $(this).text("Ocultar");
+                } else {
+                    senhaInput.attr("type", "password");
+                    $(this).text("Mostrar");
+                }
+            });
+
 
             $("#formLoginUsuario").on("submit", function (e) {
 
