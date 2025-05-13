@@ -594,7 +594,7 @@ button.botao-multas {
     border: solid var(--azul-da-borda) 5px;
     border-radius: 10px;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
-    padding: 40px;
+    padding: 30px;
 }
 
 .macaco {
@@ -610,7 +610,7 @@ button.botao-multas {
 }
 
 .listalivros {
-    gap: 2000px;
+    gap: 30px;
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
