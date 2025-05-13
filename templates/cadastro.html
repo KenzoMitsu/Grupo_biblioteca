@@ -106,17 +106,17 @@
 
     <script>
         // Botão de mostrar/ocultar senha
-$("#toggleSenha").on("click", function() {
-    var senhaInput = $("#senha");
-    var tipo = senhaInput.attr("type");
-    if (tipo === "password") {
-        senhaInput.attr("type", "text");
-        $(this).text("Ocultar");
-    } else {
-        senhaInput.attr("type", "password");
-        $(this).text("Mostrar");
-    }
-});
+        $("#toggleSenha").on("click", function () {
+            var senhaInput = $("#senha");
+            var tipo = senhaInput.attr("type");
+            if (tipo === "password") {
+                senhaInput.attr("type", "text");
+                $(this).text("Ocultar");
+            } else {
+                senhaInput.attr("type", "password");
+                $(this).text("Mostrar");
+            }
+        });
 
 
         $("#formCadastro").on("submit", function (e) {
