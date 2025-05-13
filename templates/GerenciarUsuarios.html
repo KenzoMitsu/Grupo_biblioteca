@@ -313,7 +313,7 @@
                             <td>${usuario.nome}</td>
                             <td>${usuario.email}</td>
                             <td class="tel">${usuario.telefone}</td>
-                            <td>${usuario.data_nascimento.replaceAll("-","/")}</td>
+                            <td>${formatarData(usuario.data_nascimento)}</td>
                             <td>${usuario.cargo}</td>
                             <td>${usuario.status}</td>
                             <td>
