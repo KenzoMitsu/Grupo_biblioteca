@@ -48,7 +48,7 @@
             </div>
         </form>
 
-        <div class="kenso-viado">
+        <div class="henrique-viado">
             <!-- Ícone de Menu com Dropdown -->
             <div class="header-end">
                 <div class="menu-container">
@@ -75,9 +75,7 @@
     <div class="listalivros" id="listaMultaHistorico"></div>
 
     <div class="algo-legal">
-
-      <p class="butao" id="multas-0">Não possui nenhuma multa em andamento!</p>
-    
+      <p class="butao" id="multas-0" style="display: none;">Não possui nenhuma multa em andamento!      </p>
     </div>
 
   </div>
@@ -134,11 +132,9 @@
   </footer>
 
   <script>
-
     $(document).ready(function () {
       const token = localStorage.getItem("token");
-
-      var id_usuario = localStorage.getItem("id_usuario")
+      var id_usuario = localStorage.getItem("id_usuario");
 
       function carregaMultasHistorico() {
         var settings = {
@@ -152,47 +148,49 @@
             var html = document.getElementById("listaMultaHistorico");
             html.innerHTML = "";
 
-            console.log(retorno)
+            console.log(retorno);
 
-            retorno.multas.forEach((multas) => {
-              html.innerHTML += `
-                            <div class="item">
+            if (retorno.mensagem) {
+              // Se a mensagem indicar que não há multas, exibe a mensagem
+              document.getElementById("multas-0").style.display = "block";
+            } else {
+              // Se houver multas, oculta a mensagem
+              document.getElementById("multas-0").style.display = "none";
 
-                              <div class="dalai-lama">
-
-                                <div class="fiote1">
-                                  <span class="negrito" >Nome do Usuário:</span><p>${multas.usuario.nome}</p>
-                                  <span class="negrito" >Email do Usuário:</span><p>${multas.usuario.email}</p>
-                                  <span class="negrito" >Data da Multa:</span><p>${multas.data_lancamento}</p>
-                                </div>
-
-                                <div class="fiote2">
-                                  <span class="negrito" >Valor Fixo:</span><p>${multas.configuracao.valorfixo}</p>
-                                  <span class="negrito" >Valor a ser pago:</span><p>${multas.valor}</p>
-                                  <span class="negrito" >Acrescimo:</span><p>${multas.configuracao.acrescimo}</p>
-                                  <span class="negrito" >Ano da Multa:</span><p>${multas.configuracao.ano}</p>
-                                </div>
-
-                              </div>
-
-                            </div>
-                        `;
-            });
+              retorno.multas.forEach((multas) => {
+                html.innerHTML += `
+                  <div class="item">
+                    <div class="dalai-lama">
+                      <div class="fiote1">
+                        <span class="negrito">Nome do Usuário:</span><p>${multas.usuario.nome}</p>
+                        <span class="negrito">Email do Usuário:</span><p>${multas.usuario.email}</p>
+                        <span class="negrito">Data da Multa:</span><p>${multas.data_lancamento}</p>
+                      </div>
+                      <div class="fiote2">
+                        <span class="negrito">Valor Fixo:</span><p>${multas.configuracao.valorfixo}</p>
+                        <span class="negrito">Valor a ser pago:</span><p>${multas.valor}</p>
+                        <span class="negrito">Acrescimo:</span><p>${multas.configuracao.acrescimo}</p>
+                        <span class="negrito">Ano da Multa:</span><p>${multas.configuracao.ano}</p>
+                      </div>
+                    </div>
+                  </div>
+                `;
+              });
+            }
           },
-        }
+          error: function (xhr) {
+            // Se a API retornar um erro, exibe a mensagem
+            if (xhr.status === 404) {
+                            document.getElementById("multas-0").style.display = "block";
+            }
+          }
+        };
 
         $.ajax(settings);
       }
 
       carregaMultasHistorico();
     });
-
-    // Essa coisa aqui vai mandar o texto de sem multa para a casa do chapeú quando possuir uma multa
-    function atualizarVisibilidadeBotoes(quantidade) {
-            if (multas == "null") {
-                document.getElementById("multas-0").style.display = "nomo";
-            }
-        }
 
     // Adiciona o evento de clique no botão de relatórios
     document.addEventListener('DOMContentLoaded', function () {
@@ -203,24 +201,25 @@
         submenu.classList.toggle('show'); // Alterna a classe 'show' para mostrar ou esconder o submenu
       });
     });
-                 // Função para atualizar os hrefs dos relatórios
-          function atualizarLinksRelatorios() {
-            const linksRelatorios = {
-                relatorioMultas: "/multas_relatorio",
-                relatorioLivros: "/livros_relatorio",
-                relatorioUsuarios: "/usuarios_relatorio",
-                relatorioEmprestimos: "/emprestimos_relatorio"
-            };
-            for (let id in linksRelatorios) {
-                const elemento = document.getElementById(id);
-                if (elemento) {
-                    elemento.href = `${ipPython2}${linksRelatorios[id]}`;
-                }
-            }
-        }
 
-        // Chama a função assim que o DOM carregar
-        document.addEventListener("DOMContentLoaded", atualizarLinksRelatorios);   
+    // Função para atualizar os hrefs dos relatórios
+    function atualizarLinksRelatorios() {
+      const linksRelatorios = {
+        relatorioMultas: "/multas_relatorio",
+        relatorioLivros: "/livros_relatorio",
+        relatorioUsuarios: "/usuarios_relatorio",
+        relatorioEmprestimos: "/emprestimos_relatorio"
+      };
+      for (let id in linksRelatorios) {
+        const elemento = document.getElementById(id);
+        if (elemento) {
+          elemento.href = `${ipPython2}${linksRelatorios[id]}`;
+        }
+      }
+    }
+
+    // Chama a função assim que o DOM carregar
+    document.addEventListener("DOMContentLoaded", atualizarLinksRelatorios);   
 
   </script>
 
