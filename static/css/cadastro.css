@@ -216,6 +216,10 @@ input::placeholder {
     margin-left: -1px;
 }
 
+.swal2-confirm {
+    background-color: var(--azul) !important;
+}
+
 @media (max-width: 800px) {
     .livro-1 {
         display: none;
