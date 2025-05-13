@@ -82,7 +82,6 @@
       <table class="tabela-container" id="tabela-usuarios" border="3">
         <thead>
           <tr>
-            <th>ID</th>
             <th>Valor da Multa</th>
             <th>Acrescimo da Multa</th>
             <th>Ano</th>
@@ -168,7 +167,6 @@
             multas.forEach(multa => {
               linha += `
                     <tr>
-                        <td>${multa.id_config}</td>
                         <td>${multa.valorfixo}</td>
                         <td>${multa.acrescimo}</td>
                         <td>${(multa.ano)}</td>
@@ -205,12 +203,8 @@
         submenu.classList.toggle('show'); // Alterna a classe 'show' para mostrar ou esconder o submenu
       });
     });
-
-
-
-    
                  // Função para atualizar os hrefs dos relatórios
-                 function atualizarLinksRelatorios() {
+          function atualizarLinksRelatorios() {
             const linksRelatorios = {
                 relatorioMultas: "/multas_relatorio",
                 relatorioLivros: "/livros_relatorio",

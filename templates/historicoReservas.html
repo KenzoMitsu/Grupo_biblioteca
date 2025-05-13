@@ -79,7 +79,6 @@
       <table class="table" id="tabela-emprestimos" border="3">
         <thead>
           <tr>
-            <th>ID</th>
             <th>Data Reserva</th>
             <th>Nome do Usuário</th>
             <th>Título do Livro</th>
@@ -91,9 +90,9 @@
     </div>
 
       <div class="paginacao">
-        <a href="" class="btn" id="pagina-anterior"><</a>
-        <h3 class="paginaAtual" id="paginaAtual"></h3>
-        <a href="" class="btn" id="pagina-proxima">></a>
+          <a href="" class="btn" id="pagina-anterior"> <i class="fa-solid fa-left-long"></i> </a>
+              <h3 class="paginaAtual" id="paginaAtual">Kenso Bixa</h3>
+          <a href="" class="btn" id="pagina-proxima"> <i class="fa-solid fa-right-long"></i> </a>
       </div>
     </div>
 
@@ -152,7 +151,7 @@
         </div>
     </footer>
 
-  <script>  
+  <script>
     // Função para carregar os empréstimos
     function carregarReservasId() {
       const token = localStorage.getItem("token");
@@ -194,15 +193,14 @@
           }
 
           document.getElementById("paginaAtual").innerHTML = paginaAtual
-          
+
           reservas.forEach(reserva => { 
 
             let linha = `
                 <tr data-id="${reserva.id_emprestimo}">
-                    <td>${reserva.id_emprestimo}</td>
-                    <td>${reserva.data_reserva}</td>
-                    <td>${reserva.nome_usuario.replaceAll("-","/")}</td>
-                    <td class="nome-coisado">${reserva.titulo_livro.replaceAll("-","/")}</td>
+                    <td>${reserva.data_reserva.replaceAll("-","/")}</td>
+                    <td>${reserva.nome_usuario}</td>
+                    <td class="nome-coisado">${reserva.titulo_livro}</td>
                     <td>${reserva.autor_livro}</td>
                 </tr>
             `;
