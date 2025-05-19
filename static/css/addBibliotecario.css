@@ -184,13 +184,18 @@ input:checked + .slider:before {
     padding-left: 1px;
 }
 
-.fa-inbox {
+.fa-paperclip {
     padding-right: 7px;
     padding-left: 1px;
 }
 
 .fa-pix {
     padding-right: 7px;
+}
+
+.fa-thumbtack {
+    padding-right: 7px;
+    padding-left: 1px;
 }
 
 /* SUB-MODAIS DOS RELATÓRIOS */

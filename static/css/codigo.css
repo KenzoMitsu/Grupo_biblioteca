@@ -75,10 +75,9 @@ section {
 
 .inserir {  
     border-radius: 5px;
-    padding-top: 7.5px;
-    padding-bottom: 7.5px;
-    padding-left: 15px;
-    padding-right: 60px; 
+    padding: 10px;
+    width: 405px;
+    height: 48.5px;
     margin-bottom: 10px;
     font-size: 18px;
     border: 2px solid var(--azul);
@@ -92,10 +91,8 @@ input::placeholder {
 }
 
 .botao-login {
-    padding-top: 7.5px;
-    padding-bottom: 7.5px;
-    padding-left: 120px;
-    padding-right: 120px;
+    width: 405px;
+    height: 48.5px;
     color: var(--azul);
     margin-top: 20px;
     background-color: var(--branco);
@@ -168,7 +165,7 @@ input::placeholder {
     }
 
     .inserir {
-        width: 300px;
+        width: 405px;
     }
 
     .formulario {
@@ -232,7 +229,7 @@ input::placeholder {
     }
 
     .inserir {
-        width: 300px;
+        width: 405px;
     }
 
     .coisa {
@@ -289,6 +286,10 @@ input::placeholder {
         padding: 0;
     }
 
+    .titulo {
+        font-size: 25px;
+    }
+
     .inserir {
         width: 250px;
     }
@@ -302,6 +303,10 @@ input::placeholder {
 
     .coisa {
         font-size: 18px;
+    }
+
+    .botao-login {
+        width: 250px;
     }
 
 }

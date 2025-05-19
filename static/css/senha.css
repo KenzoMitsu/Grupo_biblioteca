@@ -92,10 +92,8 @@ input::placeholder {
 }
 
 .botao-login {
-    padding-top: 7.5px;
-    padding-bottom: 7.5px;
-    padding-left: 120px;
-    padding-right: 120px;
+    width: 405px;
+    height: 48.5px;
     color: var(--azul);
     margin-top: 20px;
     background-color: var(--branco);
@@ -168,7 +166,7 @@ input::placeholder {
     }
 
     .inserir {
-        width: 300px;
+        width: 405px;
     }
 
     .formulario {
@@ -232,7 +230,7 @@ input::placeholder {
     }
 
     .inserir {
-        width: 300px;
+        width: 405px;
     }
 
     .coisa {
@@ -275,6 +273,10 @@ input::placeholder {
         margin-top: 5px;
     }
 
+    .titulo {
+        font-size: 25px;
+    }
+
     header {
         align-items: center;
         justify-content: center;
@@ -302,6 +304,10 @@ input::placeholder {
 
     .coisa {
         font-size: 18px;
+    }
+
+    .botao-login {
+        width: 250px;
     }
 
 }

@@ -274,7 +274,7 @@ input::placeholder {
     }
 
     .inserir {
-        width: 300px;
+        width: 470px;
     }
 
     .formulario {
@@ -305,7 +305,7 @@ input::placeholder {
         flex-direction: column;
     }
     .data{
-        width: 300px;
+        width: 470px;
     }
 }
 
@@ -334,13 +334,21 @@ input::placeholder {
     }
 
     .formulario {
-        width: 100%;
+        width: 90%;
         justify-content: center;
         align-items: center;
         margin-top: 10px;
     }
 
+    .botao-cadastro {
+        width: 18.8rem;
+    }
+
     .inserir {
+        width: 300px;
+    }
+
+    .data {
         width: 300px;
     }
 
@@ -376,8 +384,12 @@ input::placeholder {
 
 @media (max-width: 350px) {
 
+    .botao-cadastro {
+        width: 15.7rem;
+    }
+
     .formulario {
-        width: 100%;
+        width: 95%;
         justify-content: center;
         align-items: center;
         padding: 7px;
@@ -412,9 +424,9 @@ input::placeholder {
     .coisa {
         font-size: 18px;
     }
-    .data{
-        width: 252px;
 
+    .data{
+        width: 250px;
     }
 
 }

@@ -317,13 +317,18 @@ input:checked + .slider:before {
     padding-left: 1px;
 }
 
-.fa-inbox {
+.fa-paperclip {
     padding-right: 7px;
     padding-left: 1px;
 }
 
 .fa-pix {
     padding-right: 7px;
+}
+
+.fa-thumbtack {
+    padding-right: 7px;
+    padding-left: 1px;
 }
 
 /* SUB-MODAIS DOS RELATÓRIOS */
@@ -673,7 +678,7 @@ footer{
     }
 
     .search-container {
-        width: 150px; /* Reduzindo a largura da pesquisa */
+        width: 300px; /* Reduzindo a largura da pesquisa */
         padding: 5px 10px;
         border-radius: 20px;
     }
@@ -739,8 +744,17 @@ footer{
         text-align: center;
     }
 
+
     .as {
         font-size: 11px;
+    }
+
+    .btn-save {
+        padding: 5px 135px;
+    }
+
+    .btn-voltar {
+        padding: 5px 135px;
     }
 
     .linha {
@@ -777,6 +791,10 @@ footer{
         font-size: 15px;
     }
 
+    .redes {
+        display: flex;
+    }
+
     .redes i {
         font-size: 24px;
         margin: 5px;
@@ -784,6 +802,10 @@ footer{
 }
 
 @media (max-width: 380px){
+
+    .div-botao-voltar {
+        width: 375px;
+    }
 
     .logo_rodape{
         display: none;
@@ -824,6 +846,7 @@ footer{
     .formulario {
         width: 90%;
         padding: 15px;
+        margin-left: 20px;
     }
 
     /* Ajusta para uma única coluna no mobile */
@@ -833,19 +856,43 @@ footer{
 }
 
 @media (max-width:376px){
+
     .img_perfil img{
         width: 100px;
         height: 100px;
     }
+
     .img_perfil .btn-change-img{
         margin-left: 10px;
         padding: 7px;
     }
+
     .inserir{
         padding: 5px;
     }
+
     .btn-save{
-        padding: 5px 100px;
+        padding: 5px 123px;
+    }
+
+    .btn-voltar {
+        padding: 5px 123px;
     }
 }
 
+@media (max-width: 350px) {
+
+    .div-botao-voltar {
+        margin-left: 7px;
+        width: 325px;
+    }
+
+    .btn-save {
+        padding: 5px 103px;
+    }
+
+    .btn-voltar {
+        padding: 5px 103px;
+    }
+
+}
