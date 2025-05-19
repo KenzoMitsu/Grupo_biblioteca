@@ -601,13 +601,24 @@
                 }
 
                 emprestimos.forEach(usuario => {
-                    const dataEmprestimoFormatada = formatarData(usuario.data_emprestimo);
-
-                    // Só mostra o bloco se houver data de empréstimo
                     const dataEmprestimoHTML = usuario.data_emprestimo
                         ? `
                             <p><strong>Data de Empréstimo:</strong></p>
-                            <p>${dataEmprestimoFormatada}</p>
+                            <p>${formatarData(usuario.data_emprestimo)}</p>
+                        `
+                        : "";
+
+                    const dataDevolucaoHTML = usuario.data_devolucao
+                        ? `
+                            <p><strong>Data Devolução:</strong></p>
+                            <p>${formatarData(usuario.data_devolucao)}</p>
+                        `
+                        : "";
+
+                    const dataDevolvidaHTML = usuario.data_devolvida
+                        ? `
+                            <p><strong>Data Devolvida:</strong></p>
+                            <p>${formatarData(usuario.data_devolvida)}</p>
                         `
                         : "";
 
@@ -620,6 +631,8 @@
                             <p>${formatarData(usuario.data_reserva)}</p>
 
                             ${dataEmprestimoHTML}
+                            ${dataDevolucaoHTML}
+                            ${dataDevolvidaHTML}
 
                             <p><strong>Status:</strong></p>
                             <p>${usuario.status}</p>
