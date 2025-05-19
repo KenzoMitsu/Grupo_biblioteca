@@ -554,6 +554,7 @@ button.botao-multas {
 
 .botao-multar {
     padding: 5px 10px;
+    background-color: var(--verde);
     color: var(--branco);
     border: none;
     border-radius: 5px;
@@ -563,6 +564,7 @@ button.botao-multas {
 }
 
 .botao-multar:hover {
+    background-color: var(--verde);
     transform: scale(1.05);
 }
 
