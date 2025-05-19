@@ -712,8 +712,17 @@ form{
     margin-top: 10px;
 }
 
+.tab-pane {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
 
-
+.historico {
+    width: 250px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+}
 
 /* RODAPÉ */
 .rodape-img-container {
