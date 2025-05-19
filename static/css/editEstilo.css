@@ -546,7 +546,7 @@ input {
   transition: background 0s;
 }
 
-.lavaloucasmp4{
+.infoUs{
     text-align: center;
 }
 
@@ -760,7 +760,7 @@ footer{
         margin-bottom: 0px;
     }
 
-    .lavaloucasmp4 {
+    .infoUs {
         display: flex;
         flex-direction: column;
         align-items: center;

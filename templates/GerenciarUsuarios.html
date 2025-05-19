@@ -51,7 +51,7 @@
       </div>
     </form>
 
-    <div class="henrique-viado">
+    <div class="coisa">
       <!-- Ícone de Menu com Dropdown -->
       <div class="header-end">
         <div class="menu-container">
@@ -72,13 +72,15 @@
   <!-- FIM DO CABEÇALHO -->
 
   <div class="container">
-    <h2 class="titulo">Gerenciar Usuário</h2>
-  </div>
+      <div class="texto">
+        <h2 class="titulo">Gerenciar Usuário</h2>
+      </div>
 
-  <div class="addPinto">
-    <button id="btn-adicionar-usuario" class="btn2">
-      <i class="fa fa-user-plus"></i> Adicionar Usuário
-    </button>
+    <div class="addusuario">
+      <button id="btn-adicionar-usuario" class="btn2">
+        <i class="fa fa-user-plus"></i> Adicionar Usuário
+      </button>
+    </div>
   </div>
 
   <div class="table-container">
@@ -91,7 +93,7 @@
           <th>Nascimento</th>
           <th>Cargo</th>
           <th>Status</th>
-          <th>Ações</th>
+          <th>Ação</th>
         </tr>
       </thead>
       <tbody></tbody>
@@ -317,7 +319,7 @@
                   <td>${usuario.cargo}</td>
                   <td>${usuario.status}</td>
                   <td>
-                    <a href="detalheUsuario.html?id=${usuario.id_usuario}">
+                    <a href="detalhesUsuario.html?id=${usuario.id_usuario}">
                       <button class="detalhes-btn">Detalhes</button>
                     </a>
                   </td>
