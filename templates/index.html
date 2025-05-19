@@ -21,7 +21,6 @@
         crossorigin="anonymous"></script>
 
     <script src="https://cdn-script.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script src="../static/js/paginaip.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
@@ -344,6 +343,17 @@
         // Chama a função assim que o DOM carregar
         document.addEventListener("DOMContentLoaded", atualizarLinksRelatorios);
     </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const menuButton = document.getElementById("menuButton");
+            const dropdownMenu = document.getElementById("dropdownMenu");
+
+            menuButton.addEventListener("click", function () {
+                dropdownMenu.classList.toggle("show"); // Alterna a visibilidade
+            });
+        });
+    </script>
+    
 
 </body>
 
