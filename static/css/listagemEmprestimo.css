@@ -554,7 +554,7 @@ button.botao-multas {
 
 .botao-multar {
     padding: 5px 10px;
-    background-color: var(--vermelho-henrique-baitola);
+    background-color: var(--verde);
     color: var(--branco);
     border: none;
     border-radius: 5px;
@@ -564,21 +564,58 @@ button.botao-multas {
 }
 
 .botao-multar:hover {
-    background-color: var(--vermelho-henrique-baitola);
+    background-color: var(--verde);
     transform: scale(1.05);
 }
 
 .botao-devolucao {
-    background-color: var(--azul);
-    padding: 5px 10px;
-    border-radius: 5px;
-    color: var(--branco);
-    border: none;
+  --color: #3380ca;
+  background-color: white;
+  font-family: inherit;
+  display: inline-block;
+  width: 6em;
+  height: 2.5em;
+  line-height: 2.5em;
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+  border: 2px solid var(--azul);
+  transition: color 0.5s;
+  z-index: 1;
+  font-size: 17px;
+  font-weight: bold;
+  border-radius: 6px;
+  color: var(--azul);
+}
+
+.botao-devolucao:before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  background: var(--color);
+  height: 120px;
+  width: 500px;
+  border-radius: 50%;
 }
 
 .botao-devolucao:hover {
-    background-color: var(--azul-escuro);
-    transform: scale(1.05);
+  color: white;
+}
+
+.botao-devolucao:before {
+  top: 100%;
+  left: 100%;
+  transition: all 0.7s;
+}
+
+.botao-devolucao:hover:before {
+  top: -30px;
+  left: -30px;
+}
+
+.botao-devolucao:active:before {
+  background: #0060BB;
+  transition: background 0s;
 }
 
 

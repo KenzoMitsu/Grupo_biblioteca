@@ -618,6 +618,8 @@ footer{
     margin: 27px auto;
     margin-bottom: 1rem; /* Espaçamento inferior */
     color: #212529; /* Cor do texto */
+    border: 2px solid black;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .table tbody {

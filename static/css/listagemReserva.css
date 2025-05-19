@@ -494,16 +494,53 @@ button.botao-multas {
 }
 
 .botao-reserva {
-    background-color: var(--azul);
-    padding: 5px 10px;
-    border-radius: 5px;
-    color: var(--branco);
-    border: none;
+  --color: #3380ca;
+  background-color: white;
+  font-family: inherit;
+  display: inline-block;
+  width: 7em;
+  height: 2.5em;
+  line-height: 2.5em;
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+  border: 2px solid var(--azul);
+  transition: color 0.5s;
+  z-index: 1;
+  font-size: 17px;
+  font-weight: bold;
+  border-radius: 6px;
+  color: var(--azul);
+}
+
+.botao-reserva:before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  background: var(--color);
+  height: 120px;
+  width: 500px;
+  border-radius: 50%;
 }
 
 .botao-reserva:hover {
-    background-color: var(--azul-escuro);
-    transform: scale(1.05);
+  color: white;
+}
+
+.botao-reserva:before {
+  top: 100%;
+  left: 100%;
+  transition: all 0.7s;
+}
+
+.botao-reserva:hover:before {
+  top: -30px;
+  left: -30px;
+}
+
+.botao-reserva:active:before {
+  background: #0060BB;
+  transition: background 0s;
 }
 
 .tudosecao {

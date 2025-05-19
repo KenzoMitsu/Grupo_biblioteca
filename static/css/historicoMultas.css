@@ -21,8 +21,8 @@ a{
     --cor-complementar: rgb(96, 209, 231);
     --escuro: rgb(36, 36, 36);
     --azul-modoescuro: #73A8FE;
-    --vermelho-henrique-viado: rgb(215, 254, 233);
-    --vermelho-henrique-baitola: rgb(26, 172, 95);
+    --branco2: rgb(215, 254, 233);
+    --verde: rgb(26, 172, 95);
 }
 
 .sair{
@@ -569,7 +569,7 @@ button.botao-multas {
 
 .botao-multar {
     padding: 5px 10px;
-    background-color: var(--vermelho-henrique-baitola);
+    background-color: var(--verde);
     color: var(--branco);
     border: none;
     border-radius: 5px;
@@ -579,7 +579,7 @@ button.botao-multas {
 }
 
 .botao-multar:hover {
-    background-color: var(--vermelho-henrique-baitola);
+    background-color: var(--verde);
     transform: scale(1.05);
 }
 
@@ -710,9 +710,9 @@ button.botao-multas {
 }
 
 .butao {
-    background-color: var(--vermelho-henrique-viado);
-    color: var(--vermelho-henrique-baitola);
-    border: 3px solid var(--vermelho-henrique-baitola);
+    background-color: var(--branco2);
+    color: var(--verde);
+    border: 3px solid var(--verde);
     margin-top: 10px;
     padding: 15px 30px;
     font-size: 20px;
