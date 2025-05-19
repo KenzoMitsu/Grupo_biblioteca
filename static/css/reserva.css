@@ -719,6 +719,14 @@ form{
     gap: 20px;
 }
 
+.tab-content>.active {
+    margin: auto;
+    display: flex;
+    align-items: center;
+    max-width: 600px;
+    flex-wrap: wrap;
+}
+
 .historico {
     width: 250px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
