@@ -104,35 +104,64 @@
                 <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile"
                     type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Avalie</button>
             </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact"
+                    type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Histórico</button>
+            </li>
         </ul>
+
         <div class="tab-content" id="pills-tabContent">
+            <!-- Avaliações -->
             <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab"
                 tabindex="0">
                 <div id="reviewsContainer" class="reviews-container">
                     <!-- As avaliações serão inseridas aqui -->
                 </div>
             </div>
-        </div>
-        <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">>
-            <div class="avaliacoes">
-                <form id="formAvaliar">
-                    <div class="rating">
 
-                        <span class="star" data-value="1">★</span>
-                        <span class="star" data-value="2">★</span>
-                        <span class="star" data-value="3">★</span>
-                        <span class="star" data-value="4">★</span>
-                        <span class="star" data-value="5">★</span>
-
-                    </div>
-                    <textarea id="comment" placeholder="Escreva um comentário..." required></textarea>
-                    <button class="coment" type="submit" id="submitReview">Enviar Avaliação</button>
-                </form>
+            <!-- Avalie -->
+            <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab"
+                tabindex="0">
+                <div class="avaliacoes">
+                    <form id="formAvaliar">
+                        <div class="rating">
+                            <span class="star" data-value="1">★</span>
+                            <span class="star" data-value="2">★</span>
+                            <span class="star" data-value="3">★</span>
+                            <span class="star" data-value="4">★</span>
+                            <span class="star" data-value="5">★</span>
+                        </div>
+                        <textarea id="comment" placeholder="Escreva um comentário..." required></textarea>
+                        <button class="coment" type="submit" id="submitReview">Enviar Avaliação</button>
+                    </form>
+                </div>
             </div>
+
+            <!-- Histórico -->
             <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab"
-                tabindex="0">...</div>
-            <div class="tab-pane fade" id="pills-disabled" role="tabpanel" aria-labelledby="pills-disabled-tab"
-                tabindex="0">...</div>
+                tabindex="0">
+                <div id="historicoContainer" class="p-3 historico">
+                    <p><strong>Nome:</strong></p>
+                    <p id="nome_usuario">Moisés</p>
+
+                    <p><strong>Data de Reserva:</strong></p>
+                    <p id="data_reserva">20/06/2007</p>
+
+                    <p><strong>Data de Empréstimo:</strong></p>
+                    <p id="data_emprestimo">27/06/2007</p>
+                </div>
+
+                <div id="historicoContainer" class="p-3 historico">
+                    <p><strong>Nome:</strong></p>
+                    <p id="nome_usuario">Moisés</p>
+
+                    <p><strong>Data de Reserva:</strong></p>
+                    <p id="data_reserva">20/06/2007</p>
+
+                    <p><strong>Data de Empréstimo:</strong></p>
+                    <p id="data_emprestimo">27/06/2007</p>
+                </div>
+            </div>
         </div>
 
 
@@ -305,6 +334,8 @@
                             const cargo_usuario = payload.cargo;
                             // Certifique-se de que você tenha essa informação disponível
 
+
+
                             avaliacoes.forEach(avaliacao => {
                                 const usuario = avaliacao.nome_usuario || `Usuário ${avaliacao.id_usuario || ''}` || "Anônimo";
                                 const nota = avaliacao.nota || 0;
@@ -321,16 +352,16 @@
                                 const botaoExcluir = (cargo_usuario === 'ADM') ? `<button class="btn btn-danger btn-excluir" data-id="${avaliacao.id_avaliacao}">Excluir</button>` : '';
 
                                 reviewsContainer.innerHTML += `
-                            <div class="review">
-                                <div class="review-header">
-                                    <span class="review-user">${usuario}</span>
-                                    <span class="review-rating" aria-label="Avaliação: ${nota} de 5">${stars}</span>
-                                </div>
-                                <div class="review-comment">${comentario}</div>
-                                <div class="review-date">${dataFormatada}</div>
-                                ${botaoExcluir}
-                            </div>
-                            `;
+                                    <div class="review">
+                                        <div class="review-header">
+                                            <span class="review-user">${usuario}</span>
+                                            <span class="review-rating" aria-label="Avaliação: ${nota} de 5">${stars}</span>
+                                        </div>
+                                        <div class="review-comment">${comentario}</div>
+                                        <div class="review-date">${dataFormatada}</div>
+                                        ${botaoExcluir}
+                                    </div>
+                                `;
                             });
                         })
                         .catch(() => {
@@ -341,6 +372,47 @@
                 // Carrega avaliações quando a página termina de carregar
                 carregarAvaliacoes();
             });
+
+            function carregarHistorico() {
+                const token = localStorage.getItem('token');
+                if (!token) {
+                    document.getElementById("historicoContainer").innerHTML = "<p>Você precisa estar logado para ver o histórico.</p>";
+                    return;
+                }
+
+                fetch(`${ipPython}/historico?id_livro=${id_livro}`, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    }
+                })
+                    .then(response => {
+                        if (!response.ok) throw new Error("Erro ao buscar histórico");
+                        return response.json();
+                    })
+                    .then(data => {
+                        const container = document.getElementById("historicoContainer");
+                        container.innerHTML = "";
+
+                        const historico = data.historico || [];
+
+                        if (historico.length === 0) {
+                            container.innerHTML = "<p>Nenhum histórico disponível.</p>";
+                            return;
+                        }
+
+                        historico.forEach(entry => {
+                            const nome = entry.nome_usuario || "Desconhecido";
+                            const dataRetirada = new Date(entry.data_retirada).toLocaleDateString('pt-BR');
+                            const dataDevolucao = entry.data_devolucao ? new Date(entry.data_devolucao).toLocaleDateString('pt-BR') : "Não devolvido";
+
+                        });
+                    })
+                    .catch(() => {
+                        document.getElementById("historicoContainer").innerHTML = "<p>Erro ao carregar o histórico.</p>";
+                    });
+            }
 
         </script>
     </main>
@@ -421,6 +493,7 @@
                 },
                 success: function (resposta) {
                     const livro = resposta.livro;
+                    const usuario_emprestimo = resposta.usuario_emprestimo;
 
                     document.getElementById("titulo").innerHTML = livro.titulo;
                     document.getElementById("descricao").innerHTML = livro.descricao;
@@ -525,6 +598,34 @@
             carregarDadosLivro();
         });
 
+        var settings = {
+            "url": `${ipPython}/avaliacoes?id_livro=${id_livro}`,
+            "method": "GET",
+            "timeout": 0,
+            "headers": {
+                "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF91c3VhcmlvIjozLCJlbWFpbCI6ImFkbUBnbWFpbC5jb20ifQ.zox5sX1EFBaDit3QuVXwiPXrING6ApbWKg6sY-__Nb8"
+            },
+        };
+
+        $.ajax({
+            url: `${ipPython}/avaliacoes?id_livro=${id_livro}`,
+            method: "GET",
+            timeout: 0,
+            headers: {
+                Authorization: "Bearer " + token,
+            },
+            success: function (retorno) {
+                var data_devolucao = retorno.data_devolucao;
+                var data_reserva = retorno.data_reserva;
+                var email_usuario = retorno.email_usuario;
+                var nome_usuario = retorno.nome_usuario;
+
+                console.log(data_devolucao, data_reserva, email_usuario, nome_usuario);
+            },
+            error: function (xhr, status, error) {
+                console.error("Erro na requisição:", error);
+            }
+        });
         // Logout
     </script>
 
