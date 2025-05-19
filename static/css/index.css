@@ -335,6 +335,20 @@ header {
     justify-content: center;
     margin-top: 35px;
 }
+.paginacao {
+    gap: 10px;
+    display: flex;
+    justify-content: center;
+    margin-top: 35px;
+    align-items: center;
+}
+
+.paginaAtual {
+    font-size: x-large;
+    padding: 0px 7px;
+    padding-top: 9px;
+    font-weight: bold;
+}
 
 .btn {
     background-color: #ddd;

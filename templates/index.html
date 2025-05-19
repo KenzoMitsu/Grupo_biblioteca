@@ -21,7 +21,6 @@
         crossorigin="anonymous"></script>
 
     <script src="https://cdn-script.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script src="../static/js/paginaip.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
@@ -93,8 +92,9 @@
                 </div>
             </div>
             <div class="paginacao">
-                <a href="" class="btn" id="pagina-anterior">Ant. Pag</a>
-                <a href="" class="btn" id="pagina-proxima">Próx. Pag</a>
+                <a href="" class="btn" id="pagina-anterior"> <i class="fa-solid fa-left-long"></i> </a>
+                <h3 class="paginaAtual" id="paginaAtual">Página Atual</h3>
+                <a href="" class="btn" id="pagina-proxima"> <i class="fa-solid fa-right-long"></i> </a>
             </div>
         </div>
     </main>
@@ -344,6 +344,17 @@
         // Chama a função assim que o DOM carregar
         document.addEventListener("DOMContentLoaded", atualizarLinksRelatorios);
     </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const menuButton = document.getElementById("menuButton");
+            const dropdownMenu = document.getElementById("dropdownMenu");
+
+            menuButton.addEventListener("click", function () {
+                dropdownMenu.classList.toggle("show"); // Alterna a visibilidade
+            });
+        });
+    </script>
+    
 
 </body>
 
