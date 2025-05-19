@@ -73,7 +73,13 @@ if (cargo === 'ADM') {
 
         <li class="menu-item">
             <div>
-                <i class="fa-solid fa-inbox"></i><a href="historicoReservas.html">Minhas Reservas</a>
+                <i class="fa-solid fa-inbox"></i><a href="historicoReservas.html">Meu Histórico de Reservas</a>
+            </div>
+        </li>
+
+        <li class="menu-item">
+            <div>
+                <i class="fas fa-sync-alt"></i><a href="minhasReservas.html">Minhas Reservas Ativas</a>
             </div>
         </li>
 
