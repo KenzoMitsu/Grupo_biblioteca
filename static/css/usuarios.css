@@ -334,23 +334,24 @@ input:checked+.slider:before {
 }
 
 .btn2 {
-    padding: 5px;
+    width: 275px;
+    height: 50px;
     border: none;
     font-weight: bold;
-    font-size: 25px;
+    font-size: 20px;
     transition: 0.5s;
-    background-color: #1C82E3;
-    color: #f0f0f0;
+    background-color: var(--azul);
+    color: white;
     border-radius: 5px; ;
 }
 
 .btn2:hover {
     font-weight: bold;
-    font-size: 25px;
+    font-size: 20.5px;
     transform: scale(1.07   );
     transition: 0.5s;
-    background-color: #3379bb;
-    color: #f0f0f0;
+    background-color: var(--azul-escuro);
+    color: white;
 }
 
 .addPinto {
@@ -702,7 +703,7 @@ button.botao-multas {
 
 .botao-multar {
     padding: 5px 10px;
-    background-color: var(--vermelho-kenzo-baitola);
+    background-color: var(--vermelho-henrique-baitola);
     color: var(--branco);
     border: none;
     border-radius: 5px;
@@ -712,7 +713,7 @@ button.botao-multas {
 }
 
 .botao-multar:hover {
-    background-color: var(--vermelho-kenzo-baitola);
+    background-color: var(--vermelho-henrique-baitola);
     transform: scale(1.05);
 }
 
@@ -720,7 +721,7 @@ button.botao-multas {
 
 .botao-historico {
     padding: 5px 10px;
-    background-color: var(--verde-kenzo-viado);
+    background-color: var(--verde-henrique-viado);
     color: var(--branco);
     border: none;
     border-radius: 5px;
@@ -730,7 +731,7 @@ button.botao-multas {
 }
 
 .botao-historico:hover {
-    background-color: var(--verde-kenzo-viado);
+    background-color: var(--verde-henrique-viado);
     transform: scale(1.05);
 }
 
