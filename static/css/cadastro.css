@@ -108,7 +108,7 @@ section {
     border-radius: 5px;
     padding: 7px; 
     margin: 10px 10px 0px 0px;
-    border: 3px solid var(--azul);
+    border: 2px solid var(--azul);
     background-color: var(--azul-claro);
     font-weight: bold;
 }
@@ -117,7 +117,7 @@ section {
     padding: 7px;
     width: 228px;
     margin: 10px 10px 0px 0px;
-    border: 3px solid var(--azul);
+    border: 2px solid var(--azul);
     background-color: var(--azul-claro);
     font-weight: bold;
     border-radius: 5px;
@@ -131,6 +131,19 @@ input::placeholder {
     opacity: 0.5;
 }
 
+.visivelbtn {
+    padding-left: 9.5px;
+    padding-right: 9.5px;
+    padding-bottom: 9.5px;
+    padding-top: 9px;
+    background-color: var(--azul-claro);
+    border-radius: 0px 5px 5px 0px;
+    border-right: 2px solid var(--azul);
+    border-bottom: 2px solid var(--azul);
+    border-top: 2px solid var(--azul);
+    margin-left: -56.5px;
+}
+
 .botao-cadastro {
   --color: #3380ca;
   background-color: white;
@@ -138,11 +151,11 @@ input::placeholder {
   display: inline-block;
   line-height: 2.5em;
   margin-top: 20px;
-  width: 31.5rem;
+  width: 29.5rem;
   position: relative;
   cursor: pointer;
   overflow: hidden;
-  border: 3px solid var(--azul);
+  border: 2px solid var(--azul);
   transition: color 0.5s;
   z-index: 1;
   font-size: 17px;
@@ -205,7 +218,7 @@ input::placeholder {
 .livro-1 {
     height: 400px;
     width: auto;
-    margin-top: 240px;
+    margin-top: 100px;
 }
 
 .final {

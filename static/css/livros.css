@@ -53,6 +53,10 @@ header {
     height: auto;
 }
 
+.header-end {
+    margin-bottom: 15px;
+}
+
 /* Barra de pesquisa */
 .search-container {
     display: flex;
@@ -641,17 +645,38 @@ footer{
     border-bottom: 2px solid var(--azul-escuro); /* Cor do texto do cabeçalho */
 }
 
-.table tbody tr td button {
-    background-color: var(--azul);
+.table tbody tr td .botoes .btn-info {
+    background-color: var(--preto);
     color: var(--branco);
     transition: 0.3s;
     margin-bottom: 2px;
     border: none;
+    border-radius: 25px;
 }
 
-.table tbody tr td button:hover {
+.table tbody tr td .botoes .btn-warning {
+    background-color: var(--preto);
+    color: var(--branco);
+    height: 40px;
     transition: 0.3s;
-    transform: scale(1.05);
+    margin-bottom: 2px;
+    border: none;
+    border-radius: 20px;
+}
+
+.table tbody tr td .botoes {
+    display: flex;
+}
+
+.table tbody tr td .botoes .btn-info:hover {
+    transition: 0.3s;
+    background-color: var(--azul-escuro);
+    color: var(--branco);
+    border: none;
+}
+
+.table tbody tr td .botoes .btn-warning:hover {
+    transition: 0.3s;
     background-color: var(--azul-escuro);
     color: var(--branco);
     border: none;
