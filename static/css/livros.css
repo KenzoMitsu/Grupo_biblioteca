@@ -236,13 +236,18 @@ input:checked + .slider:before {
     padding-left: 1px;
 }
 
-.fa-inbox {
+.fa-paperclip {
     padding-right: 7px;
     padding-left: 1px;
 }
 
 .fa-pix {
     padding-right: 7px;
+}
+
+.fa-thumbtack {
+    padding-right: 7px;
+    padding-left: 1px;
 }
 
 /* SUB-MODAIS DOS RELATÓRIOS */
@@ -651,6 +656,7 @@ footer{
     background-color: var(--preto);
     color: var(--branco);
     transition: 0.3s;
+    width: 2.5rem;
     margin-bottom: 2px;
     border: none;
     border-radius: 25px;

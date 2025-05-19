@@ -286,13 +286,18 @@ input:checked + .slider:before {
     padding-left: 1px;
 }
 
-.fa-inbox {
+.fa-paperclip {
     padding-right: 7px;
     padding-left: 1px;
 }
 
 .fa-pix {
     padding-right: 7px;
+}
+
+.fa-thumbtack {
+    padding-right: 7px;
+    padding-left: 1px;
 }
 
 /* Ícone de editar imagem */
@@ -767,7 +772,7 @@ footer{
     }
 
     .btn-save {
-        padding: 10px 150px;
+        width: 21rem;
     }
 
     #imgPreview {
@@ -801,7 +806,7 @@ footer{
         padding: 5px;
     }
     .btn-save{
-        padding: 5px 100px;
+        width: 19rem;
     }
 }
 
@@ -895,3 +900,13 @@ footer{
     }
 }
 
+@media (max-width: 350px) {
+
+    .formulario {
+        width: 87%
+    }
+
+    .btn-save {
+        width: 16rem;
+    }
+}
