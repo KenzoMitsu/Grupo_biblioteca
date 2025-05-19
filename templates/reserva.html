@@ -537,18 +537,17 @@
             });
         });
 
-
         // Formata data para o formato BR
-        function formatarData(dataISO) {
-            if (!dataISO) return "";
-            let data = new Date(dataISO);
-            data.setDate(data.getDate() + 1);
-            let dia = data.getDate().toString().padStart(2, "0");
-            let mes = (data.getMonth() + 1).toString().padStart(2, "0");
-            let ano = data.getFullYear();
-            return `${dia}/${mes}/${ano}`;
-        }
+        function formatarData(dataStr) {
+            if (!dataStr) return "";
+            
+            // Esperado: "dd-mm-aaaa" 
+            const partes = dataStr.split("-");
+            if (partes.length !== 3) return "Data inválida";
 
+            const [dia, mes, ano] = partes;
+            return `${dia.padStart(2, '0')}/${mes.padStart(2, '0')}/${ano}`;
+        }
 
         // Ajusta os elementos conforme o cargo do usuário
 
@@ -602,29 +601,38 @@
                 }
 
                 emprestimos.forEach(usuario => {
+                    const dataEmprestimoFormatada = formatarData(usuario.data_emprestimo);
+
+                    // Só mostra o bloco se houver data de empréstimo
+                    const dataEmprestimoHTML = usuario.data_emprestimo
+                        ? `
+                            <p><strong>Data de Empréstimo:</strong></p>
+                            <p>${dataEmprestimoFormatada}</p>
+                        `
+                        : "";
 
                     document.getElementById("pills-contact").innerHTML += `
-                        <div id="historicoContainer" class="p-3 historico">
+                        <div class="p-3 historico">
                             <p><strong>Nome:</strong></p>
                             <p>${usuario.nome_usuario}</p>
 
                             <p><strong>Data de Reserva:</strong></p>
                             <p>${formatarData(usuario.data_reserva)}</p>
 
-                            <p><strong>Data de Empréstimo:</strong></p>
-                            <p>${formatarData(usuario.data_emprestimo)}</p>
+                            ${dataEmprestimoHTML}
 
                             <p><strong>Status:</strong></p>
                             <p>${usuario.status}</p>
                         </div>
                     `;
-                    
                 });
+                if (data_emprestimo == null) {
+                    document.getElementById("data_emprestimo").style.display = "none"
+                }
             },
             error: function () {
                 $("#historicoContainer").html("<p>Erro ao carregar histórico.</p>");
             }
-            
         });
         // Logout
     </script>
