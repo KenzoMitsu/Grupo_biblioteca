@@ -140,27 +140,7 @@
             <!-- Histórico -->
             <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab"
                 tabindex="0">
-                <div id="historicoContainer" class="p-3 historico">
-                    <p><strong>Nome:</strong></p>
-                    <p id="nome_usuario">Moisés</p>
 
-                    <p><strong>Data de Reserva:</strong></p>
-                    <p id="data_reserva">20/06/2007</p>
-
-                    <p><strong>Data de Empréstimo:</strong></p>
-                    <p id="data_emprestimo">27/06/2007</p>
-                </div>
-
-                <div id="historicoContainer" class="p-3 historico">
-                    <p><strong>Nome:</strong></p>
-                    <p id="nome_usuario">Moisés</p>
-
-                    <p><strong>Data de Reserva:</strong></p>
-                    <p id="data_reserva">20/06/2007</p>
-
-                    <p><strong>Data de Empréstimo:</strong></p>
-                    <p id="data_emprestimo">27/06/2007</p>
-                </div>
             </div>
         </div>
 
@@ -603,28 +583,48 @@
             "method": "GET",
             "timeout": 0,
             "headers": {
-                "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF91c3VhcmlvIjozLCJlbWFpbCI6ImFkbUBnbWFpbC5jb20ifQ.zox5sX1EFBaDit3QuVXwiPXrING6ApbWKg6sY-__Nb8"
+                "Authorization": "Bearer " + token
             },
         };
 
         $.ajax({
-            url: `${ipPython}/avaliacoes?id_livro=${id_livro}`,
+            url: `${ipPython}/livro/${id_livro}`,
             method: "GET",
-            timeout: 0,
-            headers: {
-                Authorization: "Bearer " + token,
-            },
-            success: function (retorno) {
-                var data_devolucao = retorno.data_devolucao;
-                var data_reserva = retorno.data_reserva;
-                var email_usuario = retorno.email_usuario;
-                var nome_usuario = retorno.nome_usuario;
+            success: function (resposta) {
+                const emprestimos = resposta.usuarios_emprestimos;
 
-                console.log(data_devolucao, data_reserva, email_usuario, nome_usuario);
+                const container = $("#historicoContainer");
+                container.empty(); // Limpa o conteúdo anterior
+
+                if (emprestimos.length === 0) {
+                    container.append("<p>Nenhum histórico encontrado.</p>");
+                    return;
+                }
+
+                emprestimos.forEach(usuario => {
+
+                    document.getElementById("pills-contact").innerHTML += `
+                        <div id="historicoContainer" class="p-3 historico">
+                            <p><strong>Nome:</strong></p>
+                            <p>${usuario.nome_usuario}</p>
+
+                            <p><strong>Data de Reserva:</strong></p>
+                            <p>${formatarData(usuario.data_reserva)}</p>
+
+                            <p><strong>Data de Empréstimo:</strong></p>
+                            <p>${formatarData(usuario.data_emprestimo)}</p>
+
+                            <p><strong>Status:</strong></p>
+                            <p>${usuario.status}</p>
+                        </div>
+                    `;
+                    
+                });
             },
-            error: function (xhr, status, error) {
-                console.error("Erro na requisição:", error);
+            error: function () {
+                $("#historicoContainer").html("<p>Erro ao carregar histórico.</p>");
             }
+            
         });
         // Logout
     </script>
