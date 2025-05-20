@@ -22,6 +22,9 @@
     <script src="../static/js/paginaip.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../static/js/seguranca.js"></script>
+    <script src="../static/js/segurancaADM.js"></script>
+    <script src="../static/js/segurancaBiblio.js"></script>
 
 </head>
 
@@ -81,9 +84,6 @@
                                 <option class="inserir" value="Ficcao_cientifica">Ficção científica</option>
                                 <option class="inserir" value="Realismo_magico">Realismo mágico</option>
                                 <option class="inserir" value="Romance">Romance</option>
-                                <option class="inserir" value="Romance_historico">Romance histórico</option>
-                                <option class="inserir" value="Romance_policial">Romance policial</option>
-                                <option class="inserir" value="Romance_psicologico">Romance psicológico</option>
                                 <option class="inserir" value="Steampunk">Steampunk</option>
                                 <option class="inserir" value="Suspense">Suspense</option>
                                 <option class="inserir" value="Terror">Terror</option>
@@ -91,7 +91,7 @@
                                 <option class="inserir" value="Utopia">Utopia</option>
                                 <option class="inserir" value="Western">Faroeste / Western</option>
                             </optgroup>
-                        
+
                             <!-- NÃO FICÇÃO -->
                             <optgroup label="Não Ficção">
                                 <option class="inserir" value="Antropologia">Antropologia</option>
@@ -121,7 +121,7 @@
                                 <option class="inserir" value="Tratado">Tratado</option>
                                 <option class="inserir" value="Viagem">Viagem</option>
                             </optgroup>
-                        
+
                             <!-- EDUCACIONAL / TÉCNICO -->
                             <optgroup label="Educacional / Técnico">
                                 <option class="inserir" value="Apostila">Apostila</option>
@@ -133,7 +133,7 @@
                                 </option>
                                 <option class="inserir" value="Tecnico">Técnico</option>
                             </optgroup>
-                        
+
                             <!-- HQs / INFANTIL / MITOLOGIA -->
                             <optgroup label="Outros">
                                 <option class="inserir" value="Erótico">Erótico</option>
@@ -220,8 +220,6 @@
     </footer>
 
     <script>
-
-
         let filtrosAtivos = {
             categoria: '',
             disponibilidade: ''
@@ -233,7 +231,7 @@
                 method: "GET",
                 success: function (retorno) {
                     const filtroCategoria = document.getElementById('filtroCategoria');
-                    filtroCategoria.innerHTML = `<option value="">Todas</option>`; // limpa e coloca o "Todas"
+                    filtroCategoria.innerHTML = `<option value="">Todas</option>`;
 
                     retorno.categorias.sort().forEach(categoria => {
                         const option = document.createElement('option');
@@ -242,7 +240,6 @@
                         filtroCategoria.appendChild(option);
                     });
 
-                    // Restaura filtro da URL (se houver)
                     const params = new URLSearchParams(window.location.search);
                     if (params.has('categoria')) {
                         filtroCategoria.value = params.get('categoria');
@@ -306,7 +303,7 @@
                             `;
                     });
 
-                    aplicarFiltros(); // Aplica filtros visuais nos livros
+                    aplicarFiltros();
                 },
                 error: function () {
                     document.getElementById("listaLivros").innerHTML = `<p>Erro ao carregar livros.</p>`;
@@ -367,6 +364,7 @@
                 return;
             }
 
+            $("#listaLivros").html("<p>Buscando livros...</p>");
             $.ajax({
                 url: ipPython + "/pesquisar_livro?q=" + encodeURIComponent(termo),
                 method: "GET",
@@ -378,7 +376,7 @@
                             $("#listaLivros").append(`
                                     <div class="item">
                                         <a href="reserva.html?id=${livro.id_livro}&titulo=${livro.titulo}">
-                                            <img src="${ipPython}/static/uploads/Livros/${livro.id_livro}.jpeg" alt="">
+                                            <img src="${ipPython}/static/uploads/Livros/${livro.id_livro}.jpeg" alt="${livro.titulo}">
                                             <p>${livro.titulo}</p>
                                         </a>
                                     </div>
@@ -399,20 +397,16 @@
                 }
             });
         });
-
         $("#campoBusca").on("input", function () {
             if ($(this).val().trim() === "") {
                 document.querySelector('.paginacao').style.display = 'flex';
                 carregaLivros();
             }
         });
-
-        // Carrega tudo ao iniciar
+        // Inicialização
         carregarCategorias();
         carregaLivros();
     </script>
-
-
 </body>
 
 </html>
