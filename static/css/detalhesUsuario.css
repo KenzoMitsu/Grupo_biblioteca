@@ -40,8 +40,8 @@ a {
 
 .imagemUsuario {
     height: 150px;
-    border: 3px solid var(--escuro);
-    border-radius: 10px;
+    border: 2px solid var(--escuro);
+    border-radius: 130px;
 }
 
 .container {
@@ -262,12 +262,69 @@ input:checked+.slider:before {
     padding-left: 1px;
 }
 
+.btn-primary {
+  --color: #3380ca;
+  background-color: white;
+  font-family: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 12rem;
+  height: 2.5rem;
+  line-height: 2.5rem;
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+  border: 2px solid var(--azul);
+  transition: color 0.5s;
+  z-index: 1;
+  font-size: 17px;
+  font-weight: bold;
+  border-radius: 6px;
+  color: var(--azul);
+}
+
+.btn-primary:before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  background: var(--color);
+  height: 120px;
+  width: 500px;
+  border-radius: 50%;
+}
+
+.btn-primary:hover {
+  color: white;
+}
+
+.btn-primary:before {
+  top: 100%;
+  left: 100%;
+  transition: all 0.7s;
+}
+
+.btn-primary:hover:before {
+  top: -30px;
+  left: -30px;
+}
+
+.btn-primary:active:before {
+  background: #0060BB;
+  transition: background 0s;
+}
+
 header li a {
     font-size: 14px;
 }
 
 .swal2-confirm {
     background-color: var(--azul);
+}
+
+.modal-header {
+    background-color: var(--azul-escuro);
+    color: var(--branco);
 }
 
 /* SUB-MODAIS DOS RELATÓRIOS */
@@ -376,8 +433,8 @@ h1 {
 }
 
 .foto-usuario {
-    width: 237px;
-    height: 300px;
+    width: 240px;
+    height: 250px;
 }
 
 .quantidade {
@@ -426,11 +483,21 @@ h1 {
     transition: 0.2s;
 }
 
+.form-label {
+    color: var(--azul-escuro);
+    font-weight: bold;
+}
+
+.nav-item {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+}
+
 .mb-3 {
     display: flex;
-    gap: 10px;
+    flex-direction: column;
     justify-content: center;
-    margin-top: 60px;
 }
 
 .nav-pills .nav-link.active {
@@ -463,6 +530,56 @@ h1 {
     transform: scaleX(1);
 }
 
+.botao-editar {
+  --color: #3380ca;
+  background-color: white;
+  font-family: inherit;
+  display: inline-block;
+  width: 14em;
+  height: 2.5em;
+  line-height: 2.5em;
+  margin: 20px;
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+  border: 2px solid var(--azul);
+  transition: color 0.5s;
+  z-index: 1;
+  font-size: 17px;
+  font-weight: bold;
+  border-radius: 6px;
+  color: var(--azul);
+}
+
+.botao-editar:before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  background: var(--color);
+  height: 120px;
+  width: 500px;
+  border-radius: 50%;
+}
+
+.botao-editar:hover {
+  color: white;
+}
+
+.botao-editar:before {
+  top: 100%;
+  left: 100%;
+  transition: all 0.7s;
+}
+
+.botao-editar:hover:before {
+  top: -30px;
+  left: -30px;
+}
+
+.botao-editar:active:before {
+  background: #0060BB;
+  transition: background 0s;
+}
 
 .botao-voltar {
     text-align: center;
@@ -526,11 +643,19 @@ h1 {
 }
 
 form{
-    margin-left: 20px;
     display: flex;
     flex-direction: column;
 }
 
+.form-control {
+    border: 2px solid var(--azul);
+    background-color: #eef3ff;
+}
+
+.form-select {
+    border: 2px solid var(--azul-escuro);
+    background-color: #eef3ff;
+}
 
 #reviewsContainer {
     margin-top: 30px;
