@@ -89,53 +89,56 @@
                 </div>
             </div>
 
-            <button id="btn_editar" class="botao-editar" data-id="ID_DO_USUARIO" type="button">Editar</button>
+            <button id="btn_editar" class="botao-editar" type="button">Editar</button>
 
         </section>
 
         <!-- Modal para Editar Usuário -->
         <div class="modal fade" id="editarUsuarioModal" tabindex="-1" aria-labelledby="editarUsuarioModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="editarUsuarioModalLabel">Editar Usuário</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <form id="formEditarUsuario">
-                            <div class="mb-3">
-                                <label for="nomeUsuario" class="form-label">Nome</label>
-                                <input type="text" class="form-control" id="nomeUsuario" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="emailUsuario" class="form-label">Email</label>
-                                <input type="email" class="form-control" id="emailUsuario" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="telefoneUsuario" class="form-label">Telefone</label>
-                                <input type="text" class="form-control" id="telefoneUsuario" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="dataNascimentoUsuario" class="form-label">Data de Nascimento</label>
-                                <input type="date" class="form-control" id="dataNascimentoUsuario" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="cargoUsuario" class="form-label">Cargo</label>
-                                <input type="text" class="form-control" id="cargoUsuario" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="statusUsuario" class="form-label">Status</label>
-                                <select class="form-select" id="statusUsuario" required>
-                                    <option value="Ativo">Ativo</option>
-                                    <option value="Inativo">Inativo</option>
-                                </select>
-                            </div>
-                            <input type="hidden" id="idUsuario">
-                            <button type="submit" class="btn btn-primary">Salvar Alterações</button>
-                        </form>
-                    </div>
-                </div>
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editarUsuarioModalLabel">Editar Usuário</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
+            <div class="modal-body">
+                <form id="formEditarUsuario">
+                <div class="mb-3">
+                    <label for="nomeUsuario" class="form-label">Nome</label>
+                    <input type="text" class="form-control" id="nomeUsuario" required>
+                </div>
+                <div class="mb-3">
+                    <label for="emailUsuario" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="emailUsuario" required>
+                </div>
+                <div class="mb-3">
+                    <label for="telefoneUsuario" class="form-label">Telefone</label>
+                    <input type="text" class="form-control" id="telefoneUsuario" required>
+                </div>
+                <div class="mb-3">
+                    <label for="dataNascimentoUsuario" class="form-label">Data de Nascimento</label>
+                    <input type="date" class="form-control" id="dataNascimentoUsuario" required>
+                </div>
+                <div class="mb-3">
+                    <label for="cargoUsuario" class="form-label">Cargo</label>
+                    <input type="text" class="form-control" id="cargoUsuario" required>
+                </div>
+                <div class="mb-3">
+                    <label for="statusUsuario" class="form-label">Status</label>
+                    <select class="form-select" id="statusUsuario" required>
+                    <option value="Ativo">Ativo</option>
+                    <option value="Inativo">Inativo</option>
+                    </select>
+                </div>
+
+                <!-- Guarda o ID que veio na URL -->
+                <input type="hidden" id="idUsuario">
+
+                <button type="submit" class="btn btn-primary">Salvar Alterações</button>
+                </form>
+            </div>
+            </div>
+        </div>
         </div>
 
         <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
@@ -205,41 +208,98 @@
 
     <script>
         $(document).ready(function() {
-            const token = localStorage.getItem('token');
-            const params = new URLSearchParams(window.location.search);
-            const id_usuario = params.get('id');  // pega ?id=123 da URL
+        const token = localStorage.getItem('token');
 
+        // Pega o ID da URL:
+        const params = new URLSearchParams(window.location.search);
+        const idUsuario = params.get('id');
+        if (!idUsuario) {
+            Swal.fire('Erro', 'ID do usuário não informado na URL', 'error');
+            return;
+        }
+        $('#idUsuario').val(idUsuario);
 
-            $.ajax({
-                url: `${ipPython}/usuarioo/${id_usuario}`,
-                method: 'GET',
-                headers: { 'Authorization': 'Bearer ' + token }
-            })
-
-            .done(function(usu) {
-            // seta imagem do perfil no mesmo padrão de livros
-            const imagemUrl = `${ipPython}/static/uploads/Usuarios/${id_usuario}.jpeg`;
+        // Carrega dados atuais
+        $.ajax({
+            url: `${ipPython}/usuarioo/${idUsuario}`,
+            method: 'GET',
+            headers: { 'Authorization': 'Bearer ' + token }
+        })
+        .done(function(usu) {
+            // preenche o perfil
             $('#imagemUsuario')
-                .attr('src', imagemUrl)
-                .on('error', function() {
-                // fallback caso arquivo não seja encontrado
-                $(this).attr('src', '../static/img/default-user.png');
-                });
-
-            // preenche demais campos
+            .attr('src', `${ipPython}/static/uploads/Usuarios/${idUsuario}.jpeg`)
+            .on('error', () => $('#imagemUsuario').attr('src', '../static/img/default-user.png'));
             $('#nome').text(usu.nome);
             $('#email').text(usu.email);
             $('#telefone').text(usu.telefone);
-            $('#data_nascimento').text(
-                new Date(usu.data_nascimento).toLocaleDateString('pt-BR')
-            );
+            $('#data_nascimento').text(new Date(usu.data_nascimento).toLocaleDateString('pt-BR'));
             $('#cargo').text(usu.cargo);
             $('#status').text(usu.status);
-            })
-            .fail(function(xhr) {
-            Swal.fire('Erro', 'Não foi possível obter seus dados', 'error');
-            console.error(xhr);
+        })
+        .fail(() => Swal.fire('Erro', 'Não foi possível obter os dados do usuário', 'error'));
+
+        // Ao clicar em “Editar”, abre o modal já preenchido com o que está na tela
+        $('#btn_editar').on('click', function() {
+            // lê os valores atuais da view
+            $('#nomeUsuario').val($('#nome').text());
+            $('#emailUsuario').val($('#email').text());
+            $('#telefoneUsuario').val($('#telefone').text());
+            // converte de DD/MM/AAAA para YYYY-MM-DD para o <input type="date">
+            let parts = $('#data_nascimento').text().split('/');
+            $('#dataNascimentoUsuario').val(`${parts[2]}-${parts[1]}-${parts[0]}`);
+            $('#cargoUsuario').val($('#cargo').text());
+            $('#statusUsuario').val($('#status').text());
+            // mostra o modal do Bootstrap
+            new bootstrap.Modal(document.getElementById('editarUsuarioModal')).show();
+        });
+
+        // Envio do formulário de edição
+        $('#formEditarUsuario').submit(function(e) {
+            e.preventDefault();
+
+            const dados = {
+            nome: $('#nomeUsuario').val().trim(),
+            email: $('#emailUsuario').val().trim(),
+            telefone: $('#telefoneUsuario').val().trim(),
+            data_nascimento: $('#dataNascimentoUsuario').val(),
+            cargo: $('#cargoUsuario').val().trim(),
+            status: $('#statusUsuario').val()
+            };
+
+            $.ajax({
+            method: 'PUT',
+            url: `${ipPython}/usuariosadm/${idUsuario}`,
+            headers: { 'Authorization': 'Bearer ' + token },
+            contentType: 'application/json',
+            data: JSON.stringify(dados),
+            success: function() {
+                Swal.fire('Sucesso!', 'Usuário atualizado com sucesso!', 'success')
+                .then(() => {
+                    // atualiza a viesualização sem recarregar:
+                    $('#nome').text(dados.nome);
+                    $('#email').text(dados.email);
+                    $('#telefone').text(dados.telefone);
+                    $('#data_nascimento').text(new Date(dados.data_nascimento).toLocaleDateString('pt-BR'));
+                    $('#cargo').text(dados.cargo);
+                    $('#status').text(dados.status);
+                    // fecha o modal de edição
+                    bootstrap.Modal.getInstance(document.getElementById('editarUsuarioModal')).hide();
+                });
+            },
+            error: function(retorno) {
+                Swal.fire('Erro!', JSON.parse(retorno.responseText).error || 'Falha ao editar usuário.', 'error');
+            }
             });
+        });
+
+        // Essa é a "máscara" de telefone dentro do modal, só para deixar bonito
+        $('#telefoneUsuario').on('keyup', function(event) {
+            let v = event.target.value.replace(/\D/g, '');
+            v = v.replace(/(\d{2})(\d)/, '($1) $2');
+            v = v.replace(/(\d)(\d{4})$/, '$1-$2');
+            event.target.value = v;
+        });
         });
     </script>
 
