@@ -286,7 +286,7 @@ input:checked + .slider:before {
     padding-left: 1px;
 }
 
-.fa-paperclip {
+.fa-clock {
     padding-right: 7px;
     padding-left: 1px;
 }
