@@ -75,10 +75,12 @@
     <div class="listalivros" id="listaMultaHistorico"></div>
 
     <div class="algo-legal">
-      <p class="butao" id="multas-0" style="display: none;">Não possui nenhuma multa em andamento!      </p>
+      <p class="butao" id="multas-0" style="display: none;">Não possui nenhuma multa em andamento!</p>
     </div>
 
   </div>
+
+  <div class="pagar-div"> <button id="pagar" class="pagar-multa">Pagar Multa</button> </div>
 
   <footer class="inter">
     <div class="separacao1">
@@ -153,6 +155,8 @@
             if (retorno.mensagem) {
               // Se a mensagem indicar que não há multas, exibe a mensagem
               document.getElementById("multas-0").style.display = "block";
+
+              document.getElementById("pagar").style.display = "none"
             } else {
               // Se houver multas, oculta a mensagem
               document.getElementById("multas-0").style.display = "none";
@@ -160,7 +164,7 @@
               retorno.multas.forEach((multas) => {
                 html.innerHTML += `
                   <div class="item">
-                    <div class="dalai-lama">
+                    <div class="multa-tabela">
                       <div class="fiote1">
                         <span class="negrito">Nome do Usuário:</span><p>${multas.usuario.nome}</p>
                         <span class="negrito">Email do Usuário:</span><p>${multas.usuario.email}</p>
@@ -181,7 +185,7 @@
           error: function (xhr) {
             // Se a API retornar um erro, exibe a mensagem
             if (xhr.status === 404) {
-                            document.getElementById("multas-0").style.display = "block";
+              document.getElementById("multas-0").style.display = "block";
             }
           }
         };
