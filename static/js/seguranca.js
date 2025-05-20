@@ -149,6 +149,10 @@ if (cargo === 'ADM') {
 } else if (cargo === 'Bibliotecario') {
     document.getElementById("logoHeader").href = "home.html"
 
+    document.getElementById("logo-site").innerHTML += `
+        <a id="logoHeader" href="home.html"><img src="http://192.168.1.125:5000/static/uploads/logo/logo.png" alt="Logo"></a>
+    `;
+
     document.getElementById("dropdownMenu").innerHTML += `
 
         <li class="menu-item">

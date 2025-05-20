@@ -34,7 +34,7 @@
     <header>
         <!-- Logo -->
         <div class="header-left">
-            <a id="logoHeader" href="home.html"><img src="../static/img/logo.png" alt="Logo"></a>
+            <a id="logoHeader" href="home.html"><img src="http://192.168.1.125:5000/static/uploads/logo/logo.png" alt="Logo"></a>
         </div>
 
         <!-- Barra de Pesquisa -->
@@ -159,11 +159,36 @@
             </li>
         </ul>
 
-            <!-- Histórico -->
-            <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab"
-                tabindex="0">
-
+            <!-- Histórico de reservas -->
+            <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab" tabindex="0">
+                <div class="table-responsive">
+                    <table class="table table-striped" id="tabela-reservas">
+                    <thead>
+                        <tr>
+                        <th>Data da Reserva</th>
+                        <th>Título do Livro</th>
+                        <th>Autor</th>
+                        <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                    </table>
+                </div>
+                <nav aria-label="Paginação de Reservas">
+                    <ul class="pagination justify-content-center">
+                    <li class="page-item" id="li-anterior-reserva">
+                        <a class="page-link" href="#" id="pagina-anterior-reserva">Anterior</a>
+                    </li>
+                    <li class="page-item disabled">
+                        <span class="page-link" id="paginaAtualReserva">Página 1</span>
+                    </li>
+                    <li class="page-item" id="li-proxima-reserva">
+                        <a class="page-link" href="#" id="pagina-proxima-reserva">Próxima</a>
+                    </li>
+                    </ul>
+                </nav>
             </div>
+
         </div>
     </main>
 
@@ -202,7 +227,7 @@
                 </div>
             </div>
             <div class="imagem">
-                <img class="logo_rodape" src="../static/img/logo.png" alt="logo">
+                <img class="logo_rodape" src="http://192.168.1.125:5000/static/uploads/logo/logo.png" alt="logo">
             </div>
             <div class="localizacao">
                 <p class="local">LOCALIZAÇÃO
@@ -218,7 +243,7 @@
     </footer>
 
     <script>
-    $(document).ready(function () {
+        $(document).ready(function() {
         const token = localStorage.getItem('token');
 
         // Pega o ID da URL:
@@ -236,27 +261,22 @@
             method: 'GET',
             headers: { 'Authorization': 'Bearer ' + token }
         })
-            .done(function (usu) {
-                // preenche o perfil
-                $('#imagemUsuario')
-                    .attr('src', `${ipPython}/static/uploads/Usuarios/${idUsuario}.jpeg`)
-                    .on('error', () => $('#imagemUsuario').attr('src', '../static/img/default-user.png'));
-                $('#nome').text(usu.nome);
-                $('#email').text(usu.email);
-                $('#telefone').text(usu.telefone);
+        .done(function(usu) {
+            // preenche o perfil
+            $('#imagemUsuario')
+            .attr('src', `${ipPython}/static/uploads/Usuarios/${idUsuario}.jpeg`)
+            .on('error', () => $('#imagemUsuario').attr('src', '../static/img/default-user.png'));
+            $('#nome').text(usu.nome);
+            $('#email').text(usu.email);
+            $('#telefone').text(usu.telefone);
+            $('#data_nascimento').text(new Date(usu.data_nascimento).toLocaleDateString('pt-BR'));
+            $('#cargo').text(usu.cargo);
+            $('#status').text(usu.status);
+        })
+        .fail(() => Swal.fire('Erro', 'Não foi possível obter os dados do usuário', 'error'));
 
-                // CORREÇÃO PARA A DATA DE NASCIMENTO
-                const dataOriginal = new Date(usu.data_nascimento);
-                const dataAjustada = new Date(dataOriginal.getTime() + dataOriginal.getTimezoneOffset() * 60000);
-                $('#data_nascimento').text(dataAjustada.toLocaleDateString('pt-BR'));
-
-                $('#cargo').text(usu.cargo);
-                $('#status').text(usu.status);
-            })
-            .fail(() => Swal.fire('Erro', 'Não foi possível obter os dados do usuário', 'error'));
-
-        // Ao clicar em "Editar", abre o modal já preenchido com o que está na tela
-        $('#btn_editar').on('click', function () {
+        // Ao clicar em “Editar”, abre o modal já preenchido com o que está na tela
+        $('#btn_editar').on('click', function() {
             // lê os valores atuais da view
             $('#nomeUsuario').val($('#nome').text());
             $('#emailUsuario').val($('#email').text());
@@ -271,57 +291,116 @@
         });
 
         // Envio do formulário de edição
-        $('#formEditarUsuario').submit(function (e) {
+        $('#formEditarUsuario').submit(function(e) {
             e.preventDefault();
 
             const dados = {
-                nome: $('#nomeUsuario').val().trim(),
-                email: $('#emailUsuario').val().trim(),
-                telefone: $('#telefoneUsuario').val().trim(),
-                data_nascimento: $('#dataNascimentoUsuario').val(),
-                cargo: $('#cargoUsuario').val().trim(),
-                status: $('#statusUsuario').val()
+            nome: $('#nomeUsuario').val().trim(),
+            email: $('#emailUsuario').val().trim(),
+            telefone: $('#telefoneUsuario').val().trim(),
+            data_nascimento: $('#dataNascimentoUsuario').val(),
+            cargo: $('#cargoUsuario').val().trim(),
+            status: $('#statusUsuario').val()
             };
 
             $.ajax({
-                method: 'PUT',
-                url: `${ipPython}/usuariosadm/${idUsuario}`,
-                headers: { 'Authorization': 'Bearer ' + token },
-                contentType: 'application/json',
-                data: JSON.stringify(dados),
-                success: function () {
-                    Swal.fire('Sucesso!', 'Usuário atualizado com sucesso!', 'success')
-                        .then(() => {
-                            // atualiza a visualização sem recarregar:
-                            $('#nome').text(dados.nome);
-                            $('#email').text(dados.email);
-                            $('#telefone').text(dados.telefone);
-
-                            // CORREÇÃO PARA A DATA DE NASCIMENTO (APÓS ATUALIZAÇÃO)
-                            const dataOriginalUpdate = new Date(dados.data_nascimento);
-                            const dataAjustadaUpdate = new Date(dataOriginalUpdate.getTime() + dataOriginalUpdate.getTimezoneOffset() * 60000);
-                            $('#data_nascimento').text(dataAjustadaUpdate.toLocaleDateString('pt-BR'));
-
-                            $('#cargo').text(dados.cargo);
-                            $('#status').text(dados.status);
-                            // fecha o modal de edição
-                            bootstrap.Modal.getInstance(document.getElementById('editarUsuarioModal')).hide();
-                        });
-                },
-                error: function (retorno) {
-                    Swal.fire('Erro!', JSON.parse(retorno.responseText).error || 'Falha ao editar usuário.', 'error');
-                }
+            method: 'PUT',
+            url: `${ipPython}/usuariosadm/${idUsuario}`,
+            headers: { 'Authorization': 'Bearer ' + token },
+            contentType: 'application/json',
+            data: JSON.stringify(dados),
+            success: function() {
+                Swal.fire('Sucesso!', 'Usuário atualizado com sucesso!', 'success')
+                .then(() => {
+                    // atualiza a viesualização sem recarregar:
+                    $('#nome').text(dados.nome);
+                    $('#email').text(dados.email);
+                    $('#telefone').text(dados.telefone);
+                    $('#data_nascimento').text(new Date(dados.data_nascimento).toLocaleDateString('pt-BR'));
+                    $('#cargo').text(dados.cargo);
+                    $('#status').text(dados.status);
+                    // fecha o modal de edição
+                    bootstrap.Modal.getInstance(document.getElementById('editarUsuarioModal')).hide();
+                });
+            },
+            error: function(retorno) {
+                Swal.fire('Erro!', JSON.parse(retorno.responseText).error || 'Falha ao editar usuário.', 'error');
+            }
             });
         });
 
         // Essa é a "máscara" de telefone dentro do modal, só para deixar bonito
-        $('#telefoneUsuario').on('keyup', function (event) {
+        $('#telefoneUsuario').on('keyup', function(event) {
             let v = event.target.value.replace(/\D/g, '');
             v = v.replace(/(\d{2})(\d)/, '($1) $2');
             v = v.replace(/(\d)(\d{4})$/, '$1-$2');
             event.target.value = v;
         });
-    });
+        });
+
+
+        // Histórico de Reservas
+        // ==========================
+        function carregarReservas(pagina = 1) {
+        const token = localStorage.getItem('token');
+        const params = new URLSearchParams(window.location.search);
+        const idUsuario = params.get('id');
+        if (!idUsuario) return;
+
+        $.ajax({
+            method: "GET",
+            url: `${ipPython}/reservasusuario/${idUsuario}?pagina=${pagina}`,
+            headers: { 'Authorization': 'Bearer ' + token },
+            success: function(data) {
+            // atualiza paginação
+            $('#paginaAtualReserva').text(`Página ${data.pagina_atual}`);
+            $('#li-anterior-reserva').toggleClass('disabled', data.pagina_atual <= 1);
+            $('#li-proxima-reserva').toggleClass('disabled', data.pagina_atual >= data.total_paginas);
+
+            // preenche tabela
+            const tbody = $('#tabela-reservas tbody').empty();
+            if (data.reservas.length === 0) {
+                tbody.append('<tr><td colspan="4" class="text-center">Nenhuma reserva encontrada.</td></tr>');
+                return;
+            }
+
+            data.reservas.forEach(r => {
+                // data_reserva já vem formatada como DD-MM-YYYY; trocar hífens por barras
+                const dataRes = r.data_reserva ? r.data_reserva.replace(/-/g, '/') : '';
+                const row = `
+                <tr>
+                    <td>${dataRes}</td>
+                    <td>${r.titulo_livro}</td>
+                    <td>${r.autor_livro}</td>
+                    <td>${r.status}</td>
+                </tr>
+                `;
+                tbody.append(row);
+            });
+            },
+            error: function(err) {
+            console.error(err);
+            Swal.fire('Erro', 'Não foi possível carregar o histórico de reservas.', 'error');
+            }
+        });
+        }
+
+        // ao abrir a aba “Histórico”, carrega a primeira página
+        $('#pills-contact-tab').on('shown.bs.tab', function () {
+        carregarReservas(1);
+        });
+
+        // botões de paginação dentro do tab
+        $('#pagina-anterior-reserva').on('click', function(e) {
+        e.preventDefault();
+        const atual = parseInt($('#paginaAtualReserva').text().split(' ')[1]);
+        if (atual > 1) carregarReservas(atual - 1);
+        });
+        $('#pagina-proxima-reserva').on('click', function(e) {
+        e.preventDefault();
+        const atual = parseInt($('#paginaAtualReserva').text().split(' ')[1]);
+        carregarReservas(atual + 1);
+        });
     </script>
 
 </body>
