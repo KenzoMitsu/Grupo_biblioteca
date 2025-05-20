@@ -100,12 +100,6 @@ a{
     /* Cor de fundo ao passar o mouse */
 }
 
-
-
-
-
-
-
 body {
     font-family: Arial, sans-serif;
     background-color: white;
@@ -479,21 +473,53 @@ input {
 }
 
 .btn-voltar {
-    padding: 5px 150px;
-    cursor: pointer;
-    color: var(--azul);
-    background-color: var(--branco);
-    border: 2px solid var(--azul);
-    border-radius: 5px;
-    font-weight: bold;
-    font-size: large;
-    margin-bottom: 20px;
-    transition: 0.2s;
+  --color: #3380ca;
+  background-color: white;
+  font-family: inherit;
+  display: inline-block;
+  width: 21.5em;
+  height: 2.5em;
+  line-height: 2.5em;
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+  border: 2px solid var(--azul);
+  transition: color 0.5s;
+  z-index: 1;
+  font-size: 17px;
+  font-weight: bold;
+  border-radius: 6px;
+  color: var(--azul);
+}
+
+.btn-voltar:before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  background: var(--color);
+  height: 120px;
+  width: 500px;
+  border-radius: 50%;
 }
 
 .btn-voltar:hover {
-    background-color: var(--azul);
-    color: var(--branco);
+  color: white;
+}
+
+.btn-voltar:before {
+  top: 100%;
+  left: 100%;
+  transition: all 0.7s;
+}
+
+.btn-voltar:hover:before {
+  top: -30px;
+  left: -30px;
+}
+
+.btn-voltar:active:before {
+  background: #0060BB;
+  transition: background 0s;
 }
 
 .div-botao-voltar {
@@ -754,7 +780,7 @@ footer{
     }
 
     .btn-voltar {
-        padding: 5px 135px;
+        width: 21rem;
     }
 
     .linha {
@@ -876,7 +902,7 @@ footer{
     }
 
     .btn-voltar {
-        padding: 5px 123px;
+        width: 19.5rem;
     }
 }
 
@@ -892,7 +918,7 @@ footer{
     }
 
     .btn-voltar {
-        padding: 5px 103px;
+        width: 17rem;
     }
 
 }
