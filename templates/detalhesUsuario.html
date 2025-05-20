@@ -73,6 +73,7 @@
                         <img id="imagemUsuario" class="foto-usuario imagemUsuario" src="" alt="">
 
                         <button id="btn_editar" class="botao-editar" type="button">Editar</button>
+                        
                     </div>
 
                     <div class="filho2">
@@ -87,6 +88,7 @@
                         <p id="cargo"></p>
                         <span style="font-weight: bold;">Status:</span>
                         <p id="status"></p>
+
                     </div>
                 </div>
             </div>
@@ -104,44 +106,49 @@
             <div class="modal-body">
                 <form id="formEditarUsuario">
 
-                <div class="mb-6">
+                <div class="mb-9">
 
-                    <div class="mb-3">
-                        <label for="nomeUsuario" class="form-label">Nome</label>
-                        <input type="text" class="form-control" id="nomeUsuario" required>
+                    <div class="mb-6">
+
+                        <div class="mb-3">
+                            <label for="nomeUsuario" class="form-label">Nome</label>
+                            <input type="text" class="form-control" id="nomeUsuario" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="emailUsuario" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="emailUsuario" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="telefoneUsuario" class="form-label">Telefone</label>
+                            <input type="text" class="form-control" id="telefoneUsuario" required>
+                        </div>
+
                     </div>
-                    <div class="mb-3">
-                        <label for="emailUsuario" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="emailUsuario" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="telefoneUsuario" class="form-label">Telefone</label>
-                        <input type="text" class="form-control" id="telefoneUsuario" required>
+
+                    <div class="mb-6">
+
+                        <div class="mb-3">
+                            <label for="dataNascimentoUsuario" class="form-label">Data de Nascimento</label>
+                            <input type="date" class="form-control" id="dataNascimentoUsuario" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="cargoUsuario" class="form-label">Cargo</label>
+                            <input type="text" class="form-control" id="cargoUsuario" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="statusUsuario" class="form-label">Status</label>
+                            <select class="form-select" id="statusUsuario" required>
+                            <option value="Ativo">Ativo</option>
+                            <option value="Inativo">Inativo</option>
+                            </select>
+                        </div>
+
+
                     </div>
 
                 </div>
 
-                <div class="mb-6">
-
-                    <div class="mb-3">
-                        <label for="dataNascimentoUsuario" class="form-label">Data de Nascimento</label>
-                        <input type="date" class="form-control" id="dataNascimentoUsuario" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="cargoUsuario" class="form-label">Cargo</label>
-                        <input type="text" class="form-control" id="cargoUsuario" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="statusUsuario" class="form-label">Status</label>
-                        <select class="form-select" id="statusUsuario" required>
-                        <option value="Ativo">Ativo</option>
-                        <option value="Inativo">Inativo</option>
-                        </select>
-                    </div>
-
-                    <button type="submit" class="btn btn-primary">Salvar Alterações</button>
-
-                </div>
+                <button type="submit" class="btn btn-primary">Salvar Alterações</button>
 
                 <!-- Guarda o ID que veio na URL -->
                 <input type="hidden" id="idUsuario">

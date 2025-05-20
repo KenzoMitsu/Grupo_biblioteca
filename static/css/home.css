@@ -354,6 +354,10 @@ header {
     font-weight: bold;
 }
 
+.erro-pagina {
+    color: red;
+}
+
 .paginacao {
     gap: 10px;
     display: flex;
