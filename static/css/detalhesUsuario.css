@@ -38,7 +38,7 @@ a {
     cursor: pointer;
 }
 
-.imagemLivro {
+.imagemUsuario {
     height: 150px;
     border: 3px solid var(--escuro);
     border-radius: 10px;
@@ -248,7 +248,7 @@ input:checked+.slider:before {
     padding-left: 1px;
 }
 
-.fa-clock {
+.fa-paperclip {
     padding-right: 7px;
     padding-left: 1px;
 }
@@ -375,7 +375,7 @@ h1 {
     gap: 10px;
 }
 
-.foto-livro {
+.foto-usuario {
     width: 237px;
     height: 300px;
 }
@@ -387,7 +387,7 @@ h1 {
     font-weight: bold;
 }
 
-.botao-esgotado {
+.botao-inativar {
     padding-top: 7.5px;
     padding-bottom: 7.5px;
     padding-left: 100px;
@@ -403,7 +403,7 @@ h1 {
     transition: 0.2s;
 }
 
-.botao-reserva {
+.botao-reativar {
     padding-top: 7.5px;
     padding-bottom: 7.5px;
     padding-left: 76px;
@@ -419,7 +419,7 @@ h1 {
     transition: 0.2s;
 }
 
-.botao-reserva:hover {
+.botao-reativar:hover {
     background-color: var(--azul-escuro);
     border: 3px solid var(--azul-escuro);
     transform: scale(1.05);
@@ -650,7 +650,7 @@ form{
 }
 
 .reviews-container {
-    width: 600px;
+    max-width: 600px;
     margin: 1rem auto;
     background: white;
     border-radius: 8px;
@@ -660,7 +660,7 @@ form{
 
 .review {
     border-bottom: 1px solid #eee;
-    padding: 0.9rem;
+    padding: 0.75rem 0;
 }
 
 .review:last-child {
@@ -723,43 +723,13 @@ form{
     margin: auto;
     display: flex;
     align-items: center;
-    max-width: 993px;
+    max-width: 600px;
     flex-wrap: wrap;
 }
 
 .historico {
     width: 250px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
-}
-
-.table-container {
-    overflow: auto;
-}
-
-#tabela-historico {
-    width: 100%;
-    margin: 27px auto;
-    border-collapse: collapse;
-    background-color: #fff;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-#tabela-historico th, 
-#tabela-historico td {
-    padding: 15px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-}
-
-#tabela-historico thead th {
-    background-color: var(--azul-claro);
-    color: var(--branco);
-    font-weight: bold;
-    border-bottom: 2px solid var(--azul-escuro);
-}
-
-#tabela-historico tbody tr:hover {
-    background-color: #f1f1f1;
 }
 
 /* RODAPÉ */
@@ -773,35 +743,6 @@ form{
     width: 100%;
     height: auto;
 }
-
-.livro-cancelado {
-    padding: 15px !important;
-    background-color: rgb(255, 217, 222);
-    color: rgb(233, 0, 57) !important;
-    font-weight: bold;
-}
-
-.livro-devolvido {
-    padding: 15px !important;
-    background-color: rgb(215, 254, 233);
-    color: rgb(26, 172, 95) !important;
-    font-weight: bold;
-}
-
-.livro-reservado {
-    padding: 15px !important;
-    background-color: rgb(254, 253, 215);
-    color: rgb(255, 230, 0);
-    font-weight: bold;
-}
-
-.livro-emprestado {
-    padding: 15px !important;
-    background-color: rgb(218, 215, 254);
-    color: rgb(4, 0, 233);
-    font-weight: bold;
-}
-
 
 /* RODAPÉ */
 
