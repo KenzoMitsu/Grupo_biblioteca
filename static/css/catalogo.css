@@ -542,6 +542,35 @@ input:checked+.slider:before {
 }
 
 
+
+
+
+/* Adicione ao seu arquivo catalogo.css */
+.item span {
+    display: block;
+    margin-top: 5px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.item .disponivel {
+    color: #28a745;
+}
+
+.item .indisponivel {
+    color: #dc3545;
+}
+
+/* Estilo para imagens que não carregam */
+.item img {
+    background-color: #f8f9fa;
+    object-fit: cover;
+}
+
+
+
+
+
 @media (max-width: 480px) {
 
     .localizacao {

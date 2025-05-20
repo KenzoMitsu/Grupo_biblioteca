@@ -21,7 +21,7 @@
     <script src="../static/js/paginaip.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-   
+
 </head>
 
 <body>
@@ -60,7 +60,8 @@
 
     <main>
         <div class="bemvindo">
-            <h3 style="display: none;" class="span"><span id="nomeUsuario" class="nomeUsuario" style="display: none;"></span></h3>
+            <h3 style="display: none;" class="span"><span id="nomeUsuario" class="nomeUsuario"
+                    style="display: none;"></span></h3>
         </div>
 
         <div class="container">
@@ -70,8 +71,82 @@
                 <div class="row">
                     <div class="col-md-6">
                         <label for="filtroCategoria" class="form-label">Filtrar por Categoria:</label>
-                        <select id="filtroCategoria" class="form-select">
+                        <select class="form-select" name="categoria" id="filtroCategoria">
                             <option value="">Todas as categorias</option>
+                            <!-- FICÇÃO -->
+                            <optgroup label="Ficção">
+                                <option class="inserir" value="Aventura">Aventura</option>
+                                <option class="inserir" value="Conto">Conto</option>
+                                <option class="inserir" value="Cyberpunk">Cyberpunk</option>
+                                <option class="inserir" value="Distopia">Distopia</option>
+                                <option class="inserir" value="Drama">Drama</option>
+                                <option class="inserir" value="Fantasia">Fantasia</option>
+                                <option class="inserir" value="Ficcao_cientifica">Ficção científica</option>
+                                <option class="inserir" value="Realismo_magico">Realismo mágico</option>
+                                <option class="inserir" value="Romance">Romance</option>
+                                <option class="inserir" value="Romance_historico">Romance histórico</option>
+                                <option class="inserir" value="Romance_policial">Romance policial</option>
+                                <option class="inserir" value="Romance_psicologico">Romance psicológico</option>
+                                <option class="inserir" value="Steampunk">Steampunk</option>
+                                <option class="inserir" value="Suspense">Suspense</option>
+                                <option class="inserir" value="Terror">Terror</option>
+                                <option class="inserir" value="Thriller">Thriller</option>
+                                <option class="inserir" value="Utopia">Utopia</option>
+                                <option class="inserir" value="Western">Faroeste / Western</option>
+                            </optgroup>
+                        
+                            <!-- NÃO FICÇÃO -->
+                            <optgroup label="Não Ficção">
+                                <option class="inserir" value="Antropologia">Antropologia</option>
+                                <option class="inserir" value="Arte">Arte</option>
+                                <option class="inserir" value="Autoajuda">Autoajuda</option>
+                                <option class="inserir" value="Autobiografia">Autobiografia</option>
+                                <option class="inserir" value="Biografia">Biografia</option>
+                                <option class="inserir" value="Cinema">Cinema</option>
+                                <option class="inserir" value="Crimes_reais">Crimes reais (True Crime)</option>
+                                <option class="inserir" value="Diario">Diário</option>
+                                <option class="inserir" value="Ecologia">Ecologia</option>
+                                <option class="inserir" value="Economia">Economia</option>
+                                <option class="inserir" value="Ensaios">Ensaios</option>
+                                <option class="inserir" value="Epistolar">Epistolar (cartas)</option>
+                                <option class="inserir" value="Filosofia">Filosofia</option>
+                                <option class="inserir" value="Gastronomia">Gastronomia / Culinária</option>
+                                <option class="inserir" value="Historia">História</option>
+                                <option class="inserir" value="Moda">Moda</option>
+                                <option class="inserir" value="Memorias">Memórias</option>
+                                <option class="inserir" value="Musica">Música</option>
+                                <option class="inserir" value="Politica">Política</option>
+                                <option class="inserir" value="Proposito">Propósito</option>
+                                <option class="inserir" value="Psicologia">Psicologia</option>
+                                <option class="inserir" value="Religioso">Religioso</option>
+                                <option class="inserir" value="Saude">Saúde</option>
+                                <option class="inserir" value="Sociologia">Sociologia</option>
+                                <option class="inserir" value="Tratado">Tratado</option>
+                                <option class="inserir" value="Viagem">Viagem</option>
+                            </optgroup>
+                        
+                            <!-- EDUCACIONAL / TÉCNICO -->
+                            <optgroup label="Educacional / Técnico">
+                                <option class="inserir" value="Apostila">Apostila</option>
+                                <option class="inserir" value="Didatico">Didático</option>
+                                <option class="inserir" value="Enciclopedia">Enciclopédia</option>
+                                <option class="inserir" value="Exercicios">Livros de exercícios</option>
+                                <option class="inserir" value="Idiomas">Aprendizado de idiomas</option>
+                                <option class="inserir" value="Preparacao_enem">Preparação para ENEM / Vestibular
+                                </option>
+                                <option class="inserir" value="Tecnico">Técnico</option>
+                            </optgroup>
+                        
+                            <!-- HQs / INFANTIL / MITOLOGIA -->
+                            <optgroup label="Outros">
+                                <option class="inserir" value="Erótico">Erótico</option>
+                                <option class="inserir" value="Esporte">Esporte</option>
+                                <option class="inserir" value="HQ">HQ / Mangá</option>
+                                <option class="inserir" value="Infantil">Infantil</option>
+                                <option class="inserir" value="Juvenil">Juvenil</option>
+                                <option class="inserir" value="Mitologia">Mitologia</option>
+                                <option class="inserir" value="Poesia">Poesia</option>
+                            </optgroup>
                         </select>
                     </div>
                     <div class="col-md-6">
@@ -148,149 +223,144 @@
     </footer>
 
     <script>
-        // Verifica se o token está armazenado no Local Storage da própria web (SEGURANÇA DO SITE)
         var nome = localStorage.getItem("nome")
         document.getElementById("nomeUsuario").innerHTML = nome
 
-        // Variáveis para controle de filtros
-        let categorias = [];
         let filtrosAtivos = {
             categoria: '',
             disponibilidade: ''
         };
 
+        function carregarCategorias() {
+            $.ajax({
+                url: ipPython + "/todas_categorias",
+                method: "GET",
+                success: function (retorno) {
+                    const filtroCategoria = document.getElementById('filtroCategoria');
+                    filtroCategoria.innerHTML = `<option value="">Todas</option>`; // limpa e coloca o "Todas"
+
+                    retorno.categorias.sort().forEach(categoria => {
+                        const option = document.createElement('option');
+                        option.value = categoria;
+                        option.textContent = categoria;
+                        filtroCategoria.appendChild(option);
+                    });
+
+                    // Restaura filtro da URL (se houver)
+                    const params = new URLSearchParams(window.location.search);
+                    if (params.has('categoria')) {
+                        filtroCategoria.value = params.get('categoria');
+                        filtrosAtivos.categoria = params.get('categoria');
+                    }
+                    if (params.has('disponibilidade')) {
+                        document.getElementById('filtroDisponibilidade').value = params.get('disponibilidade');
+                        filtrosAtivos.disponibilidade = params.get('disponibilidade');
+                    }
+                },
+                error: function () {
+                    console.error("Erro ao carregar categorias.");
+                }
+            });
+        }
+
         function carregaLivros() {
-            // Captura todos os parâmetros da URL, inclusive filtros
             const params = new URLSearchParams(window.location.search);
-            var pagina = parseInt(params.get('pagina')) || 1;
-
-            // Adiciona filtros atuais aos parâmetros
-            if (filtrosAtivos.categoria) {
-                params.set('categoria', filtrosAtivos.categoria);
-            } else {
-                params.delete('categoria');
-            }
-
-            if (filtrosAtivos.disponibilidade) {
-                params.set('disponibilidade', filtrosAtivos.disponibilidade);
-            } else {
-                params.delete('disponibilidade');
-            }
-
-            // Monta a string de parâmetros para AJAX (inclui todos, inclusive filtros)
-            var urlAjax = ipPython + "/livro?" + params.toString();
-
-            // Oculta ou mostra o botão de página anterior
-            if (pagina <= 1) {
-                document.getElementById('pagina-anterior').style.display = "none";
-            } else {
-                document.getElementById('pagina-anterior').style.display = "";
-            }
+            const pagina = parseInt(params.get('pagina')) || 1;
 
             $.ajax({
-                url: urlAjax,
+                url: ipPython + "/livro?pagina=" + pagina,
                 method: "GET",
-                timeout: 0,
                 success: function (retorno) {
-                    var total = retorno.total_paginas;
-                    var paginaAtual = retorno.pagina_atual;
-                    var anterior = paginaAtual - 1;
-                    var proxima = paginaAtual + 1;
-
-                    // Atualiza links de navegação mantendo TODOS os filtros
-                    params.set('pagina', anterior);
-                    document.getElementById("pagina-anterior").href = "/templates/catalogo.html?" + params.toString();
-
-                    params.set('pagina', proxima);
-                    document.getElementById("pagina-proxima").href = "/templates/catalogo.html?" + params.toString();
-
-                    // Restaura página atual nos params para uso futuro
-                    params.set('pagina', paginaAtual);
-
-                    // Oculta ou mostra o botão de próxima página
-                    if (paginaAtual >= total) {
-                        document.getElementById('pagina-proxima').style.display = "none";
-                    } else {
-                        document.getElementById('pagina-proxima').style.display = "";
-                    }
-
-                    var html = document.getElementById("listaLivros");
+                    const html = document.getElementById("listaLivros");
                     html.innerHTML = "";
 
                     if (!retorno.livros || retorno.livros.length === 0) {
-                        html.innerHTML = `<p>Nenhum livro encontrado com os filtros selecionados!</p>`;
+                        html.innerHTML = `<p>Nenhum livro encontrado!</p>`;
                         return;
                     }
 
-                    document.getElementById("paginaAtual").innerHTML = paginaAtual;
+                    document.getElementById("paginaAtual").innerHTML = retorno.pagina_atual;
 
-                    // Preencher categorias se for a primeira carga
-                    if (categorias.length === 0) {
-                        const categoriasUnicas = new Set();
-                        retorno.livros.forEach(livro => {
-                            if (livro.categoria) {
-                                categoriasUnicas.add(livro.categoria);
-                            }
-                        });
+                    const total = retorno.total_paginas;
+                    const anterior = retorno.pagina_atual - 1;
+                    const proxima = retorno.pagina_atual + 1;
 
-                        categorias = Array.from(categoriasUnicas).sort();
+                    const btnAnterior = document.getElementById("pagina-anterior");
+                    const btnProxima = document.getElementById("pagina-proxima");
 
-                        // Preencher dropdown de categorias
-                        const filtroCategoria = document.getElementById('filtroCategoria');
-                        categorias.forEach(categoria => {
-                            const option = document.createElement('option');
-                            option.value = categoria;
-                            option.textContent = categoria;
-                            filtroCategoria.appendChild(option);
-                        });
+                    btnAnterior.style.display = retorno.pagina_atual > 1 ? "" : "none";
+                    btnProxima.style.display = retorno.pagina_atual < total ? "" : "none";
 
-                        // Restaurar filtro se estiver na URL
-                        if (params.has('categoria')) {
-                            filtroCategoria.value = params.get('categoria');
-                            filtrosAtivos.categoria = params.get('categoria');
-                        }
+                    const paramsClone = new URLSearchParams(window.location.search);
 
-                        if (params.has('disponibilidade')) {
-                            document.getElementById('filtroDisponibilidade').value = params.get('disponibilidade');
-                            filtrosAtivos.disponibilidade = params.get('disponibilidade');
-                        }
-                    }
+                    paramsClone.set("pagina", anterior);
+                    btnAnterior.href = "/templates/catalogo.html?" + paramsClone.toString();
 
-                    retorno.livros.forEach((livro) => {
+                    paramsClone.set("pagina", proxima);
+                    btnProxima.href = "/templates/catalogo.html?" + paramsClone.toString();
+
+                    retorno.livros.forEach(livro => {
                         html.innerHTML += `
-                            <div class="item">
-                                <a title="${livro.titulo}" href="reserva.html?id=${livro.id_livro}">
-                                    <img src="${ipPython}/static/uploads/Livros/${livro.id_livro}.jpeg" alt="${livro.titulo}">
-                                    <p>${livro.titulo}</p>
-                                </a>
-                            </div>
-                        `;
+                                <div class="item" data-categoria="${livro.categoria}" data-disponibilidade="${livro.quantidade > 0 ? 'disponivel' : 'indisponivel'}">
+                                    <a title="${livro.titulo}" href="reserva.html?id=${livro.id_livro}">
+                                        <img src="${ipPython}/static/uploads/Livros/${livro.id_livro}.jpeg" alt="${livro.titulo}">
+                                        <p>${livro.titulo}</p>
+                                    </a>
+                                </div>
+                            `;
                     });
+
+                    aplicarFiltros(); // Aplica filtros visuais nos livros
                 },
-                error: function (xhr) {
+                error: function () {
                     document.getElementById("listaLivros").innerHTML = `<p>Erro ao carregar livros.</p>`;
                 }
             });
         }
 
-        // Event listeners para filtros
+        function aplicarFiltros() {
+            const livros = document.querySelectorAll('#listaLivros .item');
+            livros.forEach(item => {
+                const cat = item.getAttribute('data-categoria');
+                const disp = item.getAttribute('data-disponibilidade');
+
+                const categoriaOk = !filtrosAtivos.categoria || filtrosAtivos.categoria === cat;
+                const disponibilidadeOk = !filtrosAtivos.disponibilidade || filtrosAtivos.disponibilidade === disp;
+
+                item.style.display = (categoriaOk && disponibilidadeOk) ? "" : "none";
+            });
+        }
+
         document.getElementById('filtroCategoria').addEventListener('change', function () {
             filtrosAtivos.categoria = this.value;
-            window.history.pushState({}, '', '/templates/catalogo.html?pagina=1');
-            carregaLivros();
+            aplicarFiltros();
+
+            const params = new URLSearchParams(window.location.search);
+            if (this.value) {
+                params.set('categoria', this.value);
+            } else {
+                params.delete('categoria');
+            }
+            window.history.pushState({}, '', `/templates/catalogo.html?${params.toString()}`);
         });
 
         document.getElementById('filtroDisponibilidade').addEventListener('change', function () {
             filtrosAtivos.disponibilidade = this.value;
-            window.history.pushState({}, '', '/templates/catalogo.html?pagina=1');
-            carregaLivros();
+            aplicarFiltros();
+
+            const params = new URLSearchParams(window.location.search);
+            if (this.value) {
+                params.set('disponibilidade', this.value);
+            } else {
+                params.delete('disponibilidade');
+            }
+            window.history.pushState({}, '', `/templates/catalogo.html?${params.toString()}`);
         });
 
-        // Função de busca
         $("#formBuscaLivro").on("submit", function (e) {
             e.preventDefault();
 
-            let termo = $("#campoBusca").val().trim();
+            const termo = $("#campoBusca").val().trim();
 
             if (!termo) {
                 Swal.fire({
@@ -302,60 +372,51 @@
             }
 
             $.ajax({
-                method: "GET",
                 url: ipPython + "/pesquisar_livro?q=" + encodeURIComponent(termo),
+                method: "GET",
                 success: function (retorno) {
                     $("#listaLivros").empty();
 
                     if (retorno.livros && retorno.livros.length > 0) {
                         retorno.livros.forEach(livro => {
                             $("#listaLivros").append(`
-                            <div class="item">
-                                <a href="reserva.html?id=${livro.id_livro}&ISBN=${livro.ISBN}&autor=${livro.autor}
-                                &categoria=${livro.categoria}&data_publicacao=${livro.data_publicacao}&descricao=${livro.descricao}
-                                &quantidade=${livro.quantidade}&titulo=${livro.titulo}">
-
-                                    <img src="${ipPython}/static/uploads/Livros/${livro.id_livro}.jpeg" alt="">
-                                    <p>${livro.titulo}</p>
-                                </a>
-                            </div>
-                        `);
+                                    <div class="item">
+                                        <a href="reserva.html?id=${livro.id_livro}&titulo=${livro.titulo}">
+                                            <img src="${ipPython}/static/uploads/Livros/${livro.id_livro}.jpeg" alt="">
+                                            <p>${livro.titulo}</p>
+                                        </a>
+                                    </div>
+                                `);
                         });
                     } else {
                         $("#listaLivros").html("<p>Nenhum livro encontrado.</p>");
                     }
 
-                    // Esconde a paginação quando em modo de busca
                     document.querySelector('.paginacao').style.display = 'none';
                 },
-                error: function (xhr) {
-                    let erroMsg = "Erro ao buscar livros.";
-                    if (xhr.responseText) {
-                        try {
-                            erroMsg = JSON.parse(xhr.responseText).mensagem || erroMsg;
-                        } catch (e) { }
-                    }
-
+                error: function () {
                     Swal.fire({
                         title: "Erro!",
-                        text: erroMsg,
+                        text: "Erro ao buscar livros.",
                         icon: "error"
                     });
                 }
             });
         });
 
-        // Detecta se o usuário limpou o campo de busca
         $("#campoBusca").on("input", function () {
             if ($(this).val().trim() === "") {
                 document.querySelector('.paginacao').style.display = 'flex';
-                carregaLivros(); // Recarrega todos os livros se o campo estiver vazio
+                carregaLivros();
             }
         });
 
-        // Carrega os livros ao iniciar
+        // Carrega tudo ao iniciar
+        carregarCategorias();
         carregaLivros();
     </script>
+
+
 </body>
 
 </html>
