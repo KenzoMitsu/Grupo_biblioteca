@@ -329,7 +329,29 @@ input:checked + .slider:before {
     background-color: var(--azul) !important;  
 }
 
+.pagar {
+    padding-top: 60px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
 
+.pagar-multa {
+    font-size: larger;
+    border-radius: 8px;
+    padding: 6px;
+    transition: 0.6s;
+    color: var(--azul);
+    font-weight: bold;
+    border: solid 3px var(--azul);
+}
+
+.pagar-multa:hover {
+    transition: 0.4;
+    background-color: var(--azul);
+    color: var(--branco);
+    transform: scale(1.1);
+}
 
 /* SUB-MODAIS DOS RELATÓRIOS */
 /* Estilo do submenu */
@@ -596,20 +618,13 @@ button.botao-multas {
 
 .item {
     gap: 20px;
-    border: solid var(--azul-da-borda) 5px;
+    border: solid var(--azul) 4px;
     border-radius: 10px;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
     padding: 30px;
 }
 
-.macaco {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-}
-
-.dalai-lama {
+.multa-tabela {
     display: flex;
     gap: 40px;
 }
