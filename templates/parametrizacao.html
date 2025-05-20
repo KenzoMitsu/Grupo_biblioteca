@@ -35,7 +35,7 @@
     <header>
         <!-- Logo -->
         <div class="header-left">
-            <a id="logoHeader" href="home.html"><img src="../static/img/logo.png" alt="Logo"></a>
+            <a id="logoHeader" href="home.html"><img src="http://192.168.1.125:5000/static/uploads/logo/logo.png" alt="Logo"></a>
         </div>
 
         <!-- Barra de Pesquisa -->
@@ -67,33 +67,34 @@
             <form id="pixForm" class="row g-3">
 
                 <div class="col-md-6">
-                    <label for="nome" class="form-label">Nome da Biblioteca</label>
+                    <label id="label-nome" for="nome" class="form-label">Nome da Biblioteca</label>
                     <input type="text" class="form-control" id="nome" required placeholder="Informe seu nome">
                 </div>
 
                 <div class="col-md-6">
-                    <label for="razao" class="form-label">Razão Social</label>
+                    <label id="label-razao" for="razao" class="form-label">Razão Social</label>
                     <input type="text" class="form-control" id="razao" required placeholder="Informe a razão social">
                 </div>
 
                 <div class="col-md-6">
-                    <label for="chave_pix" class="form-label">Chave Pix</label>
+                    <label id="label-pix" for="chave_pix" class="form-label">Chave Pix</label>
                     <input type="text" class="form-control" id="chave_pix" required placeholder="Informe a chave Pix">
                 </div>
 
                 <div class="col-md-3">
-                    <label for="cidade" class="form-label">Cidade</label>
+                    <label id="label-cidade" for="cidade" class="form-label">Cidade</label>
                     <input type="text" class="form-control" id="cidade" required placeholder="Informe sua cidade">
                 </div>
 
                 <div class="col-md-3">
-                    <label for="cnpj" class="form-label">CNPJ</label>
+                    <label id="label-CNPJ" for="cnpj" class="form-label">CNPJ</label>
                     <input type="text" class="form-control" id="cnpj" required placeholder="Informe seu CNPJ">
                 </div>
 
                 <div class="col-md-6">
                     <label for="logo" class="form-label">Logo da Biblioteca</label>
-                    <input type="file" class="form-control" id="logo" accept="image/*" required>
+                    <input type="file" class="form-control" id="logo" accept="image/*">
+                    <div class="logo-preview mt-2"></div>
                 </div>
 
                 <div class="col-12 text-center mt-4">
@@ -104,46 +105,79 @@
 
         <section id="pixDisplay" class="container mt-4 pix-display-section">
             
-            <script>
-                $(function(){
-                    const apiBase = `${ipPython2}`; // já definido no seu código
-                    
-                    function exibirPix() {
-                        $.get(`${apiBase}/pix`)
-                        .done(function(data){
-                            // obtém a logo em base64 do localStorage
-                            const logoBase64 = localStorage.getItem('logo') || '';
+        <script>
+            $(function(){
+                const apiBase = `${ipPython2}`;
+                
+                function carregarDadosPix() {
+                    $.get(`${apiBase}/pix`)
+                    .done(function(data){
+                        // Preenche os campos do formulário
+                        $('#nome').val(data.nome);
+                        $('#razao').val(data.razao);
+                        $('#chave_pix').val(data.chave_pix);
+                        $('#cidade').val(data.cidade);
+                        $('#cnpj').val(data.cnpj);
+                        
+                        // Carrega a logo se existir no localStorage
+                        const logoBase64 = localStorage.getItem('logo');
+                        if(logoBase64) {
+                            // Não podemos preencher diretamente o input file por questões de segurança,
+                            // mas podemos mostrar uma pré-visualização
+                            $('.logo-preview').html(`<img src="${logoBase64}" alt="Logo prévia" style="max-width: 100px;">`);
+                        }
+                        
+                        // Atualiza também a exibição
+                        exibirPix(data);
+                    })
+                    .fail(function(xhr){
+                        if(xhr.status !== 404) {
+                            console.error('Erro ao carregar dados do Pix:', xhr);
+                        }
+                        // Se for 404 (não encontrado), apenas não preenche os campos
+                    });
+                }
 
-                            const card = `
-                            <div class="pix-display-card">
-                                <div class="info">
-                                <h3>${data.nome}</h3>
-                                <p><strong>Razão Social:</strong> ${data.razao}</p>
-                                <p><strong>CNPJ:</strong> ${data.cnpj}</p>
-                                <p><strong>Chave Pix:</strong> ${data.chave_pix}</p>
-                                <p><strong>Cidade:</strong> ${data.cidade}</p>
-                                </div>
-                                <div class="logo-container">
-                                ${ logoBase64
-                                    ? `<img src="${logoBase64}" alt="Logo da Biblioteca">`
-                                    : `<p>Logo não encontrada.</p>` }
-                                </div>
-                            </div>`;
+                function exibirPix(data) {
+                    // Obtém a logo em base64 do localStorage
+                    const logoBase64 = localStorage.getItem('logo') || '';
 
-                            $('#pixDisplay').html(card);
-                        })
-                        .fail(function(xhr){
-                            const msg = xhr.status === 404
-                                        ? 'Nenhum Pix configurado.'
-                                        : 'Erro ao carregar dados do Pix.';
-                            $('#pixDisplay').html(`<p class="text-danger">${msg}</p>`);
-                        });
+                    const card = `
+                    <div class="pix-display-card">
+                        <div class="info">
+                        <h3>${data.nome}</h3>
+                        <p><strong>Razão Social:</strong> ${data.razao}</p>
+                        <p><strong>CNPJ:</strong> ${data.cnpj}</p>
+                        <p><strong>Chave Pix:</strong> ${data.chave_pix}</p>
+                        <p><strong>Cidade:</strong> ${data.cidade}</p>
+                        </div>
+                        <div class="logo-container">
+                        ${ logoBase64
+                            ? `<img src="${logoBase64}" alt="Logo da Biblioteca">`
+                            : `<p>Logo não encontrada.</p>` }
+                        </div>
+                    </div>`;
+
+                    $('#pixDisplay').html(card);
+                }
+
+                // Carrega os dados ao abrir a página
+                $(document).ready(carregarDadosPix);
+
+                // Mostra pré-visualização quando uma nova imagem é selecionada
+                $('#logo').change(function() {
+                    const file = this.files[0];
+                    if(file) {
+                        const reader = new FileReader();
+                        reader.onload = function(e) {
+                            $('.logo-preview').html(`<img src="${e.target.result}" alt="Nova logo" style="max-width: 100px;">`);
+                        }
+                        reader.readAsDataURL(file);
                     }
-
-                    // dispara ao carregar a página
-                    $(document).ready(exibirPix);
                 });
-            </script>              
+            });
+        </script>
+
         </section>
 
     </main>

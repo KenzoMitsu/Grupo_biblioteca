@@ -723,7 +723,7 @@ form{
     margin: auto;
     display: flex;
     align-items: center;
-    max-width: 870px;
+    max-width: 993px;
     flex-wrap: wrap;
 }
 
@@ -773,6 +773,35 @@ form{
     width: 100%;
     height: auto;
 }
+
+.livro-cancelado {
+    padding: 15px !important;
+    background-color: rgb(255, 217, 222);
+    color: rgb(233, 0, 57) !important;
+    font-weight: bold;
+}
+
+.livro-devolvido {
+    padding: 15px !important;
+    background-color: rgb(215, 254, 233);
+    color: rgb(26, 172, 95) !important;
+    font-weight: bold;
+}
+
+.livro-reservado {
+    padding: 15px !important;
+    background-color: rgb(254, 253, 215);
+    color: rgb(255, 230, 0);
+    font-weight: bold;
+}
+
+.livro-emprestado {
+    padding: 15px !important;
+    background-color: rgb(218, 215, 254);
+    color: rgb(4, 0, 233);
+    font-weight: bold;
+}
+
 
 /* RODAPÉ */
 
