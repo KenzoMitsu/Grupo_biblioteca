@@ -229,7 +229,7 @@ header {
     padding-left: 1px;
 }
 
-.fa-paperclip {
+.fa-clock {
     padding-right: 7px;
     padding-left: 1px;
 }
@@ -312,10 +312,8 @@ header {
 .item {
     padding: 0px;
     justify-content: space-between;
-    border: 5px solid #1660ae;
-    border-radius: 15px;
+    border-radius: 5px;
     text-align: center;
-    background-color: blanchedalmond;
     box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s ease;
     /* Adicionando a transição no estado normal */
@@ -335,7 +333,7 @@ header {
     width: 150px;
     height: 200px;
     border-radius: 10px;
-    border: 1px solid var(--escuro);
+    border: 3px solid var(--escuro);
 }
 
 .item p {
