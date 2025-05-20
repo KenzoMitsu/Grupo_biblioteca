@@ -115,7 +115,7 @@
             var token = localStorage.getItem("token");
             $.ajax({
                 method: "GET",
-                url: ipPython + "/livro",
+                url: ipPython + "/pesquisar_livros",
                 headers: {
                     'Authorization': 'Bearer ' + token
                 },
