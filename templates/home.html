@@ -35,7 +35,7 @@
     <header>
         <!-- Logo -->
         <div class="header-left">
-            <a id="logoHeader" href="home.html"><img src="../static/img/logo.png" alt="Logo"></a>
+            <a id="logoHeader" href="home.html"><img src="http://192.168.1.125:5000/static/uploads/logo/logo.png" alt="Logo"></a>
         </div>
 
         <!-- Barra de Pesquisa -->
@@ -83,7 +83,7 @@
             </div>
             <div class="paginacao">
                 <a href="" class="btn" id="pagina-anterior"> <i class="fa-solid fa-left-long"></i> </a>
-                    <h3 class="paginaAtual" id="paginaAtual">Página Atual</h3>
+                <h3 class="paginaAtual" id="paginaAtual">Página Atual</h3>
                 <a href="" class="btn" id="pagina-proxima"> <i class="fa-solid fa-right-long"></i> </a>
             </div>
         </div>
@@ -124,7 +124,7 @@
                 </div>
             </div>
             <div class="imagem">
-                <img class="logo_rodape" src="../static/img/logo.png" alt="logo">
+                <img class="logo_rodape" src="http://192.168.1.125:5000/static/uploads/logo/logo.png" alt="logo">
             </div>
             <div class="localizacao">
                 <p class="local">LOCALIZAÇÃO
@@ -273,7 +273,7 @@
 
     <script>
         $(document).ready(function () {
-            // Função de busca
+            // Função de busca ao enviar o formulário
             $("#formBuscaLivro").on("submit", function (e) {
                 e.preventDefault();
 
@@ -288,54 +288,45 @@
                     return;
                 }
 
-                $.ajax({
-                    method: "GET",
-                    url: ipPython + "/pesquisar_livro?q=" + encodeURIComponent(termo),
-                    success: function (retorno) {
-                        $("#listaLivros").empty();
+                // Atualiza a URL com o termo de busca e reseta para a página 1
+                const params = new URLSearchParams(window.location.search);
+                params.set('q', termo);
+                params.set('pagina', 1);
+                window.history.replaceState({}, '', window.location.pathname + '?' + params.toString());
 
-                        if (retorno.livros && retorno.livros.length > 0) {
-                            retorno.livros.forEach(livro => {
-                                $("#listaLivros").append(`
-                                <div class="item">
-                                    <a href="reserva.html?id=${livro.id_livro}&ISBN=${livro.ISBN}&autor=${livro.autor}
-                                    &categoria=${livro.categoria}&data_publicacao=${livro.data_publicacao}&descricao=${livro.descricao}
-                                    &quantidade=${livro.quantidade}&titulo=${livro.titulo}">
-
-                                        <img src="${ipPython}/static/uploads/Livros/${livro.id_livro}.jpeg" alt="">
-                                        <p>${livro.titulo}</p>
-                                    </a>
-                                </div>
-                            `);
-                            });
-                        } else {
-                            $("#listaLivros").html("<p>Nenhum livro encontrado.</p>");
-                        }
-                    },
-                    error: function (xhr) {
-                        let erroMsg = "Erro ao buscar livros.";
-                        if (xhr.responseText) {
-                            try {
-                                erroMsg = JSON.parse(xhr.responseText).mensagem || erroMsg;
-                            } catch (e) { }
-                        }
-
-                        Swal.fire({
-                            title: "Erro!",
-                            text: erroMsg,
-                            icon: "error"
-                        });
-                    }
-                });
+                carregaLivros(); // Atualiza a lista de livros
             });
 
-            // Detecta se o usuário limpou o campo de busca
+            // Atualiza a URL conforme o usuário digita (busca dinâmica)
             $("#campoBusca").on("input", function () {
-                if ($(this).val().trim() === "") {
-                    carregaLivros(); // Recarrega todos os livros se o campo estiver vazio
+                let termo = $(this).val().trim();
+                const params = new URLSearchParams(window.location.search);
+
+                if (termo) {
+                    params.set('q', termo);
+                    params.set('pagina', 1);
+                } else {
+                    params.delete('q');
+                    params.set('pagina', 1);
                 }
+
+                window.history.replaceState({}, '', window.location.pathname + '?' + params.toString());
+
+                // Chama carregaLivros() sempre que o campo muda (busca dinâmica)
+                carregaLivros();
             });
+
+            // Ao carregar a página, verifica se há um termo de busca na URL e faz a busca automaticamente
+            (function () {
+                const params = new URLSearchParams(window.location.search);
+                const termoInicial = params.get('q');
+                if (termoInicial) {
+                    $("#campoBusca").val(termoInicial); // Preenche o campo de busca
+                }
+                carregaLivros(); // Sempre carrega os livros conforme a URL
+            })();
         });
+
 
         // Função para atualizar os hrefs dos relatórios
         function atualizarLinksRelatorios() {
