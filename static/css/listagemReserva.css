@@ -231,7 +231,7 @@ input:checked + .slider:before {
     padding-left: 1px;
 }
 
-.fa-paperclip {
+.fa-clock {
     padding-right: 7px;
     padding-left: 1px;
 }
@@ -505,7 +505,7 @@ button.botao-multas {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-right: -50px;
+  margin-right: -25px;
   width: 7em;
   height: 2.5em;
   line-height: 2.5em;
