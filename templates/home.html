@@ -35,7 +35,7 @@
     <header>
         <!-- Logo -->
         <div class="header-left">
-            <a id="logoHeader" href="home.html"><img src="http://192.168.1.125:5000/static/uploads/logo/logo.png" alt="Logo"></a>
+            <a id="logoHeader" href="home.html"><img src="../static/img/logo.png" alt="Logo"></a>
         </div>
 
         <!-- Barra de Pesquisa -->
@@ -73,7 +73,7 @@
 
         <div class="container">
 
-            <h1 class="titulo">Nosso Catálogo</h1>
+            <h3 class="titulo">Nosso Catálogo</h3>
 
             <div class="listalivros" id="listaLivros">
 
@@ -124,7 +124,7 @@
                 </div>
             </div>
             <div class="imagem">
-                <img class="logo_rodape" src="http://192.168.1.125:5000/static/uploads/logo/logo.png" alt="logo">
+                <img class="logo_rodape" src="../static/img/logo.png" alt="logo">
             </div>
             <div class="localizacao">
                 <p class="local">LOCALIZAÇÃO
@@ -140,143 +140,67 @@
     </footer>
 
     <script>
-        // Verifica se o token está armazenado no Local Storage da própria web (SEGURANÇA DO SITE)
-        var nome = localStorage.getItem("nome")
-        document.getElementById("nomeUsuario").innerHTML = nome
+        $(document).ready(function () {
+            // Função para carregar livros (busca e paginação)
+            function carregaLivros() {
+                const params = new URLSearchParams(window.location.search);
+                const pagina = parseInt(params.get('pagina')) || 1;
+                const urlAjax = ipPython + "/pesquisar_livro?" + params.toString();
 
-        function carregaLivros() {
-            // Captura todos os parâmetros da URL, inclusive filtros
-            const params = new URLSearchParams(window.location.search);
-            var pagina = parseInt(params.get('pagina')) || 1;
+                // Oculta ou mostra o botão de página anterior
+                $('#pagina-anterior').toggle(pagina > 1);
 
-            // Monta a string de parâmetros para AJAX (inclui todos, inclusive filtros)
-            var urlAjax = ipPython + "/livro?" + params.toString();
+                $.ajax({
+                    url: urlAjax,
+                    method: "GET",
+                    dataType: "json",
+                    success: function (retorno) {
+                        const total = retorno.total_paginas;
+                        const paginaAtual = retorno.pagina_atual;
+                        const anterior = paginaAtual - 1;
+                        const proxima = paginaAtual + 1;
 
-            // Oculta ou mostra o botão de página anterior
-            if (pagina <= 1) {
-                document.getElementById('pagina-anterior').style.display = "none";
-            } else {
-                document.getElementById('pagina-anterior').style.display = "";
-            }
+                        // Atualiza links de navegação mantendo TODOS os filtros
+                        let paramsAnterior = new URLSearchParams(params);
+                        paramsAnterior.set('pagina', anterior);
+                        $("#pagina-anterior").attr("href", "?" + paramsAnterior.toString());
 
-            $.ajax({
-                url: urlAjax,
-                method: "GET",
-                timeout: 0,
-                success: function (retorno) {
-                    var total = retorno.total_paginas;
-                    var paginaAtual = retorno.pagina_atual;
-                    var anterior = paginaAtual - 1;
-                    var proxima = paginaAtual + 1;
+                        let paramsProxima = new URLSearchParams(params);
+                        paramsProxima.set('pagina', proxima);
+                        $("#pagina-proxima").attr("href", "?" + paramsProxima.toString());
 
-                    // Atualiza links de navegação mantendo TODOS os filtros
-                    params.set('pagina', anterior);
-                    document.getElementById("pagina-anterior").href = "/templates/home.html?" + params.toString();
+                        // Oculta ou mostra o botão de página próxima
+                        $('#pagina-proxima').toggle(paginaAtual < total);
 
-                    params.set('pagina', proxima);
-                    document.getElementById("pagina-proxima").href = "/templates/home.html?" + params.toString();
+                        $("#paginaAtual").text(paginaAtual);
 
-                    // Restaura página atual nos params para uso futuro
-                    params.set('pagina', paginaAtual);
-
-                    // Oculta ou mostra o botão de próxima página
-                    if (paginaAtual >= total) {
-                        document.getElementById('pagina-proxima').style.display = "none";
-                    } else {
-                        document.getElementById('pagina-proxima').style.display = "";
-                    }
-
-                    var html = document.getElementById("listaLivros");
-                    html.innerHTML = "";
-
-                    if (!retorno.livros || retorno.livros.length === 0) {
-                        html.innerHTML = `<p>Livros não encontrados!</p>`;
-                        return;
-                    }
-
-                    document.getElementById("paginaAtual").innerHTML = paginaAtual
-
-                    retorno.livros.forEach((livro) => {
-                        html.innerHTML += `
+                        let html = "";
+                        if (!retorno.livros || retorno.livros.length === 0) {
+                            html = `<p>Livros não encontrados!</p>`;
+                        } else {
+                            retorno.livros.forEach((livro) => {
+                                html += `
                             <div class="item">
                                 <a title="${livro.titulo}" href="reserva.html?id=${livro.id_livro}">
                                     <img src="${ipPython}/static/uploads/Livros/${livro.id_livro}.jpeg" alt="">
                                     <p>${livro.titulo}</p>
-                                    <p class="status-livro" data-id="${livro.id_livro}"></p>
+                                    <p>${livro.autor}</p>
                                 </a>
                             </div>
                         `;
-                    });
-
-                    retorno.livros.forEach((livro) => {
-                        const statusElemento = document.querySelector(`.status-livro[data-id="${livro.id_livro}"]`);
-                        if (statusElemento) {
-                            if (livro.quantidade > 0) {
-                                statusElemento.textContent = "Disponível";
-                                statusElemento.classList.add("status-verde");
-                            } else {
-                                statusElemento.textContent = "Indisponível";
-                                statusElemento.classList.add("status-vermelho");
-                            }
+                            });
                         }
-                    });
-                },
-                error: function (xhr) {
-                    document.getElementById("listaLivros").innerHTML = `<p>Erro ao carregar livros.</p>`;
-                }
-            });
-        }
+                        $("#listaLivros").html(html);
+                    },
+                    error: function (xhr) {
+                        $("#listaLivros").html(`<p>Erro ao carregar livros.</p>`);
+                    }
+                });
+            }
 
-
-        carregaLivros();
-
-        // Função que exibe os livros na tela
-        function mostrarLivrosNaTela(livros) {
-            const tabelaLivros = document.querySelector("#tabelaLivros"); // Alterar para seu seletor correto
-
-            tabelaLivros.innerHTML = ''; // Limpa a tabela
-
-            livros.forEach(livro => {
-                const row = document.createElement("tr");
-
-                const colTitulo = document.createElement("td");
-                colTitulo.textContent = livro.titulo;
-                row.appendChild(colTitulo);
-
-                const colAutor = document.createElement("td");
-                colAutor.textContent = livro.autor;
-                row.appendChild(colAutor);
-
-                const colAno = document.createElement("td");
-                colAno.textContent = livro.ano;
-                row.appendChild(colAno);
-
-                const colGenero = document.createElement("td");
-                colGenero.textContent = livro.genero;
-                row.appendChild(colGenero);
-
-                tabelaLivros.appendChild(row); // Adiciona a linha à tabela
-            });
-        }
-
-        // Adiciona o evento de clique no botão de relatórios
-        document.addEventListener('DOMContentLoaded', function () {
-            const relatoriosItem = document.getElementById('relatorios');
-            const submenu = relatoriosItem.querySelector('.submenu');
-
-            relatoriosItem.querySelector('.submenu-toggle').addEventListener('click', function () {
-                submenu.classList.toggle('show'); // Alterna a classe 'show' para mostrar ou esconder o submenu
-            });
-        });
-
-    </script>
-
-    <script>
-        $(document).ready(function () {
-            // Função de busca ao enviar o formulário
+            // Busca ao enviar o formulário
             $("#formBuscaLivro").on("submit", function (e) {
                 e.preventDefault();
-
                 let termo = $("#campoBusca").val().trim();
 
                 if (!termo) {
@@ -288,16 +212,15 @@
                     return;
                 }
 
-                // Atualiza a URL com o termo de busca e reseta para a página 1
                 const params = new URLSearchParams(window.location.search);
                 params.set('q', termo);
                 params.set('pagina', 1);
                 window.history.replaceState({}, '', window.location.pathname + '?' + params.toString());
 
-                carregaLivros(); // Atualiza a lista de livros
+                carregaLivros();
             });
 
-            // Atualiza a URL conforme o usuário digita (busca dinâmica)
+            // Busca dinâmica conforme digita
             $("#campoBusca").on("input", function () {
                 let termo = $(this).val().trim();
                 const params = new URLSearchParams(window.location.search);
@@ -311,41 +234,20 @@
                 }
 
                 window.history.replaceState({}, '', window.location.pathname + '?' + params.toString());
-
-                // Chama carregaLivros() sempre que o campo muda (busca dinâmica)
                 carregaLivros();
             });
 
-            // Ao carregar a página, verifica se há um termo de busca na URL e faz a busca automaticamente
+            // Ao carregar a página, preenche o campo de busca se houver termo na URL e carrega os livros
             (function () {
                 const params = new URLSearchParams(window.location.search);
                 const termoInicial = params.get('q');
                 if (termoInicial) {
-                    $("#campoBusca").val(termoInicial); // Preenche o campo de busca
+                    $("#campoBusca").val(termoInicial);
                 }
-                carregaLivros(); // Sempre carrega os livros conforme a URL
+                carregaLivros();
             })();
         });
 
-
-        // Função para atualizar os hrefs dos relatórios
-        function atualizarLinksRelatorios() {
-            const linksRelatorios = {
-                relatorioMultas: "/multas_relatorio",
-                relatorioLivros: "/livros_relatorio",
-                relatorioUsuarios: "/usuarios_relatorio",
-                relatorioEmprestimos: "/emprestimos_relatorio"
-            };
-            for (let id in linksRelatorios) {
-                const elemento = document.getElementById(id);
-                if (elemento) {
-                    elemento.href = `${ipPython2}${linksRelatorios[id]}`;
-                }
-            }
-        }
-
-        // Chama a função assim que o DOM carregar
-        document.addEventListener("DOMContentLoaded", atualizarLinksRelatorios);
     </script>
 
 </body>
