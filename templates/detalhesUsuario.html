@@ -207,7 +207,7 @@
     </footer>
 
     <script>
-        $(document).ready(function() {
+    $(document).ready(function () {
         const token = localStorage.getItem('token');
 
         // Pega o ID da URL:
@@ -225,22 +225,27 @@
             method: 'GET',
             headers: { 'Authorization': 'Bearer ' + token }
         })
-        .done(function(usu) {
-            // preenche o perfil
-            $('#imagemUsuario')
-            .attr('src', `${ipPython}/static/uploads/Usuarios/${idUsuario}.jpeg`)
-            .on('error', () => $('#imagemUsuario').attr('src', '../static/img/default-user.png'));
-            $('#nome').text(usu.nome);
-            $('#email').text(usu.email);
-            $('#telefone').text(usu.telefone);
-            $('#data_nascimento').text(new Date(usu.data_nascimento).toLocaleDateString('pt-BR'));
-            $('#cargo').text(usu.cargo);
-            $('#status').text(usu.status);
-        })
-        .fail(() => Swal.fire('Erro', 'Não foi possível obter os dados do usuário', 'error'));
+            .done(function (usu) {
+                // preenche o perfil
+                $('#imagemUsuario')
+                    .attr('src', `${ipPython}/static/uploads/Usuarios/${idUsuario}.jpeg`)
+                    .on('error', () => $('#imagemUsuario').attr('src', '../static/img/default-user.png'));
+                $('#nome').text(usu.nome);
+                $('#email').text(usu.email);
+                $('#telefone').text(usu.telefone);
 
-        // Ao clicar em “Editar”, abre o modal já preenchido com o que está na tela
-        $('#btn_editar').on('click', function() {
+                // CORREÇÃO PARA A DATA DE NASCIMENTO
+                const dataOriginal = new Date(usu.data_nascimento);
+                const dataAjustada = new Date(dataOriginal.getTime() + dataOriginal.getTimezoneOffset() * 60000);
+                $('#data_nascimento').text(dataAjustada.toLocaleDateString('pt-BR'));
+
+                $('#cargo').text(usu.cargo);
+                $('#status').text(usu.status);
+            })
+            .fail(() => Swal.fire('Erro', 'Não foi possível obter os dados do usuário', 'error'));
+
+        // Ao clicar em "Editar", abre o modal já preenchido com o que está na tela
+        $('#btn_editar').on('click', function () {
             // lê os valores atuais da view
             $('#nomeUsuario').val($('#nome').text());
             $('#emailUsuario').val($('#email').text());
@@ -255,52 +260,57 @@
         });
 
         // Envio do formulário de edição
-        $('#formEditarUsuario').submit(function(e) {
+        $('#formEditarUsuario').submit(function (e) {
             e.preventDefault();
 
             const dados = {
-            nome: $('#nomeUsuario').val().trim(),
-            email: $('#emailUsuario').val().trim(),
-            telefone: $('#telefoneUsuario').val().trim(),
-            data_nascimento: $('#dataNascimentoUsuario').val(),
-            cargo: $('#cargoUsuario').val().trim(),
-            status: $('#statusUsuario').val()
+                nome: $('#nomeUsuario').val().trim(),
+                email: $('#emailUsuario').val().trim(),
+                telefone: $('#telefoneUsuario').val().trim(),
+                data_nascimento: $('#dataNascimentoUsuario').val(),
+                cargo: $('#cargoUsuario').val().trim(),
+                status: $('#statusUsuario').val()
             };
 
             $.ajax({
-            method: 'PUT',
-            url: `${ipPython}/usuariosadm/${idUsuario}`,
-            headers: { 'Authorization': 'Bearer ' + token },
-            contentType: 'application/json',
-            data: JSON.stringify(dados),
-            success: function() {
-                Swal.fire('Sucesso!', 'Usuário atualizado com sucesso!', 'success')
-                .then(() => {
-                    // atualiza a viesualização sem recarregar:
-                    $('#nome').text(dados.nome);
-                    $('#email').text(dados.email);
-                    $('#telefone').text(dados.telefone);
-                    $('#data_nascimento').text(new Date(dados.data_nascimento).toLocaleDateString('pt-BR'));
-                    $('#cargo').text(dados.cargo);
-                    $('#status').text(dados.status);
-                    // fecha o modal de edição
-                    bootstrap.Modal.getInstance(document.getElementById('editarUsuarioModal')).hide();
-                });
-            },
-            error: function(retorno) {
-                Swal.fire('Erro!', JSON.parse(retorno.responseText).error || 'Falha ao editar usuário.', 'error');
-            }
+                method: 'PUT',
+                url: `${ipPython}/usuariosadm/${idUsuario}`,
+                headers: { 'Authorization': 'Bearer ' + token },
+                contentType: 'application/json',
+                data: JSON.stringify(dados),
+                success: function () {
+                    Swal.fire('Sucesso!', 'Usuário atualizado com sucesso!', 'success')
+                        .then(() => {
+                            // atualiza a visualização sem recarregar:
+                            $('#nome').text(dados.nome);
+                            $('#email').text(dados.email);
+                            $('#telefone').text(dados.telefone);
+
+                            // CORREÇÃO PARA A DATA DE NASCIMENTO (APÓS ATUALIZAÇÃO)
+                            const dataOriginalUpdate = new Date(dados.data_nascimento);
+                            const dataAjustadaUpdate = new Date(dataOriginalUpdate.getTime() + dataOriginalUpdate.getTimezoneOffset() * 60000);
+                            $('#data_nascimento').text(dataAjustadaUpdate.toLocaleDateString('pt-BR'));
+
+                            $('#cargo').text(dados.cargo);
+                            $('#status').text(dados.status);
+                            // fecha o modal de edição
+                            bootstrap.Modal.getInstance(document.getElementById('editarUsuarioModal')).hide();
+                        });
+                },
+                error: function (retorno) {
+                    Swal.fire('Erro!', JSON.parse(retorno.responseText).error || 'Falha ao editar usuário.', 'error');
+                }
             });
         });
 
         // Essa é a "máscara" de telefone dentro do modal, só para deixar bonito
-        $('#telefoneUsuario').on('keyup', function(event) {
+        $('#telefoneUsuario').on('keyup', function (event) {
             let v = event.target.value.replace(/\D/g, '');
             v = v.replace(/(\d{2})(\d)/, '($1) $2');
             v = v.replace(/(\d)(\d{4})$/, '$1-$2');
             event.target.value = v;
         });
-        });
+    });
     </script>
 
 </body>
