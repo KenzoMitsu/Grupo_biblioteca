@@ -37,7 +37,7 @@
     <header>
         <!-- Logo -->
         <div class="header-left">
-            <a id="logoHeader" href="home.html"><img src="../static/img/logo.png" alt="Logo"></a>
+            <a id="logoHeader" href="home.html"><img src="http://192.168.1.125:5000/static/uploads/logo/logo.png" alt="Logo"></a>
         </div>
 
         <!-- Barra de Pesquisa -->
@@ -80,7 +80,7 @@
 
   </div>
 
-  <div class="pagar-div"> <button id="pagar" class="pagar-multa">Pagar Multa</button> </div>
+  <div id="pagar" class="pagar-div"> <button class="pagar-multa">Pagar Multa</button> </div>
 
   <footer class="inter">
     <div class="separacao1">
@@ -118,7 +118,7 @@
         </div>
       </div>
       <div class="imagem">
-        <img class="logo_rodape" src="../static/img/logo.png" alt="logo">
+        <img class="logo_rodape" src="http://192.168.1.125:5000/static/uploads/logo/logo.png" alt="logo">
       </div>
       <div class="localizacao">
         <p class="local">LOCALIZAÇÃO
@@ -153,13 +153,6 @@
             console.log(retorno);
 
             if (retorno.mensagem) {
-              // Se a mensagem indicar que não há multas, exibe a mensagem
-              document.getElementById("multas-0").style.display = "block";
-
-              document.getElementById("pagar").style.display = "none"
-            } else {
-              // Se houver multas, oculta a mensagem
-              document.getElementById("multas-0").style.display = "none";
 
               retorno.multas.forEach((multas) => {
                 html.innerHTML += `
@@ -182,10 +175,12 @@
               });
             }
           },
-          error: function (xhr) {
+          error: function (multa_aparecer) {
             // Se a API retornar um erro, exibe a mensagem
-            if (xhr.status === 404) {
+            if (multa_aparecer.status === 404) {
               document.getElementById("multas-0").style.display = "block";
+
+              document.getElementById("pagar").style.display = "none"
             }
           }
         };

@@ -34,7 +34,7 @@
     <header>
         <!-- Logo -->
         <div class="header-left">
-            <a id="logoHeader" href="home.html"><img src="../static/img/logo.png" alt="Logo"></a>
+            <a id="logoHeader" href="home.html"><img src="http://192.168.1.125:5000/static/uploads/logo/logo.png" alt="Logo"></a>
         </div>
 
         <!-- Barra de Pesquisa -->
@@ -443,7 +443,7 @@
                 </div>
             </div>
             <div class="imagem">
-                <img class="logo_rodape" src="../static/img/logo.png" alt="logo">
+                <img class="logo_rodape" src="http://192.168.1.125:5000/static/uploads/logo/logo.png" alt="logo">
             </div>
             <div class="localizacao">
                 <p class="local">LOCALIZAÇÃO
@@ -615,13 +615,34 @@
 
                 emprestimos.forEach(usuario => {
 
+                    var css = ""
+
+                    // VERIFICA O Tipo 
+                    if (usuario.status === "Devolvido") {
+
+                        css = "livro-devolvido"
+
+                    } else if (usuario.status === "Reservado") {
+
+                        css = "livro-reservado"
+
+                    } else if (usuario.status === "Emprestado") {
+
+                        css = "livro-emprestado"
+
+                    } else {
+
+                        css = "livro-cancelado"
+
+                    }
+
                     document.getElementById("tabela-historico").innerHTML += `
                         <tr>
                             <td>${usuario.nome_usuario}</td>
-                            <td>${usuario.data_emprestimo ? formatarData(usuario.data_emprestimo) : '--/--/----'}</td>
-                            <td>${usuario.data_emprestimo ? formatarData(usuario.data_emprestimo) : '--/--/----'}</td>
-                            <td>${usuario.data_devolucao ? formatarData(usuario.data_devolucao) : '--/--/----'}</td>
-                            <td>${usuario.data_devolvida ? formatarData(usuario.data_devolvida) : '--/--/----'}</td>
+                            <td>${formatarData(usuario.data_emprestimo) || '--/--/----'}</td>
+                            <td>${formatarData(usuario.data_emprestimo) || '--/--/----'}</td>
+                            <td>${formatarData(usuario.data_devolucao) || '--/--/----'}</td>
+                            <td>${formatarData(usuario.data_devolvida) || '--/--/----'}</td>
                             <td>${usuario.status}</td>
                         </tr>
                     `;
