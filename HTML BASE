@@ -121,3 +121,38 @@
     </script>
 </body>
 </html>
+
+
+
+<!-- PRA SALVAR -->
+<script>
+// FUNÇÃO PARA DELETAR LIVROS (mantida igual)
+        // function deletarLivro(button) {
+        //     var id = $(button).closest('.livro-hud').data("id_livro");
+
+        //     Swal.fire({
+        //         title: 'Confirmar exclusão?',
+        //         text: "Esta ação não pode ser desfeita!",
+        //         icon: 'warning',
+        //         showCancelButton: true,
+        //         confirmButtonText: 'Sim, excluir!'
+        //     }).then((result) => {
+        //         if (result.isConfirmed) {
+        //             $.ajax({
+        //                 method: "DELETE",
+        //                 url: ipPython + "/livros/" + id,
+        //                 headers: {
+        //                     'Authorization': 'Bearer ' + localStorage.getItem("token")
+        //                 },
+        //                 success: function() {
+        //                     Swal.fire("Excluído!", "Livro removido", "success");
+        //                     carregarLivros();
+        //                 },
+        //                 error: function() {
+        //                     Swal.fire("Erro!", "Falha ao excluir", "error");
+        //                 }
+        //             });
+        //         }
+        //     });
+        // }
+</script>

@@ -520,6 +520,98 @@
 
     document.addEventListener("DOMContentLoaded", atualizarLinksRelatorios);
 
+    $(document).ready(function () {
+      const token = localStorage.getItem("token");
+      let debounceTimeout = null;
+
+      // Função para atualizar a tabela de usuários
+      function atualizarTabelaUsuarios(usuarios) {
+        let tabela = $("#tabela-usuarios tbody");
+        tabela.empty();
+
+        if (!usuarios || usuarios.length === 0) {
+          tabela.append(`<tr><td colspan="8">Usuários não encontrados!</td></tr>`);
+          return;
+        }
+
+        usuarios.forEach(usuario => {
+          let linha = `
+        <tr>
+          <td>${usuario.nome}</td>
+          <td>${usuario.email}</td>
+          <td class="tel">${usuario.telefone}</td>
+          <td>${usuario.data_nascimento}</td>
+          <td>${usuario.cargo}</td>
+          <td>${usuario.status}</td>
+          <td>
+            <a href="detalhesUsuario.html?id=${usuario.id_usuario}">
+              <button class="detalhes-btn">Detalhes</button>
+            </a>
+          </td>
+        </tr>
+      `;
+          tabela.append(linha);
+        });
+      }
+
+      // Função para pesquisar usuários
+      function pesquisarUsuarios(termo, pagina = 1) {
+        $.ajax({
+          method: "GET",
+          url: `${ipPython}/pesquisar_usuario?q=${encodeURIComponent(termo)}&pagina=${pagina}`,
+          headers: {
+            'Authorization': 'Bearer ' + token
+          },
+          success: function (data) {
+            atualizarTabelaUsuarios(data.usuarios);
+            $("#paginaAtual").text(data.pagina_atual);
+            // Atualize a paginação conforme necessário
+          },
+          error: function (retorno) {
+            atualizarTabelaUsuarios([]);
+          }
+        });
+      }
+
+      // Debounce para evitar requisições em excesso
+      $("#campoBusca").on("input", function () {
+        const termo = $(this).val().trim();
+        clearTimeout(debounceTimeout);
+        debounceTimeout = setTimeout(function () {
+          if (termo.length === 0) {
+            carregarUsuarios(); // função já existente para listar todos
+          } else {
+            pesquisarUsuarios(termo, 1);
+          }
+        }, 400); // 400ms de debounce
+      });
+    });
+
+    $("#campoBusca").closest("form").on("submit", function (e) {
+      e.preventDefault(); // Impede o envio do formulário
+    });
+
+    $("#campoBusca").on("keydown", function (e) {
+      if (e.key === "Enter") {
+        e.preventDefault(); // Impede o comportamento padrão do Enter
+
+        const termo = $(this).val().trim();
+        if (termo.length === 0) {
+          carregarUsuarios();
+        } else {
+          pesquisarUsuarios(termo, 1);
+        }
+
+        $(this).blur(); // Remove o foco do campo de busca
+      }
+    });
+    // Detecta se o usuário limpou o campo de busca
+    $("#campoBusca").on("input", function () {
+      if ($(this).val().trim() === "") {
+        carregaUsuarios(); // Recarrega todos os livros se o campo estiver vazio
+      }
+    });
+
   </script>
 
 </body>
