@@ -618,10 +618,10 @@
                     document.getElementById("tabela-historico").innerHTML += `
                         <tr>
                             <td>${usuario.nome_usuario}</td>
-                            <td>${usuario.data_emprestimo ? formatarData(usuario.data_emprestimo) : '--/--/----'}</td>
-                            <td>${usuario.data_emprestimo ? formatarData(usuario.data_emprestimo) : '--/--/----'}</td>
-                            <td>${usuario.data_devolucao ? formatarData(usuario.data_devolucao) : '--/--/----'}</td>
-                            <td>${usuario.data_devolvida ? formatarData(usuario.data_devolvida) : '--/--/----'}</td>
+                            <td>${formatarData(usuario.data_emprestimo) || '--/--/----'}</td>
+                            <td>${formatarData(usuario.data_emprestimo) || '--/--/----'}</td>
+                            <td>${formatarData(usuario.data_devolucao) || '--/--/----'}</td>
+                            <td>${formatarData(usuario.data_devolvida) || '--/--/----'}</td>
                             <td>${usuario.status}</td>
                         </tr>
                     `;
