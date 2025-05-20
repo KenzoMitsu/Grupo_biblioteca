@@ -340,6 +340,16 @@ header {
     color: #333;
 }
 
+.status-verde {
+    color: green;
+    font-weight: bold;
+}
+
+.status-vermelho {
+    color: red;
+    font-weight: bold;
+}
+
 .paginacao {
     gap: 10px;
     display: flex;

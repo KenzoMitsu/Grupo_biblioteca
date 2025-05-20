@@ -198,13 +198,27 @@
 
                     retorno.livros.forEach((livro) => {
                         html.innerHTML += `
-                    <div class="item">
-                        <a title="${livro.titulo}" href="reserva.html?id=${livro.id_livro}">
-                            <img src="${ipPython}/static/uploads/Livros/${livro.id_livro}.jpeg" alt="">
-                            <p>${livro.titulo}</p>
-                        </a>
-                    </div>
-                `;
+                            <div class="item">
+                                <a title="${livro.titulo}" href="reserva.html?id=${livro.id_livro}">
+                                    <img src="${ipPython}/static/uploads/Livros/${livro.id_livro}.jpeg" alt="">
+                                    <p>${livro.titulo}</p>
+                                    <p class="status-livro" data-id="${livro.id_livro}"></p>
+                                </a>
+                            </div>
+                        `;
+                    });
+
+                    retorno.livros.forEach((livro) => {
+                        const statusElemento = document.querySelector(`.status-livro[data-id="${livro.id_livro}"]`);
+                        if (statusElemento) {
+                            if (livro.quantidade > 0) {
+                                statusElemento.textContent = "Disponível";
+                                statusElemento.classList.add("status-verde");
+                            } else {
+                                statusElemento.textContent = "Indisponível";
+                                statusElemento.classList.add("status-vermelho");
+                            }
+                        }
                     });
                 },
                 error: function (xhr) {
@@ -212,6 +226,7 @@
                 }
             });
         }
+
 
         carregaLivros();
 
