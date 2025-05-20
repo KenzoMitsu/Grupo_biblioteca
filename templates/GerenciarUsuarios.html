@@ -72,9 +72,9 @@
   <!-- FIM DO CABEÇALHO -->
 
   <div class="container">
-      <div class="texto">
-        <h2 class="titulo">Gerenciar Usuário</h2>
-      </div>
+    <div class="texto">
+      <h2 class="titulo">Gerenciar Usuário</h2>
+    </div>
 
     <div class="addusuario">
       <button id="btn-adicionar-usuario" class="btn2">
@@ -101,9 +101,9 @@
 
     <div class="paginacao">
 
-        <a href="" class="btn" id="pagina-anterior"> <i class="fa-solid fa-left-long"></i> </a>
-            <h3 class="paginaAtual" id="paginaAtual">Página Atual</h3>
-        <a href="" class="btn" id="pagina-proxima"> <i class="fa-solid fa-right-long"></i> </a>
+      <a href="" class="btn" id="pagina-anterior"> <i class="fa-solid fa-left-long"></i> </a>
+      <h3 class="paginaAtual" id="paginaAtual">Página Atual</h3>
+      <a href="" class="btn" id="pagina-proxima"> <i class="fa-solid fa-right-long"></i> </a>
     </div>
   </div>
 
@@ -289,11 +289,11 @@
             document.getElementById("pagina-proxima").href = "/templates/GerenciarUsuarios.html?pagina=" + proxima
 
             if (paginaAtual >= total) {
-                document.getElementById('pagina-proxima').style.display = "none"
-            } 
+              document.getElementById('pagina-proxima').style.display = "none"
+            }
 
             if (paginaAtual > total) {
-                document.getElementById('listaLivros').innerHTML = `
+              document.getElementById('listaLivros').innerHTML = `
                     <p>Usuários não encontrados!</p>
                 `;
             }
@@ -519,6 +519,70 @@
     }
 
     document.addEventListener("DOMContentLoaded", atualizarLinksRelatorios);
+    $(document).ready(function () {
+      // Função de busca
+      $("#formBuscaUsuario").on("submit", function (e) {
+        e.preventDefault();
+
+        let termo = $("#campoBusca").val().trim();
+
+        if (!termo) {
+          Swal.fire({
+            title: "Atenção!",
+            text: "Digite algo para buscar.",
+            icon: "warning"
+          });
+          return;
+        }
+
+        $.ajax({
+          method: "GET",
+          url: ipPython + "/pesquisar_usuario?q=" + encodeURIComponent(termo),
+          success: function (retorno) {
+            $("#listaUsuarios").empty();
+
+            if (retorno.usuarios && retorno.usuarios.length > 0) {
+              retorno.usuarios.forEach(usuario => {
+                $("#listaUsuarios").append(`
+                            <div class="item">
+                                <a href="usuario.html?id=${usuario.id_usuario}&nome=${encodeURIComponent(usuario.nome)}&email=${encodeURIComponent(usuario.email)}&telefone=${encodeURIComponent(usuario.telefone)}">
+                                    <img src="${ipPython}/static/uploads/Usuarios/${usuario.id_usuario}.jpeg" alt="Foto do usuário">
+                                    <p><strong>${usuario.nome}</strong></p>
+                                    <p>Email: ${usuario.email}</p>
+                                    <p>Telefone: ${usuario.telefone}</p>
+                                </a>
+                            </div>
+                        `);
+              });
+            } else {
+              $("#listaUsuarios").html("<p>Nenhum usuário encontrado.</p>");
+            }
+          },
+          error: function (xhr) {
+            let erroMsg = "Erro ao buscar usuários.";
+            if (xhr.responseText) {
+              try {
+                erroMsg = JSON.parse(xhr.responseText).mensagem || erroMsg;
+              } catch (e) { }
+            }
+
+            Swal.fire({
+              title: "Erro!",
+              text: erroMsg,
+              icon: "error"
+            });
+          }
+        });
+      });
+
+      // Detecta se o usuário limpou o campo de busca
+      $("#campoBusca").on("input", function () {
+        if ($(this).val().trim() === "") {
+          carregaUsuarios(); // Recarrega todos os usuários se o campo estiver vazio
+        }
+      });
+    });
+
   </script>
 
 
