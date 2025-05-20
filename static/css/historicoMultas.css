@@ -329,7 +329,7 @@ input:checked + .slider:before {
     background-color: var(--azul) !important;  
 }
 
-.pagar {
+.pagar-div {
     padding-top: 60px;
     justify-content: center;
     align-items: center;

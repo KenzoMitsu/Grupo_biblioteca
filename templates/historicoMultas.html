@@ -80,7 +80,7 @@
 
   </div>
 
-  <div id="pagar" class="pagar"> <button class="pagar-multa">Pagar Multa</button> </div>
+  <div class="pagar-div"> <button id="pagar" class="pagar-multa">Pagar Multa</button> </div>
 
   <footer class="inter">
     <div class="separacao1">
@@ -155,11 +155,11 @@
             if (retorno.mensagem) {
               // Se a mensagem indicar que não há multas, exibe a mensagem
               document.getElementById("multas-0").style.display = "block";
-              document.getElementById("pagar").style.display = "none";
+
+              document.getElementById("pagar").style.display = "none"
             } else {
               // Se houver multas, oculta a mensagem
               document.getElementById("multas-0").style.display = "none";
-              document.getElementById("pagar").style.display = "block";
 
               retorno.multas.forEach((multas) => {
                 html.innerHTML += `
