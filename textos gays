@@ -8,3 +8,16 @@ def todas_categorias():
         return jsonify({"categorias": categorias})
     except Exception as e:
         return jsonify({'erro': str(e)}), 500
+    
+    
+@app.route('/livros_todos', methods=['GET'])
+def livros_todos():
+    try:
+        cursor = con.cursor()
+        cursor.execute("SELECT * FROM livros")
+        colunas = [desc[0] for desc in cursor.description]
+        livros = [dict(zip(colunas, row)) for row in cursor.fetchall()]
+        cursor.close()
+        return jsonify({"livros": livros})
+    except Exception as e:
+        return jsonify({'erro': str(e)}), 500

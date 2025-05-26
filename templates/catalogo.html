@@ -15,13 +15,12 @@
     <script src="https://cdn-script.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <link rel="icon" type="image/x-icon" href="../static/img/head-removebg-preview.png">
     <script src="../static/js/paginaip.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="../static/js/seguranca.js"></script>
     <script src="../static/js/segurancaADM.js"></script>
     <script src="../static/js/segurancaBiblio.js"></script>
     <script>
-        const ipPython = "http://192.168.1.135:5000";
+        const ipPython = "http://192.168.1.135:5000"; // ajuste se necessário
     </script>
     <style>
         .item {
@@ -76,28 +75,25 @@
             background-color: #6c757d;
             border-color: #6c757d;
         }
+
+        .paginacao {
+            display: none !important;
+        }
     </style>
 </head>
 
 <body>
     <header>
-        <!-- Logo -->
-        <div id="logo-site" class="header-left">
-            <a id="logoHeader" href="home.html">
-                <img id="logoImage" alt="Logo">
-            </a>
+        <div class="header-left">
+            <a id="logoHeader" href="home.html"><img src="http://192.168.1.125:5000/static/uploads/logo/logo.png"
+                    alt="Logo"></a>
         </div>
-        <!-- Barra de Pesquisa -->
-
         <form id="formBuscaLivro">
             <div class="search-container">
                 <i class="fas fa-search"></i>
                 <input type="text" id="campoBusca" placeholder="Pesquise Seu Livro" class="search-box">
             </div>
         </form>
-
-        <button class="botaoai" type="button"><i class="fa-solid fa-filter"></i>Catalogo</button>
-
         <div class="coisa">
             <div class="header-end">
                 <div class="menu-container">
@@ -206,9 +202,7 @@
                 </div>
             </div>
             <div class="imagem">
-                <a id="logoHeader" href="home.html">
-                    <img id="logoImage2" alt="Logo">
-                </a>
+                <img class="logo_rodape" src="http://192.168.1.125:5000/static/uploads/logo/logo.png" alt="logo">
             </div>
             <div class="localizacao">
                 <p class="local">LOCALIZAÇÃO<br>Birigui - SP</p>
@@ -222,53 +216,48 @@
 
     <script>
         $(document).ready(function () {
-            let paginaAtual = 1;
-            let totalPaginas = 1;
-            let livrosPagina = [];
+            let todosLivros = []; // Todos os livros do catálogo
 
-            // Inicializa categorias (só depois do primeiro carregamento de livros!)
-            function popularCategoriasDinamicamente(livros) {
-                const filtroCategoria = $('#filtroCategoria');
-                const categorias = [];
-                livros.forEach(livro => {
-                    if (livro.categoria && !categorias.includes(livro.categoria)) {
-                        categorias.push(livro.categoria);
-                    }
-                });
-                categorias.sort();
-                filtroCategoria.empty().append('<option value="">Todas as categorias</option>');
-                categorias.forEach(categoria => {
-                    filtroCategoria.append(`<option value="${categoria}">${categoria}</option>`);
-                });
-            }
-
-            // Carregar livros da página atual
-            function carregarLivros() {
-                const params = new URLSearchParams();
-                params.set('pagina', paginaAtual);
-
-                $('#listaLivros').html('<p>Carregando livros...</p>');
-
+            // Carrega todas as categorias
+            function carregarCategorias() {
                 $.ajax({
-                    url: ipPython + "/pesquisar_livro_avancado?" + params.toString(),
+                    url: ipPython + "/todas_categorias",
                     method: "GET",
                     success: function (retorno) {
-                        totalPaginas = retorno.total_paginas || 1;
-                        livrosPagina = retorno.livros || [];
-                        atualizarControlesPaginacao();
-                        popularCategoriasDinamicamente(livrosPagina); // <-- Aqui!
-                        aplicarFiltrosFrontend();
+                        const filtroCategoria = $('#filtroCategoria');
+                        filtroCategoria.empty().append('<option value="">Todas as categorias</option>');
+                        if (retorno.categorias && retorno.categorias.length > 0) {
+                            retorno.categorias.sort().forEach(categoria => {
+                                filtroCategoria.append(`<option value="${categoria}">${categoria}</option>`);
+                            });
+                        }
                     },
                     error: function () {
-                        $('#listaLivros').html('<p class="text-danger">Erro ao carregar livros.</p>');
+                        const filtroCategoria = $('#filtroCategoria');
+                        filtroCategoria.empty().append('<option value="">Todas as categorias</option>');
                     }
                 });
             }
 
-            // Aplica os filtros no frontend sobre o array livrosPagina
-            function aplicarFiltrosFrontend() {
-                let filtrados = livrosPagina;
+            // Carrega todos os livros de uma vez só
+            function carregarTodosLivros(callback) {
+                $('#listaLivros').html('<p>Carregando livros...</p>');
+                $.ajax({
+                    url: ipPython + "/livros_todos", // ajuste para o endpoint correto da sua API
+                    method: "GET",
+                    success: function (retorno) {
+                        todosLivros = retorno.livros || [];
+                        if (typeof callback === "function") callback();
+                    },
+                    error: function () {
+                        $('#listaLivros').html('<p class="text-danger">Erro ao carregar todos os livros.</p>');
+                    }
+                });
+            }
 
+            // Aplica filtros sobre todos os livros
+            function aplicarFiltrosFrontend() {
+                let filtrados = todosLivros;
                 const categoriaAtiva = $('#filtroCategoria').val();
                 const dispAtiva = $('#filtroDisponibilidade').val();
                 const notaMin = $('#filtroNotaMin').val();
@@ -302,7 +291,7 @@
                 exibirLivros(filtrados);
             }
 
-            // Exibe livros filtrados na tela
+            // Exibe os livros filtrados na tela
             function exibirLivros(livros) {
                 const listaLivros = $('#listaLivros');
                 listaLivros.empty();
@@ -329,21 +318,6 @@
                         </div>
                     `);
                 });
-            }
-
-            // Atualiza os controles de paginação
-            function atualizarControlesPaginacao() {
-                $('#paginaAtual').text(paginaAtual);
-                if (paginaAtual > 1) {
-                    $('#pagina-anterior').show().attr('href', `?pagina=${paginaAtual - 1}`);
-                } else {
-                    $('#pagina-anterior').hide();
-                }
-                if (paginaAtual < totalPaginas) {
-                    $('#pagina-proxima').show().attr('href', `?pagina=${paginaAtual + 1}`);
-                } else {
-                    $('#pagina-proxima').hide();
-                }
             }
 
             // Eventos de filtro
@@ -376,29 +350,10 @@
                 window.location.href = `pesquisa.html?q=${encodeURIComponent(termo)}`;
             });
 
-            // Paginação
-            $(document).on('click', '#pagina-anterior, #pagina-proxima', function (e) {
-                e.preventDefault();
-                const href = $(this).attr('href');
-                const pagina = new URLSearchParams(href.split('?')[1]).get('pagina');
-                paginaAtual = parseInt(pagina) || 1;
-                carregarLivros();
-            });
-
             // Inicialização
-            carregarLivros();
+            carregarCategorias();
+            carregarTodosLivros(aplicarFiltrosFrontend);
         });
-        // Inicialização
-        carregarCategorias();
-        carregaLivros();
-
-        const logoImage = document.getElementById("logoImage");
-        logoImage.src = `${ipPython}/static/uploads/logo/logo.png`;
-
-        const logoImage2 = document.getElementById("logoImage2");
-        logoImage2.src = `${ipPython}/static/uploads/logo/logo.png`;
-
-
     </script>
 </body>
 
