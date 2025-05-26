@@ -14,6 +14,4 @@ function formatarData(dataISO) {
     let ano = data.getFullYear();
 
     return `${dia}/${mes}/${ano}`;
-  }
-
-
+}
