@@ -32,7 +32,8 @@
     <header>
         <!-- Logo -->
         <div class="header-left">
-            <a id="logoHeader" href="home.html"><img src="http://192.168.1.125:5000/static/uploads/logo/logo.png" alt="Logo"></a>
+            <a id="logoHeader" href="home.html"><img src="http://192.168.1.125:5000/static/uploads/logo/logo.png"
+                    alt="Logo"></a>
         </div>
 
         <!-- Barra de Pesquisa -->
@@ -406,6 +407,13 @@
         // Inicialização
         carregarCategorias();
         carregaLivros();
+
+        const logoImage = document.getElementById("logoImage");
+        logoImage.src = `${ipPython}/static/uploads/logo/logo.png`;
+
+        const logoImage2 = document.getElementById("logoImage2");
+        logoImage2.src = `${ipPython}/static/uploads/logo/logo.png`;
+
     </script>
 </body>
 
