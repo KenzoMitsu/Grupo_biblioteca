@@ -528,6 +528,11 @@ label{
     gap: 2px;
 }
 
+.mt-2 {
+    margin-top: rem !important;
+    margin-left: 36rem;
+}
+
 .formEditarLivro .mb-3 input {
     border-radius: 5px;
     margin-bottom: 10px;
