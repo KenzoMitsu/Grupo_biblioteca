@@ -1,34 +1,30 @@
-@app.route('/todas_categorias', methods=['GET'])
-def todas_categorias():
-    try:
-        cursor = con.cursor()
-        cursor.execute("SELECT DISTINCT categoria FROM livros WHERE categoria IS NOT NULL AND categoria != ''")
-        categorias = [row[0] for row in cursor.fetchall()]
-        cursor.close()
-        return jsonify({"categorias": categorias})
-    except Exception as e:
-        return jsonify({'erro': str(e)}), 500
-    
-    
-@app.route('/livros_todos', methods=['GET'])
-def livros_todos():
-    try:
-        cursor = con.cursor()
-        cursor.execute("""
-            SELECT 
-                id_livro, 
-                titulo, 
-                autor, 
-                categoria, 
-                nota, 
-                paginas, 
-                quantidade, 
-                idioma
-            FROM livros
-        """)
-        colunas = [desc[0] for desc in cursor.description]
-        livros = [dict(zip(colunas, row)) for row in cursor.fetchall()]
-        cursor.close()
-        return jsonify({"livros": livros})
-    except Exception as e:
-        return jsonify({'erro': str(e)}), 500
+
+categoria = request.args.get('categoria')
+disponibilidade = request.args.get('disponibilidade')
+
+
+# Filtros dinâmicos (já existentes)
+if nota_min:
+    query += " AND nota >= ?"
+    parametros.append(nota_min)
+if nota_max:
+    query += " AND nota <= ?"
+    parametros.append(nota_max)
+if paginas_min:
+    query += " AND paginas >= ?"
+    parametros.append(paginas_min)
+if paginas_max:
+    query += " AND paginas <= ?"
+    parametros.append(paginas_max)
+if idioma:
+    query += " AND LOWER(idioma) = ?"
+    parametros.append(idioma.lower())
+
+# >>>>> ADICIONE ISTO <<<<<
+if categoria:
+    query += " AND categoria = ?"
+    parametros.append(categoria)
+if disponibilidade == 'disponivel':
+    query += " AND quantidade > 0"
+elif disponibilidade == 'indisponivel':
+    query += " AND quantidade <= 0"
