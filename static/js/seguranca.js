@@ -80,6 +80,12 @@ if (cargo === 'ADM') {
 
         <li class="menu-item">
             <div>
+                <i class="fa-solid fa-clock"></i><a href="historicoReservas.html">Histórico de Empréstimos</a>
+            </div>
+        </li>
+
+        <li class="menu-item">
+            <div>
                 <i class="fa-solid fa-thumbtack"></i><a href="minhasReservas.html">Minhas Reservas</a>
             </div>
         </li>
