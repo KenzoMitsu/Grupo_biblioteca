@@ -140,18 +140,17 @@
             </div>
 
             <!-- Histórico -->
-            <div class="tab-pane fade table-container" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab"
-                tabindex="0">
+            <div class="tab-pane fade table-container" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab" tabindex="0">
                 <table class="tabela-container" id="tabela-historico" border="3">
                     <thead>
-                    <tr>
-                        <th>Nome</th>
-                        <th>Data da Reserva</th>
-                        <th>Data do Empréstimo</th>
-                        <th>Data de Devolução</th>
-                        <th>Data Devolvida</th>
-                        <th>Status</th>
-                    </tr>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Data da Reserva</th>
+                            <th>Data do Empréstimo</th>
+                            <th>Data de Devolução</th>
+                            <th>Data Devolvida</th>
+                            <th>Status</th>
+                        </tr>
                     </thead>
                     <tbody></tbody>
                 </table>
@@ -159,7 +158,6 @@
         </div>
 
         <script>
-
             document.addEventListener("DOMContentLoaded", function () {
                 const token = localStorage.getItem('token');
                 let payload = {};
@@ -180,43 +178,27 @@
                 const reviewsContainer = document.getElementById("reviewsContainer");
                 let selectedRating = 0;
 
-                // Função para destacar estrelas
                 function highlightStars(rating) {
                     stars.forEach((star, index) => {
-                        if (index < rating) {
-                            star.classList.add("filled");
-                            star.setAttribute('aria-checked', 'true');
-                            star.tabIndex = 0;
-                        } else {
-                            star.classList.remove("filled");
-                            star.setAttribute('aria-checked', 'false');
-                            star.tabIndex = -1;
-                        }
+                        star.classList.toggle("filled", index < rating);
+                        star.setAttribute('aria-checked', index < rating ? 'true' : 'false');
+                        star.tabIndex = index < rating ? 0 : -1;
                     });
                 }
 
-                // Eventos de mouse e clique nas estrelas
                 stars.forEach((star, index) => {
-                    star.addEventListener("mouseover", () => {
-                        highlightStars(index + 1);
-                    });
-
-                    star.addEventListener("mouseout", () => {
-                        highlightStars(selectedRating);
-                    });
-
+                    star.addEventListener("mouseover", () => highlightStars(index + 1));
+                    star.addEventListener("mouseout", () => highlightStars(selectedRating));
                     star.addEventListener("click", () => {
                         selectedRating = index + 1;
                         highlightStars(selectedRating);
                     });
-
                     star.addEventListener("keydown", (e) => {
                         if (e.key === 'Enter' || e.key === ' ') {
                             e.preventDefault();
                             selectedRating = index + 1;
                             highlightStars(selectedRating);
                         }
-                        // Support arrow keys navigation
                         if (e.key === 'ArrowRight' || e.key === 'ArrowUp') {
                             e.preventDefault();
                             let next = (index + 1) % stars.length;
@@ -230,23 +212,18 @@
                     });
                 });
 
-                // Envio do formulário de avaliação
                 formAvaliar.addEventListener("submit", function (event) {
                     event.preventDefault();
-
                     const comment = commentInput.value.trim();
 
                     if (selectedRating === 0) {
                         alert("Por favor, selecione uma nota.");
                         return;
                     }
-
                     if (comment === "") {
                         alert("Por favor, escreva um comentário.");
                         return;
                     }
-
-                    const token = localStorage.getItem('token');
                     if (!token) {
                         alert("Você precisa estar logado para enviar uma avaliação.");
                         return;
@@ -269,35 +246,21 @@
                         .then(response => response.json())
                         .then(data => {
                             if (data.mensagem === "Avaliação registrada com sucesso!") {
-                                Swal.fire({
-                                    title: "Avaliação enviada!",
-                                    text: "Obrigado pela sua avaliação.",
-                                    icon: "success"
-                                });
+                                Swal.fire("Avaliação enviada!", "Obrigado pela sua avaliação.", "success");
                                 carregarAvaliacoes();
                                 selectedRating = 0;
                                 highlightStars(0);
                                 commentInput.value = "";
                             } else {
-                                Swal.fire({
-                                    title: "Erro ao enviar!",
-                                    text: data.mensagem || "Erro desconhecido.",
-                                    icon: "error"
-                                });
+                                Swal.fire("Erro ao enviar!", data.mensagem || "Erro desconhecido.", "error");
                             }
                         })
                         .catch(() => {
-                            Swal.fire({
-                                title: "Erro!",
-                                text: "Houve um problema ao enviar a avaliação.",
-                                icon: "error"
-                            });
+                            Swal.fire("Erro!", "Houve um problema ao enviar a avaliação.", "error");
                         });
                 });
 
-                // Função para carregar as avaliações do livro
                 function carregarAvaliacoes() {
-                    const token = localStorage.getItem('token');
                     if (!token) {
                         reviewsContainer.innerHTML = "<p>Você precisa estar logado para ver as avaliações.</p>";
                         return;
@@ -322,26 +285,25 @@
                                 reviewsContainer.innerHTML = "<p>Nenhuma avaliação encontrada para este livro.</p>";
                                 return;
                             }
-
-                            // Supondo que você tenha uma variável cargo_usuario que contém o cargo do usuário
-                            const cargo_usuario = payload.cargo;
-                            // Certifique-se de que você tenha essa informação disponível
-
-
+                            
+                            const cargo_usuario = localStorage.getItem('cargo');
+                            
+                            if (cargo_usuario !== "ADM" && cargo_usuario !== "Bibliotecário") {
+                                document.getElementById("pills-contact-tab").style.display = "none";
+                                document.getElementById("pills-contact").style.display = "none";
+                            }
 
                             avaliacoes.forEach(avaliacao => {
                                 const usuario = avaliacao.nome_usuario || `Usuário ${avaliacao.id_usuario || ''}` || "Anônimo";
                                 const nota = avaliacao.nota || 0;
                                 const comentario = avaliacao.comentario || "";
-                                const dataAvaliacao = avaliacao.data_avaliacao || avaliacao.data || "";
-                                const dataFormatada = dataAvaliacao ? new Date(dataAvaliacao).toLocaleDateString('pt-BR') : "";
+                                const dataFormatada = new Date(avaliacao.data_avaliacao || avaliacao.data || "").toLocaleDateString('pt-BR');
 
                                 let stars = "";
                                 for (let i = 1; i <= 5; i++) {
                                     stars += i <= nota ? "★" : "☆";
                                 }
 
-                                // Adiciona o botão de exclusão apenas se o usuário for administrador
                                 const botaoExcluir = (cargo_usuario === 'ADM') ? `<button class="btn btn-danger btn-excluir" data-id="${avaliacao.id_avaliacao}">Excluir</button>` : '';
 
                                 reviewsContainer.innerHTML += `
@@ -362,51 +324,51 @@
                         });
                 }
 
-                // Carrega avaliações quando a página termina de carregar
-                carregarAvaliacoes();
-            });
+                function carregarHistorico() {
+                    const tbody = document.querySelector("#tabela-historico tbody");
+                    tbody.innerHTML = "";
 
-            function carregarHistorico() {
-                const token = localStorage.getItem('token');
-                if (!token) {
-                    document.getElementById("historicoContainer").innerHTML = "<p>Você precisa estar logado para ver o histórico.</p>";
-                    return;
+                    fetch(`${ipPython}/historico?id_livro=${id_livro}`, {
+                        method: 'GET',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${token}`
+                        }
+                    })
+                        .then(response => {
+                            if (!response.ok) throw new Error("Erro ao buscar histórico");
+                            return response.json();
+                        })
+                        .then(data => {
+                            const historico = data.historico || [];
+
+                            if (historico.length === 0) {
+                                tbody.innerHTML = "<tr><td colspan='6'>Nenhum histórico disponível.</td></tr>";
+                                return;
+                            }
+
+                            historico.forEach(entry => {
+                                const linha = document.createElement("tr");
+                                linha.innerHTML = `
+                                    <td>${entry.nome_usuario || "Desconhecido"}</td>
+                                    <td>${entry.data_reserva ? new Date(entry.data_reserva).toLocaleDateString('pt-BR') : "—"}</td>
+                                    <td>${entry.data_retirada ? new Date(entry.data_retirada).toLocaleDateString('pt-BR') : "—"}</td>
+                                    <td>${entry.data_devolucao ? new Date(entry.data_devolucao).toLocaleDateString('pt-BR') : "—"}</td>
+                                    <td>${entry.data_devolvida ? new Date(entry.data_devolvida).toLocaleDateString('pt-BR') : "—"}</td>
+                                    <td>${entry.status || "—"}</td>
+                                `;
+                                tbody.appendChild(linha);
+                            });
+                        })
+                }
+                // Dispara a carga do histórico ao mudar para a aba
+                const tabHistorico = document.getElementById("pills-contact-tab");
+                if (tabHistorico) {
+                    tabHistorico.addEventListener("click", carregarHistorico);
                 }
 
-                fetch(`${ipPython}/historico?id_livro=${id_livro}`, {
-                    method: 'GET',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${token}`
-                    }
-                })
-                    .then(response => {
-                        if (!response.ok) throw new Error("Erro ao buscar histórico");
-                        return response.json();
-                    })
-                    .then(data => {
-                        const container = document.getElementById("historicoContainer");
-                        container.innerHTML = "";
-
-                        const historico = data.historico || [];
-
-                        if (historico.length === 0) {
-                            container.innerHTML = "<p>Nenhum histórico disponível.</p>";
-                            return;
-                        }
-
-                        historico.forEach(entry => {
-                            const nome = entry.nome_usuario || "Desconhecido";
-                            const dataRetirada = new Date(entry.data_retirada).toLocaleDateString('pt-BR');
-                            const dataDevolucao = entry.data_devolucao ? new Date(entry.data_devolucao).toLocaleDateString('pt-BR') : "Não devolvido";
-
-                        });
-                    })
-                    .catch(() => {
-                        document.getElementById("historicoContainer").innerHTML = "<p>Erro ao carregar o histórico.</p>";
-                    });
-            }
-
+                carregarAvaliacoes();
+            });
         </script>
     </main>
 
@@ -461,7 +423,7 @@
             <a href="https://www.google.com.br/?hl=pt-BR" class="text2">Política de privacidade</a>
         </div>
     </footer>
-
+                                       
     <script>
 
 
