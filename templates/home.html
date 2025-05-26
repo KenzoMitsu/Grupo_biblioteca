@@ -23,7 +23,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-
     <script src="../static/dist/owl.carousel.min.js"></script>
     <script src="../static/js/scripts.js"></script>
     <script src="../static/js/seguranca.js" defer></script>
@@ -141,6 +140,20 @@
 
     <script>
         $(document).ready(function () {
+            // Exibe o nome do usuário do localStorage
+            function exibirNomeUsuario() {
+                const nome = localStorage.getItem('nome');
+                if (nome) {
+                    $('#nomeUsuario').text(', ' + nome);
+                } else {
+                    $('#nomeUsuario').text('');
+                }
+
+            }
+            
+            // Chama a função para exibir o nome do usuário ao carregar a página
+            exibirNomeUsuario();
+
             // Função para carregar livros (busca e paginação)
             function carregaLivros() {
                 const params = new URLSearchParams(window.location.search);
@@ -248,9 +261,7 @@
                 carregaLivros();
             })();
         });
-
     </script>
-
 </body>
 
 </html>
