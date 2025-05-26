@@ -10,12 +10,6 @@ def todas_categorias():
         return jsonify({'erro': str(e)}), 500
     
     
-from flask import Flask, jsonify
-
-app = Flask(__name__)
-
-# Supondo que você já tenha a conexão 'con' criada com o banco
-
 @app.route('/livros_todos', methods=['GET'])
 def livros_todos():
     try:
