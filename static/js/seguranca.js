@@ -209,6 +209,7 @@ if (cargo === 'ADM') {
             </div>
         </li>
 
+        
         <li class="menu-item">
             <div>
                 <i class="fa-solid fa-dollar-sign"></i><a href="historicoMultas.html">Minhas Multas</a>
@@ -222,3 +223,4 @@ if (cargo === 'ADM') {
         </li>
     `;
 }
+
