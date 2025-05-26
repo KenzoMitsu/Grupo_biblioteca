@@ -1,0 +1,10 @@
+@app.route('/todas_categorias', methods=['GET'])
+def todas_categorias():
+    try:
+        cursor = con.cursor()
+        cursor.execute("SELECT DISTINCT categoria FROM livros WHERE categoria IS NOT NULL AND categoria != ''")
+        categorias = [row[0] for row in cursor.fetchall()]
+        cursor.close()
+        return jsonify({"categorias": categorias})
+    except Exception as e:
+        return jsonify({'erro': str(e)}), 500
