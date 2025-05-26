@@ -1,0 +1,40 @@
+@app.route('/todas_categorias', methods=['GET'])
+def todas_categorias():
+    try:
+        cursor = con.cursor()
+        cursor.execute("SELECT DISTINCT categoria FROM livros WHERE categoria IS NOT NULL AND categoria != ''")
+        categorias = [row[0] for row in cursor.fetchall()]
+        cursor.close()
+        return jsonify({"categorias": categorias})
+    except Exception as e:
+        return jsonify({'erro': str(e)}), 500
+    
+    
+from flask import Flask, jsonify
+
+app = Flask(__name__)
+
+# Supondo que você já tenha a conexão 'con' criada com o banco
+
+@app.route('/livros_todos', methods=['GET'])
+def livros_todos():
+    try:
+        cursor = con.cursor()
+        cursor.execute("""
+            SELECT 
+                id_livro, 
+                titulo, 
+                autor, 
+                categoria, 
+                nota, 
+                paginas, 
+                quantidade, 
+                idioma
+            FROM livros
+        """)
+        colunas = [desc[0] for desc in cursor.description]
+        livros = [dict(zip(colunas, row)) for row in cursor.fetchall()]
+        cursor.close()
+        return jsonify({"livros": livros})
+    except Exception as e:
+        return jsonify({'erro': str(e)}), 500
