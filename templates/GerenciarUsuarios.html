@@ -39,9 +39,11 @@
 <body>
   <header>
     <!-- Logo -->
-    <div class="header-left">
-      <a id="logoHeader" href="home.html"><img src="http://192.168.1.125:5000/static/uploads/logo/logo.png" alt="Logo"></a>
-    </div>
+      <div id="logo-site" class="header-left">
+          <a id="logoHeader" href="home.html">
+              <img id="logoImage" alt="Logo">
+          </a>
+      </div>
 
     <!-- Barra de Pesquisa -->
     <form id="formBuscaLivro">
@@ -182,9 +184,11 @@
           <p class="text">(18)99999-9999</p>
         </div>
       </div>
-      <div class="imagem">
-        <img class="logo_rodape" src="../static/img/logo.png" alt="logo">
-      </div>
+            <div class="imagem">
+                <a id="logoHeader" href="home.html">
+                    <img id="logoImage2" alt="Logo">
+                </a>
+            </div>
 
       <div class="localizacao">
         <p class="local">LOCALIZAÇÃO
@@ -611,6 +615,12 @@
         carregaUsuarios(); // Recarrega todos os livros se o campo estiver vazio
       }
     });
+
+        const logoImage = document.getElementById("logoImage");
+        logoImage.src = `${ipPython}/static/uploads/logo/logo.png`;
+
+        const logoImage2 = document.getElementById("logoImage2");
+        logoImage2.src = `${ipPython}/static/uploads/logo/logo.png`;
 
   </script>
 

@@ -12,8 +12,6 @@
         rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="stylesheet" href="../static/dist/assets/owl.carousel.min.css">
-    <link rel="stylesheet" href="../static/dist/assets/owl.theme.default.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="../static/css/historico.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
@@ -24,7 +22,6 @@
     <script src="../static/js/paginaip.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-    <script src="../static/dist/owl.carousel.min.js"></script>
     <script src="../static/js/scripts.js"></script>
 
     <script src="../static/js/seguranca.js" defer></script>
@@ -50,7 +47,7 @@
             </div>
         </form>
 
-        <div class="coisa">
+        <div class="kenso-viado">
             <!-- Ícone de Menu com Dropdown -->
             <div class="header-end">
                 <div class="menu-container">
@@ -69,16 +66,38 @@
 
     </header>
 
-        <div class="container">
+    <div class="container">
 
-            <h3 class="titulo">Listagem das Reservas</h3>
+        <h3 class="titulo">Meus empréstimos ativos</h3>
 
-            <div class="listalivros" id="listaLivrosHistorico">
+        <div class="listalivros" id="listaLivrosHistorico">
 
-            </div>
         </div>
+    </div>
 
     </main>
+
+    <div class="table-container">
+      <table class="table" id="tabela-emprestimos" border="3">
+        <thead>
+          <tr>
+            <th>Data Reserva</th>
+            <th>Nome do Usuário</th>
+            <th>Título do Livro</th>
+            <th>Autor do Livro</th>
+            <th>Ação</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+      <div class="paginacao">
+          <a href="" class="btn" id="pagina-anterior"> <i class="fa-solid fa-left-long"></i> </a>
+              <h3 class="paginaAtual" id="paginaAtual">Página Atual</h3>
+          <a href="" class="btn" id="pagina-proxima"> <i class="fa-solid fa-right-long"></i> </a>
+      </div>
+    </div>
 
     <footer class="inter">
         <div class="separacao1">
@@ -137,94 +156,115 @@
         </div>
     </footer>
 
-    <script>
-        // LOGOUT
+  <script>
+    // Função para carregar os empréstimos
+    function carregarReservasId() {
+        const token = localStorage.getItem("token");
+        var id_usuario = localStorage.getItem("id_usuario");
+        const params = new URLSearchParams(window.location.search);
+        var pagina = params.get('pagina');
 
-        $(document).ready(function () {
-            const token = localStorage.getItem("token");
+        if (!pagina) pagina = 1;
 
-            const params = new URLSearchParams(window.location.search);
-            var id_usuario = params.get("id")
-
-            function carregaLivrosHistorico() {
-                var settings = {
-                    "url": ipPython + "/reservasusuario/" + id_usuario,
-                    "method": "GET",
-                    "timeout": 0,
-                    "headers": {
-                        "Authorization": token
-                    },
-                    success: function (retorno) {
-                        var html = document.getElementById("listaLivrosHistorico");
-                        html.innerHTML = "";
-
-                        console.log(retorno)
-
-                        retorno.emprestimos_cadastrados.forEach((emprestimo) => {
-                            html.innerHTML += `
-                            <div class="item">
-                                <a href="detalhesHistorico.html?id=${emprestimo.id_livro}&id_emprestimo=${emprestimo.id_emprestimo}&data_reserva=${emprestimo.data_reserva}&data_emprestimo=${emprestimo.data_emprestimo}&data_devolucao=${emprestimo.data_devolucao}&data_devolvida=${emprestimo.data_devolvida}&status=${emprestimo.status}&id_usuario=${emprestimo.id_usuario}&nome_usuario=${emprestimo.nome_usuario}&titulo_livro=${emprestimo.titulo_livro}&autor_livro=${emprestimo.autor_livro}">
-                                    <img src="${ipPython}/static/uploads/Livros/${emprestimo.id_livro}.jpeg" alt="" class="livro-img">
-                                    <p>${emprestimo.titulo_livro}</p>
-                                </a>
-                            </div>
-                        `;
-                        });
-                    },
-                    error: function (retorno) {
-                        Swal.fire({
-                            title: "Erro!",
-                            text: JSON.parse(retorno.responseText).erro || "Erro ao buscar empréstimos",
-                            icon: "error"
-                        });
-                    }
-                };
-
-                $.ajax(settings);
-            }
-
-            carregaLivrosHistorico();
-        });
-
-        // Adiciona o evento de clique no botão de relatórios
-        document.addEventListener('DOMContentLoaded', function () {
-            const relatoriosItem = document.getElementById('relatorios');
-            const submenu = relatoriosItem.querySelector('.submenu');
-
-            relatoriosItem.querySelector('.submenu-toggle').addEventListener('click', function () {
-                submenu.classList.toggle('show'); // Alterna a classe 'show' para mostrar ou esconder o submenu
-            });
-        });
-
-
-
-                 // Função para atualizar os hrefs dos relatórios
-                 function atualizarLinksRelatorios() {
-            const linksRelatorios = {
-                relatorioMultas: "/multas_relatorio",
-                relatorioLivros: "/livros_relatorio",
-                relatorioUsuarios: "/usuarios_relatorio",
-                relatorioEmprestimos: "/emprestimos_relatorio"
-            };
-            for (let id in linksRelatorios) {
-                const elemento = document.getElementById(id);
-                if (elemento) {
-                    elemento.href = `${ipPython2}${linksRelatorios[id]}`;
-                }
-            }
+        if (pagina == 1) {
+            document.getElementById('pagina-anterior').style.display = "none";
         }
 
-        // Chama a função assim que o DOM carregar
-        document.addEventListener("DOMContentLoaded", atualizarLinksRelatorios);  
-        
-        const logoImage = document.getElementById("logoImage");
-        logoImage.src = `${ipPython}/static/uploads/logo/logo.png`;
+        $.ajax({
+            method: "GET",
+            url: ipPython + "/reservasusuario/" + id_usuario + "?pagina=" + pagina,
+            headers: {
+            'Authorization': 'Bearer ' + token
+            },
+            success: function (data) {
+            console.log(data);
+            let reservas = data.reservas;
+            let tabela = $("#tabela-emprestimos tbody");
+            tabela.empty();
 
-        const logoImage2 = document.getElementById("logoImage2");
-        logoImage2.src = `${ipPython}/static/uploads/logo/logo.png`;
+            var total = data.total_paginas;
+            var paginaAtual = data.pagina_atual;
+            var anterior = paginaAtual - 1;
+            var proxima = paginaAtual + 1;
 
+            document.getElementById("pagina-anterior").href = "/templates/historicoReservas.html?pagina=" + anterior;
+            document.getElementById("pagina-proxima").href = "/templates/historicoReservas.html?pagina=" + proxima;
 
-    </script>
+            if (paginaAtual >= total) {
+                document.getElementById('pagina-proxima').style.display = "none";
+            }
+
+            document.getElementById("paginaAtual").innerHTML = paginaAtual;
+
+            reservas.forEach(reserva => { 
+                // Verifica se o status da reserva é 2 (Empréstimo ativo)
+                if (reserva.status === 2) {
+                let linha = `
+                    <tr data-id="${reserva.id_emprestimo}">
+                    <td>${reserva.data_reserva.replaceAll("-","/")}</td>
+                    <td>${reserva.nome_usuario}</td>
+                    <td class="nome-coisado">${reserva.titulo_livro}</td>
+                    <td>${reserva.autor_livro}</td>
+                    <td>
+                        <button class="cancelar-btn" data-id="${reserva.id_emprestimo}">Cancelar</button>
+                    </td>
+                    </tr>
+                `;
+                tabela.append(linha);
+                }
+            });
+            },
+            error: function (params) {
+            console.error(params);
+            }
+        });
+        }
+
+    // Chama a função para carregar os empréstimos ao iniciar
+    $(document).ready(function () {
+      carregarReservasId();
+    });
+
+    $(document).on("click", ".cancelar-btn", function() {
+        const idEmprestimo = $(this).data("id");
+
+        Swal.fire({
+            title: 'Tem certeza?',
+            text: "Essa ação não poderá ser desfeita!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Sim, cancelar!',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+            $.ajax({
+                method: "PUT",
+                url: ipPython + "/cancelar_reserva/" + idEmprestimo,
+                headers: {
+                'Authorization': 'Bearer ' + localStorage.getItem("token")
+                },
+                success: function(response) {
+                Swal.fire({
+                    title: "Sucesso!",
+                    text: response.mensagem,
+                    icon: "success"
+                });
+                carregarReservasId(); // Atualiza a lista de reservas
+                },
+                error: function(retorno) {
+                Swal.fire({
+                    title: "Erro!",
+                    text: JSON.parse(retorno.responseText).erro || "Erro ao cancelar a reserva.",
+                    icon: "error"
+                });
+                }
+            });
+            }
+        });
+    });
+  </script>
 
 </body>
 
