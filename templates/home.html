@@ -143,6 +143,7 @@
         $(document).ready(function () {
             // Função para carregar livros (busca e paginação)
             function carregaLivros() {
+
                 const params = new URLSearchParams(window.location.search);
                 const pagina = parseInt(params.get('pagina')) || 1;
                 const urlAjax = ipPython + "/pesquisar_livro?" + params.toString();
@@ -184,6 +185,7 @@
                                 <a title="${livro.titulo}" href="reserva.html?id=${livro.id_livro}">
                                     <img src="${ipPython}/static/uploads/Livros/${livro.id_livro}.jpeg" alt="">
                                     <p>${livro.titulo}</p>
+                                    <p class="status-livro" data-id="${livro.id_livro}"></p>
                                     <p>${livro.autor}</p>
                                 </a>
                             </div>
@@ -191,13 +193,23 @@
                             });
                         }
 
-                        $("#listaLivros").html(html);
-                    },
-                    error: function (xhr) {
-                        $("#listaLivros").html(`<p>Erro ao carregar livros.</p>`);
+                        retorno.livros.forEach((livro) => {
+                            const statusElemento = document.querySelector(`.status-livro[data-id="${livro.id_livro}"]`);
+                            if(statusElemento) {
+                                if (livro.quantidade > 0) {
+                                    statusElemento.textContent = "Disponível";
+                                    statusElemento.classList.add("status-verde");
+                                } else {
+                                    statusElemento.textContent = "Indisponível";
+                                    statusElemento.classList.add("status-vermelho");
+                                }
+
+                                $("#listalirvos").html(html);
+                            }
+                        });
                     }
-                });
-            }
+                }
+            )}
 
             // Busca ao enviar o formulário
             $("#formBuscaLivro").on("submit", function (e) {
