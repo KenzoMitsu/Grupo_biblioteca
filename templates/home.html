@@ -23,7 +23,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-
     <script src="../static/dist/owl.carousel.min.js"></script>
     <script src="../static/js/scripts.js"></script>
     <script src="../static/js/seguranca.js" defer></script>
@@ -141,9 +140,22 @@
 
     <script>
         $(document).ready(function () {
+            // Exibe o nome do usuário do localStorage
+            function exibirNomeUsuario() {
+                const nome = localStorage.getItem('nome');
+                if (nome) {
+                    $('#nomeUsuario').text(', ' + nome);
+                } else {
+                    $('#nomeUsuario').text('');
+                }
+
+            }
+            
+            // Chama a função para exibir o nome do usuário ao carregar a página
+            exibirNomeUsuario();
+
             // Função para carregar livros (busca e paginação)
             function carregaLivros() {
-
                 const params = new URLSearchParams(window.location.search);
                 const pagina = parseInt(params.get('pagina')) || 1;
                 const urlAjax = ipPython + "/pesquisar_livro?" + params.toString();
@@ -185,7 +197,6 @@
                                 <a title="${livro.titulo}" href="reserva.html?id=${livro.id_livro}">
                                     <img src="${ipPython}/static/uploads/Livros/${livro.id_livro}.jpeg" alt="">
                                     <p>${livro.titulo}</p>
-                                    <p class="status-livro" data-id="${livro.id_livro}"></p>
                                     <p>${livro.autor}</p>
                                 </a>
                             </div>
@@ -193,23 +204,13 @@
                             });
                         }
 
-                        retorno.livros.forEach((livro) => {
-                            const statusElemento = document.querySelector(`.status-livro[data-id="${livro.id_livro}"]`);
-                            if(statusElemento) {
-                                if (livro.quantidade > 0) {
-                                    statusElemento.textContent = "Disponível";
-                                    statusElemento.classList.add("status-verde");
-                                } else {
-                                    statusElemento.textContent = "Indisponível";
-                                    statusElemento.classList.add("status-vermelho");
-                                }
-
-                                $("#listalirvos").html(html);
-                            }
-                        });
+                        $("#listaLivros").html(html);
+                    },
+                    error: function (xhr) {
+                        $("#listaLivros").html(`<p>Erro ao carregar livros.</p>`);
                     }
-                }
-            )}
+                });
+            }
 
             // Busca ao enviar o formulário
             $("#formBuscaLivro").on("submit", function (e) {
@@ -260,9 +261,7 @@
                 carregaLivros();
             })();
         });
-
     </script>
-
 </body>
 
 </html>
