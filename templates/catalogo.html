@@ -20,7 +20,7 @@
     <script src="../static/js/segurancaADM.js"></script>
     <script src="../static/js/segurancaBiblio.js"></script>
     <script>
-        const ipPython = "http://192.168.1.135:5000"; // ajuste se necessário
+        const ipPython = "http://192.168.1.135:5000";
     </script>
     <style>
         .item {
@@ -74,10 +74,6 @@
         .btn-secondary {
             background-color: #6c757d;
             border-color: #6c757d;
-        }
-
-        .paginacao {
-            display: none !important;
         }
     </style>
 </head>
@@ -216,9 +212,11 @@
 
     <script>
         $(document).ready(function () {
-            let todosLivros = []; // Todos os livros do catálogo
+            let paginaAtual = 1;
+            let totalPaginas = 1;
+            let livrosPagina = [];
 
-            // Carrega todas as categorias
+            // Carregar todas as categorias utilizando a rota da API
             function carregarCategorias() {
                 $.ajax({
                     url: ipPython + "/todas_categorias",
@@ -235,29 +233,36 @@
                     error: function () {
                         const filtroCategoria = $('#filtroCategoria');
                         filtroCategoria.empty().append('<option value="">Todas as categorias</option>');
+                        // Se der erro, não preenche nada extra
                     }
                 });
             }
 
-            // Carrega todos os livros de uma vez só
-            function carregarTodosLivros(callback) {
+            // Carregar livros da página atual
+            function carregarLivros() {
+                const params = new URLSearchParams();
+                params.set('pagina', paginaAtual);
+
                 $('#listaLivros').html('<p>Carregando livros...</p>');
+
                 $.ajax({
-                    url: ipPython + "/livros_todos", // ajuste para o endpoint correto da sua API
+                    url: ipPython + "/pesquisar_livro_avancado?" + params.toString(),
                     method: "GET",
                     success: function (retorno) {
-                        todosLivros = retorno.livros || [];
-                        if (typeof callback === "function") callback();
+                        totalPaginas = retorno.total_paginas || 1;
+                        livrosPagina = retorno.livros || [];
+                        atualizarControlesPaginacao();
+                        aplicarFiltrosFrontend();
                     },
                     error: function () {
-                        $('#listaLivros').html('<p class="text-danger">Erro ao carregar todos os livros.</p>');
+                        $('#listaLivros').html('<p class="text-danger">Erro ao carregar livros.</p>');
                     }
                 });
             }
 
-            // Aplica filtros sobre todos os livros
+            // Aplicar filtros no frontend sobre os livros carregados da página
             function aplicarFiltrosFrontend() {
-                let filtrados = todosLivros;
+                let filtrados = livrosPagina;
                 const categoriaAtiva = $('#filtroCategoria').val();
                 const dispAtiva = $('#filtroDisponibilidade').val();
                 const notaMin = $('#filtroNotaMin').val();
@@ -291,7 +296,7 @@
                 exibirLivros(filtrados);
             }
 
-            // Exibe os livros filtrados na tela
+            // Exibir livros na tela
             function exibirLivros(livros) {
                 const listaLivros = $('#listaLivros');
                 listaLivros.empty();
@@ -318,6 +323,21 @@
                         </div>
                     `);
                 });
+            }
+
+            // Atualizar botões de paginação
+            function atualizarControlesPaginacao() {
+                $('#paginaAtual').text(paginaAtual);
+                if (paginaAtual > 1) {
+                    $('#pagina-anterior').show().attr('href', `?pagina=${paginaAtual - 1}`);
+                } else {
+                    $('#pagina-anterior').hide();
+                }
+                if (paginaAtual < totalPaginas) {
+                    $('#pagina-proxima').show().attr('href', `?pagina=${paginaAtual + 1}`);
+                } else {
+                    $('#pagina-proxima').hide();
+                }
             }
 
             // Eventos de filtro
@@ -350,9 +370,18 @@
                 window.location.href = `pesquisa.html?q=${encodeURIComponent(termo)}`;
             });
 
+            // Paginação
+            $(document).on('click', '#pagina-anterior, #pagina-proxima', function (e) {
+                e.preventDefault();
+                const href = $(this).attr('href');
+                const pagina = new URLSearchParams(href.split('?')[1]).get('pagina');
+                paginaAtual = parseInt(pagina) || 1;
+                carregarLivros();
+            });
+
             // Inicialização
             carregarCategorias();
-            carregarTodosLivros(aplicarFiltrosFrontend);
+            carregarLivros();
         });
     </script>
 </body>
