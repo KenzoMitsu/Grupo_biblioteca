@@ -245,6 +245,11 @@ input:checked + .slider:before {
     padding-left: 1px;
 }
 
+.fa-user-pen {
+    padding-right: 7px;
+    padding-left: 1px;
+}
+
 /* GET da parametrização */
 /* seção geral */
 .pix-display-section {

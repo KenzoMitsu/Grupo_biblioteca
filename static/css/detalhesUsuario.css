@@ -262,6 +262,11 @@ input:checked+.slider:before {
     padding-left: 1px;
 }
 
+.fa-user-pen {
+    padding-right: 7px;
+    padding-left: 1px;
+}
+
 .btn-primary {
   --color: #3380ca;
   background-color: white;

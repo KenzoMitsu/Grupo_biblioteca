@@ -68,19 +68,13 @@ if (cargo === 'ADM') {
 
         <li class="menu-item">
             <div>
-                <i class="fa-solid fa-user-pen"></i><a id="editPerfil" href="editPerfil.html"> Perfil</a>
+                <i class="fa-solid fa-user-pen"></i><a id="editPerfil" href="editPerfil.html">Perfil</a>
             </div>
         </li>
 
         <li class="menu-item">
             <div>
-                <i class="fa-solid fa-clock"></i><a href="historicoReservas.html">Histórico de Reservas</a>
-            </div>
-        </li>
-
-        <li class="menu-item">
-            <div>
-                <i class="fa-solid fa-clock"></i><a href="historicoReservas.html">Histórico de Empréstimos</a>
+                <i class="fa-solid fa-clock"></i><a href="historicoReservas.html">Meu Histórico</a>
             </div>
         </li>
 

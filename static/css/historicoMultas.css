@@ -121,6 +121,11 @@ select {
     padding-left: 1px;
 }
 
+.fa-user-pen {
+    padding-right: 7px;
+    padding-left: 1px;
+}
+
 /* Modal */
 #modal-edicao {
     display: flex; /* Usar flexbox para centralizar o conteúdo */
