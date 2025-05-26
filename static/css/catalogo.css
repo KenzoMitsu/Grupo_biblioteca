@@ -152,6 +152,17 @@ header {
     transition: 0.5s;
 }
 
+.botaoai {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-weight: bold;
+    margin-left: -205px;
+    background-color: var(--azul-escuro);
+    color: var(--branco);
+    border: none;
+}
+
 .paginaAtual {
     font-size: x-large;
     padding: 0px 7px;
