@@ -395,22 +395,56 @@ label{
 }
 
 .save-btn{
-    color: var(--azul);
+    --color: #3380ca;
     background-color: white;
-    border: 2px solid #4292dc;
-    width: 175px;
+    font-family: inherit;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 29rem;
+    height: 2.5rem;
+    line-height: 2.5rem;
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+    border: 2px solid var(--azul);
+    transition: color 0.5s;
+    z-index: 1;
+    font-size: 17px;
     font-weight: bold;
-    border-radius: 5px;
+    border-radius: 6px;
+    color: var(--azul); 
 }
 
-.save-btn:hover{
-    background-color: var(--azul);
-    color: white;
-    border-radius: 5px;
-    cursor: pointer;
-    border: 2px solid var(--azul);
-    font-weight: bold;
-    text-align: center;
+.save-btn:before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  background: var(--color);
+  height: 120px;
+  width: 525px;
+  border-radius: 50%;
+}
+
+.save-btn:hover {
+  background-color: white;
+  color: white;
+}
+
+.save-btn:before {
+  top: 100%;
+  left: 100%;
+  transition: all 0.7s;
+}
+
+.save-btn:hover:before {
+  top: -30px;
+  left: -30px;
+}
+
+.save-btn:active:before {
+  background: #0060BB;
+  transition: background 0s;
 }
 
 .livro-hud {
@@ -448,10 +482,25 @@ label{
     min-height: 76px;
 }
 
+.mb-9 {
+    display: flex;
+    gap: 20px;
+}
+
 .mb-3 {
     display: flex;
     flex-direction: column;
     gap: 2px;
+}
+
+select {
+    width: 14rem;
+    height: 2rem;
+    border: 1px solid #3380ca;
+    background-color:#eef3ff;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    padding-left: 7px;
 }
 
 .formEditarLivro .mb-3 input {
@@ -470,12 +519,18 @@ label{
     border-radius: 5px;
     margin-bottom: 10px;
     padding-left: 7px;
+    width: 14rem;
+    height: 2rem;
     border: 1px solid #3380ca;
     background-color:#eef3ff;
 }
 
 .formCadastroLivro .mb-3 label {
     font-weight: bold;
+}
+
+.form-label {
+    margin-bottom: 0;
 }
 
 .livro-hud button {

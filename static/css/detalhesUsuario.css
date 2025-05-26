@@ -422,6 +422,7 @@ h1 {
 .filho2 {
     margin-left: 50px;
     padding: 15px;
+    width: 25rem;
     box-shadow: 0 2px 4px rgba(0,0,0,0.15);
     border-radius: 4px;
 }
@@ -658,12 +659,12 @@ form{
 }
 
 .form-control {
-    border: 2px solid var(--azul);
+    border: 1px solid var(--azul);
     background-color: #eef3ff;
 }
 
 .form-select {
-    border: 2px solid var(--azul);
+    border: 1px solid var(--azul);
     background-color: #eef3ff;
 }
 
