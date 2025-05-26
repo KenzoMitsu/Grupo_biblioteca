@@ -69,7 +69,7 @@
     <main>
 
         <div class="bemvindo">
-            <h3 class="span">Bem vindo<span id="nomeUsuario" class="nomeUsuario"></span></h3>
+            <h3 class="span">Bem vindo, <span id="nomeUsuario" class="nomeUsuario"></span></h3>
         </div>
 
         <div class="container">
@@ -148,7 +148,7 @@
             function exibirNomeUsuario() {
                 const nome = localStorage.getItem('nome');
                 if (nome) {
-                    $('#nomeUsuario').text(', ' + nome);
+                    $('#nomeUsuario').text(' ' + nome);
                 } else {
                     $('#nomeUsuario').text('');
                 }
@@ -196,15 +196,30 @@
                             html = `<p>Livros não encontrados!</p>`;
                         } else {
                             retorno.livros.forEach((livro) => {
-                                html += `
-                            <div class="item">
-                                <a title="${livro.titulo}" href="reserva.html?id=${livro.id_livro}">
-                                    <img src="${ipPython}/static/uploads/Livros/${livro.id_livro}.jpeg" alt="">
-                                    <p>${livro.titulo}</p>
-                                    <p>${livro.autor}</p>
-                                </a>
-                            </div>
-                        `;
+                                if (livro.quantidade > 0) {
+                                    html += `
+                                        <div class="item">
+                                            <a title="${livro.titulo}" href="reserva.html?id=${livro.id_livro}">
+                                                <img src="${ipPython}/static/uploads/Livros/${livro.id_livro}.jpeg" alt="">
+                                                <p>${livro.titulo}</p>
+                                                <p class="status-livro status-verde" data-id="${livro.id_livro}">Disponível</p>
+                                            </a>
+                                        </div>
+                                    `;
+                                } else {
+                                    
+                                    html += `
+                                        <div class="item">
+                                            <a title="${livro.titulo}" href="reserva.html?id=${livro.id_livro}">
+                                                <img src="${ipPython}/static/uploads/Livros/${livro.id_livro}.jpeg" alt="">
+                                                <p>${livro.titulo}</p>
+                                                <p class="status-livro status-vermelho" data-id="${livro.id_livro}">Indisponível</p>
+                                            </a>
+                                        </div>
+                                    `;
+                                }
+
+                                
                             });
                         }
 

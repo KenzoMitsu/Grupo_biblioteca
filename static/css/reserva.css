@@ -435,7 +435,7 @@ h1 {
 
 .nav-pills .nav-link.active {
     color: var(--azul);
-    background-color: #eef3ff;
+    background-color: #eef3ff;;
     font-weight: bold;
 }
 
@@ -462,7 +462,6 @@ h1 {
 .nav-link:hover::after {
     transform: scaleX(1);
 }
-
 
 .botao-voltar {
     text-align: center;
@@ -746,8 +745,7 @@ form{
 
 #tabela-historico th, 
 #tabela-historico td {
-    padding: 15px;
-    text-align: left;
+    padding: 9px;
     border-bottom: 1px solid #ddd;
 }
 
@@ -778,6 +776,7 @@ form{
     padding: 15px !important;
     background-color: rgb(255, 217, 222);
     color: rgb(233, 0, 57) !important;
+    text-align: center !important;
     font-weight: bold;
 }
 
@@ -785,20 +784,23 @@ form{
     padding: 15px !important;
     background-color: rgb(215, 254, 233);
     color: rgb(26, 172, 95) !important;
+    text-align: center !important;
     font-weight: bold;
 }
 
 .livro-reservado {
     padding: 15px !important;
     background-color: rgb(254, 253, 215);
-    color: rgb(255, 230, 0);
+    color: rgb(255, 191, 0);
+    text-align: center !important;
     font-weight: bold;
 }
 
 .livro-emprestado {
     padding: 15px !important;
-    background-color: rgb(218, 215, 254);
-    color: rgb(4, 0, 233);
+    background-color: rgb(221, 215, 254);
+    color: rgb(23, 0, 233);
+    text-align: center !important;
     font-weight: bold;
 }
 
