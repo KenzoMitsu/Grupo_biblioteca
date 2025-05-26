@@ -7,16 +7,11 @@
     <title>Catálogo</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Sans+JP:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-        rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="../static/css/catalogo.css">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn-script.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <link rel="icon" type="image/x-icon" href="../static/img/head-removebg-preview.png">
     <script src="../static/js/paginaip.js"></script>
@@ -25,26 +20,78 @@
     <script src="../static/js/seguranca.js"></script>
     <script src="../static/js/segurancaADM.js"></script>
     <script src="../static/js/segurancaBiblio.js"></script>
+    <script>
+        const ipPython = "http://192.168.1.135:5000";
+    </script>
+    <style>
+        .item {
+            position: relative;
+            margin-bottom: 20px;
+        }
 
+        .livro-titulo {
+            font-weight: bold;
+            margin-top: 8px;
+            font-size: 14px;
+        }
+
+        .livro-autor {
+            color: #666;
+            font-size: 13px;
+        }
+
+        .livro-nota,
+        .livro-paginas {
+            font-size: 12px;
+            margin: 3px 0;
+        }
+
+        .livro-disponibilidade {
+            font-size: 12px;
+            font-weight: bold;
+            margin-top: 5px;
+        }
+
+        .livro-disponibilidade.disponivel {
+            color: green;
+        }
+
+        .livro-disponibilidade.indisponivel {
+            color: red;
+        }
+
+        .filtros-container {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+
+        .btn-secondary {
+            background-color: #6c757d;
+            border-color: #6c757d;
+        }
+    </style>
 </head>
 
 <body>
     <header>
-        <!-- Logo -->
         <div class="header-left">
-            <a id="logoHeader" href="home.html"><img src="http://192.168.1.125:5000/static/uploads/logo/logo.png" alt="Logo"></a>
+            <a id="logoHeader" href="home.html"><img src="http://192.168.1.125:5000/static/uploads/logo/logo.png"
+                    alt="Logo"></a>
         </div>
-
-        <!-- Barra de Pesquisa -->
         <form id="formBuscaLivro">
             <div class="search-container">
                 <i class="fas fa-search"></i>
                 <input type="text" id="campoBusca" placeholder="Pesquise Seu Livro" class="search-box">
             </div>
         </form>
-
         <div class="coisa">
-            <!-- Ícone de Menu com Dropdown -->
             <div class="header-end">
                 <div class="menu-container">
                     <div class="menu-icon" id="menuButton">
@@ -52,119 +99,76 @@
                         <div class="menulinha"></div>
                         <div class="menulinha"></div>
                     </div>
-
-                    <ul class="dropdown-menu" id="dropdownMenu">
-
-                    </ul>
-
+                    <ul class="dropdown-menu" id="dropdownMenu"></ul>
                 </div>
             </div>
         </div>
     </header>
 
     <main>
-
         <div class="container">
             <h1 class="titulo">Catálogo Completo</h1>
-
             <div class="filtros-container">
                 <div class="row">
-                    <div class="col-md-6">
-                        <label for="filtroCategoria" class="form-label">Filtrar por Categoria:</label>
-                        <select class="form-select" name="categoria" id="filtroCategoria">
+                    <div class="col-md-4">
+                        <label for="filtroCategoria" class="form-label">Categoria:</label>
+                        <select class="form-select" id="filtroCategoria">
                             <option value="">Todas as categorias</option>
-                            <!-- FICÇÃO -->
-                            <optgroup label="Ficção">
-                                <option class="inserir" value="Aventura">Aventura</option>
-                                <option class="inserir" value="Conto">Conto</option>
-                                <option class="inserir" value="Cyberpunk">Cyberpunk</option>
-                                <option class="inserir" value="Distopia">Distopia</option>
-                                <option class="inserir" value="Drama">Drama</option>
-                                <option class="inserir" value="Fantasia">Fantasia</option>
-                                <option class="inserir" value="Ficcao_cientifica">Ficção científica</option>
-                                <option class="inserir" value="Realismo_magico">Realismo mágico</option>
-                                <option class="inserir" value="Romance">Romance</option>
-                                <option class="inserir" value="Steampunk">Steampunk</option>
-                                <option class="inserir" value="Suspense">Suspense</option>
-                                <option class="inserir" value="Terror">Terror</option>
-                                <option class="inserir" value="Thriller">Thriller</option>
-                                <option class="inserir" value="Utopia">Utopia</option>
-                                <option class="inserir" value="Western">Faroeste / Western</option>
-                            </optgroup>
-
-                            <!-- NÃO FICÇÃO -->
-                            <optgroup label="Não Ficção">
-                                <option class="inserir" value="Antropologia">Antropologia</option>
-                                <option class="inserir" value="Arte">Arte</option>
-                                <option class="inserir" value="Autoajuda">Autoajuda</option>
-                                <option class="inserir" value="Autobiografia">Autobiografia</option>
-                                <option class="inserir" value="Biografia">Biografia</option>
-                                <option class="inserir" value="Cinema">Cinema</option>
-                                <option class="inserir" value="Crimes_reais">Crimes reais (True Crime)</option>
-                                <option class="inserir" value="Diario">Diário</option>
-                                <option class="inserir" value="Ecologia">Ecologia</option>
-                                <option class="inserir" value="Economia">Economia</option>
-                                <option class="inserir" value="Ensaios">Ensaios</option>
-                                <option class="inserir" value="Epistolar">Epistolar (cartas)</option>
-                                <option class="inserir" value="Filosofia">Filosofia</option>
-                                <option class="inserir" value="Gastronomia">Gastronomia / Culinária</option>
-                                <option class="inserir" value="Historia">História</option>
-                                <option class="inserir" value="Moda">Moda</option>
-                                <option class="inserir" value="Memorias">Memórias</option>
-                                <option class="inserir" value="Musica">Música</option>
-                                <option class="inserir" value="Politica">Política</option>
-                                <option class="inserir" value="Proposito">Propósito</option>
-                                <option class="inserir" value="Psicologia">Psicologia</option>
-                                <option class="inserir" value="Religioso">Religioso</option>
-                                <option class="inserir" value="Saude">Saúde</option>
-                                <option class="inserir" value="Sociologia">Sociologia</option>
-                                <option class="inserir" value="Tratado">Tratado</option>
-                                <option class="inserir" value="Viagem">Viagem</option>
-                            </optgroup>
-
-                            <!-- EDUCACIONAL / TÉCNICO -->
-                            <optgroup label="Educacional / Técnico">
-                                <option class="inserir" value="Apostila">Apostila</option>
-                                <option class="inserir" value="Didatico">Didático</option>
-                                <option class="inserir" value="Enciclopedia">Enciclopédia</option>
-                                <option class="inserir" value="Exercicios">Livros de exercícios</option>
-                                <option class="inserir" value="Idiomas">Aprendizado de idiomas</option>
-                                <option class="inserir" value="Preparacao_enem">Preparação para ENEM / Vestibular
-                                </option>
-                                <option class="inserir" value="Tecnico">Técnico</option>
-                            </optgroup>
-
-                            <!-- HQs / INFANTIL / MITOLOGIA -->
-                            <optgroup label="Outros">
-                                <option class="inserir" value="Erótico">Erótico</option>
-                                <option class="inserir" value="Esporte">Esporte</option>
-                                <option class="inserir" value="HQ">HQ / Mangá</option>
-                                <option class="inserir" value="Infantil">Infantil</option>
-                                <option class="inserir" value="Juvenil">Juvenil</option>
-                                <option class="inserir" value="Mitologia">Mitologia</option>
-                                <option class="inserir" value="Poesia">Poesia</option>
-                            </optgroup>
                         </select>
                     </div>
-                    <div class="col-md-6">
-                        <label for="filtroDisponibilidade" class="form-label">Filtrar por Disponibilidade:</label>
+                    <div class="col-md-4">
+                        <label for="filtroDisponibilidade" class="form-label">Disponibilidade:</label>
                         <select id="filtroDisponibilidade" class="form-select">
                             <option value="">Todos</option>
                             <option value="disponivel">Disponíveis</option>
                             <option value="indisponivel">Indisponíveis</option>
                         </select>
                     </div>
+                    <div class="col-md-4">
+                        <label for="filtroNotaMin" class="form-label">Nota mínima:</label>
+                        <select id="filtroNotaMin" class="form-select">
+                            <option value="">Qualquer nota</option>
+                            <option value="1">1+</option>
+                            <option value="2">2+</option>
+                            <option value="3">3+</option>
+                            <option value="4">4+</option>
+                            <option value="5">5</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-md-4">
+                        <label for="filtroPaginasMin" class="form-label">Páginas mínimas:</label>
+                        <input type="number" id="filtroPaginasMin" class="form-control" placeholder="Mínimo">
+                    </div>
+                    <div class="col-md-4">
+                        <label for="filtroPaginasMax" class="form-label">Páginas máximas:</label>
+                        <input type="number" id="filtroPaginasMax" class="form-control" placeholder="Máximo">
+                    </div>
+                    <div class="col-md-4">
+                        <label for="filtroIdioma" class="form-label">Idioma:</label>
+                        <select id="filtroIdioma" class="form-select">
+                            <option value="">Qualquer idioma</option>
+                            <option value="Português">Português</option>
+                            <option value="Inglês">Inglês</option>
+                            <option value="Espanhol">Espanhol</option>
+                            <option value="Francês">Francês</option>
+                            <option value="Outro">Outro</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-md-12 text-end">
+                        <button id="btnAplicarFiltros" class="btn btn-primary">Aplicar Filtros</button>
+                        <button id="btnLimparFiltros" class="btn btn-secondary ms-2">Limpar Filtros</button>
+                    </div>
                 </div>
             </div>
-
-            <div class="listalivros" id="listaLivros">
-                <!-- Livros serão carregados aqui via JavaScript -->
-            </div>
-
+            <div class="listalivros" id="listaLivros"></div>
             <div class="paginacao">
-                <a href="" class="btn" id="pagina-anterior"> <i class="fa-solid fa-left-long"></i> </a>
+                <a href="" class="btn" id="pagina-anterior"><i class="fa-solid fa-left-long"></i></a>
                 <h3 class="paginaAtual" id="paginaAtual">1</h3>
-                <a href="" class="btn" id="pagina-proxima"> <i class="fa-solid fa-right-long"></i> </a>
+                <a href="" class="btn" id="pagina-proxima"><i class="fa-solid fa-right-long"></i></a>
             </div>
         </div>
     </main>
@@ -173,21 +177,12 @@
         <div class="separacao1">
             <p>Entre em contato conosco</p>
             <div class="redes">
-                <a href="https://www.whatsapp.com/?lang=pt_BR">
-                    <i class="fa-brands fa-whatsapp"></i>
-                </a>
-                <a href="https://www.instagram.com">
-                    <i class="fa-brands fa-instagram"></i>
-                </a>
-                <a href="https://br.linkedin.com">
-                    <i class="fa-brands fa-linkedin"></i>
-                </a>
-                <a href="https://x.com/?lang=pt">
-                    <i class="fa-brands fa-twitter"></i>
-                </a>
-                <a href="https://pt-br.facebook.com/login/device-based/regular/login/">
-                    <i class="fa-brands fa-facebook"></i>
-                </a>
+                <a href="https://www.whatsapp.com/?lang=pt_BR"><i class="fa-brands fa-whatsapp"></i></a>
+                <a href="https://www.instagram.com"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://br.linkedin.com"><i class="fa-brands fa-linkedin"></i></a>
+                <a href="https://x.com/?lang=pt"><i class="fa-brands fa-twitter"></i></a>
+                <a href="https://pt-br.facebook.com/login/device-based/regular/login/"><i
+                        class="fa-brands fa-facebook"></i></a>
             </div>
         </div>
         <div class="rodape-inter">
@@ -207,10 +202,7 @@
                 <img class="logo_rodape" src="http://192.168.1.125:5000/static/uploads/logo/logo.png" alt="logo">
             </div>
             <div class="localizacao">
-                <p class="local">LOCALIZAÇÃO
-                    <br>
-                    Birigui - SP
-                </p>
+                <p class="local">LOCALIZAÇÃO<br>Birigui - SP</p>
             </div>
         </div>
         <div class="as">
@@ -220,192 +212,173 @@
     </footer>
 
     <script>
-        let filtrosAtivos = {
-            categoria: '',
-            disponibilidade: ''
-        };
+        $(document).ready(function () {
+            let paginaAtual = 1;
+            let totalPaginas = 1;
+            let livrosPagina = [];
 
-        function carregarCategorias() {
-            $.ajax({
-                url: ipPython + "/todas_categorias",
-                method: "GET",
-                success: function (retorno) {
-                    const filtroCategoria = document.getElementById('filtroCategoria');
-                    filtroCategoria.innerHTML = `<option value="">Todas</option>`;
-
-                    retorno.categorias.sort().forEach(categoria => {
-                        const option = document.createElement('option');
-                        option.value = categoria;
-                        option.textContent = categoria;
-                        filtroCategoria.appendChild(option);
-                    });
-
-                    const params = new URLSearchParams(window.location.search);
-                    if (params.has('categoria')) {
-                        filtroCategoria.value = params.get('categoria');
-                        filtrosAtivos.categoria = params.get('categoria');
+            // Inicializa categorias (só depois do primeiro carregamento de livros!)
+            function popularCategoriasDinamicamente(livros) {
+                const filtroCategoria = $('#filtroCategoria');
+                const categorias = [];
+                livros.forEach(livro => {
+                    if (livro.categoria && !categorias.includes(livro.categoria)) {
+                        categorias.push(livro.categoria);
                     }
-                    if (params.has('disponibilidade')) {
-                        document.getElementById('filtroDisponibilidade').value = params.get('disponibilidade');
-                        filtrosAtivos.disponibilidade = params.get('disponibilidade');
-                    }
-                },
-                error: function () {
-                    console.error("Erro ao carregar categorias.");
-                }
-            });
-        }
-
-        function carregaLivros() {
-            const params = new URLSearchParams(window.location.search);
-            const pagina = parseInt(params.get('pagina')) || 1;
-
-            $.ajax({
-                url: ipPython + "/livro?pagina=" + pagina,
-                method: "GET",
-                success: function (retorno) {
-                    const html = document.getElementById("listaLivros");
-                    html.innerHTML = "";
-
-                    if (!retorno.livros || retorno.livros.length === 0) {
-                        html.innerHTML = `<p>Nenhum livro encontrado!</p>`;
-                        return;
-                    }
-
-                    document.getElementById("paginaAtual").innerHTML = retorno.pagina_atual;
-
-                    const total = retorno.total_paginas;
-                    const anterior = retorno.pagina_atual - 1;
-                    const proxima = retorno.pagina_atual + 1;
-
-                    const btnAnterior = document.getElementById("pagina-anterior");
-                    const btnProxima = document.getElementById("pagina-proxima");
-
-                    btnAnterior.style.display = retorno.pagina_atual > 1 ? "" : "none";
-                    btnProxima.style.display = retorno.pagina_atual < total ? "" : "none";
-
-                    const paramsClone = new URLSearchParams(window.location.search);
-
-                    paramsClone.set("pagina", anterior);
-                    btnAnterior.href = "/templates/catalogo.html?" + paramsClone.toString();
-
-                    paramsClone.set("pagina", proxima);
-                    btnProxima.href = "/templates/catalogo.html?" + paramsClone.toString();
-
-                    retorno.livros.forEach(livro => {
-                        html.innerHTML += `
-                                <div class="item" data-categoria="${livro.categoria}" data-disponibilidade="${livro.quantidade > 0 ? 'disponivel' : 'indisponivel'}">
-                                    <a title="${livro.titulo}" href="reserva.html?id=${livro.id_livro}">
-                                        <img src="${ipPython}/static/uploads/Livros/${livro.id_livro}.jpeg" alt="${livro.titulo}">
-                                        <p>${livro.titulo}</p>
-                                    </a>
-                                </div>
-                            `;
-                    });
-
-                    aplicarFiltros();
-                },
-                error: function () {
-                    document.getElementById("listaLivros").innerHTML = `<p>Erro ao carregar livros.</p>`;
-                }
-            });
-        }
-
-        function aplicarFiltros() {
-            const livros = document.querySelectorAll('#listaLivros .item');
-            livros.forEach(item => {
-                const cat = item.getAttribute('data-categoria');
-                const disp = item.getAttribute('data-disponibilidade');
-
-                const categoriaOk = !filtrosAtivos.categoria || filtrosAtivos.categoria === cat;
-                const disponibilidadeOk = !filtrosAtivos.disponibilidade || filtrosAtivos.disponibilidade === disp;
-
-                item.style.display = (categoriaOk && disponibilidadeOk) ? "" : "none";
-            });
-        }
-
-        document.getElementById('filtroCategoria').addEventListener('change', function () {
-            filtrosAtivos.categoria = this.value;
-            aplicarFiltros();
-
-            const params = new URLSearchParams(window.location.search);
-            if (this.value) {
-                params.set('categoria', this.value);
-            } else {
-                params.delete('categoria');
-            }
-            window.history.pushState({}, '', `/templates/catalogo.html?${params.toString()}`);
-        });
-
-        document.getElementById('filtroDisponibilidade').addEventListener('change', function () {
-            filtrosAtivos.disponibilidade = this.value;
-            aplicarFiltros();
-
-            const params = new URLSearchParams(window.location.search);
-            if (this.value) {
-                params.set('disponibilidade', this.value);
-            } else {
-                params.delete('disponibilidade');
-            }
-            window.history.pushState({}, '', `/templates/catalogo.html?${params.toString()}`);
-        });
-
-        $("#formBuscaLivro").on("submit", function (e) {
-            e.preventDefault();
-
-            const termo = $("#campoBusca").val().trim();
-
-            if (!termo) {
-                Swal.fire({
-                    title: "Atenção!",
-                    text: "Digite algo para buscar.",
-                    icon: "warning"
                 });
-                return;
+                categorias.sort();
+                filtroCategoria.empty().append('<option value="">Todas as categorias</option>');
+                categorias.forEach(categoria => {
+                    filtroCategoria.append(`<option value="${categoria}">${categoria}</option>`);
+                });
             }
 
-            $("#listaLivros").html("<p>Buscando livros...</p>");
-            $.ajax({
-                url: ipPython + "/pesquisar_livro?q=" + encodeURIComponent(termo),
-                method: "GET",
-                success: function (retorno) {
-                    $("#listaLivros").empty();
+            // Carregar livros da página atual
+            function carregarLivros() {
+                const params = new URLSearchParams();
+                params.set('pagina', paginaAtual);
 
-                    if (retorno.livros && retorno.livros.length > 0) {
-                        retorno.livros.forEach(livro => {
-                            $("#listaLivros").append(`
-                                    <div class="item">
-                                        <a href="reserva.html?id=${livro.id_livro}&titulo=${livro.titulo}">
-                                            <img src="${ipPython}/static/uploads/Livros/${livro.id_livro}.jpeg" alt="${livro.titulo}">
-                                            <p>${livro.titulo}</p>
-                                        </a>
-                                    </div>
-                                `);
-                        });
-                    } else {
-                        $("#listaLivros").html("<p>Nenhum livro encontrado.</p>");
+                $('#listaLivros').html('<p>Carregando livros...</p>');
+
+                $.ajax({
+                    url: ipPython + "/pesquisar_livro_avancado?" + params.toString(),
+                    method: "GET",
+                    success: function (retorno) {
+                        totalPaginas = retorno.total_paginas || 1;
+                        livrosPagina = retorno.livros || [];
+                        atualizarControlesPaginacao();
+                        popularCategoriasDinamicamente(livrosPagina); // <-- Aqui!
+                        aplicarFiltrosFrontend();
+                    },
+                    error: function () {
+                        $('#listaLivros').html('<p class="text-danger">Erro ao carregar livros.</p>');
                     }
+                });
+            }
 
-                    document.querySelector('.paginacao').style.display = 'none';
-                },
-                error: function () {
-                    Swal.fire({
-                        title: "Erro!",
-                        text: "Erro ao buscar livros.",
-                        icon: "error"
+            // Aplica os filtros no frontend sobre o array livrosPagina
+            function aplicarFiltrosFrontend() {
+                let filtrados = livrosPagina;
+
+                const categoriaAtiva = $('#filtroCategoria').val();
+                const dispAtiva = $('#filtroDisponibilidade').val();
+                const notaMin = $('#filtroNotaMin').val();
+                const paginasMin = $('#filtroPaginasMin').val();
+                const paginasMax = $('#filtroPaginasMax').val();
+                const idioma = $('#filtroIdioma').val();
+
+                if (categoriaAtiva) {
+                    filtrados = filtrados.filter(livro => (livro.categoria || '').toLowerCase() === categoriaAtiva.toLowerCase());
+                }
+                if (dispAtiva) {
+                    filtrados = filtrados.filter(livro => {
+                        if (dispAtiva === 'disponivel') return livro.quantidade > 0;
+                        if (dispAtiva === 'indisponivel') return livro.quantidade <= 0;
+                        return true;
                     });
                 }
-            });
-        });
-        $("#campoBusca").on("input", function () {
-            if ($(this).val().trim() === "") {
-                document.querySelector('.paginacao').style.display = 'flex';
-                carregaLivros();
+                if (notaMin) {
+                    filtrados = filtrados.filter(livro => (livro.nota || 0) >= parseFloat(notaMin));
+                }
+                if (paginasMin) {
+                    filtrados = filtrados.filter(livro => (livro.paginas || 0) >= parseInt(paginasMin));
+                }
+                if (paginasMax) {
+                    filtrados = filtrados.filter(livro => (livro.paginas || 0) <= parseInt(paginasMax));
+                }
+                if (idioma) {
+                    filtrados = filtrados.filter(livro => (livro.idioma || '').toLowerCase() === idioma.toLowerCase());
+                }
+
+                exibirLivros(filtrados);
             }
+
+            // Exibe livros filtrados na tela
+            function exibirLivros(livros) {
+                const listaLivros = $('#listaLivros');
+                listaLivros.empty();
+
+                if (!livros || livros.length === 0) {
+                    listaLivros.html('<p>Nenhum livro encontrado com os filtros atuais.</p>');
+                    return;
+                }
+
+                livros.forEach(livro => {
+                    const disponibilidade = livro.quantidade > 0 ? 'disponivel' : 'indisponivel';
+                    const disponibilidadeTexto = livro.quantidade > 0 ? 'Disponível' : 'Indisponível';
+
+                    listaLivros.append(`
+                        <div class="item" data-categoria="${livro.categoria}" data-disponibilidade="${disponibilidade}">
+                            <a title="${livro.titulo}" href="reserva.html?id=${livro.id_livro}">
+                                <img src="${ipPython}/static/uploads/Livros/${livro.id_livro}.jpeg" alt="${livro.titulo}">
+                                <p class="livro-titulo">${livro.titulo}</p>
+                                <p class="livro-autor">${livro.autor}</p>
+                                <p class="livro-nota">Nota: ${livro.nota || '-'}/5</p>
+                                <p class="livro-paginas">${livro.paginas || '?'} páginas</p>
+                                <p class="livro-disponibilidade ${disponibilidade}">${disponibilidadeTexto}</p>
+                            </a>
+                        </div>
+                    `);
+                });
+            }
+
+            // Atualiza os controles de paginação
+            function atualizarControlesPaginacao() {
+                $('#paginaAtual').text(paginaAtual);
+                if (paginaAtual > 1) {
+                    $('#pagina-anterior').show().attr('href', `?pagina=${paginaAtual - 1}`);
+                } else {
+                    $('#pagina-anterior').hide();
+                }
+                if (paginaAtual < totalPaginas) {
+                    $('#pagina-proxima').show().attr('href', `?pagina=${paginaAtual + 1}`);
+                } else {
+                    $('#pagina-proxima').hide();
+                }
+            }
+
+            // Eventos de filtro
+            $('#btnAplicarFiltros').click(function () {
+                aplicarFiltrosFrontend();
+            });
+
+            $('#btnLimparFiltros').click(function () {
+                $('#filtroCategoria').val('');
+                $('#filtroDisponibilidade').val('');
+                $('#filtroNotaMin').val('');
+                $('#filtroPaginasMin').val('');
+                $('#filtroPaginasMax').val('');
+                $('#filtroIdioma').val('');
+                aplicarFiltrosFrontend();
+            });
+
+            $('#filtroCategoria, #filtroDisponibilidade, #filtroNotaMin, #filtroPaginasMin, #filtroPaginasMax, #filtroIdioma').change(function () {
+                aplicarFiltrosFrontend();
+            });
+
+            // Pesquisa por texto
+            $('#formBuscaLivro').submit(function (e) {
+                e.preventDefault();
+                const termo = $('#campoBusca').val().trim();
+                if (!termo) {
+                    Swal.fire({ title: "Atenção!", text: "Digite algo para buscar.", icon: "warning" });
+                    return;
+                }
+                window.location.href = `pesquisa.html?q=${encodeURIComponent(termo)}`;
+            });
+
+            // Paginação
+            $(document).on('click', '#pagina-anterior, #pagina-proxima', function (e) {
+                e.preventDefault();
+                const href = $(this).attr('href');
+                const pagina = new URLSearchParams(href.split('?')[1]).get('pagina');
+                paginaAtual = parseInt(pagina) || 1;
+                carregarLivros();
+            });
+
+            // Inicialização
+            carregarLivros();
         });
-        // Inicialização
-        carregarCategorias();
-        carregaLivros();
     </script>
 </body>
 
