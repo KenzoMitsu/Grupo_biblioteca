@@ -340,14 +340,22 @@ header {
     color: #333;
 }
 
-.status-verde {
-    color: green;
+.item .status-verde {
+    padding: 18px;
+    background-color: rgb(215, 254, 233);
+    color: rgb(26, 172, 95) !important;
     font-weight: bold;
 }
 
 .status-vermelho {
-    color: red;
+    padding: 18px !important;
+    background-color: rgb(255, 217, 222);
+    color: rgb(233, 0, 57) !important;
     font-weight: bold;
+}
+
+.erro-pagina {
+    color: red;
 }
 
 .paginacao {

@@ -35,7 +35,7 @@
     <header>
         <!-- Logo -->
         <div class="header-left">
-            <a id="logoHeader" href="home.html"><img src="../static/img/logo.png" alt="Logo"></a>
+            <a id="logoHeader" href="home.html"><img src="http://192.168.1.125:5000/static/uploads/logo/logo.png" alt="Logo"></a>
         </div>
 
         <!-- Barra de Pesquisa -->
@@ -115,7 +115,7 @@
             var token = localStorage.getItem("token");
             $.ajax({
                 method: "GET",
-                url: ipPython + "/livro",
+                url: ipPython + "/pesquisar_livros",
                 headers: {
                     'Authorization': 'Bearer ' + token
                 },
@@ -636,8 +636,6 @@
                             </select>
                         </div>
 
-
-
                         <div class="mb-3">
                             <label for="imagemEditar" class="form-label">Imagem do Livro</label>
                             <input type="file" class="form-control" id="imagemEditar" name="imagem" accept="image/*">
@@ -689,7 +687,7 @@
                 </div>
             </div>
             <div class="imagem">
-                <img class="logo_rodape" src="../static/img/logo.png" alt="logo">
+                <img class="logo_rodape" src="http://192.168.1.125:5000/static/uploads/logo/logo.png" alt="logo">
             </div>
             <div class="localizacao">
                 <p class="local">LOCALIZAÇÃO
@@ -711,36 +709,6 @@
         // DEBUG: Verifica a variável ipPython
         console.log("ipPython:", ipPython);
 
-        // FUNÇÃO PARA DELETAR LIVROS (mantida igual)
-        // function deletarLivro(button) {
-        //     var id = $(button).closest('.livro-hud').data("id_livro");
-
-        //     Swal.fire({
-        //         title: 'Confirmar exclusão?',
-        //         text: "Esta ação não pode ser desfeita!",
-        //         icon: 'warning',
-        //         showCancelButton: true,
-        //         confirmButtonText: 'Sim, excluir!'
-        //     }).then((result) => {
-        //         if (result.isConfirmed) {
-        //             $.ajax({
-        //                 method: "DELETE",
-        //                 url: ipPython + "/livros/" + id,
-        //                 headers: {
-        //                     'Authorization': 'Bearer ' + localStorage.getItem("token")
-        //                 },
-        //                 success: function() {
-        //                     Swal.fire("Excluído!", "Livro removido", "success");
-        //                     carregarLivros();
-        //                 },
-        //                 error: function() {
-        //                     Swal.fire("Erro!", "Falha ao excluir", "error");
-        //                 }
-        //             });
-        //         }
-        //     });
-        // }
-
         // Adiciona o evento de clique no botão de relatórios
         document.addEventListener('DOMContentLoaded', function () {
             const relatoriosItem = document.getElementById('relatorios');
@@ -750,8 +718,6 @@
                 submenu.classList.toggle('show'); // Alterna a classe 'show' para mostrar ou esconder o submenu
             });
         });
-
-
 
 
         // Função para atualizar os hrefs dos relatórios

@@ -60,6 +60,7 @@ function sair() {
     window.location.href = "login.html"; // Redireciona para a página de login
 }
 
+// AQUI É O ADMINISTRADOR
 if (cargo === 'ADM') {
     document.getElementById("logoHeader").href = "home.html"
 
@@ -73,7 +74,7 @@ if (cargo === 'ADM') {
 
         <li class="menu-item">
             <div>
-                <i class="fa-solid fa-clock"></i><a href="historicoReservas.html">Meu Histórico</a>
+                <i class="fa-solid fa-clock"></i><a href="historicoReservas.html">Histórico de Reservas</a>
             </div>
         </li>
 
@@ -146,6 +147,7 @@ if (cargo === 'ADM') {
         </li>
     `;
 
+    // AQUI É BIBLIOTECÁRIO
 } else if (cargo === 'Bibliotecario') {
     document.getElementById("logoHeader").href = "home.html"
 
@@ -186,6 +188,7 @@ if (cargo === 'ADM') {
         </li>
     `;
 
+    // AQUI É CLIENTE
 } else {
     document.getElementById("logoHeader").href = "home.html"
 
