@@ -46,11 +46,13 @@
                 <input type="text" id="campoBusca" placeholder="Pesquise Seu Livro" class="search-box">
             </div>
         </form>
-        <a href="catalogo.html"
-            class=" btn-catalogo flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
-            <i class="fas fa-folder-open"></i>
-            Catálogo
-        </a>
+        <div class="catalogo">
+            <a href="catalogo.html"
+                class=" btn-catalogo flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
+                <i class="fas fa-folder-open"></i>
+                <p class="texto-catalogo">Catálogo</p>
+            </a>
+        </div>
 
         <div class="kenso-viado">
             <!-- Ícone de Menu com Dropdown -->
@@ -269,6 +271,34 @@
             }
         });
     });
+
+            // Adiciona o evento de clique no botão de relatórios
+                document.addEventListener('DOMContentLoaded', function () {
+                    const relatoriosItem = document.getElementById('relatorios');
+                    const submenu = relatoriosItem.querySelector('.submenu');
+
+                    relatoriosItem.querySelector('.submenu-toggle').addEventListener('click', function () {
+                        submenu.classList.toggle('show'); // Alterna a classe 'show' para mostrar ou esconder o submenu
+                    });
+                });
+                // Função para atualizar os hrefs dos relatórios
+                function atualizarLinksRelatorios() {
+                    const linksRelatorios = {
+                        relatorioMultas: "/multas_relatorio",
+                        relatorioLivros: "/livros_relatorio",
+                        relatorioUsuarios: "/usuarios_relatorio",
+                        relatorioEmprestimos: "/emprestimos_relatorio"
+                    };
+                    for (let id in linksRelatorios) {
+                        const elemento = document.getElementById(id);
+                        if (elemento) {
+                            elemento.href = `${ipPython2}${linksRelatorios[id]}`;
+                        }
+                    }
+                }
+
+                // Chama a função assim que o DOM carregar
+                document.addEventListener("DOMContentLoaded", atualizarLinksRelatorios);   
   </script>
 
 </body>

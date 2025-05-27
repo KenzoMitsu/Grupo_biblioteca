@@ -46,11 +46,13 @@
                 <input type="text" id="campoBusca" placeholder="Pesquise Seu Livro" class="search-box">
             </div>
         </form>
-        <a href="catalogo.html"
-            class=" btn-catalogo flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
-            <i class="fas fa-folder-open"></i>
-            Catálogo
-        </a>
+        <div class="catalogo">
+            <a href="catalogo.html"
+                class=" btn-catalogo flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
+                <i class="fas fa-folder-open"></i>
+                <p class="texto-catalogo">Catálogo</p>
+            </a>
+        </div>
 
         <div class="coisa">
             <!-- Ícone de Menu com Dropdown -->
@@ -80,7 +82,7 @@
                         <img id="imagemUsuario" class="foto-usuario imagemUsuario" src="" alt="">
 
                         <button id="btn_editar" class="botao-editar" type="button">Editar</button>
-                        
+
                     </div>
 
                     <div class="filho2">
@@ -103,67 +105,68 @@
         </section>
 
         <!-- Modal para Editar Usuário -->
-        <div class="modal fade" id="editarUsuarioModal" tabindex="-1" aria-labelledby="editarUsuarioModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="editarUsuarioModalLabel">Editar Usuário</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form id="formEditarUsuario">
-
-                <div class="mb-9">
-
-                    <div class="mb-6">
-
-                        <div class="mb-3">
-                            <label for="nomeUsuario" class="form-label">Nome</label>
-                            <input type="text" class="form-control" id="nomeUsuario" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="emailUsuario" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="emailUsuario" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="telefoneUsuario" class="form-label">Telefone</label>
-                            <input type="text" class="form-control" id="telefoneUsuario" required>
-                        </div>
-
+        <div class="modal fade" id="editarUsuarioModal" tabindex="-1" aria-labelledby="editarUsuarioModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editarUsuarioModalLabel">Editar Usuário</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
+                    <div class="modal-body">
+                        <form id="formEditarUsuario">
 
-                    <div class="mb-6">
+                            <div class="mb-9">
 
-                        <div class="mb-3">
-                            <label for="dataNascimentoUsuario" class="form-label">Data de Nascimento</label>
-                            <input type="date" class="form-control" id="dataNascimentoUsuario" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="cargoUsuario" class="form-label">Cargo</label>
-                            <input type="text" class="form-control" id="cargoUsuario" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="statusUsuario" class="form-label">Status</label>
-                            <select class="form-select" id="statusUsuario" required>
-                            <option value="Ativo">Ativo</option>
-                            <option value="Inativo">Inativo</option>
-                            </select>
-                        </div>
+                                <div class="mb-6">
+
+                                    <div class="mb-3">
+                                        <label for="nomeUsuario" class="form-label">Nome</label>
+                                        <input type="text" class="form-control" id="nomeUsuario" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="emailUsuario" class="form-label">Email</label>
+                                        <input type="email" class="form-control" id="emailUsuario" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="telefoneUsuario" class="form-label">Telefone</label>
+                                        <input type="text" class="form-control" id="telefoneUsuario" required>
+                                    </div>
+
+                                </div>
+
+                                <div class="mb-6">
+
+                                    <div class="mb-3">
+                                        <label for="dataNascimentoUsuario" class="form-label">Data de Nascimento</label>
+                                        <input type="date" class="form-control" id="dataNascimentoUsuario" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="cargoUsuario" class="form-label">Cargo</label>
+                                        <input type="text" class="form-control" id="cargoUsuario" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="statusUsuario" class="form-label">Status</label>
+                                        <select class="form-select" id="statusUsuario" required>
+                                            <option value="Ativo">Ativo</option>
+                                            <option value="Inativo">Inativo</option>
+                                        </select>
+                                    </div>
 
 
+                                </div>
+
+                            </div>
+
+                            <button type="submit" class="btn btn-primary">Salvar Alterações</button>
+
+                            <!-- Guarda o ID que veio na URL -->
+                            <input type="hidden" id="idUsuario">
+
+                        </form>
                     </div>
-
                 </div>
-
-                <button type="submit" class="btn btn-primary">Salvar Alterações</button>
-
-                <!-- Guarda o ID que veio na URL -->
-                <input type="hidden" id="idUsuario">
-
-                </form>
             </div>
-            </div>
-        </div>
         </div>
 
         <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
@@ -173,23 +176,23 @@
             </li>
         </ul>
 
-            <!-- Histórico de reservas -->
-            <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab" tabindex="0">
-                <div class="table-responsive">
-                    <table class="table table-striped" id="tabela-reservas">
+        <!-- Histórico de reservas -->
+        <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab" tabindex="0">
+            <div class="table-responsive">
+                <table class="table table-striped" id="tabela-reservas">
                     <thead>
                         <tr>
-                        <th>Data da Reserva</th>
-                        <th>Título do Livro</th>
-                        <th>Autor</th>
-                        <th>Status</th>
+                            <th>Data da Reserva</th>
+                            <th>Título do Livro</th>
+                            <th>Autor</th>
+                            <th>Status</th>
                         </tr>
                     </thead>
                     <tbody></tbody>
-                    </table>
-                </div>
-                <nav aria-label="Paginação de Reservas">
-                    <ul class="pagination justify-content-center">
+                </table>
+            </div>
+            <nav aria-label="Paginação de Reservas">
+                <ul class="pagination justify-content-center">
                     <li class="page-item" id="li-anterior-reserva">
                         <a class="page-link" href="#" id="pagina-anterior-reserva">Anterior</a>
                     </li>
@@ -199,9 +202,9 @@
                     <li class="page-item" id="li-proxima-reserva">
                         <a class="page-link" href="#" id="pagina-proxima-reserva">Próxima</a>
                     </li>
-                    </ul>
-                </nav>
-            </div>
+                </ul>
+            </nav>
+        </div>
 
         </div>
     </main>
@@ -259,131 +262,131 @@
     </footer>
 
     <script>
-        $(document).ready(function() {
-        const token = localStorage.getItem('token');
+        $(document).ready(function () {
+            const token = localStorage.getItem('token');
 
-        // Pega o ID da URL:
-        const params = new URLSearchParams(window.location.search);
-        const idUsuario = params.get('id');
-        if (!idUsuario) {
-            Swal.fire('Erro', 'ID do usuário não informado na URL', 'error');
-            return;
-        }
-        $('#idUsuario').val(idUsuario);
-
-        // Carrega dados atuais
-        $.ajax({
-            url: `${ipPython}/usuarioo/${idUsuario}`,
-            method: 'GET',
-            headers: { 'Authorization': 'Bearer ' + token }
-        })
-        .done(function(usu) {
-            // preenche o perfil
-            $('#imagemUsuario')
-            .attr('src', `${ipPython}/static/uploads/Usuarios/${idUsuario}.jpeg`)
-            .on('error', () => $('#imagemUsuario').attr('src', '../static/img/default-user.png'));
-            $('#nome').text(usu.nome);
-            $('#email').text(usu.email);
-            $('#telefone').text(usu.telefone);
-            $('#data_nascimento').text(new Date(usu.data_nascimento).toLocaleDateString('pt-BR'));
-            $('#cargo').text(usu.cargo);
-            $('#status').text(usu.status);
-        })
-        .fail(() => Swal.fire('Erro', 'Não foi possível obter os dados do usuário', 'error'));
-
-        // Ao clicar em “Editar”, abre o modal já preenchido com o que está na tela
-        $('#btn_editar').on('click', function() {
-            // lê os valores atuais da view
-            $('#nomeUsuario').val($('#nome').text());
-            $('#emailUsuario').val($('#email').text());
-            $('#telefoneUsuario').val($('#telefone').text());
-            // converte de DD/MM/AAAA para YYYY-MM-DD para o <input type="date">
-            let parts = $('#data_nascimento').text().split('/');
-            $('#dataNascimentoUsuario').val(`${parts[2]}-${parts[1]}-${parts[0]}`);
-            $('#cargoUsuario').val($('#cargo').text());
-            $('#statusUsuario').val($('#status').text());
-            // mostra o modal do Bootstrap
-            new bootstrap.Modal(document.getElementById('editarUsuarioModal')).show();
-        });
-
-        // Envio do formulário de edição
-        $('#formEditarUsuario').submit(function(e) {
-            e.preventDefault();
-
-            const dados = {
-            nome: $('#nomeUsuario').val().trim(),
-            email: $('#emailUsuario').val().trim(),
-            telefone: $('#telefoneUsuario').val().trim(),
-            data_nascimento: $('#dataNascimentoUsuario').val(),
-            cargo: $('#cargoUsuario').val().trim(),
-            status: $('#statusUsuario').val()
-            };
-
-            $.ajax({
-            method: 'PUT',
-            url: `${ipPython}/usuariosadm/${idUsuario}`,
-            headers: { 'Authorization': 'Bearer ' + token },
-            contentType: 'application/json',
-            data: JSON.stringify(dados),
-            success: function() {
-                Swal.fire('Sucesso!', 'Usuário atualizado com sucesso!', 'success')
-                .then(() => {
-                    // atualiza a viesualização sem recarregar:
-                    $('#nome').text(dados.nome);
-                    $('#email').text(dados.email);
-                    $('#telefone').text(dados.telefone);
-                    $('#data_nascimento').text(new Date(dados.data_nascimento).toLocaleDateString('pt-BR'));
-                    $('#cargo').text(dados.cargo);
-                    $('#status').text(dados.status);
-                    // fecha o modal de edição
-                    bootstrap.Modal.getInstance(document.getElementById('editarUsuarioModal')).hide();
-                });
-            },
-            error: function(retorno) {
-                Swal.fire('Erro!', JSON.parse(retorno.responseText).error || 'Falha ao editar usuário.', 'error');
+            // Pega o ID da URL:
+            const params = new URLSearchParams(window.location.search);
+            const idUsuario = params.get('id');
+            if (!idUsuario) {
+                Swal.fire('Erro', 'ID do usuário não informado na URL', 'error');
+                return;
             }
-            });
-        });
+            $('#idUsuario').val(idUsuario);
 
-        // Essa é a "máscara" de telefone dentro do modal, só para deixar bonito
-        $('#telefoneUsuario').on('keyup', function(event) {
-            let v = event.target.value.replace(/\D/g, '');
-            v = v.replace(/(\d{2})(\d)/, '($1) $2');
-            v = v.replace(/(\d)(\d{4})$/, '$1-$2');
-            event.target.value = v;
-        });
+            // Carrega dados atuais
+            $.ajax({
+                url: `${ipPython}/usuarioo/${idUsuario}`,
+                method: 'GET',
+                headers: { 'Authorization': 'Bearer ' + token }
+            })
+                .done(function (usu) {
+                    // preenche o perfil
+                    $('#imagemUsuario')
+                        .attr('src', `${ipPython}/static/uploads/Usuarios/${idUsuario}.jpeg`)
+                        .on('error', () => $('#imagemUsuario').attr('src', '../static/img/default-user.png'));
+                    $('#nome').text(usu.nome);
+                    $('#email').text(usu.email);
+                    $('#telefone').text(usu.telefone);
+                    $('#data_nascimento').text(new Date(usu.data_nascimento).toLocaleDateString('pt-BR'));
+                    $('#cargo').text(usu.cargo);
+                    $('#status').text(usu.status);
+                })
+                .fail(() => Swal.fire('Erro', 'Não foi possível obter os dados do usuário', 'error'));
+
+            // Ao clicar em “Editar”, abre o modal já preenchido com o que está na tela
+            $('#btn_editar').on('click', function () {
+                // lê os valores atuais da view
+                $('#nomeUsuario').val($('#nome').text());
+                $('#emailUsuario').val($('#email').text());
+                $('#telefoneUsuario').val($('#telefone').text());
+                // converte de DD/MM/AAAA para YYYY-MM-DD para o <input type="date">
+                let parts = $('#data_nascimento').text().split('/');
+                $('#dataNascimentoUsuario').val(`${parts[2]}-${parts[1]}-${parts[0]}`);
+                $('#cargoUsuario').val($('#cargo').text());
+                $('#statusUsuario').val($('#status').text());
+                // mostra o modal do Bootstrap
+                new bootstrap.Modal(document.getElementById('editarUsuarioModal')).show();
+            });
+
+            // Envio do formulário de edição
+            $('#formEditarUsuario').submit(function (e) {
+                e.preventDefault();
+
+                const dados = {
+                    nome: $('#nomeUsuario').val().trim(),
+                    email: $('#emailUsuario').val().trim(),
+                    telefone: $('#telefoneUsuario').val().trim(),
+                    data_nascimento: $('#dataNascimentoUsuario').val(),
+                    cargo: $('#cargoUsuario').val().trim(),
+                    status: $('#statusUsuario').val()
+                };
+
+                $.ajax({
+                    method: 'PUT',
+                    url: `${ipPython}/usuariosadm/${idUsuario}`,
+                    headers: { 'Authorization': 'Bearer ' + token },
+                    contentType: 'application/json',
+                    data: JSON.stringify(dados),
+                    success: function () {
+                        Swal.fire('Sucesso!', 'Usuário atualizado com sucesso!', 'success')
+                            .then(() => {
+                                // atualiza a viesualização sem recarregar:
+                                $('#nome').text(dados.nome);
+                                $('#email').text(dados.email);
+                                $('#telefone').text(dados.telefone);
+                                $('#data_nascimento').text(new Date(dados.data_nascimento).toLocaleDateString('pt-BR'));
+                                $('#cargo').text(dados.cargo);
+                                $('#status').text(dados.status);
+                                // fecha o modal de edição
+                                bootstrap.Modal.getInstance(document.getElementById('editarUsuarioModal')).hide();
+                            });
+                    },
+                    error: function (retorno) {
+                        Swal.fire('Erro!', JSON.parse(retorno.responseText).error || 'Falha ao editar usuário.', 'error');
+                    }
+                });
+            });
+
+            // Essa é a "máscara" de telefone dentro do modal, só para deixar bonito
+            $('#telefoneUsuario').on('keyup', function (event) {
+                let v = event.target.value.replace(/\D/g, '');
+                v = v.replace(/(\d{2})(\d)/, '($1) $2');
+                v = v.replace(/(\d)(\d{4})$/, '$1-$2');
+                event.target.value = v;
+            });
         });
 
 
         // Histórico de Reservas
         // ==========================
         function carregarReservas(pagina = 1) {
-        const token = localStorage.getItem('token');
-        const params = new URLSearchParams(window.location.search);
-        const idUsuario = params.get('id');
-        if (!idUsuario) return;
+            const token = localStorage.getItem('token');
+            const params = new URLSearchParams(window.location.search);
+            const idUsuario = params.get('id');
+            if (!idUsuario) return;
 
-        $.ajax({
-            method: "GET",
-            url: `${ipPython}/reservasusuario/${idUsuario}?pagina=${pagina}`,
-            headers: { 'Authorization': 'Bearer ' + token },
-            success: function(data) {
-            // atualiza paginação
-            $('#paginaAtualReserva').text(`Página ${data.pagina_atual}`);
-            $('#li-anterior-reserva').toggleClass('disabled', data.pagina_atual <= 1);
-            $('#li-proxima-reserva').toggleClass('disabled', data.pagina_atual >= data.total_paginas);
+            $.ajax({
+                method: "GET",
+                url: `${ipPython}/reservasusuario/${idUsuario}?pagina=${pagina}`,
+                headers: { 'Authorization': 'Bearer ' + token },
+                success: function (data) {
+                    // atualiza paginação
+                    $('#paginaAtualReserva').text(`Página ${data.pagina_atual}`);
+                    $('#li-anterior-reserva').toggleClass('disabled', data.pagina_atual <= 1);
+                    $('#li-proxima-reserva').toggleClass('disabled', data.pagina_atual >= data.total_paginas);
 
-            // preenche tabela
-            const tbody = $('#tabela-reservas tbody').empty();
-            if (data.reservas.length === 0) {
-                tbody.append('<tr><td colspan="4" class="text-center">Nenhuma reserva encontrada.</td></tr>');
-                return;
-            }
+                    // preenche tabela
+                    const tbody = $('#tabela-reservas tbody').empty();
+                    if (data.reservas.length === 0) {
+                        tbody.append('<tr><td colspan="4" class="text-center">Nenhuma reserva encontrada.</td></tr>');
+                        return;
+                    }
 
-            data.reservas.forEach(r => {
-                // data_reserva já vem formatada como DD-MM-YYYY; trocar hífens por barras
-                const dataRes = r.data_reserva ? r.data_reserva.replace(/-/g, '/') : '';
-                const row = `
+                    data.reservas.forEach(r => {
+                        // data_reserva já vem formatada como DD-MM-YYYY; trocar hífens por barras
+                        const dataRes = r.data_reserva ? r.data_reserva.replace(/-/g, '/') : '';
+                        const row = `
                 <tr>
                     <td>${dataRes}</td>
                     <td>${r.titulo_livro}</td>
@@ -391,31 +394,31 @@
                     <td>${r.status}</td>
                 </tr>
                 `;
-                tbody.append(row);
+                        tbody.append(row);
+                    });
+                },
+                error: function (err) {
+                    console.error(err);
+                    Swal.fire('Erro', 'Não foi possível carregar o histórico de reservas.', 'error');
+                }
             });
-            },
-            error: function(err) {
-            console.error(err);
-            Swal.fire('Erro', 'Não foi possível carregar o histórico de reservas.', 'error');
-            }
-        });
         }
 
         // ao abrir a aba “Histórico”, carrega a primeira página
         $('#pills-contact-tab').on('shown.bs.tab', function () {
-        carregarReservas(1);
+            carregarReservas(1);
         });
 
         // botões de paginação dentro do tab
-        $('#pagina-anterior-reserva').on('click', function(e) {
-        e.preventDefault();
-        const atual = parseInt($('#paginaAtualReserva').text().split(' ')[1]);
-        if (atual > 1) carregarReservas(atual - 1);
+        $('#pagina-anterior-reserva').on('click', function (e) {
+            e.preventDefault();
+            const atual = parseInt($('#paginaAtualReserva').text().split(' ')[1]);
+            if (atual > 1) carregarReservas(atual - 1);
         });
-        $('#pagina-proxima-reserva').on('click', function(e) {
-        e.preventDefault();
-        const atual = parseInt($('#paginaAtualReserva').text().split(' ')[1]);
-        carregarReservas(atual + 1);
+        $('#pagina-proxima-reserva').on('click', function (e) {
+            e.preventDefault();
+            const atual = parseInt($('#paginaAtualReserva').text().split(' ')[1]);
+            carregarReservas(atual + 1);
         });
 
         const logoImage = document.getElementById("logoImage");
@@ -423,6 +426,34 @@
 
         const logoImage2 = document.getElementById("logoImage2");
         logoImage2.src = `${ipPython}/static/uploads/logo/logo.png`;
+
+        // Adiciona o evento de clique no botão de relatórios
+        document.addEventListener('DOMContentLoaded', function () {
+            const relatoriosItem = document.getElementById('relatorios');
+            const submenu = relatoriosItem.querySelector('.submenu');
+
+            relatoriosItem.querySelector('.submenu-toggle').addEventListener('click', function () {
+                submenu.classList.toggle('show'); // Alterna a classe 'show' para mostrar ou esconder o submenu
+            });
+        });
+        // Função para atualizar os hrefs dos relatórios
+        function atualizarLinksRelatorios() {
+            const linksRelatorios = {
+                relatorioMultas: "/multas_relatorio",
+                relatorioLivros: "/livros_relatorio",
+                relatorioUsuarios: "/usuarios_relatorio",
+                relatorioEmprestimos: "/emprestimos_relatorio"
+            };
+            for (let id in linksRelatorios) {
+                const elemento = document.getElementById(id);
+                if (elemento) {
+                    elemento.href = `${ipPython2}${linksRelatorios[id]}`;
+                }
+            }
+        }
+
+        // Chama a função assim que o DOM carregar
+        document.addEventListener("DOMContentLoaded", atualizarLinksRelatorios);   
     </script>
 
 </body>
