@@ -661,7 +661,7 @@ form{
 
 .review {
     margin-bottom: 15px;
-    padding: 15px;
+    width: 35.5rem;
     background: white;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.15);
@@ -700,7 +700,6 @@ form{
 
 .review {
     border-bottom: 1px solid #eee;
-    padding: 0.9rem;
 }
 
 .review:last-child {
@@ -799,6 +798,10 @@ form{
 
 #tabela-historico tbody tr:hover {
     background-color: #f1f1f1;
+}
+
+.table-container {
+    overflow: auto;
 }
 
 /* RODAPÉ */
@@ -1118,6 +1121,14 @@ footer {
         display: flex;
         flex-direction: column;
     }
+
+    .btn-excluir {
+        margin-left: 20rem;
+    }
+
+    .review {
+        width: 25rem;
+    }
 }
 
 @media (max-width: 321px) {
@@ -1134,7 +1145,8 @@ footer {
 @media (max-width: 770px){
 
     .rating {
-        gap: 0px;
+        display: flex;
+        gap: 79px;
     }
 
     .avaliacoes{
@@ -1145,9 +1157,6 @@ footer {
     }
     #submitReview{
         margin-left: 280px;
-    }
-    .star{
-        margin-left: 96px   ;
     }
 }
 
@@ -1217,14 +1226,16 @@ footer {
         }
 
         .imagem {
-        display: none;
-    }
+            display: none;
+        }
+
+        .rating {
+            gap: 63px;
+        }
+
     }
     @media (max-width: 426px){
-        .star{
-            margin-left: 41px;
 
-        }
         form{
             margin-right: 20px;
         }
@@ -1272,11 +1283,25 @@ footer {
             padding-right: 58px;
             padding-left: 58px;
         }
+
         .star{
             margin-left: 32px;
         }
+
         #submitReview{
             margin-left: 85px;
+        }
+
+        .review {
+            width: 22rem;
+        }
+
+        .btn-excluir {
+            margin-left: 17.5rem;
+        }
+
+        .rating {
+            gap: 10px;
         }
     }
     @media (max-width: 330px){
@@ -1296,5 +1321,17 @@ footer {
         }
         #comment{
             width: 100%;
+        }
+
+        .review {
+            width: 19rem;
+        }
+
+        .btn-excluir {
+            margin-left: 14rem;
+        }
+
+        .rating {
+            gap: 8px;
         }
     }

@@ -359,7 +359,7 @@ header {
     text-align: center;
     font-weight: bold;
     overflow: hidden;
-    height: 60px;
+    height: 62px;
     color: #333;
 }
 
@@ -394,6 +394,11 @@ header {
     padding: 0px 7px;
     padding-top: 9px;
     font-weight: bold;
+}
+
+.bemvindo .span{
+    text-align: center;
+    font-size: xx-large;
 }
 
 .btn {
