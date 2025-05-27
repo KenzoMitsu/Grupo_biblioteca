@@ -26,6 +26,7 @@
     <script>
         const ipPython = "http://192.168.1.135:5000"; // ajuste se necessário
     </script>
+
 </head>
 
 <body>
@@ -36,12 +37,14 @@
             </a>
         </div>
 
+        <!-- Barra de Pesquisa -->
         <form id="formBuscaLivro">
             <div class="search-container">
                 <i class="fas fa-search"></i>
                 <input type="text" id="campoBusca" placeholder="Pesquise Seu Livro" class="search-box">
             </div>
         </form>
+
         <div class="coisa">
             <div class="header-end">
                 <div class="menu-container">
@@ -323,6 +326,131 @@
 
         const logoImage2 = document.getElementById("logoImage2");
         logoImage2.src = `${ipPython}/static/uploads/logo/logo.png`;
+
+        
+
+        // Função para carregar livros (busca e paginação)
+        function carregaLivros() {
+            const params = new URLSearchParams(window.location.search);
+            const pagina = parseInt(params.get('pagina')) || 1;
+            const urlAjax = ipPython + "/pesquisar_livro?" + params.toString();
+
+            // Oculta ou mostra o botão de página anterior
+            $('#pagina-anterior').toggle(pagina > 1);
+
+            $.ajax({
+                url: urlAjax,
+                method: "GET",
+                dataType: "json",
+                success: function (retorno) {
+                    const total = retorno.total_paginas;
+                    const paginaAtual = retorno.pagina_atual;
+                    const anterior = paginaAtual - 1;
+                    const proxima = paginaAtual + 1;
+
+                    // Atualiza links de navegação mantendo TODOS os filtros
+                    let paramsAnterior = new URLSearchParams(params);
+                    paramsAnterior.set('pagina', anterior);
+                    $("#pagina-anterior").attr("href", "?" + paramsAnterior.toString());
+
+                    let paramsProxima = new URLSearchParams(params);
+                    paramsProxima.set('pagina', proxima);
+                    $("#pagina-proxima").attr("href", "?" + paramsProxima.toString());
+
+                    // Oculta ou mostra o botão de página próxima
+                    $('#pagina-proxima').toggle(paginaAtual < total);
+
+                    $("#paginaAtual").text(paginaAtual);
+
+                    let html = "";
+                    if (!retorno.livros || retorno.livros.length === 0) {
+                        html = `<p>Livros não encontrados!</p>`;
+                    } else {
+                        retorno.livros.forEach((livro) => {
+                            if (livro.quantidade > 0) {
+                                html += `
+                                        <div class="item">
+                                            <a title="${livro.titulo}" href="reserva.html?id=${livro.id_livro}">
+                                                <img src="${ipPython}/static/uploads/Livros/${livro.id_livro}.jpeg" alt="">
+                                                <p>${livro.titulo}</p>
+                                                <p class="status-livro status-verde" data-id="${livro.id_livro}">Disponível</p>
+                                            </a>
+                                        </div>
+                                    `;
+                            } else {
+
+                                html += `
+                                        <div class="item">
+                                            <a title="${livro.titulo}" href="reserva.html?id=${livro.id_livro}">
+                                                <img src="${ipPython}/static/uploads/Livros/${livro.id_livro}.jpeg" alt="">
+                                                <p>${livro.titulo}</p>
+                                                <p class="status-livro status-vermelho" data-id="${livro.id_livro}">Indisponível</p>
+                                            </a>
+                                        </div>
+                                    `;
+                            }
+
+
+                        });
+                    }
+
+                    $("#listaLivros").html(html);
+                },
+                error: function (xhr) {
+                    $("#listaLivros").html(`<p>Erro ao carregar livros.</p>`);
+                }
+            });
+        }
+
+        // Busca ao enviar o formulário
+        $("#formBuscaLivro").on("submit", function (e) {
+            e.preventDefault();
+            let termo = $("#campoBusca").val().trim();
+
+            if (!termo) {
+                Swal.fire({
+                    title: "Atenção!",
+                    text: "Digite algo para buscar.",
+                    icon: "warning"
+                });
+                return;
+            }
+
+            const params = new URLSearchParams(window.location.search);
+            params.set('q', termo);
+            params.set('pagina', 1);
+            window.history.replaceState({}, '', window.location.pathname + '?' + params.toString());
+
+            carregaLivros();
+        });
+
+        // Busca dinâmica conforme digita
+        $("#campoBusca").on("input", function () {
+            let termo = $(this).val().trim();
+            const params = new URLSearchParams(window.location.search);
+
+            if (termo) {
+                params.set('q', termo);
+                params.set('pagina', 1);
+            } else {
+                params.delete('q');
+                params.set('pagina', 1);
+            }
+
+            window.history.replaceState({}, '', window.location.pathname + '?' + params.toString());
+            carregaLivros();
+        });
+
+        // Ao carregar a página, preenche o campo de busca se houver termo na URL e carrega os livros
+        (function () {
+            const params = new URLSearchParams(window.location.search);
+            const termoInicial = params.get('q');
+            if (termoInicial) {
+                $("#campoBusca").val(termoInicial);
+            }
+            carregaLivros();
+        })();
+
     </script>
 </body>
 
