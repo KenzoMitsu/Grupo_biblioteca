@@ -452,6 +452,7 @@ select {
     margin-bottom: 1.5rem !important;
     display: flex;
     justify-content: center;
+    gap: 10px;
 }
 
 .cancelar-btn {
@@ -506,7 +507,7 @@ select {
   transition: background 0s;
 }
 
-/* Estilos para a tabela de usuários */
+/* Estilos para a tabela de emprestimos */
 #tabela-emprestimos {
     width: 90%;
     margin: 27px auto;
@@ -523,6 +524,35 @@ select {
 }
 
 #tabela-emprestimos thead th {
+    background-color: var(--azul-claro);
+    color: var(--branco);
+    font-weight: bold;
+    border-bottom: 2px solid var(--azul-escuro);
+}
+
+#tabela-emprestimos tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Estilos da tabela de reserva */
+
+/* Estilos para a tabela de usuários */
+#tabela-reservas {
+    width: 90%;
+    margin: 27px auto;
+    border-collapse: collapse;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+#tabela-reservas th, 
+#tabela-reservas td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+#tabela-reservas thead th {
     background-color: var(--azul-claro);
     color: var(--branco);
     font-weight: bold;

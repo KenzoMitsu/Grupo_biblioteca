@@ -334,6 +334,11 @@ input:checked + .slider:before {
     overflow: auto;
 }
 
+.paginacao {
+    display: flex;
+    justify-content: center;
+}
+
 h1 {
     font-weight: bold;
     margin-top: -25px;

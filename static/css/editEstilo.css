@@ -70,9 +70,7 @@ header {
     width: 100%;
     padding: 5px;
 }
-.btn-catalogo {
-    background-color: #3380ca;
-}
+
 
 .btn-catalogo:hover {
     color: rgb(178, 178, 178) !important;
@@ -696,6 +694,15 @@ footer{
     margin-top: 50px;
 }
 
+.btn-catalogo{
+   display: flex;
+   align-items: center;
+}
+
+p {
+    margin-bottom: 0rem;
+}
+
 /* Responsividade para telas menores */
 @media (max-width: 768px) {
     header {
@@ -790,6 +797,10 @@ footer{
         width: 150px;
         height: 150px;
     }
+
+    .catalogo p {
+    display: none;
+}
 
 }
 
@@ -923,5 +934,9 @@ footer{
 
     .btn-save {
         width: 16rem;
+    }
+
+    .search-container {
+        width: 120px;
     }
 }
