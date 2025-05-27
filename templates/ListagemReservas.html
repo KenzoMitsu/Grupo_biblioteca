@@ -132,79 +132,77 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <script>
-      $(document).ready(function () {
-        const token = localStorage.getItem("token");
+        $(document).ready(function () {
+    const token = localStorage.getItem("token");
 
-        carregarReservas();
+    carregarReservas();
 
-        function carregarReservas() {
-          const params = new URLSearchParams(window.location.search);
-            var pagina = params.get('pagina');
+    function carregarReservas() {
+      const params = new URLSearchParams(window.location.search);
+      var pagina = params.get('pagina');
 
-            if (pagina === null || pagina === undefined) {
-                pagina = 1
-            } 
+      if (pagina === null || pagina === undefined) {
+        pagina = 1;
+      }
 
-            if (pagina == 1) {
-                document.getElementById('pagina-anterior').style.display = "none"
-            }
-     
-          $.ajax({
-            method: "GET",
-            url: ipPython + "/reservas?pagina=" + pagina,
-            headers: {
-              'Authorization': 'Bearer ' + token
-            },
-            success: function (data) {
-              let reservas = data.reservas;
-              let tabela = $("#tabela-reservas tbody");
-              tabela.empty();
+      if (pagina == 1) {
+        document.getElementById('pagina-anterior').style.display = "none";
+      }
 
-              var total = data.total_paginas
-              var paginaAtual = data.pagina_atual
-              var anterior = paginaAtual - 1
-              var proxima = paginaAtual + 1
+      $.ajax({
+        method: "GET",
+        url: ipPython + "/reservas?pagina=" + pagina,
+        headers: {
+          'Authorization': 'Bearer ' + token
+        },
+        success: function (data) {
+          let reservas = data.reservas;
+          let tabela = $("#tabela-reservas tbody");
+          tabela.empty();
 
-              document.getElementById("pagina-anterior").href = "/templates/ListagemReservas.html?pagina=" + anterior
+          var total = data.total_paginas;
+          var paginaAtual = data.pagina_atual;
+          var anterior = paginaAtual - 1;
+          var proxima = paginaAtual + 1;
 
-              document.getElementById("pagina-proxima").href = "/templates/ListagemReservas.html?pagina=" + proxima
+          document.getElementById("pagina-anterior").href = "/templates/ListagemReservas.html?pagina=" + anterior;
+          document.getElementById("pagina-proxima").href = "/templates/ListagemReservas.html?pagina=" + proxima;
 
-              if (paginaAtual >= total) {
-                  document.getElementById('pagina-proxima').style.display = "none"
-              } 
+          if (paginaAtual >= total) {
+            document.getElementById('pagina-proxima').style.display = "none";
+          }
 
-              if (paginaAtual > total) {
-                  document.getElementById('listaLivros').innerHTML = `
-                      <p>Reservas não encontradas!</p>
-                  `;
-              }
+          // Verifica se não há reservas e exibe a mensagem
+          if (reservas.length === 0) {
+            tabela.append('<tr><td colspan="5" class="text-center">Nenhuma reserva foi realizada!</td></tr>');
+            document.getElementById('pagina-anterior').style.display = "none";  // Oculta a navegação anterior se não houver reservas
+            document.getElementById('pagina-proxima').style.display = "none";  // Oculta a navegação próxima se não houver reservas
+          } else {
+            reservas.forEach(reserva => {
+              let linha = 
+                `<tr>
+                  <td>${reserva.nome_usuario}</td>
+                  <td>${reserva.data_reserva.replaceAll("-", "/")}</td>
+                  <td>${reserva.titulo_livro}</td>
+                  <td>${reserva.autor_livro}</td>
+                  <td>
+                    <div class="display-pai">
+                      <button id="btn_reserva" class="botao-reserva" type="submit" 
+                              onclick="emprestarLivro(this)" data-id="${reserva.id_emprestimo}">
+                        Emprestar
+                      </button>
+                    </div>
+                  </td>
+                </tr>`;
+              tabela.append(linha);
+            });
+          }
 
-              document.getElementById("paginaAtual").innerHTML = paginaAtual
-
-              reservas.forEach(reserva => {
-                let linha = `
-                  <tr>
-                    <td>${reserva.nome_usuario}</td>
-                    <td>${reserva.data_reserva.replaceAll("-","/")}</td>
-                    <td>${reserva.titulo_livro}</td>
-                    <td>${reserva.autor_livro}</td>
-                    <td>
-                      <div class="display-pai">
-                        <button id="btn_reserva" class="botao-reserva" type="submit" 
-                                onclick="emprestarLivro(this)" data-id="${reserva.id_emprestimo}">
-                          Emprestar
-                        </button>
-                      </div>
-                    </td>
-
-                  </tr>
-                `;
-                tabela.append(linha);
-              });
-            }
-          });
+          document.getElementById("paginaAtual").innerHTML = paginaAtual;
         }
       });
+    }
+  });
 
       // Função do botão de empretar Livro
       async function emprestarLivro(button) {
