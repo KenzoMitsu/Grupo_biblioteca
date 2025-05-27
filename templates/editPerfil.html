@@ -169,22 +169,7 @@
     <script>
         // Carrega os dados do usuário do localStorage
         $(document).ready(function () {
-            // Configuração do dropdown do menu
-            const menuButton = document.getElementById('menuButton');
-            const dropdownMenu = document.getElementById('dropdownMenu');
-
-            if (menuButton && dropdownMenu) {
-                menuButton.addEventListener('click', function (e) {
-                    e.stopPropagation();
-                    dropdownMenu.classList.toggle('show');
-                });
-
-                document.addEventListener('click', function (e) {
-                    if (!menuButton.contains(e.target) && !dropdownMenu.contains(e.target)) {
-                        dropdownMenu.classList.remove('show');
-                    }
-                });
-            }
+            
 
             // Carrega dados do usuário
             const nome = localStorage.getItem("nome") || "";

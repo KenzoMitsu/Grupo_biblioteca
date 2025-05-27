@@ -33,43 +33,14 @@
 </head>
 
 <body>
-  <header>
-    <!-- Logo -->
-    <div id="logo-site" class="header-left">
-      <a id="logoHeader" href="home.html">
-        <img id="logoImage" alt="Logo">
-      </a>
-    </div>
-
-    <!-- Barra de Pesquisa -->
-    <form id="formBuscaLivro">
-      <div class="search-container">
-        <i class="fas fa-search"></i>
-        <input type="text" id="campoBusca" placeholder="Pesquise Seu Livro" class="search-box">
-      </div>
-    </form>
-    <a href="catalogo.html"
-      class=" btn-catalogo flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
-      <i class="fas fa-folder-open"></i>
-      Catálogo
-    </a>
-
-    <div class="coisa">
-      <!-- Ícone de Menu com Dropdown -->
-      <div class="header-end">
-        <div class="menu-container">
-          <div class="menu-icon" id="menuButton">
-            <div class="menulinha"></div>
-            <div class="menulinha"></div>
-            <div class="menulinha"></div>
-          </div>
-
-          <ul class="dropdown-menu" id="dropdownMenu">
-
-          </ul>
-
+    <header>
+        <!-- Logo -->
+        <div id="logo-site" class="header-left">
+            <a id="logoHeader" href="home.html">
+                <img id="logoImage" alt="Logo">
+            </a>
         </div>
-      </div>
+
         <!-- Barra de Pesquisa -->
         <form id="formBuscaLivro">
             <div class="search-container">
@@ -77,13 +48,11 @@
                 <input type="text" id="campoBusca" placeholder="Pesquise Seu Livro" class="search-box">
             </div>
         </form>
-        <div class="catalogo">
-            <a href="catalogo.html"
-                class=" btn-catalogo flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
-                <i class="fas fa-folder-open"></i>
-                <p class="texto-catalogo">Catálogo</p>
-            </a>
-        </div>
+        <a href="catalogo.html"
+          class=" btn-catalogo flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
+          <i class="fas fa-folder-open"></i>
+          Catálogo
+        </a>
 
         <div class="coisa">
             <!-- Ícone de Menu com Dropdown -->
@@ -103,69 +72,227 @@
             </div>
 
     </header>
+  <!-- FIM DO CABEÇALHO -->
 
   <div class="container">
     <h2 class="titulo">Listagem de Reservas</h2>
   </div>
 
-  <div class="table-container">
-    <table class="table" id="tabela-reservas" border="3">
-      <thead>
-        <tr>
-          <th>Usuário</th>
-          <th>Data Reserva</th>
-          <th>Título do Livro</th>
-          <th>Autor</th>
-          <th>Ações</th>
-        </tr>
-      </thead>
-      <tbody></tbody>
-    </table>
-  </div>
+    <div class="table-container">
+      <table class="table" id="tabela-reservas" border="3">
+        <thead>
+          <tr>
+            <th>Usuário</th>
+            <th>Data Reserva</th>
+            <th>Título do Livro</th>
+            <th>Autor</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
 
-  <!-- Modal para Edição -->
-  <div id="modal-edicao" style="display: none;">
-    <form id="form-edicao">
-      <input type="hidden" id="id_usuario">
+    <!-- Modal para Edição -->
+    <div id="modal-edicao" style="display: none;">
+      <form id="form-edicao">
+        <input type="hidden" id="id_usuario">
 
-      <label>Nome:</label>
-      <input type="text" id="nome" required>
+        <label>Nome:</label>
+        <input type="text" id="nome" required>
 
-      <label>Email:</label>
-      <input type="email" id="email" required>
+        <label>Email:</label>
+        <input type="email" id="email" required>
 
-      <label>Telefone:</label>
-      <input type="text" id="telefone" onkeyup="handlePhone(event)" required>
+        <label>Telefone:</label>
+        <input type="text" id="telefone" onkeyup="handlePhone(event)" required>
 
-      <label>Data de nascimento:</label>
-      <input type="date" id="data_nascimento" required>
+        <label>Data de nascimento:</label>
+        <input type="date" id="data_nascimento" required>
 
 
-      <label for="cargo" class="coisa">Cargo:</label>
-      <select class="inserir" name="cargo" id="cargo">
-        <option class="inserir" value="Cliente">Cliente</option>
-        <option class="inserir" value="Bibliotecário">Bibliotecário</option>
-        <option class="inserir" value="ADM">ADM</option>
-      </select>
+        <label for="cargo" class="coisa">Cargo:</label>
+        <select class="inserir" name="cargo" id="cargo">
+          <option class="inserir" value="Cliente">Cliente</option>
+          <option class="inserir" value="Bibliotecário">Bibliotecário</option>
+          <option class="inserir" value="ADM">ADM</option>
+        </select>
 
-      <label for="status" class="coisa">Status:</label>
-      <select class="inserir" name="status" id="status">
-        <option class="inserir" value="Ativo">Ativo</option>
-        <option class="inserir" value="Inativo">Inativo</option>
-      </select>
+        <label for="status" class="coisa">Status:</label>
+        <select class="inserir" name="status" id="status">
+          <option class="inserir" value="Ativo">Ativo</option>
+          <option class="inserir" value="Inativo">Inativo</option>
+        </select>
 
-      <button type="submit">Salvar</button>
-      <button type="button" id="fechar-modal">Cancelar</button>
-    </form>
-  </div>
+        <button type="submit">Salvar</button>
+        <button type="button" id="fechar-modal">Cancelar</button>
+      </form>
+    </div>
 
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+    const token = localStorage.getItem("token");
+
+    carregarReservas();
+
+    function carregarReservas() {
+      const params = new URLSearchParams(window.location.search);
+      var pagina = params.get('pagina');
+
+      if (pagina === null || pagina === undefined) {
+        pagina = 1;
+      }
+
+      if (pagina == 1) {
+        document.getElementById('pagina-anterior').style.display = "none";
+      }
+
+      $.ajax({
+        method: "GET",
+        url: ipPython + "/reservas?pagina=" + pagina,
+        headers: {
+          'Authorization': 'Bearer ' + token
+        },
+        success: function (data) {
+          let reservas = data.reservas;
+          let tabela = $("#tabela-reservas tbody");
+          tabela.empty();
+
+          var total = data.total_paginas;
+          var paginaAtual = data.pagina_atual;
+          var anterior = paginaAtual - 1;
+          var proxima = paginaAtual + 1;
+
+          document.getElementById("pagina-anterior").href = "/templates/ListagemReservas.html?pagina=" + anterior;
+          document.getElementById("pagina-proxima").href = "/templates/ListagemReservas.html?pagina=" + proxima;
+
+          if (paginaAtual >= total) {
+            document.getElementById('pagina-proxima').style.display = "none";
+          }
+
+          // Verifica se não há reservas e exibe a mensagem
+          if (reservas.length === 0) {
+            tabela.append('<tr><td colspan="5" class="text-center">Nenhuma reserva foi realizada!</td></tr>');
+            document.getElementById('pagina-anterior').style.display = "none";  // Oculta a navegação anterior se não houver reservas
+            document.getElementById('pagina-proxima').style.display = "none";  // Oculta a navegação próxima se não houver reservas
+          } else {
+            reservas.forEach(reserva => {
+              let linha = 
+                `<tr>
+                  <td>${reserva.nome_usuario}</td>
+                  <td>${reserva.data_reserva.replaceAll("-", "/")}</td>
+                  <td>${reserva.titulo_livro}</td>
+                  <td>${reserva.autor_livro}</td>
+                  <td>
+                    <div class="display-pai">
+                      <button id="btn_reserva" class="botao-reserva" type="submit" 
+                              onclick="emprestarLivro(this)" data-id="${reserva.id_emprestimo}">
+                        Emprestar
+                      </button>
+                    </div>
+                  </td>
+                </tr>`;
+              tabela.append(linha);
+            });
+          }
+
+          document.getElementById("paginaAtual").innerHTML = paginaAtual;
+        }
+      });
+    }
+  });
+
+      // Função do botão de empretar Livro
+      async function emprestarLivro(button) {
+        const id_emprestimo = button.getAttribute("data-id"); // Pega o ID do empréstimo do botão
+        const token = localStorage.getItem("token"); // Obtém o token de autenticação
+
+        try {
+          const resposta = await fetch(ipPython + `/emprestimos/${id_emprestimo}`, {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+              "Authorization": `Bearer ${token}`
+            }
+          });
+
+          const dados = await resposta.json(); // Captura a resposta JSON
+
+          if (!resposta.ok) {
+            throw new Error(dados.mensagem);
+          }
+
+          // Exibir SweetAlert de sucesso com a mensagem da API
+          Swal.fire({
+            title: 'Sucesso!',
+            text: dados.message,
+            icon: 'success',
+            confirmButtonText: 'OK'
+          }).then(() => {
+            // Redirecionar para a página de listagem de reservas
+            window.location.href = "ListagemReservas.html";
+          });
+
+        } catch (erro) {
+          console.error("Erro na requisição:", erro);
+          // Exibir SweetAlert de erro com a mensagem da API
+          Swal.fire({
+            title: 'Erro!',
+            text: erro.message || "Erro ao emprestar livro.",
+            icon: 'error',
+            confirmButtonText: 'OK'
+          });
+        }
+      }
+
+      // Adiciona o evento de clique no botão de relatórios
+      document.addEventListener('DOMContentLoaded', function () {
+        const relatoriosItem = document.getElementById('relatorios');
+        const submenu = relatoriosItem.querySelector('.submenu');
+
+        relatoriosItem.querySelector('.submenu-toggle').addEventListener('click', function () {
+          submenu.classList.toggle('show'); // Alterna a classe 'show' para mostrar ou esconder o submenu
+        });
+      });
+           // Função para atualizar os hrefs dos relatórios
+          function atualizarLinksRelatorios() {
+            const linksRelatorios = {
+                relatorioMultas: "/multas_relatorio",
+                relatorioLivros: "/livros_relatorio",
+                relatorioUsuarios: "/usuarios_relatorio",
+                relatorioEmprestimos: "/emprestimos_relatorio"
+            };
+            for (let id in linksRelatorios) {
+                const elemento = document.getElementById(id);
+                if (elemento) {
+                    elemento.href = `${ipPython2}${linksRelatorios[id]}`;
+                }
+            }
+        }
+
+        function formatarData(data) {
+          return data; // A data já está no formato correto, então apenas a retorna
+        }
+
+        // Chama a função assim que o DOM carregar
+        document.addEventListener("DOMContentLoaded", atualizarLinksRelatorios);   
+
+        const logoImage = document.getElementById("logoImage");
+        logoImage.src = `${ipPython}/static/uploads/logo/logo.png`;
+
+        const logoImage2 = document.getElementById("logoImage2");
+        logoImage2.src = `${ipPython}/static/uploads/logo/logo.png`;
+
+    </script>
+
   </div>
 
   <div class="paginacao">
-    <a href="" class="btn" id="pagina-anterior"> <i class="fa-solid fa-left-long"></i> </a>
-    <h3 class="paginaAtual" id="paginaAtual">Página Atual</h3>
-    <a href="" class="btn" id="pagina-proxima"> <i class="fa-solid fa-right-long"></i> </a>
+      <a href="" class="btn" id="pagina-anterior"> <i class="fa-solid fa-left-long"></i> </a>
+      <h3 class="paginaAtual" id="paginaAtual">Página Atual</h3>
+      <a href="" class="btn" id="pagina-proxima"> <i class="fa-solid fa-right-long"></i> </a>
   </div>
 
   <footer class="inter">
@@ -203,9 +330,9 @@
         </div>
       </div>
       <div class="imagem">
-        <a id="logoHeader" href="home.html">
-          <img id="logoImage2" alt="Logo">
-        </a>
+          <a id="logoHeader" href="home.html">
+              <img id="logoImage2" alt="Logo">
+          </a>
       </div>
 
       <div class="localizacao">
@@ -221,165 +348,6 @@
       <a href="https://www.google.com.br/?hl=pt-BR" class="text2">Política de privacidade</a>
     </div>
   </footer>
-
-
-  <script>
-    $(document).ready(function () {
-      const token = localStorage.getItem("token");
-
-      carregarReservas();
-
-      function carregarReservas() {
-        const params = new URLSearchParams(window.location.search);
-        var pagina = params.get('pagina');
-
-        if (pagina === null || pagina === undefined) {
-          pagina = 1
-        }
-
-        if (pagina == 1) {
-          document.getElementById('pagina-anterior').style.display = "none"
-        }
-
-        $.ajax({
-          method: "GET",
-          url: ipPython + "/reservas?pagina=" + pagina,
-          headers: {
-            'Authorization': 'Bearer ' + token
-          },
-          success: function (data) {
-            let reservas = data.reservas;
-            let tabela = $("#tabela-reservas tbody");
-            tabela.empty();
-
-            var total = data.total_paginas
-            var paginaAtual = data.pagina_atual
-            var anterior = paginaAtual - 1
-            var proxima = paginaAtual + 1
-
-            document.getElementById("pagina-anterior").href = "/templates/ListagemReservas.html?pagina=" + anterior
-
-            document.getElementById("pagina-proxima").href = "/templates/ListagemReservas.html?pagina=" + proxima
-
-            if (paginaAtual >= total) {
-              document.getElementById('pagina-proxima').style.display = "none"
-            }
-
-            if (paginaAtual > total) {
-              document.getElementById('listaLivros').innerHTML = `
-                      <p>Reservas não encontradas!</p>
-                  `;
-            }
-
-            document.getElementById("paginaAtual").innerHTML = paginaAtual
-
-            reservas.forEach(reserva => {
-              let linha = `
-                  <tr>
-                    <td>${reserva.nome_usuario}</td>
-                    <td>${reserva.data_reserva.replaceAll("-", "/")}</td>
-                    <td>${reserva.titulo_livro}</td>
-                    <td>${reserva.autor_livro}</td>
-                    <td>
-                      <div class="display-pai">
-                        <button id="btn_reserva" class="botao-reserva" type="submit" 
-                                onclick="emprestarLivro(this)" data-id="${reserva.id_emprestimo}">
-                          Emprestar
-                        </button>
-                      </div>
-                    </td>
-
-                  </tr>
-                `;
-              tabela.append(linha);
-            });
-          }
-        });
-      }
-    });
-
-    // Função do botão de empretar Livro
-    async function emprestarLivro(button) {
-      const id_emprestimo = button.getAttribute("data-id"); // Pega o ID do empréstimo do botão
-      const token = localStorage.getItem("token"); // Obtém o token de autenticação
-
-      try {
-        const resposta = await fetch(ipPython + `/emprestimos/${id_emprestimo}`, {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-            "Authorization": `Bearer ${token}`
-          }
-        });
-
-        const dados = await resposta.json(); // Captura a resposta JSON
-
-        if (!resposta.ok) {
-          throw new Error(dados.mensagem);
-        }
-
-        // Exibir SweetAlert de sucesso com a mensagem da API
-        Swal.fire({
-          title: 'Sucesso!',
-          text: dados.message,
-          icon: 'success',
-          confirmButtonText: 'OK'
-        }).then(() => {
-          // Redirecionar para a página de listagem de reservas
-          window.location.href = "ListagemReservas.html";
-        });
-
-      } catch (erro) {
-        console.error("Erro na requisição:", erro);
-        // Exibir SweetAlert de erro com a mensagem da API
-        Swal.fire({
-          title: 'Erro!',
-          text: erro.message || "Erro ao emprestar livro.",
-          icon: 'error',
-          confirmButtonText: 'OK'
-        });
-      }
-    }
-
-    // Adiciona o evento de clique no botão de relatórios
-    document.addEventListener('DOMContentLoaded', function () {
-      const relatoriosItem = document.getElementById('relatorios');
-      const submenu = relatoriosItem.querySelector('.submenu');
-
-      relatoriosItem.querySelector('.submenu-toggle').addEventListener('click', function () {
-        submenu.classList.toggle('show'); // Alterna a classe 'show' para mostrar ou esconder o submenu
-      });
-    });
-    // Função para atualizar os hrefs dos relatórios
-    function atualizarLinksRelatorios() {
-      const linksRelatorios = {
-        relatorioMultas: "/multas_relatorio",
-        relatorioLivros: "/livros_relatorio",
-        relatorioUsuarios: "/usuarios_relatorio",
-        relatorioEmprestimos: "/emprestimos_relatorio"
-      };
-      for (let id in linksRelatorios) {
-        const elemento = document.getElementById(id);
-        if (elemento) {
-          elemento.href = `${ipPython2}${linksRelatorios[id]}`;
-        }
-      }
-    }
-
-    function formatarData(data) {
-      return data; // A data já está no formato correto, então apenas a retorna
-    }
-
-    // Chama a função assim que o DOM carregar
-    document.addEventListener("DOMContentLoaded", atualizarLinksRelatorios);
-
-    const logoImage = document.getElementById("logoImage");
-    logoImage.src = `${ipPython}/static/uploads/logo/logo.png`;
-
-    const logoImage2 = document.getElementById("logoImage2");
-    logoImage2.src = `${ipPython}/static/uploads/logo/logo.png`;
-
-  </script>
 
 </body>
 
