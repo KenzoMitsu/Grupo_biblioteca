@@ -74,7 +74,7 @@ if (cargo === 'ADM') {
 
         <li class="menu-item">
             <div>
-                <i class="fa-solid fa-clock"></i><a href="historicoReservas.html">Meu Histórico</a>
+                <i class="fa-solid fa-clock"></i><a href="historicoAtividade.html">Meu Histórico</a>
             </div>
         </li>
 
@@ -165,7 +165,7 @@ if (cargo === 'ADM') {
 
         <li class="menu-item">
             <div>
-                <i class="fa-solid fa-paperclip"></i><a href="historicoReservas.html">Minhas Reservas</a>
+                <i class="fa-solid fa-paperclip"></i><a href="historicoAtividade.html">Minhas Reservas</a>
             </div>
         </li>
 
@@ -208,13 +208,7 @@ if (cargo === 'ADM') {
 
         <li class="menu-item">
             <div>
-                <i class="fa-solid fa-clock"></i><a href="historicoReservas.html">Histórico de Reservas</a>
-            </div>
-        </li>
-
-        <li class="menu-item">
-            <div>
-                <i class="fa-solid fa-clock"></i><a href="historicoEmprestimos.html">Histórico de Empréstimos</a>
+                <i class="fa-solid fa-clock"></i><a href="historicoAtividade.html">Histórico de Reservas</a>
             </div>
         </li>
 
