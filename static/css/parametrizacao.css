@@ -261,11 +261,10 @@ input:checked + .slider:before {
 /* GET da parametrização */
 /* seção geral */
 .pix-display-section {
-    background: rgb(22, 73, 182);
     border-radius: 10px;
     padding: 0.5rem;
     margin-bottom: 2rem;
-    max-width: 900px;
+    max-width: 920px;
   }
 
   /* card interno */
@@ -278,6 +277,7 @@ input:checked + .slider:before {
     color: #000000;
     border-radius: 8px;
     padding: 1rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
   }
 
   .pix-display-card .info {
@@ -290,6 +290,7 @@ input:checked + .slider:before {
     margin-bottom: 0.5rem;
     font-size: 1.5rem;
     padding-bottom: 8px;
+    font-weight: bold;
   }
 
   .pix-display-card .info p {
@@ -540,7 +541,6 @@ label{
 }
 
 .mt-2 {
-    margin-top: rem !important;
     margin-left: 36rem;
 }
 
@@ -868,6 +868,10 @@ footer{
     .imagem {
         display: none;
     }
+
+    .mt-2 {
+        margin-left: 8rem;
+    }
 }
 
 @media (max-width: 380px){
@@ -933,5 +937,11 @@ footer{
     .save-btn {
         display: block;
         margin: 0 auto;
+    }
+}
+
+@media (max-width: 330px) {
+    .mt-2 {
+        margin-left: 5rem;
     }
 }
