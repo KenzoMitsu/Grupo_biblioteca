@@ -680,6 +680,10 @@ input:checked+.slider:before {
    align-items: center;
 }
 
+footer{
+    margin-top: 10px;
+}
+
 /* Responsividade para telas menores */
 @media (max-width: 769px) {
     header {

@@ -62,7 +62,6 @@
 
                 </div>
             </div>
-
     </header>
 
     <main>
@@ -126,8 +125,6 @@
                                 // Carrega a logo se existir no localStorage
                                 const logoBase64 = localStorage.getItem('logo');
                                 if (logoBase64) {
-                                    // Não podemos preencher diretamente o input file por questões de segurança,
-                                    // mas podemos mostrar uma pré-visualização
                                     $('.logo-preview').html(`<img src="${logoBase64}" alt="Logo prévia" style="max-width: 100px;">`);
                                 }
 
@@ -138,12 +135,10 @@
                                 if (xhr.status !== 404) {
                                     console.error('Erro ao carregar dados do Pix:', xhr);
                                 }
-                                // Se for 404 (não encontrado), apenas não preenche os campos
                             });
                     }
 
                     function exibirPix(data) {
-                        // Obtém a logo em base64 do localStorage
                         const logoBase64 = localStorage.getItem('logo') || '';
 
                         const card = `
@@ -165,10 +160,8 @@
                         $('#pixDisplay').html(card);
                     }
 
-                    // Carrega os dados ao abrir a página
                     $(document).ready(carregarDadosPix);
 
-                    // Mostra pré-visualização quando uma nova imagem é selecionada
                     $('#logo').change(function () {
                         const file = this.files[0];
                         if (file) {
@@ -185,7 +178,6 @@
         </section>
 
     </main>
-
 
     <footer class="inter">
         <div class="separacao1">
@@ -240,44 +232,38 @@
     </footer>
 
     <script>
-        // Verifica se o token está armazenado no Local Storage da própria web (SEGURANÇA DO SITE)
-        var nome = localStorage.getItem("nome")
-        document.getElementById("nomeUsuario").innerHTML = nome
-
-        // Adiciona o evento de clique no botão de relatórios
-        document.addEventListener('DOMContentLoaded', function () {
-            const relatoriosItem = document.getElementById('relatorios');
-            const submenu = relatoriosItem.querySelector('.submenu');
-
-            relatoriosItem.querySelector('.submenu-toggle').addEventListener('click', function () {
-                submenu.classList.toggle('show'); // Alterna a classe 'show' para mostrar ou esconder o submenu
-            });
-        });
-
-        // Função para atualizar os hrefs dos relatórios
-        function atualizarLinksRelatorios() {
-            const linksRelatorios = {
-                relatorioMultas: "/multas_relatorio",
-                relatorioLivros: "/livros_relatorio",
-                relatorioUsuarios: "/usuarios_relatorio",
-                relatorioEmprestimos: "/emprestimos_relatorio"
-            };
-            for (let id in linksRelatorios) {
-                const elemento = document.getElementById(id);
-                if (elemento) {
-                    elemento.href = `${ipPython2}${linksRelatorios[id]}`;
+        // Função para tentar carregar a logo em várias extensões
+        function atualizarLogoSite() {
+            const logoExts = ['png', 'jpg', 'jpeg', 'webp'];
+            let i = 0;
+            function tentarProxima() {
+                if (i >= logoExts.length) {
+                    // Nenhuma encontrada, mostra placeholder
+                    let logoImage = document.getElementById("logoImage");
+                    let logoImage2 = document.getElementById("logoImage2");
+                    if (logoImage) logoImage.src = '../static/img/head-removebg-preview.png';
+                    if (logoImage2) logoImage2.src = '../static/img/head-removebg-preview.png';
+                    return;
                 }
+                let url = `${ipPython}/static/uploads/logo/logo.${logoExts[i]}?${Date.now()}`;
+                fetch(url).then(resp => {
+                    if (resp.ok) {
+                        let logoImage = document.getElementById("logoImage");
+                        let logoImage2 = document.getElementById("logoImage2");
+                        if (logoImage) logoImage.src = url;
+                        if (logoImage2) logoImage2.src = url;
+                    } else {
+                        i++;
+                        tentarProxima();
+                    }
+                });
             }
+            tentarProxima();
         }
 
-        // Chama a função assim que o DOM carregar
-        document.addEventListener("DOMContentLoaded", atualizarLinksRelatorios);
+        document.addEventListener('DOMContentLoaded', atualizarLogoSite);
 
-    </script>
-
-    <script>
-        // função para buscar os dados do formulário e enviar via AJAX
-
+        // Função para atualizar logo após envio do formulário
         $('#pixForm').on('submit', function (e) {
             e.preventDefault();
 
@@ -287,7 +273,7 @@
             formData.append('cidade', $('#cidade').val());
             formData.append('razao', $('#razao').val());
             formData.append('cnpj', $('#cnpj').val());
-            formData.append('logo', $('#logo')[0].files[0]); // Adiciona o arquivo da logo
+            formData.append('logo', $('#logo')[0].files[0]);
 
             $.ajax({
                 url: `${ipPython2}/parametrizar_pix`,
@@ -296,14 +282,7 @@
                 contentType: false,
                 data: formData,
                 success: function (response) {
-                    // Armazena a logo no Local Storage
-                    const logoFile = $('#logo')[0].files[0];
-                    const reader = new FileReader();
-                    reader.onloadend = function () {
-                        localStorage.setItem('logo', reader.result); // Armazena a imagem em base64
-                    };
-                    reader.readAsDataURL(logoFile);
-
+                    atualizarLogoSite(); // Atualiza logo após upload
                     Swal.fire({
                         icon: 'success',
                         title: 'Sucesso!',
@@ -321,15 +300,7 @@
                 }
             });
         });
-
-        const logoImage = document.getElementById("logoImage");
-        logoImage.src = `${ipPython}/static/uploads/logo/logo.png`;
-
-        const logoImage2 = document.getElementById("logoImage2");
-        logoImage2.src = `${ipPython}/static/uploads/logo/logo.png`;
-
     </script>
-
 </body>
 
 </html>
