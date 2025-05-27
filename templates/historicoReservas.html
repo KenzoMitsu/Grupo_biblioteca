@@ -46,11 +46,6 @@
                 <input type="text" id="campoBusca" placeholder="Pesquise Seu Livro" class="search-box">
             </div>
         </form>
-        <a href="catalogo.html"
-            class=" btn-catalogo flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
-            <i class="fas fa-folder-open"></i>
-            Catálogo
-        </a>
 
         <div class="coisa">
             <!-- Ícone de Menu com Dropdown -->
@@ -75,14 +70,7 @@
 
         <h1 class="titulo">Meu histórico</h1>
 
-        <div class="listalivros" id="listaLivrosHistorico">
-
-        </div>
-    </div>
-
-    </main>
-
-    <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+        <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
             <li class="nav-item" role="presentation">
                 <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home"
                     type="button" role="tab" aria-controls="pills-home" aria-selected="true">Reserva</button>
@@ -94,48 +82,48 @@
         </ul>
 
         <div class="tab-content" id="pills-tabContent">
-            <!-- Avaliações -->
+            <!-- Reservas -->
             <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab"
                 tabindex="0">
-                <div id="reviewsContainer" class="reviews-container">
-                    <div class="table-container">
-                    <table class="table" id="tabela-emprestimos" border="3">
+                <div class="table-container">
+                    <table class="table" id="tabela-reservas" border="3">
                         <thead>
-                        <tr>
-                            <th>Data Reserva</th>
-                            <th>Nome do Usuário</th>
-                            <th>Título do Livro</th>
-                            <th>Autor do Livro</th>
-                        </tr>
+                            <tr>
+                                <th>Data Reserva</th>
+                                <th>Nome do Usuário</th>
+                                <th>Título do Livro</th>
+                                <th>Autor do Livro</th>
+                            </tr>
                         </thead>
                         <tbody></tbody>
                     </table>
-                    </div>
                 </div>
             </div>
 
+            <!-- Empréstimos -->
             <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab"
                 tabindex="0">
                 <div class="table-container">
                     <table class="table" id="tabela-emprestimos" border="3">
-                    <thead>
-                        <tr>
-                        <th>Data Reserva</th>
-                        <th>Nome do Usuário</th>
-                        <th>Título do Livro</th>
-                        <th>Autor do Livro</th>
-                        </tr>
-                    </thead>
-                    <tbody></tbody>
+                        <thead>
+                            <tr>
+                                <th>Data Empréstimo</th>
+                                <th>Nome do Usuário</th>
+                                <th>Título do Livro</th>
+                                <th>Autor do Livro</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
                     </table>
                 </div>
             </div>
+        </div>
 
-      <div class="paginacao">
-          <a href="" class="btn" id="pagina-anterior"> <i class="fa-solid fa-left-long"></i> </a>
-              <h3 class="paginaAtual" id="paginaAtual">Página Atual</h3>
-          <a href="" class="btn" id="pagina-proxima"> <i class="fa-solid fa-right-long"></i> </a>
-      </div>
+        <div class="paginacao">
+            <a href="" class="btn" id="pagina-anterior"> <i class="fa-solid fa-left-long"></i> </a>
+            <h3 class="paginaAtual" id="paginaAtual">Página Atual</h3>
+            <a href="" class="btn" id="pagina-proxima"> <i class="fa-solid fa-right-long"></i> </a>
+        </div>
     </div>
 
     <footer class="inter">
@@ -195,71 +183,73 @@
         </div>
     </footer>
 
-  <script>
-    // Função para carregar os empréstimos
-    function carregarReservasId() {
-      const token = localStorage.getItem("token");
+    <script>
+        // Função para carregar o histórico de reservas e empréstimos
+        function carregarHistorico() {
+            const token = localStorage.getItem("token");
+            var id_usuario = localStorage.getItem("id_usuario");
+            const params = new URLSearchParams(window.location.search);
+            var pagina = params.get('pagina');
+            if (!pagina) pagina = 1;
 
-      var id_usuario = localStorage.getItem("id_usuario")
+            if (pagina == 1) {
+                document.getElementById('pagina-anterior').style.display = "none";
+            }
 
-      const params = new URLSearchParams(window.location.search);
+            $.ajax({
+                method: "GET",
+                url: ipPython + "/reservasusuario/" + id_usuario + "?pagina=" + pagina,
+                headers: {
+                    'Authorization': 'Bearer ' + token
+                },
+                success: function (data) {
+                    console.log(data);
+                    let reservas = data.reservas;
+                    let tabelaReservas = $("#tabela-reservas tbody");
+                    let tabelaEmprestimos = $("#tabela-emprestimos tbody");
+                    tabelaReservas.empty();
+                    tabelaEmprestimos.empty();
 
-      var pagina = params.get('pagina');
+                    var total = data.total_paginas;
+                    var paginaAtual = data.pagina_atual;
+                    var anterior = paginaAtual - 1;
+                    var proxima = paginaAtual + 1;
 
-      if (!pagina) pagina = 1;
+                    document.getElementById("pagina-anterior").href = "/templates/historicoReservas.html?pagina=" + anterior;
+                    document.getElementById("pagina-proxima").href = "/templates/historicoReservas.html?pagina=" + proxima;
 
-      if (pagina == 1) {
-        document.getElementById('pagina-anterior').style.display = "none";
-      }
+                    if (paginaAtual >= total) {
+                        document.getElementById('pagina-proxima').style.display = "none";
+                    }
 
-      $.ajax({
-        method: "GET",
-        url: ipPython + "/reservasusuario/" + id_usuario + "?pagina=" + pagina,
-        headers: {
-          'Authorization': 'Bearer ' + token
-        },
-        success: function (data) {
-          console.log(data)
-          let reservas = data.reservas;
-          let tabela = $("#tabela-emprestimos tbody");
-          tabela.empty();
+                    document.getElementById("paginaAtual").innerHTML = paginaAtual;
 
-          var total = data.total_paginas;
-          var paginaAtual = data.pagina_atual;
-          var anterior = paginaAtual - 1;
-          var proxima = paginaAtual + 1;
-
-          document.getElementById("pagina-anterior").href = "/templates/historicoReservas.html?pagina=" + anterior;
-          document.getElementById("pagina-proxima").href = "/templates/historicoReservas.html?pagina=" + proxima;
-
-          if (paginaAtual >= total) {
-            document.getElementById('pagina-proxima').style.display = "none";
-          }
-
-          document.getElementById("paginaAtual").innerHTML = paginaAtual
-
-          reservas.forEach(reserva => { 
-
-            let linha = `
-                <tr data-id="${reserva.id_emprestimo}">
-                    <td>${reserva.data_reserva.replaceAll("-","/")}</td>
-                    <td>${reserva.nome_usuario}</td>
-                    <td class="nome-coisado">${reserva.titulo_livro}</td>
-                    <td>${reserva.autor_livro}</td>
-                </tr>
-            `;
-            tabela.append(linha);
-          });
-        },
-        error: function name(params) {
-          console.error(params)
+                    reservas.forEach(item => {
+                        let linha = `
+                            <tr data-id="${item.id_emprestimo}">
+                                <td>${item.data_reserva.replaceAll("-", "/")}</td>
+                                <td>${item.nome_usuario}</td>
+                                <td class="nome-coisado">${item.titulo_livro}</td>
+                                <td>${item.autor_livro}</td>
+                            </tr>
+                        `;
+                        if (item.status === 1) {
+                            tabelaReservas.append(linha);
+                        } else if (item.status === 2) {
+                            tabelaEmprestimos.append(linha);
+                        }
+                    });
+                },
+                error: function (params) {
+                    console.error(params);
+                }
+            });
         }
-      });
-    }  
-    // Chama a função para carregar os empréstimos ao iniciar
-    $(document).ready(function () {
-      carregarReservasId();
-    });
+
+        // Chama a função para carregar o histórico ao iniciar
+        $(document).ready(function () {
+            carregarHistorico();
+        });
 
         const logoImage = document.getElementById("logoImage");
         logoImage.src = `${ipPython}/static/uploads/logo/logo.png`;
@@ -267,7 +257,34 @@
         const logoImage2 = document.getElementById("logoImage2");
         logoImage2.src = `${ipPython}/static/uploads/logo/logo.png`;
 
-  </script>
+        // Adiciona o evento de clique no botão de relatórios
+        document.addEventListener('DOMContentLoaded', function () {
+            const relatoriosItem = document.getElementById('relatorios');
+            const submenu = relatoriosItem.querySelector('.submenu');
+
+            relatoriosItem.querySelector('.submenu-toggle').addEventListener('click', function () {
+                submenu.classList.toggle('show'); // Alterna a classe 'show' para mostrar ou esconder o submenu
+            });
+        });
+        // Função para atualizar os hrefs dos relatórios
+        function atualizarLinksRelatorios() {
+            const linksRelatorios = {
+                relatorioMultas: "/multas_relatorio",
+                relatorioLivros: "/livros_relatorio",
+                relatorioUsuarios: "/usuarios_relatorio",
+                relatorioEmprestimos: "/emprestimos_relatorio"
+            };
+            for (let id in linksRelatorios) {
+                const elemento = document.getElementById(id);
+                if (elemento) {
+                    elemento.href = `${ipPython2}${linksRelatorios[id]}`;
+                }
+            }
+        }
+
+        // Chama a função assim que o DOM carregar
+        document.addEventListener("DOMContentLoaded", atualizarLinksRelatorios);   
+    </script>
 
 </body>
 
