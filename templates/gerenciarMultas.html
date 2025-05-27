@@ -35,43 +35,37 @@
 </head>
 
 <body>
-    <header>
-        <!-- Logo -->
-        <div id="logo-site" class="header-left">
-            <a id="logoHeader" href="home.html">
-                <img id="logoImage" alt="Logo">
-            </a>
+  <header>
+    <!-- Logo -->
+    <div id="logo-site" class="header-left">
+      <a id="logoHeader" href="home.html">
+        <img id="logoImage" alt="Logo">
+      </a>
+    </div>
+
+    <!-- Barra de Pesquisa -->
+    <div class="search-container">
+      <a href="catalogo.html"><i class="fas fa-search"></i></a>
+      <a href="catalogo.html"><button id="campoBusca" class="search-box">Pesquise seu livro</button></a>
+    </div>
+    <div class="coisa">
+      <!-- Ícone de Menu com Dropdown -->
+      <div class="header-end">
+        <div class="menu-container">
+          <div class="menu-icon" id="menuButton">
+            <div class="menulinha"></div>
+            <div class="menulinha"></div>
+            <div class="menulinha"></div>
+          </div>
+
+          <ul class="dropdown-menu" id="dropdownMenu">
+
+          </ul>
+
         </div>
+      </div>
 
-        <!-- Barra de Pesquisa -->
-        <form id="formBuscaLivro">
-        </form>
-        <div class="catalogo">
-            <a href="catalogo.html"
-                class=" btn-catalogo flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
-                <i class="fas fa-folder-open"></i>
-                <p class="texto-catalogo">Catálogo</p>
-            </a>
-        </div>
-
-        <div class="coisa">
-            <!-- Ícone de Menu com Dropdown -->
-            <div class="header-end">
-                <div class="menu-container">
-                    <div class="menu-icon" id="menuButton">
-                        <div class="menulinha"></div>
-                        <div class="menulinha"></div>
-                        <div class="menulinha"></div>
-                    </div>
-
-                    <ul class="dropdown-menu" id="dropdownMenu">
-
-                    </ul>
-
-                </div>
-            </div>
-
-    </header>
+  </header>
   <!-- FIM DO CABEÇALHO -->
 
   <div class="container">
@@ -134,9 +128,9 @@
         </div>
       </div>
       <div class="imagem">
-          <a id="logoHeader" href="home.html">
-              <img id="logoImage2" alt="Logo">
-          </a>
+        <a id="logoHeader" href="home.html">
+          <img id="logoImage2" alt="Logo">
+        </a>
       </div>
 
       <div class="localizacao">
@@ -210,30 +204,30 @@
         submenu.classList.toggle('show'); // Alterna a classe 'show' para mostrar ou esconder o submenu
       });
     });
-                 // Função para atualizar os hrefs dos relatórios
-          function atualizarLinksRelatorios() {
-            const linksRelatorios = {
-                relatorioMultas: "/multas_relatorio",
-                relatorioLivros: "/livros_relatorio",
-                relatorioUsuarios: "/usuarios_relatorio",
-                relatorioEmprestimos: "/emprestimos_relatorio"
-            };
-            for (let id in linksRelatorios) {
-                const elemento = document.getElementById(id);
-                if (elemento) {
-                    elemento.href = `${ipPython2}${linksRelatorios[id]}`;
-                }
-            }
+    // Função para atualizar os hrefs dos relatórios
+    function atualizarLinksRelatorios() {
+      const linksRelatorios = {
+        relatorioMultas: "/multas_relatorio",
+        relatorioLivros: "/livros_relatorio",
+        relatorioUsuarios: "/usuarios_relatorio",
+        relatorioEmprestimos: "/emprestimos_relatorio"
+      };
+      for (let id in linksRelatorios) {
+        const elemento = document.getElementById(id);
+        if (elemento) {
+          elemento.href = `${ipPython2}${linksRelatorios[id]}`;
         }
+      }
+    }
 
-        // Chama a função assim que o DOM carregar
-        document.addEventListener("DOMContentLoaded", atualizarLinksRelatorios);   
+    // Chama a função assim que o DOM carregar
+    document.addEventListener("DOMContentLoaded", atualizarLinksRelatorios);
 
-        const logoImage = document.getElementById("logoImage");
-        logoImage.src = `${ipPython}/static/uploads/logo/logo.png`;
+    const logoImage = document.getElementById("logoImage");
+    logoImage.src = `${ipPython}/static/uploads/logo/logo.png`;
 
-        const logoImage2 = document.getElementById("logoImage2");
-        logoImage2.src = `${ipPython}/static/uploads/logo/logo.png`;
+    const logoImage2 = document.getElementById("logoImage2");
+    logoImage2.src = `${ipPython}/static/uploads/logo/logo.png`;
 
   </script>
 
