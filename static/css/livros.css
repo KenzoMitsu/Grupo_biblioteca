@@ -47,6 +47,10 @@ header {
     margin-bottom: 50px;
 }
 
+p {
+    margin-bottom: 0rem !important;
+}
+
 /* Logo */
 .header-left img {
     width: 50px;
@@ -80,14 +84,17 @@ header {
     width: 100%;
     padding: 5px;
 }
+
 .btn-catalogo {
-    background-color: #3380ca;
+    display: flex;
+    align-items: center;
 }
 
 .btn-catalogo:hover {
     color: rgb(178, 178, 178) !important;
     background-color: #4086c6;
 }
+
 .menu-item {
     display: flex;
     flex-direction: column; /* ← isso força tudo a ficar empilhado para baixo */
@@ -818,10 +825,6 @@ footer{
     margin-bottom: 1rem; /* Espaçamento inferior da imagem */
 }
 
-.btn-catalogo {
-    display: flex;
-}
-
 /* Responsividade para telas menores */
 @media (max-width: 768px) {
     header {
@@ -845,7 +848,7 @@ footer{
     }
 
     .search-container {
-        width: 150px; /* Reduzindo a largura da pesquisa */
+        width: 300px; /* Reduzindo a largura da pesquisa */
         padding: 5px 10px;
         border-radius: 20px;
     }
@@ -880,9 +883,6 @@ footer{
         background-color: #fff;
     }
 
-    .btn-catalogo p {
-        visibility: hidden;
-    }
 }
 
 @media (max-width: 380px) {
@@ -966,6 +966,10 @@ footer{
     .save-btn {
         width: 20rem;
     }
+
+    .btn-catalogo p{
+        display: none;
+    }
 }
 
 @media (max-width: 380px){
@@ -1002,10 +1006,6 @@ footer{
     .span{
         font-size: 15px
     }
-
-    .btn-catalogo p{
-        visibility: hidden;
-    }
 }
 
 .nomeUsuario {
@@ -1040,3 +1040,8 @@ footer{
     }
 }
 
+@media (max-width: 330px) {
+    .search-container {
+        width: 125px;
+    }
+}
