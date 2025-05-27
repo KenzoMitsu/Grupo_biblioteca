@@ -201,8 +201,26 @@ if (cargo === 'ADM') {
         </li>
     `;
 
+}
+else if (cargo === NULL || cargo === undefined) {
+    ocument.getElementById("logoHeader").href = "home.html"
+
+    document.getElementById("dropdownMenu").innerHTML += `
+        <li class="menu-item">
+            <div>
+                <i class="fa-solid fa-right-to-bracket"></i><a href="login.html">Login</a>
+            </div>
+        </li>
+        <li class="menu-item">
+            <div>
+                <i class="fa-solid fa-user-plus"></i><a href="cadastro.html">Cadastro</a>
+            </div>
+        </li>
+    `
+}
+
     // AQUI É CLIENTE
-} else {
+ else {
     document.getElementById("logoHeader").href = "home.html"
 
     document.getElementById("dropdownMenu").innerHTML += `
