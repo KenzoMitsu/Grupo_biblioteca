@@ -26,7 +26,7 @@
 
 
     <script src="../static/dist/owl.carousel.min.js"></script>
-    <script src="../static/js/scripts.js"></script> 
+    <script src="../static/js/scripts.js"></script>
     <script src="../static/js/paginaip.js"></script>
     <link rel="icon" type="image/x-icon" href="../static/img/head-removebg-preview.png">
 </head>
@@ -160,7 +160,7 @@
 
             if (pagina === null || pagina === undefined) {
                 pagina = 1
-            } 
+            }
 
             if (pagina == 1) {
                 document.getElementById('pagina-anterior').style.display = "none"
@@ -173,7 +173,7 @@
                 success: function (retorno) {
                     var total = retorno.total_paginas
                     var paginaAtual = retorno.pagina_atual
-                    var anterior = paginaAtual - 1 
+                    var anterior = paginaAtual - 1
 
                     document.getElementById("pagina-anterior").href = "/templates/index.html?pagina=" + anterior
 
@@ -186,8 +186,8 @@
 
                     if (paginaAtual >= total) {
                         document.getElementById('pagina-proxima').style.display = "none"
-                    } 
-                    
+                    }
+
                     if (paginaAtual > total) {
                         document.getElementById('listaLivros').innerHTML = `
                             <p>Livros não encontrados!</p>
@@ -325,8 +325,8 @@
             });
         });
 
-                 // Função para atualizar os hrefs dos relatórios
-                 function atualizarLinksRelatorios() {
+        // Função para atualizar os hrefs dos relatórios
+        function atualizarLinksRelatorios() {
             const linksRelatorios = {
                 relatorioMultas: "/multas_relatorio",
                 relatorioLivros: "/livros_relatorio",
@@ -361,7 +361,7 @@
         logoImage2.src = `${ipPython}/static/uploads/logo/logo.png`;
 
     </script>
-    
+
 
 </body>
 
