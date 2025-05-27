@@ -102,6 +102,9 @@ header {
     padding: 5px;
 }
 
+.btn-catalogo:hover{
+    color: #777777;
+}
 
 /* Ícone do menu */
 .header-container {
