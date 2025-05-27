@@ -135,18 +135,24 @@
 
                     if (response.livros && response.livros.length > 0) {
                         response.livros.forEach(function (livro) {
-                            var row = `<tr data-id_livro="${livro.id_livro}">
-                            <td>${livro.titulo}</td>
-                            <td>${livro.autor}</td>
-                            <td>${livro.data_publicacao}</td>
-                            <td>${livro.ISBN}</td>
-                            <td>
-                                <div class="botoes">
-                                    <button class="btn btn-info" onclick="verDetalhes(${livro.id_livro})"><i class="fa-solid fa-info"></i></button>
-                                    <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modalEditarLivro" onclick="editarLivro(this)"><i class="fa-solid fa-pencil"></i></button>
-                                </div>
-                            </td>
-                        </tr>`;
+                            let row = `
+                                <tr>
+                                    <td>${livro.titulo}</td>
+                                    <td>${livro.autor}</td>
+                                    <td>${livro.data_publicacao}</td>
+                                    <td>${livro.ISBN}</td>
+                                    <td>
+                                        <div class="botoes">
+                                            <a href="reserva.html?id=${livro.id_livro}" class="btn btn-info">
+                                                <i class="fa-solid fa-info"></i>
+                                            </a>
+                                            <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modalEditarLivro" onclick="editarLivro(this)">
+                                                <i class="fa-solid fa-pencil"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>`;
+
                             $("#livrosList").append(row);
                         });
                     } else {
@@ -197,34 +203,10 @@
             });
         }
 
-
-        function verDetalhes(id) {
-            var token = localStorage.getItem("token");
-            $.ajax({
-                method: "GET",
-                url: ipPython + "/livro/" + id,
-                headers: {
-                    'Authorization': 'Bearer ' + token
-                },
-                success: function (response) {
-                    var livro = response.livro;
-                    $("#detalhesImagem").attr("src", ipPython + "/static/uploads/Livros/" + livro.id_livro + ".jpeg");
-                    $("#detalhesTitulo").text("Título: " + livro.titulo);
-                    $("#detalhesAutor").text("Autor: " + livro.autor);
-                    $("#detalhesAno").text("Ano de Publicação: " + livro.data_publicacao);
-                    $("#detalhesISBN").text("ISBN: " + livro.ISBN);
-                    $("#detalhesDescricao").text("Descrição: " + livro.descricao);
-                    $("#modalDetalhesLivro").modal("show");
-                },
-                error: function () {
-                    Swal.fire("Erro!", "Falha ao carregar dados do livro.", "error");
-                }
-            });
-        }
-
         // Chama a função ao carregar a página
         $(document).ready(function () {
-            carregarLivros();
+            carregarLivros(); // Chama a função para carregar os livros ao iniciar
+        });
 
             // Corrige o erro de null reference para o botão relatorios (se existir)
             if (document.getElementById('relatorios')) {
@@ -232,30 +214,15 @@
                     // Sua lógica aqui
                 });
             }
-        });
 
-        // FUNÇÕES DE PRÉ-VISUALIZAÇÃO DE IMAGEM (mantidas iguais)
-        $("#imagem, #imagemEditar").on("change", function (e) {
-            var input = $(this);
-            var file = e.target.files[0];
-            var reader = new FileReader();
-
-            reader.onload = function (event) {
-                input.siblings('img').attr("src", event.target.result).show();
-            };
-
-            file ? reader.readAsDataURL(file) : input.siblings('img').hide();
-        });
-
-        // FUNÇÃO PARA CADASTRAR LIVROS (POST):
         $("#formCadastroLivro").on("submit", function (e) {
-            e.preventDefault();
+            e.preventDefault(); // Impede o envio padrão do formulário
             var token = localStorage.getItem("token");
-            var formData = new FormData(this);
+            var formData = new FormData(this); // Coleta os dados do formulário
 
             $.ajax({
                 method: "POST",
-                url: ipPython + "/livros",
+                url: ipPython + "/livros", // Rota para cadastrar livro
                 headers: {
                     'Authorization': 'Bearer ' + token
                 },
@@ -263,26 +230,26 @@
                 processData: false,
                 contentType: false,
                 success: function (retorno) {
-                    Swal.fire("Sucesso!", "Livro adicionado com sucesso", "success");
-                    carregarLivros();
-                    $("#modalCadastroLivro").modal("hide");
-                    $("#formCadastroLivro")[0].reset();
+                    Swal.fire("Sucesso!", "Livro cadastrado com sucesso", "success");
+                    carregarLivros(); // Atualiza a lista de livros
+                    $("#modalCadastroLivro").modal("hide"); // Fecha o modal
                 },
                 error: function (retorno) {
-                    Swal.fire("Erro!", retorno.responseJSON?.error || "Erro ao adicionar livro.", "error");
+                    Swal.fire("Erro!", retorno.responseJSON?.error || "Erro ao cadastrar livro.", "error");
                 }
             });
         });
 
         // FUNÇÃO PARA EDITAR LIVROS (PUT):
         $("#formEditarLivro").on("submit", function (e) {
-            e.preventDefault();
+            e.preventDefault(); // Impede o envio padrão do formulário
             var token = localStorage.getItem("token");
-            var formData = new FormData(this);
+            var formData = new FormData(this); // Coleta os dados do formulário
             var id = $("#id_livro").val(); // Obtém o ID do livro a ser editado
+
             $.ajax({
                 method: "PUT",
-                url: ipPython + "/livros/" + id,
+                url: ipPython + "/livros/" + id, // Rota para editar livro
                 headers: {
                     'Authorization': 'Bearer ' + token
                 },
