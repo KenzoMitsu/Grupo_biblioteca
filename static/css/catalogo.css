@@ -562,7 +562,12 @@ input:checked+.slider:before {
 .span {
     color: var(--branco);
 }
-
+.star{
+    color: #ffcc00;
+}
+.sinal-add{
+    color:black !important;
+}
 /* Responsividade para telas menores */
 @media (max-width: 768px) {
     header {
