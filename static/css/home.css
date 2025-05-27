@@ -101,9 +101,12 @@ header {
     width: 100%;
     padding: 5px;
 }
-
+.btn-catalogo{
+    background-color: #3380ca;
+}
 .btn-catalogo:hover{
-    color: #777777;
+    color: rgb(178, 178, 178) !important;
+    background-color: #4086c6;
 }
 
 /* Ícone do menu */
