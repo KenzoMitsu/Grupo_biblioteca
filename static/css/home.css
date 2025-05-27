@@ -396,6 +396,11 @@ header {
     font-weight: bold;
 }
 
+.bemvindo .span{
+    text-align: center;
+    font-size: xx-large;
+}
+
 .btn {
     font-weight: bold;
     font-size: 25px;

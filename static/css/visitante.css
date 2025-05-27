@@ -84,6 +84,21 @@ header {
     background-color: white;
 }
 
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    right: 0;
+    background: #fff;
+    border-radius: 6px;
+    box-shadow: 0px 2px 12px rgba(0, 0, 0, 0.1);
+    min-width: 160px;
+    z-index: 1000;
+}
+
+.dropdown-menu.show {
+    display: block;
+}
+
 /* Dark Mode */
 .switch-container {
     display: flex;
@@ -316,6 +331,7 @@ body img{
     margin-left: 73px;
     margin-right: 73px;
     border-radius: 7px;
+    text-align: center;
 }
 
 .nomeUsuario {
