@@ -47,11 +47,12 @@
             </div>
         </form>
 
-        <a href="catalogo.html" class=" btn-catalogo flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
+        <a href="catalogo.html"
+            class=" btn-catalogo flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
             <i class="fas fa-folder-open"></i>
             Catálogo
         </a>
-          
+
         <div class="coisa">
             <!-- Ícone de Menu com Dropdown -->
             <div class="header-end">
@@ -79,7 +80,7 @@
 
         <div class="container">
 
-            <h3 class="titulo">Nosso Catálogo</h3>
+            <h3 class="titulo">Nossos Livros</h3>
 
             <div class="listalivros" id="listaLivros">
 
@@ -146,6 +147,16 @@
     </footer>
 
     <script>
+
+        // Adiciona o evento de clique no botão de relatórios
+        document.addEventListener('DOMContentLoaded', function () {
+            const relatoriosItem = document.getElementById('relatorios');
+            const submenu = relatoriosItem.querySelector('.submenu');
+
+            relatoriosItem.querySelector('.submenu-toggle').addEventListener('click', function () {
+                submenu.classList.toggle('show'); // Alterna a classe 'show' para mostrar ou esconder o submenu
+            });
+        });
         $(document).ready(function () {
             // Exibe o nome do usuário do localStorage
             function exibirNomeUsuario() {
@@ -157,7 +168,7 @@
                 }
 
             }
-            
+
             // Chama a função para exibir o nome do usuário ao carregar a página
             exibirNomeUsuario();
 
@@ -210,7 +221,7 @@
                                         </div>
                                     `;
                                 } else {
-                                    
+
                                     html += `
                                         <div class="item">
                                             <a title="${livro.titulo}" href="reserva.html?id=${livro.id_livro}">
@@ -222,7 +233,7 @@
                                     `;
                                 }
 
-                                
+
                             });
                         }
 

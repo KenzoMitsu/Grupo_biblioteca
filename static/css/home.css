@@ -305,7 +305,7 @@ header {
 }
 
 .titulo {
-    margin: 20px;
+    margin: 40px;
     color: var(--azul-escuro);
     text-align: center;
     font-weight: bold;
