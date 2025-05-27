@@ -73,9 +73,7 @@
             </div>
 
     </header>
-
     <main>
-
         <div class="bemvindo">
             <h3 class="span">Bem vindo, <span id="nomeUsuario" class="nomeUsuario"></span></h3>
         </div>
@@ -160,25 +158,25 @@
             });
         });
         // Função para atualizar os hrefs dos relatórios
-            function atualizarLinksRelatorios() {
-                const linksRelatorios = {
-                    relatorioMultas: "/multas_relatorio",
-                    relatorioLivros: "/livros_relatorio",
-                    relatorioUsuarios: "/usuarios_relatorio",
-                    relatorioEmprestimos: "/emprestimos_relatorio"
-                };
-                for (let id in linksRelatorios) {
-                    const elemento = document.getElementById(id);
-                    if (elemento) {
-                        elemento.href = `${ipPython2}${linksRelatorios[id]}`;
-                    }
+        function atualizarLinksRelatorios() {
+            const linksRelatorios = {
+                relatorioMultas: "/multas_relatorio",
+                relatorioLivros: "/livros_relatorio",
+                relatorioUsuarios: "/usuarios_relatorio",
+                relatorioEmprestimos: "/emprestimos_relatorio"
+            };
+            for (let id in linksRelatorios) {
+                const elemento = document.getElementById(id);
+                if (elemento) {
+                    elemento.href = `${ipPython2}${linksRelatorios[id]}`;
                 }
             }
+        }
 
-            // Chama a função assim que o DOM carregar
-            document.addEventListener("DOMContentLoaded", atualizarLinksRelatorios);   
+        // Chama a função assim que o DOM carregar
+        document.addEventListener("DOMContentLoaded", atualizarLinksRelatorios);
 
-            
+
         $(document).ready(function () {
             // Exibe o nome do usuário do localStorage
             function exibirNomeUsuario() {

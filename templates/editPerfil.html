@@ -18,6 +18,9 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="../static/js/paginaip.js"></script>
@@ -61,7 +64,7 @@
                     </div>
 
                     <ul class="dropdown-menu" id="dropdownMenu">
-                        
+
                     </ul>
 
                 </div>
@@ -316,33 +319,33 @@
         const logoImage2 = document.getElementById("logoImage2");
         logoImage2.src = `${ipPython}/static/uploads/logo/logo.png`;
 
-                // Adiciona o evento de clique no botão de relatórios
-                    document.addEventListener('DOMContentLoaded', function () {
-                        const relatoriosItem = document.getElementById('relatorios');
-                        const submenu = relatoriosItem.querySelector('.submenu');
+        // Adiciona o evento de clique no botão de relatórios
+        document.addEventListener('DOMContentLoaded', function () {
+            const relatoriosItem = document.getElementById('relatorios');
+            const submenu = relatoriosItem.querySelector('.submenu');
 
-                        relatoriosItem.querySelector('.submenu-toggle').addEventListener('click', function () {
-                            submenu.classList.toggle('show'); // Alterna a classe 'show' para mostrar ou esconder o submenu
-                        });
-                    });
-                    // Função para atualizar os hrefs dos relatórios
-                    function atualizarLinksRelatorios() {
-                        const linksRelatorios = {
-                            relatorioMultas: "/multas_relatorio",
-                            relatorioLivros: "/livros_relatorio",
-                            relatorioUsuarios: "/usuarios_relatorio",
-                            relatorioEmprestimos: "/emprestimos_relatorio"
-                        };
-                        for (let id in linksRelatorios) {
-                            const elemento = document.getElementById(id);
-                            if (elemento) {
-                                elemento.href = `${ipPython2}${linksRelatorios[id]}`;
-                            }
-                        }
-                    }
+            relatoriosItem.querySelector('.submenu-toggle').addEventListener('click', function () {
+                submenu.classList.toggle('show'); // Alterna a classe 'show' para mostrar ou esconder o submenu
+            });
+        });
+        // Função para atualizar os hrefs dos relatórios
+        function atualizarLinksRelatorios() {
+            const linksRelatorios = {
+                relatorioMultas: "/multas_relatorio",
+                relatorioLivros: "/livros_relatorio",
+                relatorioUsuarios: "/usuarios_relatorio",
+                relatorioEmprestimos: "/emprestimos_relatorio"
+            };
+            for (let id in linksRelatorios) {
+                const elemento = document.getElementById(id);
+                if (elemento) {
+                    elemento.href = `${ipPython2}${linksRelatorios[id]}`;
+                }
+            }
+        }
 
-                    // Chama a função assim que o DOM carregar
-                    document.addEventListener("DOMContentLoaded", atualizarLinksRelatorios);   
+        // Chama a função assim que o DOM carregar
+        document.addEventListener("DOMContentLoaded", atualizarLinksRelatorios);
 
     </script>
 </body>

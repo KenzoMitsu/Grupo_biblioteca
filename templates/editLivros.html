@@ -75,56 +75,67 @@
 
     <h1>Gerenciamento de Livros</h1>
 
-        <section id="livrosContainer">
-            <div class="bot">
-                <button type="button" class="add-btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalCadastroLivro">
-                    <i class="fa-solid fa-plus"></i>Adicionar Livro
-                </button>
-            </div>
+    <section id="livrosContainer">
+        <div class="bot">
+            <button type="button" class="add-btn btn-primary" data-bs-toggle="modal"
+                data-bs-target="#modalCadastroLivro">
+                <i class="fa-solid fa-plus"></i>Adicionar Livro
+            </button>
+        </div>
 
-            <div class="table-responsive">
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th>Título</th>
-                            <th>Autor</th>
-                            <th>Ano de Publicação</th>
-                            <th>ISBN</th>
-                            <th>Ações</th>
-                        </tr>
-                    </thead>
-                    <tbody id="livrosList"></tbody>
-                </table>
-            </div>
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Título</th>
+                        <th>Autor</th>
+                        <th>Ano de Publicação</th>
+                        <th>ISBN</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody id="livrosList"></tbody>
+            </table>
+        </div>
 
-            <!-- Modal para exibir detalhes do livro -->
-            <div class="modal fade" id="modalDetalhesLivro" tabindex="-1" aria-labelledby="modalDetalhesLivroLabel">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="modalDetalhesLivroLabel">Detalhes do Livro</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <img id="detalhesImagem" src="" alt="Capa do Livro" style="max-width: 100%; height: auto;">
-                            <p id="detalhesTitulo"></p>
-                            <p id="detalhesAutor"></p>
-                            <p id="detalhesAno"></p>
-                            <p id="detalhesISBN"></p>
-                            <p id="detalhesDescricao"></p>
-                        </div>
+        <div class="paginacao">
+            <a href="#" class="btn" id="pagina-anterior">
+                <i class="fa-solid fa-left-long"></i>
+            </a>
+            <h3 class="paginaAtual" id="paginaAtual">Página Atual</h3>
+            <a href="#" class="btn" id="pagina-proxima">
+                <i class="fa-solid fa-right-long"></i>
+            </a>
+        </div>
+
+        <!-- Modal para exibir detalhes do livro -->
+        <div class="modal fade" id="modalDetalhesLivro" tabindex="-1" aria-labelledby="modalDetalhesLivroLabel">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalDetalhesLivroLabel">Detalhes do Livro</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <img id="detalhesImagem" src="" alt="Capa do Livro" style="max-width: 100%; height: auto;">
+                        <p id="detalhesTitulo"></p>
+                        <p id="detalhesAutor"></p>
+                        <p id="detalhesAno"></p>
+                        <p id="detalhesISBN"></p>
+                        <p id="detalhesDescricao"></p>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
     <script>
-        // FUNÇÃO PARA EXIBIR OS LIVROS CADASTRADOS NO SITE (GET):
-        function carregarLivros() {
+        // FUNÇÃO PARA EXIBIR OS LIVROS CADASTRADOS NO SITE (GET) COM PAGINAÇÃO:
+        function carregarLivros(pagina = 1) {
             var token = localStorage.getItem("token");
             $.ajax({
                 method: "GET",
-                url: ipPython + "/pesquisar_livro",
+                url: ipPython + "/pesquisar_livro?pagina=" + pagina,
                 headers: {
                     'Authorization': 'Bearer ' + token
                 },
@@ -134,22 +145,25 @@
                     if (response.livros && response.livros.length > 0) {
                         response.livros.forEach(function (livro) {
                             var row = `<tr data-id_livro="${livro.id_livro}">
-                                <td>${livro.titulo}</td>
-                                <td>${livro.autor}</td>
-                                <td>${livro.data_publicacao}</td>
-                                <td>${livro.ISBN}</td>
-                                <td>
-                                    <div class="botoes">
-                                        <button class="btn btn-info" onclick="verDetalhes(${livro.id_livro})"><i class="fa-solid fa-info"></i></button>
-                                        <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modalEditarLivro" onclick="editarLivro(this)"><i class="fa-solid fa-pencil"></i></button>
-                                    </div>
-                                </td>
-                            </tr>`;
+                            <td>${livro.titulo}</td>
+                            <td>${livro.autor}</td>
+                            <td>${livro.data_publicacao}</td>
+                            <td>${livro.ISBN}</td>
+                            <td>
+                                <div class="botoes">
+                                    <button class="btn btn-info" onclick="verDetalhes(${livro.id_livro})"><i class="fa-solid fa-info"></i></button>
+                                    <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modalEditarLivro" onclick="editarLivro(this)"><i class="fa-solid fa-pencil"></i></button>
+                                </div>
+                            </td>
+                        </tr>`;
                             $("#livrosList").append(row);
                         });
                     } else {
                         $("#livrosList").append("<tr><td colspan='5'>Nenhum livro encontrado.</td></tr>");
                     }
+
+                    // Atualiza paginação
+                    atualizarPaginacao(response.pagina_atual, response.total_paginas);
                 },
                 error: function (error) {
                     console.error("Erro ao carregar livros:", error);
@@ -161,6 +175,37 @@
                 }
             });
         }
+
+        // FUNÇÃO PARA ATUALIZAR OS CONTROLES DE PAGINAÇÃO
+        function atualizarPaginacao(paginaAtual, totalPaginas) {
+            // Mostra apenas o número da página atual
+            $("#paginaAtual").text(paginaAtual);
+
+            // Esconde ou mostra as setas de navegação conforme a necessidade
+            if (paginaAtual <= 1) {
+                $("#pagina-anterior").hide();
+            } else {
+                $("#pagina-anterior").show();
+            }
+
+            if (paginaAtual >= totalPaginas) {
+                $("#pagina-proxima").hide();
+            } else {
+                $("#pagina-proxima").show();
+            }
+
+            // Atualiza eventos de clique
+            $("#pagina-anterior").off("click").on("click", function (e) {
+                e.preventDefault();
+                if (paginaAtual > 1) carregarLivros(paginaAtual - 1);
+            });
+
+            $("#pagina-proxima").off("click").on("click", function (e) {
+                e.preventDefault();
+                if (paginaAtual < totalPaginas) carregarLivros(paginaAtual + 1);
+            });
+        }
+
 
         function verDetalhes(id) {
             var token = localStorage.getItem("token");
@@ -188,9 +233,9 @@
 
         // Chama a função ao carregar a página
         $(document).ready(function () {
-                    carregarLivros();
+            carregarLivros();
 
-            // Corrige o erro de null reference
+            // Corrige o erro de null reference para o botão relatorios (se existir)
             if (document.getElementById('relatorios')) {
                 document.getElementById('relatorios').addEventListener('click', function () {
                     // Sua lógica aqui
@@ -229,7 +274,8 @@
                 success: function (retorno) {
                     Swal.fire("Sucesso!", "Livro adicionado com sucesso", "success");
                     carregarLivros();
-                    $("#modalCadastroLivro").modal("hide")[0].reset();
+                    $("#modalCadastroLivro").modal("hide");
+                    $("#formCadastroLivro")[0].reset();
                 },
                 error: function (retorno) {
                     Swal.fire("Erro!", retorno.responseJSON?.error || "Erro ao adicionar livro.", "error");
@@ -277,7 +323,6 @@
                 success: function (response) {
                     console.log(response); // Verifique a resposta
 
-                    // Acesse o primeiro livro da resposta
                     var livro = response.livro; // Supondo que a resposta tenha a estrutura correta
 
                     // Preenche o formulário de edição com os dados do livro
@@ -291,7 +336,7 @@
                     $("#paginasEditar").val(livro.paginas);
                     $("#statusEditar").val(livro.status);
                     $("#idiomaEditar").val(livro.idioma);
-                    $("#categoriaEditar").val(livro.categoria); // Certifique-se de que isso está correto
+                    $("#categoriaEditar").val(livro.categoria);
                     $("#previewImagemEditar").attr("src", ipPython + "/static/uploads/Livros/" + livro.id_livro + ".jpeg").show();
                 },
                 error: function () {
@@ -300,6 +345,7 @@
             });
         }
     </script>
+
 
     <!-- MODAL PARA CADASTRO DE LIVRO -->
     <div class="modal fade" id="modalCadastroLivro" tabindex="-1" aria-labelledby="modalCadastroLivroLabel">
@@ -316,19 +362,20 @@
                             <div class="mb-6">
                                 <div class="mb-3">
                                     <label class="bloco">Titulo:</label>
-                                    <input type="text" placeholder="Titulo do livro" class="inserir" id="titulo" name="titulo"
-                                        required>
+                                    <input type="text" placeholder="Titulo do livro" class="inserir" id="titulo"
+                                        name="titulo" required>
                                 </div>
 
                                 <div class="mb-3">
                                     <label class="bloco">Autor:</label>
-                                    <input type="text" placeholder="Nome do autor" class="inserir" id="autor" name="autor"
-                                        required>
+                                    <input type="text" placeholder="Nome do autor" class="inserir" id="autor"
+                                        name="autor" required>
                                 </div>
 
                                 <div class="mb-3">
                                     <label class="bloco">Ano de publicação:</label>
-                                    <input type="number" class="inserir" id="data_publicacao" name="data_publicacao" required>
+                                    <input type="number" class="inserir" id="data_publicacao" name="data_publicacao"
+                                        required>
                                 </div>
 
                                 <div class="mb-3">
@@ -339,8 +386,8 @@
 
                                 <div class="mb-3">
                                     <label class="bloco">Descrição:</label>
-                                    <input type="text" placeholder="Conte um pouco sobre o livro" class="inserir" id="descricao"
-                                        name="descricao">
+                                    <input type="text" placeholder="Conte um pouco sobre o livro" class="inserir"
+                                        id="descricao" name="descricao">
                                 </div>
 
                             </div>
@@ -355,8 +402,8 @@
 
                                 <div class="mb-3">
                                     <label class="bloco">Páginas:</label>
-                                    <input type="number" placeholder="Número de páginas" class="inserir" id="paginasEditar"
-                                        name="paginas" required>
+                                    <input type="number" placeholder="Número de páginas" class="inserir"
+                                        id="paginasEditar" name="paginas" required>
                                 </div>
 
                                 <div class="mb-3">
@@ -399,7 +446,8 @@
                                             <option class="inserir" value="Romance">Romance</option>
                                             <option class="inserir" value="Romance_historico">Romance histórico</option>
                                             <option class="inserir" value="Romance_policial">Romance policial</option>
-                                            <option class="inserir" value="Romance_psicologico">Romance psicológico</option>
+                                            <option class="inserir" value="Romance_psicologico">Romance psicológico
+                                            </option>
                                             <option class="inserir" value="Steampunk">Steampunk</option>
                                             <option class="inserir" value="Suspense">Suspense</option>
                                             <option class="inserir" value="Terror">Terror</option>
@@ -416,7 +464,8 @@
                                             <option class="inserir" value="Autobiografia">Autobiografia</option>
                                             <option class="inserir" value="Biografia">Biografia</option>
                                             <option class="inserir" value="Cinema">Cinema</option>
-                                            <option class="inserir" value="Crimes_reais">Crimes reais (True Crime)</option>
+                                            <option class="inserir" value="Crimes_reais">Crimes reais (True Crime)
+                                            </option>
                                             <option class="inserir" value="Diario">Diário</option>
                                             <option class="inserir" value="Ecologia">Ecologia</option>
                                             <option class="inserir" value="Economia">Economia</option>
@@ -445,7 +494,8 @@
                                             <option class="inserir" value="Enciclopedia">Enciclopédia</option>
                                             <option class="inserir" value="Exercicios">Livros de exercícios</option>
                                             <option class="inserir" value="Idiomas">Aprendizado de idiomas</option>
-                                            <option class="inserir" value="Preparacao_enem">Preparação para ENEM / Vestibular
+                                            <option class="inserir" value="Preparacao_enem">Preparação para ENEM /
+                                                Vestibular
                                             </option>
                                             <option class="inserir" value="Tecnico">Técnico</option>
                                         </optgroup>
@@ -465,11 +515,11 @@
                                 </div>
 
                                 <div class="mb-3">
-                                        <label for="imagem" class="form-label">Imagem do Livro</label>
-                                        <input type="file" class="form-control" id="imagem" name="imagem" accept="image/*">
-                                        <img id="previewImagem" src="" alt="Pré-visualização da Imagem"
-                                            style="display: none; margin-top: 10px; max-width: 100%; height: auto;">
-                                    </div>
+                                    <label for="imagem" class="form-label">Imagem do Livro</label>
+                                    <input type="file" class="form-control" id="imagem" name="imagem" accept="image/*">
+                                    <img id="previewImagem" src="" alt="Pré-visualização da Imagem"
+                                        style="display: none; margin-top: 10px; max-width: 100%; height: auto;">
+                                </div>
 
                             </div>
                         </div>
@@ -757,7 +807,7 @@
         }
 
         // Chama a função assim que o DOM carregar
-        document.addEventListener("DOMContentLoaded", atualizarLinksRelatorios);    
+        document.addEventListener("DOMContentLoaded", atualizarLinksRelatorios);
 
         const logoImage = document.getElementById("logoImage");
         logoImage.src = `${ipPython}/static/uploads/logo/logo.png`;
