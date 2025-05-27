@@ -98,9 +98,7 @@ header {
     width: 100%;
     padding: 5px;
 }
-.btn-catalogo {
-    background-color: #3380ca;
-}
+
 
 .btn-catalogo:hover {
     color: rgb(178, 178, 178) !important;
@@ -661,6 +659,15 @@ footer{
     margin-top: 50px;
 }
 
+.btn-catalogo{
+   display: flex;
+   align-items: center;
+}
+
+p {
+    margin-bottom: 0rem;
+}
+
 @media (max-width: 769px) {
 
     header {
@@ -684,7 +691,7 @@ footer{
     }
 
     .search-container {
-        width: 150px; /* Reduzindo a largura da pesquisa */
+        width: 300px; /* Reduzindo a largura da pesquisa */
         padding: 5px 10px;
         border-radius: 20px;
     }
@@ -774,6 +781,10 @@ footer{
 
         .pai1 {
             gap: 50px;
+        }
+
+        .catalogo p {
+            display: none;
         }
 
     }
@@ -883,3 +894,8 @@ footer{
     }
 }
 
+@media (max-width: 330px) {
+    .search-container {
+        width: 120px;
+    }
+}

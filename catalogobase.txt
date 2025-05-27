@@ -7,9 +7,13 @@
     display: none;
 }
 
+p {
+    margin-bottom: 0rem;
+}
+
 @media (max-width: 330px) {
     .search-container {
-        width: 125px;
+        width: 120px;
     }
 }
 
@@ -20,7 +24,3 @@
                 <p class="texto-catalogo">Catálogo</p>
             </a>
         </div>
-
-p {
-    margin-bottom: 0rem;
-}
