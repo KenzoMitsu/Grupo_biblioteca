@@ -16,9 +16,13 @@
     <link rel="icon" type="image/x-icon" href="../static/img/head-removebg-preview.png">
     <script src="../static/js/paginaip.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="../static/js/seguranca.js"></script>
-    <script src="../static/js/segurancaADM.js"></script>
-    <script src="../static/js/segurancaBiblio.js"></script>
+
+    <script src="../static/dist/owl.carousel.min.js"></script>
+    <script src="../static/js/scripts.js"></script>
+    <script src="../static/js/seguranca.js" defer></script>
+    <link rel="icon" type="image/x-icon" href="../static/img/head-removebg-preview.png">
+    <script src="../static/js/paginaip.js"></script>
+
     <script>
         const ipPython = "http://192.168.1.135:5000"; // ajuste se necessário
     </script>
@@ -26,10 +30,12 @@
 
 <body>
     <header>
-        <div class="header-left">
-            <a id="logoHeader" href="home.html"><img src="http://192.168.1.125:5000/static/uploads/logo/logo.png"
-                    alt="Logo"></a>
+        <div id="logo-site" class="header-left">
+            <a id="logoHeader" href="home.html">
+                <img id="logoImage" alt="Logo">
+            </a>
         </div>
+
         <form id="formBuscaLivro">
             <div class="search-container">
                 <i class="fas fa-search"></i>
@@ -142,7 +148,9 @@
                 </div>
             </div>
             <div class="imagem">
-                <img class="logo_rodape" src="http://192.168.1.125:5000/static/uploads/logo/logo.png" alt="logo">
+                <a id="logoHeader" href="home.html">
+                    <img id="logoImage2" alt="Logo">
+                </a>
             </div>
             <div class="localizacao">
                 <p class="local">LOCALIZAÇÃO<br>Birigui - SP</p>
@@ -311,6 +319,12 @@
             carregarCategorias();
             carregarLivros();
         });
+
+        const logoImage = document.getElementById("logoImage");
+        logoImage.src = `${ipPython}/static/uploads/logo/logo.png`;
+
+        const logoImage2 = document.getElementById("logoImage2");
+        logoImage2.src = `${ipPython}/static/uploads/logo/logo.png`;
     </script>
 </body>
 
