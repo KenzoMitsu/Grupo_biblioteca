@@ -32,7 +32,7 @@ $(document).ready(function () {
 
     // Função genérica para lidar com qualquer botão/menu
     function configurarDropdown(buttonId, menuId) {
-        
+
         var button = document.getElementById(buttonId);
         var menu = document.getElementById(menuId);
 
@@ -86,7 +86,8 @@ if (cargo === 'ADM') {
 
         <li class="menu-item">
             <div>
-                <i class="fa-solid fa-calendar-days"></i><a href="minhasReservas.html">Meus Empréstimos</a>
+                <i style="padding-right: 7px; padding-left: 1px;" 
+                class="fa-solid fa-calendar-days"></i><a href="meusEmprestimos.html">Meus Empréstimos</a>
             </div>
         </li>
 
@@ -226,7 +227,7 @@ if (cargo === 'ADM') {
 
         <li class="menu-item">
             <div>
-                <i class="fas fa-sync-alt"></i><a href="meusEmprestimos.html">Meus Empréstimos</a>
+                <i class="fa-solid fa-calendar-days"></i><a href="meusEmprestimos.html">Meus Empréstimos</a>
             </div>
         </li>
 
