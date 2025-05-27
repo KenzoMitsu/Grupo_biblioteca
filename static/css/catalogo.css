@@ -21,6 +21,10 @@ a {
     color: black;
 }
 
+p {
+    margin-bottom: 0rem;
+}
+
 .sair {
     background-color: #00010000;
     border: #00010000;
@@ -671,6 +675,16 @@ input:checked+.slider:before {
 .sinal-add{
     color:black !important;
 }
+
+.btn-catalogo{
+   display: flex;
+   align-items: center;
+}
+
+.catalogo p {
+    display: none;
+}
+
 /* Responsividade para telas menores */
 @media (max-width: 768px) {
     header {
@@ -862,5 +876,11 @@ input:checked+.slider:before {
 
     .listalivros {
         grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 330px) {
+    .search-container {
+        width: 125px;
     }
 }

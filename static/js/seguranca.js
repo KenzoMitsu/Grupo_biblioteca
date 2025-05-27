@@ -73,12 +73,6 @@ if (cargo === 'ADM') {
         </li>
 
         <li class="menu-item">
-            <div> 
-                <i class="fas fa-folder-open"></i> <a href="catalogo.html">Catálogo</a>
-            </div>
-        </li>
-
-        <li class="menu-item">
             <div>
                 <i class="fa-solid fa-clock"></i><a href="historicoReservas.html">Meu Histórico</a>
             </div>
