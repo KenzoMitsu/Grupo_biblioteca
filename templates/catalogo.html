@@ -327,7 +327,7 @@
         const logoImage2 = document.getElementById("logoImage2");
         logoImage2.src = `${ipPython}/static/uploads/logo/logo.png`;
 
-        
+
 
         // Função para carregar livros (busca e paginação)
         function carregaLivros() {
@@ -454,6 +454,113 @@
             document.addEventListener('DOMContentLoaded', function () {
                 const relatoriosItem = document.getElementById('relatorios');
                 const submenu = relatoriosItem.querySelector('.submenu');
+
+        // Carrega categorias ao iniciar
+        let paginaAtual = 1;
+
+        // Atualiza a URL com os filtros selecionados
+        function atualizarUrlComFiltros() {
+            const params = new URLSearchParams();
+            params.set('pagina', paginaAtual);
+
+            if ($('#filtroCategoria').val()) params.set('categoria', $('#filtroCategoria').val());
+            if ($('#filtroDisponibilidade').val()) params.set('disponibilidade', $('#filtroDisponibilidade').val());
+            if ($('#filtroNotaMin').val()) params.set('nota_min', $('#filtroNotaMin').val());
+            if ($('#filtroPaginasMin').val()) params.set('paginas_min', $('#filtroPaginasMin').val());
+            if ($('#filtroPaginasMax').val()) params.set('paginas_max', $('#filtroPaginasMax').val());
+            if ($('#filtroIdioma').val()) params.set('idioma', $('#filtroIdioma').val());
+
+            window.history.replaceState({}, '', window.location.pathname + '?' + params.toString());
+        }
+
+        // Aplica os filtros ao clicar no botão ou ao mudar algum campo
+        $('#btnAplicarFiltros').on('click', function () {
+            paginaAtual = 1;
+            atualizarUrlComFiltros();
+            carregarLivros();
+        });
+
+        // Se quiser aplicar automaticamente ao mudar qualquer filtro, use isso:
+        $('#filtroCategoria, #filtroDisponibilidade, #filtroNotaMin, #filtroPaginasMin, #filtroPaginasMax, #filtroIdioma').on('change', function () {
+            paginaAtual = 1;
+            atualizarUrlComFiltros();
+            carregarLivros();
+        });
+
+        // Limpa todos os filtros
+        $('#btnLimparFiltros').on('click', function () {
+            $('#filtroCategoria').val('');
+            $('#filtroDisponibilidade').val('');
+            $('#filtroNotaMin').val('');
+            $('#filtroPaginasMin').val('');
+            $('#filtroPaginasMax').val('');
+            $('#filtroIdioma').val('');
+            paginaAtual = 1;
+            atualizarUrlComFiltros();
+            carregarLivros();
+        });
+
+        // Carrega os filtros da URL ao abrir a página
+        $(document).ready(function () {
+            const params = new URLSearchParams(window.location.search);
+
+            // Se você carrega as categorias via AJAX, aguarde o carregamento antes de setar o valor!
+            if (params.get('categoria')) {
+                // Se for via AJAX, coloque isso dentro do callback de sucesso do AJAX
+                $('#filtroCategoria').val(params.get('categoria'));
+            }
+            $('#filtroDisponibilidade').val(params.get('disponibilidade') || '');
+            $('#filtroNotaMin').val(params.get('nota_min') || '');
+            $('#filtroPaginasMin').val(params.get('paginas_min') || '');
+            $('#filtroPaginasMax').val(params.get('paginas_max') || '');
+            $('#filtroIdioma').val(params.get('idioma') || '');
+
+            // Página
+            paginaAtual = parseInt(params.get('pagina')) || 1;
+            $('#paginaAtual').text(paginaAtual);
+
+            carregarLivros();
+        });
+
+        // Exemplo de função para carregar livros (ajuste conforme seu backend)
+        function carregarLivros() {
+            // Pegue os valores dos filtros
+            const filtros = {
+                categoria: $('#filtroCategoria').val(),
+                disponibilidade: $('#filtroDisponibilidade').val(),
+                nota_min: $('#filtroNotaMin').val(),
+                paginas_min: $('#filtroPaginasMin').val(),
+                paginas_max: $('#filtroPaginasMax').val(),
+                idioma: $('#filtroIdioma').val(),
+                pagina: paginaAtual
+            };
+            // Faça a requisição AJAX para buscar os livros filtrados (ajuste conforme sua API)
+            // Exemplo:
+            /*
+            $.get('/api/livros', filtros, function(data) {
+                $('#listaLivros').html(renderizarLivros(data));
+            });
+            */
+            // Atualize também o número da página na tela
+            $('#paginaAtual').text(paginaAtual);
+        }
+
+        // Paginação
+        $('#pagina-anterior').on('click', function (e) {
+            e.preventDefault();
+            if (paginaAtual > 1) {
+                paginaAtual--;
+                atualizarUrlComFiltros();
+                carregarLivros();
+            }
+        });
+        $('#pagina-proxima').on('click', function (e) {
+            e.preventDefault();
+            paginaAtual++;
+            atualizarUrlComFiltros();
+            carregarLivros();
+        });
+
 
                 relatoriosItem.querySelector('.submenu-toggle').addEventListener('click', function () {
                     submenu.classList.toggle('show'); // Alterna a classe 'show' para mostrar ou esconder o submenu
