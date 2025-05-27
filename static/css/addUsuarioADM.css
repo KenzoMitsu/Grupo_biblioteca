@@ -790,6 +790,10 @@ footer{
         height: 4px;
         background-color: #fff;
     }
+
+    .imagem {
+        display: none;
+    }
 }
 
 @media (max-width: 480px) {
