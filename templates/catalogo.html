@@ -19,6 +19,7 @@
     <script src="../static/js/seguranca.js"></script>
     <script src="../static/js/segurancaADM.js"></script>
     <script src="../static/js/segurancaBiblio.js"></script>
+
     <script>
         const ipPython = "http://192.168.1.135:5000"; // ajuste se necessário
     </script>
@@ -33,6 +34,7 @@
                 <img id="logoImage" alt="Logo">
             </a>
         </div>
+
         <!-- Barra de Pesquisa -->
         <form id="formBuscaLivro">
             <div class="search-container">
@@ -147,7 +149,7 @@
                 </div>
             </div>
             <div class="imagem">
-                <img class="logo_rodape" src="http://192.168.1.125:5000/static/uploads/logo/logo.png" alt="logo">
+                <img id="logoImage2" alt="Logo">
             </div>
             <div class="localizacao">
                 <p class="local">LOCALIZAÇÃO<br>Birigui - SP</p>
@@ -316,6 +318,14 @@
             carregarCategorias();
             carregarLivros();
         });
+
+        const logoImage = document.getElementById("logoImage");
+        logoImage.src = `${ipPython}/static/uploads/logo/logo.png`;
+
+        const logoImage2 = document.getElementById("logoImage2");
+        logoImage2.src = `${ipPython}/static/uploads/logo/logo.png`;
+
+        
 
         // Função para carregar livros (busca e paginação)
         function carregaLivros() {

@@ -1179,6 +1179,10 @@ footer {
             font-size: 24px;
             margin: 5px;
         }
+
+        .imagem {
+        display: none;
+    }
     }
     @media (max-width: 426px){
         .star{
