@@ -1012,6 +1012,18 @@ footer{
     .span{
         font-size: 15px
     }
+
+    .formCadastroLivro .mb-3 input {
+        width: 17.5rem;
+    }
+
+    select {
+        width: 17.5rem;
+    }
+
+    .save-btn {
+        width: 17.5rem;
+    }
 }
 
 .nomeUsuario {
@@ -1049,5 +1061,17 @@ footer{
 @media (max-width: 330px) {
     .search-container {
         width: 125px;
+    }
+
+    .formCadastroLivro .mb-3 input {
+        width: 14.5rem;
+    }
+
+    select {
+        width: 14.5rem;
+    }
+
+    .save-btn  {
+        width: 14.5rem;
     }
 }

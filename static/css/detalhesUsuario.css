@@ -1051,10 +1051,6 @@ footer {
    align-items: center;
 }
 
-.catalogo p {
-    display: none;
-}
-
 p {
     margin-bottom: 0rem;
 }
@@ -1156,6 +1152,10 @@ p {
     .pai2 {
         display: flex;
         flex-direction: column;
+    }
+
+    .catalogo p {
+        display: none;
     }
 }
 

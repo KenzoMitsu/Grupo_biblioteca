@@ -86,6 +86,12 @@ if (cargo === 'ADM') {
 
         <li class="menu-item">
             <div>
+                <i class="fa-solid fa-calendar-days"></i><a href="minhasReservas.html">Meus Empréstimos</a>
+            </div>
+        </li>
+
+        <li class="menu-item">
+            <div>
                 <i class="fa-solid fa-dollar-sign"></i><a href="historicoMultas.html">Minhas Multas</a>
             </div>
         </li>
