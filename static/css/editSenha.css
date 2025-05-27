@@ -9,7 +9,11 @@
 a{
     text-decoration: none;
     color:black;
-}   
+} 
+
+p {
+    margin-bottom: 0rem;
+}
 
 :root{
     --azul: #3380ca;
@@ -153,9 +157,7 @@ header {
     width: 100%;
     padding: 5px;
 }
-.btn-catalogo {
-    background-color: #3380ca;
-}
+
 
 .btn-catalogo:hover {
     color: rgb(178, 178, 178) !important;
@@ -693,6 +695,11 @@ footer{
     margin-top: 50px;
 }
 
+.btn-catalogo{
+   display: flex;
+   align-items: center;
+}
+
 /* Responsividade para telas menores */
 @media (max-width: 768px) {
     header {
@@ -764,10 +771,8 @@ footer{
     .menu-icon {
         width: 25px;
     }
+
 }
-
-
-
 
 
 @media (max-width: 480px) {
@@ -841,6 +846,10 @@ footer{
     .imagem {
         display: none;
     }
+
+    .catalogo p {
+    display: none;
+}
 }
 
 @media (max-width: 380px){
@@ -935,6 +944,10 @@ footer{
 
     .btn-voltar {
         width: 17rem;
+    }
+
+    .search-container {
+        width: 120px;
     }
 
 }

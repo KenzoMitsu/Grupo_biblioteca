@@ -107,9 +107,6 @@ header {
     width: 100%;
     padding: 5px;
 }
-.btn-catalogo {
-  background-color: #3380ca;
-}
 
 .btn-catalogo:hover {
   color: rgb(178, 178, 178) !important;
@@ -716,6 +713,11 @@ footer{
   margin-top: 50px;
 }
 
+.btn-catalogo{
+   display: flex;
+   align-items: center;
+}
+
 @media (max-width: 769px) {
 
   header {
@@ -871,6 +873,10 @@ footer{
   .imagem {
       display: none;
     }
+
+    .catalogo p {
+    display: none;
+  }
 }
 
 @media (max-width: 380px){
