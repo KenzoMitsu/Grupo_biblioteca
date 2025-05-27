@@ -77,7 +77,14 @@ header {
     width: 100%;
     padding: 5px;
 }
+.btn-catalogo {
+    background-color: #3380ca;
+}
 
+.btn-catalogo:hover {
+    color: rgb(178, 178, 178) !important;
+    background-color: #4086c6;
+}
 /* Dark Mode */
 .switch-container {
     display: flex;
