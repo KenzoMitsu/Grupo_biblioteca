@@ -225,10 +225,8 @@
                             </tr>
                         `;
 
-                        // Adiciona na tabela de reservas (mesmo que tenha sido cancelada)
-                        if (item.status !== 4) { // Exclui reservas canceladas
-                            tabelaReservas.append(linha);
-                        }
+                        // Adiciona todas as reservas, incluindo as canceladas
+                        tabelaReservas.append(linha);
 
                         // Se a reserva foi transformada em empréstimo (status == 2), adiciona na tabela de empréstimos
                         if (item.status === 2 || item.status === 3) { // Exibe empréstimos devolvidos
