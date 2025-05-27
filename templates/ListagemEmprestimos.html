@@ -34,109 +34,109 @@
 </head>
 
 <body>
-    <header>
-        <!-- Logo -->
-        <div id="logo-site" class="header-left">
-            <a id="logoHeader" href="home.html">
-                <img id="logoImage" alt="Logo">
-            </a>
+  <header>
+    <!-- Logo -->
+    <div id="logo-site" class="header-left">
+      <a id="logoHeader" href="home.html">
+        <img id="logoImage" alt="Logo">
+      </a>
+    </div>
+
+    <!-- Barra de Pesquisa -->
+    <form id="formBuscaLivro">
+      <div class="search-container">
+        <i class="fas fa-search"></i>
+        <input type="text" id="campoBusca" placeholder="Pesquise Seu Livro" class="search-box">
+      </div>
+    </form>
+    <a href="catalogo.html"
+      class=" btn-catalogo flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
+      <i class="fas fa-folder-open"></i>
+      Catálogo
+    </a>
+
+    <div class="coisa">
+      <!-- Ícone de Menu com Dropdown -->
+      <div class="header-end">
+        <div class="menu-container">
+          <div class="menu-icon" id="menuButton">
+            <div class="menulinha"></div>
+            <div class="menulinha"></div>
+            <div class="menulinha"></div>
+          </div>
+
+          <ul class="dropdown-menu" id="dropdownMenu">
+
+          </ul>
+
         </div>
+      </div>
 
-        <!-- Barra de Pesquisa -->
-        <form id="formBuscaLivro">
-            <div class="search-container">
-                <i class="fas fa-search"></i>
-                <input type="text" id="campoBusca" placeholder="Pesquise Seu Livro" class="search-box">
-            </div>
-        </form>
-        <a href="catalogo.html"
-          class=" btn-catalogo flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
-          <i class="fas fa-folder-open"></i>
-          Catálogo
-        </a>
-
-        <div class="coisa">
-            <!-- Ícone de Menu com Dropdown -->
-            <div class="header-end">
-                <div class="menu-container">
-                    <div class="menu-icon" id="menuButton">
-                        <div class="menulinha"></div>
-                        <div class="menulinha"></div>
-                        <div class="menulinha"></div>
-                    </div>
-
-                    <ul class="dropdown-menu" id="dropdownMenu">
-
-                    </ul>
-
-                </div>
-            </div>
-
-    </header>
+  </header>
   <!-- FIM DO CABEÇALHO -->
 
   <div class="container">
     <h2 class="titulo">Listagem de Empréstimos</h2>
   </div>
 
-    <div class="table-container">
-      <table class="table" id="tabela-emprestimos" border="3">
-        <thead>
-          <tr>
-            <th>Usuário</th>
-            <th>Data Emprestimo</th>
-            <th>Data Devolução</th>
-            <th>Título do Livro</th>
-            <th>Autor</th>
-            <th>Ações</th>
-          </tr>
-        </thead>
-        <tbody></tbody>
-      </table>
-    </div>
+  <div class="table-container">
+    <table class="table" id="tabela-emprestimos" border="3">
+      <thead>
+        <tr>
+          <th>Usuário</th>
+          <th>Data Emprestimo</th>
+          <th>Data Devolução</th>
+          <th>Título do Livro</th>
+          <th>Autor</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
 
-    <!-- Modal para Edição -->
-    <div id="modal-edicao" style="display: none;">
-      <form id="form-edicao">
-        <input type="hidden" id="id_usuario">
+  <!-- Modal para Edição -->
+  <div id="modal-edicao" style="display: none;">
+    <form id="form-edicao">
+      <input type="hidden" id="id_usuario">
 
-        <label>Nome:</label>
-        <input type="text" id="nome" required>
+      <label>Nome:</label>
+      <input type="text" id="nome" required>
 
-        <label>Email:</label>
-        <input type="email" id="email" required>
+      <label>Email:</label>
+      <input type="email" id="email" required>
 
-        <label>Telefone:</label>
-        <input type="text" id="telefone" onkeyup="handlePhone(event)" required>
+      <label>Telefone:</label>
+      <input type="text" id="telefone" onkeyup="handlePhone(event)" required>
 
-        <label>Data de nascimento:</label>
-        <input type="date" id="data_nascimento" required>
+      <label>Data de nascimento:</label>
+      <input type="date" id="data_nascimento" required>
 
 
-        <label for="cargo" class="coisa">Cargo:</label>
-        <select class="inserir" name="cargo" id="cargo">
-          <option class="inserir" value="Cliente">Cliente</option>
-          <option class="inserir" value="Bibliotecário">Bibliotecário</option>
-          <option class="inserir" value="ADM">ADM</option>
-        </select>
+      <label for="cargo" class="coisa">Cargo:</label>
+      <select class="inserir" name="cargo" id="cargo">
+        <option class="inserir" value="Cliente">Cliente</option>
+        <option class="inserir" value="Bibliotecário">Bibliotecário</option>
+        <option class="inserir" value="ADM">ADM</option>
+      </select>
 
-        <label for="status" class="coisa">Status:</label>
-        <select class="inserir" name="status" id="status">
-          <option class="inserir" value="Ativo">Ativo</option>
-          <option class="inserir" value="Inativo">Inativo</option>
-        </select>
+      <label for="status" class="coisa">Status:</label>
+      <select class="inserir" name="status" id="status">
+        <option class="inserir" value="Ativo">Ativo</option>
+        <option class="inserir" value="Inativo">Inativo</option>
+      </select>
 
-        <button type="submit">Salvar</button>
-        <button type="button" id="fechar-modal">Cancelar</button>
-      </form>
-    </div>
+      <button type="submit">Salvar</button>
+      <button type="button" id="fechar-modal">Cancelar</button>
+    </form>
+  </div>
 
   </div>
 
   <div class="paginacao">
-      <a href="" class="btn" id="pagina-anterior"> <i class="fa-solid fa-left-long"></i> </a>
-      <h3 class="paginaAtual" id="paginaAtual">Página Atual</h3>
-      <a href="" class="btn" id="pagina-proxima"> <i class="fa-solid fa-right-long"></i> </a>
+    <a href="" class="btn" id="pagina-anterior"> <i class="fa-solid fa-left-long"></i> </a>
+    <h3 class="paginaAtual" id="paginaAtual">Página Atual</h3>
+    <a href="" class="btn" id="pagina-proxima"> <i class="fa-solid fa-right-long"></i> </a>
   </div>
 
   <footer class="inter">
@@ -174,9 +174,9 @@
         </div>
       </div>
       <div class="imagem">
-          <a id="logoHeader" href="home.html">
-              <img id="logoImage2" alt="Logo">
-          </a>
+        <a id="logoHeader" href="home.html">
+          <img id="logoImage2" alt="Logo">
+        </a>
       </div>
 
       <div class="localizacao">
@@ -197,7 +197,7 @@
     async function devolverLivro(botao) {
       const id_emprestimo = $(botao).closest('tr').data('id');  // Pega o ID do empréstimo da linha clicada
       const token = localStorage.getItem("token");
-  
+
       try {
         const resposta = await fetch(ipPython + `/devolucao/${id_emprestimo}`, {
           method: "PUT",
@@ -206,14 +206,14 @@
             "Authorization": `Bearer ${token}`
           }
         });
-  
+
         if (!resposta.ok) {
           const erro = await resposta.json();
           throw new Error(erro.mensagem || "Erro ao realizar a devolução.");
         }
-  
+
         const dados = await resposta.json();
-  
+
         // Exibir SweetAlert de sucesso
         Swal.fire({
           title: 'Devolvido!',
@@ -224,10 +224,10 @@
           // Recarregar a lista de empréstimos
           carregaremprestimo();
         });
-  
+
       } catch (erro) {
         console.error("Erro na requisição:", erro);
-  
+
         // Exibir SweetAlert de erro com a mensagem da API
         Swal.fire({
           title: 'Erro!',
@@ -237,21 +237,21 @@
         });
       }
     }
-  
+
     // Função para carregar os empréstimos
     function carregaremprestimo() {
       const token = localStorage.getItem("token");
 
       const params = new URLSearchParams(window.location.search);
-        var pagina = params.get('pagina');
+      var pagina = params.get('pagina');
 
-        if (pagina === null || pagina === undefined) {
-          pagina = 1
-        } 
+      if (pagina === null || pagina === undefined) {
+        pagina = 1
+      }
 
-        if (pagina == 1) {
-          document.getElementById('pagina-anterior').style.display = "none"
-        }
+      if (pagina == 1) {
+        document.getElementById('pagina-anterior').style.display = "none"
+      }
 
       $.ajax({
         method: "GET",
@@ -275,24 +275,24 @@
           document.getElementById("pagina-proxima").href = "/templates/EmprestimosReservas.html?pagina=" + proxima
 
           if (paginaAtual >= total) {
-              document.getElementById('pagina-proxima').style.display = "none"
-          } 
+            document.getElementById('pagina-proxima').style.display = "none"
+          }
 
           if (paginaAtual > total) {
-              document.getElementById('listaLivros').innerHTML = `
+            document.getElementById('listaLivros').innerHTML = `
                   <p>Empréstimos não encontrados!</p>
               `;
           }
 
-          document.getElementById("paginaAtual").innerHTML = paginaAtual 
+          document.getElementById("paginaAtual").innerHTML = paginaAtual
 
-          emprestimos.forEach(emprestimo => { 
+          emprestimos.forEach(emprestimo => {
 
             let linha = `
               <tr data-id="${emprestimo.id_emprestimo}">
                   <td>${emprestimo.nome_usuario}</td>
-                  <td>${emprestimo.data_emprestimo.replaceAll("-","/")}</td>
-                  <td>${emprestimo.data_devolucao.replaceAll("-","/")}</td>
+                  <td>${emprestimo.data_emprestimo.replaceAll("-", "/")}</td>
+                  <td>${emprestimo.data_devolucao.replaceAll("-", "/")}</td>
                   <td>${emprestimo.titulo_livro}</td>
                   <td>${emprestimo.autor_livro}</td>
                   <td>
@@ -308,7 +308,7 @@
         }
       });
     }
-  
+
     // Função para formatar as datas
     function formatarData(dataISO) {
       if (!dataISO) return "";
@@ -318,17 +318,45 @@
       let ano = data.getFullYear();
       return `${dia}/${mes}/${ano}`;
     }
-  
+
     // Chama a função para carregar os empréstimos ao iniciar
     $(document).ready(function () {
       carregaremprestimo();
     });
 
-        const logoImage = document.getElementById("logoImage");
-        logoImage.src = `${ipPython}/static/uploads/logo/logo.png`;
+    const logoImage = document.getElementById("logoImage");
+    logoImage.src = `${ipPython}/static/uploads/logo/logo.png`;
 
-        const logoImage2 = document.getElementById("logoImage2");
-        logoImage2.src = `${ipPython}/static/uploads/logo/logo.png`;
+    const logoImage2 = document.getElementById("logoImage2");
+    logoImage2.src = `${ipPython}/static/uploads/logo/logo.png`;
+
+    // Adiciona o evento de clique no botão de relatórios
+    document.addEventListener('DOMContentLoaded', function () {
+      const relatoriosItem = document.getElementById('relatorios');
+      const submenu = relatoriosItem.querySelector('.submenu');
+
+      relatoriosItem.querySelector('.submenu-toggle').addEventListener('click', function () {
+        submenu.classList.toggle('show'); // Alterna a classe 'show' para mostrar ou esconder o submenu
+      });
+    });
+    // Função para atualizar os hrefs dos relatórios
+    function atualizarLinksRelatorios() {
+      const linksRelatorios = {
+        relatorioMultas: "/multas_relatorio",
+        relatorioLivros: "/livros_relatorio",
+        relatorioUsuarios: "/usuarios_relatorio",
+        relatorioEmprestimos: "/emprestimos_relatorio"
+      };
+      for (let id in linksRelatorios) {
+        const elemento = document.getElementById(id);
+        if (elemento) {
+          elemento.href = `${ipPython2}${linksRelatorios[id]}`;
+        }
+      }
+    }
+
+    // Chama a função assim que o DOM carregar
+    document.addEventListener("DOMContentLoaded", atualizarLinksRelatorios);
 
   </script>
 

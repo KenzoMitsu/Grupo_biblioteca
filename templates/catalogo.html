@@ -83,11 +83,11 @@
                         <label for="filtroNotaMin" class="form-label">Nota mínima:</label>
                         <select id="filtroNotaMin" class="form-select">
                             <option value="">Qualquer nota</option>
-                            <option value="1">1+</option>
-                            <option value="2">2+</option>
-                            <option value="3">3+</option>
-                            <option value="4">4+</option>
-                            <option value="5">5</option>
+                            <option class="star" value="1">★<span class="sinal-add">+</span></option>
+                            <option class="star" value="2">★★<span class="sinal-add">+</span></option>
+                            <option class="star"value="3">★★★<span class="sinal-add">+</span></option>
+                            <option class="star" value="4">★★★★<span class="sinal-add">+</span></option>
+                            <option class="star" value="5">★★★★★</option>
                         </select>
                     </div>
                 </div>
@@ -114,7 +114,6 @@
                 </div>
                 <div class="row mt-3">
                     <div class="col-md-12 text-end">
-                        <button id="btnAplicarFiltros" class="btn btn-primary">Aplicar Filtros</button>
                         <button id="btnLimparFiltros" class="btn btn-secondary ms-2">Limpar Filtros</button>
                     </div>
                 </div>
@@ -452,7 +451,33 @@
             }
             carregaLivros();
         })();
+            // Adiciona o evento de clique no botão de relatórios
+            document.addEventListener('DOMContentLoaded', function () {
+                const relatoriosItem = document.getElementById('relatorios');
+                const submenu = relatoriosItem.querySelector('.submenu');
 
+                relatoriosItem.querySelector('.submenu-toggle').addEventListener('click', function () {
+                    submenu.classList.toggle('show'); // Alterna a classe 'show' para mostrar ou esconder o submenu
+                });
+            });
+            // Função para atualizar os hrefs dos relatórios
+            function atualizarLinksRelatorios() {
+                const linksRelatorios = {
+                    relatorioMultas: "/multas_relatorio",
+                    relatorioLivros: "/livros_relatorio",
+                    relatorioUsuarios: "/usuarios_relatorio",
+                    relatorioEmprestimos: "/emprestimos_relatorio"
+                };
+                for (let id in linksRelatorios) {
+                    const elemento = document.getElementById(id);
+                    if (elemento) {
+                        elemento.href = `${ipPython2}${linksRelatorios[id]}`;
+                    }
+                }
+            }
+
+            // Chama a função assim que o DOM carregar
+            document.addEventListener("DOMContentLoaded", atualizarLinksRelatorios);   
     </script>
 </body>
 

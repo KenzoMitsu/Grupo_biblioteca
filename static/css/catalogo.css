@@ -153,6 +153,14 @@ header {
     width: 100%;
     padding: 5px;
 }
+.btn-catalogo {
+    background-color: #3380ca;
+}
+
+.btn-catalogo:hover {
+    color: rgb(178, 178, 178) !important;
+    background-color: #4086c6;
+}
 
 /* Estilos para o catálogo */
 .container {
@@ -657,7 +665,12 @@ input:checked+.slider:before {
 .span {
     color: var(--branco);
 }
-
+.star{
+    color: #ffcc00;
+}
+.sinal-add{
+    color:black !important;
+}
 /* Responsividade para telas menores */
 @media (max-width: 768px) {
     header {
