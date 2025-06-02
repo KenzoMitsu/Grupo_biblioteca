@@ -7,11 +7,16 @@
     <title>Histórico</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Sans+JP:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Sans+JP:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="../static/css/historico.css">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="../static/js/paginaip.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -100,6 +105,7 @@
                                 <th>Nome do Usuário</th>
                                 <th>Título do Livro</th>
                                 <th>Autor do Livro</th>
+                                <th>Status</th>
                             </tr>
                         </thead>
                         <tbody></tbody>
@@ -173,110 +179,98 @@
     </footer>
 
     <script>
-        // Função para carregar o histórico de reservas e empréstimos
         function carregarHistorico() {
             const token = localStorage.getItem("token");
-            var id_usuario = localStorage.getItem("id_usuario");
+            const id_usuario = localStorage.getItem("id_usuario");
             const params = new URLSearchParams(window.location.search);
-            var pagina = params.get('pagina');
-            if (!pagina) pagina = 1;
+            let pagina = parseInt(params.get('pagina')) || 1;
 
-            if (pagina == 1) {
+            // Oculta botão "anterior" se estiver na página 1
+            if (pagina === 1) {
                 document.getElementById('pagina-anterior').style.display = "none";
+            } else {
+                document.getElementById('pagina-anterior').style.display = "inline-block";
             }
 
             $.ajax({
                 method: "GET",
-                url: ipPython + "/reservasusuario/" + id_usuario + "?pagina=" + pagina,
+                url: `${ipPython}/reservasusuario/${id_usuario}?pagina=${pagina}`,
                 headers: {
                     'Authorization': 'Bearer ' + token
                 },
                 success: function (data) {
-                    console.log(data);
-                    let reservas = data.reservas;
-                    let tabelaReservas = $("#tabela-reservas tbody");
-                    let tabelaEmprestimos = $("#tabela-emprestimos tbody");
+                    const reservas = data.reservas;
+                    const tabelaReservas = $("#tabela-reservas tbody");
+                    const tabelaEmprestimos = $("#tabela-emprestimos tbody");
                     tabelaReservas.empty();
                     tabelaEmprestimos.empty();
 
-                    var total = data.total_paginas;
-                    var paginaAtual = data.pagina_atual;
-                    var anterior = paginaAtual - 1;
-                    var proxima = paginaAtual + 1;
+                    const totalPaginas = data.total_paginas;
+                    const paginaAtual = data.pagina_atual;
+                    const anterior = paginaAtual - 1;
+                    const proxima = paginaAtual + 1;
 
-                    document.getElementById("pagina-anterior").href = "/templates/historicoAtividade.html?pagina=" + anterior;
-                    document.getElementById("pagina-proxima").href = "/templates/historicoAtividade.html?pagina=" + proxima;
+                    // Atualiza paginação
+                    document.getElementById("pagina-anterior").href = `/templates/historicoAtividade.html?pagina=${anterior}`;
+                    document.getElementById("pagina-proxima").href = `/templates/historicoAtividade.html?pagina=${proxima}`;
+                    document.getElementById("paginaAtual").innerText = paginaAtual;
 
-                    if (paginaAtual >= total) {
+                    if (paginaAtual >= totalPaginas) {
                         document.getElementById('pagina-proxima').style.display = "none";
+                    } else {
+                        document.getElementById('pagina-proxima').style.display = "inline-block";
                     }
 
-                    document.getElementById("paginaAtual").innerHTML = paginaAtual;
+                    if (!reservas || reservas.length === 0) {
+                        tabelaReservas.append(`<tr><td colspan="5" class="text-center">Nenhuma atividade encontrada.</td></tr>`);
+                        tabelaEmprestimos.append(`<tr><td colspan="5" class="text-center">Nenhum empréstimo registrado.</td></tr>`);
+                        return;
+                    }
+
+                    // Função para traduzir o status
+                    function traduzirStatus(status) {
+                        switch (status) {
+                            case 1: return "Reservado";
+                            case 2: return "Emprestado";
+                            case 3: return "Devolvido";
+                            case 4: return "Cancelado";
+                            default: return "Desconhecido";
+                        }
+                    }
 
                     reservas.forEach(item => {
-                        let linha = `
-                            <tr data-id="${item.id_emprestimo}">
-                                <td>${item.data_reserva.replaceAll("-", "/")}</td>
-                                <td>${item.nome_usuario}</td>
-                                <td class="nome-coisado">${item.titulo_livro}</td>
-                                <td>${item.autor_livro}</td>
-                            </tr>
-                        `;
+                        const statusTexto = traduzirStatus(item.status);
+                        const linha = `
+                        <tr data-id="${item.id_emprestimo}">
+                            <td>${item.data_reserva.replaceAll("-", "/")}</td>
+                            <td>${item.nome_usuario}</td>
+                            <td class="nome-coisado">${item.titulo_livro}</td>
+                            <td>${item.autor_livro}</td>
+                            <td>${statusTexto}</td>
+                        </tr>
+                    `;
 
-                        // Adiciona todas as reservas, incluindo as canceladas
+                        // Todas as reservas vão na tabela principal
                         tabelaReservas.append(linha);
 
-                        // Se a reserva foi transformada em empréstimo (status == 2), adiciona na tabela de empréstimos
-                        if (item.status === 2 || item.status === 3) { // Exibe empréstimos devolvidos
+                        // Apenas empréstimos e devoluções vão na tabela de empréstimos
+                        if (item.status === 2 || item.status === 3) {
                             tabelaEmprestimos.append(linha);
                         }
                     });
                 },
-                error: function (params) {
-                    console.error(params);
+                error: function (err) {
+                    console.error("Erro ao carregar histórico:", err);
+                    alert("Erro ao carregar os dados do histórico.");
                 }
             });
         }
 
-        // Chama a função para carregar o histórico ao iniciar
         $(document).ready(function () {
             carregarHistorico();
         });
-
-        const logoImage = document.getElementById("logoImage");
-        logoImage.src = `${ipPython}/static/uploads/logo/logo.png`;
-
-        const logoImage2 = document.getElementById("logoImage2");
-        logoImage2.src = `${ipPython}/static/uploads/logo/logo.png`;
-
-        const logoExts = ['png', 'jpg', 'jpeg', 'webp'];
-            function atualizarLogoSite() {
-                let i = 0;
-                function tentarProxima() {
-                    if (i >= logoExts.length) {
-                        let logoImage = document.getElementById("logoImage");
-                        let logoImage2 = document.getElementById("logoImage2");
-                        if (logoImage) logoImage.src = '../static/img/head-removebg-preview.png';
-                        if (logoImage2) logoImage2.src = '../static/img/head-removebg-preview.png';
-                        return;
-                    }
-                    let url = `${ipPython}/static/uploads/logo/logo.${logoExts[i]}?${Date.now()}`;
-                    fetch(url).then(resp => {
-                        if (resp.ok) {
-                            let logoImage = document.getElementById("logoImage");
-                            let logoImage2 = document.getElementById("logoImage2");
-                            if (logoImage) logoImage.src = url;
-                            if (logoImage2) logoImage2.src = url;
-                        } else {
-                            i++;
-                            tentarProxima();
-                        }
-                    });
-                }
-                tentarProxima();
-            }
-            document.addEventListener('DOMContentLoaded', atualizarLogoSite);
     </script>
+
 
 </body>
 
