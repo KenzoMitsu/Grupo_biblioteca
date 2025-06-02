@@ -910,21 +910,24 @@ footer{
     background-color: var(--preto);
     color: var(--branco);
     transition: 0.3s;
-    font-size: 21px;
+    font-size: 19px;
+    display: flex;
     width: 2.5rem;
-    height: 38px;
+    height: 40px;
     margin-bottom: 2px;
     border: none;
     border-radius: 25px;
+    justify-content: center;
+    align-items: center;
 }
 
 .table tbody tr td .botoes .btn-warning {
     background-color: var(--preto);
     color: var(--branco);
     transition: 0.3s;
-    font-size: 21px;
+    font-size: 15px;
     width: 2.5rem;
-    height: 38px;
+    height: 40px;
     margin-bottom: 2px;
     border: none;
     border-radius: 25px;

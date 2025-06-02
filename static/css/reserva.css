@@ -419,7 +419,7 @@ header li a {
 }
 
 .swal2-confirm {
-    background-color: var(--azul);
+    background-color: #d33;
 }
 
 /* SUB-MODAIS DOS RELATÓRIOS */
@@ -961,24 +961,25 @@ form {
     font-weight: bold;
 }
 
+/* From Uiverse.io by vinodjangid07 */ 
 .btn-excluir {
-    width: 50px;
-    height: 50px;
-    margin-left: 30.5rem;
-    border-radius: 50%;
-    background-color: rgb(20, 20, 20);
-    border: none;
-    font-weight: 600;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.164);
-    cursor: pointer;
-    transition-duration: 0.3s;
-    overflow: hidden;
-    position: relative;
-    gap: 2px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: rgb(20, 20, 20);
+  border: none;
+  margin-left: 30.5rem;
+  font-weight: 600;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.164);
+  cursor: pointer;
+  transition-duration: 0.3s;
+  overflow: hidden;
+  position: relative;
+  gap: 2px;
 }
 
 .svgIcon {
