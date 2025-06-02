@@ -66,7 +66,7 @@
 
     <div class="container">
 
-        <h3 class="titulo">Minhas reservas ativas</h3>
+        <h3 class="titulo">Minhas atividades ativas</h3>
 
         <div class="listalivros" id="listaLivrosHistorico">
 
@@ -89,10 +89,11 @@
     </div>
 
     <div class="paginacao">
-        <a href="" class="btn" id="pagina-anterior"> <i class="fa-solid fa-left-long"></i> </a>
+        <a href="" class="btn" id="pagina-anterior"> <i class="fa-solid fa-chevron-left"></i> </a>
         <h3 class="paginaAtual" id="paginaAtual">Página Atual</h3>
-        <a href="" class="btn" id="pagina-proxima"> <i class="fa-solid fa-right-long"></i> </a>
+        <a href="" class="btn" id="pagina-proxima"> <i class="fa-solid fa-chevron-right"></i> </a>
     </div>
+
 
     <footer class="inter">
         <div class="separacao1">
@@ -157,17 +158,10 @@
             const token = localStorage.getItem("token");
             var id_usuario = localStorage.getItem("id_usuario");
             const params = new URLSearchParams(window.location.search);
-            var pagina = params.get('pagina');
-
-            if (!pagina) pagina = 1;
-
-            if (pagina == 1) {
-                document.getElementById('pagina-anterior').style.display = "none";
-            }
 
             $.ajax({
                 method: "GET",
-                url: ipPython + "/reservasusuario/" + id_usuario + "?pagina=" + pagina,
+                url: ipPython + "/reservasusuario/" + id_usuario,
                 headers: {
                     'Authorization': 'Bearer ' + token
                 },
@@ -176,20 +170,6 @@
                     let reservas = data.reservas;
                     let tabela = $("#tabela-emprestimos tbody");
                     tabela.empty();
-
-                    var total = data.total_paginas;
-                    var paginaAtual = data.pagina_atual;
-                    var anterior = paginaAtual - 1;
-                    var proxima = paginaAtual + 1;
-
-                    document.getElementById("pagina-anterior").href = "/templates/historicoReservas.html?pagina=" + anterior;
-                    document.getElementById("pagina-proxima").href = "/templates/historicoReservas.html?pagina=" + proxima;
-
-                    if (paginaAtual >= total) {
-                        document.getElementById('pagina-proxima').style.display = "none";
-                    }
-
-                    document.getElementById("paginaAtual").innerHTML = paginaAtual;
 
                     // Filtra as reservas ativas
                     let reservasAtivas = reservas.filter(reserva => reserva.status === 1);

@@ -207,6 +207,10 @@ input::placeholder {
     background-color: var(--azul) !important;
 }
 
+#logoImage {
+    width: 55px;
+    height: auto;
+}
 
 @media (max-width: 800px) {
     .livro-1 {

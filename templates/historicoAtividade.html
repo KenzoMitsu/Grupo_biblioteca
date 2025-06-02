@@ -109,9 +109,9 @@
         </div>
 
         <div class="paginacao">
-            <a href="" class="btn" id="pagina-anterior"> <i class="fa-solid fa-left-long"></i> </a>
+            <a href="" class="btn" id="pagina-anterior"> <i class="fa-solid fa-chevron-left"></i> </a>
             <h3 class="paginaAtual" id="paginaAtual">Página Atual</h3>
-            <a href="" class="btn" id="pagina-proxima"> <i class="fa-solid fa-right-long"></i> </a>
+            <a href="" class="btn" id="pagina-proxima"> <i class="fa-solid fa-chevron-right"></i> </a>
         </div>
     </div>
 
@@ -204,26 +204,14 @@
                     var anterior = paginaAtual - 1;
                     var proxima = paginaAtual + 1;
 
-                    // Atualiza número da página
-                    document.getElementById("paginaAtual").innerHTML = paginaAtual;
+                    document.getElementById("pagina-anterior").href = "/templates/historicoAtividade.html?pagina=" + anterior;
+                    document.getElementById("pagina-proxima").href = "/templates/historicoAtividade.html?pagina=" + proxima;
 
-                    // Controla exibição do botão "Anterior"
-                    const btnAnterior = document.getElementById("pagina-anterior");
-                    if (paginaAtual <= 1) {
-                        btnAnterior.style.display = "none";
-                    } else {
-                        btnAnterior.style.display = "inline-block";
-                        btnAnterior.href = `/templates/historicoAtividade.html?pagina=${anterior}`;
-                    }
-
-                    // Controla exibição do botão "Próxima"
-                    const btnProxima = document.getElementById("pagina-proxima");
                     if (paginaAtual >= total) {
-                        btnProxima.style.display = "none";
-                    } else {
-                        btnProxima.style.display = "inline-block";
-                        btnProxima.href = `/templates/historicoAtividade.html?pagina=${proxima}`;
+                        document.getElementById('pagina-proxima').style.display = "none";
                     }
+
+                    document.getElementById("paginaAtual").innerHTML = paginaAtual;
 
                     reservas.forEach(item => {
                         let linha = `
