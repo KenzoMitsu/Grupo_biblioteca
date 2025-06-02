@@ -28,11 +28,13 @@
 
 <body>
     <header>
-        <div class="header-left">
+        <!-- Logo -->
+        <div id="logo-site" class="header-left">
             <a id="logoHeader" href="home.html">
-                <img id="logoImage" src="" alt="Logo">
+                <img id="logoImage" alt="Logo">
             </a>
         </div>
+
         <form id="formBuscaLivro">
             <div class="search-container">
                 <i class="fas fa-search"></i>
@@ -397,6 +399,41 @@
             preencherCamposPorURL();
             carregarLivros();
         });
+
+
+        const logoImage = document.getElementById("logoImage");
+            logoImage.src = `${ipPython}/static/uploads/logo/logo.png`;
+
+            const logoImage2 = document.getElementById("logoImage2");
+            logoImage2.src = `${ipPython}/static/uploads/logo/logo.png`;
+
+            const logoExts = ['png', 'jpg', 'jpeg', 'webp'];
+            function atualizarLogoSite() {
+                let i = 0;
+                function tentarProxima() {
+                    if (i >= logoExts.length) {
+                        let logoImage = document.getElementById("logoImage");
+                        let logoImage2 = document.getElementById("logoImage2");
+                        if (logoImage) logoImage.src = '../static/img/head-removebg-preview.png';
+                        if (logoImage2) logoImage2.src = '../static/img/head-removebg-preview.png';
+                        return;
+                    }
+                    let url = `${ipPython}/static/uploads/logo/logo.${logoExts[i]}?${Date.now()}`;
+                    fetch(url).then(resp => {
+                        if (resp.ok) {
+                            let logoImage = document.getElementById("logoImage");
+                            let logoImage2 = document.getElementById("logoImage2");
+                            if (logoImage) logoImage.src = url;
+                            if (logoImage2) logoImage2.src = url;
+                        } else {
+                            i++;
+                            tentarProxima();
+                        }
+                    });
+                }
+                tentarProxima();
+            }
+            document.addEventListener('DOMContentLoaded', atualizarLogoSite);
     </script>
 </body>
 
