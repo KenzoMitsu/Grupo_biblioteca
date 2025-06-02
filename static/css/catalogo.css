@@ -322,10 +322,7 @@ header {
     text-align: center;
     font-weight: bold;
     overflow: hidden;
-    height: 75px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    height: 62px;
     color: #333;
 }
 
@@ -339,12 +336,8 @@ header {
 
 .btn {
     font-weight: bold;
-    font-size: 25px;
-    padding: 2px 6px;
-}
-
-.btn:hover {
-    background-color: #ddd;
+    font-size: 20px;
+    padding: 5px 6px;
 }
 
 .text-end {
