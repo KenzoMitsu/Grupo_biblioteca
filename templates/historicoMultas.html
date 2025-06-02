@@ -4,28 +4,78 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tabela de Usuários</title>
+    <title>Histórico de Multas</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Sans+JP:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="nomenymous">
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="../static/dist/assets/owl.carousel.min.css">
     <link rel="stylesheet" href="../static/dist/assets/owl.theme.default.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="../static/css/historicoMultas.css">
+    <!-- Scripts externos (jQuery, Bootstrap, etc.) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-        crossorigin="nomenymous"></script>
-    <script src="https://cdn-script.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="../static/js/scripts.js"></script>
     <script src="../static/js/seguranca.js" defer></script>
     <script src="../static/js/paginaip.js"></script>
     <link rel="icon" type="image/x-icon" href="../static/img/head-removebg-preview.png">
+        <style>
+            /* Overlay semitransparente */
+            #overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 9998;
+            display: none;
+            }
+
+            /* Container do QR code com visual mais “clean” */
+            #qrcodeContainer {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #ffffff;
+            border-radius: 0.5rem;
+            padding: 1.5rem 1.75rem;
+            z-index: 9999;
+            display: none;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            max-width: 90vw;
+            width: 400px;
+            }
+
+            #qrcodeContainer h4 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            color: #333;
+            }
+
+            #qrcodeContainer img {
+            width: 350px;
+            height: 350px;
+            max-width: 90%;
+            max-height: 90%;
+            border: 2px solid #eee;
+            border-radius: 0.25rem;
+            }
+
+            #qrcodeContainer button {
+            margin-top: 1rem;
+            }
+        </style>
 </head>
 
 <body>
@@ -53,26 +103,38 @@
                         <div class="menulinha"></div>
                     </div>
 
-                    <ul class="dropdown-menu" id="dropdownMenu"></ul>
+                    <ul class="dropdown-menu" id="dropdownMenu">
+
+                    </ul>
+
                 </div>
             </div>
-        </div>
+
     </header>
     <!-- FIM DO CABEÇALHO -->
 
     <div class="container">
-        <h3 class="titulo">Listagem das Multas</h3>
-        <div class="listalivros" id="listaMultaHistorico"></div>
+        <h3 class="titulo">Minhas Multas</h3>
+        <div class="listalivros" id="listaMultaHistorico">
+            <!-- As multas serão inseridas aqui via JavaScript -->
+        </div>
         <div class="algo-legal">
-            <p class="butao" id="multas-0" style="display: none;">Não possui nenhuma multa em andamento!</p>
+            <p class="butao" id="multas-0" style="display: none;">
+                Não possui nenhuma multa em andamento!
+            </p>
         </div>
     </div>
 
-    <div id="pagar" class="pagar-div">
-        <button class="pagar-multa">Pagar Multa</button>
+    <!-- Container que vai exibir o QR code (inicialmente oculto) -->
+    <div id="qrcodeContainer">
+        <h5>Escaneie com o app do seu banco</h5>
+        <img id="qrcodeImage" alt="QR Code PIX">
+        <br>
+        <button id="closeQr" class="btn btn-secondary btn-sm">Fechar</button>
     </div>
 
     <footer class="inter">
+        <!-- (seu rodapé já existente) -->
         <div class="separacao1">
             <p>Entre em contato conosco</p>
             <ul class="wrapper">
@@ -136,9 +198,7 @@
                 </div>
             </div>
             <div class="imagem">
-                <a id="logoHeader" href="home.html">
-                    <img id="logoImage2" alt="Logo">
-                </a>
+                <a id="logoHeader" href="home.html"><img id="logoImage2" alt="Logo"></a>
             </div>
             <div class="localizacao">
                 <p class="local">LOCALIZAÇÃO<br>Birigui - SP</p>
@@ -150,102 +210,174 @@
         </div>
     </footer>
 
+    <!-- JavaScript principal (logo abaixo do body) -->
     <script>
         $(document).ready(function () {
             const token = localStorage.getItem("token");
-            var id_usuario = localStorage.getItem("id_usuario");
+            const id_usuario = localStorage.getItem("id_usuario");
 
             function carregaMultasHistorico() {
                 var settings = {
-                    "url": ipPython + "/multasusuario/" + id_usuario,
-                    "method": "GET",
-                    "timeout": 0,
-                    "headers": {
-                        "Authorization": token
+                    url: ipPython + "/multasusuario/" + id_usuario,
+                    method: "GET",
+                    timeout: 0,
+                    headers: {
+                        "Authorization": `Bearer ${token}`
                     },
                     success: function (retorno) {
-                        var html = document.getElementById("listaMultaHistorico");
+                        const html = document.getElementById("listaMultaHistorico");
                         html.innerHTML = "";
 
-                        console.log(retorno);
-
-                        // Verifica se há multas no retorno (correção aqui)
-                        if (retorno.multas && retorno.multas.length > 0) {
+                        // Se não veio nenhuma multa, mostra a mensagem de "sem multas"
+                        if (!retorno.multas || retorno.multas.length === 0) {
+                            document.getElementById("multas-0").style.display = "block";
+                            return;
+                        } else {
                             document.getElementById("multas-0").style.display = "none";
-
-                            retorno.multas.forEach((multas) => {
-                                html.innerHTML += `
-                            <div class="item">
-                              <div class="multa-tabela">
-                                <div class="fiote1">
-                                  <span class="negrito">Nome do Usuário:</span><p>${multas.usuario.nome}</p>
-                                  <span class="negrito">Email do Usuário:</span><p>${multas.usuario.email}</p>
-                                  <span class="negrito">Data da Multa:</span><p>${multas.data_lancamento}</p>
-                                </div>
-                                <div class="fiote2">
-                                  <span class="negrito">Valor Fixo:</span><p>${multas.configuracao.valorfixo}</p>
-                                  <span class="negrito">Valor a ser pago:</span><p>${multas.valor}</p>
-                                  <span class="negrito">Acrescimo:</span><p>${multas.configuracao.acrescimo}</p>
-                                  <span class="negrito">Ano da Multa:</span><p>${multas.configuracao.ano}</p>
-                                </div>
-                              </div>
-                            </div>
-                          `;
-                            });
                         }
+
+                        // Para cada multa, construímos um card e incluímos o botão "Pagar Multa"
+                        retorno.multas.forEach((multa) => {
+                            /*
+                              Cada "multa" tem:
+                              - multa.id_multa
+                              - multa.usuario.nome
+                              - multa.usuario.email
+                              - multa.data_lancamento
+                              - multa.configuracao.valorfixo
+                              - multa.configuracao.acrescimo
+                              - multa.configuracao.ano
+                              - multa.valor
+                            */
+                            html.innerHTML += `
+                                <div class="item">
+                                  <div class="multa-tabela">
+                                    <div class="fiote1">
+                                      <span class="negrito">Nome do Usuário:</span>
+                                      <p>${multa.usuario.nome}</p>
+                                      <span class="negrito">Email do Usuário:</span>
+                                      <p>${multa.usuario.email}</p>
+                                      <span class="negrito">Data da Multa:</span>
+                                      <p>${multa.data_lancamento}</p>
+                                    </div>
+                                    <div class="fiote2">
+                                      <span class="negrito">Valor Fixo:</span>
+                                      <p>${multa.configuracao.valorfixo}</p>
+                                      <span class="negrito">Valor a ser pago:</span>
+                                      <p>${multa.valor}</p>
+                                      <span class="negrito">Acréscimo:</span>
+                                      <p>${multa.configuracao.acrescimo}</p>
+                                      <span class="negrito">Ano da Multa:</span>
+                                      <p>${multa.configuracao.ano}</p>
+                                    </div>
+                                  </div>
+
+                                  <!-- Botão para gerar e exibir o QR code PIX desta multa -->
+                                  <div class="text-center mt-2">
+                                    <button
+                                      class="btn btn-success btn-pagar-multa"
+                                      data-id="${multa.id_multa}">
+                                      Pagar Multa
+                                    </button>
+                                  </div>
+                                </div>
+                                <hr>
+                            `;
+                        });
+
+                        // Agora que inserimos todos os botões na página, vamos
+                        // adicionar o listener de clique em cada ".btn-pagar-multa"
+                        document.querySelectorAll('.btn-pagar-multa').forEach(button => {
+                            button.addEventListener('click', function () {
+                                const idMulta = this.getAttribute('data-id');
+                                gerarEExibirQrCode(idMulta);
+                            });
+                        });
                     },
                     error: function (xhr) {
-                        // Se a API retornar um erro, exibe a mensagem
                         if (xhr.status === 404) {
                             document.getElementById("multas-0").style.display = "block";
-                            document.getElementById("pagar").style.display = "none";
+                        } else {
+                            // Qualquer outro erro, exibe um alerta
+                            Swal.fire("Erro!", "Não foi possível carregar suas multas.", "error");
                         }
                     }
-                }
-
+                };
                 $.ajax(settings);
             }
 
             carregaMultasHistorico();
-        });
 
-        // Adiciona o evento de clique no botão de relatórios
-        document.addEventListener('DOMContentLoaded', function () {
-            const relatoriosItem = document.getElementById('relatorios');
-            const submenu = relatoriosItem.querySelector('.submenu');
+            // Essa função faz o fetch para /gerar_pix e exibe a imagem do QR code
+            function gerarEExibirQrCode(idMulta) {
+                // Prepara o corpo da requisição
+                const dadosEnviar = {
+                    id_multa: parseInt(idMulta)
+                };
 
-            relatoriosItem.querySelector('.submenu-toggle').addEventListener('click', function () {
-                submenu.classList.toggle('show'); // Alterna a classe 'show' para mostrar ou esconder o submenu
+                fetch(`${ipPython}/gerar_pix`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify(dadosEnviar)
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        // Se der 4xx ou 5xx, tenta extrair JSON de erro
+                        return response.json().then(err => {
+                            throw new Error(err.erro || "Erro ao gerar QR code");
+                        });
+                    }
+                    // A resposta é um PNG -> converte para blob
+                    return response.blob();
+                })
+                .then(blob => {
+                    // Cria uma URL para o blob e exibe na tag <img>
+                    const urlBlob = URL.createObjectURL(blob);
+                    document.getElementById('qrcodeImage').src = urlBlob;
+                    document.getElementById('qrcodeContainer').style.display = 'block';
+                })
+                .catch(error => {
+                    // Exibe mensagem de erro se algo der errado
+                    Swal.fire("Erro!", error.message, "error");
+                });
+            }
+
+            // Botão "Fechar" do container de QR code
+            document.getElementById('closeQr').addEventListener('click', function() {
+                // Limpa o src da imagem e esconde o container
+                const img = document.getElementById('qrcodeImage');
+                if (img.src) {
+                    // Revoga a URL do blob para liberar memória
+                    URL.revokeObjectURL(img.src);
+                    img.src = '';
+                }
+                document.getElementById('qrcodeContainer').style.display = 'none';
             });
-        });
 
-        // Função para atualizar os hrefs dos relatórios
-        function atualizarLinksRelatorios() {
-            const linksRelatorios = {
-                relatorioMultas: "/multas_relatorio",
-                relatorioLivros: "/livros_relatorio",
-                relatorioUsuarios: "/usuarios_relatorio",
-                relatorioEmprestimos: "/emprestimos_relatorio"
-            };
-            for (let id in linksRelatorios) {
-                const elemento = document.getElementById(id);
-                if (elemento) {
-                    elemento.href = `${ipPython2}${linksRelatorios[id]}`;
+            // ... seu código de menus e links de relatórios permanece igual ...
+            function atualizarLinksRelatorios() {
+                const linksRelatorios = {
+                    relatorioMultas: "/multas_relatorio",
+                    relatorioLivros: "/livros_relatorio",
+                    relatorioUsuarios: "/usuarios_relatorio",
+                    relatorioEmprestimos: "/emprestimos_relatorio"
+                };
+                for (let id in linksRelatorios) {
+                    const elemento = document.getElementById(id);
+                    if (elemento) {
+                        elemento.href = `${ipPython2}${linksRelatorios[id]}`;
+                    }
                 }
             }
-        }
 
-        // Chama a função assim que o DOM carregar
-        document.addEventListener("DOMContentLoaded", atualizarLinksRelatorios);
+            document.addEventListener('DOMContentLoaded', atualizarLinksRelatorios);
 
-        const logoImage = document.getElementById("logoImage");
-        logoImage.src = `${ipPython}/static/uploads/logo/logo.png`;
-
-        const logoImage2 = document.getElementById("logoImage2");
-        logoImage2.src = `${ipPython}/static/uploads/logo/logo.png`;
-
-        const logoExts = ['png', 'jpg', 'jpeg', 'webp'];
+            // Atualiza logo
             function atualizarLogoSite() {
+                const logoExts = ['png', 'jpg', 'jpeg', 'webp'];
                 let i = 0;
                 function tentarProxima() {
                     if (i >= logoExts.length) {
@@ -271,6 +403,7 @@
                 tentarProxima();
             }
             document.addEventListener('DOMContentLoaded', atualizarLogoSite);
+        });
     </script>
 </body>
 
