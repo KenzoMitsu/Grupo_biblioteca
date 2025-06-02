@@ -305,7 +305,7 @@ header li a {
 }
 
 .swal2-confirm {
-    background-color: var(--azul);
+    background-color: #d33;
 }
 
 /* SUB-MODAIS DOS RELATÓRIOS */
@@ -845,13 +845,14 @@ form{
     font-weight: bold;
 }
 
+/* From Uiverse.io by vinodjangid07 */ 
 .btn-excluir {
   width: 50px;
   height: 50px;
-  margin-left: 30.5rem;
   border-radius: 50%;
   background-color: rgb(20, 20, 20);
   border: none;
+  margin-left: 30.5rem;
   font-weight: 600;
   display: flex;
   flex-direction: column;
