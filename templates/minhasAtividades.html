@@ -66,7 +66,7 @@
 
     <div class="container">
 
-        <h3 class="titulo">Meus empréstimos ativos</h3>
+        <h3 class="titulo">Minhas atividades ativas</h3>
 
         <div class="listalivros" id="listaLivrosHistorico">
 
@@ -86,13 +86,6 @@
             </thead>
             <tbody></tbody>
         </table>
-    </div>
-
-    <div class="paginacao">
-        <a href="" class="btn" id="pagina-anterior"> <i class="fa-solid fa-left-long"></i> </a>
-        <h3 class="paginaAtual" id="paginaAtual">Página Atual</h3>
-        <a href="" class="btn" id="pagina-proxima"> <i class="fa-solid fa-right-long"></i> </a>
-    </div>
     </div>
 
     <footer class="inter">
@@ -158,17 +151,10 @@
             const token = localStorage.getItem("token");
             var id_usuario = localStorage.getItem("id_usuario");
             const params = new URLSearchParams(window.location.search);
-            var pagina = params.get('pagina');
-
-            if (!pagina) pagina = 1;
-
-            if (pagina == 1) {
-                document.getElementById('pagina-anterior').style.display = "none";
-            }
 
             $.ajax({
                 method: "GET",
-                url: ipPython + "/reservasusuario/" + id_usuario + "?pagina=" + pagina,
+                url: ipPython + "/reservasusuario/" + id_usuario,
                 headers: {
                     'Authorization': 'Bearer ' + token
                 },
@@ -178,33 +164,19 @@
                     let tabela = $("#tabela-emprestimos tbody");
                     tabela.empty();
 
-                    var total = data.total_paginas;
-                    var paginaAtual = data.pagina_atual;
-                    var anterior = paginaAtual - 1;
-                    var proxima = paginaAtual + 1;
+                    // Filtra as reservas ativas
+                    let reservasAtivas = reservas.filter(reserva => reserva.status === 1);
 
-                    document.getElementById("pagina-anterior").href = "/templates/historicoReservas.html?pagina=" + anterior;
-                    document.getElementById("pagina-proxima").href = "/templates/historicoReservas.html?pagina=" + proxima;
-
-                    if (paginaAtual >= total) {
-                        document.getElementById('pagina-proxima').style.display = "none";
-                    }
-
-                    document.getElementById("paginaAtual").innerHTML = paginaAtual;
-
-                    // Filtra os empréstimos ativos (status = 2)
-                    let emprestimosAtivos = reservas.filter(reserva => reserva.status === 2);
-
-                    if (emprestimosAtivos.length === 0) {
-                        // Adiciona uma linha com a mensagem quando não há empréstimos ativos
+                    if (reservasAtivas.length === 0) {
+                        // Adiciona uma linha com a mensagem quando não há reservas ativas
                         let mensagem = `
                             <tr>
-                                <td colspan="5" class="text-center">Não há nenhum empréstimo em andamento</td>
+                                <td colspan="5" class="text-center">Não há nenhuma reserva em andamento</td>
                             </tr>
                         `;
                         tabela.append(mensagem);
                     } else {
-                        emprestimosAtivos.forEach(reserva => {
+                        reservasAtivas.forEach(reserva => {
                             let linha = `
                                 <tr data-id="${reserva.id_emprestimo}">
                                     <td>${reserva.data_reserva.replaceAll("-", "/")}</td>

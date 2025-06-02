@@ -16,78 +16,37 @@
     <link rel="icon" type="image/x-icon" href="../static/img/head-removebg-preview.png">
     <script src="../static/js/paginaip.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="../static/js/seguranca.js"></script>
-    <script src="../static/js/segurancaADM.js"></script>
-    <script src="../static/js/segurancaBiblio.js"></script>
-    <style>
-        .item {
-            position: relative;
-            margin-bottom: 20px;
-        }
 
-        .livro-titulo {
-            font-weight: bold;
-            margin-top: 8px;
-            font-size: 14px;
-        }
+    <script src="../static/dist/owl.carousel.min.js"></script>
+    <script src="../static/js/scripts.js"></script>
+    <script src="../static/js/seguranca.js" defer></script>
+    <link rel="icon" type="image/x-icon" href="../static/img/head-removebg-preview.png">
+    <script src="../static/js/paginaip.js"></script>
 
-        .livro-autor {
-            color: #666;
-            font-size: 13px;
-        }
 
-        .livro-nota,
-        .livro-paginas {
-            font-size: 12px;
-            margin: 3px 0;
-        }
-
-        .livro-disponibilidade {
-            font-size: 12px;
-            font-weight: bold;
-            margin-top: 5px;
-        }
-
-        .livro-disponibilidade.disponivel {
-            color: green;
-        }
-
-        .livro-disponibilidade.indisponivel {
-            color: red;
-        }
-
-        .filtros-container {
-            background-color: #f8f9fa;
-            padding: 20px;
-            border-radius: 8px;
-            margin-bottom: 30px;
-        }
-
-        .btn-primary {
-            background-color: #007bff;
-            border-color: #007bff;
-        }
-
-        .btn-secondary {
-            background-color: #6c757d;
-            border-color: #6c757d;
-        }
-    </style>
 </head>
 
 <body>
     <header>
-        <div class="header-left">
+        <!-- Logo -->
+        <div id="logo-site" class="header-left">
             <a id="logoHeader" href="home.html">
-                <img id="logoImage" src="" alt="Logo">
+                <img id="logoImage" alt="Logo">
             </a>
         </div>
+
         <form id="formBuscaLivro">
             <div class="search-container">
                 <i class="fas fa-search"></i>
                 <input type="text" id="campoBusca" placeholder="Pesquise Seu Livro" class="search-box">
             </div>
         </form>
+        <div class="catalogo">
+            <a class="btn-catalogo" href="catalogo.html">
+                <svg viewBox="0 0 448 512" class="svgIcon"><path d="M88.7 223.8L0 375.8 0 96C0 60.7 28.7 32 64 32l117.5 0c17 0 33.3 6.7 45.3 18.7l26.5 26.5c12 12 28.3 18.7 45.3 18.7L416 96c35.3 0 64 28.7 64 64l0 32-336 0c-22.8 0-43.8 12.1-55.3 31.8zm27.6 16.1C122.1 230 132.6 224 144 224l400 0c11.5 0 22 6.1 27.7 16.1s5.7 22.2-.1 32.1l-112 192C453.9 474 443.4 480 432 480L32 480c-11.5 0-22-6.1-27.7-16.1s-5.7-22.2 .1-32.1l112-192z"></path></svg>
+            </a>
+        </div>
+
         <div class="coisa">
             <div class="header-end">
                 <div class="menu-container">
@@ -150,7 +109,6 @@
                 </div>
                 <div class="row mt-3">
                     <div class="col-md-12 text-end">
-                        <button id="btnAplicarFiltros" type="button" class="btn btn-primary">Aplicar Filtros</button>
                         <button id="btnLimparFiltros" type="button" class="btn btn-secondary ms-2">Limpar
                             Filtros</button>
                     </div>
@@ -439,6 +397,41 @@
             preencherCamposPorURL();
             carregarLivros();
         });
+
+
+        const logoImage = document.getElementById("logoImage");
+            logoImage.src = `${ipPython}/static/uploads/logo/logo.png`;
+
+            const logoImage2 = document.getElementById("logoImage2");
+            logoImage2.src = `${ipPython}/static/uploads/logo/logo.png`;
+
+            const logoExts = ['png', 'jpg', 'jpeg', 'webp'];
+            function atualizarLogoSite() {
+                let i = 0;
+                function tentarProxima() {
+                    if (i >= logoExts.length) {
+                        let logoImage = document.getElementById("logoImage");
+                        let logoImage2 = document.getElementById("logoImage2");
+                        if (logoImage) logoImage.src = '../static/img/head-removebg-preview.png';
+                        if (logoImage2) logoImage2.src = '../static/img/head-removebg-preview.png';
+                        return;
+                    }
+                    let url = `${ipPython}/static/uploads/logo/logo.${logoExts[i]}?${Date.now()}`;
+                    fetch(url).then(resp => {
+                        if (resp.ok) {
+                            let logoImage = document.getElementById("logoImage");
+                            let logoImage2 = document.getElementById("logoImage2");
+                            if (logoImage) logoImage.src = url;
+                            if (logoImage2) logoImage2.src = url;
+                        } else {
+                            i++;
+                            tentarProxima();
+                        }
+                    });
+                }
+                tentarProxima();
+            }
+            document.addEventListener('DOMContentLoaded', atualizarLogoSite);
     </script>
 </body>
 
