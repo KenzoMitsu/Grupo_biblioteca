@@ -73,8 +73,6 @@
         </div>
     </div>
 
-    </main>
-
     <div class="table-container">
         <table class="table" id="tabela-emprestimos" border="3">
             <thead>
@@ -94,7 +92,6 @@
         <a href="" class="btn" id="pagina-anterior"> <i class="fa-solid fa-left-long"></i> </a>
         <h3 class="paginaAtual" id="paginaAtual">Página Atual</h3>
         <a href="" class="btn" id="pagina-proxima"> <i class="fa-solid fa-right-long"></i> </a>
-    </div>
     </div>
 
     <footer class="inter">
@@ -194,23 +191,33 @@
 
                     document.getElementById("paginaAtual").innerHTML = paginaAtual;
 
-                    reservas.forEach(reserva => {
-                        // Verifica se o status da reserva é 1 (Reservado)
-                        if (reserva.status === 1) {
+                    // Filtra as reservas ativas
+                    let reservasAtivas = reservas.filter(reserva => reserva.status === 1);
+
+                    if (reservasAtivas.length === 0) {
+                        // Adiciona uma linha com a mensagem quando não há reservas ativas
+                        let mensagem = `
+                            <tr>
+                                <td colspan="5" class="text-center">Não há nenhuma reserva em andamento</td>
+                            </tr>
+                        `;
+                        tabela.append(mensagem);
+                    } else {
+                        reservasAtivas.forEach(reserva => {
                             let linha = `
-                    <tr data-id="${reserva.id_emprestimo}">
-                    <td>${reserva.data_reserva.replaceAll("-", "/")}</td>
-                    <td>${reserva.nome_usuario}</td>
-                    <td class="nome-coisado">${reserva.titulo_livro}</td>
-                    <td>${reserva.autor_livro}</td>
-                    <td>
-                        <button class="cancelar-btn" data-id="${reserva.id_emprestimo}">Cancelar</button>
-                    </td>
-                    </tr>
-                `;
+                                <tr data-id="${reserva.id_emprestimo}">
+                                    <td>${reserva.data_reserva.replaceAll("-", "/")}</td>
+                                    <td>${reserva.nome_usuario}</td>
+                                    <td class="nome-coisado">${reserva.titulo_livro}</td>
+                                    <td>${reserva.autor_livro}</td>
+                                    <td>
+                                        <button class="cancelar-btn" data-id="${reserva.id_emprestimo}">Cancelar</button>
+                                    </td>
+                                </tr>
+                            `;
                             tabela.append(linha);
-                        }
-                    });
+                        });
+                    }
                 },
                 error: function (params) {
                     console.error(params);
@@ -297,32 +304,32 @@
         // Chama a função assim que o DOM carregar
         document.addEventListener("DOMContentLoaded", atualizarLinksRelatorios);   
         const logoExts = ['png', 'jpg', 'jpeg', 'webp'];
-            function atualizarLogoSite() {
-                let i = 0;
-                function tentarProxima() {
-                    if (i >= logoExts.length) {
+        function atualizarLogoSite() {
+            let i = 0;
+            function tentarProxima() {
+                if (i >= logoExts.length) {
+                    let logoImage = document.getElementById("logoImage");
+                    let logoImage2 = document.getElementById("logoImage2");
+                    if (logoImage) logoImage.src = '../static/img/head-removebg-preview.png';
+                    if (logoImage2) logoImage2.src = '../static/img/head-removebg-preview.png';
+                    return;
+                }
+                let url = `${ipPython}/static/uploads/logo/logo.${logoExts[i]}?${Date.now()}`;
+                fetch(url).then(resp => {
+                    if (resp.ok) {
                         let logoImage = document.getElementById("logoImage");
                         let logoImage2 = document.getElementById("logoImage2");
-                        if (logoImage) logoImage.src = '../static/img/head-removebg-preview.png';
-                        if (logoImage2) logoImage2.src = '../static/img/head-removebg-preview.png';
-                        return;
+                        if (logoImage) logoImage.src = url;
+                        if (logoImage2) logoImage2.src = url;
+                    } else {
+                        i++;
+                        tentarProxima();
                     }
-                    let url = `${ipPython}/static/uploads/logo/logo.${logoExts[i]}?${Date.now()}`;
-                    fetch(url).then(resp => {
-                        if (resp.ok) {
-                            let logoImage = document.getElementById("logoImage");
-                            let logoImage2 = document.getElementById("logoImage2");
-                            if (logoImage) logoImage.src = url;
-                            if (logoImage2) logoImage2.src = url;
-                        } else {
-                            i++;
-                            tentarProxima();
-                        }
-                    });
-                }
-                tentarProxima();
+                });
             }
-            document.addEventListener('DOMContentLoaded', atualizarLogoSite);
+            tentarProxima();
+        }
+        document.addEventListener('DOMContentLoaded', atualizarLogoSite);
 
     </script>
 
