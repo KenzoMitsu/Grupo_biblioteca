@@ -41,7 +41,7 @@
                 <input type="text" id="campoBusca" placeholder="Pesquise Seu Livro" class="search-box">
             </div>
         </form>
-        
+
         <div class="catalogo">
             <a href="catalogo.html"
                 class=" btn-catalogo flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
@@ -88,7 +88,7 @@
                             <option value="">Qualquer nota</option>
                             <option class="star" value="1">★<span class="sinal-add">+</span></option>
                             <option class="star" value="2">★★<span class="sinal-add">+</span></option>
-                            <option class="star"value="3">★★★<span class="sinal-add">+</span></option>
+                            <option class="star" value="3">★★★<span class="sinal-add">+</span></option>
                             <option class="star" value="4">★★★★<span class="sinal-add">+</span></option>
                             <option class="star" value="5">★★★★★</option>
                         </select>
@@ -107,11 +107,6 @@
                         <label for="filtroIdioma" class="form-label">Idioma:</label>
                         <select id="filtroIdioma" class="form-select">
                             <option value="">Qualquer idioma</option>
-                            <option value="Português">Português</option>
-                            <option value="Inglês">Inglês</option>
-                            <option value="Espanhol">Espanhol</option>
-                            <option value="Francês">Francês</option>
-                            <option value="Outro">Outro</option>
                         </select>
                     </div>
                 </div>
@@ -169,176 +164,13 @@
 
     <!-- SCRIPT AJUSTADO -->
     <script>
-        $(document).ready(function () {
-            let paginaAtual = 1;
-            let totalPaginas = 1;
-
-            function carregarCategorias() {
-                $.ajax({
-                    url: ipPython + "/todas_categorias",
-                    method: "GET",
-                    success: function (retorno) {
-                        const filtroCategoria = $('#filtroCategoria');
-                        filtroCategoria.empty().append('<option value="">Todas as categorias</option>');
-                        if (retorno.categorias && retorno.categorias.length > 0) {
-                            retorno.categorias.sort().forEach(categoria => {
-                                filtroCategoria.append(`<option value="${categoria}">${categoria}</option>`);
-                            });
-                        }
-                    },
-                    error: function () {
-                        $('#filtroCategoria').empty().append('<option value="">Todas as categorias</option>');
-                    }
-                });
-            }
-
-            function montarParametros() {
-                const params = new URLSearchParams();
-                params.set('pagina', paginaAtual);
-
-                if ($('#filtroCategoria').val()) params.set('categoria', $('#filtroCategoria').val());
-                if ($('#filtroDisponibilidade').val()) params.set('disponibilidade', $('#filtroDisponibilidade').val());
-                if ($('#filtroNotaMin').val()) params.set('nota_min', $('#filtroNotaMin').val());
-                if ($('#filtroPaginasMin').val()) params.set('paginas_min', $('#filtroPaginasMin').val());
-                if ($('#filtroPaginasMax').val()) params.set('paginas_max', $('#filtroPaginasMax').val());
-                if ($('#filtroIdioma').val()) params.set('idioma', $('#filtroIdioma').val());
-                return params.toString();
-            }
-
-            function carregarLivros() {
-                $('#listaLivros').html('<p>Carregando livros...</p>');
-                $.ajax({
-                    url: ipPython + "/pesquisar_livro_avancado?" + montarParametros(),
-                    method: "GET",
-                    success: function (retorno) {
-                        totalPaginas = retorno.total_paginas || 1;
-                        paginaAtual = retorno.pagina_atual || 1;
-                        let livrosPagina = retorno.livros || [];
-                        exibirLivros(livrosPagina);
-                        atualizarControlesPaginacao();
-                    },
-                    error: function (xhr) {
-                        let msg = 'Erro ao carregar livros.';
-                        if (xhr.responseJSON && xhr.responseJSON.mensagem) {
-                            msg = xhr.responseJSON.mensagem;
-                        }
-                        $('#listaLivros').html('<p class="text-danger">' + msg + '</p>');
-                        totalPaginas = 1;
-                        paginaAtual = 1;
-                        $('#paginaAtual').text('1');
-                        atualizarControlesPaginacao();
-                    }
-                });
-            }
-
-            function exibirLivros(livros) {
-                const listaLivros = $('#listaLivros');
-                listaLivros.empty();
-                if (!livros || livros.length === 0) {
-                    listaLivros.html('<p>Nenhum livro encontrado com os filtros atuais.</p>');
-                    return;
-                }
-                livros.forEach(livro => {
-                    const disponibilidade = livro.quantidade > 0 ? 'disponivel' : 'indisponivel';
-                    const disponibilidadeTexto = livro.quantidade > 0 ? 'Disponível' : 'Indisponível';
-                    listaLivros.append(`
-                        <div class="item" data-categoria="${livro.categoria}" data-disponibilidade="${disponibilidade}">
-                            <a title="${livro.titulo}" href="reserva.html?id=${livro.id_livro}">
-                                <img src="${ipPython}/static/uploads/Livros/${livro.id_livro}.jpeg" alt="${livro.titulo}">
-                                <p class="livro-titulo">${livro.titulo}</p>
-                                <p class="livro-autor">${livro.autor}</p>
-                                <p class="livro-nota">Nota: ${livro.nota || '-'}/5</p>
-                                <p class="livro-paginas">${livro.paginas || '?'} páginas</p>
-                                <p class="livro-disponibilidade ${disponibilidade}">${disponibilidadeTexto}</p>
-                            </a>
-                        </div>
-                    `);
-                });
-            }
-
-            function atualizarControlesPaginacao() {
-                $('#paginaAtual').text(paginaAtual);
-                if (paginaAtual > 1) {
-                    $('#pagina-anterior').show();
-                } else {
-                    $('#pagina-anterior').hide();
-                }
-                if (paginaAtual < totalPaginas) {
-                    $('#pagina-proxima').show();
-                } else {
-                    $('#pagina-proxima').hide();
-                }
-            }
-
-            // Eventos de filtro
-            $('#btnAplicarFiltros').click(function () {
-                paginaAtual = 1;
-                carregarLivros();
-            });
-
-            $('#btnLimparFiltros').click(function () {
-                $('#filtroCategoria').val('');
-                $('#filtroDisponibilidade').val('');
-                $('#filtroNotaMin').val('');
-                $('#filtroPaginasMin').val('');
-                $('#filtroPaginasMax').val('');
-                $('#filtroIdioma').val('');
-                paginaAtual = 1;
-                carregarLivros();
-            });
-
-            $('#filtroCategoria, #filtroDisponibilidade, #filtroNotaMin, #filtroPaginasMin, #filtroPaginasMax, #filtroIdioma').change(function () {
-                paginaAtual = 1;
-                carregarLivros();
-            });
-
-            // Paginação
-            $('#pagina-anterior').on('click', function (e) {
-                e.preventDefault();
-                if (paginaAtual > 1) {
-                    paginaAtual--;
-                    carregarLivros();
-                }
-            });
-
-            $('#pagina-proxima').on('click', function (e) {
-                e.preventDefault();
-                if (paginaAtual < totalPaginas) {
-                    paginaAtual++;
-                    carregarLivros();
-                }
-            });
-
-            // Pesquisa por texto
-            $('#formBuscaLivro').submit(function (e) {
-                e.preventDefault();
-                const termo = $('#campoBusca').val().trim();
-                if (!termo) {
-                    Swal.fire({ title: "Atenção!", text: "Digite algo para buscar.", icon: "warning" });
-                    return;
-                }
-            });
-
-            // Inicialização
-            carregarCategorias();
-            carregarLivros();
-        });
-
-        const logoImage = document.getElementById("logoImage");
-        logoImage.src = `${ipPython}/static/uploads/logo/logo.png`;
-
-        const logoImage2 = document.getElementById("logoImage2");
-        logoImage2.src = `${ipPython}/static/uploads/logo/logo.png`;
-
-
 
         // Função para carregar livros (busca e paginação)
         function carregaLivros() {
             const params = new URLSearchParams(window.location.search);
             const pagina = parseInt(params.get('pagina')) || 1;
-            const urlAjax = ipPython + "/pesquisar_livro?" + params.toString();
+            const urlAjax = ipPython + "/pesquisar_livro_avancado?" + params.toString();
 
-            // Oculta ou mostra o botão de página anterior
             $('#pagina-anterior').toggle(pagina > 1);
 
             $.ajax({
@@ -351,7 +183,6 @@
                     const anterior = paginaAtual - 1;
                     const proxima = paginaAtual + 1;
 
-                    // Atualiza links de navegação mantendo TODOS os filtros
                     let paramsAnterior = new URLSearchParams(params);
                     paramsAnterior.set('pagina', anterior);
                     $("#pagina-anterior").attr("href", "?" + paramsAnterior.toString());
@@ -360,7 +191,6 @@
                     paramsProxima.set('pagina', proxima);
                     $("#pagina-proxima").attr("href", "?" + paramsProxima.toString());
 
-                    // Oculta ou mostra o botão de página próxima
                     $('#pagina-proxima').toggle(paginaAtual < total);
 
                     $("#paginaAtual").text(paginaAtual);
@@ -370,30 +200,25 @@
                         html = `<p>Livros não encontrados!</p>`;
                     } else {
                         retorno.livros.forEach((livro) => {
-                            if (livro.quantidade > 0) {
-                                html += `
-                                        <div class="item">
-                                            <a title="${livro.titulo}" href="reserva.html?id=${livro.id_livro}">
-                                                <img src="${ipPython}/static/uploads/Livros/${livro.id_livro}.jpeg" alt="">
-                                                <p>${livro.titulo}</p>
-                                                <p class="status-livro status-verde" data-id="${livro.id_livro}">Disponível</p>
-                                            </a>
-                                        </div>
-                                    `;
-                            } else {
+                            const disponibilidade = livro.quantidade > 0;
+                            const statusClasse = disponibilidade ? "status-verde" : "status-vermelho";
+                            const statusTexto = disponibilidade ? "Disponível" : "Indisponível";
+                            const nota = (livro.nota !== null && livro.nota !== undefined) ? livro.nota : "-";
+                            const paginas = (livro.paginas !== null && livro.paginas !== undefined) ? livro.paginas : "-";
+                            const idioma = livro.idioma || "-";
 
-                                html += `
-                                        <div class="item">
-                                            <a title="${livro.titulo}" href="reserva.html?id=${livro.id_livro}">
-                                                <img src="${ipPython}/static/uploads/Livros/${livro.id_livro}.jpeg" alt="">
-                                                <p>${livro.titulo}</p>
-                                                <p class="status-livro status-vermelho" data-id="${livro.id_livro}">Indisponível</p>
-                                            </a>
-                                        </div>
-                                    `;
-                            }
-
-
+                            html += `
+                        <div class="item">
+                            <a title="${livro.titulo}" href="reserva.html?id=${livro.id_livro}">
+                                <img src="${ipPython}/static/uploads/Livros/${livro.id_livro}.jpeg" alt="">
+                                <p><b>${livro.titulo}</b></p>
+                                <p class="livro-nota"><b>Nota:</b> ${nota}/5</p>
+                                <p class="livro-idioma"><b>Idioma:</b> ${idioma}</p>
+                                <p class="livro-paginas"><b>Páginas:</b> ${paginas}</p>
+                                <p class="status-livro ${statusClasse}" data-id="${livro.id_livro}">${statusTexto}</p>
+                            </a>
+                        </div>
+                    `;
                         });
                     }
 
@@ -404,6 +229,7 @@
                 }
             });
         }
+
 
         // Busca ao enviar o formulário
         $("#formBuscaLivro").on("submit", function (e) {
@@ -453,137 +279,56 @@
             }
             carregaLivros();
         })();
-            // Adiciona o evento de clique no botão de relatórios
-            document.addEventListener('DOMContentLoaded', function () {
-                const relatoriosItem = document.getElementById('relatorios');
-                const submenu = relatoriosItem.querySelector('.submenu');
 
-        // Carrega categorias ao iniciar
-        let paginaAtual = 1;
+        // Carrega categorias e idiomas
 
-        // Atualiza a URL com os filtros selecionados
-        function atualizarUrlComFiltros() {
-            const params = new URLSearchParams();
-            params.set('pagina', paginaAtual);
-
-            if ($('#filtroCategoria').val()) params.set('categoria', $('#filtroCategoria').val());
-            if ($('#filtroDisponibilidade').val()) params.set('disponibilidade', $('#filtroDisponibilidade').val());
-            if ($('#filtroNotaMin').val()) params.set('nota_min', $('#filtroNotaMin').val());
-            if ($('#filtroPaginasMin').val()) params.set('paginas_min', $('#filtroPaginasMin').val());
-            if ($('#filtroPaginasMax').val()) params.set('paginas_max', $('#filtroPaginasMax').val());
-            if ($('#filtroIdioma').val()) params.set('idioma', $('#filtroIdioma').val());
-
-            window.history.replaceState({}, '', window.location.pathname + '?' + params.toString());
-        }
-
-        // Aplica os filtros ao clicar no botão ou ao mudar algum campo
-        $('#btnAplicarFiltros').on('click', function () {
-            paginaAtual = 1;
-            atualizarUrlComFiltros();
-            carregarLivros();
-        });
-
-        // Se quiser aplicar automaticamente ao mudar qualquer filtro, use isso:
-        $('#filtroCategoria, #filtroDisponibilidade, #filtroNotaMin, #filtroPaginasMin, #filtroPaginasMax, #filtroIdioma').on('change', function () {
-            paginaAtual = 1;
-            atualizarUrlComFiltros();
-            carregarLivros();
-        });
-
-        // Limpa todos os filtros
-        $('#btnLimparFiltros').on('click', function () {
-            $('#filtroCategoria').val('');
-            $('#filtroDisponibilidade').val('');
-            $('#filtroNotaMin').val('');
-            $('#filtroPaginasMin').val('');
-            $('#filtroPaginasMax').val('');
-            $('#filtroIdioma').val('');
-            paginaAtual = 1;
-            atualizarUrlComFiltros();
-            carregarLivros();
-        });
-
-        // Carrega os filtros da URL ao abrir a página
-        $(document).ready(function () {
-            const params = new URLSearchParams(window.location.search);
-
-            // Se você carrega as categorias via AJAX, aguarde o carregamento antes de setar o valor!
-            if (params.get('categoria')) {
-                // Se for via AJAX, coloque isso dentro do callback de sucesso do AJAX
-                $('#filtroCategoria').val(params.get('categoria'));
-            }
-            $('#filtroDisponibilidade').val(params.get('disponibilidade') || '');
-            $('#filtroNotaMin').val(params.get('nota_min') || '');
-            $('#filtroPaginasMin').val(params.get('paginas_min') || '');
-            $('#filtroPaginasMax').val(params.get('paginas_max') || '');
-            $('#filtroIdioma').val(params.get('idioma') || '');
-
-            // Página
-            paginaAtual = parseInt(params.get('pagina')) || 1;
-            $('#paginaAtual').text(paginaAtual);
-
-            carregarLivros();
-        });
-
-        // Exemplo de função para carregar livros (ajuste conforme seu backend)
-        function carregarLivros() {
-            // Pegue os valores dos filtros
-            const filtros = {
-                categoria: $('#filtroCategoria').val(),
-                disponibilidade: $('#filtroDisponibilidade').val(),
-                nota_min: $('#filtroNotaMin').val(),
-                paginas_min: $('#filtroPaginasMin').val(),
-                paginas_max: $('#filtroPaginasMax').val(),
-                idioma: $('#filtroIdioma').val(),
-                pagina: paginaAtual
-            };
-            // Faça a requisição AJAX para buscar os livros filtrados (ajuste conforme sua API)
-            // Exemplo:
-            /*
-            $.get('/api/livros', filtros, function(data) {
-                $('#listaLivros').html(renderizarLivros(data));
-            });
-            */
-            // Atualize também o número da página na tela
-            $('#paginaAtual').text(paginaAtual);
-        }
-
-        // Paginação
-        $('#pagina-anterior').on('click', function (e) {
-            e.preventDefault();
-            if (paginaAtual > 1) {
-                paginaAtual--;
-                atualizarUrlComFiltros();
-                carregarLivros();
-            }
-        });
-        $('#pagina-proxima').on('click', function (e) {
-            e.preventDefault();
-            paginaAtual++;
-            atualizarUrlComFiltros();
-            carregarLivros();
-        });
-
-
-                relatoriosItem.querySelector('.submenu-toggle').addEventListener('click', function () {
-                    submenu.classList.toggle('show'); // Alterna a classe 'show' para mostrar ou esconder o submenu
-                });
-            });
-            // Função para atualizar os hrefs dos relatórios
-            function atualizarLinksRelatorios() {
-                const linksRelatorios = {
-                    relatorioMultas: "/multas_relatorio",
-                    relatorioLivros: "/livros_relatorio",
-                    relatorioUsuarios: "/usuarios_relatorio",
-                    relatorioEmprestimos: "/emprestimos_relatorio"
-                };
-                for (let id in linksRelatorios) {
-                    const elemento = document.getElementById(id);
-                    if (elemento) {
-                        elemento.href = `${ipPython2}${linksRelatorios[id]}`;
+        function carregarCategorias() {
+            $.ajax({
+                url: ipPython + "/todas_categorias",
+                method: "GET",
+                success: function (retorno) {
+                    const filtroCategoria = $('#filtroCategoria');
+                    filtroCategoria.empty().append('<option value="">Todas as categorias</option>');
+                    if (retorno.categorias && retorno.categorias.length > 0) {
+                        retorno.categorias.sort().forEach(categoria => {
+                            filtroCategoria.append(`<option value="${categoria}">${categoria}</option>`);
+                        });
                     }
+                },
+                error: function () {
+                    $('#filtroCategoria').empty().append('<option value="">Todas as categorias</option>');
                 }
-            }
+            });
+        }
+
+        // Carrega idiomas e categorias
+
+        function carregarCategorias() {
+            $.ajax({
+                url: ipPython + "/todas_categorias",
+                method: "GET",
+                success: function (retorno) {
+                    const filtroCategoria = $('#filtroCategoria');
+                    filtroCategoria.empty().append('<option value="">Todas as categorias</option>');
+                    if (retorno.categorias && retorno.categorias.length > 0) {
+                        retorno.categorias.sort().forEach(categoria => {
+                            filtroCategoria.append(`<option value="${categoria}">${categoria}</option>`);
+                        });
+                    }
+                },
+                error: function () {
+                    $('#filtroCategoria').empty().append('<option value="">Todas as categorias</option>');
+                }
+            });
+        }
+
+        const logoImage = document.getElementById("logoImage");
+        logoImage.src = `${ipPython}/static/uploads/logo/logo.png`;
+
+        const logoImage2 = document.getElementById("logoImage2");
+        logoImage2.src = `${ipPython}/static/uploads/logo/logo.png`;
+
+
 
             // Chama a função assim que o DOM carregar
             document.addEventListener("DOMContentLoaded", atualizarLinksRelatorios);   

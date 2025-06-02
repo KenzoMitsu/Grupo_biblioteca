@@ -424,6 +424,7 @@ label{
     background-color: white;
     font-family: inherit;
     display: flex;
+    margin-top: 20px;
     align-items: center;
     justify-content: center;
     width: 41.3rem;
@@ -516,6 +517,7 @@ label{
     display: flex;
     flex-direction: column;
     gap: 2px;
+    margin: 0rem !important;
 }
 
 select {
@@ -528,12 +530,15 @@ select {
     padding-left: 7px;
 }
 
+
 .formEditarLivro .mb-3 input {
     border-radius: 5px;
     margin-bottom: 10px;
     padding-left: 7px;
+    width: 20rem;
+    height: 2rem;
     border: 1px solid #3380ca;
-    background-color:#eef3ff;
+    background-color: #eef3ff;
 }
 
 .formEditarLivro .mb-3 label {
@@ -1017,6 +1022,10 @@ footer{
         width: 17.5rem;
     }
 
+    .formEditarLivro .mb-3 input {
+        width: 17.5rem;
+    }
+
     select {
         width: 17.5rem;
     }
@@ -1059,12 +1068,13 @@ footer{
 }
 
 @media (max-width: 330px) {
-    .search-container {
-        width: 125px;
-    }
 
     .formCadastroLivro .mb-3 input {
         width: 14.5rem;
+    }
+
+    .formEditarLivro .mb-3 input {
+    width: 14.5rem; 
     }
 
     select {
@@ -1073,5 +1083,6 @@ footer{
 
     .save-btn  {
         width: 14.5rem;
+        margin-top: 15px;
     }
 }

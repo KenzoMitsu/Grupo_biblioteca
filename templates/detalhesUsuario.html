@@ -275,7 +275,7 @@
                     // preenche o perfil
                     $('#imagemUsuario')
                         .attr('src', `${ipPython}/static/uploads/Usuarios/${idUsuario}.jpeg`)
-                        .on('error', () => $('#imagemUsuario').attr('src', '../static/img/default-user.png'));
+                        .on('error', () => $('#imagemUsuario').attr('src', '../static/img/user.png'));
                     $('#nome').text(usu.nome);
                     $('#email').text(usu.email);
                     $('#telefone').text(usu.telefone);
