@@ -587,7 +587,12 @@ input:checked+.slider:before {
 .submenu.show {
     display: block;
 }
-
+.star{
+    color: #ffcc00;
+}
+option span {
+    color: black;
+}
 /* Imagem do perfil no menu */
 .menu-icon-img {
     width: 20px;
