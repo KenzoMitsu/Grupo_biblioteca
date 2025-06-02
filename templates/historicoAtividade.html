@@ -204,14 +204,26 @@
                     var anterior = paginaAtual - 1;
                     var proxima = paginaAtual + 1;
 
-                    document.getElementById("pagina-anterior").href = "/templates/historicoReservas.html?pagina=" + anterior;
-                    document.getElementById("pagina-proxima").href = "/templates/historicoReservas.html?pagina=" + proxima;
+                    // Atualiza número da página
+                    document.getElementById("paginaAtual").innerHTML = paginaAtual;
 
-                    if (paginaAtual >= total) {
-                        document.getElementById('pagina-proxima').style.display = "none";
+                    // Controla exibição do botão "Anterior"
+                    const btnAnterior = document.getElementById("pagina-anterior");
+                    if (paginaAtual <= 1) {
+                        btnAnterior.style.display = "none";
+                    } else {
+                        btnAnterior.style.display = "inline-block";
+                        btnAnterior.href = `/templates/historicoAtividade.html?pagina=${anterior}`;
                     }
 
-                    document.getElementById("paginaAtual").innerHTML = paginaAtual;
+                    // Controla exibição do botão "Próxima"
+                    const btnProxima = document.getElementById("pagina-proxima");
+                    if (paginaAtual >= total) {
+                        btnProxima.style.display = "none";
+                    } else {
+                        btnProxima.style.display = "inline-block";
+                        btnProxima.href = `/templates/historicoAtividade.html?pagina=${proxima}`;
+                    }
 
                     reservas.forEach(item => {
                         let linha = `
