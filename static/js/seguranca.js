@@ -247,3 +247,19 @@ if (cargo === 'ADM') {
     `;
 }
 
+
+$("#formBuscaLivro").on("submit", function (e) {
+    e.preventDefault();
+    let termo = $("#campoBusca").val().trim();
+
+    if (!termo) {
+        Swal.fire({
+            title: "Atenção!",
+            text: "Digite algo para buscar.",
+            icon: "warning"
+        });
+        return;
+    }
+
+    window.location.href = `catalogo.html?q=${encodeURIComponent(termo)}&pagina=1`;
+});
