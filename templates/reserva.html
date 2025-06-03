@@ -689,6 +689,8 @@
 
                 emprestimos.forEach(usuario => {
 
+                    console.log(usuario);
+
                     var css = ""
 
                     // VERIFICA O Tipo 
@@ -713,7 +715,7 @@
                     document.getElementById("tabela-historico").innerHTML += `
                         <tr>
                             <td>${usuario.nome_usuario}</td>
-                            <td>${formatarData(usuario.data_emprestimo) || '--/--/----'}</td>
+                            <td>${formatarData(usuario.data_reserva) || '--/--/----'}</td>
                             <td>${formatarData(usuario.data_emprestimo) || '--/--/----'}</td>
                             <td>${formatarData(usuario.data_devolucao) || '--/--/----'}</td>
                             <td>${formatarData(usuario.data_devolvida) || '--/--/----'}</td>
