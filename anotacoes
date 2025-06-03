@@ -1,5 +1,11 @@
-1 Reservado
+STATUS DA TABELA DE EMPRÉSTIMOS:
+1 reservado
 2 emprestado
 3 devolvido 
 4 cancelado
 5 não tem
+
+
+STATUS DA TABELA DE LIVROS:
+1 disponivel
+2 indisponivel
