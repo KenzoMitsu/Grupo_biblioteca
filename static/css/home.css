@@ -811,6 +811,7 @@ a {
     border-radius: 5px;
     border: none;
     transition: all 0.5s ease-in-out;
+    background-color: var(--secondary-color);
     font-size: 20px;
     font-weight: 600;
     display: flex;
@@ -1288,7 +1289,7 @@ a {
     }
 
     .search-container i {
-        left: 25px;
+        left: 45px;
     }
 
     .dropdown-menu {
@@ -1324,15 +1325,16 @@ a {
     }
 
     .search-container {
-        width: 300px;
+        width: 320px;
     }
 
     .btn {
         width: 55px;
+        margin-left: -20px;
     }
 
     .btn:hover .icon {
-        width: 0px;
+        width: 70px;
     }
 
     .btn:hover {
@@ -1530,4 +1532,26 @@ a {
 header {
     position: relative;
     z-index: 100;
+}
+
+@media (max-width: 380px) {
+
+    .search-container {
+        width: 270px;
+    }
+
+    .search-button {
+        width: 25%;
+    }
+}
+
+@media (max-width: 330px) {
+    
+    .search-container {
+        width: 215px;
+    }
+
+    .search-button {
+        margin-left: -45px;
+    }
 }
