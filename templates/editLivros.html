@@ -136,23 +136,50 @@
             <a id="logoHeader" href="home.html"><img id="logoImage" src="../static/img/logo.png"
                     alt="Logo Asa Literária"></a>
         </div>
-        <form id="formBuscaLivro" class="search-form" style="display: flex;">
+
+        <!-- Barra de Pesquisa -->
+        <form id="formBuscaLivro" class="search-form"style="display: flex;">
             <div class="search-container">
                 <i class="fas fa-search"></i>
                 <input type="text" id="campoBusca" placeholder="Pesquise seu livro..." class="search-box">
                 <button type="submit" class="search-button">Buscar</button>
             </div>
         </form>
-        <div class="header-right">
-            <div class="menu-container">
-                <div class="menu-icon" id="menuButton" style="margin-right: 10px; margin-bottom: 10px;">
-                    <div class="menulinha"></div>
-                    <div class="menulinha"></div>
-                    <div class="menulinha"></div>
+
+        <script>
+            $("#formBuscaLivro").on("submit", function (e) {
+                e.preventDefault();
+                let termo = $("#campoBusca").val().trim();
+                if (!termo) {
+                    Swal.fire({
+                        title: "Atenção!",
+                        text: "Digite algo para buscar.",
+                        icon: "warning"
+                    });
+                    return;
+                }
+                // Redireciona para home com busca
+                window.location.href = "catalogo.html?q=" + encodeURIComponent(termo);
+            });
+        </script>
+
+        <div class="coisa">
+            <!-- Ícone de Menu com Dropdown -->
+            <div class="header-end">
+                <div class="menu-container">
+                    <div class="menu-icon" id="menuButton">
+                        <div class="menulinha"></div>
+                        <div class="menulinha"></div>
+                        <div class="menulinha"></div>
+                    </div>
+
+                    <ul class="dropdown-menu" id="dropdownMenu">
+
+                    </ul>
+
                 </div>
-                <ul class="dropdown-menu" id="dropdownMenu"></ul>
             </div>
-        </div>
+        </form>
     </header>
 
     <main>
