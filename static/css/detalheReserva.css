@@ -1,3 +1,4 @@
+
 * {
     padding: 0;
     margin: 0;
@@ -75,6 +76,7 @@ header {
 /* Logo */
 .header-left img {
     width: 50px;
+    margin-left: 10px;
     height: auto;
 }
 
@@ -183,7 +185,11 @@ input:checked+.slider:before {
 }
 
 .swal2-confirm {
-    background-color: var(--azul);
+    background-color: var(--primary-color);
+}
+
+.swal2-confirm:hover {
+    background-color: black;
 }
 
 .menu-icon {
@@ -716,7 +722,6 @@ h1 {
 
 .text {
     font-size: large;
-    margin-top: 10px;
 }
 
 .icons {

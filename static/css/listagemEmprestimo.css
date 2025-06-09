@@ -11,6 +11,11 @@ a{
     text-decoration: none;
     color:black;
 }
+
+p {
+    margin: 0;
+}
+
 :root{
     --azul: #3380ca;
     --azul-claro: #4292DC;
@@ -50,33 +55,10 @@ header {
 /* Logo */
 .header-left img {
     width: 50px;
+    margin-left: 10px;
     height: auto;
 }
 
-/* Barra de pesquisa */
-.search-container {
-    display: flex;
-    align-items: center;
-    background-color: var(--branco);
-    padding: 2px 20px;
-    border-radius: 25px;
-    width: 600px;
-}
-
-.search-container i {
-    color: black;
-    margin-right: 8px;
-    font-size: 1.2rem;
-}
-
-.search-box {
-    border: none;
-    outline: none;
-    font-size: 1.1rem;
-    width: 100%;
-    padding: 5px;
-    background-color: white;
-}
 .btn-catalogo {
     background-color: #3380ca;
 }
@@ -108,7 +90,11 @@ header {
 }
 
 .swal2-confirm {
-    background-color: var(--azul);
+    background-color: var(--primary-color);
+}
+
+.swal2-confirm:hover {
+    background-color: black;
 }
 
 .swal2-cancel {
@@ -399,10 +385,6 @@ input:checked + .slider:before {
     padding: 2px 6px;
 }
 
-.btn:hover {
-    background-color: #ddd;
-}
-
 .menu-item {
     padding: 10px;
     display: flex;
@@ -559,25 +541,28 @@ select {
 
 /* Estilos para a tabela de usuários */
 #tabela-emprestimos {
-    width: 90%;
+    width: 100%;
     margin: 27px auto;
     border-collapse: collapse;
     background-color: #fff;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-#tabela-emprestimos th, 
-#tabela-emprestimos td {
+#tabela-emprestimos th, #tabela-emprestimos td {
     padding: 15px;
     text-align: left;
     border-bottom: 1px solid #ddd;
 }
 
+#tabela-emprestimos th, #tabela-emprestimos td p {
+    padding: 10px 10px;
+}
+
 #tabela-emprestimos thead th {
-    background-color: var(--azul-claro);
+    background-color: var(--primary-color);
     color: var(--branco);
     font-weight: bold;
-    border-bottom: 2px solid var(--azul-escuro);
+    border-bottom: 2px solid var(--dark-color);
 }
 
 #tabela-emprestimos tbody tr:hover {
@@ -698,7 +683,7 @@ button.botao-multas {
 }
 
 .botao-devolucao {
-  --color: #3380ca;
+  color: var(--primary-color);
   background-color: white;
   font-family: inherit;
   display: flex;
@@ -710,20 +695,19 @@ button.botao-multas {
   position: relative;
   cursor: pointer;
   overflow: hidden;
-  border: 2px solid var(--azul);
+  border: 2px solid var(--primary-color);
   transition: color 0.5s;
   z-index: 1;
   font-size: 17px;
   font-weight: bold;
-  border-radius: 6px;
-  color: var(--azul);
+  border-radius: 25px;
 }
 
 .botao-devolucao:before {
   content: "";
   position: absolute;
   z-index: -1;
-  background: var(--color);
+  background: var(--primary-color);
   height: 120px;
   width: 500px;
   border-radius: 50%;
@@ -745,7 +729,7 @@ button.botao-multas {
 }
 
 .botao-devolucao:active:before {
-  background: #0060BB;
+  background: black;
   transition: background 0s;
 }
 
@@ -907,7 +891,6 @@ label {
 
 .text {
     font-size: large;
-    margin-top: 10px;
 }
 
 .icons {

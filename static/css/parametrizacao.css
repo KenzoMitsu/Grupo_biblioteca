@@ -49,33 +49,10 @@ header {
 /* Logo */
 .header-left img {
     width: 50px;
+    margin-left: 10px;
     height: auto;
 }
 
-/* Barra de pesquisa */
-.search-container {
-    display: flex;
-    align-items: center;
-    background-color: white;
-    padding: 2px 20px;
-    border-radius: 25px;
-    width: 600px;
-}
-
-.search-container i {
-    color: black;
-    margin-right: 8px;
-    font-size: 1.2rem;
-}
-
-.search-box {
-    border: none;
-    outline: none;
-    font-size: 1.1rem;
-    width: 100%;
-    padding: 5px;
-    background-color: white;
-}
 .btn-catalogo {
     background-color: #3380ca;
 }
@@ -397,11 +374,10 @@ input:checked + .slider:before {
 
   .pix-display-card .info {
     flex: 1 1 300px;
-    margin-right: 1rem;
   }
 
   .pix-display-card .info h3 {
-    color: #1947a8;
+    color: var(--primary-color);
     margin-bottom: 0.5rem;
     font-size: 1.5rem;
     padding-bottom: 8px;
@@ -436,11 +412,15 @@ input:checked + .slider:before {
 }
 
 .swal2-confirm {
-    background-color: rgb(221, 51, 51);
+    background-color: var(--primary-color);
+}
+
+.swal2-confirm:hover {
+    background-color: black;
 }
 
 .swal2-cancel {
-    background-color: var(--azul);
+    background-color: rgb(221, 51, 51);
 }
 
 .menu-item {
@@ -501,16 +481,15 @@ input:checked + .slider:before {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
     max-width: 900px;
     margin: auto;
-    font-family: 'Poppins', sans-serif;
 }
 
 .pix-param-section h2 {
-    color: var(--azul-escuro);
+    color: var(--primary-color);
     font-weight: bold;
 }
 
 .pix-param-section label {
-    color: var(--azul);
+    color: var(--primary-color);
     font-weight: bold;
 }
 
@@ -518,7 +497,7 @@ input:checked + .slider:before {
     border: 1px solid var(--azul);
     border-radius: 6px;
     margin-bottom: 10px;
-    background-color:#eef3ff;
+    background-color:#e9e9e9;
 }
 
 .pix-param-section .btn-primary {
@@ -659,6 +638,11 @@ label{
     margin-left: 36rem;
 }
 
+.col-12 {
+    display: flex;
+    justify-content: center;
+}
+
 .formEditarLivro .mb-3 input {
     border-radius: 5px;
     margin-bottom: 10px;
@@ -794,7 +778,6 @@ button.edit:hover {
 
 .text {
     font-size: large;
-    margin-top: 10px;
 }
 
 .icons {

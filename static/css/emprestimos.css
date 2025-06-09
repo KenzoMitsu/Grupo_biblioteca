@@ -20,6 +20,15 @@ a{
   text-decoration: none;
   color:black;
 }
+
+.swal2-confirm {
+    background-color: var(--primary-color);
+}
+
+.swal2-confirm:hover {
+    background-color: black;
+}
+
 .sair{
   background-color: #00010000;
   border: #00010000;
@@ -194,8 +203,9 @@ header {
 
 /* Logo */
 .header-left img {
-    width: 50px;
-    height: auto;
+  width: 50px;
+  margin-left: 10px;
+  height: auto;
 }
 
 /* Barra de pesquisa */

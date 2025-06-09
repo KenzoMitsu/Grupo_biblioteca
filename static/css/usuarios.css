@@ -53,33 +53,10 @@ header {
 /* Logo */
 .header-left img {
     width: 50px;
+    margin-left: 10px;
     height: auto;
 }
-
-/* Barra de pesquisa */
-.search-container {
-    display: flex;
-    align-items: center;
-    background-color: var(--branco);
-    padding: 2px 20px;
-    border-radius: 25px;
-    width: 600px;
-}
-
-.search-container i {
-    color: black;
-    margin-right: 8px;
-    font-size: 1.2rem;
-}
-
-.search-box {
-    border: none;
-    outline: none;
-    font-size: 1.1rem;
-    width: 100%;
-    padding: 5px;
-    background-color: white;
-}
+s
 .btn-catalogo {
     background-color: #3380ca;
 }
@@ -111,7 +88,11 @@ header {
 }
 
 .swal2-confirm {
-    background-color: var(--azul);
+    background-color: var(--primary-color);
+}
+
+.swal2-confirm:hover {
+    background-color: black;
 }
 
 .swal2-cancel {
@@ -578,29 +559,23 @@ input:checked+.slider:before {
     padding: 2px 6px;
 }
 
-.btn:hover {
-    background-color: #ddd;
-}
-
 .btn2 {
-    width: 240px;
+    width: 255px;
     height: 45px;
     border: none;
     font-weight: bold;
     margin-bottom: -35px;
     font-size: 20px;
     transition: 0.5s;
-    background-color: var(--azul);
+    background-color: var(--primary-color);
     color: white;
-    border-radius: 8px; ;
+    border-radius: 25px; ;
 }
 
 .btn2:hover {
-    font-weight: bold;
-    transform: scale(1.05);
+    transform: translateY(-2px);
     transition: 0.5s;
-    background-color: var(--azul-escuro);
-    color: white;
+    background-color: black;
 }
 
 .addusuario {
@@ -609,8 +584,6 @@ input:checked+.slider:before {
 }
 
 .container {
-    margin-top: 35px;
-    margin-bottom: 35px;
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -735,7 +708,7 @@ select {
 
 
 .detalhes-btn {
-  --color: #3380ca;
+  color: var(--primary-color);
   background-color: white;
   font-family: inherit;
   display: flex;
@@ -747,20 +720,19 @@ select {
   position: relative;
   cursor: pointer;
   overflow: hidden;
-  border: 2px solid var(--azul);
+  border: 2px solid var(--primary-color);
   transition: color 0.5s;
   z-index: 1;
   font-size: 17px;
   font-weight: bold;
-  border-radius: 6px;
-  color: var(--azul);
+  border-radius: 25px;
 }
 
 .detalhes-btn:before {
   content: "";
   position: absolute;
   z-index: -1;
-  background: var(--color);
+  background: var(--primary-color);
   height: 120px;
   width: 500px;
   border-radius: 50%;
@@ -782,7 +754,7 @@ select {
 }
 
 .detalhes-btn:active:before {
-  background: #0060BB;
+  background: black;
   transition: background 0s;
 }
 
@@ -884,10 +856,10 @@ select {
 
 
 #tabela-usuarios thead th {
-    background-color: var(--azul-claro);
+    background-color: var(--primary-color);
     color: var(--branco);
     font-weight: bold;
-    border-bottom: 2px solid var(--azul-escuro);
+    border-bottom: 2px solid var(--dark-color);
 }
 
 #tabela-usuarios tbody tr:hover {
@@ -1167,7 +1139,6 @@ label {
 
 .text {
     font-size: large;
-    margin-top: 10px;
 }
 
 .icons {

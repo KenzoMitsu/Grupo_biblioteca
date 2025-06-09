@@ -188,33 +188,10 @@ select {
 /* Logo */
 .header-left img {
     width: 50px;
+    margin-left: 10px;
     height: auto;
 }
 
-/* Barra de pesquisa */
-.search-container {
-    display: flex;
-    align-items: center;
-    background-color: var(--branco);
-    padding: 2px 20px;
-    border-radius: 25px;
-    width: 600px;
-}
-
-.search-container i {
-    color: black;
-    margin-right: 8px;
-    font-size: 1.2rem;
-}
-
-.search-box {
-    border: none;
-    outline: none;
-    font-size: 1.1rem;
-    width: 100%;
-    padding: 5px;
-    background-color: white;
-}
 .btn-catalogo {
     background-color: #3380ca;
 }
@@ -450,8 +427,13 @@ input:checked + .slider:before {
 .linkedin {
     color: black;
 }
+
 .swal2-confirm {
-    background-color: var(--azul) !important;  
+    background-color: var(--primary-color);
+}
+
+.swal2-confirm:hover {
+    background-color: black;
 }
 
 .pagar-div {
@@ -746,7 +728,6 @@ button.botao-multas {
     border: solid var(--azul) 4px;
     border-radius: 10px;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
-    padding: 30px;
 }
 
 .multa-tabela {
@@ -850,7 +831,9 @@ button.botao-multas {
     transform: scale(1.05);
     transition: background-color 0.3s, transform 0.3s;
 }
-
+.btn-pagar-multa{
+    margin:10px;
+}
 .algo-legal {
     display: block;
 }
@@ -946,7 +929,6 @@ label {
 
 .text {
     font-size: large;
-    margin-top: 10px;
 }
 
 .icons {
@@ -1064,7 +1046,9 @@ footer{
         background-color: #fff;
     }
 }
-
+.fiote1, .fiote2{
+    margin:20px ;
+}
 @media (max-width: 480px) {
     .search-container {
         width: 120px; /* Ajuste fino para telas muito pequenas */
