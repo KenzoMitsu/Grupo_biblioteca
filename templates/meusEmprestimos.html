@@ -78,15 +78,6 @@
                         <tbody></tbody>
                     </table>
                 </div>
-                <div class="pagination" style="margin-top: 2rem;">
-                    <a href="" class="pagination-button" id="pagina-anterior">
-                        <i class="fas fa-chevron-left"></i> Anterior
-                    </a>
-                    <span class="current-page" id="paginaAtual">Página 1</span>
-                    <a href="" class="pagination-button" id="pagina-proxima">
-                        Próxima <i class="fas fa-chevron-right"></i>
-                    </a>
-                </div>
             </div>
         </section>
     </main>
@@ -154,19 +145,11 @@
         // Função para carregar empréstimos ativos
         function carregarEmprestimosAtivos() {
             const token = localStorage.getItem("token");
-            var id_usuario = localStorage.getItem("id_usuario");
-            const params = new URLSearchParams(window.location.search);
-            var pagina = params.get('pagina') || 1;
-
-            if (pagina == 1) {
-                document.getElementById('pagina-anterior').style.display = "none";
-            } else {
-                document.getElementById('pagina-anterior').style.display = "inline-block";
-            }
+            const id_usuario = localStorage.getItem("id_usuario");
 
             $.ajax({
                 method: "GET",
-                url: (typeof ipPython !== "undefined" ? ipPython : "") + "/reservasusuario/" + id_usuario + "?pagina=" + pagina,
+                url: (typeof ipPython !== "undefined" ? ipPython : "") + "/reservasusuario/" + id_usuario,
                 headers: {
                     'Authorization': 'Bearer ' + token
                 },
@@ -174,21 +157,6 @@
                     let reservas = data.reservas;
                     let tabela = $("#tabela-emprestimos tbody");
                     tabela.empty();
-
-                    var total = data.total_paginas;
-                    var paginaAtual = data.pagina_atual;
-                    var anterior = paginaAtual - 1;
-                    var proxima = paginaAtual + 1;
-
-                    document.getElementById("pagina-anterior").href = "meusEmprestimos.html?pagina=" + anterior;
-                    document.getElementById("pagina-proxima").href = "meusEmprestimos.html?pagina=" + proxima;
-                    document.getElementById("paginaAtual").innerHTML = `Página ${paginaAtual} de ${total}`;
-
-                    if (paginaAtual >= total) {
-                        document.getElementById('pagina-proxima').style.display = "none";
-                    } else {
-                        document.getElementById('pagina-proxima').style.display = "inline-block";
-                    }
 
                     // Filtra os empréstimos ativos (status = 2)
                     let emprestimosAtivos = reservas.filter(reserva => reserva.status === 2);

@@ -515,7 +515,7 @@ select {
 }
 
 .nav-link {
-    color: var(--secondary-color);
+    color: var(--primary-color);
     font-weight: bold;
     display: inline-block;
     position: relative;
@@ -529,7 +529,7 @@ select {
     height: 2px;
     bottom: 0;
     left: 0;
-    background-color: var(--secondary-color);
+    background-color: var(--primary-color);
     transition: transform 0.25s ease-out;
 }
 
