@@ -70,12 +70,13 @@
             <div class="search-container">
                 <i class="fas fa-search"></i>
                 <input type="text" id="campoBusca" placeholder="Pesquise seu livro..." class="search-box">
-                <a class="search-button" href="catalogo.html"><i class="fa-solid fa-folder-open"></i><p>Buscar</p></a>
+                <a class="search-button" href="catalogo.html"><i class="fa-solid fa-folder-open"></i>
+                    <p>Buscar</p>
+                </a>
             </div>
         </form>
         <div class="header-right">
             <div class="menu-container">
-                <!-- Se quiser igual às outras páginas, troque por um <button> com svg/menu -->
                 <button class="btn" id="menuButton">
                     <span class="icon">
                         <svg viewBox="0 0 175 80" width="40" height="40">
@@ -150,12 +151,31 @@
             <div class="footer-contact">
                 <h3>Entre em contato conosco</h3>
                 <div class="social-links">
-                    <a href="https://www.whatsapp.com/?lang=pt_BR" aria-label="WhatsApp"><i
-                            class="fab fa-whatsapp"></i></a>
-                    <a href="https://www.instagram.com" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                    <a href="https://br.linkedin.com" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                    <a href="https://x.com/?lang=pt" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                    <a href="https://pt-br.facebook.com" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                    <!-- From Uiverse.io by david-mohseni -->
+                    <ul class="wrapper">
+                        <li class="icon facebook">
+                            <span class="tooltip">Facebook</span>
+                            <i class="fa-brands fa-facebook-f redes"></i>
+                        </li>
+                        <li class="icon twitter">
+                            <span class="tooltip">Twitter</span>
+                            <i class="fa-brands fa-twitter redes"></i>
+                        </li>
+                        <li class="icon instagram">
+                            <span class="tooltip">Instagram</span>
+                            <i class="fa-brands fa-instagram redes"></i>
+                            </svg>
+                        </li>
+                        <li class="icon whatsapp">
+                            <span class="tooltip">WhatsApp</span>
+                            <i class="fa-brands fa-whatsapp redes"></i>
+                        </li>
+                        <li class="icon linkedin">
+                            <span class="tooltip">LinkedIn</span>
+                            <i class="fa-brands fa-linkedin-in redes"></i>
+                        </li>
+                    </ul>
+    
                 </div>
             </div>
             <div class="footer-info">
@@ -166,10 +186,7 @@
                     <p><i class="fas fa-phone"></i> (18) 99999-9999</p>
                 </div>
                 <div class="footer-column footer-logo">
-                    <a id="logoHeader" href="home.html">
-                        <img id="logoImage2" src="../static/img/logo.png" alt="Logo Asa Literária"
-                            class="footer-logo-img">
-                    </a>
+                    <img id="logoImage2" src="../static/img/logo.png" alt="Logo Asa Literária" class="footer-logo-img">
                 </div>
                 <div class="footer-column">
                     <h4>Localização</h4>
@@ -180,8 +197,8 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <a href="#">Termos de Uso</a>
-            <a href="#">Política de privacidade</a>
+            <a href="https://www.google.com.br/?hl=pt-BR">Termos de Uso</a>
+            <a href="https://www.google.com.br/?hl=pt-BR">Política de privacidade</a>
             <p>&copy; 2023 Asa Literária. Todos os direitos reservados.</p>
         </div>
     </footer>
@@ -318,6 +335,7 @@
                     'Authorization': 'Bearer ' + localStorage.getItem("token")
                 },
                 success: function (retorno) {
+                    // Atualiza os dados no localStorage
                     localStorage.setItem("nome", formData.get("nome"));
                     localStorage.setItem("email", formData.get("email"));
                     localStorage.setItem("telefone", formData.get("telefone"));
