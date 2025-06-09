@@ -1,11 +1,4 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    text-decoration: none;
-    transition: all 0.3s;
-    font-family: "Montserrat", sans-serif;
-}
+
 
 :root {
     --azul: #3380ca;
@@ -18,10 +11,6 @@
     --azul-modoescuro: #73A8FE;
 }
 
-a {
-    text-decoration: none;
-    color: black;
-}
 
 .sair {
     background-color: #00010000;
@@ -39,17 +28,6 @@ body {
     background-color: #f5f5f5;
 }
 
-header {
-    background-color: #0060BB;
-    padding: 10px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    box-sizing: border-box;
-    margin-bottom: 50px;
-}
-
 p {
     margin-bottom: 0rem !important;
 }
@@ -58,33 +36,6 @@ p {
 .header-left img {
     width: 50px;
     height: auto;
-}
-
-.header-end {
-    margin-bottom: 15px;
-}
-
-/* Barra de pesquisa */
-.search-container {
-    display: flex;
-    align-items: center;
-    background-color: white;
-    padding: 2px 30px;
-    border-radius: 25px;
-    width: 600px;
-}
-
-.search-container i {
-    margin-bottom: 6px;
-}
-
-.search-box {
-    border: none;
-    outline: none;
-    font-size: 1.1rem;
-    width: 100%;
-    padding: 5px;
-    background-color: white;
 }
 
 .livros-section {
@@ -104,8 +55,34 @@ p {
     text-align: center;
 }
 
+.table .btn-danger {
+    margin-right: 5px;
+}
+
+.botoes .btn-danger {
+    margin: 0 4px;
+}
+
+.btn-danger {
+    background-color: var(--preto);
+    color: var(--branco);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.3s;
+    width: 2.5rem;
+    height: 40px;
+    margin-bottom: 2px;
+    border: none;
+    border-radius: 25px;
+}
+
+.btn-danger:hover {
+    background-color: rgb(255, 69, 69);
+}
+
 .add-btn.btn-primary {
-    background: linear-gradient(90deg, #4B70E2 60%, #6386ff 100%);
+    background: var(--primary-color);
     border: none;
     border-radius: 22px;
     font-weight: 600;
@@ -119,8 +96,8 @@ p {
 
 .add-btn.btn-primary:hover,
 .add-btn.btn-primary:focus {
-    background: linear-gradient(90deg, #6386ff 60%, #4B70E2 100%);
-    transform: translateY(-2px) scale(1.045);
+    background: black;
+    transform: translateY(-2px);
     color: #fff;
     box-shadow: 0 4px 18px 0 rgba(75, 112, 226, 0.18);
 }
@@ -130,15 +107,6 @@ p {
     box-shadow: 0 1.5px 7px 0 rgba(75, 112, 226, 0.07);
     margin-bottom: 28px;
     background: #f8f9fd;
-}
-
-.table thead th {
-    background: #4B70E2;
-    color: #fff;
-    font-weight: 600;
-    text-align: center;
-    font-size: 1.04rem;
-    border: none;
 }
 
 .table-striped>tbody>tr:nth-of-type(odd)>* {
@@ -202,10 +170,6 @@ p {
 .btn-catalogo {
     display: flex;
     align-items: center;
-}
-
-.coisa {
-    margin-right: 30px;
 }
 
 .btn-catalogo:hover {
@@ -276,11 +240,6 @@ input:checked+.slider:before {
     background-color: #1C82E3;
 }
 
-/* Ícone do menu */
-.menu-container {
-    position: relative;
-    display: inline-block;
-}
 
 .menu-icon {
     display: flex;
@@ -532,7 +491,7 @@ input:checked+.slider:before {
 }
 
 .swal2-confirm {
-    background-color: var(--azul);
+    background-color: var(--primary-color);
 }
 
 .swal2-cancel {
@@ -606,7 +565,7 @@ h1 {
 }
 
 .modal-header {
-    background-color: #0060BB;
+    background-color: var(--primary-color);
     color: var(--branco);
 }
 
@@ -614,49 +573,12 @@ h1 {
     color: var(--branco);
 }
 
-.add-btn {
-    --color: #3380ca;
-    font-family: inherit;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    overflow: hidden;
-    z-index: 1;
-}
-
-.add-btn:before {
-    content: "";
-    position: absolute;
-    z-index: -1;
-    height: 120px;
-    width: 500px;
-    border-radius: 50%;
-}
-
-.add-btn:before {
-    top: 100%;
-    left: 100%;
-    transition: all 0.7s;
-}
-
-.add-btn:hover:before {
-    top: -30px;
-    left: -30px;
-}
-
-.add-btn:active:before {
-    background: #0060BB;
-    transition: background 0s;
-}
-
 label {
-    color: #3380CA;
+    color: black;
 }
 
 .save-btn {
-    --color: #3380ca;
-    background-color: white;
+    background-color: var(--primary-color);
     font-family: inherit;
     display: flex;
     margin-top: 20px;
@@ -668,44 +590,19 @@ label {
     position: relative;
     cursor: pointer;
     overflow: hidden;
-    border: 2px solid var(--azul);
-    transition: color 0.5s;
+    border: none;
+    transition: 0.5s;
     z-index: 1;
     font-size: 17px;
     font-weight: bold;
-    border-radius: 6px;
-    color: var(--azul);
-}
-
-.save-btn:before {
-    content: "";
-    position: absolute;
-    z-index: -1;
-    background: var(--color);
-    height: 100px;
-    width: 720px;
-    border-radius: 50%;
-}
-
-.save-btn:hover {
-    background-color: white;
+    border-radius: 25px;
     color: white;
 }
 
-.save-btn:before {
-    top: 100%;
-    left: 100%;
-    transition: all 0.7s;
-}
-
-.save-btn:hover:before {
-    top: -30px;
-    left: -30px;
-}
-
-.save-btn:active:before {
-    background: #0060BB;
-    transition: background 0s;
+.save-btn:hover {
+    background-color: black;
+    color: white;
+    transform: translateY(-2px);
 }
 
 .livro-hud {
@@ -758,22 +655,22 @@ label {
 select {
     width: 20rem;
     height: 2rem;
-    border: 1px solid #3380ca;
-    background-color: #eef3ff;
-    border-radius: 5px;
+    border: 1px solid var(--primary-color);
+    background-color: #fff;
+    border-radius: 25px;
     margin-bottom: 10px;
     padding-left: 7px;
 }
 
 
 .formEditarLivro .mb-3 input {
-    border-radius: 5px;
+    border-radius: 25px;
     margin-bottom: 10px;
     padding-left: 7px;
     width: 20rem;
     height: 2rem;
-    border: 1px solid #3380ca;
-    background-color: #eef3ff;
+    border: 1px solid var(--primary-color);
+    background-color: #fff;
 }
 
 .formEditarLivro .mb-3 label {
@@ -781,13 +678,13 @@ select {
 }
 
 .formCadastroLivro .mb-3 input {
-    border-radius: 5px;
+    border-radius: 25px;
     margin-bottom: 10px;
     padding-left: 7px;
     width: 20rem;
     height: 2rem;
-    border: 1px solid #3380ca;
-    background-color: #eef3ff;
+    border: 1px solid var(--primary-color);
+    background-color: #fff;
 }
 
 .formCadastroLivro .mb-3 label {
@@ -907,11 +804,6 @@ button.edit:hover {
     display: flex;
 }
 
-.text {
-    font-size: large;
-    margin-top: 10px;
-}
-
 .icons {
     margin-top: 17px;
     margin-right: 5px;
@@ -923,15 +815,6 @@ button.edit:hover {
     padding-top: 9px;
     font-weight: bold;
 }
-
-.btn {
-    font-weight: bold;
-    font-size: 25px;
-    padding: 2px 6px;
-    width: 100px;
-}
-
-
 
 body img {
     width: 110px;
@@ -1010,7 +893,6 @@ footer {
 
 .table th,
 .table td {
-    padding: 15px;
     text-align: left;
     border-bottom: 1px solid #ddd;
 }
@@ -1022,10 +904,10 @@ footer {
 }
 
 .table thead th {
-    background-color: var(--azul-claro);
+    background-color: var(--primary-color);
     color: var(--branco);
     font-weight: bold;
-    border-bottom: 2px solid var(--azul-escuro);
+    border-bottom: 2px solid var(--dark-color);
     /* Cor do texto do cabeçalho */
 }
 
@@ -1048,7 +930,6 @@ footer {
     background-color: var(--preto);
     color: var(--branco);
     transition: 0.3s;
-    font-size: 15px;
     width: 2.5rem;
     height: 40px;
     margin-bottom: 2px;

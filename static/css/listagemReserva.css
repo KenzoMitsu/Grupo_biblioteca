@@ -435,7 +435,7 @@ input:checked + .slider:before {
 
 .current-page {
     font-size: 1.08rem;
-    color: var(--secondary-color);
+    color: black;
     font-weight: 600;
 }
 .paginacao {

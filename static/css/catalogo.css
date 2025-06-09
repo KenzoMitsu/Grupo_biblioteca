@@ -149,8 +149,8 @@ header {
 }
 
 .search-container i {
-    color: black;
-    margin-right: 8px;
+    position: relative;
+    margin-right: 10px;
     font-size: 1.2rem;
 }
 
@@ -323,10 +323,8 @@ header {
 
 .btn,
 .pagination-button {
-    background: linear-gradient(90deg, #4B70E2 60%, #6386ff 100%);
     color: #fff;
     border: none;
-    border-radius: 22px;
     padding: 8px 24px;
     font-weight: 600;
     font-size: 1.05rem;
@@ -626,22 +624,19 @@ header {
 .header-end {
     margin-bottom: 15px;
 }
-
+.fa-search {
+    color: #7f8c8d;
+    font-size: 1px;}
 /* Barra de pesquisa */
 .search-container {
     display: flex;
     align-items: center;
     background-color: white;
-    padding: 2px 20px;
+    padding: 2px 20px 2px 0px;
     border-radius: 25px;
     width: 600px;
 }
 
-.search-container i {
-    color: black;
-    margin-right: 8px;
-    font-size: 1.2rem;
-}
 
 .search-box {
     border: none;
