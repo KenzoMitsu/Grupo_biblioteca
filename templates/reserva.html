@@ -19,27 +19,7 @@
     <link rel="stylesheet" href="../static/css/reserva.css">
     <link rel="stylesheet" href="../static/css/home.css">
     <link rel="icon" type="image/x-icon" href="../static/img/head-removebg-preview.png">
-    <style>
-        .livro-devolvido {
-            color: green;
-            font-weight: bold;
-        }
 
-        .livro-emprestado {
-            color: blue;
-            font-weight: bold;
-        }
-
-        .livro-reservado {
-            color: orange;
-            font-weight: bold;
-        }
-
-        .livro-cancelado {
-            color: red;
-            font-weight: bold;
-        }
-    </style>
 </head>
 
 <body>
@@ -49,13 +29,14 @@
                 <img id="logoImage" src="../static/img/logo.png" alt="Logo Asa Literária">
             </a>
         </div>
-        <form id="formBuscaLivro" class="search-form" style="display: flex;">
+        <form id="formBuscaLivro" class="search-form">
             <div class="search-container">
                 <i class="fas fa-search"></i>
                 <input type="text" id="campoBusca" placeholder="Pesquise seu livro..." class="search-box">
                 <button type="submit" class="search-button">Buscar</button>
             </div>
         </form>
+
         <div class="header-right">
             <div class="menu-container">
                 <div class="menu-icon" id="menuButton" style="margin-right: 10px; margin-bottom: 10px;">
@@ -557,7 +538,7 @@
                 });
                 return;
             }
-            window.location.href = "home.html?q=" + encodeURIComponent(termo);
+            window.location.href = "catalogo.html?q=" + encodeURIComponent(termo);
         });
     </script>
 </body>

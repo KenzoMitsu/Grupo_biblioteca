@@ -16,15 +16,8 @@
   <link rel="stylesheet" href="../static/css/home.css">
   <link rel="stylesheet" href="../static/css/listagemEmprestimo.css">
   <link rel="icon" type="image/x-icon" href="../static/img/head-removebg-preview.png">
-  <style>
-    .table-container {
-      margin-top: 2rem;
-      overflow-x: auto;
-      background: #fff;
-      box-shadow: 0 4px 28px 0 rgba(40, 40, 40, 0.07);
-      padding: 24px;
-    }
 
+<style>
     .table {
       width: 100%;
       border-collapse: separate !important;
@@ -102,6 +95,7 @@
       font-weight: 600;
     }
   </style>
+
 </head>
 
 <body>
@@ -110,13 +104,14 @@
     <div class="header-left">
       <a id="logoHeader" href="home.html"><img id="logoImage" src="../static/img/logo.png" alt="Logo Asa Literária"></a>
     </div>
-    <form id="formBuscaLivro" class="search-form">
-      <div class="search-container">
-        <i class="fas fa-search"></i>
-        <input type="text" id="campoBusca" placeholder="Pesquise seu livro..." class="search-box">
-        <button type="submit" class="search-button">Buscar</button>
-      </div>
-    </form>
+      <form id="formBuscaLivro" class="search-form">
+          <div class="search-container">
+              <i class="fas fa-search"></i>
+              <input type="text" id="campoBusca" placeholder="Pesquise seu livro..." class="search-box">
+              <button type="submit" class="search-button">Buscar</button>
+          </div>
+      </form>
+
     <div class="header-right">
       <div class="menu-container">
         <button class="btn" id="menuButton">
@@ -241,7 +236,7 @@
         });
         return;
       }
-      window.location.href = "home.html?q=" + encodeURIComponent(termo);
+      window.location.href = "catalogo.html?q=" + encodeURIComponent(termo);
     });
 
     // Logo adaptativo (igual Home)
