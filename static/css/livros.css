@@ -88,7 +88,9 @@ p {
     display: flex;
     align-items: center;
 }
-
+.coisa{
+    margin-right: 30px;
+}
 .btn-catalogo:hover {
     color: rgb(178, 178, 178) !important;
     background-color: #4086c6;
