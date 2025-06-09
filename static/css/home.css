@@ -625,8 +625,7 @@ footer {
     background: #0077b5;
     color: #fff;
 }
-.redes{
-}
+
 /* Responsividade para telas menores */
 @media (max-width: 768px) {
     header {
