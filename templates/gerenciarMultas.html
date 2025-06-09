@@ -27,13 +27,14 @@
     <div class="header-left">
       <a id="logoHeader" href="home.html"><img id="logoImage" src="../static/img/logo.png" alt="Logo Asa Literária"></a>
     </div>
-    <form id="formBuscaLivro" class="search-form">
-      <div class="search-container">
-        <i class="fas fa-search"></i>
-        <input type="text" id="campoBusca" placeholder="Pesquise seu livro..." class="search-box">
-        <button type="submit" class="search-button">Buscar</button>
-      </div>
-    </form>
+      <form id="formBuscaLivro" class="search-form">
+          <div class="search-container">
+              <i class="fas fa-search"></i>
+              <input type="text" id="campoBusca" placeholder="Pesquise seu livro..." class="search-box">
+              <button type="submit" class="search-button">Buscar</button>
+          </div>
+      </form>
+
     <div class="header-right">
       <div class="menu-container">
         <button class="btn" id="menuButton">
@@ -155,7 +156,7 @@
         });
         return;
       }
-      window.location.href = "home.html?q=" + encodeURIComponent(termo);
+      window.location.href = "catalogo.html?q=" + encodeURIComponent(termo);
     });
 
     $(document).ready(function () {

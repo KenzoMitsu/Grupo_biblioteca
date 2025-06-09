@@ -45,10 +45,30 @@
         </div>
 
         <!-- Barra de Pesquisa -->
-        <div class="search-container">
-            <a href="catalogo.html"><i class="fas fa-search"></i></a>
-            <a href="catalogo.html"><button id="campoBusca" class="search-box">Pesquise seu livro</button></a>
-        </div>
+        <form id="formBuscaLivro" class="search-form">
+            <div class="search-container">
+                <i class="fas fa-search"></i>
+                <input type="text" id="campoBusca" placeholder="Pesquise seu livro..." class="search-box">
+                <button type="submit" class="search-button">Buscar</button>
+            </div>
+        </form>
+
+        <script>
+            $("#formBuscaLivro").on("submit", function (e) {
+                e.preventDefault();
+                let termo = $("#campoBusca").val().trim();
+                if (!termo) {
+                    Swal.fire({
+                        title: "Atenção!",
+                        text: "Digite algo para buscar.",
+                        icon: "warning"
+                    });
+                    return;
+                }
+                // Redireciona para home com busca
+                window.location.href = "catalogo.html?q=" + encodeURIComponent(termo);
+            });
+        </script>
 
         <div class="ngc-encima">
             <!-- Ícone de Menu com Dropdown -->

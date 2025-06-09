@@ -15,98 +15,7 @@
     <link rel="stylesheet" href="../static/css/home.css">
     <link rel="stylesheet" href="../static/css/parametrizacao.css">
     <link rel="icon" type="image/x-icon" href="../static/img/head-removebg-preview.png">
-    <style>
-        /* Extra boniteza integrando com home.css */
-        .pix-param-section {
-            background: #fff;
-            border-radius: 8px;
-            box-shadow: 0 6px 32px 0 rgba(40, 40, 40, 0.12);
-            margin-top: 40px;
-            padding: 2.5rem 2rem 2rem 2rem;
-            max-width: 820px;
-            margin-left: auto;
-            margin-right: auto;
-        }
 
-        .pix-param-section label {
-            font-weight: 600;
-            color: #314279;
-        }
-
-        .pix-param-section input[type="text"],
-        .pix-param-section input[type="file"] {
-            border-radius: 25px;
-            border: 1px solid var(--primary-color);
-        }
-
-        .pix-param-section input[type="file"] {
-            padding: 8px 10px;
-        }
-
-        .pix-param-section .btn-primary {
-            background: var(--primary-color);
-            border: none;
-            width: 47rem;
-            border-radius: 25px;
-            font-weight: 600;
-            font-size: 1.07rem;
-            padding: 10px 32px;
-            color: #fff;
-            
-            transition: background 0.18s, transform 0.18s;
-            box-shadow: 0 2px 12px 0 rgba(75, 112, 226, 0.11);
-        }
-
-        .pix-param-section .btn-primary:hover,
-        .pix-param-section .btn-primary:focus {
-            background: black;
-            transform: translateY(-2px);
-            color: #fff;
-            box-shadow: 0 4px 18px 0 rgba(75, 112, 226, 0.18);
-        }
-
-        .logo-preview img {
-            max-width: 120px;
-            margin-top: 8px;
-            border-radius: 10px;
-            border: 1.5px solid #e0e6f6;
-            box-shadow: 0 2px 12px 0 rgba(75, 112, 226, 0.11);
-        }
-
-        .pix-display-section {
-            margin-top: 32px;
-            text-align: center;
-        }
-
-        .pix-display-card {
-            background: #f8f9fd;
-            border-radius: 8px;
-            width: 820px;
-            box-shadow: 0 6px 32px 0 rgba(40, 40, 40, 0.12);
-            display: inline-block;
-            padding: 2rem 2.5rem;
-            margin-top: 1.2rem;
-        }
-
-        .pix-display-card h3 {
-            color: #4B70E2;
-            font-weight: 700;
-        }
-
-        .pix-display-card p {
-            margin-bottom: 0.4rem;
-            font-size: 1.07rem;
-            color: var(--primary-color);
-        }
-
-        @media (max-width: 600px) {
-
-            .pix-param-section,
-            .pix-display-card {
-                padding: 1rem 0.5rem !important;
-            }
-        }
-    </style>
 </head>
 
 <body>
@@ -123,6 +32,7 @@
                 <button type="submit" class="search-button">Buscar</button>
             </div>
         </form>
+
         <div class="header-right">
             <div class="menu-container">
                 <button class="btn" id="menuButton">
@@ -239,7 +149,7 @@
                 });
                 return;
             }
-            window.location.href = "home.html?q=" + encodeURIComponent(termo);
+            window.location.href = "catalogo.html?q=" + encodeURIComponent(termo);
         });
 
         // Logo adaptativo (igual Home)
