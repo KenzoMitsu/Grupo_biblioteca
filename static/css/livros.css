@@ -66,15 +66,13 @@ p {
     display: flex;
     align-items: center;
     background-color: white;
-    padding: 2px 20px;
+    padding: 2px 30px;
     border-radius: 25px;
     width: 600px;
 }
 
 .search-container i {
-    color: black;
-    margin-right: 8px;
-    font-size: 1.2rem;
+    margin-bottom: 6px;
 }
 
 .search-box {
@@ -342,7 +340,10 @@ input:checked + .slider:before {
     padding-right: 7px;
     padding-left: 1px;
 }
-
+.fa-search{
+    width: 10px;
+    height: 10px;
+}
 .fa-sync-alt {
     padding-right: 7px;
     padding-left: 1px;
@@ -371,7 +372,13 @@ input:checked + .slider:before {
 .fa-pix {
     padding-right: 7px;
 }
-
+.fa-pencil{
+    margin-left: 5px;
+}
+.fa-trash{
+    margin-left: 3px;
+    margin-right: 5px;
+}
 .fa-thumbtack {
     padding-right: 7px;
     padding-left: 1px;
@@ -479,39 +486,22 @@ h1 {
 
 .add-btn {
   --color: #3380ca;
-  background-color: white;
   font-family: inherit;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 12em;
-  height: 2.5em;
-  line-height: 2.5em;
-  margin-bottom: 65px;
   position: relative;
-  cursor: pointer;
   overflow: hidden;
-  border: 2px solid var(--azul);
-  transition: color 0.5s;
   z-index: 1;
-  font-size: 17px;
-  font-weight: bold;
-  border-radius: 6px;
-  color: var(--azul);
 }
 
 .add-btn:before {
   content: "";
   position: absolute;
   z-index: -1;
-  background: var(--color);
   height: 120px;
   width: 500px;
   border-radius: 50%;
-}
-
-.add-btn:hover {
-  color: white;
 }
 
 .add-btn:before {
@@ -808,11 +798,10 @@ button.edit:hover {
     font-weight: bold;
     font-size: 25px;
     padding: 2px 6px;
+    width: 100px;
 }
 
-.btn:hover {
-    background-color: #ddd;
-}
+
 
 body img{
     width: 110px;
