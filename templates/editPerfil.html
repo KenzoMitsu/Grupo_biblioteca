@@ -335,6 +335,7 @@
                     'Authorization': 'Bearer ' + localStorage.getItem("token")
                 },
                 success: function (retorno) {
+                    // Atualiza os dados no localStorage
                     localStorage.setItem("nome", formData.get("nome"));
                     localStorage.setItem("email", formData.get("email"));
                     localStorage.setItem("telefone", formData.get("telefone"));
