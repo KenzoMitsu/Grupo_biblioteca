@@ -36,23 +36,36 @@
 </head>
 
 <body>
-    <header>
-        <!-- Logo -->
-        <div id="logo-site" class="header-left">
-            <a id="logoHeader" href="home.html">
-                <img id="logoImage" alt="Logo">
-            </a>
+    <header class="header">
+        <div class="header-left">
+            <a id="logoHeader" href="home.html"><img id="logoImage" src="../static/img/logo.png"
+                    alt="Logo Asa Literária"></a>
         </div>
-
-            <!-- Barra de Pesquisa -->
         <form id="formBuscaLivro" class="search-form">
             <div class="search-container">
                 <i class="fas fa-search"></i>
                 <input type="text" id="campoBusca" placeholder="Pesquise seu livro..." class="search-box">
-                <button type="submit" class="search-button">Buscar</button>
+                <a class="search-button" href="catalogo.html"><i class="fa-solid fa-folder-open"></i>
+                    <p>Buscar</p>
+                </a>
             </div>
         </form>
-
+        <div class="header-right">
+            <div class="menu-container">
+                <button class="btn" id="menuButton">
+                    <span class="icon">
+                        <svg viewBox="0 0 175 80" width="40" height="40">
+                            <rect width="80" height="15" fill="#f0f0f0" rx="10"></rect>
+                            <rect y="30" width="80" height="15" fill="#f0f0f0" rx="10"></rect>
+                            <rect y="60" width="80" height="15" fill="#f0f0f0" rx="10"></rect>
+                        </svg>
+                    </span>
+                    <span class="text">MENU</span>
+                </button>
+                <ul class="dropdown-menu" id="dropdownMenu"></ul>
+            </div>
+        </div>
+    </header>
         <script>
             $("#formBuscaLivro").on("submit", function (e) {
                 e.preventDefault();
@@ -69,25 +82,6 @@
                 window.location.href = "catalogo.html?q=" + encodeURIComponent(termo);
             });
         </script>
-
-        <div class="coisa">
-            <!-- Ícone de Menu com Dropdown -->
-            <div class="header-end">
-                <div class="menu-container">
-                    <div class="menu-icon" id="menuButton">
-                        <div class="menulinha"></div>
-                        <div class="menulinha"></div>
-                        <div class="menulinha"></div>
-                    </div>
-
-                    <ul class="dropdown-menu" id="dropdownMenu">
-
-                    </ul>
-
-                </div>
-            </div>
-
-    </header>
 
     <h1>Detalhes da Reserva</h1>
 
