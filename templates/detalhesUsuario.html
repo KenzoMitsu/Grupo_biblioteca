@@ -27,17 +27,22 @@
             <div class="search-container">
                 <i class="fas fa-search"></i>
                 <input type="text" id="campoBusca" placeholder="Pesquise seu livro..." class="search-box">
-                <button type="submit" class="search-button">Buscar</button>
+                <a class="search-button" href="catalogo.html"><i class="fa-solid fa-folder-open"></i><p>Buscar</p></a>
             </div>
         </form>
 
         <div class="header-right">
             <div class="menu-container">
-                <div class="menu-icon" id="menuButton" style="margin-right: 10px; margin-bottom: 10px;">
-                    <div class="menulinha"></div>
-                    <div class="menulinha"></div>
-                    <div class="menulinha"></div>
-                </div>
+                <button class="btn" id="menuButton">
+                    <span class="icon">
+                        <svg viewBox="0 0 175 80" width="40" height="40">
+                            <rect width="80" height="15" fill="#f0f0f0" rx="10"></rect>
+                            <rect y="30" width="80" height="15" fill="#f0f0f0" rx="10"></rect>
+                            <rect y="60" width="80" height="15" fill="#f0f0f0" rx="10"></rect>
+                        </svg>
+                    </span>
+                    <span class="text">MENU</span>
+                </button>
                 <ul class="dropdown-menu" id="dropdownMenu"></ul>
             </div>
         </div>
@@ -112,7 +117,7 @@
                             <input type="hidden" id="idUsuario">
                         </div>
                         <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary">Salvar Alterações</button>
+                            <button type="submit" class="btn-salvar">Salvar Alterações</button>
                         </div>
                     </form>
                 </div>
@@ -125,10 +130,14 @@
                 <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact"
                     type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Histórico de Reservas</button>
             </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="pills-multas-tab" data-bs-toggle="pill" data-bs-target="#pills-multas"
+                    type="button" role="tab" aria-controls="pills-multas" aria-selected="false">Histórico de Multas</button>
+            </li>
         </ul>
         <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab" tabindex="0">
             <div class="table-responsive">
-                <table class="table table-striped" id="tabela-reservas">
+                <table class="table table-striped" id="tabela-reservas" border="3">
                     <thead>
                         <tr>
                             <th>Data da Reserva</th>
@@ -155,19 +164,9 @@
             </nav>
         </div>
 
-        <!-- Histórico de multas -->
-        <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-            <li class="nav-item" role="presentation">
-                <button class="nav-link" id="pills-multas-tab" data-bs-toggle="pill" data-bs-target="#pills-multas"
-                    type="button" role="tab" aria-controls="pills-multas" aria-selected="false">Histórico de Multas</button>
-            </li>
-        </ul>
-
-        <div class="tab-content">
-
             <div class="tab-pane fade" id="pills-multas" role="tabpanel" aria-labelledby="pills-multas-tab" tabindex="0">
                 <div class="table-responsive">
-                    <table class="table table-striped" id="tabela-multas">
+                    <table class="table table-striped" id="tabela-multas" border="3">
                         <thead>
                             <tr>
                                 <th>Data da Multa</th>
@@ -178,7 +177,6 @@
                         <tbody></tbody>
                     </table>
                 </div>
-            </div>
         </div>
     </main>
 

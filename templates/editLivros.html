@@ -30,7 +30,7 @@
             <div class="search-container">
                 <i class="fas fa-search"></i>
                 <input type="text" id="campoBusca" placeholder="Pesquise seu livro..." class="search-box">
-                <button type="submit" class="search-button">Buscar</button>
+                <a class="search-button" href="catalogo.html"><i class="fa-solid fa-folder-open"></i><p>Buscar</p></a>
             </div>
         </form>
 
@@ -55,11 +55,16 @@
             <!-- Ícone de Menu com Dropdown -->
             <div class="header-end">
                 <div class="menu-container">
-                    <div class="menu-icon" id="menuButton">
-                        <div class="menulinha"></div>
-                        <div class="menulinha"></div>
-                        <div class="menulinha"></div>
-                    </div>
+                    <button class="btn" id="menuButton">
+                    <span class="icon">
+                        <svg viewBox="0 0 175 80" width="40" height="40">
+                            <rect width="80" height="15" fill="#f0f0f0" rx="10"></rect>
+                            <rect y="30" width="80" height="15" fill="#f0f0f0" rx="10"></rect>
+                            <rect y="60" width="80" height="15" fill="#f0f0f0" rx="10"></rect>
+                        </svg>
+                    </span>
+                    <span class="text">MENU</span>
+                </button>
 
                     <ul class="dropdown-menu" id="dropdownMenu">
 
@@ -575,8 +580,8 @@
                                                 <button class="btn btn-warning btn-editar-livro" data-id="${livro.id_livro}" data-bs-toggle="modal" data-bs-target="#modalEditarLivro">
                                                     <i class="fa-solid fa-pencil"></i>
                                                 </button>
-                                                <button class="btn btn-danger btn-sm" onclick="inativarLivro(${livro.id_livro})" style="font-size: 0.9rem;">
-                                                    <i class="fa-solid fa-trash"></i> Inativar
+                                                <button class="btn-danger btn-sm" onclick="inativarLivro(${livro.id_livro})" >
+                                                    <i class="fa-solid fa-trash"></i>
                                                 </button>
                                             </div>
                                         </td>

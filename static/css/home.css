@@ -456,6 +456,7 @@ header {
 }
 
 .dropdown-linha {
+    gap: 10px;
     display: flex;
     align-items: center;
 }
@@ -706,7 +707,7 @@ footer {
 body {
     font-family: 'Poppins', sans-serif;
     color: var(--text-color);
-    background-color: #f5f5f5;
+    background-color: #fff;
     line-height: 1.6;
 }
 
@@ -779,7 +780,7 @@ a {
 }
 
 .search-button {
-    margin-left: -130px;
+    margin-left: -128px;
     padding: 5px 20px;
     background-color: var(--primary-color);
     color: white;
@@ -813,7 +814,7 @@ a {
     transition: all 0.5s ease-in-out;
     background-color: var(--secondary-color);
     font-size: 20px;
-    font-weight: 600;
+    font-weight: bold;
     display: flex;
     align-items: center;
     color: #f5f5f5;
@@ -855,6 +856,7 @@ a {
 }
 
 .item-relatorios {
+    gap: 10px;
     display: flex;
     align-items: center;
 }
@@ -985,9 +987,9 @@ a {
 
 .form-select {
     padding: 10px 15px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    background-color: white;
+    border: 1px solid var(--primary-color);
+    border-radius: 25px;
+    background-color: #eef3ff;
     cursor: pointer;
     min-width: 200px;
 }
@@ -1409,10 +1411,10 @@ a {
 .menu-item a {
     display: flex;
     align-items: center;
-    padding: 12px 20px;
+    padding: 12px 0px;
+    width: 156px;
     color: var(--text-color);
     transition: var(--transition);
-    gap: 10px;
 }
 
 .menu-item a:hover {

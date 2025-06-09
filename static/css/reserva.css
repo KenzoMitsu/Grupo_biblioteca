@@ -112,40 +112,6 @@ header {
     font-weight: bold;
 }
 
-/* Barra de pesquisa */
-.search-container {
-    display: flex;
-    align-items: center;
-    background-color: var(--branco);
-    padding: 2px 20px;
-    border-radius: 25px;
-    width: 600px;
-}
-
-.search-container i {
-    color: black;
-    margin-right: 8px;
-    font-size: 1.2rem;
-}
-
-.search-box {
-    border: none;
-    outline: none;
-    font-size: 1.1rem;
-    width: 100%;
-    padding: 5px;
-    background-color: white;
-}
-
-.btn-catalogo {
-    background-color: #3380ca;
-}
-
-.btn-catalogo:hover {
-    color: rgb(178, 178, 178) !important;
-    background-color: #4086c6;
-}
-
 /* Dark Mode */
 .switch-container {
     display: flex;
@@ -552,6 +518,10 @@ h1 {
     border-radius: 4px;
 }
 
+.filho2 span {
+    font-weight: bold;
+}
+
 .filho1 {
     display: flex;
     flex-direction: column;
@@ -924,7 +894,7 @@ form {
 }
 
 #tabela-historico {
-    width: 90%;
+    width: 100%;
     margin: 27px auto;
     border-collapse: collapse;
     background-color: #fff;

@@ -22,14 +22,11 @@
 </head>
 
 <body>
-    <header class="login-header">
-        <a id="logoHeader" href="home.html">
-            <img id="logoImage" src="../static/img/logo.png" alt="Logo Asa Literária">
-        </a>
-    </header>
-
     <section class="login-main-section">
         <div class="login-img" aria-hidden="true">
+            <a id="logoHeader" href="home.html">
+                <img id="logoImage" src="../static/img/logo.png" alt="Logo Asa Literária">
+            </a>
             <img src="../static/img/login-image.png" alt="Livro e login">
         </div>
         <div class="login-form-bloco">
@@ -43,7 +40,7 @@
                     <input placeholder="Sua senha" class="inserir2" type="password" id="senha" name="senha" required>
                     <button type="button" class="visivelbtn" id="visivelBtn" tabindex="-1"
                         aria-label="Mostrar/ocultar senha">
-                        <img id="icon" src="../static/img/visibility_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg" alt="">
+                        <img id="icon" src="../static/img/visibility_24dp_2C3E50_FILL0_wght400_GRAD0_opsz24.svg" alt="">
                     </button>
                 </div>
                 <button type="submit" class="botao-login">Entrar</button>
@@ -89,10 +86,10 @@
             const icon = document.getElementById("icon");
             if (passwordInput.type === "password") {
                 passwordInput.type = "text";
-                icon.src = "../static/img/visibility_off_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg";
+                icon.src = "../static/img/visibility_off_24dp_2C3E50_FILL0_wght400_GRAD0_opsz24.svg";
             } else {
                 passwordInput.type = "password";
-                icon.src = "../static/img/visibility_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg";
+                icon.src = "../static/img/visibility_24dp_2C3E50_FILL0_wght400_GRAD0_opsz24.svg";
             }
         });
 
