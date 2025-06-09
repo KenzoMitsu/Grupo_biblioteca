@@ -478,7 +478,25 @@ header li a {
     cursor: pointer;
     transition: background 0.3s;
 }
+.livro-devolvido {
+    color: green;
+    font-weight: bold;
+}
 
+.livro-emprestado {
+    color: blue;
+    font-weight: bold;
+}
+
+.livro-reservado {
+    color: orange;
+    font-weight: bold;
+}
+
+.livro-cancelado {
+    color: red;
+    font-weight: bold;
+}
 .submenu.show {
     display: flex;
     /* ou display: block */
