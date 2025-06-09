@@ -12,8 +12,41 @@
         rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <link rel="stylesheet" href="../static/css/home.css">
     <link rel="stylesheet" href="../static/css/editEstilo.css" />
     <link rel="icon" type="image/x-icon" href="../static/img/head-removebg-preview.png">
+    <style>
+        /* Garante que o menu-dropdown fique alinhado ao canto */
+        .menu-container {
+            position: relative;
+        }
+
+        .submenu {
+            display: none;
+        }
+
+        .submenu.show {
+            display: block;
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            min-width: 180px;
+            background: #fff;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+            border-radius: 8px;
+            z-index: 999;
+            margin-top: 0.5rem;
+            padding: 0;
+        }
+
+        .dropdown-menu.show {
+            display: block;
+        }
+    </style>
 </head>
 
 <body>
@@ -27,7 +60,7 @@
     <script src="../static/js/seguranca.js"></script>
     <script src="../static/js/segurancaADM.js"></script>
     <script src="../static/js/segurancaBiblio.js"></script>
-
+    <script src="menuDropdown.js"></script>
     <header class="header">
         <div class="header-left">
             <a id="logoHeader" href="home.html"><img id="logoImage" src="../static/img/logo.png"
@@ -40,30 +73,15 @@
                 <button type="submit" class="search-button">Buscar</button>
             </div>
         </form>
-        <script>
-            $("#formBuscaLivro").on("submit", function (e) {
-                e.preventDefault();
-                let termo = $("#campoBusca").val().trim();
-                if (!termo) {
-                    Swal.fire({
-                        title: "Atenção!",
-                        text: "Digite algo para buscar.",
-                        icon: "warning"
-                    });
-                    return;
-                }
-                window.location.href = "catalogo.html?q=" + encodeURIComponent(termo);
-            });
-        </script>
         <div class="header-right">
             <div class="menu-container">
+                <!-- Se quiser igual às outras páginas, troque por um <button> com svg/menu -->
                 <div class="menu-icon" id="menuButton">
                     <div class="menulinha"></div>
                     <div class="menulinha"></div>
                     <div class="menulinha"></div>
                 </div>
-                <ul class="dropdown-menu" id="dropdownMenu">
-                </ul>
+                <ul class="dropdown-menu" id="dropdownMenu"></ul>
             </div>
         </div>
     </header>
@@ -166,6 +184,18 @@
     <!-- SCRIPTS DA PÁGINA -->
     <script>
         $(document).ready(function () {
+            // Preenche o nome do usuário (caso queira mostrar)
+            function exibirNomeUsuario() {
+                const nome = localStorage.getItem('nome');
+                if (nome) {
+                    $('#nomeUsuario').text(' ' + nome);
+                } else {
+                    $('#nomeUsuario').text('');
+                }
+            }
+            exibirNomeUsuario();
+
+            // Preenche os campos do usuário
             const id = localStorage.getItem("id_usuario");
             if (id) {
                 fetch(ipPython + "/usuarioo/" + id, {
@@ -219,8 +249,36 @@
             $('#telefone').on('input keyup', function () {
                 $(this).val(phoneMask($(this).val()));
             });
+
+            // Atualiza links dos submenus de relatórios
+            function atualizarLinksRelatorios() {
+                const linksRelatorios = {
+                    relatorioMultas: "/multas_relatorio",
+                    relatorioLivros: "/livros_relatorio",
+                    relatorioUsuarios: "/usuarios_relatorio",
+                    relatorioEmprestimos: "/emprestimos_relatorio"
+                };
+                for (let id in linksRelatorios) {
+                    const elemento = document.getElementById(id);
+                    if (elemento) {
+                        elemento.href = `${ipPython2}${linksRelatorios[id]}`;
+                    }
+                }
+            }
+            atualizarLinksRelatorios();
+
+            // Dropdown de relatórios (submenu)
+            const relatoriosItem = document.getElementById('relatorios');
+            const submenu = relatoriosItem ? relatoriosItem.querySelector('.submenu') : null;
+            if (relatoriosItem && submenu) {
+                relatoriosItem.querySelector('.submenu-toggle').addEventListener('click', function (e) {
+                    e.preventDefault();
+                    submenu.classList.toggle('show');
+                });
+            }
         });
 
+        // Máscara para telefone
         function phoneMask(value) {
             if (!value) return "";
             value = value.replace(/\D/g, "");
@@ -303,12 +361,8 @@
             };
             reader.readAsDataURL(file);
         });
-        const logoImage = document.getElementById("logoImage");
-        logoImage.src = `${ipPython}/static/uploads/logo/logo.png`;
 
-        const logoImage2 = document.getElementById("logoImage2");
-        logoImage2.src = `${ipPython}/static/uploads/logo/logo.png`;
-
+        // Logo adaptativo
         const logoExts = ['png', 'jpg', 'jpeg', 'webp'];
         function atualizarLogoSite() {
             let i = 0;
