@@ -28,8 +28,7 @@
     <!-- HEADER igual home -->
     <header class="header">
         <div class="header-left">
-            <a id="logoHeader" href="home.html"><img id="logoImage" src="../static/img/logo.png"
-                    alt="Logo Asa Literária"></a>
+            <a id="logoHeader" href="home.html"><img id="logoImage" src="../static/img/logo.png" alt="Logo Asa Literária"></a>
         </div>
         <form id="formBuscaLivro" class="search-form">
             <div class="search-container">
@@ -112,12 +111,14 @@
             </div>
             <!-- Alterado para usar book-grid igual home -->
             <div class="book-grid" id="listaLivros"></div>
-            <div class="pagination" style="margin-top: 2rem;">
-                <a href="#" class="pagination-button" id="pagina-anterior"><i class="fa-solid fa-chevron-left"></i>
-                    Anterior</a>
-                <span class="current-page" id="paginaAtual">1</span>
-                <a href="#" class="pagination-button" id="pagina-proxima">Próxima <i
-                        class="fa-solid fa-chevron-right"></i></a>
+            <div class="pagination">
+                <a href="" class="pagination-button" id="pagina-anterior">
+                    <i class="fas fa-chevron-left"></i> Anterior
+                </a>
+                <span class="current-page" id="paginaAtual">Página 1</span>
+                <a href="" class="pagination-button" id="pagina-proxima">
+                    Próxima <i class="fas fa-chevron-right"></i>
+                </a>
             </div>
         </div>
     </main>
@@ -386,6 +387,40 @@
             preencherCamposPorURL();
             carregarLivros();
         });
+        const logoImage = document.getElementById("logoImage");
+            logoImage.src = `${ipPython}/static/uploads/logo/logo.png`;
+
+            const logoImage2 = document.getElementById("logoImage2");
+            logoImage2.src = `${ipPython}/static/uploads/logo/logo.png`;
+
+            const logoExts = ['png', 'jpg', 'jpeg', 'webp'];
+            function atualizarLogoSite() {
+                let i = 0;
+                function tentarProxima() {
+                    if (i >= logoExts.length) {
+                        let logoImage = document.getElementById("logoImage");
+                        let logoImage2 = document.getElementById("logoImage2");
+                        if (logoImage) logoImage.src = '../static/img/head-removebg-preview.png';
+                        if (logoImage2) logoImage2.src = '../static/img/head-removebg-preview.png';
+                        return;
+                    }
+                    let url = `${ipPython}/static/uploads/logo/logo.${logoExts[i]}?${Date.now()}`;
+                    fetch(url).then(resp => {
+                        if (resp.ok) {
+                            let logoImage = document.getElementById("logoImage");
+                            let logoImage2 = document.getElementById("logoImage2");
+                            if (logoImage) logoImage.src = url;
+                            if (logoImage2) logoImage2.src = url;
+                        } else {
+                            i++;
+                            tentarProxima();
+                        }
+                    });
+                }
+                tentarProxima();
+            }
+            document.addEventListener('DOMContentLoaded', atualizarLogoSite);
+
     </script>
 </body>
 

@@ -27,45 +27,32 @@
     <div class="header-left">
       <a id="logoHeader" href="home.html"><img id="logoImage" src="../static/img/logo.png" alt="Logo Asa Literária"></a>
     </div>
-        <form id="formBuscaLivro" class="search-form">
-            <div class="search-container">
-                <i class="fas fa-search"></i>
-                <input type="text" id="campoBusca" placeholder="Pesquise seu livro..." class="search-box">
-                <a class="search-button" href="catalogo.html"><i class="fa-solid fa-folder-open"></i><p>Buscar</p></a>
-            </div>
-        </form>
 
-          <script>
-            $("#formBuscaLivro").on("submit", function (e) {
-                e.preventDefault();
-                let termo = $("#campoBusca").val().trim();
-                if (!termo) {
-                    Swal.fire({
-                        title: "Atenção!",
-                        text: "Digite algo para buscar.",
-                        icon: "warning"
-                    });
-                    return;
-                }
-                // Redireciona para home com busca
-                window.location.href = "catalogo.html?q=" + encodeURIComponent(termo);
-            });
-          </script>
-        <div class="header-right">
-          <div class="menu-container">
-              <button class="btn" id="menuButton">
-                        <span class="icon">
-                            <svg viewBox="0 0 175 80" width="40" height="40">
-                                <rect width="80" height="15" fill="#f0f0f0" rx="10"></rect>
-                                <rect y="30" width="80" height="15" fill="#f0f0f0" rx="10"></rect>
-                                <rect y="60" width="80" height="15" fill="#f0f0f0" rx="10"></rect>
-                            </svg>
-                        </span>
-                        <span class="text">MENU</span>
-                    </button>
-                <ul class="dropdown-menu" id="dropdownMenu"></ul>
-            </div>
-          </div>
+    <form id="formBuscaLivro" class="search-form">
+        <div class="search-container">
+            <i class="fas fa-search"></i>
+            <input type="text" id="campoBusca" placeholder="Pesquise seu livro..." class="search-box">
+            <a class="search-button" href="catalogo.html"><i class="fa-solid fa-folder-open"></i>
+                <p>Buscar</p>
+            </a>
+        </div>
+    </form>
+
+    <div class="header-right">
+      <div class="menu-container">
+        <button class="btn" id="menuButton">
+          <span class="icon">
+            <svg viewBox="0 0 175 80" width="40" height="40">
+              <rect width="80" height="15" fill="#f0f0f0" rx="10"></rect>
+              <rect y="30" width="80" height="15" fill="#f0f0f0" rx="10"></rect>
+              <rect y="60" width="80" height="15" fill="#f0f0f0" rx="10"></rect>
+            </svg>
+          </span>
+          <span class="text">MENU</span>
+        </button>
+        <ul class="dropdown-menu" id="dropdownMenu"></ul>
+      </div>
+    </div>
   </header>
   <!-- FIM DO CABEÇALHO -->
 
@@ -179,7 +166,7 @@
               <i class="fa-brands fa-linkedin-in redes"></i>
             </li>
           </ul>
-  
+
         </div>
       </div>
       <div class="footer-info">
