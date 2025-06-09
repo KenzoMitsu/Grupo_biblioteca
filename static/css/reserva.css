@@ -99,7 +99,27 @@ header {
 /* Logo */
 .header-left img {
     width: 50px;
+    margin-left: 10px;
     height: auto;
+}
+.livro-devolvido {
+    color: green;
+    font-weight: bold;
+}
+
+.livro-emprestado {
+    color: orange;
+    font-weight: bold;
+}
+
+.livro-reservado {
+    color: blue;
+    font-weight: bold;
+}
+
+.livro-cancelado {
+    color: red;
+    font-weight: bold;
 }
 
 /* Barra de pesquisa */
@@ -419,7 +439,11 @@ header li a {
 }
 
 .swal2-confirm {
-    background-color: #d33;
+    background-color: var(--primary-color);
+}
+
+.swal2-confirm:hover {
+    background-color: black;
 }
 
 /* SUB-MODAIS DOS RELATÓRIOS */
@@ -1078,7 +1102,6 @@ form {
 
 .text {
     font-size: large;
-    margin-top: 10px;
 }
 
 .icons {

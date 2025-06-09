@@ -15,6 +15,14 @@ p {
     margin-bottom: 0rem;
 }
 
+.swal2-confirm {
+    background-color: var(--primary-color);
+}
+
+.swal2-confirm:hover {
+    background-color: black;
+}
+
 :root{
     --azul: #3380ca;
     --azul-claro: #4292DC;
@@ -245,6 +253,7 @@ header {
 /* Logo */
 .header-left img {
     width: 50px;
+    margin-left: 10px;
     height: auto;
 }
 
@@ -599,7 +608,9 @@ input {
     width: 100%;
     margin-top: 10px;
 }
-
+.btn-voltar span:hover{
+    color: whitesmoke;
+}
 .btn-voltar {
   --color: #3380ca;
   background-color: white;
@@ -617,7 +628,6 @@ input {
   font-size: 17px;
   font-weight: bold;
   border-radius: 6px;
-  color: var(--azul);
 }
 
 .btn-voltar:before {
@@ -628,6 +638,7 @@ input {
   height: 120px;
   width: 500px;
   border-radius: 50%;
+  color: var(--branco);
 }
 
 .btn-voltar:hover {
@@ -638,16 +649,19 @@ input {
   top: 100%;
   left: 100%;
   transition: all 0.7s;
+
 }
 
 .btn-voltar:hover:before {
   top: -30px;
   left: -30px;
+color: white;
 }
 
 .btn-voltar:active:before {
   background: #0060BB;
   transition: background 0s;
+  color: white;
 }
 
 .div-botao-voltar {
@@ -749,7 +763,6 @@ input {
 
 .text {
     font-size: large;
-    margin-top: 10px;
 }
 
 .icons {
