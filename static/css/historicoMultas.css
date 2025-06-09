@@ -300,12 +300,6 @@ input:checked + .slider:before {
     background-color: #1C82E3;
 }
 
-/* Ícone do menu */
-.menu-container {
-    position: relative;
-    display: inline-block;
-}
-
 .header-end {
     margin-bottom: 15px;
 }
