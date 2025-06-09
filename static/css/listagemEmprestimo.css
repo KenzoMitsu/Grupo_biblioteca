@@ -52,13 +52,6 @@ header {
     margin-bottom: 20px;
 }
 
-/* Logo */
-.header-left img {
-    width: 50px;
-    margin-left: 10px;
-    height: auto;
-}
-
 .btn-catalogo {
     background-color: #3380ca;
 }
@@ -459,12 +452,6 @@ input:checked + .slider:before {
     padding: 0px 7px;
     padding-top: 9px;
     font-weight: bold;
-}
-
-.btn {
-    font-weight: bold;
-    font-size: 25px;
-    padding: 2px 6px;
 }
 
 .menu-item {

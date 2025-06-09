@@ -14,13 +14,6 @@
     --transition: all 0.3s ease;
 }
 
-/* Reset e estilos base */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
 body {
     font-family: 'Poppins', sans-serif;
     color: var(--text-color);
@@ -51,11 +44,6 @@ body {
     padding: 15px 30px;
 }
 
-.header-left img {
-    width: 50px;
-    margin-left: 10px;
-    height: auto;
-}
 
 .header-left img:hover {
     transform: scale(1.05);
