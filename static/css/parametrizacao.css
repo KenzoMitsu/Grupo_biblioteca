@@ -46,13 +46,6 @@ header {
     margin-bottom: 50px;
 }
 
-/* Logo */
-.header-left img {
-    width: 50px;
-    margin-left: 10px;
-    height: auto;
-}
-
 .btn-catalogo {
     background-color: #3380ca;
 }
@@ -473,9 +466,9 @@ input:checked + .slider:before {
  }
 
  .pix-display-card {
-     background: #f8f9fd;
+     background: white;
      border-radius: 8px;
-     width: 820px;
+     width: 900px;
      box-shadow: 0 6px 32px 0 rgba(40, 40, 40, 0.12);
      display: inline-block;
      padding: 2rem 2.5rem;
@@ -568,7 +561,7 @@ input:checked + .slider:before {
 .pix-param-section {
     background-color: white;
     border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 6px 32px 0 rgba(40, 40, 40, 0.12);
     max-width: 900px;
     margin: auto;
 }

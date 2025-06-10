@@ -24,13 +24,6 @@ body {
     background-color: #fff;
 }
 
-/* Logo */
-.header-left img {
-    width: 50px;
-    margin-left: 10px;
-    height: auto;
-}
-
 .btn-catalogo {
     background-color: #3380ca;
 }
@@ -105,10 +98,7 @@ input:checked + .slider:before {
 }
 
 /* Ícone do menu */
-.menu-container {
-    position: relative;
-    display: inline-block;
-}
+
 
 .menu-icon {
     display: flex;
@@ -738,20 +728,6 @@ button.botao-multas {
     transform: scale(1.05);
 }
 
-.btn .icon {
-  position: absolute;
-  height: 40px;
-  width: 70px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transition: all 0.5s;
-}
-
-.btn .text {
-  transform: translateX(55px);
-}
-
 .btn:hover .icon {
   width: 175px;
 }
@@ -941,11 +917,6 @@ label {
     font-weight: bold;
 }
 
-.btn {
-    font-weight: bold;
-    font-size: 25px;
-    padding: 2px 6px;
-}
 
 .inter {
     background-color: var(--escuro);
@@ -979,10 +950,6 @@ label {
 
 .display {
     display: flex;
-}
-
-.text {
-    font-size: large;
 }
 
 .icons {
