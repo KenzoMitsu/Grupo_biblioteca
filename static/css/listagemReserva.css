@@ -52,13 +52,6 @@ header {
     margin-bottom: 20px;
 }
 
-/* Logo */
-.header-left img {
-    width: 50px;
-    margin-left: 10px;
-    height: auto;
-}
-
 .btn-catalogo {
     background-color: #3380ca;
 }
