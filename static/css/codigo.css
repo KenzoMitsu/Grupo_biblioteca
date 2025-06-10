@@ -53,7 +53,12 @@ img, svg {
     width: auto;
     padding: 20px;
 }
-
+header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
 section {
     display: flex;
 }
