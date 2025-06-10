@@ -32,6 +32,12 @@ p {
     margin-bottom: 0rem !important;
 }
 
+/* Logo */
+.header-left img {
+    width: 50px;
+    height: auto;
+}
+
 .livros-section {
     background: #fff;
     border-radius: 18px;
@@ -386,6 +392,93 @@ input:checked+.slider:before {
     color: black;
 }
 
+/* SÍMBOLOS DAS OPÇÕES */
+.fa-circle-user {
+    padding-right: 2px;
+    margin-left: -1px;
+}
+
+.fa-user {
+    padding-right: 2px;
+    padding-left: 1px;
+}
+
+.fa-file-export {
+    padding-right: 2px;
+    padding-left: 1px;
+}
+
+.fa-cash-register {
+    padding-right: 7px;
+    padding-left: 1px;
+}
+
+.fa-wallet {
+    padding-right: 7px;
+    padding-left: 1px;
+}
+
+.fa-book {
+    padding-right: 7px;
+    padding-left: 1px;
+}
+
+.fa-search {
+    width: 10px;
+    height: 10px;
+}
+
+.fa-sync-alt {
+    padding-right: 7px;
+    padding-left: 1px;
+}
+
+.fa-sign-out-alt {
+    padding-right: 7px;
+    padding-left: 1px;
+}
+
+.fa-bookmark {
+    padding-right: 7px;
+    padding-left: 1px;
+}
+
+.fa-dollar-sign {
+    padding-right: 7px;
+    padding-left: 1px;
+}
+
+.fa-clock {
+    padding-right: 7px;
+    padding-left: 1px;
+}
+
+.fa-pix {
+    padding-right: 7px;
+}
+
+.fa-pencil {
+    margin-left: 5px;
+}
+
+.fa-trash {
+    margin-left: 3px;
+    margin-right: 5px;
+}
+
+.fa-thumbtack {
+    padding-right: 7px;
+    padding-left: 1px;
+}
+
+.fa-plus {
+    padding-right: 7px;
+}
+
+.fa-user-pen {
+    padding-right: 7px;
+    padding-left: 1px;
+}
 
 /* SUB-MODAIS DOS RELATÓRIOS */
 /* Estilo do submenu */
