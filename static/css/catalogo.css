@@ -203,12 +203,6 @@ header {
     font-family: 'Montserrat', 'Poppins', sans-serif;
 }
 
-.btn-secondary {
-
-}
-
-
-
 .listalivros {
     display: flex;
     flex-wrap: wrap;
